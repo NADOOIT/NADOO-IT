@@ -1,0 +1,683 @@
+[
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "django.db.models",
+        "description": "django.db.models",
+        "isExtraImport": true,
+        "detail": "django.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "api_view",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "dj_database_url",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dj_database_url",
+        "description": "dj_database_url",
+        "detail": "dj_database_url",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "NADOOIT",
+        "description": "NADOOIT",
+        "isExtraImport": true,
+        "detail": "NADOOIT",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "main.migrations.0001_initial",
+        "description": "main.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Address',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('street', models.CharField(blank=True, max_length=255, null=True)),",
+        "detail": "main.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "main.migrations.0002_token",
+        "description": "main.migrations.0002_token",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('main', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Token',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('user_code', models.CharField(max_length=255)),",
+        "detail": "main.migrations.0002_token",
+        "documentation": {}
+    },
+    {
+        "label": "ProgramAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class ProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Program._meta.fields]\nclass CustomerAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Customer._meta.fields]\nclass TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class CustomerAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Customer._meta.fields]\nclass TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "TeamAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "DeveloperAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecutionAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "AddressAdmin",
+        "kind": 6,
+        "importPath": "main.admin",
+        "description": "main.admin",
+        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)\nadmin.site.register(Address, AddressAdmin)\nadmin.site.register(Token)",
+        "detail": "main.admin",
+        "documentation": {}
+    },
+    {
+        "label": "MainConfig",
+        "kind": 6,
+        "importPath": "main.apps",
+        "description": "main.apps",
+        "peekOfCode": "class MainConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'main'",
+        "detail": "main.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class Token(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=255)\n    token = models.TextField()\n    is_active = models.BooleanField(default=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.user_code\nclass Team(models.Model):",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "Team",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class Team(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Address(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    street = models.CharField(max_length=255, null=True, blank=True)",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "Address",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class Address(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    street = models.CharField(max_length=255, null=True, blank=True)\n    house_number = models.CharField(max_length=255, null=True, blank=True)\n    town = models.CharField(max_length=255, null=True, blank=True)\n    postal_code = models.CharField(max_length=255, null=True, blank=True)\n    addressed_to = models.CharField(max_length=255, null=True, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "Developer",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class Developer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    teams = models.ManyToManyField(Team, related_name='developer_teams')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Customer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class Customer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    addresses = models.ManyToManyField(Address, related_name='customer_addresses')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "Program",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    team_id = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass CustomerProgram(models.Model):",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgram",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved = models.CharField(max_length=255)\n    program_balance = models.CharField(max_length=255)\n    over_charge = models.BooleanField(default=False)\n    program_id = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "kind": 6,
+        "importPath": "main.models",
+        "description": "main.models",
+        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved = models.CharField(max_length=255)\n    customer_program_id = models.ForeignKey(CustomerProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer_program_id.program_id.name",
+        "detail": "main.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "main.urls",
+        "description": "main.urls",
+        "peekOfCode": "urlpatterns = [\n    path('', create_execution, name=\"create\"),\n    path('token', token, name=\"create_token\"),\n    path('check', check_user, name=\"check\"),\n]",
+        "detail": "main.urls",
+        "documentation": {}
+    },
+    {
+        "label": "create_execution",
+        "kind": 2,
+        "importPath": "main.views",
+        "description": "main.views",
+        "peekOfCode": "def create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])\n                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,\n                                                        customer_program_id=obj)\n                return Response({\"status_code\": 200,",
+        "detail": "main.views",
+        "documentation": {}
+    },
+    {
+        "label": "token",
+        "kind": 2,
+        "importPath": "main.views",
+        "description": "main.views",
+        "peekOfCode": "def token(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            if request.method == 'GET':\n                print(\"its a get\")\n                if request.data['NADOOIT__USER_AUTH_TOKEN'] != \"None\":\n                    print(\"have NADOOIT__USER_AUTH_TOKEN\")\n                    obj = Token.objects.get(user_code=request.data['NADOOIT__USER_CODE'], token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                            is_active=True)\n                    duration = timezone.now() - obj.created_at",
+        "detail": "main.views",
+        "documentation": {}
+    },
+    {
+        "label": "check_user",
+        "kind": 2,
+        "importPath": "main.views",
+        "description": "main.views",
+        "peekOfCode": "def check_user(request):\n    if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n        obj = Token.objects.get(user_code=request.data['NADOOIT__USER_CODE'], token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                is_active=False)\n        if obj:\n            return True\n        else:\n            return False\n    else:\n        return Response({\"status_code\": 403, \"msg\": \"access denied\"})",
+        "detail": "main.views",
+        "documentation": {}
+    },
+    {
+        "label": "#NADOOIT__API_KEY",
+        "kind": 5,
+        "importPath": "main.views",
+        "description": "main.views",
+        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\nNADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])",
+        "detail": "main.views",
+        "documentation": {}
+    },
+    {
+        "label": "NADOOIT__API_KEY",
+        "kind": 5,
+        "importPath": "main.views",
+        "description": "main.views",
+        "peekOfCode": "NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])\n                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,",
+        "detail": "main.views",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "nadooit.asgi",
+        "description": "nadooit.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "nadooit.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',\n    'main',\n]",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n    'whitenoise.middleware.WhiteNoiseMiddleware',\n]",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_STORAGE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nROOT_URLCONF = 'NADOOIT.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "ROOT_URLCONF = 'NADOOIT.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'NADOOIT.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    'default': dj_database_url.config(\n        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'\n                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',\n        conn_max_age=500),\n    'local': {\n        'ENGINE': 'django.db.backends.sqlite3',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "DATABASES = {\n    'default': dj_database_url.config(\n        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'\n                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',\n        conn_max_age=500),\n    'local': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "admin.site.site_header",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\nurlpatterns = [\n                  path('api/', include('main.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "admin.site.index_title",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\nurlpatterns = [\n                  path('api/', include('main.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "admin.site.site_title",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "admin.site.site_title = 'NADOOIT'\nurlpatterns = [\n                  path('api/', include('main.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "urlpatterns = [\n                  path('api/', include('main.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "nadooit.wsgi",
+        "description": "nadooit.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "nadooit.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "manage",
+        "description": "manage",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    print(os.environ.get('NADOOIT__API_KEY'))\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NADOOIT.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"",
+        "detail": "manage",
+        "documentation": {}
+    }
+]
