@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 
-from NADOOIT import settings
+from nadooit import settings
 
 admin.site.site_header = 'NADOOIT Administration'  # default: "Django Administration"
 admin.site.index_title = 'NADOOIT Administration Site'  # default: "Site administration"

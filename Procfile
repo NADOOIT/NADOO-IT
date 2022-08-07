@@ -1,1 +1,1 @@
-web: gunicorn NADOOIT.wsgi --log-file -
+web: gunicorn nadooit.wsgi --log-file -

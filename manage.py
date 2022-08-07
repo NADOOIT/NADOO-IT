@@ -9,7 +9,7 @@ def main():
     
     print(os.environ.get('NADOOIT__API_KEY'))
     
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NADOOIT.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nadooit.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

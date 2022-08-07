@@ -198,10 +198,10 @@
     },
     {
         "label": "settings",
-        "importPath": "NADOOIT",
-        "description": "NADOOIT",
+        "importPath": "nadooit",
+        "description": "nadooit",
         "isExtraImport": true,
-        "detail": "NADOOIT",
+        "detail": "nadooit",
         "documentation": {}
     },
     {
@@ -505,7 +505,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nROOT_URLCONF = 'NADOOIT.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
+        "peekOfCode": "STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nROOT_URLCONF = 'nadooit.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -514,7 +514,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ROOT_URLCONF = 'NADOOIT.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "peekOfCode": "ROOT_URLCONF = 'nadooit.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -532,7 +532,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'NADOOIT.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    'default': dj_database_url.config(\n        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'\n                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',\n        conn_max_age=500),\n    'local': {\n        'ENGINE': 'django.db.backends.sqlite3',",
+        "peekOfCode": "WSGI_APPLICATION = 'nadooit.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    'default': dj_database_url.config(\n        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'\n                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',\n        conn_max_age=500),\n    'local': {\n        'ENGINE': 'django.db.backends.sqlite3',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -676,7 +676,7 @@
         "kind": 2,
         "importPath": "manage",
         "description": "manage",
-        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    print(os.environ.get('NADOOIT__API_KEY'))\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'NADOOIT.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    print(os.environ.get('NADOOIT__API_KEY'))\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nadooit.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"",
         "detail": "manage",
         "documentation": {}
     }
