@@ -12,15 +12,25 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 import dj_database_url
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+#Production 
+#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')
+#Development
+config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')
+
+with open(config_json) as config_file:
+    config = json.load(config_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'
+#SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'
+SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,15 +85,30 @@ WSGI_APPLICATION = 'nadooit.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'
-                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',
-        conn_max_age=500),
-    'local': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': {
+        	'ENGINE': 'django.db.backends.postgresql',
+        	'NAME': config.get('POSTGRE_SQL_DB_NAME'),
+        	'USER': config.get('POSTGRE_SQL_DB_USER'),
+        	'PASSWORD': config.get('POSTGRE_SQL_DB_PASSWORD'),
+        	'HOST': 'localhost',  
+        	'PORT': config.get('POSTGRE_SQL_DB_PORT')
+    	}
+
+
+
+
 }
+""" 
+        Old developer code that belonged in the brakets above
+        'default': dj_database_url.config(
+            default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'
+                    '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',
+            conn_max_age=500),
+        'local': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -116,11 +141,24 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+
+#according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+
+STATIC_URL = 'static/'
+
+
+""" According to doc
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    '/var/www/static/',
+]
+"""
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
