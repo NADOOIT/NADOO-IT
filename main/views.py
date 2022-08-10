@@ -1,11 +1,9 @@
 import json
-import os
 from pathlib import Path
 from django.utils import timezone
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .models import CustomerProgram, CustomerProgramExecution, Token
-import requests
 
 # Create your views here.
 #NADOOIT__API_KEY = "rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo"
