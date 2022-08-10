@@ -1,4 +1,6 @@
+import json
 import os
+from pathlib import Path
 from django.utils import timezone
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -7,8 +9,14 @@ import requests
 
 # Create your views here.
 #NADOOIT__API_KEY = "rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo"
-NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')
+#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')
 
+config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')
+
+with open(config_json) as config_file:
+    config = json.load(config_file)
+
+NADOOIT__API_KEY = config.get('NADOOIT__API_KEY')
 
 @api_view(['POST'])
 def create_execution(request):
