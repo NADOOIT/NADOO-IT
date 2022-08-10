@@ -795,7 +795,7 @@
         "kind": 5,
         "importPath": "nadooit_website.urls",
         "description": "nadooit_website.urls",
-        "peekOfCode": "urlpatterns = [\n                  path('', views.index, name='index'),\n              ]",
+        "peekOfCode": "urlpatterns = [\n                  path('', views.index, name='index'),\n                  path('impressum', views.impressum, name='impressum'),\n                  path('datenschutz', views.datenschutz, name='datenschutz'),\n              ]",
         "detail": "nadooit_website.urls",
         "documentation": {}
     },
@@ -804,7 +804,25 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def index(request):\n    return render(request, 'index.html', {})",
+        "peekOfCode": "def index(request):\n    return render(request, 'index.html', {})\ndef impressum(request):\n    return render(request, 'impressum.html', {})\ndef datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
+        "detail": "nadooit_website.views",
+        "documentation": {}
+    },
+    {
+        "label": "impressum",
+        "kind": 2,
+        "importPath": "nadooit_website.views",
+        "description": "nadooit_website.views",
+        "peekOfCode": "def impressum(request):\n    return render(request, 'impressum.html', {})\ndef datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
+        "detail": "nadooit_website.views",
+        "documentation": {}
+    },
+    {
+        "label": "datenschutz",
+        "kind": 2,
+        "importPath": "nadooit_website.views",
+        "description": "nadooit_website.views",
+        "peekOfCode": "def datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
         "detail": "nadooit_website.views",
         "documentation": {}
     },
