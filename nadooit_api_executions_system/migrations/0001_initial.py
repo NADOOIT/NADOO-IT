@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('addresses', models.ManyToManyField(related_name='customer_addresses', to='main.address')),
+                ('addresses', models.ManyToManyField(related_name='customer_addresses', to='nadooit_api_executions_system.address')),
             ],
         ),
         migrations.CreateModel(
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 ('over_charge', models.BooleanField(default=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('customer_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='main.customer')),
+                ('customer_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_api_executions_system.customer')),
             ],
         ),
         migrations.CreateModel(
@@ -65,7 +65,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('team_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='main.team')),
+                ('team_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_api_executions_system.team')),
             ],
         ),
         migrations.CreateModel(
@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=255)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('teams', models.ManyToManyField(related_name='developer_teams', to='main.team')),
+                ('teams', models.ManyToManyField(related_name='developer_teams', to='nadooit_api_executions_system.team')),
             ],
         ),
         migrations.CreateModel(
@@ -85,12 +85,12 @@ class Migration(migrations.Migration):
                 ('program_time_saved', models.CharField(max_length=255)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('customer_program_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='main.customerprogram')),
+                ('customer_program_id', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_api_executions_system.customerprogram')),
             ],
         ),
         migrations.AddField(
             model_name='customerprogram',
             name='program_id',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='main.program'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_api_executions_system.program'),
         ),
     ]

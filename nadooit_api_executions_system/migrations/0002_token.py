@@ -7,7 +7,7 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0001_initial'),
+        ('nadooit_api_executions_system', '0001_initial'),
     ]
 
     operations = [

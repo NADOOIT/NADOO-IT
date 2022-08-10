@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'main.apps.MainConfig',
+    'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',
 ]
 
 MIDDLEWARE = [
