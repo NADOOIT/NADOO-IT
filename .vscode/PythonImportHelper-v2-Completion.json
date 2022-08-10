@@ -1,5 +1,127 @@
 [
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "nadooit",
+        "description": "nadooit",
+        "isExtraImport": true,
+        "detail": "nadooit",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -17,6 +139,14 @@
     },
     {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -58,19 +188,11 @@
         "documentation": {}
     },
     {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
         "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
+        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -98,36 +220,11 @@
         "documentation": {}
     },
     {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
         "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -155,61 +252,20 @@
         "documentation": {}
     },
     {
-        "label": "requests",
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "site",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
-        "label": "get_asgi_application",
-        "importPath": "django.core.asgi",
-        "description": "django.core.asgi",
-        "isExtraImport": true,
-        "detail": "django.core.asgi",
-        "documentation": {}
-    },
-    {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
-        "label": "dj_database_url",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "dj_database_url",
-        "description": "dj_database_url",
-        "detail": "dj_database_url",
-        "documentation": {}
-    },
-    {
-        "label": "static",
-        "importPath": "django.conf.urls.static",
-        "description": "django.conf.urls.static",
-        "isExtraImport": true,
-        "detail": "django.conf.urls.static",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "nadooit",
-        "description": "nadooit",
-        "isExtraImport": true,
-        "detail": "nadooit",
-        "documentation": {}
-    },
-    {
-        "label": "get_wsgi_application",
-        "importPath": "django.core.wsgi",
-        "description": "django.core.wsgi",
-        "isExtraImport": true,
-        "detail": "django.core.wsgi",
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
         "documentation": {}
     },
     {
@@ -219,6 +275,276 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "nadooit.asgi",
+        "description": "nadooit.asgi",
+        "peekOfCode": "application = get_asgi_application()",
+        "detail": "nadooit.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n#Production \n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\n#Development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "#config_json",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\n#Development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\n#SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\nSECRET_KEY = config.get('SECRET_KEY')",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "config_json",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\n#SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\nSECRET_KEY = config.get('SECRET_KEY')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "#SECRET_KEY",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "#SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\nSECRET_KEY = config.get('SECRET_KEY')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET_KEY",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "SECRET_KEY = config.get('SECRET_KEY')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEBUG",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ALLOWED_HOSTS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTALLED_APPS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',\n    'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',\n    'nadooit_website.apps.NadooitWebsiteConfig',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MIDDLEWARE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n    'whitenoise.middleware.WhiteNoiseMiddleware',\n]",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_STORAGE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nROOT_URLCONF = 'nadooit.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_URLCONF",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "ROOT_URLCONF = 'nadooit.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "WSGI_APPLICATION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "WSGI_APPLICATION = 'nadooit.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        \t'ENGINE': 'django.db.backends.postgresql',\n        \t'NAME': config.get('POSTGRE_SQL_DB_NAME'),\n        \t'USER': config.get('POSTGRE_SQL_DB_USER'),\n        \t'PASSWORD': config.get('POSTGRE_SQL_DB_PASSWORD'),\n        \t'HOST': 'localhost',  ",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        \t'ENGINE': 'django.db.backends.postgresql',\n        \t'NAME': config.get('POSTGRE_SQL_DB_NAME'),\n        \t'USER': config.get('POSTGRE_SQL_DB_USER'),\n        \t'PASSWORD': config.get('POSTGRE_SQL_DB_PASSWORD'),\n        \t'HOST': 'localhost',  \n        \t'PORT': config.get('POSTGRE_SQL_DB_PORT')\n    \t}\n}",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_PASSWORD_VALIDATORS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "LANGUAGE_CODE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n#according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = 'static/'\n\"\"\" According to doc",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TIME_ZONE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n#according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = 'static/'\n\"\"\" According to doc\nSTATICFILES_DIRS = [",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_I18N",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n#according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = 'static/'\n\"\"\" According to doc\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USE_TZ",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n#according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = 'static/'\n\"\"\" According to doc\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    '/var/www/static/',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = 'static/'\n\"\"\" According to doc\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    '/var/www/static/',\n]\n\"\"\"\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_URL = 'static/'\n\"\"\" According to doc\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    '/var/www/static/',\n]\n\"\"\"\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    '/var/www/static/',\n]\n\"\"\"\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_AUTO_FIELD",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "admin.site.site_header",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "admin.site.index_title",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "admin.site.site_title",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "nadooit.urls",
+        "description": "nadooit.urls",
+        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "detail": "nadooit.urls",
+        "documentation": {}
+    },
+    {
+        "label": "application",
+        "kind": 5,
+        "importPath": "nadooit.wsgi",
+        "description": "nadooit.wsgi",
+        "peekOfCode": "application = get_wsgi_application()",
+        "detail": "nadooit.wsgi",
         "documentation": {}
     },
     {
@@ -424,7 +750,25 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.views",
         "description": "nadooit_api_executions_system.views",
-        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\nNADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])",
+        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\n#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:",
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "#NADOOIT__API_KEY",
+        "kind": 5,
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "peekOfCode": "#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],",
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "config_json",
+        "kind": 5,
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)",
         "detail": "nadooit_api_executions_system.views",
         "documentation": {}
     },
@@ -433,250 +777,115 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.views",
         "description": "nadooit_api_executions_system.views",
-        "peekOfCode": "NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])\n                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,",
+        "peekOfCode": "NADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])\n                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,",
         "detail": "nadooit_api_executions_system.views",
         "documentation": {}
     },
     {
-        "label": "application",
-        "kind": 5,
-        "importPath": "nadooit.asgi",
-        "description": "nadooit.asgi",
-        "peekOfCode": "application = get_asgi_application()",
-        "detail": "nadooit.asgi",
-        "documentation": {}
-    },
-    {
-        "label": "BASE_DIR",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "SECRET_KEY",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "DEBUG",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "ALLOWED_HOSTS",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "INSTALLED_APPS",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',\n    'nadooit_api_executions_system',\n]",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "MIDDLEWARE",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n    'whitenoise.middleware.WhiteNoiseMiddleware',\n]",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATICFILES_STORAGE",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'\nROOT_URLCONF = 'nadooit.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "ROOT_URLCONF",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "ROOT_URLCONF = 'nadooit.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "TEMPLATES",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "WSGI_APPLICATION",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'nadooit.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    'default': dj_database_url.config(\n        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'\n                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',\n        conn_max_age=500),\n    'local': {\n        'ENGINE': 'django.db.backends.sqlite3',",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "DATABASES",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "DATABASES = {\n    'default': dj_database_url.config(\n        default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'\n                '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',\n        conn_max_age=500),\n    'local': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': BASE_DIR / 'db.sqlite3',\n    }\n}",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "AUTH_PASSWORD_VALIDATORS",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "LANGUAGE_CODE",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "TIME_ZONE",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "USE_I18N",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "USE_TZ",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nSTATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATIC_ROOT",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')\nSTATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATIC_URL",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATIC_URL = '/static/'\nSTATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATICFILES_DIRS",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "DEFAULT_AUTO_FIELD",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "admin.site.site_header",
-        "kind": 5,
-        "importPath": "nadooit.urls",
-        "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\nurlpatterns = [\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
-        "detail": "nadooit.urls",
-        "documentation": {}
-    },
-    {
-        "label": "admin.site.index_title",
-        "kind": 5,
-        "importPath": "nadooit.urls",
-        "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\nurlpatterns = [\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
-        "detail": "nadooit.urls",
-        "documentation": {}
-    },
-    {
-        "label": "admin.site.site_title",
-        "kind": 5,
-        "importPath": "nadooit.urls",
-        "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = 'NADOOIT'\nurlpatterns = [\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
-        "detail": "nadooit.urls",
+        "label": "NadooitWebsiteConfig",
+        "kind": 6,
+        "importPath": "nadooit_website.apps",
+        "description": "nadooit_website.apps",
+        "peekOfCode": "class NadooitWebsiteConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_website'",
+        "detail": "nadooit_website.apps",
         "documentation": {}
     },
     {
         "label": "urlpatterns",
         "kind": 5,
-        "importPath": "nadooit.urls",
-        "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n                  path('api/', include('nadooit_api_executions_system.urls')),\n                  path('', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
-        "detail": "nadooit.urls",
+        "importPath": "nadooit_website.urls",
+        "description": "nadooit_website.urls",
+        "peekOfCode": "urlpatterns = [\n                  path('', views.index, name='index'),\n              ]",
+        "detail": "nadooit_website.urls",
         "documentation": {}
     },
     {
-        "label": "application",
+        "label": "index",
+        "kind": 2,
+        "importPath": "nadooit_website.views",
+        "description": "nadooit_website.views",
+        "peekOfCode": "def index(request):\n    return render(request, 'index.html', {})",
+        "detail": "nadooit_website.views",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
         "kind": 5,
-        "importPath": "nadooit.wsgi",
-        "description": "nadooit.wsgi",
-        "peekOfCode": "application = get_wsgi_application()",
-        "detail": "nadooit.wsgi",
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
+        "detail": "venv.Scripts.activate_this",
         "documentation": {}
     },
     {
-        "label": "nadooit_api_executions_system",
+        "label": "base",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "main",
         "kind": 2,
         "importPath": "manage",
         "description": "manage",
-        "peekOfCode": "def nadooit_api_executions_system():\n    \"\"\"Run administrative tasks.\"\"\"\n    print(os.environ.get('NADOOIT__API_KEY'))\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nadooit.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"",
+        "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'nadooit.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
         "detail": "manage",
         "documentation": {}
     }

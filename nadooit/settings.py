@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',
+    'nadooit_website.apps.NadooitWebsiteConfig',
 ]
 
 MIDDLEWARE = [
