@@ -22,8 +22,10 @@ from nadooit import settings
 admin.site.site_header = 'NADOOIT Administration'  # default: "Django Administration"
 admin.site.index_title = 'NADOOIT Administration Site'  # default: "Site administration"
 admin.site.site_title = 'NADOOIT'
+
+#This is where the urls are placed
 urlpatterns = [
                   path('api/', include('main.urls')),
-                  path('', admin.site.urls),
+                  path('admin/', admin.site.urls),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
