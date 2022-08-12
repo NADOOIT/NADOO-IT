@@ -2,47 +2,159 @@
 
 {% block content %}
 
-<div class="indexheader">
-    <h1>
-        
-    </h1>
-</div>
-<div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+<header class="pc" style="border-bottom: 1px solid #00b4dc;">
+    <nav>
+        <div class="container">
+            <ul class="nav-bar">
+                <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+                <ul class="links">
+                    <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+                    <li><a href="{% url 'impressum' %}">Impressum</a></li>
+                    <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+                </ul>
+            </ul>
         </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    </nav>
+</header>
+<header class="mb" style="border-bottom: 1px solid #00b4dc;">
+    <nav>
+        <div class="nv">
+            <div class="container">
+                <ul class="nav-bar">
+                    <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+                    <li class="toggle" onclick="my()"><i class="far fa-bars bar"></i></li>
+                    <li class="close" onclick="my()"><i class="far fa-times cls"></i></li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
+    <div class="mmm">
+        <ul class="menu links">
+            <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+            <li><a href="{% url 'impressum' %}">Impressum</a></li>
+            <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+        </ul>
     </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+</header>
+
+<script src="static\nadooit_website\js\app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    AOS.init({duration: 1000});
+</script>
+
+<section>
+    <div class="banner">
+        <div class="size">
         </div>
-      </div>
     </div>
-    <div class="col">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+</section>
+<section>
+    <div class="banner">
+        <div class="size">
+            <div class="gap" data-aos="fade-in">
+                <h3><img class="hide" src="static\nadooit_website\png\logo\nadooit-big.png" width="40%" alt=""></h3>
+                <h1><img class="round-animation hide" src="static\nadooit_website\png\logo\ring.png" width="22%" alt=""></h1>
+                <h2><img class="hide" src="static\nadooit_website\png\logo\niche.png" width="50%" alt=""></h2>
+                <h1><img class="showe" src="static\nadooit_website\png\logo\nadooit-big-phone.png" width="100%" alt=""></h1>
+                <div class="space"></div>
+                <div class="four-card-wrap">
+                    <div class="step-card" data-aos="zoom-in">
+                        <h1>-1-</h1>
+                        <h2>Analyse</h2>
+                    </div>
+                    <div class="step-card" data-aos="zoom-in">
+                        <h1>-2-</h1>
+                        <h2>Dokumentation</h2>
+                    </div>
+                    <div class="step-card" data-aos="zoom-in">
+                        <h1>-3-</h1>
+                        <h2>Automatisation</h2>
+                    </div>
+                    <div class="step-card" data-aos="zoom-in">
+                        <h1>-4-</h1>
+                        <h2>Messen</h2>
+                    </div>
+                </div>
+                <div class="spacer">
+                    <br>
+                    <br>
+                </div>
+                <div class="our-grantee" data-aos="fade-up">
+                        <h1>Keine Abos!</h1>
+                </div>
+                <div class="our-grantee" data-aos="fade-up">
+                        <h1>Keine Wartungsgebühren!</h1>
+                </div>
+                <div class="our-grantee" data-aos="fade-up">
+                        <h1>Sie zahlen nur für Zeit, die wir zurückgewinnen!</h1>
+                </div>
+                <div class="our-grantee-gold" data-aos="fade-up">
+                        <h1>Das ist unsere einzigartige Produktivitäts Garantie!</h1>
+                </div>
+            </div>
+         </div>
+    </div>
+</section>
+
+<section class="mangsho" id="contactus">
+    <div class="size">
+        <div class="about" data-aos="fade-up">
+            <h2>Kontaktdaten</h2>
+            <div class="wraper">
+                <div class="hap">
+                    <img src="static\nadooit_website\png\logo\contact.png" width="100%">
+                </div>
+                <div class="wrap-text">
+                    <h3>Christoph Backhaus IT</h3>
+                    <h3>Am Markt 1</h3>
+                    <h3>47229 Duisburg</h3>
+                    <h3>Festnetz: <a href="tel:+4920657098429">+49 2065 7098429</a></h3>
+                    <h3><a href="mailto:christoph.backhaus@NADOOIT.de">christoph.backhaus@NADOOIT.de</a></h3>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</section>
+
+
+<div class="sikder"></div>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fal fa-arrow-up"></i></button>
+
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<script src="static\nadooit_website\js\app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration: 1000});
+</script>
+<!-- <footer>
+    <div class="size">
+        <div class="foot">
+            Copyright © 2022. MeccaDigit | All Rights Reserved 
+        </div>
+    </div>
+</footer> -->
+
 {% endblock %}
