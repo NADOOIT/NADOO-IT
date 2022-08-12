@@ -1,25 +1,40 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <img src="static\nadooit_website\png\nadooit-pure-logo.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
-      <a class="navbar-brand" href="{% url 'index' %}" height="50">NADOOIT</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://app.gather.town/invite?token=h_XcMToQC2uKJ9yiGF4coXrotqME_LZd">Online Büro</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'datenschutz' %}">Datenschutz</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'impressum' %}">Impressum</a>
-          </li>
-        </ul>
+<header class="pc" style="border-bottom: 1px solid #00b4dc;">
+  <nav>
+      <div class="container">
+          <ul class="nav-bar">
+              <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+              <ul class="links">
+                  <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+                  <li><a href="{% url 'impressum' %}">Impressum</a></li>
+                  <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+              </ul>
+          </ul>
       </div>
-    </div>
   </nav>
+</header>
+<header class="mb" style="border-bottom: 1px solid #00b4dc;">
+  <nav>
+      <div class="nv">
+          <div class="container">
+              <ul class="nav-bar">
+                  <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+                  <li class="toggle" onclick="my()"><i class="far fa-bars bar"></i></li>
+                  <li class="close" onclick="my()"><i class="far fa-times cls"></i></li>
+              </ul>
+              </div>
+  </nav>
+  </div>
+  </div>
+  <div class="mmm">
+      <ul class="menu">
+          <li><a href="{% url 'index' %}"><span>Home</span></a></li>
+          <li><a href="{% url 'impressum' %}">Impressum</a></li>
+          <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+      </ul>
+  </div>
+</header>
+<script src="static\nadooit_website\js\app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration: 1000});
+</script>

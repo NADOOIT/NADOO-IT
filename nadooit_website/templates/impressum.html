@@ -1,29 +1,71 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Impressum</h1>
+<header class="pc" style="border-bottom: 1px solid #00b4dc;">
+  <nav>
+      <div class="container">
+          <ul class="nav-bar">
+              <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+              <ul class="links">
+                  <li><a href="{% url 'index' %}">Home</a></li>
+                  <li><a href="{% url 'impressum' %}"><span>Impressum</span></a></li>
+                  <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+              </ul>
+          </ul>
+      </div>
+  </nav>
+</header>
+<header class="mb" style="border-bottom: 1px solid #00b4dc;">
+  <nav>
+      <div class="nv">
+          <div class="container">
+              <ul class="nav-bar">
+                  <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+                  <li class="toggle" onclick="my()"><i class="far fa-bars bar"></i></li>
+                  <li class="close" onclick="my()"><i class="far fa-times cls"></i></li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+  <div class="mmm">
+      <ul class="menu links">
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'impressum' %}"><span>Impressum</span></a></li>
+          <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+      </ul>
+  </div>
+</header>
+<script src="static\nadooit_website\js\app.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+AOS.init({duration: 1000});
+</script>
+<section>
+<div class="impressum">
 
-<h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
-<p>Christoph Backhaus<br />
-Christoph Backhaus IT<br />
-Am Markt 1<br />
-47229 Duisburg</p>
+  <h1>Impressum</h1>
+  <h2>Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
+  <p>Christoph Backhaus<br />
+  Christoph Backhaus IT<br />
+  Am Markt 1<br />
+  47229 Duisburg</p>
+  <h2>Kontakt</h2>
+  <p>Telefon: 02065 709 8429<br />
+  E-Mail: christoph.backhaus@NADOOIT.de</p>
 
-<h2>Kontakt</h2>
-<p>Telefon: 02065 709 8429<br />
-E-Mail: christoph.backhaus@nadooit.de</p>
+  <h2>Umsatzsteuer-ID</h2>
+  <p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27 a Umsatzsteuergesetz:<br />
+  DE352628026</p>
 
-<h2>Umsatzsteuer-ID</h2>
-<p>Umsatzsteuer-Identifikationsnummer gem&auml;&szlig; &sect; 27 a Umsatzsteuergesetz:<br />
-DE352628026</p>
+  <h2>Redaktionell verantwortlich</h2>
+  <p>Christoph Backhaus<br />
+  Am Markt 1<br />
+  47229 Duisburg</p>
 
-<h2>Redaktionell verantwortlich</h2>
-<p>Christoph Backhaus<br />
-Am Markt 1<br />
-47229 Duisburg</p>
+  <h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
+  <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-<h2>Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
-<p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-
-<p>Quelle: <a href="https://www.e-recht24.de">e-recht24.de</a></p>
+  <p>Quelle: <a href="https://www.e-recht24.de">e-recht24.de</a></p>
+</div>
+</section>
 {% endblock %}
