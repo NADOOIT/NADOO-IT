@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import create_execution, token, check_user
+from .views import create_execution, check_user
+#removed , token
 
 urlpatterns = [
     path('executions', create_execution, name="create"),
