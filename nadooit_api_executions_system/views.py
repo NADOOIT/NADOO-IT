@@ -36,7 +36,8 @@ def create_execution(request):
     except:
         return Response({"status_code": 500, "msg": "Internal server error"})
 
-
+""" THIS IS WRONG IT GIVES THE POSSIBLITY TO CREATE A NEW USER_AUTH_TOKEN just with the USER_CODE
+COMMENTED OUT FOR NOW BUT THIS WILL BE REMOVED
 @api_view(['POST', 'GET'])
 def token(request):
     try:
@@ -88,7 +89,7 @@ def token(request):
             return Response({"status_code": 403, "msg": "access denied"})
     except:
         return Response({"status_code": 500, "msg": "Token not found"})
-
+ """
 
 @api_view(['POST'])
 def check_user(request):
