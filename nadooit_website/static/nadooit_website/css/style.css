@@ -90,16 +90,7 @@ nav {
   padding: 20% 0 1% 0;
   color: white;
 }
-.our-grantee {
-  text-align: center;
-  padding: 20% 0 1% 0;
-  color: white;
-}
-.our-grantee-gold {
-  text-align: center;
-  padding: 50% 0 10% 0;
-  color: goldenrod;
-}
+
 .nav-bar {
   width: 100%;
   display: flex;
@@ -284,7 +275,7 @@ nav {
 }
 .round-animation {
   position: absolute;
-  top: 5.7%;
+  top: 4.24%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: flying 29s infinite linear;
@@ -417,6 +408,35 @@ footer {
   font-weight: 400;
   text-transform: capitalize;
 }
+
+.our-grantee {
+  text-transform: none;
+  text-align: center;
+  padding: 20% 0 1% 0;
+  color: white;
+}
+.our-grantee-gold {
+  text-transform: none;
+  text-align: center;
+  padding: 50% 0 10% 0;
+  color: goldenrod;
+}
+.our-grantee h1{
+  text-transform: none;
+  text-align: center;
+  padding: 20% 0 1% 0;
+  color: white;
+}
+.our-grantee-gold h1{
+  text-transform: none;
+  text-align: center;
+  padding: 50% 0 10% 0;
+  background: linear-gradient(225deg, #fa0000, gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* From here on it is about mobile */
 @media (max-width: 991px) {
   .container {
     padding: 0% 5%;
