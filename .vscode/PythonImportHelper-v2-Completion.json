@@ -714,7 +714,7 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.urls",
         "description": "nadooit_api_executions_system.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', create_execution, name=\"create\"),\n    path('token', token, name=\"create_token\"),\n    path('check', check_user, name=\"check\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('executions', create_execution, name=\"create\"),\n    #path('token', token, name=\"create_token\"),\n    path('users/check', check_user, name=\"check\"),\n]",
         "detail": "nadooit_api_executions_system.urls",
         "documentation": {}
     },

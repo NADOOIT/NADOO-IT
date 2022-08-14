@@ -567,18 +567,21 @@ footer {
   }
   .what-we-stand-for h1{
     text-align: center;
+    text-transform: none;
     padding: 20% 0 20% 0;
     color: white;
-    font-size: 18px
+    font-size: 18px;
   }
   .our-grantee h1{
     text-align: center;
+    text-transform: none;
     padding: 20% 0 20% 0;
     color: white;
     font-size: 18px
   }
   .our-grantee-gold h1{
     padding: 50% 0 100% 0;
+    text-transform: none;
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 2px;
