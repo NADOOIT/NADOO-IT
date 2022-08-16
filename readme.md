@@ -16,7 +16,7 @@ python
 >>>from pathlib import Path
 >>>Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')
 
-set the current directory to the packagedir (managmentsystem)
+set the current directory to the packagedir (managementsystem)
 
 first to create the required models run
 python manage.py migrate

@@ -1,14 +1,25 @@
+import random
+import string
 from django.db import models
 import uuid
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your models here.
 from django.db.models import ForeignKey
 
+def get_user_code():
+    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
+    try:
+        Token.objects.get(user_code=user_code)
+        return get_user_code()
+    except ObjectDoesNotExist:
+        return user_code
+
 
 class Token(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_code = models.CharField(max_length=255)
-    token = models.TextField()
+    user_code = models.CharField(max_length=255, default=get_user_code,unique=True)
+    token = models.TextField( default=uuid.uuid4)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
@@ -38,7 +49,7 @@ class Address(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return self.postal_code
+        return self.street + ' ' + self.house_number + ' ' + self.town + ' ' + self.postal_code + ' ' + self.addressed_to	
 
 
 class Developer(models.Model):

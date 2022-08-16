@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import create_execution, check_user
+from .views.api import create_execution, check_user
 #removed , token
 
 urlpatterns = [
