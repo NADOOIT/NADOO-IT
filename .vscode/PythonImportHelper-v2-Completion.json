@@ -727,7 +727,7 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\n#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])",
+        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\n#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },
@@ -736,7 +736,7 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):",
+        "peekOfCode": "#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },
@@ -745,16 +745,16 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:",
+        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },
     {
-        "label": "config_json",
+        "label": "#config_json",
         "kind": 5,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)",
+        "peekOfCode": "#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },

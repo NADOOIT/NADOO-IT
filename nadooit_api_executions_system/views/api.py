@@ -14,7 +14,7 @@ from nadooit_api_executions_system.models import CustomerProgram, CustomerProgra
 #for local development
 config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')
 #for production
-config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')
+#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')
 
 with open(config_json) as config_file:
     config = json.load(config_file)
