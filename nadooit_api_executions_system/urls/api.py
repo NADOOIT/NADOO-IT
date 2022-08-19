@@ -1,10 +1,8 @@
 from django.urls import path
 
-from .views.api import create_execution, check_user
-#removed , token
+from nadooit_api_executions_system.views.api import create_execution, check_user
 
 urlpatterns = [
     path('executions', create_execution, name="create"),
-    #path('token', token, name="create_token"),
     path('users/check', check_user, name="check"),
 ]

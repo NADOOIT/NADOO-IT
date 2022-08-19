@@ -212,6 +212,38 @@
         "documentation": {}
     },
     {
+        "label": "create_execution",
+        "importPath": "nadooit_api_executions_system.views.api",
+        "description": "nadooit_api_executions_system.views.api",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.api",
+        "documentation": {}
+    },
+    {
+        "label": "check_user",
+        "importPath": "nadooit_api_executions_system.views.api",
+        "description": "nadooit_api_executions_system.views.api",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.api",
+        "documentation": {}
+    },
+    {
+        "label": "create_token",
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
+        "label": "index_management",
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
         "label": "Element",
         "importPath": "xml.dom.minidom",
         "description": "xml.dom.minidom",
@@ -637,7 +669,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls_api')),\n                  path('token/', include('nadooit_api_executions_system.urls_management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -646,7 +678,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls_api')),\n                  path('token/', include('nadooit_api_executions_system.urls_management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -655,7 +687,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls_api')),\n                  path('token/', include('nadooit_api_executions_system.urls_management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -664,7 +696,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls_api')),\n                  path('token/', include('nadooit_api_executions_system.urls_management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -693,6 +725,24 @@
         "description": "nadooit_api_executions_system.migrations.0002_token",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Token',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('user_code', models.CharField(max_length=255)),",
         "detail": "nadooit_api_executions_system.migrations.0002_token",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "nadooit_api_executions_system.urls.api",
+        "description": "nadooit_api_executions_system.urls.api",
+        "peekOfCode": "urlpatterns = [\n    path('executions', create_execution, name=\"create\"),\n    path('users/check', check_user, name=\"check\"),\n]",
+        "detail": "nadooit_api_executions_system.urls.api",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "nadooit_api_executions_system.urls.management",
+        "description": "nadooit_api_executions_system.urls.management",
+        "peekOfCode": "urlpatterns = [\n    path('create', create_token, name=\"create-token\"),\n    path('', index_management, name=\"manage-token\"),\n]",
+        "detail": "nadooit_api_executions_system.urls.management",
         "documentation": {}
     },
     {
@@ -990,24 +1040,6 @@
         "description": "nadooit_api_executions_system.models",
         "peekOfCode": "def get_user_code():\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    try:\n        Token.objects.get(user_code=user_code)\n        return get_user_code()\n    except ObjectDoesNotExist:\n        return user_code\nclass Token(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=255, default=get_user_code,unique=True)",
         "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "urlpatterns",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.urls_api",
-        "description": "nadooit_api_executions_system.urls_api",
-        "peekOfCode": "urlpatterns = [\n    path('executions', create_execution, name=\"create\"),\n    #path('token', token, name=\"create_token\"),\n    path('users/check', check_user, name=\"check\"),\n]",
-        "detail": "nadooit_api_executions_system.urls_api",
-        "documentation": {}
-    },
-    {
-        "label": "urlpatterns",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.urls_management",
-        "description": "nadooit_api_executions_system.urls_management",
-        "peekOfCode": "urlpatterns = [\n    path('create', create_token, name=\"create-token\"),\n    path('', index_management, name=\"manage-token\"),\n]",
-        "detail": "nadooit_api_executions_system.urls_management",
         "documentation": {}
     },
     {
