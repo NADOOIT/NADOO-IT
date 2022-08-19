@@ -1,24 +1,55 @@
+import hashlib
 import random
 import string
+from typing import Iterable, Optional
 from django.db import models
 import uuid
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 
 # Create your models here.
-from django.db.models import ForeignKey
 
 def get_user_code():
     user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
-    try:
-        Token.objects.get(user_code=user_code)
-        return get_user_code()
-    except ObjectDoesNotExist:
-        return user_code
+    return user_code
+
+class User(AbstractUser,PermissionsMixin):
+    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)
+    display_name = models.CharField(max_length=32, editable=True)
+    
+    def __str__(self):
+        print(f'This is the displayname{self.display_name}')
+        if self.display_name is not "":
+            return self.display_name
+        else:
+            return self.username
+    #Every User can have multiple api_keys
+    #objects = CustomUserManager()
 
 
+class ApiKey(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    #api_keys are unique and are stored in the database as a hash of the api key
+    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
+    is_active = models.BooleanField(default=True) 
+    
+    def __str__(self):
+        if self.user.display_name is not "":
+            return f'{self.user.display_name}  {self.user.user_code}'
+        else:
+            return f'{self.user.username}  {self.user.user_code}'
+        
+    def save(self, *args, **kwargs):
+        print(self.api_key)
+        if not self.pk:
+            self.api_key = hashlib.sha256(self.api_key.encode()).hexdigest()
+        super(ApiKey, self).save(*args, **kwargs)
+    
 class Token(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_code = models.CharField(max_length=255, default=get_user_code,unique=True)
+    user_code = models.CharField(max_length=255,unique=True)
     token = models.TextField( default=uuid.uuid4)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
