@@ -333,6 +333,31 @@
         "documentation": {}
     },
     {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "Iterable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -357,11 +382,19 @@
         "documentation": {}
     },
     {
-        "label": "ForeignKey",
-        "importPath": "django.db.models",
-        "description": "django.db.models",
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
         "isExtraImport": true,
-        "detail": "django.db.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "PermissionsMixin",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
         "documentation": {}
     },
     {
@@ -530,6 +563,15 @@
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
         "peekOfCode": "DATABASES = {\n    'default': {\n        \t'ENGINE': 'django.db.backends.postgresql',\n        \t'NAME': config.get('POSTGRE_SQL_DB_NAME'),\n        \t'USER': config.get('POSTGRE_SQL_DB_USER'),\n        \t'PASSWORD': config.get('POSTGRE_SQL_DB_PASSWORD'),\n        \t'HOST': 'localhost',  \n        \t'PORT': config.get('POSTGRE_SQL_DB_PORT')\n    \t}\n}",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "AUTH_USER_MODEL = 'nadooit_api_executions_system.User'\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -903,11 +945,29 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        print(f'This is the displayname{self.display_name}')\n        if self.display_name is not \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys",
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "ApiKey",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "peekOfCode": "class ApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name is not \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
         "label": "Token",
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Token(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=255, default=get_user_code,unique=True)\n    token = models.TextField( default=uuid.uuid4)\n    is_active = models.BooleanField(default=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.user_code\nclass Team(models.Model):",
+        "peekOfCode": "class Token(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=255,unique=True)\n    token = models.TextField( default=uuid.uuid4)\n    is_active = models.BooleanField(default=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.user_code\nclass Team(models.Model):",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -979,7 +1039,7 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "def get_user_code():\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    try:\n        Token.objects.get(user_code=user_code)\n        return get_user_code()\n    except ObjectDoesNotExist:\n        return user_code\nclass Token(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=255, default=get_user_code,unique=True)",
+        "peekOfCode": "def get_user_code():\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code\nclass User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        print(f'This is the displayname{self.display_name}')\n        if self.display_name is not \"\":\n            return self.display_name",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
