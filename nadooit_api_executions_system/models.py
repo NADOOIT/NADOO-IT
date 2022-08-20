@@ -18,8 +18,7 @@ class User(AbstractUser,PermissionsMixin):
     display_name = models.CharField(max_length=32, editable=True)
     
     def __str__(self):
-        print(f'This is the displayname{self.display_name}')
-        if self.display_name is not "":
+        if self.display_name != "":
             return self.display_name
         else:
             return self.username
@@ -27,7 +26,7 @@ class User(AbstractUser,PermissionsMixin):
     #objects = CustomUserManager()
 
 
-class ApiKey(models.Model):
+class NadooitApiKey(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     #api_keys are unique and are stored in the database as a hash of the api key
     api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)
@@ -36,7 +35,7 @@ class ApiKey(models.Model):
     is_active = models.BooleanField(default=True) 
     
     def __str__(self):
-        if self.user.display_name is not "":
+        if self.user.display_name != "":
             return f'{self.user.display_name}  {self.user.user_code}'
         else:
             return f'{self.user.username}  {self.user.user_code}'
@@ -44,21 +43,9 @@ class ApiKey(models.Model):
     def save(self, *args, **kwargs):
         print(self.api_key)
         if not self.pk:
-            self.api_key = hashlib.sha256(self.api_key.encode()).hexdigest()
-        super(ApiKey, self).save(*args, **kwargs)
+            self.api_key = hashlib.sha256(str(self.api_key).encode()).hexdigest()
+        super(NadooitApiKey, self).save(*args, **kwargs)
     
-class Token(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_code = models.CharField(max_length=255,unique=True)
-    token = models.TextField( default=uuid.uuid4)
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True, editable=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
-
-    def __str__(self):
-        return self.user_code
-
-
 class Team(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
