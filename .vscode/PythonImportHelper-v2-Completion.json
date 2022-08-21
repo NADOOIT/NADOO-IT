@@ -697,7 +697,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\n#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
+        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -706,16 +706,16 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\n#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'",
         "detail": "nadooit.settings",
         "documentation": {}
     },
     {
-        "label": "#PWA_SERVICE_WORKER_PATH",
+        "label": "PWA_SERVICE_WORKER_PATH",
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'",
+        "peekOfCode": "PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -724,7 +724,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [",
+        "peekOfCode": "PWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -733,7 +733,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -742,7 +742,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',",
+        "peekOfCode": "PWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -751,7 +751,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -760,7 +760,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }",
+        "peekOfCode": "PWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -769,7 +769,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]",
+        "peekOfCode": "PWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -778,7 +778,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [",
+        "peekOfCode": "PWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -787,7 +787,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {",
+        "peekOfCode": "PWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -796,7 +796,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',",
+        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -805,7 +805,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'",
+        "peekOfCode": "PWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -814,7 +814,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        'src': 'static/splashscreen/nadooit.png',\n        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'",
+        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        'src': 'static/splashscreen/nadooit.png',\n        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'",
         "detail": "nadooit.settings",
         "documentation": {}
     },

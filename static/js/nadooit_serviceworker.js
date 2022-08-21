@@ -3,26 +3,18 @@
 var staticCacheName = "nadooit-pwa" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/css/django-pwa-app.css',
-    '/images/icons/icon-72x72.png',
-    '/images/icons/icon-96x96.png',
-    '/images/icons/icon-128x128.png',
-    '/images/icons/icon-144x144.png',
-    '/images/icons/icon-152x152.png',
-    '/images/icons/icon-192x192.png',
-    '/images/icons/icon-384x384.png',
-    '/images/icons/icon-512x512.png',
-    '/static/images/icons/splash-640x1136.png',
-    '/static/images/icons/splash-750x1334.png',
-    '/static/images/icons/splash-1242x2208.png',
-    '/static/images/icons/splash-1125x2436.png',
-    '/static/images/icons/splash-828x1792.png',
-    '/static/images/icons/splash-1242x2688.png',
-    '/static/images/icons/splash-1536x2048.png',
-    '/static/images/icons/splash-1668x2224.png',
-    '/static/images/icons/splash-1668x2388.png',
-    '/static/images/icons/splash-2048x2732.png'
+    '/static/nadooit_website/css/style.css',
+    '/static/appicon/maskable_icon_x48.png',
+    '/static/appicon/maskable_icon_x72.png',
+    '/static/appicon/maskable_icon_x96.png',
+    '/static/appicon/maskable_icon_x128.png',
+    '/static/appicon/maskable_icon_x192.png',
+    '/static/appicon/maskable_icon.png',
+    '/static/splashscreen/nadooit.png',
 ];
+
+//log out the files to cache
+console.log(filesToCache);
 
 // Cache on install
 self.addEventListener("install", event => {
@@ -41,7 +33,7 @@ self.addEventListener('activate', event => {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames
-                    .filter(cacheName => (cacheName.startsWith("django-pwa-")))
+                    .filter(cacheName => (cacheName.startsWith("adooit-pwa")))
                     .filter(cacheName => (cacheName !== staticCacheName))
                     .map(cacheName => caches.delete(cacheName))
             );

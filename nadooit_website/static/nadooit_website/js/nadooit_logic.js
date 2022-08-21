@@ -42,7 +42,7 @@ var start = function(e) {
         //redirect to /admin/ route of the current website
         window.location.href = "/admin/";   
         longpress = true;
-    }, 1000);
+    }, 500);
     
     return false;
 };

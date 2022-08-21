@@ -169,7 +169,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 #PWA settings
-#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')
 PWA_APP_NAME = 'NADOOIT'
 PWA_APP_DESCRIPTION = "NADOOIT PWA"
 PWA_APP_THEME_COLOR = '#000000'
@@ -177,18 +177,18 @@ PWA_APP_BACKGROUND_COLOR = '#ffffff'
 PWA_APP_DISPLAY = 'standalone'
 PWA_APP_SCOPE = '/'
 PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
+PWA_APP_START_URL = '/managment'
 PWA_APP_STATUS_BAR_COLOR = 'default'
 PWA_APP_ICONS = [
     {
-        'src': 'static/appicon/nadooit_app_160x160.png',
-        'sizes': '160x160'
+        'src': 'static/appicon/maskable_icon_x192.png',
+        'sizes': '192x192'
     }
 ]
 PWA_APP_ICONS_APPLE = [
     {
-        'src': 'static/appicon/nadooit_app_160x160.png',
-        'sizes': '160x160'
+        'src': 'static/appicon/maskable_icon_x192.png',
+        'sizes': '192x192'
     }
 ]
 PWA_APP_SPLASH_SCREEN = [
