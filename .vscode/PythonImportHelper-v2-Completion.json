@@ -417,6 +417,30 @@
         "documentation": {}
     },
     {
+        "label": "get__new_user_code",
+        "importPath": "nadooit_api_executions_system.user_code",
+        "description": "nadooit_api_executions_system.user_code",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.user_code",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
         "label": "random",
         "kind": 6,
         "isExtraImport": true,
@@ -432,46 +456,6 @@
         "importPath": "string",
         "description": "string",
         "detail": "string",
-        "documentation": {}
-    },
-    {
-        "label": "Iterable",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "ObjectDoesNotExist",
-        "importPath": "django.core.exceptions",
-        "description": "django.core.exceptions",
-        "isExtraImport": true,
-        "detail": "django.core.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -938,7 +922,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys\n    #objects = CustomUserManager()",
+        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys\n    #objects = CustomUserManager()",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -1015,12 +999,12 @@
         "documentation": {}
     },
     {
-        "label": "get_user_code",
+        "label": "get__new_user_code",
         "kind": 2,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "def get_user_code():\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code\nclass User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:",
-        "detail": "nadooit_api_executions_system.models",
+        "importPath": "nadooit_api_executions_system.user_code",
+        "description": "nadooit_api_executions_system.user_code",
+        "peekOfCode": "def get__new_user_code() -> str:\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code",
+        "detail": "nadooit_api_executions_system.user_code",
         "documentation": {}
     },
     {

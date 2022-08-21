@@ -1,20 +1,14 @@
 import hashlib
-import random
-import string
-from typing import Iterable, Optional
 from django.db import models
 import uuid
-from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
+
+from nadooit_api_executions_system.user_code import get__new_user_code
 
 # Create your models here.
 
-def get_user_code():
-    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
-    return user_code
-
 class User(AbstractUser,PermissionsMixin):
-    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)
+    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)
     display_name = models.CharField(max_length=32, editable=True)
     
     def __str__(self):
