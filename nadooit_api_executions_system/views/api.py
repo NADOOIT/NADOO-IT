@@ -12,7 +12,7 @@ def create_execution(request):
         try:
             found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)
            
-            if found_nadooit_api_key.user.user_code == request.data.get('NADOOIT__USER_CODE'):
+            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE'):
                 return Response({"error": "User code is not valid"}, status=400)
             
             if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:

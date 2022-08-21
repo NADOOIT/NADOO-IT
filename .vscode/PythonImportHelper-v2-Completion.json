@@ -812,7 +812,7 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "def create_execution(request):\n    try:\n        hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)\n            if found_nadooit_api_key.user.user_code == request.data.get('NADOOIT__USER_CODE'):\n                return Response({\"error\": \"User code is not valid\"}, status=400)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:\n                return Response({\"error\": \"User is not active\"}, status=400)\n            else:",
+        "peekOfCode": "def create_execution(request):\n    try:\n        hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE'):\n                return Response({\"error\": \"User code is not valid\"}, status=400)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:\n                return Response({\"error\": \"User is not active\"}, status=400)\n            else:",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },

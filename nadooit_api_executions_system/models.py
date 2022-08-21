@@ -41,7 +41,6 @@ class NadooitApiKey(models.Model):
             return f'{self.user.username}  {self.user.user_code}'
         
     def save(self, *args, **kwargs):
-        print(self.api_key)
         if not self.pk:
             self.api_key = hashlib.sha256(str(self.api_key).encode()).hexdigest()
         super(NadooitApiKey, self).save(*args, **kwargs)
