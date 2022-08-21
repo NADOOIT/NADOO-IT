@@ -33,14 +33,6 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -138,75 +130,112 @@
         "documentation": {}
     },
     {
-        "label": "create_execution",
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views.api",
+        "detail": "django.conf",
         "documentation": {}
     },
     {
-        "label": "check_user",
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
+        "label": "django.contrib.auth.models",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views.api",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
         "documentation": {}
     },
     {
-        "label": "create_token",
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views.management",
+        "detail": "django.contrib.auth.models",
         "documentation": {}
     },
     {
-        "label": "index_management",
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
+        "label": "PermissionsMixin",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views.management",
+        "detail": "django.contrib.auth.models",
         "documentation": {}
     },
     {
-        "label": "Element",
-        "importPath": "xml.dom.minidom",
-        "description": "xml.dom.minidom",
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "xml.dom.minidom",
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
         "documentation": {}
     },
     {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.utils",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.utils",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "api_view",
-        "importPath": "rest_framework.decorators",
-        "description": "rest_framework.decorators",
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "rest_framework.decorators",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "Response",
-        "importPath": "rest_framework.response",
-        "description": "rest_framework.response",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "rest_framework.response",
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "nadooit_api_executions_system.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
     {
@@ -226,7 +255,7 @@
         "documentation": {}
     },
     {
-        "label": "Token",
+        "label": "NadooitApiKey",
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
         "isExtraImport": true,
@@ -234,11 +263,93 @@
         "documentation": {}
     },
     {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
+        "label": "User",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
         "isExtraImport": true,
-        "detail": "django.shortcuts",
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "create_execution",
+        "importPath": "nadooit_api_executions_system.views.api",
+        "description": "nadooit_api_executions_system.views.api",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.api",
+        "documentation": {}
+    },
+    {
+        "label": "check_user",
+        "importPath": "nadooit_api_executions_system.views.api",
+        "description": "nadooit_api_executions_system.views.api",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.api",
+        "documentation": {}
+    },
+    {
+        "label": "index_management",
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
+        "label": "create_api_key",
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "api_view",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
         "documentation": {}
     },
     {
@@ -250,7 +361,15 @@
         "documentation": {}
     },
     {
-        "label": "TokenForm",
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "ApiKeyForm",
         "importPath": "nadooit_api_executions_system.forms",
         "description": "nadooit_api_executions_system.forms",
         "isExtraImport": true,
@@ -282,6 +401,46 @@
         "documentation": {}
     },
     {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "ModelChoiceField",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "get__new_user_code",
+        "importPath": "nadooit_api_executions_system.user_code",
+        "description": "nadooit_api_executions_system.user_code",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.user_code",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
         "label": "random",
         "kind": 6,
         "isExtraImport": true,
@@ -297,120 +456,6 @@
         "importPath": "string",
         "description": "string",
         "detail": "string",
-        "documentation": {}
-    },
-    {
-        "label": "uuid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "uuid4",
-        "importPath": "uuid",
-        "description": "uuid",
-        "isExtraImport": true,
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "forms",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "ModelForm",
-        "importPath": "django.forms",
-        "description": "django.forms",
-        "isExtraImport": true,
-        "detail": "django.forms",
-        "documentation": {}
-    },
-    {
-        "label": "hashlib",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "hashlib",
-        "description": "hashlib",
-        "detail": "hashlib",
-        "documentation": {}
-    },
-    {
-        "label": "Iterable",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "ObjectDoesNotExist",
-        "importPath": "django.core.exceptions",
-        "description": "django.core.exceptions",
-        "isExtraImport": true,
-        "detail": "django.core.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "AbstractUser",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "PermissionsMixin",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -670,7 +715,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -679,7 +724,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -688,7 +733,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -697,7 +742,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('token/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -708,6 +753,24 @@
         "description": "nadooit.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "nadooit.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0001_initial",
+        "description": "nadooit_api_executions_system.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "nadooit_api_executions_system.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0002_delete_token",
+        "description": "nadooit_api_executions_system.migrations.0002_delete_token",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Token',\n        ),\n    ]",
+        "detail": "nadooit_api_executions_system.migrations.0002_delete_token",
         "documentation": {}
     },
     {
@@ -724,7 +787,7 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.urls.management",
         "description": "nadooit_api_executions_system.urls.management",
-        "peekOfCode": "urlpatterns = [\n    path('create', create_token, name=\"create-token\"),\n    path('', index_management, name=\"manage-token\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', index_management, name=\"manage\"),\n    path('create-api-key', create_api_key, name=\"create-api-key\"),\n]",
         "detail": "nadooit_api_executions_system.urls.management",
         "documentation": {}
     },
@@ -733,16 +796,7 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "def create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])\n                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,\n                                                        customer_program_id=obj)\n                return Response({\"status_code\": 200,",
-        "detail": "nadooit_api_executions_system.views.api",
-        "documentation": {}
-    },
-    {
-        "label": "token",
-        "kind": 2,
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "def token(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            if request.method == 'GET':\n                print(\"its a get\")\n                if request.data['NADOOIT__USER_AUTH_TOKEN'] != \"None\":\n                    print(\"have NADOOIT__USER_AUTH_TOKEN\")\n                    obj = Token.objects.get(user_code=request.data['NADOOIT__USER_CODE'], token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                            is_active=True)\n                    duration = timezone.now() - obj.created_at",
+        "peekOfCode": "def create_execution(request):\n    try:\n        hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE'):\n                return Response({\"error\": \"User code is not valid\"}, status=400)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:\n                return Response({\"error\": \"User is not active\"}, status=400)\n            else:",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },
@@ -751,52 +805,7 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "def check_user(request):\n    if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n        obj = Token.objects.get(user_code=request.data['NADOOIT__USER_CODE'], token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                is_active=False)\n        if obj:\n            return True\n        else:\n            return False\n    else:\n        return Response({\"status_code\": 403, \"msg\": \"access denied\"})",
-        "detail": "nadooit_api_executions_system.views.api",
-        "documentation": {}
-    },
-    {
-        "label": "#NADOOIT__API_KEY",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\n#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])",
-        "detail": "nadooit_api_executions_system.views.api",
-        "documentation": {}
-    },
-    {
-        "label": "#NADOOIT__API_KEY",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):",
-        "detail": "nadooit_api_executions_system.views.api",
-        "documentation": {}
-    },
-    {
-        "label": "config_json",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\n#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:",
-        "detail": "nadooit_api_executions_system.views.api",
-        "documentation": {}
-    },
-    {
-        "label": "#config_json",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "#config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)",
-        "detail": "nadooit_api_executions_system.views.api",
-        "documentation": {}
-    },
-    {
-        "label": "NADOOIT__API_KEY",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.api",
-        "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "NADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\n@api_view(['POST'])\ndef create_execution(request):\n    try:\n        if request.data['NADOOIT__API_KEY'] == NADOOIT__API_KEY:\n            user = Token.objects.filter(token=request.data['NADOOIT__USER_AUTH_TOKEN'],\n                                        is_active=True)\n            if len(user) > 0:\n                obj = CustomerProgram.objects.get(id=request.data['program_id'])\n                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,",
+        "peekOfCode": "def check_user(request):\n    try:\n        hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)\n            if found_nadooit_api_key.user.user_code == request.data.get('NADOOIT__USER_CODE'):\n                return Response({\"error\": \"Your User code is not valid\"}, status=400)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:\n                return Response({\"error\": \"Your User is not active\"}, status=400)\n            else:",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },
@@ -805,61 +814,16 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.management",
         "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "def index_management(request):\n    return render(request, 'token/index_token_management.html')\ndef create_token(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = TokenForm(request.POST)\n        if form.is_valid():\n            token = form.save(commit=False)\n            token.updated_at = timezone.now()\n            token.created_at = timezone.now()",
+        "peekOfCode": "def index_management(request):\n    return render(request, 'api_key/index_api_key_management.html')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()\n            new_api_key.created_at = timezone.now()",
         "detail": "nadooit_api_executions_system.views.management",
         "documentation": {}
     },
     {
-        "label": "create_token",
+        "label": "create_api_key",
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.management",
         "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "def create_token(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = TokenForm(request.POST)\n        if form.is_valid():\n            token = form.save(commit=False)\n            token.updated_at = timezone.now()\n            token.created_at = timezone.now()\n            token.save()\n            return HttpResponseRedirect('/token/create?submitted=True')",
-        "detail": "nadooit_api_executions_system.views.management",
-        "documentation": {}
-    },
-    {
-        "label": "#NADOOIT__API_KEY",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "#NADOOIT__API_KEY = \"rtjs0t24oc(+1m6mvyd^^+*zm2=(n$#b9&#j9xxn6qi^=bj0eo\"\n#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\ndef index_management(request):",
-        "detail": "nadooit_api_executions_system.views.management",
-        "documentation": {}
-    },
-    {
-        "label": "#NADOOIT__API_KEY",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "#NADOOIT__API_KEY = os.environ.get('NADOOIT__API_KEY')\n#for local development\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\ndef index_management(request):\n    return render(request, 'token/index_token_management.html')",
-        "detail": "nadooit_api_executions_system.views.management",
-        "documentation": {}
-    },
-    {
-        "label": "config_json",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config_dev.json')\n#for production\nconfig_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\ndef index_management(request):\n    return render(request, 'token/index_token_management.html')\ndef create_token(request):\n    submitted = False",
-        "detail": "nadooit_api_executions_system.views.management",
-        "documentation": {}
-    },
-    {
-        "label": "config_json",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\nwith open(config_json) as config_file:\n    config = json.load(config_file)\nNADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\ndef index_management(request):\n    return render(request, 'token/index_token_management.html')\ndef create_token(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = TokenForm(request.POST)",
-        "detail": "nadooit_api_executions_system.views.management",
-        "documentation": {}
-    },
-    {
-        "label": "NADOOIT__API_KEY",
-        "kind": 5,
-        "importPath": "nadooit_api_executions_system.views.management",
-        "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "NADOOIT__API_KEY = config.get('NADOOIT__API_KEY')\ndef index_management(request):\n    return render(request, 'token/index_token_management.html')\ndef create_token(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = TokenForm(request.POST)\n        if form.is_valid():\n            token = form.save(commit=False)\n            token.updated_at = timezone.now()",
+        "peekOfCode": "def create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()\n            new_api_key.created_at = timezone.now()\n            new_api_key.save()\n            return HttpResponseRedirect('/managment/create-api-key?submitted=True')",
         "detail": "nadooit_api_executions_system.views.management",
         "documentation": {}
     },
@@ -922,7 +886,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)\nadmin.site.register(Address, AddressAdmin)\nadmin.site.register(Token)",
+        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)\nadmin.site.register(Address, AddressAdmin)\nadmin.site.register(User)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -936,11 +900,20 @@
         "documentation": {}
     },
     {
-        "label": "TokenForm",
+        "label": "UserCodeModelChoiceField",
         "kind": 6,
         "importPath": "nadooit_api_executions_system.forms",
         "description": "nadooit_api_executions_system.forms",
-        "peekOfCode": "class TokenForm(ModelForm):\n    class Meta:\n        model = Token\n        fields = ['user_code', 'token', 'is_active']\n        widgets = {\n            'user_code': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}),\n            'token': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}),\n            'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),\n        }\n        labels = {",
+        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
+        "detail": "nadooit_api_executions_system.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ApiKeyForm",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.forms",
+        "description": "nadooit_api_executions_system.forms",
+        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
         "detail": "nadooit_api_executions_system.forms",
         "documentation": {}
     },
@@ -949,25 +922,16 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        print(f'This is the displayname{self.display_name}')\n        if self.display_name is not \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys",
+        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys\n    #objects = CustomUserManager()",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
     {
-        "label": "ApiKey",
+        "label": "NadooitApiKey",
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class ApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name is not \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "Token",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Token(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=255,unique=True)\n    token = models.TextField( default=uuid.uuid4)\n    is_active = models.BooleanField(default=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.user_code\nclass Team(models.Model):",
+        "peekOfCode": "class NadooitApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -1035,12 +999,12 @@
         "documentation": {}
     },
     {
-        "label": "get_user_code",
+        "label": "get__new_user_code",
         "kind": 2,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "def get_user_code():\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code\nclass User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        print(f'This is the displayname{self.display_name}')\n        if self.display_name is not \"\":\n            return self.display_name",
-        "detail": "nadooit_api_executions_system.models",
+        "importPath": "nadooit_api_executions_system.user_code",
+        "description": "nadooit_api_executions_system.user_code",
+        "peekOfCode": "def get__new_user_code() -> str:\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code",
+        "detail": "nadooit_api_executions_system.user_code",
         "documentation": {}
     },
     {

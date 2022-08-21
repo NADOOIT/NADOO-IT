@@ -27,7 +27,7 @@ admin.site.site_title = 'NADOOIT'
 urlpatterns = [
                   path('', include('nadooit_website.urls')),
                   path('api/', include('nadooit_api_executions_system.urls.api')),
-                  path('token/', include('nadooit_api_executions_system.urls.management')),
+                  path('managment/', include('nadooit_api_executions_system.urls.management')),
                   path('admin/', admin.site.urls),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
