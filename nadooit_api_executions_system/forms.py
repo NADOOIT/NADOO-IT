@@ -1,42 +1,14 @@
-import random
-import string
-from uuid import uuid4
+import uuid
 from django import forms
-from django.forms import ModelForm
-from .models import Token
+from .models import User
+from django.forms import ModelChoiceField
 
-# class TokenForm(ModelForm):
-class TokenForm(ModelForm):
-    class Meta:
-        model = Token
-        fields = ['user_code', 'token', 'is_active']
-        widgets = {
-            'user_code': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}),
-            'token': forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}),
-            'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
-        labels = {
-            'user_code': 'User Code',
-            'token': 'Token',
-            'is_active': 'Is Active',
-            'created_at': 'Created At',
-            'updated_at': 'Updated At',
-        }
-
-        error_messages = {
-            'user_code': {
-                'required': 'User Code is required.',
-            },
-            'token': {
-                'required': 'Token is required.',
-            },
-            'is_active': {
-                'required': 'Is Active is required.',
-            },
-            'created_at': {
-                'required': 'Created At is required.',
-            },
-            'updated_at': {
-                'required': 'Updated At is required.',
-            },
-        }
+class UserCodeModelChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.user_code
+        
+class ApiKeyForm(forms.Form):
+    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name="user_code",required=True, widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))
+    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))
+    is_active = forms.BooleanField(required=True,initial=True,widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
+    
