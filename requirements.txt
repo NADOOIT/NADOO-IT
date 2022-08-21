@@ -14,3 +14,4 @@ six==1.16.0
 sqlparse==0.4.2
 urllib3==1.26.9
 whitenoise==6.2.0
+git+https://github.com/silviolleite/django-pwa

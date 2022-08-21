@@ -697,7 +697,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\n#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -706,7 +706,142 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\n#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "#PWA_SERVICE_WORKER_PATH",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "#PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_NAME",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_DESCRIPTION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_THEME_COLOR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_BACKGROUND_COLOR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_DISPLAY",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_SCOPE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_ORIENTATION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_START_URL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_START_URL = '/'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_STATUS_BAR_COLOR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_ICONS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_ICONS_APPLE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/nadooit_app_160x160.png',\n        'sizes': '160x160'\n    }\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        'src': 'static/splashscreen/nadooit.png',\n        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_SPLASH_SCREEN",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        'src': 'static/splashscreen/nadooit.png',\n        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'\n    }\n]\nPWA_APP_DIR = 'ltr'\nPWA_APP_LANG = 'de-DE'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_DIR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_DIR = 'ltr'\nPWA_APP_LANG = 'de-DE'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_LANG",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_LANG = 'de-DE'",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -715,7 +850,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -724,7 +859,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -733,7 +868,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -742,7 +877,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
