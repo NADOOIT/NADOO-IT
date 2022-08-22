@@ -449,22 +449,6 @@
         "documentation": {}
     },
     {
-        "label": "urlparse",
-        "importPath": "urllib.parse",
-        "description": "urllib.parse",
-        "isExtraImport": true,
-        "detail": "urllib.parse",
-        "documentation": {}
-    },
-    {
-        "label": "parse_qs",
-        "importPath": "urllib.parse",
-        "description": "urllib.parse",
-        "isExtraImport": true,
-        "detail": "urllib.parse",
-        "documentation": {}
-    },
-    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -1038,7 +1022,7 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.management",
         "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "def logout_user(request):\n        logout(request)\n        return redirect('login')\n@login_required(login_url='/managment/login_user')\ndef index_management(request):\n    return render(request, 'api_key/index_api_key_management.html')\n@login_required(login_url='/managment/login_user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":",
+        "peekOfCode": "def logout_user(request):\n        logout(request)\n        return redirect('/managment/login_user')\n@login_required(login_url='/managment/login_user')\ndef index_management(request):\n    return render(request, 'api_key/index_api_key_management.html')\n@login_required(login_url='/managment/login_user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":",
         "detail": "nadooit_api_executions_system.views.management",
         "documentation": {}
     },

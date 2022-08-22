@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
 from nadooit_api_executions_system.models import NadooitApiKey
-from urllib.parse import urlparse, parse_qs
 
 def login_user(request):
     if request.method == "POST":
@@ -22,13 +21,15 @@ def login_user(request):
             return redirect(request.GET.get('next') or '/managment')
         else:
             messages.success(request, 'Username or Password is incorrect')
-            return redirect('login')
+            return redirect('/managment/login_user')
     else:
        return render(request, 'authenticate/login.html', {})
    
 def logout_user(request):
         logout(request)
-        return redirect('login')
+        return redirect('/managment/login_user')
+
+
 
 
 @login_required(login_url='/managment/login_user')
