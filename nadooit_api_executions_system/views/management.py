@@ -1,17 +1,42 @@
-import json
-from pathlib import Path
 from django.utils import timezone
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 #imoport for userforms
 from nadooit_api_executions_system.forms import ApiKeyForm
 from django.http import HttpResponseRedirect
 
+from django.contrib.auth import authenticate, login,logout
+from django.contrib import messages 
+from django.contrib.auth.decorators import login_required
 from nadooit_api_executions_system.models import NadooitApiKey
 
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect(request.GET.get('next') or '/managment')
+        else:
+            messages.success(request, 'Username or Password is incorrect')
+            return redirect('/managment/login_user')
+    else:
+       return render(request, 'authenticate/login.html', {})
+   
+def logout_user(request):
+        logout(request)
+        return redirect('/managment/login_user')
 
+
+
+
+@login_required(login_url='/managment/login_user')
 def index_management(request):
     return render(request, 'api_key/index_api_key_management.html')
 
+@login_required(login_url='/managment/login_user')
 def create_api_key(request):
     submitted = False
     if request.method == "POST":

@@ -25,14 +25,6 @@
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
@@ -43,6 +35,14 @@
     },
     {
         "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "messages",
         "importPath": "django.contrib",
         "description": "django.contrib",
         "isExtraImport": true,
@@ -99,6 +99,14 @@
     },
     {
         "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -320,6 +328,22 @@
         "documentation": {}
     },
     {
+        "label": "login_user",
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
         "label": "hashlib",
         "kind": 6,
         "isExtraImport": true,
@@ -361,6 +385,14 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -382,6 +414,38 @@
         "description": "django.http",
         "isExtraImport": true,
         "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
         "documentation": {}
     },
     {
@@ -697,7 +761,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATICFILES_DIRS = (\n    os.path.join(BASE_DIR, 'static'),\n)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -706,7 +770,142 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\n#PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_SERVICE_WORKER_PATH",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static','js', 'nadooit_serviceworker.js')\nPWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_NAME",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_NAME = 'NADOOIT'\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_DESCRIPTION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_THEME_COLOR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_THEME_COLOR = '#000000'\nPWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_BACKGROUND_COLOR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = '#ffffff'\nPWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_DISPLAY",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_DISPLAY = 'standalone'\nPWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_SCOPE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_SCOPE = '/'\nPWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_ORIENTATION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_ORIENTATION = 'any'\nPWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_START_URL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_START_URL = '/managment'\nPWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_STATUS_BAR_COLOR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = 'default'\nPWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_ICONS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_ICONS = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_ICONS_APPLE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\n        'src': 'static/appicon/maskable_icon_x192.png',\n        'sizes': '192x192'\n    }\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        'src': 'static/splashscreen/nadooit.png',\n        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_SPLASH_SCREEN",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        'src': 'static/splashscreen/nadooit.png',\n        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'\n    }\n]\nPWA_APP_DIR = 'ltr'\nPWA_APP_LANG = 'de-DE'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_DIR",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_DIR = 'ltr'\nPWA_APP_LANG = 'de-DE'",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "PWA_APP_LANG",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "PWA_APP_LANG = 'de-DE'",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -715,7 +914,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_header = 'NADOOIT Administration'  # default: \"Django Administration\"\nadmin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -724,7 +923,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.index_title = 'NADOOIT Administration Site'  # default: \"Site administration\"\nadmin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -733,7 +932,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "admin.site.site_title = 'NADOOIT'\n#This is where the urls are placed\nurlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -742,7 +941,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n                  path('', include('nadooit_website.urls')),\n                  path('api/', include('nadooit_api_executions_system.urls.api')),\n                  path('managment/', include('nadooit_api_executions_system.urls.management')),\n                  path('admin/', admin.site.urls),\n                  path('', include('pwa.urls')),\n              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -787,7 +986,7 @@
         "kind": 5,
         "importPath": "nadooit_api_executions_system.urls.management",
         "description": "nadooit_api_executions_system.urls.management",
-        "peekOfCode": "urlpatterns = [\n    path('', index_management, name=\"manage\"),\n    path('create-api-key', create_api_key, name=\"create-api-key\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('login_user', login_user, name=\"login-user\"),\n    path('logout_user', logout_user, name=\"logout-user\"),\n    path('', index_management, name=\"manage\"),\n    path('', include('django.contrib.auth.urls'), name=\"manage\"),\n    path('create-api-key', create_api_key, name=\"create-api-key\"),\n]",
         "detail": "nadooit_api_executions_system.urls.management",
         "documentation": {}
     },
@@ -810,11 +1009,29 @@
         "documentation": {}
     },
     {
+        "label": "login_user",
+        "kind": 2,
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST['username']\n        password = request.POST['password']\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect(request.GET.get('next') or '/managment')\n        else:\n            messages.success(request, 'Username or Password is incorrect')",
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "kind": 2,
+        "importPath": "nadooit_api_executions_system.views.management",
+        "description": "nadooit_api_executions_system.views.management",
+        "peekOfCode": "def logout_user(request):\n        logout(request)\n        return redirect('/managment/login_user')\n@login_required(login_url='/managment/login_user')\ndef index_management(request):\n    return render(request, 'api_key/index_api_key_management.html')\n@login_required(login_url='/managment/login_user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":",
+        "detail": "nadooit_api_executions_system.views.management",
+        "documentation": {}
+    },
+    {
         "label": "index_management",
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.management",
         "description": "nadooit_api_executions_system.views.management",
-        "peekOfCode": "def index_management(request):\n    return render(request, 'api_key/index_api_key_management.html')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()\n            new_api_key.created_at = timezone.now()",
+        "peekOfCode": "def index_management(request):\n    return render(request, 'api_key/index_api_key_management.html')\n@login_required(login_url='/managment/login_user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()",
         "detail": "nadooit_api_executions_system.views.management",
         "documentation": {}
     },

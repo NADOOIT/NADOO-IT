@@ -29,5 +29,6 @@ urlpatterns = [
                   path('api/', include('nadooit_api_executions_system.urls.api')),
                   path('managment/', include('nadooit_api_executions_system.urls.management')),
                   path('admin/', admin.site.urls),
+                  path('', include('pwa.urls')),
 
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

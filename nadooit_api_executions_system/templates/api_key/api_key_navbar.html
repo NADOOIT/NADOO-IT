@@ -5,6 +5,12 @@
                 <ul class="links">
                     <li><a href="{% url 'manage' %}">Manage NADOOIT API Keys</a></li>
                     <li><a href="{% url 'create-api-key' %}">Create new NADOOIT API Key</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout-user' %}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login-user' %}">Login</a></li>
+                    {% endif %}
+
                 </ul>
             </ul>
         </div>
@@ -15,20 +21,26 @@
         <div class="nv">
             <div class="container">
                 <ul class="nav-bar">
+                    {% comment %} <li class="logo"><a href="{% url 'index' %}"><img src=".\static\nadooit_api_executions_system\png\logo\nadooit.png" alt=""></a></li> {% endcomment %}
                     <li class="toggle" onclick="my()"><i class="far fa-bars bar"></i></li>
                     <li class="close" onclick="my()"><i class="far fa-times cls"></i></li>
                 </ul>
-            </div>
-        </div>
+              </div>
+          </div>
     </nav>
     <div class="mmm">
-        <ul class="menu links">
+        <ul class="menu">
             <li><a href="{% url 'manage' %}">Manage NADOOIT API Keys</a></li>
             <li><a href="{% url 'create-api-key' %}">Create new NADOOIT API Key</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout-user' %}">Log out</a></li>
+            {% else %}
+            <li><a href="{% url 'login-user' %}">Login</a></li>
+            {% endif %}
         </ul>
     </div>
   </header>
-  <script src="static\nadooit_website\js\app.js"></script>
+  <script src="static\nadooit_api_executions_system\js\app.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
   AOS.init({duration: 1000});
