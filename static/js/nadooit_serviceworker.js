@@ -13,9 +13,6 @@ var filesToCache = [
     '/static/splashscreen/nadooit.png',
 ];
 
-//log out the files to cache
-console.log(filesToCache);
-
 // Cache on install
 self.addEventListener("install", event => {
     this.skipWaiting();
