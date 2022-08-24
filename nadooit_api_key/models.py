@@ -7,7 +7,9 @@ from nadooit_auth.models import User
 # Create your models here.
 
 class NadooitApiKey(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
     #api_keys are unique and are stored in the database as a hash of the api key
     api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)
     created_at = models.DateTimeField(auto_now_add=True, editable=True)

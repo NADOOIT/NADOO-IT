@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
 
+from nadooit_crm.models import Customer
+
 # Create your models here.
 class Team(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -10,21 +12,6 @@ class Team(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Address(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    street = models.CharField(max_length=255, null=True, blank=True)
-    house_number = models.CharField(max_length=255, null=True, blank=True)
-    town = models.CharField(max_length=255, null=True, blank=True)
-    postal_code = models.CharField(max_length=255, null=True, blank=True)
-    addressed_to = models.CharField(max_length=255, null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True, editable=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
-
-    def __str__(self):
-        return self.street + ' ' + self.house_number + ' ' + self.town + ' ' + self.postal_code + ' ' + self.addressed_to	
-
 
 class Developer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -36,18 +23,6 @@ class Developer(models.Model):
     def __str__(self):
         return self.name
 
-
-class Customer(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255)
-    addresses = models.ManyToManyField(Address, related_name='customer_addresses')
-    created_at = models.DateTimeField(auto_now_add=True, editable=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
@@ -58,7 +33,6 @@ class Program(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class CustomerProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nadooit_auth',
     'nadooit_api_key',
+    'nadooit_crm',
+    'nadooit_time_account',
     'rest_framework',
     'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',
     'nadooit_website.apps.NadooitWebsiteConfig',

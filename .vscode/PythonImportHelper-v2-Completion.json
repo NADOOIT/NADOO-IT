@@ -82,6 +82,30 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -186,6 +210,14 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -203,6 +235,62 @@
     },
     {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -273,22 +361,6 @@
         "importPath": "uuid",
         "description": "uuid",
         "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -421,6 +493,14 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
         "label": "timezone",
         "importPath": "django.utils",
         "description": "django.utils",
@@ -438,6 +518,30 @@
     },
     {
         "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -549,6 +653,30 @@
         "documentation": {}
     },
     {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -565,6 +693,94 @@
         "documentation": {}
     },
     {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Address",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "BillingAdress",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "ShippingAdress",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -594,6 +810,30 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -672,6 +912,38 @@
         "importPath": "string",
         "description": "string",
         "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerNadooitTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountEmployee",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "WorkTimeAccountEntry",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
@@ -769,7 +1041,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'nadooit_auth',\n    'nadooit_api_key',\n    'rest_framework',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'nadooit_auth',\n    'nadooit_api_key',\n    'nadooit_crm',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1111,7 +1383,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.migrations.0001_initial",
         "description": "nadooit_api_executions_system.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Address',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('street', models.CharField(blank=True, max_length=255, null=True)),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CustomerProgram',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('program_time_saved', models.CharField(max_length=255)),",
         "detail": "nadooit_api_executions_system.migrations.0001_initial",
         "documentation": {}
     },
@@ -1120,17 +1392,8 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.migrations.0002_initial",
         "description": "nadooit_api_executions_system.migrations.0002_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('nadooit_api_executions_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitapikey',\n            name='user',",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_api_executions_system', '0001_initial'),\n        ('nadooit_crm', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogram',\n            name='customer_id',",
         "detail": "nadooit_api_executions_system.migrations.0002_initial",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.migrations.0003_delete_nadooitapikey",
-        "description": "nadooit_api_executions_system.migrations.0003_delete_nadooitapikey",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0002_initial'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='NadooitApiKey',\n        ),\n    ]",
-        "detail": "nadooit_api_executions_system.migrations.0003_delete_nadooitapikey",
         "documentation": {}
     },
     {
@@ -1210,16 +1473,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class ProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Program._meta.fields]\nclass CustomerAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Customer._meta.fields]\nclass TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]",
-        "detail": "nadooit_api_executions_system.admin",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerAdmin",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.admin",
-        "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class CustomerAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Customer._meta.fields]\nclass TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]",
+        "peekOfCode": "class ProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Program._meta.fields]\nclass TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1228,7 +1482,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]",
+        "peekOfCode": "class TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1237,7 +1491,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)",
+        "peekOfCode": "class CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1246,7 +1500,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)",
+        "peekOfCode": "class DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1255,16 +1509,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
-        "detail": "nadooit_api_executions_system.admin",
-        "documentation": {}
-    },
-    {
-        "label": "AddressAdmin",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.admin",
-        "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)\nadmin.site.register(Address, AddressAdmin)",
+        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1300,16 +1545,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Team(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Address(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    street = models.CharField(max_length=255, null=True, blank=True)",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "Address",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Address(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    street = models.CharField(max_length=255, null=True, blank=True)\n    house_number = models.CharField(max_length=255, null=True, blank=True)\n    town = models.CharField(max_length=255, null=True, blank=True)\n    postal_code = models.CharField(max_length=255, null=True, blank=True)\n    addressed_to = models.CharField(max_length=255, null=True, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):",
+        "peekOfCode": "class Team(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Developer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -1318,16 +1554,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Developer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    teams = models.ManyToManyField(Team, related_name='developer_teams')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Customer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "Customer",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Customer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    addresses = models.ManyToManyField(Address, related_name='customer_addresses')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
+        "peekOfCode": "class Developer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    teams = models.ManyToManyField(Team, related_name='developer_teams')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -1363,8 +1590,17 @@
         "kind": 6,
         "importPath": "nadooit_api_key.migrations.0001_initial",
         "description": "nadooit_api_key.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitApiKey',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitApiKey',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('api_key', models.CharField(default=uuid.uuid4, max_length=255, unique=True)),",
         "detail": "nadooit_api_key.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_key.migrations.0002_initial",
+        "description": "nadooit_api_key.migrations.0002_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_api_key', '0001_initial'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitapikey',\n            name='user',",
+        "detail": "nadooit_api_key.migrations.0002_initial",
         "documentation": {}
     },
     {
@@ -1381,7 +1617,7 @@
         "kind": 6,
         "importPath": "nadooit_api_key.models",
         "description": "nadooit_api_key.models",
-        "peekOfCode": "class NadooitApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
+        "peekOfCode": "class NadooitApiKey(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":",
         "detail": "nadooit_api_key.models",
         "documentation": {}
     },
@@ -1390,7 +1626,7 @@
         "kind": 6,
         "importPath": "nadooit_auth.migrations.0001_initial",
         "description": "nadooit_auth.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('password', models.CharField(max_length=128, verbose_name='password')),",
         "detail": "nadooit_auth.migrations.0001_initial",
         "documentation": {}
     },
@@ -1408,7 +1644,7 @@
         "kind": 6,
         "importPath": "nadooit_auth.models",
         "description": "nadooit_auth.models",
-        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys\n    #objects = CustomUserManager()",
+        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys",
         "detail": "nadooit_auth.models",
         "documentation": {}
     },
@@ -1419,6 +1655,177 @@
         "description": "nadooit_auth.user_code",
         "peekOfCode": "def get__new_user_code() -> str:\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code",
         "detail": "nadooit_auth.user_code",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_crm.migrations.0001_initial",
+        "description": "nadooit_crm.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Address',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),",
+        "detail": "nadooit_crm.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerAdmin",
+        "kind": 6,
+        "importPath": "nadooit_crm.admin",
+        "description": "nadooit_crm.admin",
+        "peekOfCode": "class CustomerAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Customer._meta.fields]\nclass AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\n# Register your models here.\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(Address, AddressAdmin)\nadmin.site.register(ShippingAdress)\nadmin.site.register(BillingAdress)\t\nadmin.site.register(Employee)",
+        "detail": "nadooit_crm.admin",
+        "documentation": {}
+    },
+    {
+        "label": "AddressAdmin",
+        "kind": 6,
+        "importPath": "nadooit_crm.admin",
+        "description": "nadooit_crm.admin",
+        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\n# Register your models here.\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(Address, AddressAdmin)\nadmin.site.register(ShippingAdress)\nadmin.site.register(BillingAdress)\t\nadmin.site.register(Employee)",
+        "detail": "nadooit_crm.admin",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCrmConfig",
+        "kind": 6,
+        "importPath": "nadooit_crm.apps",
+        "description": "nadooit_crm.apps",
+        "peekOfCode": "class NadooitCrmConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_crm'",
+        "detail": "nadooit_crm.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Address",
+        "kind": 6,
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "peekOfCode": "class Address(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    street = models.CharField(max_length=255, null=True, blank=True)\n    house_number = models.CharField(max_length=255, null=True, blank=True)\n    town = models.CharField(max_length=255, null=True, blank=True)\n    postal_code = models.CharField(max_length=255, null=True, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.street + ' ' + self.house_number + ' ' + self.town + ' ' + self.postal_code ",
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "ShippingAdress",
+        "kind": 6,
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "peekOfCode": "class ShippingAdress(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    adress = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)\n    addressed_to = models.CharField(max_length=255, null=True, blank=True)\t\n    def __str__(self):\n        return self.addressed_to   + ', ' + self.adress.street + ' ' + self.adress.house_number + ', '+ self.adress.postal_code + ' ' + self.adress.town\nclass BillingAdress(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    adress = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)\n    addressed_to = models.CharField(max_length=255, null=True, blank=True)\t",
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "BillingAdress",
+        "kind": 6,
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "peekOfCode": "class BillingAdress(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    adress = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)\n    addressed_to = models.CharField(max_length=255, null=True, blank=True)\t\n    def __str__(self):\n        return self.addressed_to   + ', ' + self.adress.street + ' ' + self.adress.house_number + ', '+ self.adress.postal_code + ' ' + self.adress.town    \nclass Customer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)",
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "kind": 6,
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "peekOfCode": "class Customer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    shipping_address = models.ForeignKey(ShippingAdress, on_delete=models.SET_NULL, null=True)\n    billing_address = models.ForeignKey(BillingAdress, on_delete=models.SET_NULL, null=True)\t\n    def __str__(self):\n        return self.name\nclass Employee(models.Model):",
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "kind": 6,
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "peekOfCode": "class Employee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    #a customers field that shows what customers the employee is assigned to\n    customers = models.ManyToManyField(Customer)\n    def __str__(self):\n        if self.user.display_name != \"\":\n            return self.user.display_name\n        else:\n            return self.user.username",
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitDeliveryConfig",
+        "kind": 6,
+        "importPath": "nadooit_delivery.apps",
+        "description": "nadooit_delivery.apps",
+        "peekOfCode": "class NadooitDeliveryConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_delivery'",
+        "detail": "nadooit_delivery.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Order",
+        "kind": 6,
+        "importPath": "nadooit_delivery.models",
+        "description": "nadooit_delivery.models",
+        "peekOfCode": "class Order(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer.name + ' ' + self.created_at.strftime('%Y-%m-%d %H:%M:%S')\nclass OrderItem(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    order = models.ForeignKey(Order, on_delete=models.CASCADE)",
+        "detail": "nadooit_delivery.models",
+        "documentation": {}
+    },
+    {
+        "label": "OrderItem",
+        "kind": 6,
+        "importPath": "nadooit_delivery.models",
+        "description": "nadooit_delivery.models",
+        "peekOfCode": "class OrderItem(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    order = models.ForeignKey(Order, on_delete=models.CASCADE)\n    product = models.ForeignKey(Product, on_delete=models.CASCADE)\n    quantity = models.IntegerField()\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.product.name + ' ' + self.quantity.__str__()",
+        "detail": "nadooit_delivery.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_time_account.migrations.0001_initial",
+        "description": "nadooit_time_account.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='TimeAccount',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),",
+        "detail": "nadooit_time_account.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitTimeaccountConfig",
+        "kind": 6,
+        "importPath": "nadooit_time_account.apps",
+        "description": "nadooit_time_account.apps",
+        "peekOfCode": "class NadooitTimeaccountConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_time_account'",
+        "detail": "nadooit_time_account.apps",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "kind": 6,
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "peekOfCode": "class TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    def __str__(self):\t\n        return get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(self.time_balance_in_seconds) + ' ' + str(self.id)\t \nclass TimeAccountEmployee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)",
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountEmployee",
+        "kind": 6,
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "peekOfCode": "class TimeAccountEmployee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        if self.employee.user.display_name == \"\":\n            return self.employee.user.user_code + ' ' + get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(self.time_account.time_balance_in_seconds)",
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerNadooitTimeAccount",
+        "kind": 6,
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "peekOfCode": "class CustomerNadooitTimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer.name + ' ' + get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(self.time_account.time_balance_in_seconds)\t\nclass WorkTimeAccountEntry(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "WorkTimeAccountEntry",
+        "kind": 6,
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "peekOfCode": "class WorkTimeAccountEntry(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_account = models.ForeignKey(TimeAccountEmployee, on_delete=models.CASCADE)\n    work_time = models.TimeField(null=True, blank=True)\n    work_date = models.DateField(null=True, blank=True)\n    ENTRY_TYPE = (\n        ('IN', 'IN'),\n        ('OUT', 'OUT'),\n    )\n    entry_trype = models.CharField(max_length=3, choices=ENTRY_TYPE, default='IN')",
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "kind": 2,
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "peekOfCode": "def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):\n    return str(time // 3600) + ':' + str((time % 3600) // 60) + ':' + str(time % 60)\n# Create your models here.\nclass TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    def __str__(self):\t\n        return get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(self.time_balance_in_seconds) + ' ' + str(self.id)\t \nclass TimeAccountEmployee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
