@@ -38,5 +38,4 @@ admin.site.register(CustomerProgram, CustomerProgramAdmin)
 admin.site.register(Developer, DeveloperAdmin)
 admin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)
 admin.site.register(Address, AddressAdmin)
-admin.site.register(User)
-admin.site.register(NadooitApiKey)
+

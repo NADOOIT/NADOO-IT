@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'nadooit_auth',
+    'nadooit_api_key',
     'rest_framework',
     'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',
     'nadooit_website.apps.NadooitWebsiteConfig',
@@ -94,24 +96,10 @@ DATABASES = {
         	'HOST': 'localhost',  
         	'PORT': config.get('POSTGRE_SQL_DB_PORT')
     	}
-
-
-
-
 }
-""" 
-        Old developer code that belonged in the brakets above
-        'default': dj_database_url.config(
-            default='postgres://fotutswonrbqrc:01fbf84036180da885607131a91f93d5714fb616efdd1e30958e8c798dc8720e@ec2-52'
-                    '-212-228-71.eu-west-1.compute.amazonaws.com:5432/d1s7o96vnpen58',
-            conn_max_age=500),
-        'local': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    """
 
-AUTH_USER_MODEL = 'nadooit_api_executions_system.User'
+# Default user model
+AUTH_USER_MODEL = 'nadooit_auth.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

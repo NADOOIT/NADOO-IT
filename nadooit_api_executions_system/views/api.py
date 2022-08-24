@@ -1,7 +1,10 @@
 import hashlib
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from nadooit_api_executions_system.models import CustomerProgram, CustomerProgramExecution, NadooitApiKey, User
+from nadooit_api_executions_system.models import CustomerProgram, CustomerProgramExecution
+from nadooit_api_key.models import NadooitApiKey
+from nadooit_auth.models import User 
+
 
 # Create your views here.
 

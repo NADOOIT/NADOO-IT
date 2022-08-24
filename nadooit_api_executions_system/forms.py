@@ -1,6 +1,6 @@
 import uuid
 from django import forms
-from .models import User
+from nadooit_auth.models import User
 from django.forms import ModelChoiceField
 
 class UserCodeModelChoiceField(ModelChoiceField):

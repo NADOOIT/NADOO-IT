@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages 
 from django.contrib.auth.decorators import login_required
-from nadooit_api_executions_system.models import NadooitApiKey
+from nadooit_api_key.models import NadooitApiKey
 
 def login_user(request):
     if request.method == "POST":

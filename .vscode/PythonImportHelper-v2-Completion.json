@@ -66,6 +66,22 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -138,45 +154,19 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.conf",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "django.contrib.auth.models",
-        "kind": 6,
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "AbstractUser",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "PermissionsMixin",
-        "importPath": "django.contrib.auth.models",
-        "description": "django.contrib.auth.models",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "django.contrib.auth.validators",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "django.contrib.auth.validators",
-        "description": "django.contrib.auth.validators",
-        "detail": "django.contrib.auth.validators",
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -197,6 +187,54 @@
     },
     {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -229,70 +267,28 @@
         "documentation": {}
     },
     {
-        "label": "django.utils.timezone",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "django.utils.timezone",
-        "description": "django.utils.timezone",
-        "detail": "django.utils.timezone",
-        "documentation": {}
-    },
-    {
-        "label": "nadooit_api_executions_system.models",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgram",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitApiKey",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitApiKey",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
         "label": "uuid",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "uuid",
         "description": "uuid",
         "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -369,6 +365,62 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgram",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "importPath": "nadooit_api_key.models",
+        "description": "nadooit_api_key.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "importPath": "nadooit_api_key.models",
+        "description": "nadooit_api_key.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
         "label": "timezone",
         "importPath": "django.utils",
         "description": "django.utils",
@@ -386,6 +438,22 @@
     },
     {
         "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -465,6 +533,22 @@
         "documentation": {}
     },
     {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -481,27 +565,95 @@
         "documentation": {}
     },
     {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "AbstractUser",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "PermissionsMixin",
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "nadooit_auth.user_code",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nadooit_auth.user_code",
+        "description": "nadooit_auth.user_code",
+        "detail": "nadooit_auth.user_code",
+        "documentation": {}
+    },
+    {
         "label": "get__new_user_code",
-        "importPath": "nadooit_api_executions_system.user_code",
-        "description": "nadooit_api_executions_system.user_code",
+        "importPath": "nadooit_auth.user_code",
+        "description": "nadooit_auth.user_code",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.user_code",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
+        "detail": "nadooit_auth.user_code",
         "documentation": {}
     },
     {
@@ -608,7 +760,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',",
+        "peekOfCode": "ALLOWED_HOSTS = ['*']\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'nadooit_auth',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -617,7 +769,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'rest_framework',\n    'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',\n    'nadooit_website.apps.NadooitWebsiteConfig',",
+        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    'nadooit_auth',\n    'nadooit_api_key',\n    'rest_framework',",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -680,7 +832,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "AUTH_USER_MODEL = 'nadooit_api_executions_system.User'\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },",
+        "peekOfCode": "AUTH_USER_MODEL = 'nadooit_auth.User'\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -959,17 +1111,26 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.migrations.0001_initial",
         "description": "nadooit_api_executions_system.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Address',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('street', models.CharField(blank=True, max_length=255, null=True)),",
         "detail": "nadooit_api_executions_system.migrations.0001_initial",
         "documentation": {}
     },
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "nadooit_api_executions_system.migrations.0002_delete_token",
-        "description": "nadooit_api_executions_system.migrations.0002_delete_token",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Token',\n        ),\n    ]",
-        "detail": "nadooit_api_executions_system.migrations.0002_delete_token",
+        "importPath": "nadooit_api_executions_system.migrations.0002_initial",
+        "description": "nadooit_api_executions_system.migrations.0002_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        ('nadooit_api_executions_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitapikey',\n            name='user',",
+        "detail": "nadooit_api_executions_system.migrations.0002_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0003_delete_nadooitapikey",
+        "description": "nadooit_api_executions_system.migrations.0003_delete_nadooitapikey",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0002_initial'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='NadooitApiKey',\n        ),\n    ]",
+        "detail": "nadooit_api_executions_system.migrations.0003_delete_nadooitapikey",
         "documentation": {}
     },
     {
@@ -1103,7 +1264,7 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)\nadmin.site.register(Address, AddressAdmin)\nadmin.site.register(User)",
+        "peekOfCode": "class AddressAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Address._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(Customer, CustomerAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)\nadmin.site.register(Address, AddressAdmin)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1132,24 +1293,6 @@
         "description": "nadooit_api_executions_system.forms",
         "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
         "detail": "nadooit_api_executions_system.forms",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys\n    #objects = CustomUserManager()",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitApiKey",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class NadooitApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
-        "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
     {
@@ -1216,12 +1359,66 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_key.migrations.0001_initial",
+        "description": "nadooit_api_key.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitApiKey',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "nadooit_api_key.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKeyConfig",
+        "kind": 6,
+        "importPath": "nadooit_api_key.apps",
+        "description": "nadooit_api_key.apps",
+        "peekOfCode": "class NadooitApiKeyConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_api_key'",
+        "detail": "nadooit_api_key.apps",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "kind": 6,
+        "importPath": "nadooit_api_key.models",
+        "description": "nadooit_api_key.models",
+        "peekOfCode": "class NadooitApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
+        "detail": "nadooit_api_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_auth.migrations.0001_initial",
+        "description": "nadooit_auth.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "nadooit_auth.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "AuthConfig",
+        "kind": 6,
+        "importPath": "nadooit_auth.apps",
+        "description": "nadooit_auth.apps",
+        "peekOfCode": "class AuthConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_auth'",
+        "detail": "nadooit_auth.apps",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "peekOfCode": "class User(AbstractUser,PermissionsMixin):\n    user_code = models.CharField(max_length=32, unique=True, editable=True, null=False, blank=False,default=get__new_user_code)\n    display_name = models.CharField(max_length=32, editable=True)\n    def __str__(self):\n        if self.display_name != \"\":\n            return self.display_name\n        else:\n            return self.username\n    #Every User can have multiple api_keys\n    #objects = CustomUserManager()",
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
         "label": "get__new_user_code",
         "kind": 2,
-        "importPath": "nadooit_api_executions_system.user_code",
-        "description": "nadooit_api_executions_system.user_code",
+        "importPath": "nadooit_auth.user_code",
+        "description": "nadooit_auth.user_code",
         "peekOfCode": "def get__new_user_code() -> str:\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code",
-        "detail": "nadooit_api_executions_system.user_code",
+        "detail": "nadooit_auth.user_code",
         "documentation": {}
     },
     {
