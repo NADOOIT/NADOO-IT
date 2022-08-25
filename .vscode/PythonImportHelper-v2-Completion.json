@@ -106,6 +106,46 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -210,6 +250,166 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -274,6 +474,78 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -323,6 +595,30 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -437,14 +733,6 @@
         "documentation": {}
     },
     {
-        "label": "CustomerProgram",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
         "label": "CustomerProgramExecution",
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
@@ -501,6 +789,54 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgramShare",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
         "label": "timezone",
         "importPath": "django.utils",
         "description": "django.utils",
@@ -518,6 +854,46 @@
     },
     {
         "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -677,6 +1053,46 @@
         "documentation": {}
     },
     {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -693,75 +1109,27 @@
         "documentation": {}
     },
     {
-        "label": "Customer",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
         "isExtraImport": true,
-        "detail": "nadooit_crm.models",
+        "detail": "django.test",
         "documentation": {}
     },
     {
-        "label": "Address",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
         "isExtraImport": true,
-        "detail": "nadooit_crm.models",
+        "detail": "django.test",
         "documentation": {}
     },
     {
-        "label": "BillingAdress",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
         "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
-        "label": "Customer",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
-        "label": "Employee",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
-        "label": "ShippingAdress",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
-        "label": "Customer",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
-        "label": "Customer",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
-        "label": "Employee",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
+        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -818,6 +1186,30 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -915,6 +1307,110 @@
         "documentation": {}
     },
     {
+        "label": "Address",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "BillingAdress",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "ShippingAdress",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomerNadooitTimeAccount",
         "importPath": "nadooit_time_account.models",
         "description": "nadooit_time_account.models",
@@ -944,6 +1440,14 @@
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
         "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "Process",
+        "importPath": "nadooit_workflow.models",
+        "description": "nadooit_workflow.models",
+        "isExtraImport": true,
+        "detail": "nadooit_workflow.models",
         "documentation": {}
     },
     {
@@ -1397,6 +1901,51 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0003_remove_customerprogram_customer_id_and_more",
+        "description": "nadooit_api_executions_system.migrations.0003_remove_customerprogram_customer_id_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0002_initial'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='customerprogram',\n            name='customer_id',\n        ),\n        migrations.RemoveField(",
+        "detail": "nadooit_api_executions_system.migrations.0003_remove_customerprogram_customer_id_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0004_customerprogramexecution_customer_program_and_more",
+        "description": "nadooit_api_executions_system.migrations.0004_customerprogramexecution_customer_program_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0003_remove_customerprogram_customer_id_and_more'),\n        ('nadooit_program_ownership_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogramexecution',\n            name='customer_program',\n            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_program_ownership_system.nadooitcustomerprogram'),",
+        "detail": "nadooit_api_executions_system.migrations.0004_customerprogramexecution_customer_program_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0005_remove_customerprogramexecution_program_time_saved_and_more",
+        "description": "nadooit_api_executions_system.migrations.0005_remove_customerprogramexecution_program_time_saved_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0004_customerprogramexecution_customer_program_and_more'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='customerprogramexecution',\n            name='program_time_saved',\n        ),\n        migrations.AddField(",
+        "detail": "nadooit_api_executions_system.migrations.0005_remove_customerprogramexecution_program_time_saved_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0006_delete_program",
+        "description": "nadooit_api_executions_system.migrations.0006_delete_program",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0005_remove_customerprogramexecution_program_time_saved_and_more'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Program',\n        ),\n    ]",
+        "detail": "nadooit_api_executions_system.migrations.0006_delete_program",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_api_executions_system.migrations.0007_delete_developer_delete_team",
+        "description": "nadooit_api_executions_system.migrations.0007_delete_developer_delete_team",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0006_delete_program'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Developer',\n        ),\n        migrations.DeleteModel(\n            name='Team',",
+        "detail": "nadooit_api_executions_system.migrations.0007_delete_developer_delete_team",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "nadooit_api_executions_system.urls.api",
@@ -1469,47 +2018,11 @@
         "documentation": {}
     },
     {
-        "label": "ProgramAdmin",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.admin",
-        "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class ProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Program._meta.fields]\nclass TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]",
-        "detail": "nadooit_api_executions_system.admin",
-        "documentation": {}
-    },
-    {
-        "label": "TeamAdmin",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.admin",
-        "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class TeamAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Team._meta.fields]\nclass CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)",
-        "detail": "nadooit_api_executions_system.admin",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramAdmin",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.admin",
-        "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class CustomerProgramAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgram._meta.fields]\nclass DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)",
-        "detail": "nadooit_api_executions_system.admin",
-        "documentation": {}
-    },
-    {
-        "label": "DeveloperAdmin",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.admin",
-        "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class DeveloperAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in Developer._meta.fields]\nclass CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
-        "detail": "nadooit_api_executions_system.admin",
-        "documentation": {}
-    },
-    {
         "label": "CustomerProgramExecutionAdmin",
         "kind": 6,
         "importPath": "nadooit_api_executions_system.admin",
         "description": "nadooit_api_executions_system.admin",
-        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(Program, ProgramAdmin)\nadmin.site.register(Team, TeamAdmin)\nadmin.site.register(CustomerProgram, CustomerProgramAdmin)\nadmin.site.register(Developer, DeveloperAdmin)\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
+        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    list_display = [field.name for field in CustomerProgramExecution._meta.fields]\nadmin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)",
         "detail": "nadooit_api_executions_system.admin",
         "documentation": {}
     },
@@ -1541,47 +2054,11 @@
         "documentation": {}
     },
     {
-        "label": "Team",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Team(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Developer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "Developer",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Developer(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    teams = models.ManyToManyField(Team, related_name='developer_teams')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "Program",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    team_id = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.name\nclass CustomerProgram(models.Model):",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgram",
-        "kind": 6,
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved = models.CharField(max_length=255)\n    program_balance = models.CharField(max_length=255)\n    over_charge = models.BooleanField(default=False)\n    program_id = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    customer_id = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):",
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
         "label": "CustomerProgramExecution",
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved = models.CharField(max_length=255)\n    customer_program_id = models.ForeignKey(CustomerProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer_program_id.program_id.name",
+        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_in_seconds = models.IntegerField(default=0)\n    customer_program = models.ForeignKey(NadooitCustomerProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer_program.program.name",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -1766,12 +2243,201 @@
         "documentation": {}
     },
     {
+        "label": "NadooitHrConfig",
+        "kind": 6,
+        "importPath": "nadooit_hr.apps",
+        "description": "nadooit_hr.apps",
+        "peekOfCode": "class NadooitHrConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_hr'",
+        "detail": "nadooit_hr.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_network.migrations.0001_initial",
+        "description": "nadooit_network.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitGuild',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),",
+        "detail": "nadooit_network.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_network.migrations.0002_initial",
+        "description": "nadooit_network.migrations.0002_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_network', '0001_initial'),\n        ('nadooit_program_ownership_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitinventory',\n            name='list_of_nadooit_program_ownership_shares',",
+        "detail": "nadooit_network.migrations.0002_initial",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitNetworkConfig",
+        "kind": 6,
+        "importPath": "nadooit_network.apps",
+        "description": "nadooit_network.apps",
+        "peekOfCode": "class NadooitNetworkConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_network'",
+        "detail": "nadooit_network.apps",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitInventory",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitInventory(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    #Holds the amount of money in the inventory\n    money = models.IntegerField(default=0)\n    #Holds shares of programs\n    list_of_nadooit_program_ownership_shares = models.ManyToManyField(NadooitProgramShare, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\nclass NadooitNetworkMember(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitNetworkMember",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitNetworkMember(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    inventory = models.ForeignKey(NadooitInventory, on_delete=models.CASCADE)\n    def __str__(self):\n        return self.user.display_name + ' ' + self.user.user_code\nclass NadooitNetworkFriendslist(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.ForeignKey(NadooitNetworkMember, on_delete=models.CASCADE)\n    friend_list = models.ManyToManyField(NadooitNetworkMember, related_name='friend_list')",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitNetworkFriendslist",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitNetworkFriendslist(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.ForeignKey(NadooitNetworkMember, on_delete=models.CASCADE)\n    friend_list = models.ManyToManyField(NadooitNetworkMember, related_name='friend_list')\n    def __str__(self):\n        return self.user.user.display_name + ' ' + self.user.user.user_code + ' ' + self.friend.user.user.display_name + ' ' + self.friend.user.user.user_code\n# Networt Groups are used to group users together for the purpose of working on a project together.\n# A network group can be created by a user who is a member of the network.\n# \nclass NadooitNetworkGroup(models.Model):",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitNetworkGroup",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitNetworkGroup(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    #the group is made up of members. There is a limit of 10 members in a group.\n    members = models.ManyToManyField(NadooitNetworkMember, blank=True)\n    created_by = models.ForeignKey(NadooitNetworkMember, on_delete=models.CASCADE, related_name='created_by')\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self) -> str:\n        return self.created_by.user.display_name + ' ' + self.created_by.user.user_code + ' ' + self.members.all().values_list('user.display_name', flat=True).join(', ')\nclass NadooitNetworkGuildMember(models.Model):",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitNetworkGuildMember",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitNetworkGuildMember(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    nadooit_network_member = models.ForeignKey(NadooitNetworkMember, on_delete=models.CASCADE)\n    GUILD_ROLES = (\n        ('MEMBER', 'MEMBER'),\t\n        ('MODERATOR', 'MODERATOR'),\t\n        ('ADMIN', 'ADMIN'),\t\t\n    )\t\n    guild_role = models.CharField(choices= GUILD_ROLES , default='MEMBER', max_length=20)\t\n    def __str__(self):",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitGuildBank",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitGuildBank(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    guild_inventory = models.ForeignKey(NadooitInventory, on_delete=models.CASCADE)\n    #the amount of money the user has in the guild bank.\nclass NadooitGuild(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255, null=True, blank=True)\n    description = models.TextField(null=True, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitGuild",
+        "kind": 6,
+        "importPath": "nadooit_network.models",
+        "description": "nadooit_network.models",
+        "peekOfCode": "class NadooitGuild(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255, null=True, blank=True)\n    description = models.TextField(null=True, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    #Every guild has a members of type NadooitNetworkMember. Every NadooitNetworkMember can be a member of one guild.\n    member_list = models.ManyToManyField(NadooitNetworkGuildMember, blank=True)\t\n    guild_logo = models.ImageField(upload_to='guild_logo', blank=True, null=True)\n    def __str__(self):",
+        "detail": "nadooit_network.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_program.migrations.0001_initial",
+        "description": "nadooit_program.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitProgram',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('name', models.CharField(max_length=255)),",
+        "detail": "nadooit_program.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_program.migrations.0002_nadooitprogram_program_dependencies",
+        "description": "nadooit_program.migrations.0002_nadooitprogram_program_dependencies",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitprogram',\n            name='program_dependencies',\n            field=models.TextField(blank=True, default='', null=True),\n        ),",
+        "detail": "nadooit_program.migrations.0002_nadooitprogram_program_dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgramConfig",
+        "kind": 6,
+        "importPath": "nadooit_program.apps",
+        "description": "nadooit_program.apps",
+        "peekOfCode": "class NadooitProgramConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_program'",
+        "detail": "nadooit_program.apps",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "kind": 6,
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "peekOfCode": "class NadooitProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    #program_dependencies is a list of programs that this program depends on. They are represented as a list of strings. The list is empty if there are no dependencies.\n    program_dependencies = models.TextField(default=\"\", blank=True, null=True, editable=True)\t\n    def __str__(self):\n        return self.name",
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_program_ownership_system.migrations.0001_initial",
+        "description": "nadooit_program_ownership_system.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_time_account', '0002_alter_timeaccount_time_balance_in_seconds'),\n        ('nadooit_crm', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitProgram',\n            fields=[",
+        "detail": "nadooit_program_ownership_system.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_program_ownership_system.migrations.0002_alter_nadooitcustomerprogram_program_and_more",
+        "description": "nadooit_program_ownership_system.migrations.0002_alter_nadooitcustomerprogram_program_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program', '0001_initial'),\n        ('nadooit_program_ownership_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='nadooitcustomerprogram',\n            name='program',\n            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_program.nadooitprogram'),",
+        "detail": "nadooit_program_ownership_system.migrations.0002_alter_nadooitcustomerprogram_program_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgramOwnershipSystemConfig",
+        "kind": 6,
+        "importPath": "nadooit_program_ownership_system.apps",
+        "description": "nadooit_program_ownership_system.apps",
+        "peekOfCode": "class NadooitProgramOwnershipSystemConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_program_ownership_system'",
+        "detail": "nadooit_program_ownership_system.apps",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgramShare",
+        "kind": 6,
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "peekOfCode": "class NadooitProgramShare(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    share_of = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.id\nclass NadooitCustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)",
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "kind": 6,
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "peekOfCode": "class NadooitCustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):",
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
         "label": "Migration",
         "kind": 6,
         "importPath": "nadooit_time_account.migrations.0001_initial",
         "description": "nadooit_time_account.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='TimeAccount',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),",
         "detail": "nadooit_time_account.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_time_account.migrations.0002_alter_timeaccount_time_balance_in_seconds",
+        "description": "nadooit_time_account.migrations.0002_alter_timeaccount_time_balance_in_seconds",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='timeaccount',\n            name='time_balance_in_seconds',\n            field=models.BigIntegerField(blank=True, default=0, null=True),\n        ),",
+        "detail": "nadooit_time_account.migrations.0002_alter_timeaccount_time_balance_in_seconds",
         "documentation": {}
     },
     {
@@ -1871,6 +2537,51 @@
         "description": "nadooit_website.views",
         "peekOfCode": "def datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
         "detail": "nadooit_website.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_workflow.migrations.0001_initial",
+        "description": "nadooit_workflow.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_program', '0002_nadooitprogram_program_dependencies'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Process',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),",
+        "detail": "nadooit_workflow.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_workflow.migrations.0002_remove_process_process_subscriptions_and_more",
+        "description": "nadooit_workflow.migrations.0002_remove_process_process_subscriptions_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_workflow', '0001_initial'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='process',\n            name='process_subscriptions',\n        ),",
+        "detail": "nadooit_workflow.migrations.0002_remove_process_process_subscriptions_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "nadooit_workflow.migrations.0003_process_tiggers_process_process_trigger_process",
+        "description": "nadooit_workflow.migrations.0003_process_tiggers_process_process_trigger_process",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_workflow', '0002_remove_process_process_subscriptions_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='process',\n            name='tiggers_process',\n            field=models.ManyToManyField(blank=True, to='nadooit_workflow.process'),\n        ),",
+        "detail": "nadooit_workflow.migrations.0003_process_tiggers_process_process_trigger_process",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitWorkflowConfig",
+        "kind": 6,
+        "importPath": "nadooit_workflow.apps",
+        "description": "nadooit_workflow.apps",
+        "peekOfCode": "class NadooitWorkflowConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_workflow'",
+        "detail": "nadooit_workflow.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Process",
+        "kind": 6,
+        "importPath": "nadooit_workflow.models",
+        "description": "nadooit_workflow.models",
+        "peekOfCode": "class Process(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    #process_trigger_evnets is a list of events that trigger the process. They are represented as a list of strings.\n    #process_trigger_events = models.CharField(max_length=255)\t#list of events that trigger the process.\n    #process_subscriptions = models.CharField(max_length=255)\n    trigger_process = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)\n    tiggers_process = models.ManyToManyField('self', blank=True)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    description = models.TextField()",
+        "detail": "nadooit_workflow.models",
         "documentation": {}
     },
     {

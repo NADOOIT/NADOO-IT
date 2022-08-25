@@ -1,9 +1,10 @@
 import hashlib
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from nadooit_api_executions_system.models import CustomerProgram, CustomerProgramExecution
+from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User 
+from nadooit_program_ownership_system.models import NadooitCustomerProgram
 
 
 # Create your views here.
@@ -21,7 +22,7 @@ def create_execution(request):
             if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:
                 return Response({"error": "User is not active"}, status=400)
             else:
-                obj = CustomerProgram.objects.get(id=request.data['program_id'])
+                obj = NadooitCustomerProgram.objects.get(id=request.data['program_id'])
                 CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,
                                                         customer_program_id=obj)
                 return Response({"success": "Execution created"}, status=200)     
