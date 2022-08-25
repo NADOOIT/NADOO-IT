@@ -26,4 +26,4 @@ class NadooitCustomerProgram(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return self.program.name
+        return str(self.id) + ' ' + self.program.name

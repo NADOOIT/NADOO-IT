@@ -330,22 +330,6 @@
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1106,6 +1090,14 @@
         "description": "django.forms",
         "isExtraImport": true,
         "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
         "documentation": {}
     },
     {
@@ -1968,7 +1960,7 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.views.api",
         "description": "nadooit_api_executions_system.views.api",
-        "peekOfCode": "def create_execution(request):\n    try:\n        hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE'):\n                return Response({\"error\": \"User code is not valid\"}, status=400)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:\n                return Response({\"error\": \"User is not active\"}, status=400)\n            else:",
+        "peekOfCode": "def create_execution(request):\n    try:\n        hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)\n            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE'):\n                return Response({\"error\": \"User code is not valid\"}, status=400)\n            if found_nadooit_api_key.user.user_code == request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:\n                return Response({\"error\": \"User is not active\"}, status=400)\n            else:",
         "detail": "nadooit_api_executions_system.views.api",
         "documentation": {}
     },
@@ -2058,7 +2050,16 @@
         "kind": 6,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_in_seconds = models.IntegerField(default=0)\n    customer_program = models.ForeignKey(NadooitCustomerProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer_program.program.name",
+        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_in_seconds = models.IntegerField(default=0)\n    customer_program = models.ForeignKey(NadooitCustomerProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.customer_program.program.name\n@receiver(models.signals.post_save, sender=CustomerProgramExecution)\ndef cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):",
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "cutomer_program_execution_was_created",
+        "kind": 2,
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        #reduce the customer_programs time_account by the program_time_saved_in_seconds\n        obj = NadooitCustomerProgram.objects.get(id = instance.customer_program.id)\n        obj.time_account.time_balance_in_seconds = obj.time_account.time_balance_in_seconds - instance.program_time_saved_in_seconds\n        obj.time_account.save()",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -2067,17 +2068,8 @@
         "kind": 6,
         "importPath": "nadooit_api_key.migrations.0001_initial",
         "description": "nadooit_api_key.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitApiKey',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),\n                ('api_key', models.CharField(default=uuid.uuid4, max_length=255, unique=True)),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='NadooitApiKey',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "nadooit_api_key.migrations.0001_initial",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "nadooit_api_key.migrations.0002_initial",
-        "description": "nadooit_api_key.migrations.0002_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('nadooit_api_key', '0001_initial'),\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitapikey',\n            name='user',",
-        "detail": "nadooit_api_key.migrations.0002_initial",
         "documentation": {}
     },
     {
@@ -2094,7 +2086,7 @@
         "kind": 6,
         "importPath": "nadooit_api_key.models",
         "description": "nadooit_api_key.models",
-        "peekOfCode": "class NadooitApiKey(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":",
+        "peekOfCode": "class NadooitApiKey(models.Model):\n    user = models.ForeignKey(User, on_delete=models.CASCADE)\n    #api_keys are unique and are stored in the database as a hash of the api key\n    api_key = models.CharField(max_length=255, unique=True, editable=True, null=False, blank=False,default=uuid.uuid4)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    is_active = models.BooleanField(default=True) \n    def __str__(self):\n        if self.user.display_name != \"\":\n            return f'{self.user.display_name}  {self.user.user_code}'",
         "detail": "nadooit_api_key.models",
         "documentation": {}
     },

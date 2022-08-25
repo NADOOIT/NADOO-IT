@@ -1,4 +1,5 @@
 import hashlib
+import uuid
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from nadooit_api_executions_system.models import CustomerProgramExecution
@@ -15,17 +16,15 @@ def create_execution(request):
         hashed_api_key = hashlib.sha256(request.data.get('NADOOIT__API_KEY').encode()).hexdigest()
         try:
             found_nadooit_api_key = NadooitApiKey.objects.get(api_key=hashed_api_key, is_active = True)
-           
             if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE'):
                 return Response({"error": "User code is not valid"}, status=400)
-            
-            if found_nadooit_api_key.user.user_code != request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:
+            if found_nadooit_api_key.user.user_code == request.data.get('NADOOIT__USER_CODE') and not found_nadooit_api_key.user.is_active:
                 return Response({"error": "User is not active"}, status=400)
             else:
                 obj = NadooitCustomerProgram.objects.get(id=request.data['program_id'])
-                CustomerProgramExecution.objects.create(program_time_saved=obj.program_time_saved,
-                                                        customer_program_id=obj)
+                CustomerProgramExecution.objects.create(program_time_saved_in_seconds=obj.program_time_saved_per_execution_in_seconds, customer_program=obj)
                 return Response({"success": "Execution created"}, status=200)     
+           
         except NadooitApiKey.DoesNotExist:	    
             return Response({"error": "Invalid API Key"}, status=401)
     except:
