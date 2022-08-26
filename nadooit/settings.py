@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'nadooit_auth',
     'nadooit_api_key',
     'nadooit_crm',
+    'nadooit_hr',
     'nadooit_time_account',
     'nadooit_workflow',
     'nadooit_network',
@@ -146,12 +147,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'static/'
 
 
-""" According to doc
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/var/www/static/',
 ]
-"""
+
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),

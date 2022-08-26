@@ -1,7 +1,8 @@
 import uuid
 from django.db import models
 
-from nadooit_crm.models import Customer, Employee
+from nadooit_crm.models import Customer
+from nadooit_hr.models import Employee
 
 def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):
     return str(time // 3600) + ':' + str((time % 3600) // 60) + ':' + str(time % 60)

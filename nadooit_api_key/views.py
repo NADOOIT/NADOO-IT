@@ -11,7 +11,7 @@ from nadooit_api_key.models import NadooitApiKey
 
 @login_required(login_url='/auth/login-user')
 def api_key_interface(request):
-    return render(request, 'api_key_base.html')
+    return render(request, 'nadooit_api_key/base.html')
 
 
 @login_required(login_url='/auth/login-user')
@@ -31,4 +31,4 @@ def create_api_key(request):
             submitted = True
         
     form = ApiKeyForm
-    return render(request, 'create_api_key.html', {'form': form, 'submitted': submitted})
+    return render(request, 'nadooit_api_key/create_api_key.html', {'form': form, 'submitted': submitted})
