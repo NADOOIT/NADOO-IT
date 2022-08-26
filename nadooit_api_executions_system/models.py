@@ -26,3 +26,9 @@ def cutomer_program_execution_was_created(sender, instance, created, *args, **kw
         obj.time_account.time_balance_in_seconds = obj.time_account.time_balance_in_seconds - instance.program_time_saved_in_seconds
         obj.time_account.save()
 
+@receiver(models.signals.post_delete, sender=CustomerProgramExecution)
+def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):
+    #increase the customer_programs time_account by the program_time_saved_in_seconds
+    obj = NadooitCustomerProgram.objects.get(id = instance.customer_program.id)
+    obj.time_account.time_balance_in_seconds = obj.time_account.time_balance_in_seconds + instance.program_time_saved_in_seconds
+    obj.time_account.save()

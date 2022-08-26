@@ -2059,7 +2059,16 @@
         "kind": 2,
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
-        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        #reduce the customer_programs time_account by the program_time_saved_in_seconds\n        obj = NadooitCustomerProgram.objects.get(id = instance.customer_program.id)\n        obj.time_account.time_balance_in_seconds = obj.time_account.time_balance_in_seconds - instance.program_time_saved_in_seconds\n        obj.time_account.save()",
+        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        #reduce the customer_programs time_account by the program_time_saved_in_seconds\n        obj = NadooitCustomerProgram.objects.get(id = instance.customer_program.id)\n        obj.time_account.time_balance_in_seconds = obj.time_account.time_balance_in_seconds - instance.program_time_saved_in_seconds\n        obj.time_account.save()\n@receiver(models.signals.post_delete, sender=CustomerProgramExecution)\ndef customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    #increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = NadooitCustomerProgram.objects.get(id = instance.customer_program.id)",
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "customer_program_execution_was_deleted",
+        "kind": 2,
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    #increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = NadooitCustomerProgram.objects.get(id = instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = obj.time_account.time_balance_in_seconds + instance.program_time_saved_in_seconds\n    obj.time_account.save()",
         "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
