@@ -26,8 +26,10 @@ admin.site.site_title = 'NADOOIT'
 #This is where the urls are placed
 urlpatterns = [
                   path('', include('nadooit_website.urls')),
-                  path('api/', include('nadooit_api_executions_system.urls.api')),
-                  path('managment/', include('nadooit_api_executions_system.urls.management')),
+                  path('auth/', include('nadooit_auth.urls')),
+                  path('nadooit-os/', include('nadooit_os.urls')),
+                  path('nadooit-api-key/', include('nadooit_api_key.urls')),
+                  path('api/', include('nadooit_api_executions_system.urls')),
                   path('admin/', admin.site.urls),
                   path('', include('pwa.urls')),
 

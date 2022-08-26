@@ -53,9 +53,10 @@ INSTALLED_APPS = [
     'nadooit_network',
     'nadooit_program',
     'nadooit_program_ownership_system',
-    'rest_framework',
     'nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig',
     'nadooit_website.apps.NadooitWebsiteConfig',
+    'nadooit_os',
+    'rest_framework',
     'pwa',
 ]
 

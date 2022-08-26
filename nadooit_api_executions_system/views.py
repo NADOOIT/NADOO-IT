@@ -1,5 +1,4 @@
 import hashlib
-import uuid
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from nadooit_api_executions_system.models import CustomerProgramExecution

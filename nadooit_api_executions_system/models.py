@@ -6,8 +6,6 @@ from nadooit_program_ownership_system.models import NadooitCustomerProgram
 from django.dispatch import receiver
 
 # Create your models here.
-
-
 class CustomerProgramExecution(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     program_time_saved_in_seconds = models.IntegerField(default=0)
