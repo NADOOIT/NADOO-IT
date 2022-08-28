@@ -154,6 +154,14 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -186,15 +194,7 @@
         "documentation": {}
     },
     {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
+        "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -218,6 +218,14 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -227,6 +235,46 @@
     },
     {
         "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -387,6 +435,14 @@
     },
     {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -708,6 +764,14 @@
         "documentation": {}
     },
     {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
         "label": "NadooitCustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
@@ -761,6 +825,14 @@
         "description": "django.dispatch",
         "isExtraImport": true,
         "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -1005,7 +1077,47 @@
         "documentation": {}
     },
     {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
         "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "template",
         "importPath": "django",
         "description": "django",
         "isExtraImport": true,
@@ -1062,6 +1174,14 @@
     },
     {
         "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -1448,6 +1568,14 @@
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
         "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "print_form",
+        "importPath": "cgi",
+        "description": "cgi",
+        "isExtraImport": true,
+        "detail": "cgi",
         "documentation": {}
     },
     {
@@ -1999,6 +2127,24 @@
         "documentation": {}
     },
     {
+        "label": "is_active_url",
+        "kind": 2,
+        "importPath": "nadooit_api_key.templatetags.is_active_url",
+        "description": "nadooit_api_key.templatetags.is_active_url",
+        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
+        "detail": "nadooit_api_key.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "nadooit_api_key.templatetags.is_active_url",
+        "description": "nadooit_api_key.templatetags.is_active_url",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
+        "detail": "nadooit_api_key.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiKeyConfig",
         "kind": 6,
         "importPath": "nadooit_api_key.apps",
@@ -2012,7 +2158,7 @@
         "kind": 6,
         "importPath": "nadooit_api_key.forms",
         "description": "nadooit_api_key.forms",
-        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
+        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, \n                                         widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,\n                              widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,\n                                   widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
         "detail": "nadooit_api_key.forms",
         "documentation": {}
     },
@@ -2021,7 +2167,7 @@
         "kind": 6,
         "importPath": "nadooit_api_key.forms",
         "description": "nadooit_api_key.forms",
-        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
+        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(queryset=User.objects.all(), to_field_name=\"user_code\",required=True, \n                                         widget=forms.Select(attrs={'class': 'form-control', 'style': 'width: 150px;' , 'class': 'form-control'}))\n    api_key = forms.UUIDField(initial=uuid.uuid4, required=True,\n                              widget=forms.TextInput(attrs={'class': 'form-control', 'style': 'width: 390px;' , 'class': 'form-control'}))\n    is_active = forms.BooleanField(required=True,initial=True,\n                                   widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))",
         "detail": "nadooit_api_key.forms",
         "documentation": {}
     },
@@ -2057,7 +2203,7 @@
         "kind": 2,
         "importPath": "nadooit_api_key.views",
         "description": "nadooit_api_key.views",
-        "peekOfCode": "def api_key_interface(request):\n    return render(request, 'nadooit_api_key/base.html')\n@login_required(login_url='/auth/login-user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()",
+        "peekOfCode": "def api_key_interface(request):\n    return render(request, 'nadooit_api_key/index.html')\n@login_required(login_url='/auth/login-user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()",
         "detail": "nadooit_api_key.views",
         "documentation": {}
     },
@@ -2077,6 +2223,24 @@
         "description": "nadooit_auth.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('password', models.CharField(max_length=128, verbose_name='password')),",
         "detail": "nadooit_auth.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "is_active_url",
+        "kind": 2,
+        "importPath": "nadooit_auth.templatetags.is_active_url",
+        "description": "nadooit_auth.templatetags.is_active_url",
+        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
+        "detail": "nadooit_auth.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "nadooit_auth.templatetags.is_active_url",
+        "description": "nadooit_auth.templatetags.is_active_url",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
+        "detail": "nadooit_auth.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2158,6 +2322,24 @@
         "description": "nadooit_crm.migrations.0003_delete_employee",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0002_remove_employee_customers_remove_employee_user'),\n        ('nadooit_time_account', '0002_alter_timeaccountemployee_employee'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Employee',\n        ),\n    ]",
         "detail": "nadooit_crm.migrations.0003_delete_employee",
+        "documentation": {}
+    },
+    {
+        "label": "is_active_url",
+        "kind": 2,
+        "importPath": "nadooit_crm.templatetags.is_active_url",
+        "description": "nadooit_crm.templatetags.is_active_url",
+        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
+        "detail": "nadooit_crm.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "nadooit_crm.templatetags.is_active_url",
+        "description": "nadooit_crm.templatetags.is_active_url",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
+        "detail": "nadooit_crm.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2248,6 +2430,15 @@
         "description": "nadooit_delivery.models",
         "peekOfCode": "class OrderItem(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    order = models.ForeignKey(Order, on_delete=models.CASCADE)\n    product = models.ForeignKey(Product, on_delete=models.CASCADE)\n    quantity = models.IntegerField()\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.product.name + ' ' + self.quantity.__str__()",
         "detail": "nadooit_delivery.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitFunnelConfig",
+        "kind": 6,
+        "importPath": "nadooit_funnel.apps",
+        "description": "nadooit_funnel.apps",
+        "peekOfCode": "class NadooitFunnelConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_funnel'",
+        "detail": "nadooit_funnel.apps",
         "documentation": {}
     },
     {
@@ -2381,7 +2572,7 @@
         "kind": 2,
         "importPath": "nadooit_os.views",
         "description": "nadooit_os.views",
-        "peekOfCode": "def index_nadooit_os(request):\n    return render(request, 'nadooit_os/base.html')",
+        "peekOfCode": "def index_nadooit_os(request):\n    return render(request, 'nadooit_os/index.html')",
         "detail": "nadooit_os.views",
         "documentation": {}
     },
@@ -2467,6 +2658,24 @@
         "documentation": {}
     },
     {
+        "label": "is_active_url",
+        "kind": 2,
+        "importPath": "nadooit_time_account.templatetags.is_active_url",
+        "description": "nadooit_time_account.templatetags.is_active_url",
+        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
+        "detail": "nadooit_time_account.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "nadooit_time_account.templatetags.is_active_url",
+        "description": "nadooit_time_account.templatetags.is_active_url",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
+        "detail": "nadooit_time_account.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
         "label": "NadooitTimeaccountConfig",
         "kind": 6,
         "importPath": "nadooit_time_account.apps",
@@ -2521,6 +2730,24 @@
         "documentation": {}
     },
     {
+        "label": "is_active_url",
+        "kind": 2,
+        "importPath": "nadooit_website.templatetags.is_active_url",
+        "description": "nadooit_website.templatetags.is_active_url",
+        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
+        "detail": "nadooit_website.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "nadooit_website.templatetags.is_active_url",
+        "description": "nadooit_website.templatetags.is_active_url",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
+        "detail": "nadooit_website.templatetags.is_active_url",
+        "documentation": {}
+    },
+    {
         "label": "NadooitWebsiteConfig",
         "kind": 6,
         "importPath": "nadooit_website.apps",
@@ -2543,7 +2770,7 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def index(request):\n    return render(request, 'index.html', {})\ndef impressum(request):\n    return render(request, 'impressum.html', {})\ndef datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
+        "peekOfCode": "def index(request):\n    return render(request, 'nadooit_website/index.html', {})\ndef impressum(request):\n    return render(request, 'nadooit_website/impressum.html', {})\ndef datenschutz(request):\n    return render(request, 'nadooit_website/datenschutz.html', {})",
         "detail": "nadooit_website.views",
         "documentation": {}
     },
@@ -2552,7 +2779,7 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def impressum(request):\n    return render(request, 'impressum.html', {})\ndef datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
+        "peekOfCode": "def impressum(request):\n    return render(request, 'nadooit_website/impressum.html', {})\ndef datenschutz(request):\n    return render(request, 'nadooit_website/datenschutz.html', {})",
         "detail": "nadooit_website.views",
         "documentation": {}
     },
@@ -2561,7 +2788,7 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def datenschutz(request):\n    return render(request, 'datenschutz.html', {})",
+        "peekOfCode": "def datenschutz(request):\n    return render(request, 'nadooit_website/datenschutz.html', {})",
         "detail": "nadooit_website.views",
         "documentation": {}
     },

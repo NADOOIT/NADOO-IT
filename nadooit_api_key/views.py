@@ -11,7 +11,7 @@ from nadooit_api_key.models import NadooitApiKey
 
 @login_required(login_url='/auth/login-user')
 def api_key_interface(request):
-    return render(request, 'nadooit_api_key/base.html')
+    return render(request, 'nadooit_api_key/index.html')
 
 
 @login_required(login_url='/auth/login-user')

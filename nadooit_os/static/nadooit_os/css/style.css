@@ -276,7 +276,7 @@ nav {
 }
 .round-animation {
   position: absolute;
-  top: 4.35%;
+  top: 34.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: flying 29s infinite linear;
