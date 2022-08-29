@@ -1,12 +1,13 @@
+{% load is_active_url %}
 <header class="pc" style="border-bottom: 1px solid #00b4dc;">
   <nav>
       <div class="container">
           <ul class="nav-bar">
               <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
               <ul class="links">
-                  <li><a href="{% url 'index' %}"><span>Home</span></a></li>
-                  <li><a href="{% url 'impressum' %}">Impressum</a></li>
-                  <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+                  <li><a href="{% url 'index' %}" class="{% is_active_url request 'index' %}">Home</a></li>
+                  <li><a href="{% url 'impressum' %}" class="{% is_active_url request 'impressum' %}">Impressum</a></li>
+                  <li><a href="{% url 'datenschutz' %}" class="{% is_active_url request 'datenschutz' %}">Datenschutz</a></li>
               </ul>
           </ul>
       </div>
@@ -26,9 +27,9 @@
   </nav>
   <div class="mmm">
       <ul class="menu">
-          <li><a href="{% url 'index' %}"><span>Home</span></a></li>
-          <li><a href="{% url 'impressum' %}">Impressum</a></li>
-          <li><a href="{% url 'datenschutz' %}">Datenschutz</a></li>
+        <li><a href="{% url 'index' %}" class="{% is_active_url request 'index' %}">Home</a></li>
+        <li><a href="{% url 'impressum' %}" class="{% is_active_url request 'impressum' %}">Impressum</a></li>
+        <li><a href="{% url 'datenschutz' %}" class="{% is_active_url request 'datenschutz' %}">Datenschutz</a></li>
       </ul>
   </div>
 </header>

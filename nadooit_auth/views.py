@@ -18,7 +18,7 @@ def login_user(request):
             messages.success(request, 'Username or Password is incorrect')
             return redirect('/auth/login-user')
     else:
-       return render(request, 'authenticate/login.html', {})
+       return render(request, 'nadooit_auth/login.html', {})
    
 def logout_user(request):
         logout(request)
