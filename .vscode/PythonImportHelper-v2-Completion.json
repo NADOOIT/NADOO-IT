@@ -1672,7 +1672,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n    \"whitenoise.middleware.WhiteNoiseMiddleware\",\n]",
+        "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n    \"whitenoise.middleware.WhiteNoiseMiddleware\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1744,7 +1744,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1753,7 +1753,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1762,7 +1762,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1771,7 +1771,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1780,7 +1780,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1789,7 +1789,16 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings",
+        "peekOfCode": "STATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "INTERNAL_IPS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1969,7 +1978,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
+        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -1978,7 +1987,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),",
+        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -1987,7 +1996,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),\n] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
