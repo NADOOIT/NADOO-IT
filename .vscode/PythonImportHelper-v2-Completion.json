@@ -1636,7 +1636,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n<<<<<<< HEAD\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1645,7 +1645,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n<<<<<<< HEAD\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1654,7 +1654,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n<<<<<<< HEAD\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1663,7 +1663,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n<<<<<<< HEAD\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"nadooit_auth\",\n    \"nadooit_api_key\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"nadooit_auth\",\n    \"nadooit_api_key\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1960,7 +1960,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = \"NADOOIT Administration\"  # default: \"Django Administration\"\nadmin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n<<<<<<< HEAD\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),",
+        "peekOfCode": "admin.site.site_header = \"NADOOIT Administration\"  # default: \"Django Administration\"\nadmin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -1969,7 +1969,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n<<<<<<< HEAD\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),",
+        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -1978,7 +1978,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n<<<<<<< HEAD\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"admin/\", admin.site.urls),",
+        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -1987,7 +1987,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n<<<<<<< HEAD\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),\n] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),\n] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
