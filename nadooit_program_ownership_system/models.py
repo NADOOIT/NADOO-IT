@@ -5,7 +5,8 @@ from nadooit_program.models import NadooitProgram
 from nadooit_time_account.models import TimeAccount
 
 # Create your models here.
-   
+
+
 class NadooitProgramShare(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     share_of = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)
@@ -14,7 +15,8 @@ class NadooitProgramShare(models.Model):
 
     def __str__(self):
         return self.id
-    
+
+
 class NadooitCustomerProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)
@@ -26,4 +28,4 @@ class NadooitCustomerProgram(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return str(self.id) + ' ' + self.program.name
+        return str(self.id) + " " + self.program.name

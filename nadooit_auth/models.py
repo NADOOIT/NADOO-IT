@@ -16,5 +16,3 @@ class User(AbstractUser,PermissionsMixin):
             return self.display_name
         else:
             return self.username
-    #Every User can have multiple api_keys
-    #objects = CustomUserManager()

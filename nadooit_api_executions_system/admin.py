@@ -6,5 +6,5 @@ from .models import *
 class CustomerProgramExecutionAdmin(admin.ModelAdmin):
     list_display = [field.name for field in CustomerProgramExecution._meta.fields]
 
-admin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)
 
+admin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)
