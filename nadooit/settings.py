@@ -41,7 +41,9 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "django_is_url_active_templatetag",
     "grappelli",
+    "django_extensions",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -181,7 +183,7 @@ PWA_APP_BACKGROUND_COLOR = "#ffffff"
 PWA_APP_DISPLAY = "standalone"
 PWA_APP_SCOPE = "/"
 PWA_APP_ORIENTATION = "any"
-PWA_APP_START_URL = "/managment"
+PWA_APP_START_URL = "/nadooit-os"
 PWA_APP_STATUS_BAR_COLOR = "default"
 PWA_APP_ICONS = [{"src": "static/appicon/maskable_icon_x192.png", "sizes": "192x192"}]
 PWA_APP_ICONS_APPLE = [

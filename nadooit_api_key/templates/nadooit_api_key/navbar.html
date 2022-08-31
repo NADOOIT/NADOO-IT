@@ -1,14 +1,15 @@
+{% load is_url_active_templatetag %}
 <header class="pc" style="border-bottom: 1px solid #00b4dc;">
     <nav>
         <div class="container">
             <ul class="nav-bar">
                 <ul class="links">
-                    <li><a href="{% url 'nadooit-os' %}">NADOOIT OS</a></li>
-                    <li><a href="{% url 'create-api-key' %}">Create new NADOOIT API Key</a></li>
+                    <li><a href="{% url 'nadooit-os' %}"  class="{% is_url_active request 'nadooit-os' %}">NADOOIT OS</a></li>
+                    <li><a href="{% url 'create-api-key' %}" class="{% is_url_active request 'create-api-key' %}">Create new NADOOIT API Key</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout-user' %}">Log out</a></li>
+                        <li><a href="{% url 'logout-user' %}" class="{% is_url_active request 'logout-user' %}">Log out</a></li>
                     {% else %}
-                        <li><a href="{% url 'login-user' %}">Login</a></li>
+                        <li><a href="{% url 'login-user' %}" class="{% is_url_active request 'login-user' %}">Login</a></li>
                     {% endif %}
 
                 </ul>
@@ -30,13 +31,13 @@
     </nav>
     <div class="mmm">
         <ul class="menu">
-            <li><a href="{% url 'nadooit-os' %}">NADOOIT OS</a></li>
-            <li><a href="{% url 'create-api-key' %}">Create new NADOOIT API Key</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'logout-user' %}">Log out</a></li>
-            {% else %}
-            <li><a href="{% url 'login-user' %}">Login</a></li>
-            {% endif %}
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'nadooit-os' %}"  class="{% is_url_active request 'nadooit-os' %}">NADOOIT OS</a></li>
+                        <li><a href="{% url 'create-api-key' %}" class="{% is_url_active request 'create-api-key' %}">Create new NADOOIT API Key</a></li>
+                        <li><a href="{% url 'logout-user' %}" class="{% is_url_active request 'logout-user' %}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login-user' %}" class="{% is_url_active request 'login-user' %}">Login</a></li>
+                    {% endif %}
         </ul>
     </div>
   </header>

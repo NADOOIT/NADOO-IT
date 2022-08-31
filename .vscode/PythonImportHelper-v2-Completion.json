@@ -1,36 +1,114 @@
 [
     {
-        "label": "os",
-        "kind": 6,
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
-        "label": "get_asgi_application",
-        "importPath": "django.core.asgi",
-        "description": "django.core.asgi",
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "django.core.asgi",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "pathlib",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -162,131 +240,789 @@
         "documentation": {}
     },
     {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
         "isExtraImport": true,
         "detail": "django.conf.urls.static",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -306,342 +1042,6 @@
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "uuid",
         "kind": 6,
         "isExtraImport": true,
@@ -657,118 +1057,6 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -825,118 +1113,6 @@
         "description": "django.dispatch",
         "isExtraImport": true,
         "detail": "django.dispatch",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
         "documentation": {}
     },
     {
@@ -1077,54 +1253,6 @@
         "documentation": {}
     },
     {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "forms",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
         "label": "ModelChoiceField",
         "importPath": "django.forms",
         "description": "django.forms",
@@ -1154,118 +1282,6 @@
         "description": "django.utils",
         "isExtraImport": true,
         "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "redirect",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -1571,14 +1587,6 @@
         "documentation": {}
     },
     {
-        "label": "print_form",
-        "importPath": "cgi",
-        "description": "cgi",
-        "isExtraImport": true,
-        "detail": "cgi",
-        "documentation": {}
-    },
-    {
         "label": "Process",
         "importPath": "nadooit_workflow.models",
         "description": "nadooit_workflow.models",
@@ -1602,6 +1610,50 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "pygraphviz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygraphviz",
+        "description": "pygraphviz",
+        "detail": "pygraphviz",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "pygraphviz",
+        "description": "pygraphviz",
+        "isExtraImport": true,
+        "detail": "pygraphviz",
+        "documentation": {}
+    },
+    {
+        "label": "is_url_active",
+        "kind": 2,
+        "importPath": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "description": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "peekOfCode": "def is_url_active(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
+        "detail": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "description": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_url_active(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"",
+        "detail": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "documentation": {}
+    },
+    {
+        "label": "DjangoIsUrlActiveTemplatetagConfig",
+        "kind": 6,
+        "importPath": "django_is_url_active_templatetag.apps",
+        "description": "django_is_url_active_templatetag.apps",
+        "peekOfCode": "class DjangoIsUrlActiveTemplatetagConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'django_is_url_active_templatetag'",
+        "detail": "django_is_url_active_templatetag.apps",
         "documentation": {}
     },
     {
@@ -1636,7 +1688,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1645,7 +1697,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1654,7 +1706,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1663,7 +1715,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"nadooit_auth\",\n    \"nadooit_api_key\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1843,7 +1895,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
+        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1852,7 +1904,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1861,7 +1913,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
+        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1870,7 +1922,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1879,7 +1931,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
+        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1888,7 +1940,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
+        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1897,7 +1949,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",",
+        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1906,7 +1958,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
+        "peekOfCode": "PWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2118,24 +2170,6 @@
         "documentation": {}
     },
     {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_api_key.templatetags.is_active_url",
-        "description": "nadooit_api_key.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f\"this is request.path {request.path}\")  # debug\n        print(f\"this is reverse(url) {reverse(url)}\")\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_api_key.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_api_key.templatetags.is_active_url",
-        "description": "nadooit_api_key.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f\"this is request.path {request.path}\")  # debug\n        print(f\"this is reverse(url) {reverse(url)}\")\n        return \"active-url\"",
-        "detail": "nadooit_api_key.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
         "label": "NadooitApiKeyConfig",
         "kind": 6,
         "importPath": "nadooit_api_key.apps",
@@ -2217,24 +2251,6 @@
         "documentation": {}
     },
     {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_auth.templatetags.is_active_url",
-        "description": "nadooit_auth.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_auth.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_auth.templatetags.is_active_url",
-        "description": "nadooit_auth.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
-        "detail": "nadooit_auth.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
         "label": "AuthConfig",
         "kind": 6,
         "importPath": "nadooit_auth.apps",
@@ -2313,24 +2329,6 @@
         "description": "nadooit_crm.migrations.0003_delete_employee",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0002_remove_employee_customers_remove_employee_user'),\n        ('nadooit_time_account', '0002_alter_timeaccountemployee_employee'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Employee',\n        ),\n    ]",
         "detail": "nadooit_crm.migrations.0003_delete_employee",
-        "documentation": {}
-    },
-    {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_crm.templatetags.is_active_url",
-        "description": "nadooit_crm.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_crm.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_crm.templatetags.is_active_url",
-        "description": "nadooit_crm.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
-        "detail": "nadooit_crm.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2631,6 +2629,15 @@
         "documentation": {}
     },
     {
+        "label": "NadooitQuestionsAndAnswersConfig",
+        "kind": 6,
+        "importPath": "nadooit_questions_and_answers.apps",
+        "description": "nadooit_questions_and_answers.apps",
+        "peekOfCode": "class NadooitQuestionsAndAnswersConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_questions_and_answers'",
+        "detail": "nadooit_questions_and_answers.apps",
+        "documentation": {}
+    },
+    {
         "label": "Migration",
         "kind": 6,
         "importPath": "nadooit_time_account.migrations.0001_initial",
@@ -2646,24 +2653,6 @@
         "description": "nadooit_time_account.migrations.0002_alter_timeaccountemployee_employee",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0001_initial'),\n        ('nadooit_time_account', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='timeaccountemployee',\n            name='employee',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employee'),",
         "detail": "nadooit_time_account.migrations.0002_alter_timeaccountemployee_employee",
-        "documentation": {}
-    },
-    {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_time_account.templatetags.is_active_url",
-        "description": "nadooit_time_account.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_time_account.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_time_account.templatetags.is_active_url",
-        "description": "nadooit_time_account.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
-        "detail": "nadooit_time_account.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2718,24 +2707,6 @@
         "description": "nadooit_time_account.models",
         "peekOfCode": "def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):\n    return str(time // 3600) + \":\" + str((time % 3600) // 60) + \":\" + str(time % 60)\n# Create your models here.\nclass TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    def __str__(self):\n        return (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds",
         "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_website.templatetags.is_active_url",
-        "description": "nadooit_website.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_website.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_website.templatetags.is_active_url",
-        "description": "nadooit_website.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_website.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2880,6 +2851,204 @@
         "description": "venv.Scripts.activate_this",
         "peekOfCode": "sys.prefix = base",
         "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "peekOfCode": "A = pgv.AGraph(directed=True, strict=True, rankdir=\"LR\")\n# add node 1 with color red\nA.add_node(1, color=\"red\")\nA.add_node(5, color=\"blue\")\n# add some edges\nA.add_edge(1, 2, color=\"green\")\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nA.add_edge(3, 4)\nA.add_edge(3, 5)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "documentation": {}
+    },
+    {
+        "label": "A.graph_attr[\"epsilon\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "peekOfCode": "A.graph_attr[\"epsilon\"] = \"0.001\"\nprint(A.string())  # print dot file to standard output\nA.layout(\"dot\")  # layout with dot\nA.draw(\"foo.png\")  # write to file",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "documentation": {}
+    },
+    {
+        "label": "miles_graph",
+        "kind": 2,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "peekOfCode": "def miles_graph():\n    \"\"\"Return a graph from the data in miles_dat.txt.\n    Edges are made between cities that are less then 300 miles apart.\n    \"\"\"\n    import math\n    import re\n    import gzip\n    G = pgv.AGraph(name=\"miles_dat\")\n    G.node_attr[\"shape\"] = \"circle\"\n    G.node_attr[\"fixedsize\"] = \"true\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (aric.hagberg@gmail.com)\"\"\"\ndef miles_graph():\n    \"\"\"Return a graph from the data in miles_dat.txt.\n    Edges are made between cities that are less then 300 miles apart.\n    \"\"\"\n    import math\n    import re\n    import gzip\n    G = pgv.AGraph(name=\"miles_dat\")\n    G.node_attr[\"shape\"] = \"circle\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (hagberg@lanl.gov)\"\"\"\nimport pygraphviz as pgv\nA = pgv.AGraph()\nA.add_edge(1, 2)\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nprint(A.string())  # print to screen\nA.write(\"simple.dot\")  # write to simple.dot\nB = pgv.AGraph(\"simple.dot\")  # create a new graph from file\nB.layout()  # layout with default (neato)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "peekOfCode": "A = pgv.AGraph()\nA.add_edge(1, 2)\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nprint(A.string())  # print to screen\nA.write(\"simple.dot\")  # write to simple.dot\nB = pgv.AGraph(\"simple.dot\")  # create a new graph from file\nB.layout()  # layout with default (neato)\nB.draw(\"simple.png\")  # draw png",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "documentation": {}
+    },
+    {
+        "label": "B",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "peekOfCode": "B = pgv.AGraph(\"simple.dot\")  # create a new graph from file\nB.layout()  # layout with default (neato)\nB.draw(\"simple.png\")  # draw png",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (hagberg@lanl.gov)\"\"\"\nfrom pygraphviz import *\nA = AGraph()\n# set some default node attributes\nA.node_attr[\"style\"] = \"filled\"\nA.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A = AGraph()\n# set some default node attributes\nA.node_attr[\"style\"] = \"filled\"\nA.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"style\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"style\"] = \"filled\"\nA.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"shape\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"\n    n.attr[\"width\"] = f\"{i / 16.0 + 0.5}\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"fixedsize\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"\n    n.attr[\"width\"] = f\"{i / 16.0 + 0.5}\"\nprint(A.string())  # print to screen",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"fontcolor\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"\n    n.attr[\"width\"] = f\"{i / 16.0 + 0.5}\"\nprint(A.string())  # print to screen\nA.write(\"star.dot\")  # write to simple.dot",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "peekOfCode": "A = pgv.AGraph()\n# add some edges\nA.add_edge(1, 2)\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nA.add_edge(3, 4)\nA.add_edge(3, 5)\nA.add_edge(3, 6)\nA.add_edge(4, 6)\n# make a subgraph with rank='same'",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "documentation": {}
+    },
+    {
+        "label": "B",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "peekOfCode": "B = A.add_subgraph([4, 5, 6], name=\"s1\", rank=\"same\")\nB.graph_attr[\"rank\"] = \"same\"\nprint(A.string())  # print dot file to standard output\nA.draw(\"subgraph.png\", prog=\"neato\")",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "documentation": {}
+    },
+    {
+        "label": "B.graph_attr[\"rank\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "peekOfCode": "B.graph_attr[\"rank\"] = \"same\"\nprint(A.string())  # print dot file to standard output\nA.draw(\"subgraph.png\", prog=\"neato\")",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "documentation": {}
+    },
+    {
+        "label": "pygraphviz_graph",
+        "kind": 2,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "peekOfCode": "def pygraphviz_graph(request):\n    import pygraphviz as P\n    A = P.AGraph()  # init empty graph\n    # set some default node attributes\n    A.node_attr[\"style\"] = \"filled\"\n    A.node_attr[\"shape\"] = \"circle\"\n    # Add edges (and nodes)\n    A.add_edge(1, 2)\n    A.add_edge(2, 3)\n    A.add_edge(1, 3)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (hagberg@lanl.gov)\"\"\"\ntry:\n    from django.http import HttpResponse\nexcept ImportError:  # this won't run without Django, print message\n    print(\"Django not found.\")\ndef pygraphviz_graph(request):\n    import pygraphviz as P\n    A = P.AGraph()  # init empty graph\n    # set some default node attributes\n    A.node_attr[\"style\"] = \"filled\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "A = pgv.AGraph(encoding=\"UTF-8\")\n# nodes, attributes, etc can be strings or unicode\nA.add_node(1, label=\"plain string\")\nA.add_node(2, label=\"unicode\")\n# you can enter unicode text as\nhello = \"Здравствуйте!\"\nA.add_node(3, label=hello)\n# or using unicode code points\nhello = \"\\u0417\\u0434\\u0440\\u0430\\u0432\\u0441\\u0442\\u0432\\u0443\\u0439\\u0442\\u0435!\"\nA.add_node(hello)  # unicode node label",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "documentation": {}
+    },
+    {
+        "label": "hello",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "hello = \"Здравствуйте!\"\nA.add_node(3, label=hello)\n# or using unicode code points\nhello = \"\\u0417\\u0434\\u0440\\u0430\\u0432\\u0441\\u0442\\u0432\\u0443\\u0439\\u0442\\u0435!\"\nA.add_node(hello)  # unicode node label\ngoodbye = \"До свидания\"\nA.add_edge(1, hello, key=goodbye)\nA.add_edge(\"שלום\", hello)\n# A.add_edge(1,3,hello=\"こんにちは / ｺﾝﾆﾁﾊ\")\nA.add_edge(1, \"こんにちは\")",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "documentation": {}
+    },
+    {
+        "label": "hello",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "hello = \"\\u0417\\u0434\\u0440\\u0430\\u0432\\u0441\\u0442\\u0432\\u0443\\u0439\\u0442\\u0435!\"\nA.add_node(hello)  # unicode node label\ngoodbye = \"До свидания\"\nA.add_edge(1, hello, key=goodbye)\nA.add_edge(\"שלום\", hello)\n# A.add_edge(1,3,hello=\"こんにちは / ｺﾝﾆﾁﾊ\")\nA.add_edge(1, \"こんにちは\")\nprint(A)  # print to screen\nA.write(\"utf8.dot\")  # write to simple.dot",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "documentation": {}
+    },
+    {
+        "label": "goodbye",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "goodbye = \"До свидания\"\nA.add_edge(1, hello, key=goodbye)\nA.add_edge(\"שלום\", hello)\n# A.add_edge(1,3,hello=\"こんにちは / ｺﾝﾆﾁﾊ\")\nA.add_edge(1, \"こんにちは\")\nprint(A)  # print to screen\nA.write(\"utf8.dot\")  # write to simple.dot",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
         "documentation": {}
     },
     {
