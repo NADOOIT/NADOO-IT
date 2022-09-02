@@ -1605,6 +1605,23 @@
         "documentation": {}
     },
     {
+        "label": "pygraphviz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pygraphviz",
+        "description": "pygraphviz",
+        "detail": "pygraphviz",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "pygraphviz",
+        "description": "pygraphviz",
+        "isExtraImport": true,
+        "detail": "pygraphviz",
+        "documentation": {}
+    },
+    {
         "label": "application",
         "kind": 5,
         "importPath": "nadooit.asgi",
@@ -2880,6 +2897,204 @@
         "description": "venv.Scripts.activate_this",
         "peekOfCode": "sys.prefix = base",
         "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "peekOfCode": "A = pgv.AGraph(directed=True, strict=True, rankdir=\"LR\")\n# add node 1 with color red\nA.add_node(1, color=\"red\")\nA.add_node(5, color=\"blue\")\n# add some edges\nA.add_edge(1, 2, color=\"green\")\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nA.add_edge(3, 4)\nA.add_edge(3, 5)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "documentation": {}
+    },
+    {
+        "label": "A.graph_attr[\"epsilon\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "peekOfCode": "A.graph_attr[\"epsilon\"] = \"0.001\"\nprint(A.string())  # print dot file to standard output\nA.layout(\"dot\")  # layout with dot\nA.draw(\"foo.png\")  # write to file",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_attributes",
+        "documentation": {}
+    },
+    {
+        "label": "miles_graph",
+        "kind": 2,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "peekOfCode": "def miles_graph():\n    \"\"\"Return a graph from the data in miles_dat.txt.\n    Edges are made between cities that are less then 300 miles apart.\n    \"\"\"\n    import math\n    import re\n    import gzip\n    G = pgv.AGraph(name=\"miles_dat\")\n    G.node_attr[\"shape\"] = \"circle\"\n    G.node_attr[\"fixedsize\"] = \"true\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (aric.hagberg@gmail.com)\"\"\"\ndef miles_graph():\n    \"\"\"Return a graph from the data in miles_dat.txt.\n    Edges are made between cities that are less then 300 miles apart.\n    \"\"\"\n    import math\n    import re\n    import gzip\n    G = pgv.AGraph(name=\"miles_dat\")\n    G.node_attr[\"shape\"] = \"circle\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_miles",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (hagberg@lanl.gov)\"\"\"\nimport pygraphviz as pgv\nA = pgv.AGraph()\nA.add_edge(1, 2)\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nprint(A.string())  # print to screen\nA.write(\"simple.dot\")  # write to simple.dot\nB = pgv.AGraph(\"simple.dot\")  # create a new graph from file\nB.layout()  # layout with default (neato)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "peekOfCode": "A = pgv.AGraph()\nA.add_edge(1, 2)\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nprint(A.string())  # print to screen\nA.write(\"simple.dot\")  # write to simple.dot\nB = pgv.AGraph(\"simple.dot\")  # create a new graph from file\nB.layout()  # layout with default (neato)\nB.draw(\"simple.png\")  # draw png",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "documentation": {}
+    },
+    {
+        "label": "B",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "peekOfCode": "B = pgv.AGraph(\"simple.dot\")  # create a new graph from file\nB.layout()  # layout with default (neato)\nB.draw(\"simple.png\")  # draw png",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_simple",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (hagberg@lanl.gov)\"\"\"\nfrom pygraphviz import *\nA = AGraph()\n# set some default node attributes\nA.node_attr[\"style\"] = \"filled\"\nA.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A = AGraph()\n# set some default node attributes\nA.node_attr[\"style\"] = \"filled\"\nA.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"style\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"style\"] = \"filled\"\nA.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"shape\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"shape\"] = \"circle\"\nA.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"\n    n.attr[\"width\"] = f\"{i / 16.0 + 0.5}\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"fixedsize\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"fixedsize\"] = \"true\"\nA.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"\n    n.attr[\"width\"] = f\"{i / 16.0 + 0.5}\"\nprint(A.string())  # print to screen",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A.node_attr[\"fontcolor\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "peekOfCode": "A.node_attr[\"fontcolor\"] = \"#FFFFFF\"\n# make a star in shades of red\nfor i in range(1, 16):\n    A.add_edge(0, i)\n    n = A.get_node(i)\n    n.attr[\"fillcolor\"] = f\"#{i * 16:2x}0000\"\n    n.attr[\"height\"] = f\"{i / 16.0 + 0.5}\"\n    n.attr[\"width\"] = f\"{i / 16.0 + 0.5}\"\nprint(A.string())  # print to screen\nA.write(\"star.dot\")  # write to simple.dot",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_star",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "peekOfCode": "A = pgv.AGraph()\n# add some edges\nA.add_edge(1, 2)\nA.add_edge(2, 3)\nA.add_edge(1, 3)\nA.add_edge(3, 4)\nA.add_edge(3, 5)\nA.add_edge(3, 6)\nA.add_edge(4, 6)\n# make a subgraph with rank='same'",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "documentation": {}
+    },
+    {
+        "label": "B",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "peekOfCode": "B = A.add_subgraph([4, 5, 6], name=\"s1\", rank=\"same\")\nB.graph_attr[\"rank\"] = \"same\"\nprint(A.string())  # print dot file to standard output\nA.draw(\"subgraph.png\", prog=\"neato\")",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "documentation": {}
+    },
+    {
+        "label": "B.graph_attr[\"rank\"]",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "peekOfCode": "B.graph_attr[\"rank\"] = \"same\"\nprint(A.string())  # print dot file to standard output\nA.draw(\"subgraph.png\", prog=\"neato\")",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.plot_subgraph",
+        "documentation": {}
+    },
+    {
+        "label": "pygraphviz_graph",
+        "kind": 2,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "peekOfCode": "def pygraphviz_graph(request):\n    import pygraphviz as P\n    A = P.AGraph()  # init empty graph\n    # set some default node attributes\n    A.node_attr[\"style\"] = \"filled\"\n    A.node_attr[\"shape\"] = \"circle\"\n    # Add edges (and nodes)\n    A.add_edge(1, 2)\n    A.add_edge(2, 3)\n    A.add_edge(1, 3)",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "documentation": {}
+    },
+    {
+        "label": "__author__",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "peekOfCode": "__author__ = \"\"\"Aric Hagberg (hagberg@lanl.gov)\"\"\"\ntry:\n    from django.http import HttpResponse\nexcept ImportError:  # this won't run without Django, print message\n    print(\"Django not found.\")\ndef pygraphviz_graph(request):\n    import pygraphviz as P\n    A = P.AGraph()  # init empty graph\n    # set some default node attributes\n    A.node_attr[\"style\"] = \"filled\"",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_django_simple",
+        "documentation": {}
+    },
+    {
+        "label": "A",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "A = pgv.AGraph(encoding=\"UTF-8\")\n# nodes, attributes, etc can be strings or unicode\nA.add_node(1, label=\"plain string\")\nA.add_node(2, label=\"unicode\")\n# you can enter unicode text as\nhello = \"Здравствуйте!\"\nA.add_node(3, label=hello)\n# or using unicode code points\nhello = \"\\u0417\\u0434\\u0440\\u0430\\u0432\\u0441\\u0442\\u0432\\u0443\\u0439\\u0442\\u0435!\"\nA.add_node(hello)  # unicode node label",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "documentation": {}
+    },
+    {
+        "label": "hello",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "hello = \"Здравствуйте!\"\nA.add_node(3, label=hello)\n# or using unicode code points\nhello = \"\\u0417\\u0434\\u0440\\u0430\\u0432\\u0441\\u0442\\u0432\\u0443\\u0439\\u0442\\u0435!\"\nA.add_node(hello)  # unicode node label\ngoodbye = \"До свидания\"\nA.add_edge(1, hello, key=goodbye)\nA.add_edge(\"שלום\", hello)\n# A.add_edge(1,3,hello=\"こんにちは / ｺﾝﾆﾁﾊ\")\nA.add_edge(1, \"こんにちは\")",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "documentation": {}
+    },
+    {
+        "label": "hello",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "hello = \"\\u0417\\u0434\\u0440\\u0430\\u0432\\u0441\\u0442\\u0432\\u0443\\u0439\\u0442\\u0435!\"\nA.add_node(hello)  # unicode node label\ngoodbye = \"До свидания\"\nA.add_edge(1, hello, key=goodbye)\nA.add_edge(\"שלום\", hello)\n# A.add_edge(1,3,hello=\"こんにちは / ｺﾝﾆﾁﾊ\")\nA.add_edge(1, \"こんにちは\")\nprint(A)  # print to screen\nA.write(\"utf8.dot\")  # write to simple.dot",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "documentation": {}
+    },
+    {
+        "label": "goodbye",
+        "kind": 5,
+        "importPath": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "description": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
+        "peekOfCode": "goodbye = \"До свидания\"\nA.add_edge(1, hello, key=goodbye)\nA.add_edge(\"שלום\", hello)\n# A.add_edge(1,3,hello=\"こんにちは / ｺﾝﾆﾁﾊ\")\nA.add_edge(1, \"こんにちは\")\nprint(A)  # print to screen\nA.write(\"utf8.dot\")  # write to simple.dot",
+        "detail": "venv.share.doc.pygraphviz-1.10.examples.skip_utf8_encoding",
         "documentation": {}
     },
     {
