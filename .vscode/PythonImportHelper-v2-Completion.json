@@ -1026,6 +1026,24 @@
         "documentation": {}
     },
     {
+        "label": "mfa",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mfa",
+        "description": "mfa",
+        "detail": "mfa",
+        "documentation": {}
+    },
+    {
+        "label": "mfa.TrustedDevice",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mfa.TrustedDevice",
+        "description": "mfa.TrustedDevice",
+        "detail": "mfa.TrustedDevice",
+        "documentation": {}
+    },
+    {
         "label": "settings",
         "importPath": "nadooit",
         "description": "nadooit",
@@ -1688,7 +1706,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",",
+        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1697,7 +1715,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1706,7 +1724,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
+        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1715,7 +1733,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django_extensions\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"nadooit_auth\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1994,7 +2012,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2003,7 +2021,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"",
+        "peekOfCode": "PWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = (\n    \"\"  # A function that should be called by username to login the user in session\n)\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit-os\"  # Allows Changing the page after successful registeration",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2012,7 +2030,133 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_LANG = \"de-DE\"",
+        "peekOfCode": "PWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = (\n    \"\"  # A function that should be called by username to login the user in session\n)\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit-os\"  # Allows Changing the page after successful registeration\n)",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_UNALLOWED_METHODS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = (\n    \"\"  # A function that should be called by username to login the user in session\n)\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit-os\"  # Allows Changing the page after successful registeration\n)\nMFA_SUCCESS_REGISTRATION_MSG = \"Go to Security Home\"  # The text of the link\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_LOGIN_CALLBACK",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_LOGIN_CALLBACK = (\n    \"\"  # A function that should be called by username to login the user in session\n)\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit-os\"  # Allows Changing the page after successful registeration\n)\nMFA_SUCCESS_REGISTRATION_MSG = \"Go to Security Home\"  # The text of the link\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_RECHECK",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_RECHECK = True  # Allow random rechecking of the user\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit-os\"  # Allows Changing the page after successful registeration\n)\nMFA_SUCCESS_REGISTRATION_MSG = \"Go to Security Home\"  # The text of the link\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_REDIRECT_AFTER_REGISTRATION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit-os\"  # Allows Changing the page after successful registeration\n)\nMFA_SUCCESS_REGISTRATION_MSG = \"Go to Security Home\"  # The text of the link\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_SUCCESS_REGISTRATION_MSG",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_SUCCESS_REGISTRATION_MSG = \"Go to Security Home\"  # The text of the link\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_RECHECK_MIN",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_RECHECK_MAX",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_QUICKLOGIN",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_HIDE_DISABLE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_OWNED_BY_ENTERPRISE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TOKEN_ISSUER_NAME",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nU2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "U2F_APPID",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "U2F_APPID = \"https://localhost\"  # URL For U2F\nFIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "FIDO_SERVER_ID",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "FIDO_SERVER_ID = (\n    \"localehost\"  # Server rp id for FIDO2, it the full domain of your project\n)\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "FIDO_SERVER_NAME",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "FIDO_SERVER_NAME = \"nadooit\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2291,7 +2435,16 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST['username']\n        password = request.POST['password']\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect(request.GET.get('next') or '/nadooit-os')\n        else:\n            messages.success(request, 'Username or Password is incorrect')",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        password = request.POST[\"password\"]\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            print(\"found user\")\n            if user is not None:  # if the user object exist\n                from mfa.helpers import has_mfa\n                res = has_mfa(",
+        "detail": "nadooit_auth.views",
+        "documentation": {}
+    },
+    {
+        "label": "login_user_old",
+        "kind": 2,
+        "importPath": "nadooit_auth.views",
+        "description": "nadooit_auth.views",
+        "peekOfCode": "def login_user_old(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        password = request.POST[\"password\"]\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect(request.GET.get(\"next\") or \"/nadooit-os\")\n        else:\n            messages.success(request, \"Username or Password is incorrect\")",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2300,7 +2453,7 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def logout_user(request):\n        logout(request)\n        return redirect('/auth/login-user')",
+        "peekOfCode": "def logout_user(request):\n    logout(request)\n    return redirect(\"/auth/login-user\")",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },

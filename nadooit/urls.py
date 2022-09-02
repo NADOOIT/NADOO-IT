@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 
+import mfa
+import mfa.TrustedDevice
+
 from nadooit import settings
 
 admin.site.site_header = "NADOOIT Administration"  # default: "Django Administration"
@@ -34,4 +37,8 @@ urlpatterns = [
     path("grappelli/", include("grappelli.urls")),
     path("admin/", admin.site.urls),
     path("", include("pwa.urls")),
+    path("mfa/", include("mfa.urls")),
+    path(
+        "devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"
+    ),  # This short link to add new trusted device
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
