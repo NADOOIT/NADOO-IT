@@ -41,6 +41,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "sslserver",
     "django_is_url_active_templatetag",
     "grappelli",
     "django.contrib.admin",
