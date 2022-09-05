@@ -1,36 +1,106 @@
 [
     {
-        "label": "os",
-        "kind": 6,
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
-        "label": "get_asgi_application",
-        "importPath": "django.core.asgi",
-        "description": "django.core.asgi",
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "django.core.asgi",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "detail": "pathlib",
+        "detail": "django.urls",
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "template",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "forms",
+        "importPath": "django",
+        "description": "django",
+        "isExtraImport": true,
+        "detail": "django",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
+        "isExtraImport": true,
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -162,501 +232,11 @@
         "documentation": {}
     },
     {
-        "label": "static",
-        "importPath": "django.conf.urls.static",
-        "description": "django.conf.urls.static",
+        "label": "admin",
+        "importPath": "django.contrib",
+        "description": "django.contrib",
         "isExtraImport": true,
-        "detail": "django.conf.urls.static",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "nadooit",
-        "description": "nadooit",
-        "isExtraImport": true,
-        "detail": "nadooit",
-        "documentation": {}
-    },
-    {
-        "label": "get_wsgi_application",
-        "importPath": "django.core.wsgi",
-        "description": "django.core.wsgi",
-        "isExtraImport": true,
-        "detail": "django.core.wsgi",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "uuid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
-        "label": "django.db.models.deletion",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "django.db.models.deletion",
-        "description": "django.db.models.deletion",
-        "detail": "django.db.models.deletion",
+        "detail": "django.contrib",
         "documentation": {}
     },
     {
@@ -772,59 +352,371 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
         "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
+        "detail": "django.apps",
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
         "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
+        "detail": "django.apps",
         "documentation": {}
     },
     {
-        "label": "NadooitProgramShare",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "NadooitProgram",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "receiver",
-        "importPath": "django.dispatch",
-        "description": "django.dispatch",
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.dispatch",
+        "detail": "django.db",
         "documentation": {}
     },
     {
-        "label": "receiver",
-        "importPath": "django.dispatch",
-        "description": "django.dispatch",
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.dispatch",
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -940,220 +832,27 @@
         "documentation": {}
     },
     {
-        "label": "create_execution",
-        "importPath": "nadooit_api_executions_system.views",
-        "description": "nadooit_api_executions_system.views",
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views",
+        "detail": "django.test",
         "documentation": {}
     },
     {
-        "label": "check_user",
-        "importPath": "nadooit_api_executions_system.views",
-        "description": "nadooit_api_executions_system.views",
+        "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views",
+        "detail": "django.test",
         "documentation": {}
     },
     {
-        "label": "hashlib",
-        "kind": 6,
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
         "isExtraImport": true,
-        "importPath": "hashlib",
-        "description": "hashlib",
-        "detail": "hashlib",
-        "documentation": {}
-    },
-    {
-        "label": "api_view",
-        "importPath": "rest_framework.decorators",
-        "description": "rest_framework.decorators",
-        "isExtraImport": true,
-        "detail": "rest_framework.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "Response",
-        "importPath": "rest_framework.response",
-        "description": "rest_framework.response",
-        "isExtraImport": true,
-        "detail": "rest_framework.response",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitApiKey",
-        "importPath": "nadooit_api_key.models",
-        "description": "nadooit_api_key.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitApiKey",
-        "importPath": "nadooit_api_key.models",
-        "description": "nadooit_api_key.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "nadooit_auth.models",
-        "description": "nadooit_auth.models",
-        "isExtraImport": true,
-        "detail": "nadooit_auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "nadooit_auth.models",
-        "description": "nadooit_auth.models",
-        "isExtraImport": true,
-        "detail": "nadooit_auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "nadooit_auth.models",
-        "description": "nadooit_auth.models",
-        "isExtraImport": true,
-        "detail": "nadooit_auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "nadooit_auth.models",
-        "description": "nadooit_auth.models",
-        "isExtraImport": true,
-        "detail": "nadooit_auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "User",
-        "importPath": "nadooit_auth.models",
-        "description": "nadooit_auth.models",
-        "isExtraImport": true,
-        "detail": "nadooit_auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "forms",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "template",
-        "importPath": "django",
-        "description": "django",
-        "isExtraImport": true,
-        "detail": "django",
-        "documentation": {}
-    },
-    {
-        "label": "ModelChoiceField",
-        "importPath": "django.forms",
-        "description": "django.forms",
-        "isExtraImport": true,
-        "detail": "django.forms",
-        "documentation": {}
-    },
-    {
-        "label": "api_key_interface",
-        "importPath": "nadooit_api_key.views",
-        "description": "nadooit_api_key.views",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.views",
-        "documentation": {}
-    },
-    {
-        "label": "create_api_key",
-        "importPath": "nadooit_api_key.views",
-        "description": "nadooit_api_key.views",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.views",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
+        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -1269,11 +968,354 @@
         "documentation": {}
     },
     {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "get_asgi_application",
+        "importPath": "django.core.asgi",
+        "description": "django.core.asgi",
+        "isExtraImport": true,
+        "detail": "django.core.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "mfa",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mfa",
+        "description": "mfa",
+        "detail": "mfa",
+        "documentation": {}
+    },
+    {
+        "label": "mfa.TrustedDevice",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mfa.TrustedDevice",
+        "description": "mfa.TrustedDevice",
+        "detail": "mfa.TrustedDevice",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "nadooit",
+        "description": "nadooit",
+        "isExtraImport": true,
+        "detail": "nadooit",
+        "documentation": {}
+    },
+    {
+        "label": "get_wsgi_application",
+        "importPath": "django.core.wsgi",
+        "description": "django.core.wsgi",
+        "isExtraImport": true,
+        "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgramShare",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "create_execution",
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "check_user",
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "hashlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "hashlib",
+        "description": "hashlib",
+        "detail": "hashlib",
+        "documentation": {}
+    },
+    {
+        "label": "api_view",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "importPath": "nadooit_api_key.models",
+        "description": "nadooit_api_key.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "importPath": "nadooit_api_key.models",
+        "description": "nadooit_api_key.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "ModelChoiceField",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "api_key_interface",
+        "importPath": "nadooit_api_key.views",
+        "description": "nadooit_api_key.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_api_key",
+        "importPath": "nadooit_api_key.views",
+        "description": "nadooit_api_key.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.views",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponseRedirect",
         "importPath": "django.http",
         "description": "django.http",
         "isExtraImport": true,
         "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
         "documentation": {}
     },
     {
@@ -1571,14 +1613,6 @@
         "documentation": {}
     },
     {
-        "label": "print_form",
-        "importPath": "cgi",
-        "description": "cgi",
-        "isExtraImport": true,
-        "detail": "cgi",
-        "documentation": {}
-    },
-    {
         "label": "Process",
         "importPath": "nadooit_workflow.models",
         "description": "nadooit_workflow.models",
@@ -1622,6 +1656,33 @@
         "documentation": {}
     },
     {
+        "label": "is_url_active",
+        "kind": 2,
+        "importPath": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "description": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "peekOfCode": "def is_url_active(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
+        "detail": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 5,
+        "importPath": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "description": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_url_active(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"",
+        "detail": "django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
+        "documentation": {}
+    },
+    {
+        "label": "DjangoIsUrlActiveTemplatetagConfig",
+        "kind": 6,
+        "importPath": "django_is_url_active_templatetag.apps",
+        "description": "django_is_url_active_templatetag.apps",
+        "peekOfCode": "class DjangoIsUrlActiveTemplatetagConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'django_is_url_active_templatetag'",
+        "detail": "django_is_url_active_templatetag.apps",
+        "documentation": {}
+    },
+    {
         "label": "application",
         "kind": 5,
         "importPath": "nadooit.asgi",
@@ -1653,7 +1714,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"sslserver\",\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1662,7 +1723,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"sslserver\",\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1671,7 +1732,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
+        "peekOfCode": "ALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"sslserver\",\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1680,7 +1741,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"nadooit_auth\",\n    \"nadooit_api_key\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"sslserver\",\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1761,7 +1822,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1770,7 +1831,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1779,7 +1840,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1788,25 +1849,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATIC_ROOT",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATIC_URL",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATIC_URL = \"static/\"\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1815,7 +1858,25 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
+        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1824,16 +1885,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n    \"/var/www/static/\",\n]\nSTATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATICFILES_DIRS",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = (os.path.join(BASE_DIR, \"static\"),)\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
+        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1860,7 +1912,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
+        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1869,7 +1921,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1878,7 +1930,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
+        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1887,7 +1939,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1896,7 +1948,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
+        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1905,7 +1957,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
+        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1914,7 +1966,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",",
+        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1923,7 +1975,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_START_URL = \"/managment\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
+        "peekOfCode": "PWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1959,7 +2011,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1968,7 +2020,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"",
+        "peekOfCode": "PWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1977,7 +2029,115 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_LANG = \"de-DE\"",
+        "peekOfCode": "PWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_UNALLOWED_METHODS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_LOGIN_CALLBACK",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_RECHECK",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_RECHECK_MIN",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_RECHECK_MAX",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_QUICKLOGIN",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_HIDE_DISABLE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_OWNED_BY_ENTERPRISE",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "TOKEN_ISSUER_NAME",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "FIDO_SERVER_NAME",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "FIDO_SERVER_NAME = \"nadooit\"\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit_os:nadooit-os\"  # Allows Changing the page after successful registeration\n)\nMFA_SUCCESS_REGISTRATION_MSG = (\n    \"Schlüssel erfolgreich registriert\"  # The text of the link\n)",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_REDIRECT_AFTER_REGISTRATION",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit_os:nadooit-os\"  # Allows Changing the page after successful registeration\n)\nMFA_SUCCESS_REGISTRATION_MSG = (\n    \"Schlüssel erfolgreich registriert\"  # The text of the link\n)",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MFA_SUCCESS_REGISTRATION_MSG",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "MFA_SUCCESS_REGISTRATION_MSG = (\n    \"Schlüssel erfolgreich registriert\"  # The text of the link\n)",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1986,7 +2146,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_header = \"NADOOIT Administration\"  # default: \"Django Administration\"\nadmin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),",
+        "peekOfCode": "admin.site.site_header = \"NADOOIT Administration\"  # default: \"Django Administration\"\nadmin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -1995,7 +2155,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
+        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -2004,7 +2164,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
+        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -2013,7 +2173,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"\", include(\"pwa.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -2135,24 +2295,6 @@
         "documentation": {}
     },
     {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_api_key.templatetags.is_active_url",
-        "description": "nadooit_api_key.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f\"this is request.path {request.path}\")  # debug\n        print(f\"this is reverse(url) {reverse(url)}\")\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_api_key.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_api_key.templatetags.is_active_url",
-        "description": "nadooit_api_key.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f\"this is request.path {request.path}\")  # debug\n        print(f\"this is reverse(url) {reverse(url)}\")\n        return \"active-url\"",
-        "detail": "nadooit_api_key.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
         "label": "NadooitApiKeyConfig",
         "kind": 6,
         "importPath": "nadooit_api_key.apps",
@@ -2234,24 +2376,6 @@
         "documentation": {}
     },
     {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_auth.templatetags.is_active_url",
-        "description": "nadooit_auth.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_auth.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_auth.templatetags.is_active_url",
-        "description": "nadooit_auth.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
-        "detail": "nadooit_auth.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
         "label": "AuthConfig",
         "kind": 6,
         "importPath": "nadooit_auth.apps",
@@ -2270,11 +2394,20 @@
         "documentation": {}
     },
     {
+        "label": "app_name",
+        "kind": 5,
+        "importPath": "nadooit_auth.urls",
+        "description": "nadooit_auth.urls",
+        "peekOfCode": "app_name = \"nadooit_auth\"\nurlpatterns = [\n    path(\"login-user\", login_user, name=\"login-user\"),\n    path(\"logout-user\", logout_user, name=\"logout-user\"),\n]",
+        "detail": "nadooit_auth.urls",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "nadooit_auth.urls",
         "description": "nadooit_auth.urls",
-        "peekOfCode": "urlpatterns = [\n    path('login-user', login_user, name=\"login-user\"),\n    path('logout-user', logout_user, name=\"logout-user\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"login-user\", login_user, name=\"login-user\"),\n    path(\"logout-user\", logout_user, name=\"logout-user\"),\n]",
         "detail": "nadooit_auth.urls",
         "documentation": {}
     },
@@ -2288,11 +2421,29 @@
         "documentation": {}
     },
     {
+        "label": "log_user_in",
+        "kind": 2,
+        "importPath": "nadooit_auth.views",
+        "description": "nadooit_auth.views",
+        "peekOfCode": "def log_user_in(request, username):\n    user = User.objects.get(username=username)\n    user.backend = \"django.contrib.auth.backends.ModelBackend\"\n    login(request, user)\n    if \"redirect\" in request.POST:\n        return redirect(request.POST[\"redirect\"])\n    else:\n        return redirect(reverse(\"nadooit_os:nadooit-os\"))\ndef login_user(request):\n    if request.method == \"POST\":",
+        "detail": "nadooit_auth.views",
+        "documentation": {}
+    },
+    {
         "label": "login_user",
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST['username']\n        password = request.POST['password']\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect(request.GET.get('next') or '/nadooit-os')\n        else:\n            messages.success(request, 'Username or Password is incorrect')",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            print(\"found user\")\n            if user is not None:  # if the user object exist",
+        "detail": "nadooit_auth.views",
+        "documentation": {}
+    },
+    {
+        "label": "login_user_old",
+        "kind": 2,
+        "importPath": "nadooit_auth.views",
+        "description": "nadooit_auth.views",
+        "peekOfCode": "def login_user_old(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        password = request.POST[\"password\"]\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect(request.GET.get(\"next\") or \"/nadooit-os\")\n        else:\n            messages.success(request, \"Username or Password is incorrect\")",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2301,7 +2452,16 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def logout_user(request):\n        logout(request)\n        return redirect('/auth/login-user')",
+        "peekOfCode": "def logout_user(request):\n    logout(request)\n    return redirect(\"/auth/login-user\")\n@login_required(login_url=\"/auth/login-user\")\ndef register(request):\n    if request.method == \"POST\":\n        error = \"\"\n        username = request.POST.get(\"username\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display-name\")\n        if not utils.validate_username(username):",
+        "detail": "nadooit_auth.views",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "nadooit_auth.views",
+        "description": "nadooit_auth.views",
+        "peekOfCode": "def register(request):\n    if request.method == \"POST\":\n        error = \"\"\n        username = request.POST.get(\"username\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display-name\")\n        if not utils.validate_username(username):\n            error = \"Invalid matriculation number\"\n            return render(\n                request,\n                \"register.html\",",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2330,24 +2490,6 @@
         "description": "nadooit_crm.migrations.0003_delete_employee",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0002_remove_employee_customers_remove_employee_user'),\n        ('nadooit_time_account', '0002_alter_timeaccountemployee_employee'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='Employee',\n        ),\n    ]",
         "detail": "nadooit_crm.migrations.0003_delete_employee",
-        "documentation": {}
-    },
-    {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_crm.templatetags.is_active_url",
-        "description": "nadooit_crm.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_crm.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_crm.templatetags.is_active_url",
-        "description": "nadooit_crm.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
-        "detail": "nadooit_crm.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2567,11 +2709,20 @@
         "documentation": {}
     },
     {
+        "label": "app_name",
+        "kind": 5,
+        "importPath": "nadooit_os.urls",
+        "description": "nadooit_os.urls",
+        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n]",
+        "detail": "nadooit_os.urls",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "nadooit_os.urls",
         "description": "nadooit_os.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', index_nadooit_os, name=\"nadooit-os\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n]",
         "detail": "nadooit_os.urls",
         "documentation": {}
     },
@@ -2648,6 +2799,15 @@
         "documentation": {}
     },
     {
+        "label": "NadooitQuestionsAndAnswersConfig",
+        "kind": 6,
+        "importPath": "nadooit_questions_and_answers.apps",
+        "description": "nadooit_questions_and_answers.apps",
+        "peekOfCode": "class NadooitQuestionsAndAnswersConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_questions_and_answers'",
+        "detail": "nadooit_questions_and_answers.apps",
+        "documentation": {}
+    },
+    {
         "label": "Migration",
         "kind": 6,
         "importPath": "nadooit_time_account.migrations.0001_initial",
@@ -2663,24 +2823,6 @@
         "description": "nadooit_time_account.migrations.0002_alter_timeaccountemployee_employee",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0001_initial'),\n        ('nadooit_time_account', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='timeaccountemployee',\n            name='employee',\n            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employee'),",
         "detail": "nadooit_time_account.migrations.0002_alter_timeaccountemployee_employee",
-        "documentation": {}
-    },
-    {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_time_account.templatetags.is_active_url",
-        "description": "nadooit_time_account.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_time_account.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_time_account.templatetags.is_active_url",
-        "description": "nadooit_time_account.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return 'active-url'\n    if request.path in reverse(url) and len(request.path) > 1:\n        print(f'this is request.path {request.path}') #debug\n        print(f'this is reverse(url) {reverse(url)}')\n        return \"active-url\"",
-        "detail": "nadooit_time_account.templatetags.is_active_url",
         "documentation": {}
     },
     {
@@ -2735,24 +2877,6 @@
         "description": "nadooit_time_account.models",
         "peekOfCode": "def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):\n    return str(time // 3600) + \":\" + str((time % 3600) // 60) + \":\" + str(time % 60)\n# Create your models here.\nclass TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    def __str__(self):\n        return (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds",
         "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "is_active_url",
-        "kind": 2,
-        "importPath": "nadooit_website.templatetags.is_active_url",
-        "description": "nadooit_website.templatetags.is_active_url",
-        "peekOfCode": "def is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_website.templatetags.is_active_url",
-        "documentation": {}
-    },
-    {
-        "label": "register",
-        "kind": 5,
-        "importPath": "nadooit_website.templatetags.is_active_url",
-        "description": "nadooit_website.templatetags.is_active_url",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_active_url(request, url):\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-url\"\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-url\"\n    return \"\"",
-        "detail": "nadooit_website.templatetags.is_active_url",
         "documentation": {}
     },
     {

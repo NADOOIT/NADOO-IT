@@ -4,10 +4,10 @@
         <div class="container">
             <ul class="nav-bar">
                 <ul class="links">
-                    <li><a href="{% url 'nadooit-os' %}"  class="{% is_url_active request 'nadooit-os' %}">NADOOIT OS</a></li>
+                    <li><a href="{% url 'nadooit_os:nadooit-os' %}"  class="{% is_url_active request 'nadooit_os:nadooit-os' %}">NADOOIT OS</a></li>
                     <li><a href="{% url 'create-api-key' %}" class="{% is_url_active request 'create-api-key' %}">Create new NADOOIT API Key</a></li>
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'logout-user' %}" class="{% is_url_active request 'logout-user' %}">Log out</a></li>
+                        <li><a href="{% url 'nadooit_auth:logout-user' %}" class="{% is_url_active request 'nadooit_auth:logout-user' %}">Log out</a></li>
                     {% else %}
                         <li><a href="{% url 'login-user' %}" class="{% is_url_active request 'login-user' %}">Login</a></li>
                     {% endif %}
@@ -32,9 +32,9 @@
     <div class="mmm">
         <ul class="menu">
                     {% if user.is_authenticated %}
-                        <li><a href="{% url 'nadooit-os' %}"  class="{% is_url_active request 'nadooit-os' %}">NADOOIT OS</a></li>
+                        <li><a href="{% url 'nadooit_os:nadooit-os' %}"  class="{% is_url_active request 'nadooit_os:nadooit-os' %}">NADOOIT OS</a></li>
                         <li><a href="{% url 'create-api-key' %}" class="{% is_url_active request 'create-api-key' %}">Create new NADOOIT API Key</a></li>
-                        <li><a href="{% url 'logout-user' %}" class="{% is_url_active request 'logout-user' %}">Log out</a></li>
+                        <li><a href="{% url 'nadooit_auth:logout-user' %}" class="{% is_url_active request 'nadooit_auth:logout-user' %}">Log out</a></li>
                     {% else %}
                         <li><a href="{% url 'login-user' %}" class="{% is_url_active request 'login-user' %}">Login</a></li>
                     {% endif %}

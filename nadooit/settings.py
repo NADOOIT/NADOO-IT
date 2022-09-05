@@ -149,24 +149,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-# according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
-STATIC_URL = "static/"
-
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+STATIC_URL = "/static/"
+# OLD STATICFILES_DIRS = [BASE_DIR / "static", "/var/www/static/"]
+# according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "/var/www/static/",
-]
-
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -203,14 +195,8 @@ PWA_APP_LANG = "de-DE"
 
 # FIDO2
 MFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user
-MFA_LOGIN_CALLBACK = (
-    ""  # A function that should be called by username to login the user in session
-)
+MFA_LOGIN_CALLBACK = "nadooit_auth.views.log_user_in"  # A function that should be called by username to login the user in session
 MFA_RECHECK = True  # Allow random rechecking of the user
-MFA_REDIRECT_AFTER_REGISTRATION = (
-    "nadooit-os"  # Allows Changing the page after successful registeration
-)
-MFA_SUCCESS_REGISTRATION_MSG = "Go to Security Home"  # The text of the link
 MFA_RECHECK_MIN = 10  # Minimum interval in seconds
 MFA_RECHECK_MAX = 30  # Maximum in seconds
 MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA
@@ -219,8 +205,19 @@ MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys
 
 TOKEN_ISSUER_NAME = "nadooit"  # TOTP Issuer name
 
-U2F_APPID = "https://localhost"  # URL For U2F
-FIDO_SERVER_ID = (
-    "localehost"  # Server rp id for FIDO2, it the full domain of your project
-)
+if DEBUG:
+    U2F_APPID = "https://localhost"  # URL For U2F
+    FIDO_SERVER_ID = (
+        "localhost"  # Server rp id for FIDO2, it is the full domain of your project
+    )
+else:
+    U2F_APPID = "https://nadooit.de"  # URL For U2F
+    FIDO_SERVER_ID = "nadooit.de"
+
 FIDO_SERVER_NAME = "nadooit"
+MFA_REDIRECT_AFTER_REGISTRATION = (
+    "nadooit_os:nadooit-os"  # Allows Changing the page after successful registeration
+)
+MFA_SUCCESS_REGISTRATION_MSG = (
+    "Schlüssel erfolgreich registriert"  # The text of the link
+)

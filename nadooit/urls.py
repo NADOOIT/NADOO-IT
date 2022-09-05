@@ -29,16 +29,20 @@ admin.site.site_title = "NADOOIT"
 # This is where the urls are placed
 urlpatterns = [
     path("", include("nadooit_website.urls")),
-    path("auth/", include("nadooit_auth.urls")),
-    path("nadooit-os/", include("nadooit_os.urls")),
-    path("nadooit-api-key/", include("nadooit_api_key.urls")),
+    path("admin/", admin.site.urls),
+    path("auth/", include("nadooit_auth.urls", namespace="nadooit_auth")),
     path("api/", include("nadooit_api_executions_system.urls")),
+    path("nadooit-os/", include("nadooit_os.urls", namespace="nadooit_os")),
+    path("nadooit-api-key/", include("nadooit_api_key.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
     path("grappelli/", include("grappelli.urls")),
-    path("admin/", admin.site.urls),
     path("", include("pwa.urls")),
     path("mfa/", include("mfa.urls")),
     path(
         "devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"
     ),  # This short link to add new trusted device
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
