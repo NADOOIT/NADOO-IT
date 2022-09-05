@@ -1303,6 +1303,14 @@
         "documentation": {}
     },
     {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponseRedirect",
         "importPath": "django.http",
         "description": "django.http",
@@ -1403,6 +1411,14 @@
         "documentation": {}
     },
     {
+        "label": "check__valid_user_code",
+        "importPath": "nadooit_auth.user_code",
+        "description": "nadooit_auth.user_code",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.user_code",
+        "documentation": {}
+    },
+    {
         "label": "login_user",
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
@@ -1412,6 +1428,14 @@
     },
     {
         "label": "logout_user",
+        "importPath": "nadooit_auth.views",
+        "description": "nadooit_auth.views",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.views",
+        "documentation": {}
+    },
+    {
+        "label": "register_user",
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
         "isExtraImport": true,
@@ -1458,6 +1482,14 @@
         "description": "django.contrib.auth",
         "isExtraImport": true,
         "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "get__new_username",
+        "importPath": "nadooit_auth.username",
+        "description": "nadooit_auth.username",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.username",
         "documentation": {}
     },
     {
@@ -2398,7 +2430,7 @@
         "kind": 5,
         "importPath": "nadooit_auth.urls",
         "description": "nadooit_auth.urls",
-        "peekOfCode": "app_name = \"nadooit_auth\"\nurlpatterns = [\n    path(\"login-user\", login_user, name=\"login-user\"),\n    path(\"logout-user\", logout_user, name=\"logout-user\"),\n]",
+        "peekOfCode": "app_name = \"nadooit_auth\"\nurlpatterns = [\n    path(\"login-user\", login_user, name=\"login-user\"),\n    path(\"logout-user\", logout_user, name=\"logout-user\"),\n    path(\"register-user\", register_user, name=\"register-user\"),\n]",
         "detail": "nadooit_auth.urls",
         "documentation": {}
     },
@@ -2407,8 +2439,17 @@
         "kind": 5,
         "importPath": "nadooit_auth.urls",
         "description": "nadooit_auth.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"login-user\", login_user, name=\"login-user\"),\n    path(\"logout-user\", logout_user, name=\"logout-user\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"login-user\", login_user, name=\"login-user\"),\n    path(\"logout-user\", logout_user, name=\"logout-user\"),\n    path(\"register-user\", register_user, name=\"register-user\"),\n]",
         "detail": "nadooit_auth.urls",
+        "documentation": {}
+    },
+    {
+        "label": "get__new_username",
+        "kind": 2,
+        "importPath": "nadooit_auth.username",
+        "description": "nadooit_auth.username",
+        "peekOfCode": "def get__new_username() -> str:\n    username = \"\".join(\n        random.choice(string.ascii_letters + string.digits) for _ in range(20)\n    )\n    return username",
+        "detail": "nadooit_auth.username",
         "documentation": {}
     },
     {
@@ -2416,7 +2457,16 @@
         "kind": 2,
         "importPath": "nadooit_auth.user_code",
         "description": "nadooit_auth.user_code",
-        "peekOfCode": "def get__new_user_code() -> str:\n    user_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))\n    return user_code",
+        "peekOfCode": "def get__new_user_code() -> str:\n    user_code = \"\".join(\n        random.choice(string.ascii_letters + string.digits) for _ in range(6)\n    )\n    return user_code\ndef check__valid_user_code(user_code: str) -> bool:\n    if len(user_code) > 6:\n        return False\n    if user_code.isalnum():\n        return True",
+        "detail": "nadooit_auth.user_code",
+        "documentation": {}
+    },
+    {
+        "label": "check__valid_user_code",
+        "kind": 2,
+        "importPath": "nadooit_auth.user_code",
+        "description": "nadooit_auth.user_code",
+        "peekOfCode": "def check__valid_user_code(user_code: str) -> bool:\n    if len(user_code) > 6:\n        return False\n    if user_code.isalnum():\n        return True\n    if not user_code[0].isalpha():\n        return True\n    import re\n    if bool(re.search(\"^[a-zA-Z0-9]*$\", user_code)) == True:\n        return False",
         "detail": "nadooit_auth.user_code",
         "documentation": {}
     },
@@ -2434,7 +2484,7 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            print(\"found user\")\n            if user is not None:  # if the user object exist",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            print(\"found user\")\n            if user.is_active:  # if the user object exist",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2452,16 +2502,16 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def logout_user(request):\n    logout(request)\n    return redirect(\"/auth/login-user\")\n@login_required(login_url=\"/auth/login-user\")\ndef register(request):\n    if request.method == \"POST\":\n        error = \"\"\n        username = request.POST.get(\"username\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display-name\")\n        if not utils.validate_username(username):",
+        "peekOfCode": "def logout_user(request):\n    logout(request)\n    return redirect(\"/auth/login-user\")\n@login_required(login_url=\"/auth/login-user\")\ndef register_user(request):\n    if request.method == \"POST\":\n        error = \"\"\n        user_code = request.POST.get(\"user_code\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display_name\")\n        if not check__valid_user_code(user_code):",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
     {
-        "label": "register",
+        "label": "register_user",
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def register(request):\n    if request.method == \"POST\":\n        error = \"\"\n        username = request.POST.get(\"username\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display-name\")\n        if not utils.validate_username(username):\n            error = \"Invalid matriculation number\"\n            return render(\n                request,\n                \"register.html\",",
+        "peekOfCode": "def register_user(request):\n    if request.method == \"POST\":\n        error = \"\"\n        user_code = request.POST.get(\"user_code\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display_name\")\n        if not check__valid_user_code(user_code):\n            error = \"Invalid user_code\"\n            return render(\n                request,\n                \"nadooit_auth/register.html\",",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2902,7 +2952,7 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def index(request):\n    return render(request, \"nadooit_website/index.html\", {})\ndef impressum(request):\n    return render(request, \"nadooit_website/impressum.html\", {})\ndef datenschutz(request):\n    return render(request, \"nadooit_website/datenschutz.html\", {})",
+        "peekOfCode": "def index(request):\n    return render(request, \"nadooit_website/index.html\", {\"page_title\": \"Home\"})\ndef impressum(request):\n    return render(\n        request, \"nadooit_website/impressum.html\", {\"page_title\": \"Impressum\"}\n    )\ndef datenschutz(request):\n    return render(\n        request,\n        \"nadooit_website/datenschutz.html\",",
         "detail": "nadooit_website.views",
         "documentation": {}
     },
@@ -2911,7 +2961,7 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def impressum(request):\n    return render(request, \"nadooit_website/impressum.html\", {})\ndef datenschutz(request):\n    return render(request, \"nadooit_website/datenschutz.html\", {})",
+        "peekOfCode": "def impressum(request):\n    return render(\n        request, \"nadooit_website/impressum.html\", {\"page_title\": \"Impressum\"}\n    )\ndef datenschutz(request):\n    return render(\n        request,\n        \"nadooit_website/datenschutz.html\",\n        {\"page_title\": \"Datenschutzerklärung\"},\n    )",
         "detail": "nadooit_website.views",
         "documentation": {}
     },
@@ -2920,7 +2970,7 @@
         "kind": 2,
         "importPath": "nadooit_website.views",
         "description": "nadooit_website.views",
-        "peekOfCode": "def datenschutz(request):\n    return render(request, \"nadooit_website/datenschutz.html\", {})",
+        "peekOfCode": "def datenschutz(request):\n    return render(\n        request,\n        \"nadooit_website/datenschutz.html\",\n        {\"page_title\": \"Datenschutzerklärung\"},\n    )",
         "detail": "nadooit_website.views",
         "documentation": {}
     },
