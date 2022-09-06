@@ -2781,7 +2781,7 @@
         "kind": 2,
         "importPath": "nadooit_os.views",
         "description": "nadooit_os.views",
-        "peekOfCode": "def index_nadooit_os(request):\n    return render(request, \"nadooit_os/index.html\")",
+        "peekOfCode": "def index_nadooit_os(request):\n    return render(request, \"nadooit_os/index.html\", {\"page_title\": \"Nadooit OS\"})",
         "detail": "nadooit_os.views",
         "documentation": {}
     },
