@@ -1635,7 +1635,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Production\n# config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\n# Development\nconfig_json = (\n    Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config_dev.json\")\n)\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Production\nconfig_json = Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config.json\")\n# Development\n# config_json = (        Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config_dev.json\")    )\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1644,7 +1644,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "config_json = (\n    Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config_dev.json\")\n)\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\n# SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\nSECRET_KEY = config.get(\"SECRET_KEY\")",
+        "peekOfCode": "config_json = Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config.json\")\n# Development\n# config_json = (        Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config_dev.json\")    )\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\n# SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'\nSECRET_KEY = config.get(\"SECRET_KEY\")",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1653,7 +1653,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
+        "peekOfCode": "SECRET_KEY = config.get(\"SECRET_KEY\")\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1662,7 +1662,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
+        "peekOfCode": "DEBUG = False\nALLOWED_HOSTS = [\"*\"]\n# Application definition\nINSTALLED_APPS = [\n    \"grappelli\",\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",",
         "detail": "nadooit.settings",
         "documentation": {}
     },

@@ -17,11 +17,10 @@ import json
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Production
-# config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')
+config_json = Path.home().joinpath("NADOOIT").joinpath("config").joinpath("config.json")
 # Development
-config_json = (
-    Path.home().joinpath("NADOOIT").joinpath("config").joinpath("config_dev.json")
-)
+# config_json = (        Path.home().joinpath("NADOOIT").joinpath("config").joinpath("config_dev.json")    )
+
 
 with open(config_json) as config_file:
     config = json.load(config_file)
@@ -34,7 +33,7 @@ with open(config_json) as config_file:
 SECRET_KEY = config.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
