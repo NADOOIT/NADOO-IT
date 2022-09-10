@@ -30,7 +30,6 @@ urlpatterns = [
     path("nadooit-os/", include("nadooit_os.urls")),
     path("nadooit-api-key/", include("nadooit_api_key.urls")),
     path("api/", include("nadooit_api_executions_system.urls")),
-    path("__debug__/", include("debug_toolbar.urls")),
     path("grappelli/", include("grappelli.urls")),
     path("admin/", admin.site.urls),
     path("", include("pwa.urls")),
