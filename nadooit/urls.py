@@ -20,7 +20,7 @@ from django.urls import path, include
 import mfa
 import mfa.TrustedDevice
 
-from nadooit import settings
+from django.conf import settings
 
 admin.site.site_header = "NADOOIT Administration"  # default: "Django Administration"
 admin.site.index_title = "NADOOIT Administration Site"  # default: "Site administration"

@@ -1037,10 +1037,50 @@
     },
     {
         "label": "settings",
-        "importPath": "nadooit",
-        "description": "nadooit",
+        "importPath": "django.conf",
+        "description": "django.conf",
         "isExtraImport": true,
-        "detail": "nadooit",
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -1236,38 +1276,6 @@
         "description": "nadooit_auth.models",
         "isExtraImport": true,
         "detail": "nadooit_auth.models",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "django.conf",
-        "description": "django.conf",
-        "isExtraImport": true,
-        "detail": "django.conf",
         "documentation": {}
     },
     {
@@ -1787,11 +1795,47 @@
         "documentation": {}
     },
     {
+        "label": "TEMPLATES",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [os.path.join(BASE_DIR, \"templates\")],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
         "label": "STATICFILES_STORAGE",
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_STORAGE = \"whitenoise.storage.CompressedManifestStaticFilesStorage\"\nROOT_URLCONF = \"nadooit.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [os.path.join(BASE_DIR, \"templates\")],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",",
+        "peekOfCode": "STATICFILES_STORAGE = \"whitenoise.storage.CompressedManifestStaticFilesStorage\"\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATICFILES_DIRS",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_URL",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {",
+        "detail": "nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "STATIC_ROOT",
+        "kind": 5,
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
+        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": config.get(\"POSTGRE_SQL_DB_NAME\"),\n        \"USER\": config.get(\"POSTGRE_SQL_DB_USER\"),",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1800,16 +1844,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "ROOT_URLCONF = \"nadooit.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [os.path.join(BASE_DIR, \"templates\")],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "TEMPLATES",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [os.path.join(BASE_DIR, \"templates\")],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
+        "peekOfCode": "ROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": config.get(\"POSTGRE_SQL_DB_NAME\"),\n        \"USER\": config.get(\"POSTGRE_SQL_DB_USER\"),\n        \"PASSWORD\": config.get(\"POSTGRE_SQL_DB_PASSWORD\"),",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1854,7 +1889,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1863,7 +1898,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1872,7 +1907,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1881,7 +1916,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -1890,34 +1925,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\nSTATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATIC_URL",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATIC_URL = \"/static/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\nSTATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATIC_ROOT",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"",
-        "detail": "nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "STATICFILES_DIRS",
-        "kind": 5,
-        "importPath": "nadooit.settings",
-        "description": "nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
+        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2043,7 +2051,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2052,7 +2060,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).",
+        "peekOfCode": "PWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (\n    \"TOTP\",\n    \"Email\",\n    \"U2F\",\n)  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2061,7 +2069,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "PWA_APP_LANG = \"de-DE\"\n# FIDO2\nMFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys",
+        "peekOfCode": "PWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (\n    \"TOTP\",\n    \"Email\",\n    \"U2F\",\n)  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2070,7 +2078,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_UNALLOWED_METHODS = ()  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:",
+        "peekOfCode": "MFA_UNALLOWED_METHODS = (\n    \"TOTP\",\n    \"Email\",\n    \"U2F\",\n)  # Methods that shouldn't be allowed for the user\nMFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2079,7 +2087,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F",
+        "peekOfCode": "MFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2088,7 +2096,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (",
+        "peekOfCode": "MFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2097,7 +2105,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project",
+        "peekOfCode": "MFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2106,7 +2114,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )",
+        "peekOfCode": "MFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2115,7 +2123,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:",
+        "peekOfCode": "MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2124,7 +2132,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F",
+        "peekOfCode": "MFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2133,7 +2141,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"",
+        "peekOfCode": "MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"\nMFA_REDIRECT_AFTER_REGISTRATION = (",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2142,7 +2150,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "TOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"",
+        "peekOfCode": "TOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit_os:nadooit-os\"  # Allows Changing the page after successful registeration",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2475,7 +2483,7 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def log_user_in(request, username):\n    user = User.objects.get(username=username)\n    user.backend = \"django.contrib.auth.backends.ModelBackend\"\n    login(request, user)\n    if \"redirect\" in request.POST:\n        return redirect(request.POST[\"redirect\"])\n    else:\n        return redirect(reverse(\"nadooit_os:nadooit-os\"))\ndef login_user(request):\n    if request.method == \"POST\":",
+        "peekOfCode": "def log_user_in(request, username):\n    user = User.objects.get(username=username)\n    user.backend = \"django.contrib.auth.backends.ModelBackend\"\n    # loging in the user\n    login(request, user)\n    # request.POST containing redirect might be wrong here and should be request.GET \"next\" instead. Test this.\n    if \"redirect\" in request.POST:\n        return redirect(request.POST[\"redirect\"])\n    else:\n        return redirect(reverse(\"nadooit_os:nadooit-os\"))",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2484,7 +2492,7 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            print(\"found user\")\n            if user.is_active:  # if the user object exist",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        err = \"\"\n        if user is not None:\n            print(\"found user\")",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },
@@ -2502,7 +2510,7 @@
         "kind": 2,
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
-        "peekOfCode": "def logout_user(request):\n    logout(request)\n    return redirect(\"/auth/login-user\")\n@login_required(login_url=\"/auth/login-user\")\ndef register_user(request):\n    if request.method == \"POST\":\n        error = \"\"\n        user_code = request.POST.get(\"user_code\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display_name\")\n        if not check__valid_user_code(user_code):",
+        "peekOfCode": "def logout_user(request):\n    logout(request)\n    messages.success(request, \"You habe successfully logged out\")\n    return redirect(\"/auth/login-user\")\n@login_required(login_url=\"/auth/login-user\")\ndef register_user(request):\n    if request.method == \"POST\":\n        error = \"\"\n        user_code = request.POST.get(\"user_code\").replace(\"/\", \"\")\n        display_name = request.POST.get(\"display_name\")",
         "detail": "nadooit_auth.views",
         "documentation": {}
     },

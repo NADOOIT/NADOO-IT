@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
-
-# imoport for userforms
-
+from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+
 
 from nadooit_auth.models import User
 from nadooit_auth.user_code import check__valid_user_code
@@ -16,7 +15,10 @@ from nadooit_auth.username import get__new_username
 def log_user_in(request, username):
     user = User.objects.get(username=username)
     user.backend = "django.contrib.auth.backends.ModelBackend"
+
+    # loging in the user
     login(request, user)
+    # request.POST containing redirect might be wrong here and should be request.GET "next" instead. Test this.
     if "redirect" in request.POST:
         return redirect(request.POST["redirect"])
     else:
@@ -32,28 +34,32 @@ def login_user(request):
         # username = User.objects.get(user_code=user_code).username
 
         user = authenticate(request, username=username, password=password)
-
+        err = ""
         if user is not None:
             print("found user")
             if user.is_active:  # if the user object exist
-                from mfa.helpers import has_mfa
+                if "mfa" in settings.INSTALLED_APPS:
+                    from mfa.helpers import has_mfa
 
-                res = has_mfa(
-                    username=username, request=request
-                )  # has_mfa returns false or HttpResponseRedirect
-                if res:
-                    print("has_mfa")
+                    res = has_mfa(
+                        username=username, request=request
+                    )  # has_mfa returns false or HttpResponseRedirect
+                    if res:
+                        print("has_mfa")
+                        print(res)
+                        return res
+                    print("has_no_mfa")
                     print(res)
-                    return res
-                print("has_no_mfa")
-                print(res)
-                log_user_in(request, user.username)
-                # login(request, user)
-                return redirect(request.GET.get("next") or "/nadooit-os")
-
+                    log_user_in(request, user.username)
+                    # login(request, user)
+                    return redirect(request.GET.get("next") or "/nadooit-os")
+            else:
+                err = "This user is NOT activated yet."
         else:
-            messages.success(request, "Username or Password is incorrect")
-            return redirect("/auth/login-user")
+            err = "Username or Password is incorrect"
+        messages.success(request, err)
+        return redirect("/auth/login-user")
+
     else:
         return render(request, "nadooit_auth/login.html", {})
 
@@ -77,6 +83,7 @@ def login_user_old(request):
 
 def logout_user(request):
     logout(request)
+    messages.success(request, "You habe successfully logged out")
     return redirect("/auth/login-user")
 
 
