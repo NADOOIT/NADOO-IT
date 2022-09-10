@@ -1995,7 +1995,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
+        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -2004,7 +2004,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
+        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),",
         "detail": "nadooit.urls",
         "documentation": {}
     },
@@ -2013,7 +2013,7 @@
         "kind": 5,
         "importPath": "nadooit.urls",
         "description": "nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"auth/\", include(\"nadooit_auth.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"\", include(\"pwa.urls\")),\n] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
         "detail": "nadooit.urls",
         "documentation": {}
     },
