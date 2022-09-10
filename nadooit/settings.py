@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     "nadooit_os",
     "rest_framework",
     "pwa",
-    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
