@@ -2087,7 +2087,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F",
+        "peekOfCode": "MFA_LOGIN_CALLBACK = \"nadooit_auth.views.log_user_in\"  # A function that should be called by username to login the user in session\nMFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2096,7 +2096,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project",
+        "peekOfCode": "MFA_RECHECK = True  # Allow random rechecking of the user\nMFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2105,7 +2105,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:",
+        "peekOfCode": "MFA_RECHECK_MIN = 10  # Minimum interval in seconds\nMFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2114,7 +2114,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F",
+        "peekOfCode": "MFA_RECHECK_MAX = 30  # Maximum in seconds\nMFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2123,7 +2123,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"",
+        "peekOfCode": "MFA_QUICKLOGIN = True  # Allow quick login for returning users by provide only their 2FA\nMFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2132,7 +2132,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"",
+        "peekOfCode": "MFA_HIDE_DISABLE = (\"FIDO2\",)  # Can the user disable his key (Added in 1.2.0).\nMFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2141,7 +2141,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"\nMFA_REDIRECT_AFTER_REGISTRATION = (",
+        "peekOfCode": "MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys\nTOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },
@@ -2150,7 +2150,7 @@
         "kind": 5,
         "importPath": "nadooit.settings",
         "description": "nadooit.settings",
-        "peekOfCode": "TOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://127.0.0.1:8000\"  # URL For U2F\n    FIDO_SERVER_ID = \"127.0.0.1:8000\"  # Server rp id for FIDO2, it is the full domain of your project\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"\nMFA_REDIRECT_AFTER_REGISTRATION = (\n    \"nadooit_os:nadooit-os\"  # Allows Changing the page after successful registeration",
+        "peekOfCode": "TOKEN_ISSUER_NAME = \"nadooit\"  # TOTP Issuer name\nif DEBUG:\n    U2F_APPID = \"https://localhost\"  # URL For U2F\n    FIDO_SERVER_ID = (\n        \"localhost\"  # Server rp id for FIDO2, it is the full domain of your project\n    )\nelse:\n    U2F_APPID = \"https://nadooit.de\"  # URL For U2F\n    FIDO_SERVER_ID = \"nadooit.de\"\nFIDO_SERVER_NAME = \"nadooit\"",
         "detail": "nadooit.settings",
         "documentation": {}
     },

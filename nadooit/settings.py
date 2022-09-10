@@ -215,8 +215,10 @@ MFA_OWNED_BY_ENTERPRISE = False  # Who owns security keys
 TOKEN_ISSUER_NAME = "nadooit"  # TOTP Issuer name
 
 if DEBUG:
-    U2F_APPID = "https://127.0.0.1:8000"  # URL For U2F
-    FIDO_SERVER_ID = "127.0.0.1:8000"  # Server rp id for FIDO2, it is the full domain of your project
+    U2F_APPID = "https://localhost"  # URL For U2F
+    FIDO_SERVER_ID = (
+        "localhost"  # Server rp id for FIDO2, it is the full domain of your project
+    )
 else:
     U2F_APPID = "https://nadooit.de"  # URL For U2F
     FIDO_SERVER_ID = "nadooit.de"
