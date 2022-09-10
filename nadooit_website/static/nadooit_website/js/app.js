@@ -1,4 +1,4 @@
-const menu = document.querySelector('.mmm');
+const menu3 = document.querySelector('.mmm');
 const toggle = document.querySelector('.toggle');
 const bar = document.querySelector('.bar');
 const close = document.querySelector('.close');
@@ -67,30 +67,30 @@ cls.addEventListener('click', () => {
 });
 
 function my() {
-    menu.classList.toggle('active');
+    menu3.classList.toggle('active');
 }
 btnn.addEventListener('click', () => {
     close.style.display = "none";
     bar.style.display = "block";
-    menu.classList.toggle('active');
+    menu3.classList.toggle('active');
 });
 
 btnn1.addEventListener('click', () => {
     close.style.display = "none";
     bar.style.display = "block";
-    menu.classList.toggle('active');
+    menu3.classList.toggle('active');
 });
 
 
 btnn2.addEventListener('click', () => {
     close.style.display = "none";
     bar.style.display = "block";
-    menu.classList.toggle('active');
+    menu3.classList.toggle('active');
 });
 btnn3.addEventListener('click', () => {
     close.style.display = "none";
     bar.style.display = "block";
-    menu.classList.toggle('active');
+    menu3.classList.toggle('active');
 });
 
 

@@ -54,6 +54,7 @@ ul .links li a {
 ul .links li a:hover {
   color: #00b4dc;
 }
+
 ul .links li a span {
   color: #00b4dc;
 }
@@ -62,6 +63,10 @@ ul li a span {
   color: #00b4dc;
 }
 
+
+a.active-url {
+  color: #00b4dc;
+}
 
 html {
   scroll-behavior: smooth;
@@ -167,7 +172,7 @@ nav {
   background-attachment: fixed;
   width: 100%;
   height: auto;
-  padding: 5% 0 10% 0;
+  padding: 0% 0 10% 0;
 }
 .impressum {
   background: rgb(0, 0, 0);
@@ -411,15 +416,10 @@ footer {
 .our-grantee {
   text-transform: none;
   text-align: center;
-  padding: 20% 0 1% 0;
+  padding: 10% 0 1% 0;
   color: white;
 }
-.our-grantee-gold {
-  text-transform: none;
-  text-align: center;
-  padding: 50% 0 10% 0;
-  color: goldenrod;
-}
+
 .our-grantee h1{
   text-transform: none;
   text-align: center;
@@ -429,7 +429,7 @@ footer {
 .our-grantee-gold h1{
   text-transform: none;
   text-align: center;
-  padding: 50% 0 10% 0;
+  padding: 20% 0 10% 0;
   background: linear-gradient(225deg, #fa0000, gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -1,11 +1,12 @@
 {% load static %}
+{% load is_url_active_templatetag %}
 <header class="pc" style="border-bottom: 1px solid #00b4dc;">
     <nav>
         <div class="container">
             <ul class="nav-bar">
                 <ul class="links">
-                    <li><a href="{% url 'nadooit-os' %}">Manage Systems</a></li>
-                    <li><a href="{% url 'api-key-interface' %}">Manage Customers</a></li>
+                    <li><a href="{% url 'nadooit_os:nadooit-os' %}" class="{% is_url_active request 'nadooit_os:nadooit-os' %}">Manage Systems</a></li>
+                    <li><a href="{% url 'api-key-interface' %}" class="{% is_url_active request 'api-key-interface' %}">Manage API-Keys</a></li>
                 </ul>
             </ul>
         </div>
@@ -24,8 +25,8 @@
     </nav>
     <div class="mmm">
         <ul class="menu links">
-            <li><a href="{% url 'nadooit-os' %}">Manage Systems</a></li>
-            <li><a href="{% url 'api-key-interface' %}">Create</a></li>
+            <li><a href="{% url 'nadooit_os:nadooit-os' %}" class="{% is_url_active request 'nadooit_os:nadooit-os' %}">Manage Systems</a></li>
+            <li><a href="{% url 'api-key-interface' %}"  class="{% is_url_active request 'api-key-interface' %}">Manage API-Keys</a></li>
         </ul>
     </div>
   </header>
