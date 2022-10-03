@@ -31,7 +31,6 @@ platformdirs==2.5.2
 psycopg2-binary==2.9.3
 pyasn1==0.4.8
 pycparser==2.21
-pygraphviz==1.10
 pyOpenSSL==22.0.0
 pyotp==2.6.0
 python-jose==3.3.0

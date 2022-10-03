@@ -1,3 +1,6 @@
 .idea
 staticfiles
 venv
+*docker*
+cert.cer
+key.pem
