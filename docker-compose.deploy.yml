@@ -1,0 +1,61 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+    restart: always
+    
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+      - C:\Users\backh\AppData\Roaming\postgresql\:/home/app/.postgresql/
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000" 
+
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_ALLOWED_HOSTS=${DOMAIN}
+      - DEBUG=1
+      - COCKROACH_DB_HOST=${COCKROACH_DB_HOST}
+      - COCKROACH_DB_NAME=${COCKROACH_DB_NAME}
+      - COCKROACH_DB_PORT=${COCKROACH_DB_PORT}
+      - COCKROACH_DB_USER=${COCKROACH_DB_USER}
+      - COCKROACH_DB_PASSWORD=${COCKROACH_DB_PASSWORD}
+      - NADOOIT__API_KEY=${NADOOIT__API_KEY}
+      - NADOOIT__USER_CODE=${NADOOIT__USER_CODE}
+  
+  proxy:
+    build:
+      context: ./docker/proxy
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - certbot-web:/vol/www
+      - proxy-dhparams:/vol/proxy
+      - certbot-certs:/etc/letsencrypt
+    enviroment:
+      - DOMAIN=${DOMAIN}
+
+    depends_on:
+      - app	
+
+  certbot:
+    build:
+      context: ./docker/certbot
+    command: echo "Skipping certbot"
+    enviroment:
+      - EMAIL=${ACME_DEFAULT_EMAIL}
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - certbot-web:/vol/www
+      - certbot-certs:/etc/letsencrypt
+    depends_on:
+      - proxy
+
+volumes:
+  certbot-web:
+  proxy-dhparams:
+  certbot-certs:
