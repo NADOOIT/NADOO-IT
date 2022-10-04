@@ -1553,7 +1553,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),\n        \"PASSWORD\": os.environ.get(\"COCKROACH_DB_PASSWORD\"),\n        \"HOST\": os.environ.get(\"COCKROACH_DB_HOST\"),\n        \"PORT\": os.environ.get(\"COCKROACH_DB_PORT\"),\n        \"OPTIONS\": {\"sslmode\": \"verify-full\", \"options\": \"--cluster=nadoo-dev-3563\"},\n    }",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),\n        \"PASSWORD\": os.environ.get(\"COCKROACH_DB_PASSWORD\"),\n        \"HOST\": os.environ.get(\"COCKROACH_DB_HOST\"),\n        \"PORT\": os.environ.get(\"COCKROACH_DB_PORT\"),\n        \"OPTIONS\": {\"sslmode\": \"verify-full\", \"options\": os.environ.get(\"COCKROACH_DB_OPTIONS\")},\n    }",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },

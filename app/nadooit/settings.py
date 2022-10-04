@@ -133,7 +133,7 @@ DATABASES = {
         "PASSWORD": os.environ.get("COCKROACH_DB_PASSWORD"),
         "HOST": os.environ.get("COCKROACH_DB_HOST"),
         "PORT": os.environ.get("COCKROACH_DB_PORT"),
-        "OPTIONS": {"sslmode": "verify-full", "options": "--cluster=nadoo-dev-3563"},
+        "OPTIONS": {"sslmode": "verify-full", "options": os.environ.get("COCKROACH_DB_OPTIONS")},
     }
 }
 
