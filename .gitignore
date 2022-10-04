@@ -1,6 +1,6 @@
 .idea
 staticfiles
 venv
-*docker*
 cert.cer
 key.pem
+docker-compose.yml
