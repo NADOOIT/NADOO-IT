@@ -10,12 +10,12 @@ dj-database-url==0.5.0
 Django==4.1
 django-cockroachdb==4.1
 django-debug-toolbar==3.6.0
-django-extensions==3.2.0
+django-extensions==3.2.1
 django-grappelli==3.0.3
 django-mfa2==2.5.0
 django-pwa @ git+https://github.com/silviolleite/django-pwa@4eb4ae616f8671f85bb05156500d0814c6c4a3fe
 django-sslserver==0.22
-djangorestframework==3.13.1
+djangorestframework==3.14.0
 ecdsa==0.18.0
 fido2==1.0.0
 gunicorn==20.1.0
@@ -47,4 +47,5 @@ ua-parser==0.15.0
 urllib3==1.26.9
 user-agents==2.2.0
 Werkzeug==2.2.2
-whitenoise==6.2.0
+#whitenoise==6.2.0
+uWSGI==2.0.20,<2.1.0

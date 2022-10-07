@@ -84,10 +84,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-]
-
-
+   ]
+    #"whitenoise.middleware.WhiteNoiseMiddleware",
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -105,7 +103,7 @@ TEMPLATES = [
 ]
 
 # Staic stettings
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
 
@@ -138,6 +136,7 @@ DATABASES = {
 }
 
 """ 
+        "OPTIONS": {"sslmode": "verify-full", "options": os.environ.get("COCKROACH_DB_OPTIONS")},
     "default": {
         "ENGINE": "django_cockroachdb",
         "NAME": config.get("COCKROACH_DB_NAME"),
