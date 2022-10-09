@@ -5,18 +5,11 @@ services:
     build:
       context: .
     restart: always
-    
     ports:
       - 8000:8000
-    volumes:
-      - ./app:/app
-      - C:\Users\backh\AppData\Roaming\postgresql\:/home/app/.postgresql/
-    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000" 
-
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_ALLOWED_HOSTS=${DOMAIN}
-      - DEBUG=1
       - COCKROACH_DB_HOST=${COCKROACH_DB_HOST}
       - COCKROACH_DB_NAME=${COCKROACH_DB_NAME}
       - COCKROACH_DB_PORT=${COCKROACH_DB_PORT}
@@ -38,7 +31,6 @@ services:
       - certbot-certs:/etc/letsencrypt
     enviroment:
       - DOMAIN=${DOMAIN}
-
     depends_on:
       - app	
 
@@ -51,7 +43,7 @@ services:
       - DOMAIN=${DOMAIN}
     volumes:
       - certbot-web:/vol/www
-      - certbot-certs:/etc/letsencrypt
+      - certbot-certs:/etc/letsencrypt/
     depends_on:
       - proxy
 
