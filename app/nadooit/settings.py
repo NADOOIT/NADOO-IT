@@ -90,9 +90,9 @@ TEMPLATES = [
 
 STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
 
-STATIC_URL = "/static/"
-#STATIC_URL = "/static/static/"
-#MEDIA_URL = "/static/media/"
+#STATIC_URL = "/static/"
+STATIC_URL = "/static/static/"
+MEDIA_URL = "/static/media/"
 
 # OLD STATICFILES_DIRS = [BASE_DIR / "static", "/var/www/static/"]
 # according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
@@ -193,7 +193,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # PWA settings
 PWA_SERVICE_WORKER_PATH = os.path.join(
-    BASE_DIR, "static", "js", "nadooit_serviceworker.js"
+    BASE_DIR, "static","static", "js", "nadooit_serviceworker.js"
 )
 PWA_APP_NAME = "NADOOIT"
 PWA_APP_DESCRIPTION = "NADOOIT PWA"

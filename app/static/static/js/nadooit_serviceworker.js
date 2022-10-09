@@ -3,14 +3,14 @@
 var staticCacheName = "nadooit-pwa" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/static/nadooit_website/css/style.css',
-    '/static/appicon/maskable_icon_x48.png',
-    '/static/appicon/maskable_icon_x72.png',
-    '/static/appicon/maskable_icon_x96.png',
-    '/static/appicon/maskable_icon_x128.png',
-    '/static/appicon/maskable_icon_x192.png',
-    '/static/appicon/maskable_icon.png',
-    '/static/splashscreen/nadooit.png',
+    '/static/static/nadooit_website/css/style.css',
+    '/static/static/appicon/maskable_icon_x48.png',
+    '/static/static/appicon/maskable_icon_x72.png',
+    '/static/static/appicon/maskable_icon_x96.png',
+    '/static/static/appicon/maskable_icon_x128.png',
+    '/static/static/appicon/maskable_icon_x192.png',
+    '/static/static/appicon/maskable_icon.png',
+    '/static/static/splashscreen/nadooit.png',
 ];
 
 // Cache on install
@@ -30,7 +30,7 @@ self.addEventListener('activate', event => {
         caches.keys().then(cacheNames => {
             return Promise.all(
                 cacheNames
-                    .filter(cacheName => (cacheName.startsWith("adooit-pwa")))
+                    .filter(cacheName => (cacheName.startsWith("nadooit-pwa")))
                     .filter(cacheName => (cacheName !== staticCacheName))
                     .map(cacheName => caches.delete(cacheName))
             );

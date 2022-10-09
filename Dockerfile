@@ -9,6 +9,7 @@ RUN mkdir /app
 COPY app/ /app
 
 RUN apk add --upgrade --no-cache build-base --virtual .tmp gcc libc-dev linux-headers git curl
+RUN unset https_proxy
 
 #RUN curl --create-dirs -o app/.postgresql/root.crt -O https://cockroachlabs.cloud/clusters/250c4344-e9da-4ff8-992a-53ab1204afeb/cert
 
