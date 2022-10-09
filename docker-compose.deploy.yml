@@ -1,53 +1,49 @@
 version: '3.3'
-
 services:
   app:
     build:
       context: .
     restart: always
     ports:
-      - 8000:8000
+      - '8000:8000'
     environment:
-      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
-      - DJANGO_ALLOWED_HOSTS=${DOMAIN}
-      - COCKROACH_DB_HOST=${COCKROACH_DB_HOST}
-      - COCKROACH_DB_NAME=${COCKROACH_DB_NAME}
-      - COCKROACH_DB_PORT=${COCKROACH_DB_PORT}
-      - COCKROACH_DB_USER=${COCKROACH_DB_USER}
-      - COCKROACH_DB_PASSWORD=${COCKROACH_DB_PASSWORD}
-      - NADOOIT__API_KEY=${NADOOIT__API_KEY}
-      - NADOOIT__USER_CODE=${NADOOIT__USER_CODE}
-  
+      - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
+      - 'DJANGO_ALLOWED_HOSTS=${DOMAIN}'
+      - 'COCKROACH_DB_HOST=${COCKROACH_DB_HOST}'
+      - 'COCKROACH_DB_NAME=${COCKROACH_DB_NAME}'
+      - 'COCKROACH_DB_PORT=${COCKROACH_DB_PORT}'
+      - 'COCKROACH_DB_USER=${COCKROACH_DB_USER}'
+      - 'COCKROACH_DB_PASSWORD=${COCKROACH_DB_PASSWORD}'
+      - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
+      - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
   proxy:
     build:
       context: ./docker/proxy
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      - '80:80'
+      - '443:443'
     volumes:
-      - certbot-web:/vol/www
-      - proxy-dhparams:/vol/proxy
-      - certbot-certs:/etc/letsencrypt
+      - 'certbot-web:/vol/www'
+      - 'proxy-dhparams:/vol/proxy'
+      - 'certbot-certs:/etc/letsencrypt'
     enviroment:
-      - DOMAIN=${DOMAIN}
+      - 'DOMAIN=${DOMAIN}'
     depends_on:
       - app
-
   certbot:
     build:
       context: ./docker/certbot
     command: echo "Skipping certbot"
     enviroment:
-      - EMAIL=${ACME_DEFAULT_EMAIL}
-      - DOMAIN=${DOMAIN}
+      - 'EMAIL=${ACME_DEFAULT_EMAIL}'
+      - 'DOMAIN=${DOMAIN}'
     volumes:
-      - certbot-web:/vol/www
-      - certbot-certs:/etc/letsencrypt/
+      - 'certbot-web:/vol/www'
+      - 'certbot-certs:/etc/letsencrypt/'
     depends_on:
       - proxy
-
 volumes:
-  certbot-web:
-  proxy-dhparams:
-  certbot-certs:
+  certbot-web: null
+  proxy-dhparams: null
+  certbot-certs: null
