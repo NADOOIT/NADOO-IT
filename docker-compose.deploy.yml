@@ -32,7 +32,7 @@ services:
     enviroment:
       - DOMAIN=${DOMAIN}
     depends_on:
-      - app	
+      - app
 
   certbot:
     build:
