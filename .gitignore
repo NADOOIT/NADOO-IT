@@ -4,3 +4,4 @@ venv
 cert.cer
 key.pem
 docker-compose.yml
+/data

@@ -11,36 +11,20 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-import json
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Production
-# config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')
-# Development
-""" 
-config_json = (
-    Path.home().joinpath("NADOOIT").joinpath("config").joinpath("config_dev.json")
-)
-
- 
-with open(config_json) as config_file:
-    config = json.load(config_file)
-"""
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'
-# SECRET_KEY = config.get("SECRET_KEY")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
+
 
 ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
 
@@ -85,7 +69,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
    ]
-    #"whitenoise.middleware.WhiteNoiseMiddleware",
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -103,18 +87,18 @@ TEMPLATES = [
 ]
 
 # Staic stettings
-#STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
 
-STATIC_URL = "/static/static/"
-MEDIA_URL = "/static/media/"
+STATIC_URL = "/static/"
+#STATIC_URL = "/static/static/"
+#MEDIA_URL = "/static/media/"
 
 # OLD STATICFILES_DIRS = [BASE_DIR / "static", "/var/www/static/"]
 # according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
 # OLD STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_ROOT = "/vol/web/static/"
-MEDIA_ROOT = "/vol/web/media/"
+STATIC_ROOT = (os.path.join(BASE_DIR, "/vol/web/static/"))
+MEDIA_ROOT = (os.path.join(BASE_DIR, "/vol/web/media/"))
 
 ROOT_URLCONF = "nadooit.urls"
 
@@ -220,13 +204,13 @@ PWA_APP_SCOPE = "/"
 PWA_APP_ORIENTATION = "any"
 PWA_APP_START_URL = "/nadooit-os"
 PWA_APP_STATUS_BAR_COLOR = "default"
-PWA_APP_ICONS = [{"src": "static/appicon/maskable_icon_x192.png", "sizes": "192x192"}]
+PWA_APP_ICONS = [{"src": "/static/appicon/maskable_icon_x192.png", "sizes": "192x192"}]
 PWA_APP_ICONS_APPLE = [
-    {"src": "static/appicon/maskable_icon_x192.png", "sizes": "192x192"}
+    {"src": "/static/appicon/maskable_icon_x192.png", "sizes": "192x192"}
 ]
 PWA_APP_SPLASH_SCREEN = [
     {
-        "src": "static/splashscreen/nadooit.png",
+        "src": "/static/splashscreen/nadooit.png",
         "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
     }
 ]

@@ -18,7 +18,6 @@ django-sslserver==0.22
 djangorestframework==3.14.0
 ecdsa==0.18.0
 fido2==1.0.0
-gunicorn==20.1.0
 idna==3.3
 jsonfield==3.1.0
 jsonLookup==0.9.0
@@ -47,5 +46,4 @@ ua-parser==0.15.0
 urllib3==1.26.9
 user-agents==2.2.0
 Werkzeug==2.2.2
-#whitenoise==6.2.0
 uWSGI==2.0.20,<2.1.0
