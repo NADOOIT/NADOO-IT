@@ -1,0 +1,7 @@
+
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block branding %}
+     <link rel="shortcut icon" href="{% static 'static/favicon/nadooit-fav-icon.ico' %}"/>
+     {{ block.super }}
+ {% endblock %}

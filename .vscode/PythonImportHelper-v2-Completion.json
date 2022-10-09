@@ -376,7 +376,111 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -416,7 +520,31 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -448,7 +576,31 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -473,6 +625,46 @@
     },
     {
         "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -777,15 +969,6 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
         "label": "static",
         "importPath": "django.conf.urls.static",
         "description": "django.conf.urls.static",
@@ -828,6 +1011,30 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -842,6 +1049,15 @@
         "importPath": "uuid",
         "description": "uuid",
         "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
         "documentation": {}
     },
     {
@@ -1094,6 +1310,15 @@
         "documentation": {}
     },
     {
+        "label": "django.contrib.auth.models",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.models",
+        "description": "django.contrib.auth.models",
+        "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
         "label": "AbstractUser",
         "importPath": "django.contrib.auth.models",
         "description": "django.contrib.auth.models",
@@ -1107,6 +1332,33 @@
         "description": "django.contrib.auth.models",
         "isExtraImport": true,
         "detail": "django.contrib.auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "django.contrib.auth.validators",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.contrib.auth.validators",
+        "description": "django.contrib.auth.validators",
+        "detail": "django.contrib.auth.validators",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "nadooit_auth.user_code",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "nadooit_auth.user_code",
+        "description": "nadooit_auth.user_code",
+        "detail": "nadooit_auth.user_code",
         "documentation": {}
     },
     {
@@ -1409,16 +1661,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Production\n# config_json = Path.home().joinpath('NADOOIT').joinpath('config').joinpath('config.json')\n# Development\n\"\"\" \nconfig_json = (\n    Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config_dev.json\")\n)\nwith open(config_json) as config_file:\n    config = json.load(config_file)",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "config_json",
-        "kind": 5,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "config_json = (\n    Path.home().joinpath(\"NADOOIT\").joinpath(\"config\").joinpath(\"config_dev.json\")\n)\nwith open(config_json) as config_file:\n    config = json.load(config_file)\n\"\"\"\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\n# SECRET_KEY = 'django-insecure-r_!=ggg^bx66haa&uq%q9!u1)%rax+f((om7_!c3qn)8#ch3#t'",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = os.environ.get(\"DJANGO_SECRET_KEY\", \"changeme\")\n# SECURITY WARNING: don't run with debug turned on in production!\n# DEBUG = True\nDEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\nALLOWED_HOSTS = [] if DEBUG else os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n# Application definition",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1463,7 +1706,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n    \"whitenoise.middleware.WhiteNoiseMiddleware\",",
+        "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n   ]",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1477,20 +1720,20 @@
         "documentation": {}
     },
     {
-        "label": "STATICFILES_STORAGE",
-        "kind": 5,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "STATICFILES_STORAGE = \"whitenoise.storage.CompressedManifestStaticFilesStorage\"\nSTATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\nSTATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
         "label": "STATICFILES_DIRS",
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\nSTATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"",
+        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n#STATIC_URL = \"/static/\"\nSTATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = (os.path.join(BASE_DIR, \"/vol/web/static/\"))\nMEDIA_ROOT = (os.path.join(BASE_DIR, \"/vol/web/media/\"))\nROOT_URLCONF = \"nadooit.urls\"",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "#STATIC_URL",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "#STATIC_URL = \"/static/\"\nSTATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = (os.path.join(BASE_DIR, \"/vol/web/static/\"))\nMEDIA_ROOT = (os.path.join(BASE_DIR, \"/vol/web/media/\"))\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1499,7 +1742,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "STATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database",
+        "peekOfCode": "STATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = (os.path.join(BASE_DIR, \"/vol/web/static/\"))\nMEDIA_ROOT = (os.path.join(BASE_DIR, \"/vol/web/media/\"))\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1508,7 +1751,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "MEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases",
+        "peekOfCode": "MEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = (os.path.join(BASE_DIR, \"/vol/web/static/\"))\nMEDIA_ROOT = (os.path.join(BASE_DIR, \"/vol/web/media/\"))\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1517,7 +1760,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "STATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),",
+        "peekOfCode": "STATIC_ROOT = (os.path.join(BASE_DIR, \"/vol/web/static/\"))\nMEDIA_ROOT = (os.path.join(BASE_DIR, \"/vol/web/media/\"))\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1526,7 +1769,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "MEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),",
+        "peekOfCode": "MEDIA_ROOT = (os.path.join(BASE_DIR, \"/vol/web/media/\"))\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1616,7 +1859,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)",
+        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\",\"static\", \"js\", \"nadooit_serviceworker.js\"\n)",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1625,7 +1868,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\",\"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1634,7 +1877,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"",
+        "peekOfCode": "PWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\",\"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1643,7 +1886,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
+        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1652,7 +1895,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1661,7 +1904,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
+        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1670,7 +1913,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1679,7 +1922,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
+        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1688,7 +1931,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
+        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1697,7 +1940,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",",
+        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1706,7 +1949,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
+        "peekOfCode": "PWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1715,7 +1958,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }",
+        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1724,7 +1967,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_ICONS = [{\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]",
+        "peekOfCode": "PWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1733,7 +1976,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\"src\": \"static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"",
+        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1742,7 +1985,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1918,6 +2161,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.migrations.0001_initial",
+        "description": "app.nadooit_api_executions_system.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = []\n    operations = [\n        migrations.CreateModel(\n            name=\"CustomerProgramExecution\",\n            fields=[\n                (\n                    \"id\",\n                    models.UUIDField(",
+        "detail": "app.nadooit_api_executions_system.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.migrations.0002_initial",
+        "description": "app.nadooit_api_executions_system.migrations.0002_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        (\"nadooit_program_ownership_system\", \"0001_initial\"),\n        (\"nadooit_api_executions_system\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name=\"customerprogramexecution\",\n            name=\"customer_program\",",
+        "detail": "app.nadooit_api_executions_system.migrations.0002_initial",
+        "documentation": {}
+    },
+    {
         "label": "CustomerProgramExecutionAdmin",
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.admin",
@@ -1990,6 +2251,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_key.migrations.0001_initial",
+        "description": "app.nadooit_api_key.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = []\n    operations = [\n        migrations.CreateModel(\n            name=\"NadooitApiKey\",\n            fields=[\n                (\n                    \"id\",\n                    models.UUIDField(",
+        "detail": "app.nadooit_api_key.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_key.migrations.0002_initial",
+        "description": "app.nadooit_api_key.migrations.0002_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        (\"nadooit_api_key\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name=\"nadooitapikey\",\n            name=\"user\",",
+        "detail": "app.nadooit_api_key.migrations.0002_initial",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiKeyConfig",
         "kind": 6,
         "importPath": "app.nadooit_api_key.apps",
@@ -2059,6 +2338,15 @@
         "description": "app.nadooit_api_key.views",
         "peekOfCode": "def create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()\n            new_api_key.created_at = timezone.now()\n            new_api_key.save()\n            return HttpResponseRedirect('/nadooit-api-key/create-api-key?submitted=True')",
         "detail": "app.nadooit_api_key.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_auth.migrations.0001_initial",
+        "description": "app.nadooit_auth.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        (\"auth\", \"0012_alter_user_first_name_max_length\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"User\",\n            fields=[\n                (\"password\", models.CharField(max_length=128, verbose_name=\"password\")),",
+        "detail": "app.nadooit_auth.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -2170,6 +2458,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_crm.migrations.0001_initial",
+        "description": "app.nadooit_crm.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = []\n    operations = [\n        migrations.CreateModel(\n            name=\"Address\",\n            fields=[\n                (\n                    \"id\",\n                    models.UUIDField(",
+        "detail": "app.nadooit_crm.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "CustomerAdmin",
         "kind": 6,
         "importPath": "app.nadooit_crm.admin",
@@ -2269,6 +2566,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.migrations.0001_initial",
+        "description": "app.nadooit_hr.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        (\"nadooit_crm\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"Employee\",\n            fields=[",
+        "detail": "app.nadooit_hr.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "NadooitHrConfig",
         "kind": 6,
         "importPath": "app.nadooit_hr.apps",
@@ -2284,6 +2590,15 @@
         "description": "app.nadooit_hr.models",
         "peekOfCode": "class Employee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    # a customers field that shows what customers the employee is assigned to\n    customers = models.ManyToManyField(Customer)\n    def __str__(self):\n        if self.user.display_name != \"\":\n            return self.user.display_name\n        else:\n            return self.user.username",
         "detail": "app.nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_network.migrations.0001_initial",
+        "description": "app.nadooit_network.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        migrations.swappable_dependency(settings.AUTH_USER_MODEL),\n        (\"nadooit_program_ownership_system\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"NadooitInventory\",\n            fields=[",
+        "detail": "app.nadooit_network.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -2395,6 +2710,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program.migrations.0001_initial",
+        "description": "app.nadooit_program.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = []\n    operations = [\n        migrations.CreateModel(\n            name=\"NadooitProgram\",\n            fields=[\n                (\n                    \"id\",\n                    models.UUIDField(",
+        "detail": "app.nadooit_program.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramConfig",
         "kind": 6,
         "importPath": "app.nadooit_program.apps",
@@ -2410,6 +2734,15 @@
         "description": "app.nadooit_program.models",
         "peekOfCode": "class NadooitProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    # program_dependencies is a list of programs that this program depends on. They are represented as a list of strings. The list is empty if there are no dependencies.\n    program_dependencies = models.TextField(\n        default=\"\", blank=True, null=True, editable=True\n    )",
         "detail": "app.nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0001_initial",
+        "description": "app.nadooit_program_ownership_system.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        (\"nadooit_time_account\", \"0001_initial\"),\n        (\"nadooit_crm\", \"0001_initial\"),\n        (\"nadooit_program\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"NadooitProgramShare\",",
+        "detail": "app.nadooit_program_ownership_system.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -2446,6 +2779,15 @@
         "description": "app.nadooit_questions_and_answers.apps",
         "peekOfCode": "class NadooitQuestionsAndAnswersConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'nadooit_questions_and_answers'",
         "detail": "app.nadooit_questions_and_answers.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0001_initial",
+        "description": "app.nadooit_time_account.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        (\"nadooit_crm\", \"0001_initial\"),\n        (\"nadooit_hr\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"TimeAccount\",\n            fields=[",
+        "detail": "app.nadooit_time_account.migrations.0001_initial",
         "documentation": {}
     },
     {
@@ -2545,6 +2887,15 @@
         "description": "app.nadooit_website.views",
         "peekOfCode": "def datenschutz(request):\n    return render(\n        request,\n        \"nadooit_website/datenschutz.html\",\n        {\"page_title\": \"Datenschutzerklärung\"},\n    )",
         "detail": "app.nadooit_website.views",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_workflow.migrations.0001_initial",
+        "description": "app.nadooit_workflow.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        (\"nadooit_crm\", \"0001_initial\"),\n        (\"nadooit_program\", \"0001_initial\"),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name=\"Process\",\n            fields=[",
+        "detail": "app.nadooit_workflow.migrations.0001_initial",
         "documentation": {}
     },
     {

@@ -1,9 +1,10 @@
+{% load static %}
 {% load is_url_active_templatetag %}
 <header class="pc" style="border-bottom: 1px solid #00b4dc;">
   <nav>
       <div class="container">
           <ul class="nav-bar">
-              <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+              <li class="logo"><a href="{% url 'index' %}"><img src={% static 'static\nadooit_website\png\logo\nadooit.png' %} alt=""></a></li>
               <ul class="links">
                   <li><a href="{% url 'index' %}" class="{% is_url_active request 'index' %}">Home</a></li>
                   <li><a href="{% url 'impressum' %}" class="{% is_url_active request 'impressum' %}">Impressum</a></li>
@@ -18,7 +19,7 @@
       <div class="nv">
           <div class="container">
               <ul class="nav-bar">
-                  <li class="logo"><a href="{% url 'index' %}"><img src="static\nadooit_website\png\logo\nadooit.png" alt=""></a></li>
+                  <li class="logo"><a href="{% url 'index' %}"><img src={% static 'static\nadooit_website\png\logo\nadooit.png' %} alt=""></a></li>
                   <li class="toggle" onclick="my()"><i class="far fa-bars bar"></i></li>
                   <li class="close" onclick="my()"><i class="far fa-times cls"></i></li>
               </ul>
