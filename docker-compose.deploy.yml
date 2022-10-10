@@ -4,8 +4,6 @@ services:
     build:
       context: .
     restart: always
-    ports:
-      - '8000:8000'
     environment:
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
       - 'DJANGO_ALLOWED_HOSTS=${DOMAIN}'
