@@ -27,7 +27,7 @@ services:
       - 'certbot-web:/vol/www'
       - 'proxy-dhparams:/vol/proxy'
       - 'certbot-certs:/etc/letsencrypt'
-    enviroment:
+    environment:
       - 'DOMAIN=${DOMAIN}'
     depends_on:
       - app
@@ -35,7 +35,7 @@ services:
     build:
       context: ./docker/certbot
     command: echo "Skipping certbot"
-    enviroment:
+    environment:
       - 'EMAIL=${ACME_DEFAULT_EMAIL}'
       - 'DOMAIN=${DOMAIN}'
     volumes:
