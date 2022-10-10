@@ -11,7 +11,7 @@ done
 
 echo "Proxy is available, getting certificate..."
 
-certbot certonly certonly \
+certbot certonly \
     --webroot \
     --webroot-path "/vol/www/" \
     -d "$DOMAIN" \
