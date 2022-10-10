@@ -14,6 +14,8 @@ services:
       - 'COCKROACH_DB_PASSWORD=${COCKROACH_DB_PASSWORD}'
       - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
+    volumes:
+      - /home/django/.postgresql/:/home/django/.postgresql/ 
   proxy:
     build:
       context: ./docker/proxy
