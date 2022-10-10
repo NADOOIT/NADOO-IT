@@ -39,14 +39,12 @@ RUN curl --create-dirs -o /home/django/.postgresql/root.crt -O https://cockroach
 RUN pip install --upgrade pip && \
        pip install -r /requirements.txt
 
-RUN pip freeze
-
 USER root
 
 RUN apk del .tmp
 
 USER django
 
+WORKDIR /app
 
-
-CMD [ "uwsgi","--socket",":9000","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
+CMD [ "uwsgi","--socket",":9090","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
