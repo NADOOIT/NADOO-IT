@@ -9,7 +9,7 @@ ENV APP_PORT=9090
 RUN apk add --no-cache openssl bash
 RUN chmod +x /run.sh
 
-VOLUME /vol/static
+VOLUME /vol/web/static
 VOLUME /vol/www
 
 CMD ["/run.sh"]
