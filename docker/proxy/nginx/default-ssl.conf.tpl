@@ -20,7 +20,7 @@ server {
     ssl_certificate        /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
 
-    include /etc/letsencrypt/options-ssl-nginx.conf;
+    include /etc/nginx/options-ssl-nginx.conf;
 
     ssl_dhparam /vol/proxy/ssl-dhparams.pem;
 
