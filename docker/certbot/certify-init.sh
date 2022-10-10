@@ -2,7 +2,7 @@
 
 #Waits for proxy to be available, then gets the first certificate.
 
-see -echo
+set -e
 
 until nc -z proxy 80; do
   echo "Waiting for proxy to be available..."
