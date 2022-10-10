@@ -44,7 +44,6 @@ USER root
 RUN apk del .tmp
 
 USER django
-
-WORKDIR /app
+RUN pip install uwsgi
 
 CMD [ "uwsgi","--socket",":9090","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
