@@ -37,8 +37,9 @@ USER django
 RUN curl --create-dirs -o /home/django/.postgresql/root.crt -O https://cockroachlabs.cloud/clusters/250c4344-e9da-4ff8-992a-53ab1204afeb/cert
 
 RUN pip install --upgrade pip && \
-       pip install -r /requirements.txt 
+       pip install -r /requirements.txt
 
+RUN pip freeze
 
 USER root
 
