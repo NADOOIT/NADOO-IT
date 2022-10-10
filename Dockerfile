@@ -48,4 +48,4 @@ USER django
 
 
 
-CMD [ "uwsgi","--socket",":8000","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
+CMD [ "uwsgi","--socket",":9000","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
