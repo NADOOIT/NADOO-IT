@@ -13,8 +13,8 @@ RUN unset https_proxy
 
 #RUN curl --create-dirs -o app/.postgresql/root.crt -O https://cockroachlabs.cloud/clusters/250c4344-e9da-4ff8-992a-53ab1204afeb/cert
 
-RUN mkdir -p /vol/web/media
-RUN mkdir -p /vol/web/static
+RUN mkdir -p /vol/web/static/media
+RUN mkdir -p /vol/web/static/static
 
 #OLD RUN adduser -D --disabled-password --no-create-home django
 RUN adduser -D --disabled-password django
