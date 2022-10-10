@@ -41,8 +41,9 @@ RUN pip install --upgrade pip && \
 
 USER root
 
-RUN apk del .tmp
 RUN pip install uwsgi
+RUN apk del .tmp
+
 
 USER django
 
