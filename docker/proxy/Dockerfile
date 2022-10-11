@@ -1,4 +1,4 @@
-FROM nginx:1.23.0-alpine
+#FROM nginx:1.23.0-alpine
 FROM nginxinc/nginx-unprivileged:1.23.0-alpine
 
 COPY ./nginx/* /etc/nginx/
