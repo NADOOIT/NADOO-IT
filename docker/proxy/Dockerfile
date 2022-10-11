@@ -1,6 +1,8 @@
 FROM nginx:1.23.0-alpine
 #FROM nginxinc/nginx-unprivileged:1.23.0-alpine
 
+#TODO rights managment seems to be wrong. Should be a less privileged user
+
 COPY ./nginx/* /etc/nginx/
 COPY run.sh /run.sh
 
