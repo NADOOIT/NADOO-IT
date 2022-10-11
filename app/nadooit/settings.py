@@ -97,8 +97,8 @@ MEDIA_URL = "/static/media/"
 # OLD STATICFILES_DIRS = [BASE_DIR / "static", "/var/www/static/"]
 # according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
 # OLD STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_ROOT = "/vol/web/static/static/"
-MEDIA_ROOT = "/vol/web/static/media/"
+STATIC_ROOT = "/vol/web/static/"
+MEDIA_ROOT = "/vol/web/media/"
 
 ROOT_URLCONF = "nadooit.urls"
 
