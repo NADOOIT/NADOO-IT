@@ -9,6 +9,9 @@ ENV APP_PORT=9090
 RUN apk add --no-cache openssl bash
 RUN chmod +x /run.sh
 
+RUN mkdir -p /vol/web/static
+RUN chmod -R 755 /vol/web/static
+
 VOLUME /vol/web
 VOLUME /vol/www
 
