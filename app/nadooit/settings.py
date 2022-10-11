@@ -68,7 +68,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-   ]
+]
 
 TEMPLATES = [
     {
@@ -90,15 +90,15 @@ TEMPLATES = [
 
 STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
 
-#STATIC_URL = "/static/"
+# STATIC_URL = "/static/"
 STATIC_URL = "/static/static/"
 MEDIA_URL = "/static/media/"
 
 # OLD STATICFILES_DIRS = [BASE_DIR / "static", "/var/www/static/"]
 # according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
 # OLD STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_ROOT = (os.path.join(BASE_DIR, "/vol/web/static/static/"))
-MEDIA_ROOT = (os.path.join(BASE_DIR, "/vol/web/static/media/"))
+STATIC_ROOT = "/vol/web/static/"
+MEDIA_ROOT = "/vol/web/media/"
 
 ROOT_URLCONF = "nadooit.urls"
 
@@ -115,7 +115,10 @@ DATABASES = {
         "PASSWORD": os.environ.get("COCKROACH_DB_PASSWORD"),
         "HOST": os.environ.get("COCKROACH_DB_HOST"),
         "PORT": os.environ.get("COCKROACH_DB_PORT"),
-        "OPTIONS": {"sslmode": "verify-full", "options": os.environ.get("COCKROACH_DB_OPTIONS")},
+        "OPTIONS": {
+            "sslmode": "verify-full",
+            "options": os.environ.get("COCKROACH_DB_OPTIONS"),
+        },
     }
 }
 
@@ -193,7 +196,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # PWA settings
 PWA_SERVICE_WORKER_PATH = os.path.join(
-    BASE_DIR, "static","static", "js", "nadooit_serviceworker.js"
+    BASE_DIR, "static", "static", "js", "nadooit_serviceworker.js"
 )
 PWA_APP_NAME = "NADOOIT"
 PWA_APP_DESCRIPTION = "NADOOIT PWA"
