@@ -1724,7 +1724,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# STATIC_URL = \"/static/\"\nSTATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/static/\"\nMEDIA_ROOT = \"/vol/web/static/media/\"\nROOT_URLCONF = \"nadooit.urls\"",
+        "peekOfCode": "STATICFILES_DIRS = [(os.path.join(BASE_DIR, \"static\")), \"/var/www/static/\"]\n# STATIC_URL = \"/static/\"\nSTATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1733,7 +1733,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "STATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/static/\"\nMEDIA_ROOT = \"/vol/web/static/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database",
+        "peekOfCode": "STATIC_URL = \"/static/static/\"\nMEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1742,7 +1742,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "MEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/static/\"\nMEDIA_ROOT = \"/vol/web/static/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases",
+        "peekOfCode": "MEDIA_URL = \"/static/media/\"\n# OLD STATICFILES_DIRS = [BASE_DIR / \"static\", \"/var/www/static/\"]\n# according to doc STATIC_ROOT = \"/var/www/nadooit.de/static/\"\n# OLD STATIC_ROOT = os.path.join(BASE_DIR, \"staticfiles\")\nSTATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1751,7 +1751,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "STATIC_ROOT = \"/vol/web/static/static/\"\nMEDIA_ROOT = \"/vol/web/static/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),",
+        "peekOfCode": "STATIC_ROOT = \"/vol/web/static/\"\nMEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1760,7 +1760,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "MEDIA_ROOT = \"/vol/web/static/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),",
+        "peekOfCode": "MEDIA_ROOT = \"/vol/web/media/\"\nROOT_URLCONF = \"nadooit.urls\"\nWSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
