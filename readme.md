@@ -18,17 +18,24 @@ See the following link for instructions on installing docker on your system: htt
 git clone git@github.com:NADOOITChristophBa/nadooit_managmentsystem.git
 
 2. Change into the directory
+
 cd nadooit_managmentsystem
 
 3. create .env file
+
 cp .env.example .env
 set the following variables in the .env file for first time setup:
+
+To open the file in nano, type:
+
+sudo nano .env
 
 ### Django
 Replace your_secret_key with a new secret key. You can generate one here: https://miniwebtool.com/django-secret-key-generator/
 DJANGO_SECRET_KEY=your_secret_key
 
 ### Nginx
+
 ACME_DEFAUT_EMAIL=your_email
 DOMAIN=your_domain
 
