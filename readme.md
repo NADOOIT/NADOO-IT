@@ -32,11 +32,13 @@ sudo nano .env
 
 ### Django
 Replace your_secret_key with a new secret key. You can generate one here: https://miniwebtool.com/django-secret-key-generator/
+
 DJANGO_SECRET_KEY=your_secret_key
 
 ### Nginx
 
 ACME_DEFAUT_EMAIL=your_email
+
 DOMAIN=your_domain
 
 ### Database
@@ -61,10 +63,15 @@ DOMAIN=your_domain
     - your_cockroach_db_options = Options
 
 COCKROACH_DB_HOST=your_cockroach_db_host
+
 COCKROACH_DB_NAME=your_cockroach_db_name
+
 COCKROACH_DB_PORT=your_cockroach_db_port
+
 COCKROACH_DB_USER=your_cockroach_db_user
+
 COCKROACH_DB_PASSWORD=your_cockroach_db_password
+
 COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ### Docker
