@@ -4,14 +4,17 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ## Pre-requisites
 **git**
+
 See the following link for instructions on installing git on your system: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 
 **docker (with docker-compose)**
+
 See the following link for instructions on installing docker on your system: https://docs.docker.com/engine/installation/
 
 
 ## Installation
 1. Copy the repository to your servers home directory
+
 git clone git@github.com:NADOOITChristophBa/nadooit_managmentsystem.git
 
 2. Change into the directory
@@ -59,11 +62,11 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ### Docker
 4. Build the docker images
-docker compose -f docker-compose.deploy.yml build
+    - docker compose -f docker-compose.deploy.yml build
+    - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
 
 
+### Creating superuser
+1. Run the following command to create a superuser
+docker compose -f docker-compose.deploy.yml run --rm web python manage.py createsuperuser
 
-
-if this is the inisial setup a superuser needs to created.
-To create it use:
-python manage.py createsuperuser
