@@ -1877,7 +1877,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]",
+        "peekOfCode": "PWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1886,7 +1886,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [",
+        "peekOfCode": "PWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1895,7 +1895,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
+        "peekOfCode": "PWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1904,7 +1904,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
+        "peekOfCode": "PWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1913,7 +1913,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
+        "peekOfCode": "PWA_APP_DISPLAY = \"standalone\"\nPWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1922,7 +1922,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
+        "peekOfCode": "PWA_APP_SCOPE = \"/\"\nPWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1931,7 +1931,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",",
+        "peekOfCode": "PWA_APP_ORIENTATION = \"any\"\nPWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1940,7 +1940,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
+        "peekOfCode": "PWA_APP_START_URL = \"/nadooit-os\"\nPWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1949,7 +1949,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }",
+        "peekOfCode": "PWA_APP_STATUS_BAR_COLOR = \"default\"\nPWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/static/splashscreen/nadooit.png\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1958,7 +1958,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_ICONS = [{\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]",
+        "peekOfCode": "PWA_APP_ICONS = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1967,7 +1967,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"",
+        "peekOfCode": "PWA_APP_ICONS_APPLE = [\n    {\"src\": \"/static/static/appicon/maskable_icon_x192.png\", \"sizes\": \"192x192\"}\n]\nPWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -1976,7 +1976,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (",
+        "peekOfCode": "PWA_APP_SPLASH_SCREEN = [\n    {\n        \"src\": \"/static/static/splashscreen/nadooit.png\",\n        \"media\": \"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)\",\n    }\n]\nPWA_APP_DIR = \"ltr\"\nPWA_APP_LANG = \"de-DE\"\n# MFA settings\nMFA_UNALLOWED_METHODS = (",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },

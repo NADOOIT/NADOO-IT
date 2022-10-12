@@ -3,14 +3,14 @@
 var staticCacheName = "nadooit-pwa" + new Date().getTime();
 var filesToCache = [
     '/offline',
-    '/static/static/nadooit_website/css/style.css',
-    '/static/static/appicon/maskable_icon_x48.png',
-    '/static/static/appicon/maskable_icon_x72.png',
-    '/static/static/appicon/maskable_icon_x96.png',
-    '/static/static/appicon/maskable_icon_x128.png',
-    '/static/static/appicon/maskable_icon_x192.png',
-    '/static/static/appicon/maskable_icon.png',
-    '/static/static/splashscreen/nadooit.png',
+    '/static/static/static/nadooit_website/css/style.css',
+    '/static/static/static/appicon/maskable_icon_x48.png',
+    '/static/static/static/appicon/maskable_icon_x72.png',
+    '/static/static/static/appicon/maskable_icon_x96.png',
+    '/static/static/static/appicon/maskable_icon_x128.png',
+    '/static/static/static/appicon/maskable_icon_x192.png',
+    '/static/static/static/appicon/maskable_icon.png',
+    '/static/static/static/splashscreen/nadooit.png',
 ];
 
 // Cache on install

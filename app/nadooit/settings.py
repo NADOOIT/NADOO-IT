@@ -207,13 +207,15 @@ PWA_APP_SCOPE = "/"
 PWA_APP_ORIENTATION = "any"
 PWA_APP_START_URL = "/nadooit-os"
 PWA_APP_STATUS_BAR_COLOR = "default"
-PWA_APP_ICONS = [{"src": "/static/appicon/maskable_icon_x192.png", "sizes": "192x192"}]
+PWA_APP_ICONS = [
+    {"src": "/static/static/appicon/maskable_icon_x192.png", "sizes": "192x192"}
+]
 PWA_APP_ICONS_APPLE = [
-    {"src": "/static/appicon/maskable_icon_x192.png", "sizes": "192x192"}
+    {"src": "/static/static/appicon/maskable_icon_x192.png", "sizes": "192x192"}
 ]
 PWA_APP_SPLASH_SCREEN = [
     {
-        "src": "/static/splashscreen/nadooit.png",
+        "src": "/static/static/splashscreen/nadooit.png",
         "media": "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)",
     }
 ]
