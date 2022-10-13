@@ -16,7 +16,7 @@ services:
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
     volumes:
       #- /home/django/.postgresql/:/home/django/.postgresql/ 
-      - app/.postgresql/:app/.postgresql/ 
+      - $HOME/.postgresql/:app/.postgresql/ 
       - static_data:/vol/web/static
   proxy:
     build:
