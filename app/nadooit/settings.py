@@ -153,6 +153,9 @@ For local postgresql database
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
+CSRF_TRUSTED_ORIGINS = [os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")]
+
+# Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
