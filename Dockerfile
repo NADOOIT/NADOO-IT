@@ -21,8 +21,7 @@ RUN adduser -D --disabled-password django
 
 RUN chown -R django:django app/
 RUN chown -R django:django /vol
-RUN chown -R django:django /home/django/
-RUN chmod -R 755 /home/django/
+
 RUN chmod -R 755 app/
 RUN chmod -R 755 /vol/web
 WORKDIR /app
