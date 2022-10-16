@@ -94,7 +94,7 @@ docker compose -f docker-compose.deploy.yml down
 
 ### Updating the server
 1. Run the following command to update the server
-docker compose -f docker-compose.deploy.yml down
 git pull
 docker compose -f docker-compose.deploy.yml build
+docker compose -f docker-compose.deploy.yml down
 docker compose -f docker-compose.deploy.yml up -d
