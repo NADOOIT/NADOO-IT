@@ -1,8 +1,4 @@
 {% extends 'nadooit_auth/base.html' %}
-
-
-
-
 {% block content %}
 <div class="container">
 <center>
@@ -13,10 +9,12 @@
             {% csrf_token %}
             <div class="mb-3">
               <label for="username" class="form-label">User Code</label>
-              <input type="text" class="form-control" id="user_code" name="user_code">
+
+              <input type="text" class="form-control" id="user_code" name="user_code" value={{user_code}}>
+              
             </div>
             <div class="mb-3">
-              <label for="display_name" class="form-label">User Code</label>
+              <label for="display_name" class="form-label">Anzeigename</label>
               <input type="text" class="form-control" id="display_name" name="display_name">
             </div>
 

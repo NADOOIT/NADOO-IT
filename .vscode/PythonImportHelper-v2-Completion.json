@@ -1378,6 +1378,14 @@
         "documentation": {}
     },
     {
+        "label": "BaseBackend",
+        "importPath": "django.contrib.auth.backends",
+        "description": "django.contrib.auth.backends",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.backends",
+        "documentation": {}
+    },
+    {
         "label": "login_user",
         "importPath": "nadooit_auth.views",
         "description": "nadooit_auth.views",
@@ -1707,6 +1715,15 @@
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
         "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTHENTICATION_BACKENDS",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "AUTHENTICATION_BACKENDS = [\n    \"django.contrib.auth.backends.ModelBackend\",\n    \"nadooit_auth.custom_user_code_auth_backend.UserCodeBackend\",\n]\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [os.path.join(BASE_DIR, \"templates\")],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2359,6 +2376,15 @@
         "documentation": {}
     },
     {
+        "label": "UserCodeBackend",
+        "kind": 6,
+        "importPath": "app.nadooit_auth.custom_user_code_auth_backend",
+        "description": "app.nadooit_auth.custom_user_code_auth_backend",
+        "peekOfCode": "class UserCodeBackend(BaseBackend):\n    def authenticate(self, request, user_code=None):\n        from nadooit_auth.models import User\n        try:\n            user = User.objects.get(user_code=user_code)\n            return user\n        except User.DoesNotExist:\n            return None\n    def get_user(self, user_code):\n        from nadooit_auth.models import User",
+        "detail": "app.nadooit_auth.custom_user_code_auth_backend",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "kind": 6,
         "importPath": "app.nadooit_auth.models",
@@ -2426,7 +2452,7 @@
         "kind": 2,
         "importPath": "app.nadooit_auth.views",
         "description": "app.nadooit_auth.views",
-        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        err = \"\"\n        if user is not None:\n            print(\"found user\")",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        # username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        # password = request.POST[\"password\"]\n        # OLD user = authenticate(request, username=username)\n        user = authenticate(request, user_code=user_code)\n        print(\"user: \", user)\n        err = \"\"\n        if user is not None:",
         "detail": "app.nadooit_auth.views",
         "documentation": {}
     },

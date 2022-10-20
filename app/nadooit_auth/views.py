@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .user_code import get__new_user_code
 
 
 from nadooit_auth.models import User
@@ -27,13 +28,13 @@ def log_user_in(request, username):
 
 def login_user(request):
     if request.method == "POST":
-        username = request.POST["username"]
+        # username = request.POST["username"]
         user_code = request.POST["user_code"]
-        password = request.POST["password"]
+        # password = request.POST["password"]
 
-        # username = User.objects.get(user_code=user_code).username
-
-        user = authenticate(request, username=username, password=password)
+        # OLD user = authenticate(request, username=username)
+        user = authenticate(request, user_code=user_code)
+        print("user: ", user)
         err = ""
         if user is not None:
             print("found user")
@@ -42,7 +43,7 @@ def login_user(request):
                     from mfa.helpers import has_mfa
 
                     res = has_mfa(
-                        username=username, request=request
+                        username=user.username, request=request
                     )  # has_mfa returns false or HttpResponseRedirect
                     if res:
                         print("has_mfa")
@@ -128,5 +129,7 @@ def register_user(request):
             return redirect(reverse("start_fido2"))
     else:
         return render(
-            request, "nadooit_auth/register.html", context={"page_title": "Register"}
+            request,
+            "nadooit_auth/register.html",
+            context={"page_title": "Register", "user_code": get__new_user_code()},
         )
