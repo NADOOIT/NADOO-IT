@@ -1,0 +1,46 @@
+{% extends 'nadooit_time_account/base.html' %}
+{% block content %}
+{% csrf_token %}
+
+<div class="cutomer-time-accout-owerview">
+  <!-- title -->
+{% block title %} <h1>{{page_title}}</h1> {% endblock title %}
+<!-- title -->	
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Zeitkonto id</th>
+            <th scope="col">Zeitkonto Name</th>
+            <th scope="col">Kontostand in Sekunden</th>
+          </tr>
+        </thead>
+          <tbody>
+        {% for time_account in time_accounts_the_user_is_responsible_for %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ time_account.id }}</td>
+            <td>{{ time_account.name }}</td>
+            <td>{{ time_account.time_balance_in_seconds}}</td>
+          </tr>
+        {% endfor %}
+    </div>
+  <div class="row">
+    <div class="col">
+      <h2>Gesamtguthaben</h2>
+    </div>
+    <div class="col">
+      <h2>{{current_balance}}</h2>
+    </div>
+  </div>
+</div>
+
+
+<!-- List of all time accounts. When clicked on one time account shows a list of all programms connected to that account -->
+
+
+{% endblock %}

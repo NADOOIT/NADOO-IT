@@ -65,23 +65,6 @@ def login_user(request):
         return render(request, "nadooit_auth/login.html", {})
 
 
-def login_user_old(request):
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect(request.GET.get("next") or "/nadooit-os")
-        else:
-            messages.success(request, "Username or Password is incorrect")
-            return redirect("/auth/login-user")
-    else:
-        return render(request, "nadooit_auth/login.html", {})
-
-
 def logout_user(request):
     logout(request)
     messages.success(request, "You habe successfully logged out")
