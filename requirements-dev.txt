@@ -46,3 +46,4 @@ ua-parser==0.15.0
 urllib3==1.26.9
 user-agents==2.2.0
 Werkzeug==2.2.2
+model_bakery

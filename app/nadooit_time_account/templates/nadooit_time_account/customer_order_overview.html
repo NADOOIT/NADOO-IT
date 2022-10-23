@@ -27,6 +27,10 @@
             <td>{{ time_account.name }}</td>
             <td>{{ time_account.time_balance_in_seconds}}</td>
           </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">Keine Zeitkonten gefunden</td>
+          </tr>
         {% endfor %}
     </div>
   <div class="row">

@@ -1221,6 +1221,38 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "baker",
+        "importPath": "model_bakery",
+        "description": "model_bakery",
+        "isExtraImport": true,
+        "detail": "model_bakery",
+        "documentation": {}
+    },
+    {
         "label": "create_execution",
         "importPath": "nadooit_api_executions_system.views",
         "description": "nadooit_api_executions_system.views",
@@ -1259,14 +1291,6 @@
         "description": "rest_framework.response",
         "isExtraImport": true,
         "detail": "rest_framework.response",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
     {
@@ -2411,7 +2435,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        obj = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)\n        obj.time_account.time_balance_in_seconds = (\n            obj.time_account.time_balance_in_seconds\n            - instance.program_time_saved_in_seconds\n        )\n        obj.time_account.save()\n@receiver(models.signals.post_delete, sender=CustomerProgramExecution)",
+        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        obj = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)\n        obj.time_account.time_balance_in_seconds = (\n            obj.time_account.time_balance_in_seconds\n            - instance.program_time_saved_in_seconds\n        )\n        print(\"obj.time_account.time_balance_in_seconds\")\n        obj.time_account.save()",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -2422,6 +2446,15 @@
         "description": "app.nadooit_api_executions_system.models",
         "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (\n        obj.time_account.time_balance_in_seconds\n        + instance.program_time_saved_in_seconds\n    )\n    obj.time_account.save()",
         "detail": "app.nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecutionTestCase",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.tests",
+        "description": "app.nadooit_api_executions_system.tests",
+        "peekOfCode": "class CustomerProgramExecutionTestCase(TestCase):\n    def setUp(self):\n        self.customer_program_execution = baker.make(\n            \"nadooit_api_executions_system.CustomerProgramExecution\",\n            customer_program=baker.make(\n                \"nadooit_program_ownership_system.NadooitCustomerProgram\",\n                program=baker.make(\n                    \"nadooit_program.NadooitProgram\",\n                    name=\"test_program_for_tests\",\n                ),",
+        "detail": "app.nadooit_api_executions_system.tests",
         "documentation": {}
     },
     {
