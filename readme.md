@@ -94,7 +94,62 @@ docker compose -f docker-compose.deploy.yml down
 
 ### Updating the server
 1. Run the following command to update the server
-docker compose -f docker-compose.deploy.yml down
 git pull
 docker compose -f docker-compose.deploy.yml build
+docker compose -f docker-compose.deploy.yml down
 docker compose -f docker-compose.deploy.yml up -d
+
+
+## Features
+
+### List of implemented features
+- [x] User management
+- [x] Time tracking
+- [x] API
+- [x] Docker
+- [x] SSL
+
+### List of planned features
+#### Pages and features for the website (frontend)
+- [ ] Page for clients to see their time tracking
+- [ ] Page for clients to see their invoices
+- [ ] Page for clients to see their projects
+- [ ] Page for clients to see their tasks
+- [ ] Page for clients to see their users
+- [ ] Page for clients to see their documents
+- [ ] Page for clients to see their messages
+- [ ] Page for clients to see their settings
+- [ ] Page for clients to see their notifications
+- [ ] Page for clients to see their calendar
+- [ ] Page for clients to see their reports
+- [ ] Page for clients to see their statistics
+- [ ] Page for clients to see their tickets
+- [ ] Page for clients to see their knowledge base
+- [ ] Page for clients to see their announcements
+
+#### Pages and features for the admin (backend)
+- [ ] Project management
+- [ ] Task management
+- [ ] Invoice management
+- [ ] File management
+- [ ] Calendar
+- [ ] Chat
+- [ ] Email
+- [ ] Notifications
+- [ ] Settings
+- [ ] Backup
+- [ ] Restore
+- [ ] Update
+- [ ] Upgrade
+- [ ] Downgrade
+- [ ] Multi-tenancy
+- [ ] Multi-language
+- [ ] Multi-currency
+- [ ] Multi-timezone
+- [ ] Multi-country
+- [ ] Multi-locale
+
+
+## Local development
+docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
+docker-compose -f docker-compose.yml run --rm app python manage.py migrate

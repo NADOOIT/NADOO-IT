@@ -1,3 +1,4 @@
+#TODO Check for new version of dcoker-compose
 version: '3.3'
 services:
   app:

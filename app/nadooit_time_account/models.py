@@ -6,25 +6,36 @@ from nadooit_hr.models import Employee
 
 
 def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):
-    return str(time // 3600) + ":" + str((time % 3600) // 60) + ":" + str(time % 60)
+    return (
+        str(time // 3600)
+        + " std : "
+        + str((time % 3600) // 60)
+        + " min : "
+        + str(time % 60)
+        + " sek"
+    )
 
 
 # Create your models here.
 class TimeAccount(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)
+    name = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
-        return (
+
+        time_balance_in_seconds = (
             get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
                 self.time_balance_in_seconds
             )
-            + " "
-            + str(self.id)
         )
+        if self.name is None:
+            return str(self.id) + " " + time_balance_in_seconds
+        else:
+            return self.name + " " + time_balance_in_seconds
 
 
-class TimeAccountEmployee(models.Model):
+class EmployeeTimeAccount(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
@@ -51,7 +62,7 @@ class TimeAccountEmployee(models.Model):
             )
 
 
-class CustomerNadooitTimeAccount(models.Model):
+class CustomerTimeAccount(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)
@@ -70,7 +81,9 @@ class CustomerNadooitTimeAccount(models.Model):
 
 class WorkTimeAccountEntry(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    time_account = models.ForeignKey(TimeAccountEmployee, on_delete=models.CASCADE)
+    employee_time_account = models.ForeignKey(
+        EmployeeTimeAccount, on_delete=models.CASCADE
+    )
     work_time = models.TimeField(null=True, blank=True)
     work_date = models.DateField(null=True, blank=True)
     ENTRY_TYPE = (
@@ -82,7 +95,7 @@ class WorkTimeAccountEntry(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        if self.time_account.employee.user.display_name == "":
+        if self.employee_time_account.employee.user.display_name == "":
             return (
                 self.work_time.strftime("%H:%M")
                 + " "
@@ -90,9 +103,9 @@ class WorkTimeAccountEntry(models.Model):
                 + " "
                 + self.entry_trype
                 + " "
-                + self.time_account.customer.name
+                + self.employee_time_account.customer.name
                 + " "
-                + self.time_account.employee.user.user_code
+                + self.employee_time_account.employee.user.user_code
             )
         else:
             return (
@@ -102,7 +115,20 @@ class WorkTimeAccountEntry(models.Model):
                 + " "
                 + self.entry_trype
                 + " "
-                + self.time_account.customer.name
+                + self.employee_time_account.customer.name
                 + " "
-                + self.time_account.employee.user.display_name
+                + self.employee_time_account.employee.user.display_name
             )
+
+
+class TimeAccountManager(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    # A list of all time accounts the manager is responsible for
+    time_accounts = models.ManyToManyField(TimeAccount, blank=True)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    def __str__(self):
+        if self.employee.user.display_name != "":
+            return self.employee.user.display_name
+        else:
+            return self.employee.user.username

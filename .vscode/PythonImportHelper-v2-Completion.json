@@ -80,6 +80,38 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "template",
         "importPath": "django",
         "description": "django",
@@ -648,6 +680,54 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -920,7 +1000,31 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -1302,6 +1406,22 @@
         "documentation": {}
     },
     {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
         "label": "ApiKeyForm",
         "importPath": "nadooit_api_key.forms",
         "description": "nadooit_api_key.forms",
@@ -1375,6 +1495,14 @@
         "description": "nadooit_auth.user_code",
         "isExtraImport": true,
         "detail": "nadooit_auth.user_code",
+        "documentation": {}
+    },
+    {
+        "label": "BaseBackend",
+        "importPath": "django.contrib.auth.backends",
+        "description": "django.contrib.auth.backends",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.backends",
         "documentation": {}
     },
     {
@@ -1540,6 +1668,22 @@
         "documentation": {}
     },
     {
+        "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
         "label": "index_nadooit_os",
         "importPath": "nadooit_os.views",
         "description": "nadooit_os.views",
@@ -1572,7 +1716,7 @@
         "documentation": {}
     },
     {
-        "label": "CustomerNadooitTimeAccount",
+        "label": "CustomerTimeAccount",
         "importPath": "nadooit_time_account.models",
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
@@ -1588,7 +1732,7 @@
         "documentation": {}
     },
     {
-        "label": "TimeAccountEmployee",
+        "label": "EmployeeTimeAccount",
         "importPath": "nadooit_time_account.models",
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
@@ -1601,6 +1745,54 @@
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
         "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get__total_of_all_customer_time_account_balances__for__user",
+        "importPath": "nadooit_time_account.logic",
+        "description": "nadooit_time_account.logic",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.logic",
         "documentation": {}
     },
     {
@@ -1707,6 +1899,15 @@
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
         "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTHENTICATION_BACKENDS",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "AUTHENTICATION_BACKENDS = [\n    \"django.contrib.auth.backends.ModelBackend\",\n    \"nadooit_auth.custom_user_code_auth_backend.UserCodeBackend\",\n]\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [os.path.join(BASE_DIR, \"templates\")],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2359,6 +2560,15 @@
         "documentation": {}
     },
     {
+        "label": "UserCodeBackend",
+        "kind": 6,
+        "importPath": "app.nadooit_auth.custom_user_code_auth_backend",
+        "description": "app.nadooit_auth.custom_user_code_auth_backend",
+        "peekOfCode": "class UserCodeBackend(BaseBackend):\n    def authenticate(self, request, user_code=None):\n        from nadooit_auth.models import User\n        try:\n            user = User.objects.get(user_code=user_code)\n            return user\n        except User.DoesNotExist:\n            return None\n    def get_user(self, user_code):\n        from nadooit_auth.models import User",
+        "detail": "app.nadooit_auth.custom_user_code_auth_backend",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "kind": 6,
         "importPath": "app.nadooit_auth.models",
@@ -2426,16 +2636,7 @@
         "kind": 2,
         "importPath": "app.nadooit_auth.views",
         "description": "app.nadooit_auth.views",
-        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        password = request.POST[\"password\"]\n        # username = User.objects.get(user_code=user_code).username\n        user = authenticate(request, username=username, password=password)\n        err = \"\"\n        if user is not None:\n            print(\"found user\")",
-        "detail": "app.nadooit_auth.views",
-        "documentation": {}
-    },
-    {
-        "label": "login_user_old",
-        "kind": 2,
-        "importPath": "app.nadooit_auth.views",
-        "description": "app.nadooit_auth.views",
-        "peekOfCode": "def login_user_old(request):\n    if request.method == \"POST\":\n        username = request.POST[\"username\"]\n        password = request.POST[\"password\"]\n        user = authenticate(request, username=username, password=password)\n        if user is not None:\n            login(request, user)\n            return redirect(request.GET.get(\"next\") or \"/nadooit-os\")\n        else:\n            messages.success(request, \"Username or Password is incorrect\")",
+        "peekOfCode": "def login_user(request):\n    if request.method == \"POST\":\n        # username = request.POST[\"username\"]\n        user_code = request.POST[\"user_code\"]\n        # password = request.POST[\"password\"]\n        # OLD user = authenticate(request, username=username)\n        user = authenticate(request, user_code=user_code)\n        print(\"user: \", user)\n        err = \"\"\n        if user is not None:",
         "detail": "app.nadooit_auth.views",
         "documentation": {}
     },
@@ -2773,6 +2974,33 @@
         "documentation": {}
     },
     {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "app.nadooit_program_ownership_system.urls",
+        "description": "app.nadooit_program_ownership_system.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin\", views.admin, name=\"customer_program_ownership_overview_adminpage\"),\n    path(\n        \"customer_program_ownership_overview\",\n        views.customer_program_ownership_overview,\n        name=\"customer_program_ownership_overview\",\n    ),\n]",
+        "detail": "app.nadooit_program_ownership_system.urls",
+        "documentation": {}
+    },
+    {
+        "label": "customer_program_ownership_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_program_ownership_system.views",
+        "description": "app.nadooit_program_ownership_system.views",
+        "peekOfCode": "def customer_program_ownership_overview(request):\n    # if the logged in user is a time account manager show the time account manager view\n    return render(\n        request,\n        \"nadooit_program_ownership_system/customer_program_ownership_overview.html\",\n        {\n            \"page_title\": \"Übersicht der Zeitkonten\",\n        },\n    )\n@login_required(login_url=\"/auth/login-user\")",
+        "detail": "app.nadooit_program_ownership_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "kind": 2,
+        "importPath": "app.nadooit_program_ownership_system.views",
+        "description": "app.nadooit_program_ownership_system.views",
+        "peekOfCode": "def admin(request):\n    # if the logged in user is a time account manager show the time account manager view\n    return render(\n        request,\n        \"nadooit_program_ownership_system/customer_program_ownership_overview.html\",\n        {\n            \"page_title\": \"Übersicht der Zeitkonten\",\n        },\n    )",
+        "detail": "app.nadooit_program_ownership_system.views",
+        "documentation": {}
+    },
+    {
         "label": "NadooitQuestionsAndAnswersConfig",
         "kind": 6,
         "importPath": "app.nadooit_questions_and_answers.apps",
@@ -2791,6 +3019,42 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0002_rename_timeaccountemployee_employeetimeaccount_and_more",
+        "description": "app.nadooit_time_account.migrations.0002_rename_timeaccountemployee_employeetimeaccount_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0001_initial'),\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_time_account', '0001_initial'),\n    ]\n    operations = [\n        migrations.RenameModel(\n            old_name='TimeAccountEmployee',\n            new_name='EmployeeTimeAccount',",
+        "detail": "app.nadooit_time_account.migrations.0002_rename_timeaccountemployee_employeetimeaccount_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0003_rename_customernadooittimeaccount_customertimeaccount",
+        "description": "app.nadooit_time_account.migrations.0003_rename_customernadooittimeaccount_customertimeaccount",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_time_account', '0002_rename_timeaccountemployee_employeetimeaccount_and_more'),\n    ]\n    operations = [\n        migrations.RenameModel(\n            old_name='CustomerNadooitTimeAccount',\n            new_name='CustomerTimeAccount',\n        ),",
+        "detail": "app.nadooit_time_account.migrations.0003_rename_customernadooittimeaccount_customertimeaccount",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0004_rename_time_account_worktimeaccountentry_employee_time_account",
+        "description": "app.nadooit_time_account.migrations.0004_rename_time_account_worktimeaccountentry_employee_time_account",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0003_rename_customernadooittimeaccount_customertimeaccount'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='worktimeaccountentry',\n            old_name='time_account',\n            new_name='employee_time_account',\n        ),",
+        "detail": "app.nadooit_time_account.migrations.0004_rename_time_account_worktimeaccountentry_employee_time_account",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0005_timeaccount_name",
+        "description": "app.nadooit_time_account.migrations.0005_timeaccount_name",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0004_rename_time_account_worktimeaccountentry_employee_time_account'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timeaccount',\n            name='name',\n            field=models.CharField(blank=True, max_length=255, null=True),\n        ),",
+        "detail": "app.nadooit_time_account.migrations.0005_timeaccount_name",
+        "documentation": {}
+    },
+    {
         "label": "NadooitTimeaccountConfig",
         "kind": 6,
         "importPath": "app.nadooit_time_account.apps",
@@ -2800,29 +3064,38 @@
         "documentation": {}
     },
     {
+        "label": "get__total_of_all_customer_time_account_balances__for__user",
+        "kind": 2,
+        "importPath": "app.nadooit_time_account.logic",
+        "description": "app.nadooit_time_account.logic",
+        "peekOfCode": "def get__total_of_all_customer_time_account_balances__for__user(User):\n    if Employee.objects.filter(user=User).exists():\n        print(\"Employee exists\")\n        print(Employee.objects.get(user=User))\n        time_accounts_the_user_is_responsible_for = TimeAccountManager.objects.get(\n            employee=Employee.objects.get(user=User)\n        ).time_accounts.all()\n        total_of_all_customer_time_account_balances = 0\n        print(time_accounts_the_user_is_responsible_for)\n        for time_account in time_accounts_the_user_is_responsible_for:",
+        "detail": "app.nadooit_time_account.logic",
+        "documentation": {}
+    },
+    {
         "label": "TimeAccount",
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    def __str__(self):\n        return (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds\n            )\n            + \" \"\n            + str(self.id)",
+        "peekOfCode": "class TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    name = models.CharField(max_length=255, null=True, blank=True)\n    def __str__(self):\n        time_balance_in_seconds = (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds\n            )\n        )",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
     {
-        "label": "TimeAccountEmployee",
+        "label": "EmployeeTimeAccount",
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class TimeAccountEmployee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        if self.employee.user.display_name == \"\":\n            return (",
+        "peekOfCode": "class EmployeeTimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        if self.employee.user.display_name == \"\":\n            return (",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
     {
-        "label": "CustomerNadooitTimeAccount",
+        "label": "CustomerTimeAccount",
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class CustomerNadooitTimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return (\n            self.customer.name\n            + \" \"",
+        "peekOfCode": "class CustomerTimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return (\n            self.customer.name\n            + \" \"",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
@@ -2831,7 +3104,16 @@
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class WorkTimeAccountEntry(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_account = models.ForeignKey(TimeAccountEmployee, on_delete=models.CASCADE)\n    work_time = models.TimeField(null=True, blank=True)\n    work_date = models.DateField(null=True, blank=True)\n    ENTRY_TYPE = (\n        (\"IN\", \"IN\"),\n        (\"OUT\", \"OUT\"),\n    )\n    entry_trype = models.CharField(max_length=3, choices=ENTRY_TYPE, default=\"IN\")",
+        "peekOfCode": "class WorkTimeAccountEntry(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    employee_time_account = models.ForeignKey(\n        EmployeeTimeAccount, on_delete=models.CASCADE\n    )\n    work_time = models.TimeField(null=True, blank=True)\n    work_date = models.DateField(null=True, blank=True)\n    ENTRY_TYPE = (\n        (\"IN\", \"IN\"),\n        (\"OUT\", \"OUT\"),",
+        "detail": "app.nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.models",
+        "description": "app.nadooit_time_account.models",
+        "peekOfCode": "class TimeAccountManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # A list of all time accounts the manager is responsible for\n    time_accounts = models.ManyToManyField(TimeAccount, blank=True)\n    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    def __str__(self):\n        if self.employee.user.display_name != \"\":\n            return self.employee.user.display_name\n        else:\n            return self.employee.user.username",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
@@ -2840,8 +3122,44 @@
         "kind": 2,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):\n    return str(time // 3600) + \":\" + str((time % 3600) // 60) + \":\" + str(time % 60)\n# Create your models here.\nclass TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    def __str__(self):\n        return (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds",
+        "peekOfCode": "def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)\n        + \" min : \"\n        + str(time % 60)\n        + \" sek\"\n    )\n# Create your models here.",
         "detail": "app.nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "app.nadooit_time_account.urls",
+        "description": "app.nadooit_time_account.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin\", views.admin, name=\"adminpage\"),\n    path(\n        \"customer_time_account_overview\",\n        views.customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",\n        views.customer_order_overview,",
+        "detail": "app.nadooit_time_account.urls",
+        "documentation": {}
+    },
+    {
+        "label": "customer_time_account_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_time_account.views",
+        "description": "app.nadooit_time_account.views",
+        "peekOfCode": "def customer_time_account_overview(request):\n    # if the logged in user is a time account manager show the time account manager view\n    current_balance = get__total_of_all_customer_time_account_balances__for__user(\n        request.user\n    )\n    print(current_balance)\n    time_accounts_the_user_is_responsible_for = TimeAccountManager.objects.get(\n        employee=Employee.objects.get(user=request.user)\n    ).time_accounts.all()\n    list_of_time_accounts_formatted = []",
+        "detail": "app.nadooit_time_account.views",
+        "documentation": {}
+    },
+    {
+        "label": "customer_order_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_time_account.views",
+        "description": "app.nadooit_time_account.views",
+        "peekOfCode": "def customer_order_overview(request):\n    # All orders for the current customer\n    # Multiple lists for the different order states\n    # List one shows all orders for the current month\n    # List shows all previous orders\n    return render(\n        request,\n        \"nadooit_time_account/customer_time_account_overview.html\",\n        {\n            \"page_title\": \"Übersicht der Buchungen\",",
+        "detail": "app.nadooit_time_account.views",
+        "documentation": {}
+    },
+    {
+        "label": "admin",
+        "kind": 2,
+        "importPath": "app.nadooit_time_account.views",
+        "description": "app.nadooit_time_account.views",
+        "peekOfCode": "def admin(request):\n    return render(\n        request,\n        \"nadooit_time_account/admin.html\",\n        {\"page_title\": \"Übersicht der Zeitkonten\"},\n    )",
+        "detail": "app.nadooit_time_account.views",
         "documentation": {}
     },
     {

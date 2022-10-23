@@ -1,7 +1,9 @@
+#TODO Check for new versions of the base image. If a new version is available, rebuild the image.
 FROM nginx:1.23.0-alpine
-#FROM nginxinc/nginx-unprivileged:1.23.0-alpine
 
 #TODO rights managment seems to be wrong. Should be a less privileged user
+#FROM nginxinc/nginx-unprivileged:1.23.0-alpine
+
 
 COPY ./nginx/* /etc/nginx/
 COPY run.sh /run.sh
