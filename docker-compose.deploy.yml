@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: .
+      dockerfile: Dockerfile
     restart: always
     environment:
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
