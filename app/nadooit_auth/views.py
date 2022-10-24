@@ -1,3 +1,4 @@
+import django.contrib.auth.validators
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -5,12 +6,22 @@ from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
+
+
+from nadooit.settings import DEBUG
 from .user_code import get__new_user_code
 
 
 from nadooit_auth.models import User
 from nadooit_auth.user_code import check__valid_user_code
 from nadooit_auth.username import get__new_username
+
+
+def user_is_KeyManager_that_can_create_new_keys(user):
+    if hasattr(user.employee, "keymanager"):
+        return user.employee.keymanager.can_create_keys
+    return False
 
 
 def log_user_in(request, username):
@@ -39,14 +50,15 @@ def login_user(request):
         if user is not None:
             print("found user")
             if user.is_active:  # if the user object exist
-                if "mfa" in settings.INSTALLED_APPS:
-                    from mfa.helpers import has_mfa
+                if "mfa" in settings.INSTALLED_APPS and settings.DEBUG == False:
+                    from mfa.helpers import has_mfa, recheck
 
                     res = has_mfa(
                         username=user.username, request=request
                     )  # has_mfa returns false or HttpResponseRedirect
                     if res:
                         print("has_mfa")
+                        print(recheck(request))
                         print(res)
                         return res
                     print("has_no_mfa")
@@ -54,6 +66,8 @@ def login_user(request):
                     log_user_in(request, user.username)
                     # login(request, user)
                     return redirect(request.GET.get("next") or "/nadooit-os")
+                else:
+                    pass
             else:
                 err = "This user is NOT activated yet."
         else:
@@ -72,6 +86,11 @@ def logout_user(request):
 
 
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_KeyManager_that_can_create_new_keys,
+    redirect_field_name=None,
+    login_url="/nadooit-os",
+)
 def register_user(request):
     if request.method == "POST":
         error = ""

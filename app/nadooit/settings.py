@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "nadooit_api_executions_system.apps.NadooitApiExecutionsSystemConfig",
     "nadooit_website.apps.NadooitWebsiteConfig",
     "nadooit_os",
+    "nadooit_key",
     "rest_framework",
     "pwa",
     "debug_toolbar",
@@ -236,6 +237,8 @@ MFA_UNALLOWED_METHODS = (
     "TOTP",
     "Email",
     "U2F",
+    "Trusted_Devices",
+    "RECOVERY",
 )  # Methods that shouldn't be allowed for the user
 MFA_LOGIN_CALLBACK = "nadooit_auth.views.log_user_in"  # A function that should be called by username to login the user in session
 MFA_RECHECK = True  # Allow random rechecking of the user

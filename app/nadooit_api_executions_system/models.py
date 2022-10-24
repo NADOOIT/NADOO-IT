@@ -28,6 +28,7 @@ def cutomer_program_execution_was_created(sender, instance, created, *args, **kw
             obj.time_account.time_balance_in_seconds
             - instance.program_time_saved_in_seconds
         )
+        print("obj.time_account.time_balance_in_seconds")
         obj.time_account.save()
 
 

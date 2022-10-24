@@ -1,0 +1,15 @@
+On the main page there is a navigation bar
+This navigation bar is used to navigate to the different pages of the website
+The navigation bar is located at the top of the page on desktop on mobile it is located at the bottom of the page
+The navigation bar has a logo on the left side of the navigation bar
+The navigation bar has a search bar on the right side of the navigation bar
+
+
+What is needed
+A history of previous searches
+A history of previous used "Tools" (The tools are the different pages of the website)
+
+A list that contains all "Tools" (The tools are the different pages of the website) that the user has access to
+
+A function that returns all "Tools" (The tools are the different pages of the website) that the user has access to
+
