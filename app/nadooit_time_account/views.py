@@ -107,8 +107,7 @@ def customer_order_overview(request):
 
     # the employee is the logged in user
     employee = Employee.objects.get(user=request.user)
-    print(employee)
-    print(employee.customers.all())
+
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for

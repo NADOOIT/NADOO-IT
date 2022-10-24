@@ -7,6 +7,11 @@
                 <ul class="links">
                     <li><a href="{% url 'nadooit_os:nadooit-os' %}" class="{% is_url_active request 'nadooit_os:nadooit-os' %}">Manage Systems</a></li>
                     <li><a href="{% url 'api-key-interface' %}" class="{% is_url_active request 'api-key-interface' %}">Manage API-Keys</a></li>
+                    {% if user_is_Time_Account_Manager%}
+                    <li><a href="{% url 'customer_time_account_overview' %}" class="{% is_url_active request 'customer_time_account_overview' %}">Zeitkonten und Buchungen Übersicht</a></li>
+                    {% endif %}
+                    {% comment %} add a menu item for logging out {% endcomment %}
+                    <li><a href="{% url 'nadooit_auth:logout-user' %}">Logout</a></li>
                 </ul>
             </ul>
         </div>
@@ -27,6 +32,10 @@
         <ul class="menu links">
             <li><a href="{% url 'nadooit_os:nadooit-os' %}" class="{% is_url_active request 'nadooit_os:nadooit-os' %}">Manage Systems</a></li>
             <li><a href="{% url 'api-key-interface' %}"  class="{% is_url_active request 'api-key-interface' %}">Manage API-Keys</a></li>
+            <li><a href="{% url 'nadooit_auth:logout-user' %}">Logout</a></li>
+            {% if user_is_Time_Account_Manager%}
+            <li><a href="{% url 'customer_time_account_overview' %}" class="{% is_url_active request 'customer_time_account_overview' %}">Zeitkonten und Buchungen Übersicht</a></li>
+            {% endif %}
         </ul>
     </div>
   </header>

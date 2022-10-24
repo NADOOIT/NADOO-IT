@@ -129,7 +129,8 @@ class TimeAccountManager(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     # A list of all time accounts the manager is responsible for
     time_accounts = models.ManyToManyField(TimeAccount, blank=True)
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
     def __str__(self):
         if self.employee.user.display_name != "":
