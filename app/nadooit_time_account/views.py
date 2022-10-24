@@ -14,8 +14,18 @@ from nadooit_time_account.logic import (
 )
 from nadooit_api_executions_system.models import CustomerProgramExecution
 
+from django.contrib.auth.decorators import user_passes_test
+
+
+def user_is_TimeAccountManager(user):
+    if hasattr(user.employee, "timeaccountmanager"):
+        return True
+    return False
+
+
 # Create your views here.
 @login_required(login_url="/auth/login-user")
+@user_passes_test(user_is_TimeAccountManager, login_url="/auth/login-user")
 def customer_time_account_overview(request):
 
     time_accounts_the_user_is_responsible_for = list(
@@ -100,6 +110,7 @@ def customer_time_account_overview(request):
 
 
 @login_required(login_url="/auth/login-user")
+@user_passes_test(user_is_TimeAccountManager, login_url="/auth/login-user")
 def customer_order_overview(request):
 
     # All orders for the current customer

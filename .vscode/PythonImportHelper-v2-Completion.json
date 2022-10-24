@@ -1606,6 +1606,14 @@
         "documentation": {}
     },
     {
+        "label": "user_passes_test",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
         "label": "ApiKeyForm",
         "importPath": "nadooit_api_key.forms",
         "description": "nadooit_api_key.forms",
@@ -2769,7 +2777,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_key.views",
         "description": "app.nadooit_api_key.views",
-        "peekOfCode": "def api_key_interface(request):\n    return render(request, 'nadooit_api_key/index.html')\n@login_required(login_url='/auth/login-user')\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()",
+        "peekOfCode": "def api_key_interface(request):\n    return render(request, \"nadooit_api_key/index.html\")\n@login_required(login_url=\"/auth/login-user\")\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],",
         "detail": "app.nadooit_api_key.views",
         "documentation": {}
     },
@@ -2778,7 +2786,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_key.views",
         "description": "app.nadooit_api_key.views",
-        "peekOfCode": "def create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])\n            new_api_key.updated_at = timezone.now()\n            new_api_key.created_at = timezone.now()\n            new_api_key.save()\n            return HttpResponseRedirect('/nadooit-api-key/create-api-key?submitted=True')",
+        "peekOfCode": "def create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
         "detail": "app.nadooit_api_key.views",
         "documentation": {}
     },
@@ -3455,6 +3463,15 @@
         "description": "app.nadooit_time_account.urls",
         "peekOfCode": "urlpatterns = [\n    path(\"admin\", views.admin, name=\"adminpage\"),\n    path(\n        \"customer_time_account_overview\",\n        views.customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",\n        views.customer_order_overview,",
         "detail": "app.nadooit_time_account.urls",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_TimeAccountManager",
+        "kind": 2,
+        "importPath": "app.nadooit_time_account.views",
+        "description": "app.nadooit_time_account.views",
+        "peekOfCode": "def user_is_TimeAccountManager(user):\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\n# Create your views here.\n@login_required(login_url=\"/auth/login-user\")\n@user_passes_test(user_is_TimeAccountManager, login_url=\"/auth/login-user\")\ndef customer_time_account_overview(request):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(",
+        "detail": "app.nadooit_time_account.views",
         "documentation": {}
     },
     {

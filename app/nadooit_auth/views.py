@@ -58,7 +58,6 @@ def login_user(request):
                     )  # has_mfa returns false or HttpResponseRedirect
                     if res:
                         print("has_mfa")
-                        print(recheck(request))
                         print(res)
                         return res
                     print("has_no_mfa")
