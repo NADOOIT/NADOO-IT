@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.shortcuts import render
-#imoport for userforms
+
+# imoport for userforms
 
 from django.http import HttpResponseRedirect
 
@@ -9,26 +10,40 @@ from nadooit_api_key.forms import ApiKeyForm
 from nadooit_api_key.models import NadooitApiKey
 
 
-@login_required(login_url='/auth/login-user')
+@login_required(login_url="/auth/login-user")
 def api_key_interface(request):
-    return render(request, 'nadooit_api_key/index.html')
+    return render(request, "nadooit_api_key/index.html")
 
 
-@login_required(login_url='/auth/login-user')
+@login_required(login_url="/auth/login-user")
 def create_api_key(request):
     submitted = False
     if request.method == "POST":
         form = ApiKeyForm(request.POST)
         if form.is_valid():
-            new_api_key = NadooitApiKey(api_key = form.cleaned_data['api_key'], user = form.cleaned_data['user_code'], is_active = form.cleaned_data['is_active'])
+            new_api_key = NadooitApiKey(
+                api_key=form.cleaned_data["api_key"],
+                user=form.cleaned_data["user_code"],
+                is_active=form.cleaned_data["is_active"],
+            )
             new_api_key.updated_at = timezone.now()
             new_api_key.created_at = timezone.now()
             new_api_key.save()
-            return HttpResponseRedirect('/nadooit-api-key/create-api-key?submitted=True')
+            return HttpResponseRedirect(
+                "/nadooit-api-key/create-api-key?submitted=True"
+            )
     else:
         form = ApiKeyForm()
-        if 'submitted' in request.GET:
+        if "submitted" in request.GET:
             submitted = True
-        
+
     form = ApiKeyForm
-    return render(request, 'nadooit_api_key/create_api_key.html', {'form': form, 'submitted': submitted})
+    return render(
+        request,
+        "nadooit_api_key/create_api_key.html",
+        {
+            "form": form,
+            "submitted": submitted,
+            "page_title": "NADOOIT API KEY erstellen",
+        },
+    )

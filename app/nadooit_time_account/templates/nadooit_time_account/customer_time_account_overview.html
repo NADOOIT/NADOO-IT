@@ -2,47 +2,37 @@
 {% block content %}
 {% csrf_token %}
 
-<div class="cutomer-time-accout-owerview">
-
-  <div class="row">
-    <div class="col-md-12">
-    <div class="panel panel-default">
-    <div class="panel-heading">
-    <h3 class="panel-title">  
-      <!-- title -->
-      {% block title %} <h1>{{page_title}}</h1> {% endblock title %}
-      <!-- title -->	</h3>
-    </div>
-    </div>
-    </div>
-  </div>
-    
-
 <div class="container">
+  <br>
   <div class="row">
     <div class="col">
       {% for customer, customer_time_account_info  in customer_time_accounts_grouped_by_customer.items%}
       <div class="card">
+
         <div class="card-header">
           <h5 class="card-title">{{customer.name}}</h5>
         </div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Zeit Konto</th>
-              <th scope="col">Kontoname</th>
-              <th scope="col">Kontostand</th>
-            </tr>
-          </thead>
-
-            {% for customer_time_account in customer_time_account_info.customer_time_accounts %}
+        
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="table-dark">
               <tr>
-                <td>{{customer_time_account.id}}</td>
-                <td>{{customer_time_account.name}}</td>
-                <td>{{customer_time_account.time_account.time_balance_in_seconds}}</td>
+                <th scope="col">Zeit Konto</th>
+                <th scope="col">Kontoname</th>
+                <th scope="col">Kontostand</th>
               </tr>
-            {% endfor %}
-        </table>
+            </thead>
+            <tbody>
+              {% for customer_time_account in customer_time_account_info.customer_time_accounts %}
+                <tr>
+                  <td>{{customer_time_account.id}}</td>
+                  <td>{{customer_time_account.name}}</td>
+                  <td>{{customer_time_account.time_account.time_balance_in_seconds}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
         <div class="card-footer">
           <h5 class="card-title">Kontostand: {{customer_time_account_info.customer_time_account_total_time_balance}}</h5>
         </div>
@@ -53,9 +43,5 @@
     </div>
   </div>
 </div>
-
-
-<!-- List of all time accounts. When clicked on one time account shows a list of all programms connected to that account -->
-
 
 {% endblock %}
