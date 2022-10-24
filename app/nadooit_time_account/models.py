@@ -6,6 +6,7 @@ from nadooit_hr.models import Employee
 
 
 def get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(time):
+
     return (
         str(time // 3600)
         + " std : "
@@ -68,10 +69,13 @@ class CustomerTimeAccount(models.Model):
     time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
+    name = models.CharField(max_length=255, null=False, blank=False)
 
     def __str__(self):
         return (
             self.customer.name
+            + " "
+            + self.name
             + " "
             + get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
                 self.time_account.time_balance_in_seconds

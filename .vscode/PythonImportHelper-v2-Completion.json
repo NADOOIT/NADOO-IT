@@ -728,6 +728,38 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1197,6 +1229,14 @@
         "documentation": {}
     },
     {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
@@ -1218,6 +1258,14 @@
         "description": "django.dispatch",
         "isExtraImport": true,
         "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
         "documentation": {}
     },
     {
@@ -1676,6 +1724,14 @@
         "documentation": {}
     },
     {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
         "label": "Employee",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
@@ -1789,6 +1845,14 @@
     },
     {
         "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerTimeAccount",
         "importPath": "nadooit_time_account.models",
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
@@ -3088,6 +3152,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0006_customertimeaccount_name",
+        "description": "app.nadooit_time_account.migrations.0006_customertimeaccount_name",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0005_timeaccount_name'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customertimeaccount',\n            name='name',\n            field=models.CharField(blank=True, max_length=255, null=True),\n        ),",
+        "detail": "app.nadooit_time_account.migrations.0006_customertimeaccount_name",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0007_alter_customertimeaccount_name",
+        "description": "app.nadooit_time_account.migrations.0007_alter_customertimeaccount_name",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0006_customertimeaccount_name'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='customertimeaccount',\n            name='name',\n            field=models.CharField(default='FIXME', max_length=255),\n            preserve_default=False,",
+        "detail": "app.nadooit_time_account.migrations.0007_alter_customertimeaccount_name",
+        "documentation": {}
+    },
+    {
         "label": "NadooitTimeaccountConfig",
         "kind": 6,
         "importPath": "app.nadooit_time_account.apps",
@@ -3128,7 +3210,7 @@
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class CustomerTimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return (\n            self.customer.name\n            + \" \"",
+        "peekOfCode": "class CustomerTimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    name = models.CharField(max_length=255, null=False, blank=False)\n    def __str__(self):\n        return (\n            self.customer.name",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
@@ -3173,7 +3255,7 @@
         "kind": 2,
         "importPath": "app.nadooit_time_account.views",
         "description": "app.nadooit_time_account.views",
-        "peekOfCode": "def customer_time_account_overview(request):\n    # if the logged in user is a time account manager show the time account manager view\n    current_balance = get__total_of_all_customer_time_account_balances__for__user(\n        request.user\n    )\n    print(current_balance)\n    time_accounts_the_user_is_responsible_for = TimeAccountManager.objects.get(\n        employee=Employee.objects.get(user=request.user)\n    ).time_accounts.all()\n    list_of_time_accounts_formatted = []",
+        "peekOfCode": "def customer_time_account_overview(request):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(\n            employee=Employee.objects.get(user=request.user)\n        ).time_accounts.all()\n    )\n    list_of_customer_time_accounts = []\n    for time_account in time_accounts_the_user_is_responsible_for:\n        # get the customertimeaccount for the time account\n        customer_time_account = CustomerTimeAccount.objects.get(",
         "detail": "app.nadooit_time_account.views",
         "documentation": {}
     },
@@ -3182,7 +3264,7 @@
         "kind": 2,
         "importPath": "app.nadooit_time_account.views",
         "description": "app.nadooit_time_account.views",
-        "peekOfCode": "def customer_order_overview(request):\n    # All orders for the current customer\n    # Multiple lists for the different order states\n    # List one shows all orders for the current month\n    # List shows all previous orders\n    return render(\n        request,\n        \"nadooit_time_account/customer_time_account_overview.html\",\n        {\n            \"page_title\": \"Übersicht der Buchungen\",",
+        "peekOfCode": "def customer_order_overview(request):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    print(employee)\n    print(employee.customers.all())\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for",
         "detail": "app.nadooit_time_account.views",
         "documentation": {}
     },
