@@ -1757,10 +1757,10 @@
     },
     {
         "label": "DEBUG",
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
+        "importPath": "nadooit.settings",
+        "description": "nadooit.settings",
         "isExtraImport": true,
-        "detail": "app.nadooit.settings",
+        "detail": "nadooit.settings",
         "documentation": {}
     },
     {

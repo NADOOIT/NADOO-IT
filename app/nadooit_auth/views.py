@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 
 
-from app.nadooit.settings import DEBUG
+from nadooit.settings import DEBUG
 from .user_code import get__new_user_code
 
 
@@ -51,13 +51,14 @@ def login_user(request):
             print("found user")
             if user.is_active:  # if the user object exist
                 if "mfa" in settings.INSTALLED_APPS and settings.DEBUG == False:
-                    from mfa.helpers import has_mfa
+                    from mfa.helpers import has_mfa, recheck
 
                     res = has_mfa(
                         username=user.username, request=request
                     )  # has_mfa returns false or HttpResponseRedirect
                     if res:
                         print("has_mfa")
+                        print(recheck(request))
                         print(res)
                         return res
                     print("has_no_mfa")
