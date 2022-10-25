@@ -16,4 +16,5 @@ urlpatterns = [
         customer_order_overview,
         name="customer_order_overview",
     ),
+        path('create-api-key', create_api_key, name="create-api-key"),
 ]

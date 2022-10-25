@@ -40,22 +40,6 @@
         "documentation": {}
     },
     {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "reverse",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -1024,7 +1008,7 @@
         "documentation": {}
     },
     {
-        "label": "render",
+        "label": "redirect",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -1032,7 +1016,7 @@
         "documentation": {}
     },
     {
-        "label": "redirect",
+        "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
         "isExtraImport": true,
@@ -1486,118 +1470,6 @@
         "documentation": {}
     },
     {
-        "label": "ModelChoiceField",
-        "importPath": "django.forms",
-        "description": "django.forms",
-        "isExtraImport": true,
-        "detail": "django.forms",
-        "documentation": {}
-    },
-    {
-        "label": "api_key_interface",
-        "importPath": "nadooit_api_key.views",
-        "description": "nadooit_api_key.views",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.views",
-        "documentation": {}
-    },
-    {
-        "label": "create_api_key",
-        "importPath": "nadooit_api_key.views",
-        "description": "nadooit_api_key.views",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.views",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "timezone",
-        "importPath": "django.utils",
-        "description": "django.utils",
-        "isExtraImport": true,
-        "detail": "django.utils",
-        "documentation": {}
-    },
-    {
-        "label": "HttpResponseRedirect",
-        "importPath": "django.http",
-        "description": "django.http",
-        "isExtraImport": true,
-        "detail": "django.http",
-        "documentation": {}
-    },
-    {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "user_passes_test",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "user_passes_test",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "ApiKeyForm",
-        "importPath": "nadooit_api_key.forms",
-        "description": "nadooit_api_key.forms",
-        "isExtraImport": true,
-        "detail": "nadooit_api_key.forms",
-        "documentation": {}
-    },
-    {
         "label": "django.contrib.auth.models",
         "kind": 6,
         "isExtraImport": true,
@@ -1713,6 +1585,78 @@
         "importPath": "string",
         "description": "string",
         "detail": "string",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "user_passes_test",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "user_passes_test",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
         "documentation": {}
     },
     {
@@ -1876,11 +1820,27 @@
         "documentation": {}
     },
     {
+        "label": "ModelChoiceField",
+        "importPath": "django.forms",
+        "description": "django.forms",
+        "isExtraImport": true,
+        "detail": "django.forms",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "nadooit_os.views",
         "description": "nadooit_os.views",
         "isExtraImport": true,
         "detail": "nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponseRedirect",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
         "documentation": {}
     },
     {
@@ -2530,7 +2490,7 @@
         "kind": 5,
         "importPath": "app.nadooit.urls",
         "description": "app.nadooit.urls",
-        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),",
+        "peekOfCode": "admin.site.index_title = \"NADOOIT Administration Site\"  # default: \"Site administration\"\nadmin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
         "detail": "app.nadooit.urls",
         "documentation": {}
     },
@@ -2539,7 +2499,7 @@
         "kind": 5,
         "importPath": "app.nadooit.urls",
         "description": "app.nadooit.urls",
-        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),",
+        "peekOfCode": "admin.site.site_title = \"NADOOIT\"\n# This is where the urls are placed\nurlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),",
         "detail": "app.nadooit.urls",
         "documentation": {}
     },
@@ -2548,7 +2508,7 @@
         "kind": 5,
         "importPath": "app.nadooit.urls",
         "description": "app.nadooit.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"nadooit-api-key/\", include(\"nadooit_api_key.urls\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"\", include(\"pwa.urls\")),",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", include(\"nadooit_website.urls\")),\n    path(\"admin/\", admin.site.urls),\n    path(\"auth/\", include(\"nadooit_auth.urls\", namespace=\"nadooit_auth\")),\n    path(\"api/\", include(\"nadooit_api_executions_system.urls\")),\n    path(\"nadooit-os/\", include(\"nadooit_os.urls\", namespace=\"nadooit_os\")),\n    path(\"__debug__/\", include(\"debug_toolbar.urls\")),\n    path(\"grappelli/\", include(\"grappelli.urls\")),\n    path(\"\", include(\"pwa.urls\")),\n    path(\"mfa/\", include(\"mfa.urls\")),",
         "detail": "app.nadooit.urls",
         "documentation": {}
     },
@@ -2688,24 +2648,6 @@
         "documentation": {}
     },
     {
-        "label": "UserCodeModelChoiceField",
-        "kind": 6,
-        "importPath": "app.nadooit_api_key.forms",
-        "description": "app.nadooit_api_key.forms",
-        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        widget=forms.Select(\n            attrs={",
-        "detail": "app.nadooit_api_key.forms",
-        "documentation": {}
-    },
-    {
-        "label": "ApiKeyForm",
-        "kind": 6,
-        "importPath": "app.nadooit_api_key.forms",
-        "description": "app.nadooit_api_key.forms",
-        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        widget=forms.Select(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",",
-        "detail": "app.nadooit_api_key.forms",
-        "documentation": {}
-    },
-    {
         "label": "NadooitApiKey",
         "kind": 6,
         "importPath": "app.nadooit_api_key.models",
@@ -2721,33 +2663,6 @@
         "description": "app.nadooit_api_key.models",
         "peekOfCode": "def hash_api_key_when_created(sender, instance, created, *args, **kwargs):\n    if created:\n        #hashes the api_key\n        obj = NadooitApiKey.objects.get(id = instance.id)\n        obj.api_key = hashlib.sha256(str(obj.api_key).encode()).hexdigest()\n        obj.save()",
         "detail": "app.nadooit_api_key.models",
-        "documentation": {}
-    },
-    {
-        "label": "urlpatterns",
-        "kind": 5,
-        "importPath": "app.nadooit_api_key.urls",
-        "description": "app.nadooit_api_key.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', api_key_interface, name=\"api-key-interface\"),\t\n    path('create-api-key', create_api_key, name=\"create-api-key\"),\n]",
-        "detail": "app.nadooit_api_key.urls",
-        "documentation": {}
-    },
-    {
-        "label": "api_key_interface",
-        "kind": 2,
-        "importPath": "app.nadooit_api_key.views",
-        "description": "app.nadooit_api_key.views",
-        "peekOfCode": "def api_key_interface(request):\n    return render(request, \"nadooit_api_key/index.html\")\n@login_required(login_url=\"/auth/login-user\")\ndef create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],",
-        "detail": "app.nadooit_api_key.views",
-        "documentation": {}
-    },
-    {
-        "label": "create_api_key",
-        "kind": 2,
-        "importPath": "app.nadooit_api_key.views",
-        "description": "app.nadooit_api_key.views",
-        "peekOfCode": "def create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
-        "detail": "app.nadooit_api_key.views",
         "documentation": {}
     },
     {
@@ -3147,6 +3062,24 @@
         "documentation": {}
     },
     {
+        "label": "UserCodeModelChoiceField",
+        "kind": 6,
+        "importPath": "app.nadooit_os.forms",
+        "description": "app.nadooit_os.forms",
+        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        widget=forms.Select(\n            attrs={",
+        "detail": "app.nadooit_os.forms",
+        "documentation": {}
+    },
+    {
+        "label": "ApiKeyForm",
+        "kind": 6,
+        "importPath": "app.nadooit_os.forms",
+        "description": "app.nadooit_os.forms",
+        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        widget=forms.Select(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",",
+        "detail": "app.nadooit_os.forms",
+        "documentation": {}
+    },
+    {
         "label": "app_name",
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
@@ -3197,6 +3130,15 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def customer_order_overview(request):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programm_executions = []\n    for customer_the_employe_works_for in employee.customers.all():",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "create_api_key",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def create_api_key(request):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
