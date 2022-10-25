@@ -109,6 +109,13 @@ docker compose -f docker-compose.deploy.yml up -d
 - [x] Docker
 - [x] SSL
 
+### List of planned packages
+- [ ] htmx
+- [ ] django-crispy-forms
+- [ ] django-extensions
+- [ ] django-filter
+
+
 ### List of planned features
 #### Pages and features for the website (frontend)
 - [ ] Page for clients to see their time tracking
@@ -148,8 +155,15 @@ docker compose -f docker-compose.deploy.yml up -d
 - [ ] Multi-timezone
 - [ ] Multi-country
 - [ ] Multi-locale
+- [ ] Multi-organization
+
+#### TODOs
+- [ ] Move all pages to Nadooit-OS
 
 
 ## Local development
 docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
 docker-compose -f docker-compose.yml run --rm app python manage.py migrate
+docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
+docker-compose -f docker-compose.yml up
+	

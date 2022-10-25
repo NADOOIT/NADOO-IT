@@ -3,41 +3,69 @@ from django.shortcuts import render
 
 # imoport for userforms
 
-from django.http import HttpResponseRedirect
+from django.http import HttpRequest, HttpResponseRedirect
 
-from django.contrib.auth.decorators import login_required
+from nadooit_auth.models import User
+
 from .forms import ApiKeyForm
-from nadooit_api_key.models import NadooitApiKey
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from nadooit_time_account.models import CustomerTimeAccount
-from nadooit_program_ownership_system.models import NadooitCustomerProgram
 from nadooit_time_account.models import (
     get_time_as_string_in_hour_format_for_time_in_seconds_as_integer,
 )
-from nadooit_hr.models import Employee
-from nadooit_time_account.models import TimeAccountManager
 
+# model imports
+from nadooit_program_ownership_system.models import NadooitCustomerProgram
+from nadooit_time_account.models import CustomerTimeAccount
+from nadooit_hr.models import Employee
+from nadooit_api_key.models import NadooitApiKey
 from nadooit_api_executions_system.models import CustomerProgramExecution
 
-from django.contrib.auth.decorators import user_passes_test
-
-
-# imoport for userforms
-
-from django.contrib.auth.decorators import login_required
-
+# Manager Roles
 from nadooit_time_account.models import TimeAccountManager
 
+from nadooit_api_key.models import NadooitApiKeyManager
+from nadooit_hr.models import EmployeeManager
+from nadooit_program_ownership_system.models import NadooitCustomerProgramManager
+from nadooit_api_executions_system.models import CustomerProgramExecutionManager
 
-def user_is_TimeAccountManager(user):
+
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import login_required
+
+# Tests for user roles
+def user_is_TimeAccountManager(user: User) -> bool:
     if hasattr(user.employee, "timeaccountmanager"):
         return True
     return False
 
 
+# Creating the
+def navbar_access_params(page_tite: str, request: HttpRequest) -> dict:
+    return {
+        "page_title": page_tite,
+        "user_has_access_to_Time_Account_Managment": TimeAccountManager.objects.filter(
+            employee__user=request.user
+        ).exists(),
+        "user_has_access_to_Customer_Program_Managment": NadooitCustomerProgramManager.objects.filter(
+            employee__user=request.user
+        ).exists(),
+        "user_has_access_to_Customer_Program_Execution_Managment": CustomerProgramExecutionManager.objects.filter(
+            employee__user=request.user
+        ).exists(),
+        "user_has_access_to_HR_Managment": EmployeeManager.objects.filter(
+            employee__user=request.user
+        ).exists(),
+        "user_has_access_to_Api_Key_Managment": NadooitApiKeyManager.objects.filter(
+            user=request.user
+        ).exists(),
+    }
+
+
+# Create your views here.
+# Main page of the nadooit_os
 @login_required(login_url="/auth/login-user")
-def index_nadooit_os(request):
+def index_nadooit_os(request: HttpRequest):
 
     user_is_Time_Account_Manager = TimeAccountManager.objects.filter(
         employee__user=request.user
@@ -53,10 +81,10 @@ def index_nadooit_os(request):
     )
 
 
-# Create your views here.
+# Views for the time account system
 @login_required(login_url="/auth/login-user")
 @user_passes_test(user_is_TimeAccountManager, login_url="/auth/login-user")
-def customer_time_account_overview(request):
+def customer_time_account_overview(request: HttpRequest):
 
     time_accounts_the_user_is_responsible_for = list(
         TimeAccountManager.objects.get(
@@ -139,9 +167,10 @@ def customer_time_account_overview(request):
     )
 
 
+# Views for the customer program overview
 @login_required(login_url="/auth/login-user")
 @user_passes_test(user_is_TimeAccountManager, login_url="/auth/login-user")
-def customer_order_overview(request):
+def customer_order_overview(request: HttpRequest):
 
     # All orders for the current customer
     # orders are the executions of customerprograms
@@ -154,7 +183,9 @@ def customer_order_overview(request):
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
     customers_the_user_is_responsible_for_and_the_customer_programm_executions = []
 
-    for customer_the_employe_works_for in employee.customers.all():
+    for (
+        customer_the_employe_works_for
+    ) in employee.customers_the_employee_works_for.all():
         # list of customer programms with of the customer
         customer_programms = NadooitCustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
@@ -184,11 +215,9 @@ def customer_order_overview(request):
     )
 
 
-# API KEYS
-
-
+# API KEYS Views
 @login_required(login_url="/auth/login-user")
-def create_api_key(request):
+def create_api_key(request: HttpRequest):
     submitted = False
     if request.method == "POST":
         form = ApiKeyForm(request.POST)
