@@ -2,67 +2,60 @@
 {% block content %}
 {% csrf_token %}
 
-<div class="cutomer-time-accout-owerview">
+
 <div class="container">
-
-<div class="row">
-<div class="col-md-12">
-<div class="panel panel-default">
-<div class="panel-heading">
-<h3 class="panel-title">  
-  <!-- title -->
-  {% block title %} <h1>{{page_title}}</h1> {% endblock title %}
-  <!-- title -->	</h3>
-</div>
-</div>
-</div>
-</div>
-
-
+  <br>
+  <div class="row">
+    <div class="col">
       {% for cutomer in customers_the_user_is_responsible_for_and_the_customer_programm_executions %}
-
         <div class="card">
+
           <div class="card-header">
             <h5 class="card-title">{{cutomer.0.name}}</h5>
           </div>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Buchungs id</th>
-                <th scope="col">Programm Name</th>
-                <th scope="col">Zeitbuchung in Sekunden</th>
-                <th scope="col">Erstellt am</th>
-              </tr>
-            </thead>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Buchungs id</th>
+                  <th scope="col">Programm Name</th>
+                  <th scope="col">Zeitbuchung in Sekunden</th>
+                  <th scope="col">Erstellt am</th>
+                </tr>
+              </thead>
+
               <tbody>
-            {% for order in cutomer.1 %}
-              <tr>
-                <th scope="row">{{ forloop.counter}}</th>
-                <td>{{ order.id }}</td>
-                <td>{{ order.customer_program.program.name }}</td>
-                <td>{{ order.program_time_saved_in_seconds}}</td>
-                <td>{{ order.created_at}}</td>
-              </tr>
-              {% empty %}
-              <tr>
-                <td colspan="4"> Keine Buchungen vorhanden </td>
-              </tr>
-            {% endfor %}
+                {% for order in cutomer.1 %}
+                  <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.customer_program.program.name }}</td>
+                    <td>{{ order.program_time_saved_in_seconds}}</td>
+                    <td>{{ order.created_at}}</td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="4"> Keine Buchungen vorhanden </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
             </table>
-      </div>
-      <br>
-      {% empty %}
-      <div class="card">
-        <div class="card-header">
-          <h5 class="card-title	">Keine Kunden gefunden</h5>
+          </div>
         </div>
-      </div>
+
+        <br>
+
+        {% empty %}
+
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title	">Keine Kunden gefunden</h5>
+          </div>
+        </div>
+
       {% endfor %}
+    </div>
+  </div>
 </div>
-
-
-<!-- List of all time accounts. When clicked on one time account shows a list of all programms connected to that account -->
-
 
 {% endblock %}

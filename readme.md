@@ -82,7 +82,7 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ### Creating superuser
 1. Run the following command to create a superuser
-docker compose -f docker-compose.deploy.yml run --rm web python manage.py createsuperuser
+docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
 
 ### Starting the server
 1. Run the following command to start the server
