@@ -96,14 +96,6 @@
         "documentation": {}
     },
     {
-        "label": "reverse",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -1152,14 +1144,6 @@
         "documentation": {}
     },
     {
-        "label": "redirect",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -2025,14 +2009,6 @@
         "description": "nadooit_program.models",
         "isExtraImport": true,
         "detail": "nadooit_program.models",
-        "documentation": {}
-    },
-    {
-        "label": "get__total_of_all_customer_time_account_balances__for__user",
-        "importPath": "nadooit_time_account.logic",
-        "description": "nadooit_time_account.logic",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.logic",
         "documentation": {}
     },
     {

@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from nadooit_time_account.models import CustomerTimeAccount
 from nadooit_crm.models import Customer
@@ -9,9 +8,7 @@ from nadooit_time_account.models import (
 )
 from nadooit_hr.models import Employee
 from nadooit_time_account.models import TimeAccountManager
-from nadooit_time_account.logic import (
-    get__total_of_all_customer_time_account_balances__for__user,
-)
+
 from nadooit_api_executions_system.models import CustomerProgramExecution
 
 from django.contrib.auth.decorators import user_passes_test
