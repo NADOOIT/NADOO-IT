@@ -1,9 +1,19 @@
 from django.urls import path
 
-from nadooit_os.views import index_nadooit_os
+from nadooit_os.views import *
 
 app_name = "nadooit_os"
 
 urlpatterns = [
     path("", index_nadooit_os, name="nadooit-os"),
+    path(
+        "customer_time_account_overview",
+        customer_time_account_overview,
+        name="customer_time_account_overview",
+    ),
+    path(
+        "orders_overview",
+        customer_order_overview,
+        name="customer_order_overview",
+    ),
 ]

@@ -1152,14 +1152,6 @@
         "documentation": {}
     },
     {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
-        "documentation": {}
-    },
-    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -1574,23 +1566,23 @@
         "documentation": {}
     },
     {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
-        "label": "login_required",
-        "importPath": "django.contrib.auth.decorators",
-        "description": "django.contrib.auth.decorators",
-        "isExtraImport": true,
-        "detail": "django.contrib.auth.decorators",
-        "documentation": {}
-    },
-    {
         "label": "user_passes_test",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "django.contrib.auth.decorators",
+        "description": "django.contrib.auth.decorators",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
         "importPath": "django.contrib.auth.decorators",
         "description": "django.contrib.auth.decorators",
         "isExtraImport": true,
@@ -1836,14 +1828,6 @@
         "documentation": {}
     },
     {
-        "label": "Customer",
-        "importPath": "nadooit_crm.models",
-        "description": "nadooit_crm.models",
-        "isExtraImport": true,
-        "detail": "nadooit_crm.models",
-        "documentation": {}
-    },
-    {
         "label": "Employee",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
@@ -1892,11 +1876,35 @@
         "documentation": {}
     },
     {
-        "label": "index_nadooit_os",
+        "label": "*",
         "importPath": "nadooit_os.views",
         "description": "nadooit_os.views",
         "isExtraImport": true,
         "detail": "nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
@@ -1965,30 +1973,6 @@
     },
     {
         "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccountManager",
         "importPath": "nadooit_time_account.models",
         "description": "nadooit_time_account.models",
         "isExtraImport": true,
@@ -3167,7 +3151,7 @@
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
         "description": "app.nadooit_os.urls",
-        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n]",
+        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer_time_account_overview\",\n        customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",",
         "detail": "app.nadooit_os.urls",
         "documentation": {}
     },
@@ -3176,8 +3160,17 @@
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
         "description": "app.nadooit_os.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer_time_account_overview\",\n        customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",\n        customer_order_overview,",
         "detail": "app.nadooit_os.urls",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_TimeAccountManager",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_TimeAccountManager(user):\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\n@login_required(login_url=\"/auth/login-user\")\ndef index_nadooit_os(request):\n    user_is_Time_Account_Manager = TimeAccountManager.objects.filter(\n        employee__user=request.user\n    ).exists()\n    return render(",
+        "detail": "app.nadooit_os.views",
         "documentation": {}
     },
     {
@@ -3186,6 +3179,24 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def index_nadooit_os(request):\n    user_is_Time_Account_Manager = TimeAccountManager.objects.filter(\n        employee__user=request.user\n    ).exists()\n    return render(\n        request,\n        \"nadooit_os/index.html\",\n        {\n            \"page_title\": \"Nadooit OS\",\n            \"user_is_Time_Account_Manager\": user_is_Time_Account_Manager,",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "customer_time_account_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def customer_time_account_overview(request):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(\n            employee=Employee.objects.get(user=request.user)\n        ).time_accounts.all()\n    )\n    list_of_customer_time_accounts = []\n    for time_account in time_accounts_the_user_is_responsible_for:\n        # get the customertimeaccount for the time account\n        customer_time_account = CustomerTimeAccount.objects.get(",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "customer_order_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def customer_order_overview(request):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programm_executions = []\n    for customer_the_employe_works_for in employee.customers.all():",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3437,44 +3448,8 @@
         "kind": 5,
         "importPath": "app.nadooit_time_account.urls",
         "description": "app.nadooit_time_account.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"admin\", views.admin, name=\"adminpage\"),\n    path(\n        \"customer_time_account_overview\",\n        views.customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",\n        views.customer_order_overview,",
+        "peekOfCode": "urlpatterns = [\n    path(\"admin\", views.admin, name=\"adminpage\"),\n]",
         "detail": "app.nadooit_time_account.urls",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_TimeAccountManager",
-        "kind": 2,
-        "importPath": "app.nadooit_time_account.views",
-        "description": "app.nadooit_time_account.views",
-        "peekOfCode": "def user_is_TimeAccountManager(user):\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\n# Create your views here.\n@login_required(login_url=\"/auth/login-user\")\n@user_passes_test(user_is_TimeAccountManager, login_url=\"/auth/login-user\")\ndef customer_time_account_overview(request):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(",
-        "detail": "app.nadooit_time_account.views",
-        "documentation": {}
-    },
-    {
-        "label": "customer_time_account_overview",
-        "kind": 2,
-        "importPath": "app.nadooit_time_account.views",
-        "description": "app.nadooit_time_account.views",
-        "peekOfCode": "def customer_time_account_overview(request):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(\n            employee=Employee.objects.get(user=request.user)\n        ).time_accounts.all()\n    )\n    list_of_customer_time_accounts = []\n    for time_account in time_accounts_the_user_is_responsible_for:\n        # get the customertimeaccount for the time account\n        customer_time_account = CustomerTimeAccount.objects.get(",
-        "detail": "app.nadooit_time_account.views",
-        "documentation": {}
-    },
-    {
-        "label": "customer_order_overview",
-        "kind": 2,
-        "importPath": "app.nadooit_time_account.views",
-        "description": "app.nadooit_time_account.views",
-        "peekOfCode": "def customer_order_overview(request):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programm_executions = []\n    for customer_the_employe_works_for in employee.customers.all():",
-        "detail": "app.nadooit_time_account.views",
-        "documentation": {}
-    },
-    {
-        "label": "admin",
-        "kind": 2,
-        "importPath": "app.nadooit_time_account.views",
-        "description": "app.nadooit_time_account.views",
-        "peekOfCode": "def admin(request):\n    return render(\n        request,\n        \"nadooit_time_account/admin.html\",\n        {\"page_title\": \"Übersicht der Zeitkonten\"},\n    )",
-        "detail": "app.nadooit_time_account.views",
         "documentation": {}
     },
     {

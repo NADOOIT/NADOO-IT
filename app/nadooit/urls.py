@@ -41,7 +41,6 @@ urlpatterns = [
     path(
         "devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"
     ),  # This short link to add new trusted device
-    path("time_account/", include("nadooit_time_account.urls")),
     path("program_ownership/", include("nadooit_program_ownership_system.urls")),
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

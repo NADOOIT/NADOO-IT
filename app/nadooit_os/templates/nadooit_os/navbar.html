@@ -31,8 +31,8 @@
                   Zeitkonten
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'customer_time_account_overview' %}" class="dropdown-item {% is_url_active request 'customer_time_account_overview' %}">Zeitkonten</a></li>
-                    <li><a href="{% url 'customer_order_overview' %}" class="dropdown-item {% is_url_active request 'customer_order_overview' %}">Buchungen</a></li>
+                    <li><a href="{% url 'nadooit_os:customer_time_account_overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer_time_account_overview' %}">Zeitkonten</a></li>
+                    <li><a href="{% url 'nadooit_os:customer_order_overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer_order_overview' %}">Buchungen</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
