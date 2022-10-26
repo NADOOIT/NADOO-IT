@@ -161,9 +161,34 @@ docker compose -f docker-compose.deploy.yml up -d
 - [ ] Move all pages to Nadooit-OS
 
 
-## Local development
+# Development 
+## Local development setup
+1. Install github desktop
+2. Clone the repository
+3. Install docker
+4. Install docker-compose
+5. Install python
+6. Install pip
+7. use the following command to install the requirements
+docker compose -f docker-compose.yml build
 docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
 docker-compose -f docker-compose.yml run --rm app python manage.py migrate
 docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
 docker-compose -f docker-compose.yml up
 	
+## Contributing
+1. Fork it (
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+
+## Adding a new User Role to the system
+1. Create a new app
+2. Create a new model that is called XcZcManager
+  Add the following fields to the model:
+  employee = models.OneToOneField(employee, on_delete=models.CASCADE)
+  customers_the_manager_is_responsible_for = models.ManyToManyField(Customer, on_delete=models.CASCADE)	
+  created_at = models.DateTimeField(auto_now_add=True)	
+  updated_at = models.DateTimeField(auto_now=True)
+3. Add the following to the app to the list of apps in the settings.py file
+4. Create migrations and migrate

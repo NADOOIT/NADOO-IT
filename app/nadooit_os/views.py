@@ -24,41 +24,53 @@ from nadooit_api_executions_system.models import CustomerProgramExecution
 # Manager Roles
 from nadooit_time_account.models import TimeAccountManager
 
-from nadooit_api_key.models import NadooitApiKeyManager
-from nadooit_hr.models import EmployeeManager
-from nadooit_program_ownership_system.models import NadooitCustomerProgramManager
-from nadooit_api_executions_system.models import CustomerProgramExecutionManager
-
 
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 
 # Tests for user roles
-def user_is_TimeAccountManager(user: User) -> bool:
+def user_is_Time_Account_Manager(user: User) -> bool:
     if hasattr(user.employee, "timeaccountmanager"):
         return True
     return False
 
 
-# Creating the
-def navbar_access_params(page_tite: str, request: HttpRequest) -> dict:
+def user_is_Api_Key_Manager(user: User) -> bool:
+    if hasattr(user.employee, "nadooitapikeymanager"):
+        return True
+    return False
+
+
+def user_is_Employee_Manager(user: User) -> bool:
+    if hasattr(user.employee, "employeemanager"):
+        return True
+    return False
+
+
+def user_is_Customer_Program_Manager(user: User) -> bool:
+    if hasattr(user.employee, "nadooitcustomerprogrammanager"):
+        return True
+    return False
+
+
+def user_is_Customer_Program_Execution_Manager(user: User) -> bool:
+    if hasattr(user.employee, "customerprogramexecutionmanager"):
+        return True
+    return False
+
+
+# Getting the user roles
+# If new roles are added, they need to be added here
+# this function uses the user_is_... functions above
+def get_user_manager_roles(request: HttpRequest) -> dict:
     return {
-        "page_title": page_tite,
-        "user_has_access_to_Time_Account_Managment": TimeAccountManager.objects.filter(
-            employee__user=request.user
-        ).exists(),
-        "user_has_access_to_Customer_Program_Managment": NadooitCustomerProgramManager.objects.filter(
-            employee__user=request.user
-        ).exists(),
-        "user_has_access_to_Customer_Program_Execution_Managment": CustomerProgramExecutionManager.objects.filter(
-            employee__user=request.user
-        ).exists(),
-        "user_has_access_to_HR_Managment": EmployeeManager.objects.filter(
-            employee__user=request.user
-        ).exists(),
-        "user_has_access_to_Api_Key_Managment": NadooitApiKeyManager.objects.filter(
-            user=request.user
-        ).exists(),
+        "is_time_account_manager": user_is_Time_Account_Manager(request.user),
+        "is_api_key_manager": user_is_Api_Key_Manager(request.user),
+        "is_employee_manager": user_is_Employee_Manager(request.user),
+        "is_customer_program_manager": user_is_Customer_Program_Manager(request.user),
+        "is_customer_program_execution_manager": user_is_Customer_Program_Execution_Manager(
+            request.user
+        ),
     }
 
 
@@ -67,23 +79,22 @@ def navbar_access_params(page_tite: str, request: HttpRequest) -> dict:
 @login_required(login_url="/auth/login-user")
 def index_nadooit_os(request: HttpRequest):
 
-    user_is_Time_Account_Manager = TimeAccountManager.objects.filter(
-        employee__user=request.user
-    ).exists()
-
     return render(
         request,
         "nadooit_os/index.html",
+        # context as dict
+        # first item is page_title
+        # dict from get_user_manager_roles is added
         {
             "page_title": "Nadooit OS",
-            "user_is_Time_Account_Manager": user_is_Time_Account_Manager,
+            **get_user_manager_roles(request),
         },
     )
 
 
 # Views for the time account system
 @login_required(login_url="/auth/login-user")
-@user_passes_test(user_is_TimeAccountManager, login_url="/auth/login-user")
+@user_passes_test(user_is_Time_Account_Manager, login_url="/auth/login-user")
 def customer_time_account_overview(request: HttpRequest):
 
     time_accounts_the_user_is_responsible_for = list(
@@ -163,13 +174,16 @@ def customer_time_account_overview(request: HttpRequest):
         {
             "page_title": "Übersicht der Zeitkonten",
             "customer_time_accounts_grouped_by_customer": customer_time_accounts_grouped_by_customer,
+            **get_user_manager_roles(request),
         },
     )
 
 
 # Views for the customer program overview
 @login_required(login_url="/auth/login-user")
-@user_passes_test(user_is_TimeAccountManager, login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
+)
 def customer_order_overview(request: HttpRequest):
 
     # All orders for the current customer
@@ -211,12 +225,14 @@ def customer_order_overview(request: HttpRequest):
         {
             "page_title": "Übersicht der Buchungen",
             "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_user_is_responsible_for_and_the_customer_programm_executions,
+            **get_user_manager_roles(request),
         },
     )
 
 
 # API KEYS Views
 @login_required(login_url="/auth/login-user")
+@user_passes_test(user_is_Api_Key_Manager, login_url="/auth/login-user")
 def create_api_key(request: HttpRequest):
     submitted = False
     if request.method == "POST":
@@ -230,9 +246,7 @@ def create_api_key(request: HttpRequest):
             new_api_key.updated_at = timezone.now()
             new_api_key.created_at = timezone.now()
             new_api_key.save()
-            return HttpResponseRedirect(
-                "/nadooit-api-key/create-api-key?submitted=True"
-            )
+            return HttpResponseRedirect("/nadooit-os/create-api-key?submitted=True")
     else:
         form = ApiKeyForm()
         if "submitted" in request.GET:
@@ -246,5 +260,34 @@ def create_api_key(request: HttpRequest):
             "form": form,
             "submitted": submitted,
             "page_title": "NADOOIT API KEY erstellen",
+            **get_user_manager_roles(request),
+        },
+    )
+
+
+@login_required(login_url="/auth/login-user")
+def revoke_api_key(request: HttpRequest):
+
+    submitted = False
+    if request.method == "POST":
+        #get list of all api keys that are active for the user and set them to inactive
+        api_keys = NadooitApiKey.objects.filter(	
+            user=request.user, is_active=True
+        )
+        for api_key in api_keys:
+            api_key.is_active = False
+            api_key.save()
+        return HttpResponseRedirect("/nadooit-os/revoke-api-key?submitted=True")
+    else:
+        if "submitted" in request.GET:
+            submitted = True
+
+    return render(
+        request,
+        "nadooit_os/revoke_api_key.html",
+        {
+            "submitted": submitted,
+            "page_title": "NADOOIT API KEY löschen",
+            **get_user_manager_roles(request),
         },
     )
