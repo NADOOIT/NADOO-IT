@@ -576,6 +576,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1557,14 +1573,6 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgramManager",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
-        "documentation": {}
-    },
-    {
         "label": "NadooitCustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
@@ -1653,7 +1661,7 @@
         "documentation": {}
     },
     {
-        "label": "EmployeeManager",
+        "label": "Employee",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
         "isExtraImport": true,
@@ -1702,14 +1710,6 @@
     },
     {
         "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramExecutionManager",
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
         "isExtraImport": true,
@@ -1782,7 +1782,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitApiKey",
+        "label": "NadooitApiKeyManager",
         "importPath": "nadooit_api_key.models",
         "description": "nadooit_api_key.models",
         "isExtraImport": true,
@@ -1790,7 +1790,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitApiKeyManager",
+        "label": "NadooitApiKey",
         "importPath": "nadooit_api_key.models",
         "description": "nadooit_api_key.models",
         "isExtraImport": true,
@@ -2081,6 +2081,15 @@
         "description": "nadooit_key.models",
         "isExtraImport": true,
         "detail": "nadooit_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
         "documentation": {}
     },
     {
@@ -2475,7 +2484,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.0/howto/static-files/\nINTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Settings for additional apps",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2484,7 +2493,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"static\", \"js\", \"nadooit_serviceworker.js\"\n)",
+        "peekOfCode": "INTERNAL_IPS = [\n    \"127.0.0.1\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Settings for additional apps\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# PWA settings",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2493,7 +2502,25 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"",
+        "peekOfCode": "DEFAULT_AUTO_FIELD = \"django.db.models.BigAutoField\"\n# Settings for additional apps\nCRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CRISPY_ALLOWED_TEMPLATE_PACKS",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "CRISPY_ALLOWED_TEMPLATE_PACKS = \"bootstrap5\"\nCRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "CRISPY_TEMPLATE_PACK",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "CRISPY_TEMPLATE_PACK = \"bootstrap5\"\n# PWA settings\nPWA_SERVICE_WORKER_PATH = os.path.join(\n    BASE_DIR, \"static\", \"static\", \"js\", \"nadooit_serviceworker.js\"\n)\nPWA_APP_NAME = \"NADOOIT\"\nPWA_APP_DESCRIPTION = \"NADOOIT PWA\"\nPWA_APP_THEME_COLOR = \"#000000\"\nPWA_APP_BACKGROUND_COLOR = \"#ffffff\"\nPWA_APP_DISPLAY = \"standalone\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2984,6 +3011,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_key.migrations.0009_nadooitapikeymanager_can_give_apikeymanager_role",
+        "description": "app.nadooit_api_key.migrations.0009_nadooitapikeymanager_can_give_apikeymanager_role",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_key', '0008_nadooitapikeymanager'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitapikeymanager',\n            name='can_give_ApiKeyManager_role',\n            field=models.BooleanField(default=False),\n        ),",
+        "detail": "app.nadooit_api_key.migrations.0009_nadooitapikeymanager_can_give_apikeymanager_role",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiKeyConfig",
         "kind": 6,
         "importPath": "app.nadooit_api_key.apps",
@@ -3006,7 +3042,7 @@
         "kind": 6,
         "importPath": "app.nadooit_api_key.models",
         "description": "app.nadooit_api_key.models",
-        "peekOfCode": "class NadooitApiKeyManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_api_key = models.BooleanField(default=False)\n    can_delete_api_key = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
+        "peekOfCode": "class NadooitApiKeyManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_api_key = models.BooleanField(default=False)\n    can_delete_api_key = models.BooleanField(default=False)\n    can_give_ApiKeyManager_role = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
         "detail": "app.nadooit_api_key.models",
         "documentation": {}
     },
@@ -3461,6 +3497,15 @@
         "documentation": {}
     },
     {
+        "label": "ApiKeyManagerForm",
+        "kind": 6,
+        "importPath": "app.nadooit_os.forms",
+        "description": "app.nadooit_os.forms",
+        "peekOfCode": "class ApiKeyManagerForm(forms.Form):\n    # Text input for user code not choice field\n    user_code = forms.CharField(\n        required=True,\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",\n            }",
+        "detail": "app.nadooit_os.forms",
+        "documentation": {}
+    },
+    {
         "label": "app_name",
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
@@ -3479,20 +3524,65 @@
         "documentation": {}
     },
     {
-        "label": "user_is_TimeAccountManager",
+        "label": "user_is_Time_Account_Manager",
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_TimeAccountManager(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\n# Creating the\ndef navbar_access_params(page_tite: str, request: HttpRequest) -> dict:\n    return {\n        \"page_title\": page_tite,\n        \"user_has_access_to_Time_Account_Managment\": TimeAccountManager.objects.filter(\n            employee__user=request.user",
+        "peekOfCode": "def user_is_Time_Account_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
     {
-        "label": "navbar_access_params",
+        "label": "user_is_Api_Key_Manager",
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def navbar_access_params(page_tite: str, request: HttpRequest) -> dict:\n    return {\n        \"page_title\": page_tite,\n        \"user_has_access_to_Time_Account_Managment\": TimeAccountManager.objects.filter(\n            employee__user=request.user\n        ).exists(),\n        \"user_has_access_to_Customer_Program_Managment\": NadooitCustomerProgramManager.objects.filter(\n            employee__user=request.user\n        ).exists(),\n        \"user_has_access_to_Customer_Program_Execution_Managment\": CustomerProgramExecutionManager.objects.filter(",
+        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Employee_Manager",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitcustomerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Customer_Program_Manager",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitcustomerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Customer_Program_Execution_Manager",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here\n# this function uses the user_is_... functions above\ndef get_user_manager_roles(request: HttpRequest) -> dict:\n    return {\n        \"is_time_account_manager\": user_is_Time_Account_Manager(request.user),",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_manager_roles",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def get_user_manager_roles(request: HttpRequest) -> dict:\n    return {\n        \"is_time_account_manager\": user_is_Time_Account_Manager(request.user),\n        \"is_api_key_manager\": user_is_Api_Key_Manager(request.user),\n        \"is_employee_manager\": user_is_Employee_Manager(request.user),\n        \"is_customer_program_manager\": user_is_Customer_Program_Manager(request.user),\n        \"is_customer_program_execution_manager\": user_is_Customer_Program_Execution_Manager(\n            request.user\n        ),\n    }",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3501,7 +3591,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def index_nadooit_os(request: HttpRequest):\n    user_is_Time_Account_Manager = TimeAccountManager.objects.filter(\n        employee__user=request.user\n    ).exists()\n    return render(\n        request,\n        \"nadooit_os/index.html\",\n        {\n            \"page_title\": \"Nadooit OS\",\n            \"user_is_Time_Account_Manager\": user_is_Time_Account_Manager,",
+        "peekOfCode": "def index_nadooit_os(request: HttpRequest):\n    return render(\n        request,\n        \"nadooit_os/index.html\",\n        # context as dict\n        # first item is page_title\n        # dict from get_user_manager_roles is added\n        {\n            \"page_title\": \"Nadooit OS\",\n            **get_user_manager_roles(request),",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3529,6 +3619,24 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def create_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "revoke_api_key",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def revoke_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        # get list of all api keys that are active for the user and set them to inactive\n        api_keys = NadooitApiKey.objects.filter(user=request.user, is_active=True)\n        for api_key in api_keys:\n            api_key.is_active = False\n            api_key.save()\n        return HttpResponseRedirect(\"/nadooit-os/revoke-api-key?submitted=True\")\n    else:",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "give_api_key_manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def give_api_key_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyManagerForm(\n            request.POST,\n        )\n        if form.is_valid():\n            user_code = form.cleaned_data[\"user_code\"]\n            # get the employee object for the user\n            employee = Employee.objects.get(user__user_code=user_code)",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

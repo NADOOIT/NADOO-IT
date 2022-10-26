@@ -158,6 +158,9 @@ docker compose -f docker-compose.deploy.yml up -d
 - [ ] Multi-organization
 
 #### TODOs
+- [ ] Add Options so that the current user can give his roles to another user
+- [ ] Add option for User to create API Key for themselfs
+- [ ] Add option for Manger to revoke API Keys for a diffrent user
 - [ ] Move all pages to Nadooit-OS
 
 

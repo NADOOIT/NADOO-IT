@@ -1,0 +1,38 @@
+{% extends 'nadooit_os/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+        <br/>
+        {% if submitted %}
+            <div class="alert alert-success">
+                <strong>Success!</strong> User als API Key Manager hinzugefügt.
+            </div>
+            
+        {% else %}    
+
+        <form action="" method="post">
+        {% csrf_token %}
+
+        {% comment %} give the user a choice of the customers in the list customers_the_manager_is_responsible_for the user can select multiple
+ {% endcomment %}
+
+        <div class="form-group">
+            <label for="customers">Kunden auswählen:</label>
+            <select class="form-select" multiple id="customers" name="customers">
+                {% for customer in customers_the_manager_is_responsible_for %}
+                <option value="{{ customer.id }}">{{ customer.name }}</option>
+                {% endfor %}
+            </select>	
+        </div>
+        <br/>	
+
+
+        {{ form|crispy  }}
+
+        <input type="submit" value="Mache User Code zum API Key Mangager" class="btn btn-secondary">
+        </form>
+        {% endif %}
+</div>
+
+{% endblock %}

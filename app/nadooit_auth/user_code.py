@@ -23,4 +23,3 @@ def check__valid_user_code(user_code: str) -> bool:
         return False
     else:
         return True
-    return True

@@ -26,7 +26,8 @@
                     {% comment %} add a menue item where the user can revoke his own api key and create a new one for himself {% endcomment %}
                     <li><a href="{% url 'nadooit_os:revoke-api-key' %}" class="dropdown-item {% is_url_active request 'nadooit_os:revoke-api-key' %}">NADOOIT API KEY löschen</a></li>	
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="{% url 'nadooit_os:give-api-key-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-api-key-manager-role' %}">Schlüssel für API Key erstellen freischalten</a></li>
+                    
                 </ul>
               </li>
 
