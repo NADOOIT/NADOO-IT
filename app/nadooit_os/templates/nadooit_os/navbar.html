@@ -38,9 +38,9 @@
                   Zeitkonten
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'nadooit_os:customer_time_account_overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer_time_account_overview' %}">Übersicht</a></li>
+                    <li><a href="{% url 'nadooit_os:customer-time-account-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-time-account-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel für Zeitkontonübersicht erstellen freischalten</a></li>
                 </ul>
               </li>
               {% endif %}
@@ -51,7 +51,7 @@
                   Programmausführungen
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'nadooit_os:customer_order_overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer_order_overview' %}">Übersicht</a></li>
+                    <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
@@ -64,7 +64,7 @@
                   Programme
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'nadooit_os:customer_order_overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer_order_overview' %}">Übersicht</a></li>
+                    <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>

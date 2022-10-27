@@ -2,6 +2,170 @@ This is the nadooit execution manegment system.
 
 It forms the interface to the system, hosts the website, and provides the API.
 
+# Features
+
+## List of planned packages
+
+- [ ] htmx
+- [ ] django-extensions
+- [ ] django-filter
+
+## List of implemented features
+
+- [x] User management
+- [x] Time tracking
+- [x] API
+- [x] Docker
+- [x] SSL
+- [x] django-crispy-forms
+
+## List of planned features
+
+### Pages and features for the website (frontend)
+
+- [ ] Page for Nadooit_Workflow for adding new Processess
+- [ ] Page for clients to see their time tracking
+- [ ] Page for clients to see their invoices
+- [ ] Page for clients to see their projects
+- [ ] Page for clients to see their tasks
+- [ ] Page for clients to see their users
+- [ ] Page for clients to see their documents
+- [ ] Page for clients to see their messages
+- [ ] Page for clients to see their settings
+- [ ] Page for clients to see their notifications
+- [ ] Page for clients to see their calendar
+- [ ] Page for clients to see their reports
+- [ ] Page for clients to see their statistics
+- [ ] Page for clients to see their tickets
+- [ ] Page for clients to see their knowledge base
+- [ ] Page for clients to see their announcements
+
+### Pages and features for the admin (backend)
+
+- [ ] Project management
+- [ ] Task management
+- [ ] Invoice management
+- [ ] File management
+- [ ] Calendar
+- [ ] Chat
+- [ ] Email
+- [ ] Notifications
+- [ ] Settings
+- [ ] Backup
+- [ ] Restore
+- [ ] Update
+- [ ] Upgrade
+- [ ] Downgrade
+- [ ] Multi-tenancy
+- [ ] Multi-language
+- [ ] Multi-currency
+- [ ] Multi-timezone
+- [ ] Multi-country
+- [ ] Multi-locale
+- [ ] Multi-organization
+
+### TODOs
+
+- [ ] Add Options so that the current user can give his roles to another user
+- [ ] Currently a API Key Manager has rights for all its customers. But it each customer should have sperate settings for the manager.
+
+- [ ] Add option for User to create API Key for themselfs
+- [ ] Add option for Manger to revoke API Keys for a diffrent user
+- [ ] Move all pages to Nadooit-OS^
+
+### nadooit_workflow
+- [ ] Add option to add a new process
+- [ ] Add option to add a new task	
+- [ ] Add option to add a new task type	
+- [ ] Add option to add a new task status		
+- [ ] Add option to add a new task priority		
+- [ ] Add option to add a new task category	
+- [ ] Add option to add a new task label	
+- [ ] Add option to add a new task tag		
+- [ ] Add option to add a new task comment	
+- [ ] Add option to add a new task attachment		
+- [ ] Add option to add a new task time tracking			
+- [ ] Add option to add a new task reminder				
+- [ ] Add option to add a new task checklist				
+- [ ] Add option to add a new task checklist item					
+- [ ] Add option to add a new task checklist item comment							
+- [ ] Add option to add a new task checklist item attachment									
+- [ ] Add option to add a new task checklist item time tracking											
+- [ ] Add option to add a new task checklist item reminder														
+- [ ] Add option to add a new task checklist item reminder comment	
+- [ ] Add option to add a new task checklist item reminder attachment	
+- [ ] Add option to add a new task checklist item reminder time tracking	
+
+
+#### Testing
+- [ ] Add tests for nadooit_api_key
+- [ ] Add tests for nadooit_api_execution_system
+- [ ] Add tests for nadooit_auth
+- [ ] Add tests for nadooit_crm
+- [ ] Add tests for nadooit_delivery
+- [ ] Add tests for nadooit_funnel
+- [ ] Add tests for nadooit_hr
+- [ ] Add tests for nadooit_key
+- [ ] Add tests for nadooit_network
+- [ ] Add tests for nadooit_os
+- [ ] Add tests for nadooit_program
+- [ ] Add tests for nadooit_program_ownership_system
+- [ ] Add tests for nadooit_questions_and_answers
+- [ ] Add tests for nadooit_time_account
+- [ ] Add tests for nadooit_website
+- [ ] Add tests for nadooit_workflow
+- [ ] Add tests for nadooit_payment
+
+
+
+
+#### 
+
+#### Refactoring
+
+
+#### Bugs
+
+
+# Development
+
+## Local development setup
+
+1. Install github desktop
+2. Clone the repository
+3. Install docker
+4. Install docker-compose
+5. Install python
+6. Install pip
+7. use the following command to install the requirements
+docker compose -f docker-compose.yml build
+docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
+docker-compose -f docker-compose.yml run --rm app python manage.py migrate
+docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
+docker-compose -f docker-compose.yml up
+
+## Contributing
+
+1. Fork it (
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+
+## Adding a new User Role to the system
+
+1. Create a new app
+2. Create a new model that is called XcZcManager
+  Add the following fields to the model:
+  employee = models.OneToOneField(employee, on_delete=models.CASCADE)
+  customers_the_manager_is_responsible_for = models.ManyToManyField(Customer, on_delete=models.CASCADE)
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+3. Add the following to the app to the list of apps in the settings.py file
+4. Create migrations and migrate
+
+
+
+# Production
 ## Pre-requisites
 
 1. git
@@ -105,111 +269,3 @@ git pull
 docker compose -f docker-compose.deploy.yml build
 docker compose -f docker-compose.deploy.yml down
 docker compose -f docker-compose.deploy.yml up -d
-
-## Features
-
-### List of implemented features
-
-- [x] User management
-- [x] Time tracking
-- [x] API
-- [x] Docker
-- [x] SSL
-- [x] django-crispy-forms
-
-### List of planned packages
-
-- [ ] htmx
-- [ ] django-extensions
-- [ ] django-filter
-
-### List of planned features
-
-#### Pages and features for the website (frontend)
-
-- [ ] Page for Nadooit_Workflow for adding new Processess
-    This
-- [ ] Page for clients to see their time tracking
-- [ ] Page for clients to see their invoices
-- [ ] Page for clients to see their projects
-- [ ] Page for clients to see their tasks
-- [ ] Page for clients to see their users
-- [ ] Page for clients to see their documents
-- [ ] Page for clients to see their messages
-- [ ] Page for clients to see their settings
-- [ ] Page for clients to see their notifications
-- [ ] Page for clients to see their calendar
-- [ ] Page for clients to see their reports
-- [ ] Page for clients to see their statistics
-- [ ] Page for clients to see their tickets
-- [ ] Page for clients to see their knowledge base
-- [ ] Page for clients to see their announcements
-
-#### Pages and features for the admin (backend)
-
-- [ ] Project management
-- [ ] Task management
-- [ ] Invoice management
-- [ ] File management
-- [ ] Calendar
-- [ ] Chat
-- [ ] Email
-- [ ] Notifications
-- [ ] Settings
-- [ ] Backup
-- [ ] Restore
-- [ ] Update
-- [ ] Upgrade
-- [ ] Downgrade
-- [ ] Multi-tenancy
-- [ ] Multi-language
-- [ ] Multi-currency
-- [ ] Multi-timezone
-- [ ] Multi-country
-- [ ] Multi-locale
-- [ ] Multi-organization
-
-#### TODOs
-
-- [ ] Add Options so that the current user can give his roles to another user
-- [ ] Currently a API Key Manager has rights for all its customers. But it each customer should have sperate settings for the manager.
-
-- [ ] Add option for User to create API Key for themselfs
-- [ ] Add option for Manger to revoke API Keys for a diffrent user
-- [ ] Move all pages to Nadooit-OS
-
-# Development
-
-## Local development setup
-
-1. Install github desktop
-2. Clone the repository
-3. Install docker
-4. Install docker-compose
-5. Install python
-6. Install pip
-7. use the following command to install the requirements
-docker compose -f docker-compose.yml build
-docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
-docker-compose -f docker-compose.yml run --rm app python manage.py migrate
-docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
-docker-compose -f docker-compose.yml up
-
-## Contributing
-
-1. Fork it (
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-
-## Adding a new User Role to the system
-
-1. Create a new app
-2. Create a new model that is called XcZcManager
-  Add the following fields to the model:
-  employee = models.OneToOneField(employee, on_delete=models.CASCADE)
-  customers_the_manager_is_responsible_for = models.ManyToManyField(Customer, on_delete=models.CASCADE)
-  created_at = models.DateTimeField(auto_now_add=True)
-  updated_at = models.DateTimeField(auto_now=True)
-3. Add the following to the app to the list of apps in the settings.py file
-4. Create migrations and migrate

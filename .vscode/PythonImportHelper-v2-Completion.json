@@ -1000,6 +1000,30 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1557,6 +1581,14 @@
         "documentation": {}
     },
     {
+        "label": "NadooitCustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramShare",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
@@ -1693,6 +1725,126 @@
         "documentation": {}
     },
     {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitProgram",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "WorkTimeAccountEntry",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccountManager",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomerProgramExecution",
         "importPath": "nadooit_api_executions_system.models",
         "description": "nadooit_api_executions_system.models",
@@ -1730,6 +1882,15 @@
         "description": "model_bakery",
         "isExtraImport": true,
         "detail": "model_bakery",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
         "documentation": {}
     },
     {
@@ -2122,110 +2283,6 @@
         "description": "django.http",
         "isExtraImport": true,
         "detail": "django.http",
-        "documentation": {}
-    },
-    {
-        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccountManager",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "EmployeeTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "WorkTimeAccountEntry",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccountManager",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccountManager",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitProgram",
-        "importPath": "nadooit_program.models",
-        "description": "nadooit_program.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program.models",
-        "documentation": {}
-    },
-    {
-        "label": "NadooitProgram",
-        "importPath": "nadooit_program.models",
-        "description": "nadooit_program.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program.models",
         "documentation": {}
     },
     {
@@ -2903,11 +2960,20 @@
         "documentation": {}
     },
     {
-        "label": "CustomerProgramExecutionTestCase",
-        "kind": 6,
+        "label": "TimeAccountTestModel",
+        "kind": 2,
         "importPath": "app.nadooit_api_executions_system.tests",
         "description": "app.nadooit_api_executions_system.tests",
-        "peekOfCode": "class CustomerProgramExecutionTestCase(TestCase):\n    def setUp(self):\n        self.customer_program_execution = baker.make(\n            \"nadooit_api_executions_system.CustomerProgramExecution\",\n            customer_program=baker.make(\n                \"nadooit_program_ownership_system.NadooitCustomerProgram\",\n                program=baker.make(\n                    \"nadooit_program.NadooitProgram\",\n                    name=\"test_program_for_tests\",\n                ),",
+        "peekOfCode": "def TimeAccountTestModel():\n    return baker.make(\n        TimeAccount,\n        time_balance_in_seconds=1000,\n    )\ndef test_using_model_bakery(TimeAccountTestModel):\n    assert isinstance(TimeAccountTestModel, TimeAccount)",
+        "detail": "app.nadooit_api_executions_system.tests",
+        "documentation": {}
+    },
+    {
+        "label": "test_using_model_bakery",
+        "kind": 2,
+        "importPath": "app.nadooit_api_executions_system.tests",
+        "description": "app.nadooit_api_executions_system.tests",
+        "peekOfCode": "def test_using_model_bakery(TimeAccountTestModel):\n    assert isinstance(TimeAccountTestModel, TimeAccount)",
         "detail": "app.nadooit_api_executions_system.tests",
         "documentation": {}
     },
@@ -3470,6 +3536,42 @@
         "documentation": {}
     },
     {
+        "label": "create_api_key",
+        "kind": 2,
+        "importPath": "app.nadooit_os.xxxx.api_key_views",
+        "description": "app.nadooit_os.xxxx.api_key_views",
+        "peekOfCode": "def create_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
+        "detail": "app.nadooit_os.xxxx.api_key_views",
+        "documentation": {}
+    },
+    {
+        "label": "revoke_api_key",
+        "kind": 2,
+        "importPath": "app.nadooit_os.xxxx.api_key_views",
+        "description": "app.nadooit_os.xxxx.api_key_views",
+        "peekOfCode": "def revoke_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        # get list of all api keys that are active for the user and set them to inactive\n        api_keys = NadooitApiKey.objects.filter(user=request.user, is_active=True)\n        for api_key in api_keys:\n            api_key.is_active = False\n            api_key.save()\n        return HttpResponseRedirect(\"/nadooit-os/revoke-api-key?submitted=True\")\n    else:",
+        "detail": "app.nadooit_os.xxxx.api_key_views",
+        "documentation": {}
+    },
+    {
+        "label": "give_api_key_manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.xxxx.api_key_views",
+        "description": "app.nadooit_os.xxxx.api_key_views",
+        "peekOfCode": "def give_api_key_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyManagerForm(\n            request.POST,\n        )\n        if form.is_valid():\n            user_code = form.cleaned_data[\"user_code\"]\n            # get the employee object for the user\n            employee = Employee.objects.get(user__user_code=user_code)",
+        "detail": "app.nadooit_os.xxxx.api_key_views",
+        "documentation": {}
+    },
+    {
+        "label": "customer_time_account_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_os.xxxx.time_account_views",
+        "description": "app.nadooit_os.xxxx.time_account_views",
+        "peekOfCode": "def customer_time_account_overview(request: HttpRequest):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(\n            employee=Employee.objects.get(user=request.user)\n        ).time_accounts.all()\n    )\n    list_of_customer_time_accounts = []\n    for time_account in time_accounts_the_user_is_responsible_for:\n        # get the customertimeaccount for the time account\n        customer_time_account = CustomerTimeAccount.objects.get(",
+        "detail": "app.nadooit_os.xxxx.time_account_views",
+        "documentation": {}
+    },
+    {
         "label": "NadooitOsConfig",
         "kind": 6,
         "importPath": "app.nadooit_os.apps",
@@ -3506,11 +3608,20 @@
         "documentation": {}
     },
     {
+        "label": "CustomerTimeAccountManagerForm",
+        "kind": 6,
+        "importPath": "app.nadooit_os.forms",
+        "description": "app.nadooit_os.forms",
+        "peekOfCode": "class CustomerTimeAccountManagerForm(forms.Form):\n    # Text input for user code not choice field\n    user_code = forms.CharField(\n        required=True,\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",\n            }",
+        "detail": "app.nadooit_os.forms",
+        "documentation": {}
+    },
+    {
         "label": "app_name",
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
         "description": "app.nadooit_os.urls",
-        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer_time_account_overview\",\n        customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",",
+        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer-time-account-overview\",\n        customer_time_account_overview,\n        name=\"customer-time-account-overview\",\n    ),\n    path(\n        \"orders-overview\",",
         "detail": "app.nadooit_os.urls",
         "documentation": {}
     },
@@ -3519,7 +3630,7 @@
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
         "description": "app.nadooit_os.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer_time_account_overview\",\n        customer_time_account_overview,\n        name=\"customer_time_account_overview\",\n    ),\n    path(\n        \"orders_overview\",\n        customer_order_overview,",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer-time-account-overview\",\n        customer_time_account_overview,\n        name=\"customer-time-account-overview\",\n    ),\n    path(\n        \"orders-overview\",\n        customer_order_overview,",
         "detail": "app.nadooit_os.urls",
         "documentation": {}
     },
@@ -3537,7 +3648,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:",
+        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3546,7 +3657,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:",
+        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3637,6 +3757,15 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def give_api_key_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyManagerForm(\n            request.POST,\n        )\n        if form.is_valid():\n            user_code = form.cleaned_data[\"user_code\"]\n            # get the employee object for the user\n            employee = Employee.objects.get(user__user_code=user_code)",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "give_customer_time_account_manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def give_customer_time_account_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = CustomerTimeAccountManagerForm(\n            request.POST,\n        )\n        if form.is_valid():\n            user_code = form.cleaned_data[\"user_code\"]\n            # get the employee object for the user\n            employee = Employee.objects.get(user__user_code=user_code)",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3848,6 +3977,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0010_timeaccount_is_active_and_more",
+        "description": "app.nadooit_time_account.migrations.0010_timeaccount_is_active_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0009_timeaccountmanager_customers_the_manager_is_responsible_for'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timeaccount',\n            name='is_active',\n            field=models.BooleanField(default=True),\n        ),",
+        "detail": "app.nadooit_time_account.migrations.0010_timeaccount_is_active_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_time_account.migrations.0011_rename_can_delete_api_key_timeaccountmanager_can_delete_time_accounts_and_more",
+        "description": "app.nadooit_time_account.migrations.0011_rename_can_delete_api_key_timeaccountmanager_can_delete_time_accounts_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0010_timeaccount_is_active_and_more'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='timeaccountmanager',\n            old_name='can_delete_api_key',\n            new_name='can_delete_time_accounts',\n        ),",
+        "detail": "app.nadooit_time_account.migrations.0011_rename_can_delete_api_key_timeaccountmanager_can_delete_time_accounts_and_more",
+        "documentation": {}
+    },
+    {
         "label": "NadooitTimeaccountConfig",
         "kind": 6,
         "importPath": "app.nadooit_time_account.apps",
@@ -3870,7 +4017,7 @@
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    name = models.CharField(max_length=255, null=True, blank=True)\n    def __str__(self):\n        time_balance_in_seconds = (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds\n            )\n        )",
+        "peekOfCode": "class TimeAccount(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)\n    name = models.CharField(max_length=255, null=True, blank=True)\n    is_active = models.BooleanField(default=True)\n    def __str__(self):\n        time_balance_in_seconds = (\n            get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(\n                self.time_balance_in_seconds\n            )",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
@@ -3906,7 +4053,7 @@
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class TimeAccountManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # A list of all time accounts the manager is responsible for\n    time_accounts = models.ManyToManyField(TimeAccount, blank=True)\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
+        "peekOfCode": "class TimeAccountManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # A list of all time accounts the manager is responsible for\n    time_accounts = models.ManyToManyField(TimeAccount, blank=True)\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    can_create_time_accounts = models.BooleanField(default=False)\n    can_delete_time_accounts = models.BooleanField(default=False)\n    can_give_TimeAccountManager_role = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },

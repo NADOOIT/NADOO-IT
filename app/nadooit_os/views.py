@@ -9,7 +9,7 @@ from nadooit_api_key.models import NadooitApiKeyManager
 from nadooit_auth.models import User
 
 from nadooit_hr.models import Employee
-from .forms import ApiKeyForm, ApiKeyManagerForm
+from .forms import ApiKeyForm, ApiKeyManagerForm, CustomerTimeAccountManagerForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from nadooit_time_account.models import (
@@ -31,7 +31,6 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 
 
-
 # Tests for user roles
 def user_is_Time_Account_Manager(user: User) -> bool:
     if hasattr(user.employee, "timeaccountmanager"):
@@ -48,6 +47,12 @@ def user_is_Api_Key_Manager(user: User) -> bool:
 def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:
     if hasattr(user.employee, "nadooitapikeymanager"):
         if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:
+            return True
+    return False
+
+def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:
+    if hasattr(user.employee, "timeaccountmanager"):
+        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:
             return True
     return False
 
@@ -181,7 +186,7 @@ def customer_time_account_overview(request: HttpRequest):
 
     return render(
         request,
-        "nadooit_os/customer_time_account_overview.html",
+        "nadooit_os/time_account/customer_time_account_overview.html",
         {
             "page_title": "Übersicht der Zeitkonten",
             "customer_time_accounts_grouped_by_customer": customer_time_accounts_grouped_by_customer,
@@ -386,10 +391,104 @@ def give_api_key_manager_role(request: HttpRequest):
         request,
         "nadooit_os/api_key/give_api_key_manager_role.html",
         {
-            "page_title": "NADOOIT API KEY erstellen",
+            "page_title": "API Key Manager Rolle vergeben",
             "form": form,
             "submitted": submitted,
             "customers_the_manager_is_responsible_for": customers_the_manager_is_responsible_for,
+            **get_user_manager_roles(request),
+        },
+    )
+
+@login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role,
+    login_url="/auth/login-user",
+)
+def give_customer_time_account_manager_role(request: HttpRequest):
+    submitted = False
+    if request.method == "POST":
+        form = CustomerTimeAccountManagerForm(
+            request.POST,
+        )
+
+        if form.is_valid():
+
+            user_code = form.cleaned_data["user_code"]
+            # get the employee object for the user
+            employee = Employee.objects.get(user__user_code=user_code)
+
+            customers_the_new_manager_is_responsible_for = request.POST.getlist(
+                "customers"
+            )
+            can_create_time_accounts = form.cleaned_data["can_create_time_accounts"]
+            can_delete_time_accounts = form.cleaned_data["can_delete_time_accounts"]
+            can_give_TimeAccountManager_role = form.cleaned_data[
+                "can_give_TimeAccountManager_role"
+            ]
+
+            # check if the user is already an TimeAccountManager
+            if user_is_Time_Account_Manager(employee.user):
+                # if the employee is already an ApiKeyManager, update the existing ApiKeyManager object but only give more rights
+                api_key_manager = TimeAccountManager.objects.get(employee=employee)
+                if can_create_time_accounts == True:
+                    api_key_manager.can_create_time_accounts = True
+
+                if can_delete_time_accounts == True:
+                    api_key_manager.can_delete_time_accounts = True
+
+                if can_give_TimeAccountManager_role == True:
+                    api_key_manager.can_give_TimeAccountManager_role = True
+
+                api_key_manager.save()
+
+            else:
+
+                # create new api key manager
+                new_time_account_manager = TimeAccountManager.objects.create(
+                    employee=employee,
+                    can_create_time_accounts=can_create_time_accounts,
+                    can_delete_time_accounts=can_delete_time_accounts,
+                    can_give_TimeAccountManager_role=can_give_TimeAccountManager_role,
+                )
+
+                # add the customers the new manager is responsible for
+                for customer in customers_the_new_manager_is_responsible_for:
+                    new_time_account_manager.customers_the_manager_is_responsible_for.add(
+                        customer
+                    )
+                new_time_account_manager.save()
+
+            return HttpResponseRedirect(
+                "/nadooit-os/give-api-key-manager-role?submitted=True"
+            )
+
+    else:
+        form = CustomerTimeAccountManagerForm(
+            request.POST,
+        )
+        if "submitted" in request.GET:
+            submitted = True
+
+    form = CustomerTimeAccountManagerForm(
+        request.POST,
+    )
+
+    customers_the_manager_is_responsible_for = (
+        request.user.employee.timeaccountmanager.customers_the_manager_is_responsible_for.all()
+    )
+    time_accounts_the_manager_is_responsible_for = (
+        request.user.employee.timeaccountmanager.time_accounts.all()
+    )
+
+    return render(
+        request,
+        "nadooit_os/time_account/give_customer_time_account_manager_role.html",
+        {
+            "page_title": "Zeitkonten Manager Rolle vergeben",
+            "form": form,
+            "submitted": submitted,
+            "customers_the_manager_is_responsible_for": customers_the_manager_is_responsible_for,
+            "time_accounts_the_manager_is_responsible_for": time_accounts_the_manager_is_responsible_for,
             **get_user_manager_roles(request),
         },
     )

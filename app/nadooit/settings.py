@@ -55,11 +55,11 @@ INSTALLED_APPS = [
     "nadooit_key",
     "rest_framework",
     "pwa",
-    "debug_toolbar",
     "django_extensions",
     "mfa",
     "crispy_forms",
     "crispy_bootstrap5",
+    "debug_toolbar",
 ]
 
 
@@ -130,32 +130,6 @@ DATABASES = {
         },
     }
 }
-
-""" 
-        "OPTIONS": {"sslmode": "verify-full", "options": os.environ.get("COCKROACH_DB_OPTIONS")},
-    "default": {
-        "ENGINE": "django_cockroachdb",
-        "NAME": config.get("COCKROACH_DB_NAME"),
-        "USER": config.get("COCKROACH_DB_USER"),
-        "PASSWORD": config.get("COCKROACH_DB_PASSWORD"),
-        "HOST": config.get("COCKROACH_DB_HOST"),
-        "PORT": config.get("COCKROACH_DB_PORT"),
-        "OPTIONS": {"sslmode": "verify-full", "options": "--cluster=nadoo-dev-3563"},
-    }
-"""
-
-
-"""
-For local postgresql database  
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config.get("POSTGRE_SQL_DB_NAME"),
-        "USER": config.get("POSTGRE_SQL_DB_USER"),
-        "PASSWORD": config.get("POSTGRE_SQL_DB_PASSWORD"),
-        "HOST": "localhost",
-        "PORT": config.get("POSTGRE_SQL_DB_PORT"),
-    }
-"""
 
 
 # Default user model

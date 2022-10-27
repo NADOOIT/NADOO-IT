@@ -46,11 +46,7 @@ RUN pip install --upgrade pip && \
 
 USER root
 
-RUN pip install uwsgi
 RUN apk del .tmp
 
 
 USER django
-
-
-CMD [ "uwsgi","--socket",":9090","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]

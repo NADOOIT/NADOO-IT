@@ -71,7 +71,43 @@ class ApiKeyManagerForm(forms.Form):
     )
     # Add lable that says "New API Key Manager can give other users API Key Manager permissions"
     can_give_ApiKeyManager_role = forms.BooleanField(
-        label="Kann anderen Benutzern API Key Manager Rechte geben",
+        label="Kann Schlüßel API Key Manager Rechte vergeben",
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
+    )
+
+
+class CustomerTimeAccountManagerForm(forms.Form):
+
+    # Text input for user code not choice field
+    user_code = forms.CharField(
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "style": "width: 150px;",
+                "class": "form-control",
+            }
+        ),
+    )
+
+    can_create_time_accounts = forms.BooleanField(
+        required=False,
+        label="Kann Zeitkonten erstellen",
+        initial=False,
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
+    )
+
+    can_delete_time_accounts = forms.BooleanField(
+        label="Kann Zeitkonten löschen",
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
+    )
+    # Add lable that says "New API Key Manager can give other users API Key Manager permissions"
+    can_give_Customer_Time_Account_Manager_role = forms.BooleanField(
+        label="Kann Schlüßel Zeitkonto Manager Rechte vergeben",
         required=False,
         initial=False,
         widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
