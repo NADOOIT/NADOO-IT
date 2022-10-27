@@ -172,6 +172,8 @@ docker compose -f docker-compose.deploy.yml up -d
 #### TODOs
 
 - [ ] Add Options so that the current user can give his roles to another user
+- [ ] Currently a API Key Manager has rights for all its customers. But it each customer should have sperate settings for the manager.
+
 - [ ] Add option for User to create API Key for themselfs
 - [ ] Add option for Manger to revoke API Keys for a diffrent user
 - [ ] Move all pages to Nadooit-OS
