@@ -3536,42 +3536,6 @@
         "documentation": {}
     },
     {
-        "label": "create_api_key",
-        "kind": 2,
-        "importPath": "app.nadooit_os.xxxx.api_key_views",
-        "description": "app.nadooit_os.xxxx.api_key_views",
-        "peekOfCode": "def create_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
-        "detail": "app.nadooit_os.xxxx.api_key_views",
-        "documentation": {}
-    },
-    {
-        "label": "revoke_api_key",
-        "kind": 2,
-        "importPath": "app.nadooit_os.xxxx.api_key_views",
-        "description": "app.nadooit_os.xxxx.api_key_views",
-        "peekOfCode": "def revoke_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        # get list of all api keys that are active for the user and set them to inactive\n        api_keys = NadooitApiKey.objects.filter(user=request.user, is_active=True)\n        for api_key in api_keys:\n            api_key.is_active = False\n            api_key.save()\n        return HttpResponseRedirect(\"/nadooit-os/revoke-api-key?submitted=True\")\n    else:",
-        "detail": "app.nadooit_os.xxxx.api_key_views",
-        "documentation": {}
-    },
-    {
-        "label": "give_api_key_manager_role",
-        "kind": 2,
-        "importPath": "app.nadooit_os.xxxx.api_key_views",
-        "description": "app.nadooit_os.xxxx.api_key_views",
-        "peekOfCode": "def give_api_key_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyManagerForm(\n            request.POST,\n        )\n        if form.is_valid():\n            user_code = form.cleaned_data[\"user_code\"]\n            # get the employee object for the user\n            employee = Employee.objects.get(user__user_code=user_code)",
-        "detail": "app.nadooit_os.xxxx.api_key_views",
-        "documentation": {}
-    },
-    {
-        "label": "customer_time_account_overview",
-        "kind": 2,
-        "importPath": "app.nadooit_os.xxxx.time_account_views",
-        "description": "app.nadooit_os.xxxx.time_account_views",
-        "peekOfCode": "def customer_time_account_overview(request: HttpRequest):\n    time_accounts_the_user_is_responsible_for = list(\n        TimeAccountManager.objects.get(\n            employee=Employee.objects.get(user=request.user)\n        ).time_accounts.all()\n    )\n    list_of_customer_time_accounts = []\n    for time_account in time_accounts_the_user_is_responsible_for:\n        # get the customertimeaccount for the time account\n        customer_time_account = CustomerTimeAccount.objects.get(",
-        "detail": "app.nadooit_os.xxxx.time_account_views",
-        "documentation": {}
-    },
-    {
         "label": "NadooitOsConfig",
         "kind": 6,
         "importPath": "app.nadooit_os.apps",
