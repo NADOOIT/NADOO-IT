@@ -50,7 +50,10 @@ def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:
             return True
     return False
 
-def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:
+
+def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(
+    user: User,
+) -> bool:
     if hasattr(user.employee, "timeaccountmanager"):
         if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:
             return True
@@ -398,6 +401,7 @@ def give_api_key_manager_role(request: HttpRequest):
             **get_user_manager_roles(request),
         },
     )
+
 
 @login_required(login_url="/auth/login-user")
 @user_passes_test(

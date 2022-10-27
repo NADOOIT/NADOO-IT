@@ -3612,7 +3612,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:",
+        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3621,7 +3621,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False",
+        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3630,7 +3630,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:",
+        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
