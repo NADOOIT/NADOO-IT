@@ -30,6 +30,8 @@ from nadooit_time_account.models import TimeAccountManager
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
 
+
+
 # Tests for user roles
 def user_is_Time_Account_Manager(user: User) -> bool:
     if hasattr(user.employee, "timeaccountmanager"):
