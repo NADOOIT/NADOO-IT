@@ -10,38 +10,81 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="btn btn-danger" href="{% url 'nadooit_auth:logout-user' %}"role="button">Logout</a>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Profil</a>
               </li>
+
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   NADOOIT API KEY
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'create-api-key' %}" class="dropdown-item {% is_url_active request 'create-api-key' %}">NADOOIT API KEY erstellen</a></li>
+                    {% if is_api_key_manager%}
+                    <li><a href="{% url 'nadooit_os:create-api-key' %}" class="dropdown-item {% is_url_active request 'nadooit_os:create-api-key' %}">NADOOIT API KEY erstellen</a></li>
+                    {% endif %}
+                    {% comment %} add a menue item where the user can revoke his own api key and create a new one for himself {% endcomment %}
+                    <li><a href="{% url 'nadooit_os:revoke-api-key' %}" class="dropdown-item {% is_url_active request 'nadooit_os:revoke-api-key' %}">NADOOIT API KEY löschen</a></li>	
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="{% url 'nadooit_os:give-api-key-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-api-key-manager-role' %}">Schlüssel für API Key erstellen freischalten</a></li>
+                    
                 </ul>
               </li>
+
+
+              {% if is_time_account_manager%}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Zeitkonten
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'customer_time_account_overview' %}" class="dropdown-item {% is_url_active request 'customer_time_account_overview' %}">Zeitkonten</a></li>
-                    <li><a href="{% url 'customer_order_overview' %}" class="dropdown-item {% is_url_active request 'customer_order_overview' %}">Buchungen</a></li>
+                    <li><a href="{% url 'nadooit_os:customer-time-account-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-time-account-overview' %}">Übersicht</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel für Zeitkontonübersicht erstellen freischalten</a></li>
+                </ul>
+              </li>
+              {% endif %}
+
+              {% if is_customer_program_execution_manager%}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Programmausführungen
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+              {% endif %}
+
+              {% if is_customer_program_manager%}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Programme
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              {% endif %}
+
+            <li  class="nav-item">
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </li>
+            {% comment %}  add padding to left {% endcomment %}
+            <li class="nav-item">
+              <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"></a>
+            <li class="nav-item">
+              <a class="btn btn-danger" href="{% url 'nadooit_auth:logout-user' %}"role="button">Logout</a>
+            </li>
+
+          </ul>          
           </div>
         </div>
       </nav>

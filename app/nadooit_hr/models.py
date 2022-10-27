@@ -10,10 +10,29 @@ class Employee(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # a customers field that shows what customers the employee is assigned to
-    customers = models.ManyToManyField(Customer)
+    customers_the_employee_works_for = models.ManyToManyField(Customer)
 
     def __str__(self):
-        if self.user.display_name != "":
-            return self.user.display_name
-        else:
-            return self.user.username
+        display_name = self.user.display_name
+        if display_name is not None:
+            return display_name
+        username = self.user.username
+        if username is not None:
+            return username
+        return self.user.user_code
+
+
+class EmployeeManager(models.Model):
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    customers_the_manager_is_responsible_for = models.ManyToManyField(
+        Customer, blank=True
+    )
+
+    def __str__(self):
+        display_name = self.employee.user.display_name
+        if display_name is not None:
+            return display_name
+        username = self.employee.user.username
+        if username is not None:
+            return username
+        return self.employee.user.user_code

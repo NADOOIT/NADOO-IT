@@ -3,6 +3,8 @@ from django.db import models
 from nadooit_crm.models import Customer
 from nadooit_program.models import NadooitProgram
 from nadooit_time_account.models import TimeAccount
+from nadooit_hr.models import Employee
+
 
 # Create your models here.
 
@@ -29,3 +31,24 @@ class NadooitCustomerProgram(models.Model):
 
     def __str__(self):
         return str(self.id) + " " + self.program.name
+
+
+class NadooitCustomerProgramManager(models.Model):
+    employee = models.OneToOneField(
+        Employee, on_delete=models.CASCADE, primary_key=True
+    )
+    can_create_customer_program = models.BooleanField(default=False)
+    can_delete_customer_program = models.BooleanField(default=False)
+
+    customers_the_manager_is_responsible_for = models.ManyToManyField(
+        Customer, blank=True
+    )
+
+    def __str__(self):
+        display_name = self.employee.user.display_name
+        if display_name is not None:
+            return display_name
+        username = self.employee.user.username
+        if username is not None:
+            return username
+        return self.employee.user.user_code
