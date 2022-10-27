@@ -8,3 +8,4 @@ class CustomerProgramExecutionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CustomerProgramExecution, CustomerProgramExecutionAdmin)
+admin.site.register(CustomerProgramExecutionManager)

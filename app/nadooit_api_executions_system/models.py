@@ -1,9 +1,12 @@
 from django.db import models
 import uuid
+from nadooit_crm.models import Customer
 
 from nadooit_program_ownership_system.models import NadooitCustomerProgram
 
 from django.dispatch import receiver
+from nadooit_hr.models import Employee
+
 
 # Create your models here.
 class CustomerProgramExecution(models.Model):
@@ -41,3 +44,25 @@ def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):
         + instance.program_time_saved_in_seconds
     )
     obj.time_account.save()
+
+
+class CustomerProgramExecutionManager(models.Model):
+    employee = models.OneToOneField(
+        Employee, on_delete=models.CASCADE, primary_key=True
+    )
+    can_create_customer_program_execution = models.BooleanField(default=False)
+    can_delete_customer_program_execution = models.BooleanField(default=False)
+
+    customers_the_manager_is_responsible_for = models.ManyToManyField(
+        Customer, blank=True
+    )
+
+    # if display_name is not null, then use it, otherwise use username. if username is not null, then use it, otherwise use user_code
+    def __str__(self):
+        display_name = self.employee.user.display_name
+        if display_name is not None:
+            return display_name
+        username = self.employee.user.username
+        if username is not None:
+            return username
+        return self.employee.user.user_code

@@ -1,0 +1,45 @@
+{% extends 'nadooit_os/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+        <br/>
+        {% if submitted %}
+            <div class="alert alert-success">
+                <strong>Schlüssel als Manager freigeschaltet!</strong>
+            </div>
+            
+        {% else %}    
+
+        <form action="" method="post">
+        {% csrf_token %}
+
+        {% comment %} give the user a choice of the customers from the list customers_the_manager_is_responsible_for the user can select multiple
+ {% endcomment %}
+
+        <div class="form-group">
+            <label for="customers">Kunden auswählen:</label>
+            <select class="form-select" multiple id="customers" name="customers">
+                {% for customer in customers_the_manager_is_responsible_for %}
+                <option value="{{ customer.id }}">{{ customer.name }}</option>
+                {% endfor %}
+            </select>	
+        </div>
+        <br/>
+        {% comment %} give the user a choice of the time_accounts from the list time_accounts_the_manager_is_responsible_for the user can select multiple  {% endcomment %}	
+        <div class="form-group">
+            <label for="time_accounts">Zeitkonten auswählen:</label>
+            <select class="form-select" multiple id="time_accounts" name="time_accounts">
+                {% for time_account in time_accounts_the_manager_is_responsible_for %}
+                <option value="{{ time_account.id }}">{{ time_account.name }}</option>
+                {% endfor %}
+            </select>
+
+        {{ form|crispy  }}
+
+        <input type="submit" value="Mache User Code zum API Key Mangager" class="btn btn-secondary">
+        </form>
+        {% endif %}
+</div>
+
+{% endblock %}

@@ -33,7 +33,6 @@ urlpatterns = [
     path("auth/", include("nadooit_auth.urls", namespace="nadooit_auth")),
     path("api/", include("nadooit_api_executions_system.urls")),
     path("nadooit-os/", include("nadooit_os.urls", namespace="nadooit_os")),
-    path("nadooit-api-key/", include("nadooit_api_key.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
     path("grappelli/", include("grappelli.urls")),
     path("", include("pwa.urls")),
@@ -41,7 +40,6 @@ urlpatterns = [
     path(
         "devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"
     ),  # This short link to add new trusted device
-    path("time_account/", include("nadooit_time_account.urls")),
     path("program_ownership/", include("nadooit_program_ownership_system.urls")),
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -92,9 +92,12 @@ def logout_user(request):
 )
 def register_user(request):
     if request.method == "POST":
+
         error = ""
+
         user_code = request.POST.get("user_code").replace("/", "")
         display_name = request.POST.get("display_name")
+
         if not check__valid_user_code(user_code):
             error = "Invalid user_code"
             return render(
@@ -110,6 +113,7 @@ def register_user(request):
                 context={"page_title": "Register", "error": error},
             )
         else:
+
             username = get__new_username()
             first_name = get__new_username()
             u = User.objects.create(
@@ -128,6 +132,7 @@ def register_user(request):
             u.backend = "django.contrib.auth.backends.ModelBackend"
             login(request, u)
             return redirect(reverse("start_fido2"))
+
     else:
         return render(
             request,

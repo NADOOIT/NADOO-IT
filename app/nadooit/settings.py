@@ -55,10 +55,13 @@ INSTALLED_APPS = [
     "nadooit_key",
     "rest_framework",
     "pwa",
-    "debug_toolbar",
     "django_extensions",
     "mfa",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "debug_toolbar",
 ]
+
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -128,32 +131,6 @@ DATABASES = {
     }
 }
 
-""" 
-        "OPTIONS": {"sslmode": "verify-full", "options": os.environ.get("COCKROACH_DB_OPTIONS")},
-    "default": {
-        "ENGINE": "django_cockroachdb",
-        "NAME": config.get("COCKROACH_DB_NAME"),
-        "USER": config.get("COCKROACH_DB_USER"),
-        "PASSWORD": config.get("COCKROACH_DB_PASSWORD"),
-        "HOST": config.get("COCKROACH_DB_HOST"),
-        "PORT": config.get("COCKROACH_DB_PORT"),
-        "OPTIONS": {"sslmode": "verify-full", "options": "--cluster=nadoo-dev-3563"},
-    }
-"""
-
-
-"""
-For local postgresql database  
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config.get("POSTGRE_SQL_DB_NAME"),
-        "USER": config.get("POSTGRE_SQL_DB_USER"),
-        "PASSWORD": config.get("POSTGRE_SQL_DB_PASSWORD"),
-        "HOST": "localhost",
-        "PORT": config.get("POSTGRE_SQL_DB_PORT"),
-    }
-"""
-
 
 # Default user model
 AUTH_USER_MODEL = "nadooit_auth.User"
@@ -201,6 +178,10 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Settings for additional apps
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
 # PWA settings

@@ -22,6 +22,7 @@ class TimeAccount(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     time_balance_in_seconds = models.BigIntegerField(null=True, blank=True, default=0)
     name = models.CharField(max_length=255, null=True, blank=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
 
@@ -66,6 +67,7 @@ class EmployeeTimeAccount(models.Model):
 class CustomerTimeAccount(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
     time_account = models.ForeignKey(TimeAccount, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
@@ -132,8 +134,19 @@ class TimeAccountManager(models.Model):
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
     # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
+    can_create_time_accounts = models.BooleanField(default=False)
+    can_delete_time_accounts = models.BooleanField(default=False)
+    can_give_TimeAccountManager_role = models.BooleanField(default=False)
+
+    customers_the_manager_is_responsible_for = models.ManyToManyField(
+        Customer, blank=True
+    )
+
     def __str__(self):
-        if self.employee.user.display_name != "":
-            return self.employee.user.display_name
-        else:
-            return self.employee.user.username
+        display_name = self.employee.user.display_name
+        if display_name is not None:
+            return display_name
+        username = self.employee.user.username
+        if username is not None:
+            return username
+        return self.employee.user.user_code

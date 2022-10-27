@@ -1,0 +1,53 @@
+{% extends 'nadooit_os/base.html' %}
+{% block content %}
+{% csrf_token %}
+
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col">
+
+      {% for cutomer in customers_the_user_is_responsible_for_and_the_customer_programm_executions %}
+
+          <div class="table-responsive">
+          <table class="table caption-top">
+            <caption>{{cutomer.0.name}}</caption>
+              <thead class="table-dark">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Programm</th>
+                  <th scope="col">Buchung</th>
+                  <th scope="col">Erstellt am</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for order in cutomer.1 %}
+                  <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.customer_program.program.name }}</td>
+                    <td>{{ order.program_time_saved_in_seconds}} sek</td>
+                    <td>{{ order.created_at}}</td>
+                  </tr>
+                  {% empty %}
+                  <tr>
+                    <td colspan="4"> Keine Buchungen vorhanden </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        <br>
+
+        {% empty %}
+        <div class="alert alert-info" role="alert">
+          Keine Buchungen vorhanden
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
