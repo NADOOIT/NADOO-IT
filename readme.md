@@ -72,6 +72,16 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 - [ ] Move all pages to Nadooit-OS
 
+### nadooit_os
+
+#### TODOs
+
+##### Pages and features for the website (frontend)
+
+##### Bugfixes
+
+- [x] Fix the bug that the if the manager goes to the overview page he is not shown all customers
+
 ### nadooit_images
 
 This is an app for managing images.
