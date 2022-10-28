@@ -168,11 +168,18 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 #### Bugs
 
-# Installation and setup
+## Contributing
 
-# Development
+1. Fork it (
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
 
-## Local development setup
+## Installation and setup
+
+## Development
+
+### Local development setup
 
 1. Install github desktop
 2. Clone the repository
@@ -188,14 +195,7 @@ It forms the interface to the system, hosts the website, and provides the API.
     docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
     docker-compose -f docker-compose.yml up
 
-## Contributing
-
-1. Fork it (
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-
-## Adding a new User Role to the system
+### Adding a new User Role to the system
 
 1. Create a new app
 2. Create a new model that is called XcZcManager
@@ -231,7 +231,7 @@ See the following link for instructions on installing docker on your system: <ht
 
 ##### Install docker
 
-# TODO Fill this section
+TODO Fill this section
 
 #### Project setup
 
