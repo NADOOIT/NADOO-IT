@@ -328,7 +328,7 @@ def give_api_key_manager_role(request: HttpRequest):
 
                 # add the customers the new manager is responsible for
                 for customer in customers_the_new_manager_is_responsible_for:
-                    new_api_key_manager.customers_the_manager_is_responsible_for.add(
+                    new_api_key_manager.list_of_customers_the_manager_is_responsible_for.add(
                         customer
                     )
                 new_api_key_manager.save()
@@ -348,8 +348,8 @@ def give_api_key_manager_role(request: HttpRequest):
         request.POST,
     )
 
-    customers_the_manager_is_responsible_for = (
-        request.user.employee.nadooitapikeymanager.customers_the_manager_is_responsible_for.all()
+    list_of_customers_the_manager_is_responsible_for = (
+        request.user.employee.nadooitapikeymanager.list_of_customers_the_manager_is_responsible_for.all()
     )
 
     return render(
@@ -359,7 +359,7 @@ def give_api_key_manager_role(request: HttpRequest):
             "page_title": "API Key Manager Rolle vergeben",
             "form": form,
             "submitted": submitted,
-            "customers_the_manager_is_responsible_for": customers_the_manager_is_responsible_for,
+            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
             **get_user_manager_roles(request),
         },
     )
@@ -419,7 +419,7 @@ def give_customer_time_account_manager_role(request: HttpRequest):
 
                 # add the customers the new manager is responsible for
                 for customer in customers_the_new_manager_is_responsible_for:
-                    new_time_account_manager.customers_the_manager_is_responsible_for.add(
+                    new_time_account_manager.list_of_customers_the_manager_is_responsible_for.add(
                         customer
                     )
                 new_time_account_manager.save()
@@ -439,8 +439,8 @@ def give_customer_time_account_manager_role(request: HttpRequest):
         request.POST,
     )
 
-    customers_the_manager_is_responsible_for = (
-        request.user.employee.timeaccountmanager.customers_the_manager_is_responsible_for.all()
+    list_of_customers_the_manager_is_responsible_for = (
+        request.user.employee.timeaccountmanager.list_of_customers_the_manager_is_responsible_for.all()
     )
     time_accounts_the_manager_is_responsible_for = (
         request.user.employee.timeaccountmanager.time_accounts.all()
@@ -453,7 +453,7 @@ def give_customer_time_account_manager_role(request: HttpRequest):
             "page_title": "Zeitkonten Manager Rolle vergeben",
             "form": form,
             "submitted": submitted,
-            "customers_the_manager_is_responsible_for": customers_the_manager_is_responsible_for,
+            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
             "time_accounts_the_manager_is_responsible_for": time_accounts_the_manager_is_responsible_for,
             **get_user_manager_roles(request),
         },
@@ -480,7 +480,9 @@ def customer_program_execution_overview(request: HttpRequest):
 
     for (
         customer_the_employe_works_for
-    ) in employee.customerprogramexecutionmanager.customers_the_manager_is_responsible_for.all():
+    ) in (
+        employee.customerprogramexecutionmanager.list_of_customers_the_manager_is_responsible_for.all()
+    ):
         # list of customer programms with of the customer
         customer_programms = NadooitCustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
@@ -499,7 +501,9 @@ def customer_program_execution_overview(request: HttpRequest):
     # Multiple lists for the different order states
     # List one shows all orders for the current month
     # List shows all previous orders
-    print(customers_the_employee_is_responsible_for_and_the_customer_programm_executions)
+    print(
+        customers_the_employee_is_responsible_for_and_the_customer_programm_executions
+    )
     return render(
         request,
         "nadooit_os/customer_program_execution/customer_program_execution_overview.html",
@@ -581,7 +585,7 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
 
                     # add the customers the new manager is responsible for
                     for customer in request.POST.getlist("customers"):
-                        new_customer_program_execution_manager.customers_the_manager_is_responsible_for.add(
+                        new_customer_program_execution_manager.list_of_customers_the_manager_is_responsible_for.add(
                             customer
                         )
                     new_customer_program_execution_manager.save()
@@ -604,8 +608,8 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
         if "submitted" in request.GET:
             submitted = True
 
-    customers_the_manager_is_responsible_for = (
-        request.user.employee.customerprogramexecutionmanager.customers_the_manager_is_responsible_for.all()
+    list_of_customers_the_manager_is_responsible_for = (
+        request.user.employee.customerprogramexecutionmanager.list_of_customers_the_manager_is_responsible_for.all()
     )
 
     return render(
@@ -615,7 +619,7 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
             "page_title": "Programmausführungs Manager Rolle vergeben",
             "submitted": submitted,
             "error": request.GET.get("error"),
-            "customers_the_manager_is_responsible_for": customers_the_manager_is_responsible_for,
+            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
             "can_create_customer_program_execution": request.user.employee.customerprogramexecutionmanager.can_create_customer_program_execution,
             "can_delete_customer_program_execution": request.user.employee.customerprogramexecutionmanager.can_delete_customer_program_execution,
             "can_give_customerprogramexecutionmanager_role": request.user.employee.customerprogramexecutionmanager.can_give_customerprogramexecutionmanager_role,

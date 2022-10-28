@@ -54,7 +54,7 @@ class CustomerProgramExecutionManager(models.Model):
     can_delete_customer_program_execution = models.BooleanField(default=False)
     can_give_customerprogramexecutionmanager_role = models.BooleanField(default=False)
 
-    customers_the_manager_is_responsible_for = models.ManyToManyField(
+    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
 

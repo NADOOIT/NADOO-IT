@@ -255,7 +255,7 @@ It creates easy to use urls for displaying images for use in templates and other
 2. Create a new model that is called XcZcManager
   Add the following fields to the model:
   employee = models.OneToOneField(employee, on_delete=models.CASCADE)
-  customers_the_manager_is_responsible_for = models.ManyToManyField(Customer, on_delete=models.CASCADE)
+  list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(Customer, on_delete=models.CASCADE)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 3. Add the following to the app to the list of apps in the settings.py file

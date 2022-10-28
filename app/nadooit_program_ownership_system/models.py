@@ -40,7 +40,7 @@ class NadooitCustomerProgramManager(models.Model):
     can_create_customer_program = models.BooleanField(default=False)
     can_delete_customer_program = models.BooleanField(default=False)
 
-    customers_the_manager_is_responsible_for = models.ManyToManyField(
+    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
 

@@ -2986,7 +2986,7 @@
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgramExecutionManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program_execution = models.BooleanField(default=False)\n    can_delete_customer_program_execution = models.BooleanField(default=False)\n    can_give_customerprogramexecutionmanager_role = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
+        "peekOfCode": "class CustomerProgramExecutionManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program_execution = models.BooleanField(default=False)\n    can_delete_customer_program_execution = models.BooleanField(default=False)\n    can_give_customerprogramexecutionmanager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3157,7 +3157,7 @@
         "kind": 6,
         "importPath": "app.nadooit_api_key.models",
         "description": "app.nadooit_api_key.models",
-        "peekOfCode": "class NadooitApiKeyManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_api_key = models.BooleanField(default=False)\n    can_delete_api_key = models.BooleanField(default=False)\n    can_give_ApiKeyManager_role = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
+        "peekOfCode": "class NadooitApiKeyManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_api_key = models.BooleanField(default=False)\n    can_delete_api_key = models.BooleanField(default=False)\n    can_give_ApiKeyManager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
         "detail": "app.nadooit_api_key.models",
         "documentation": {}
     },
@@ -3472,7 +3472,7 @@
         "kind": 6,
         "importPath": "app.nadooit_hr.models",
         "description": "app.nadooit_hr.models",
-        "peekOfCode": "class EmployeeManager(models.Model):\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):\n        display_name = self.employee.user.display_name\n        if display_name is not None:\n            return display_name\n        username = self.employee.user.username",
+        "peekOfCode": "class EmployeeManager(models.Model):\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):\n        display_name = self.employee.user.display_name\n        if display_name is not None:\n            return display_name\n        username = self.employee.user.username",
         "detail": "app.nadooit_hr.models",
         "documentation": {}
     },
@@ -3886,7 +3886,7 @@
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class NadooitCustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
+        "peekOfCode": "class NadooitCustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },
@@ -4001,10 +4001,10 @@
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "app.nadooit_time_account.migrations.0009_timeaccountmanager_customers_the_manager_is_responsible_for",
-        "description": "app.nadooit_time_account.migrations.0009_timeaccountmanager_customers_the_manager_is_responsible_for",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_time_account', '0008_alter_timeaccountmanager_employee'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timeaccountmanager',\n            name='customers_the_manager_is_responsible_for',\n            field=models.ManyToManyField(blank=True, to='nadooit_crm.customer'),",
-        "detail": "app.nadooit_time_account.migrations.0009_timeaccountmanager_customers_the_manager_is_responsible_for",
+        "importPath": "app.nadooit_time_account.migrations.0009_timeaccountmanager_list_of_customers_the_manager_is_responsible_for",
+        "description": "app.nadooit_time_account.migrations.0009_timeaccountmanager_list_of_customers_the_manager_is_responsible_for",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_time_account', '0008_alter_timeaccountmanager_employee'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timeaccountmanager',\n            name='list_of_customers_the_manager_is_responsible_for',\n            field=models.ManyToManyField(blank=True, to='nadooit_crm.customer'),",
+        "detail": "app.nadooit_time_account.migrations.0009_timeaccountmanager_list_of_customers_the_manager_is_responsible_for",
         "documentation": {}
     },
     {
@@ -4012,7 +4012,7 @@
         "kind": 6,
         "importPath": "app.nadooit_time_account.migrations.0010_timeaccount_is_active_and_more",
         "description": "app.nadooit_time_account.migrations.0010_timeaccount_is_active_and_more",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0009_timeaccountmanager_customers_the_manager_is_responsible_for'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timeaccount',\n            name='is_active',\n            field=models.BooleanField(default=True),\n        ),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_time_account', '0009_timeaccountmanager_list_of_customers_the_manager_is_responsible_for'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='timeaccount',\n            name='is_active',\n            field=models.BooleanField(default=True),\n        ),",
         "detail": "app.nadooit_time_account.migrations.0010_timeaccount_is_active_and_more",
         "documentation": {}
     },
@@ -4084,7 +4084,7 @@
         "kind": 6,
         "importPath": "app.nadooit_time_account.models",
         "description": "app.nadooit_time_account.models",
-        "peekOfCode": "class TimeAccountManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # A list of all time accounts the manager is responsible for\n    time_accounts = models.ManyToManyField(TimeAccount, blank=True)\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    can_create_time_accounts = models.BooleanField(default=False)\n    can_delete_time_accounts = models.BooleanField(default=False)\n    can_give_TimeAccountManager_role = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(",
+        "peekOfCode": "class TimeAccountManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # A list of all time accounts the manager is responsible for\n    time_accounts = models.ManyToManyField(TimeAccount, blank=True)\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    can_create_time_accounts = models.BooleanField(default=False)\n    can_delete_time_accounts = models.BooleanField(default=False)\n    can_give_TimeAccountManager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(",
         "detail": "app.nadooit_time_account.models",
         "documentation": {}
     },
