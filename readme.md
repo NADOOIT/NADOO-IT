@@ -1,3 +1,5 @@
+# Intro
+
 This is the nadooit execution manegment system.
 
 It forms the interface to the system, hosts the website, and provides the API.
@@ -66,38 +68,52 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ### TODOs
 
-- [ ] Add Options so that the current user can give his roles to another user
 - [ ] Currently a API Key Manager has rights for all its customers. But it each customer should have sperate settings for the manager.
 
 - [ ] Add option for User to create API Key for themselfs
 - [ ] Add option for Manger to revoke API Keys for a diffrent user
-- [ ] Move all pages to Nadooit-OS^
+- [ ] Move all pages to Nadooit-OS
+
+### nadooit_hr
+
+- [ ] Add page for currently logged in user to add a new user to a customer (if he has the rights)
+- [ ] Add page for currently logged in user to remove a user from a customer (if he has the rights)
+- [ ] Add a new role for the user to see all users and their roles of a customer (if he has the rights)
+- [ ] Add a new role for the user to revoke roles of all users of a customer (if he has the rights)
+- [ ] Add a new role for the user to add roles to all users of a customer (if he has the rights)
+
+### nadooit_program_ownership_system
+
+- [ ] Add page for seeing the program shares
+- [ ] Add page for selling program shares
+- [ ] Add page for buying program shares
 
 ### nadooit_workflow
-- [ ] Add option to add a new process
-- [ ] Add option to add a new task	
-- [ ] Add option to add a new task type	
-- [ ] Add option to add a new task status		
-- [ ] Add option to add a new task priority		
-- [ ] Add option to add a new task category	
-- [ ] Add option to add a new task label	
-- [ ] Add option to add a new task tag		
-- [ ] Add option to add a new task comment	
-- [ ] Add option to add a new task attachment		
-- [ ] Add option to add a new task time tracking			
-- [ ] Add option to add a new task reminder				
-- [ ] Add option to add a new task checklist				
-- [ ] Add option to add a new task checklist item					
-- [ ] Add option to add a new task checklist item comment							
-- [ ] Add option to add a new task checklist item attachment									
-- [ ] Add option to add a new task checklist item time tracking											
-- [ ] Add option to add a new task checklist item reminder														
-- [ ] Add option to add a new task checklist item reminder comment	
-- [ ] Add option to add a new task checklist item reminder attachment	
-- [ ] Add option to add a new task checklist item reminder time tracking	
 
+- [ ] Add option to add a new process
+- [ ] Add option to add a new task
+- [ ] Add option to add a new task type
+- [ ] Add option to add a new task status  
+- [ ] Add option to add a new task priority  
+- [ ] Add option to add a new task category
+- [ ] Add option to add a new task label
+- [ ] Add option to add a new task tag  
+- [ ] Add option to add a new task comment
+- [ ] Add option to add a new task attachment  
+- [ ] Add option to add a new task time tracking
+- [ ] Add option to add a new task reminder
+- [ ] Add option to add a new task checklist
+- [ ] Add option to add a new task checklist item
+- [ ] Add option to add a new task checklist item comment
+- [ ] Add option to add a new task checklist item attachment
+- [ ] Add option to add a new task checklist item time tracking
+- [ ] Add option to add a new task checklist item reminder
+- [ ] Add option to add a new task checklist item reminder comment
+- [ ] Add option to add a new task checklist item reminder attachment
+- [ ] Add option to add a new task checklist item reminder time tracking
 
 #### Testing
+
 - [ ] Add tests for nadooit_api_key
 - [ ] Add tests for nadooit_api_execution_system
 - [ ] Add tests for nadooit_auth
@@ -116,16 +132,28 @@ It forms the interface to the system, hosts the website, and provides the API.
 - [ ] Add tests for nadooit_workflow
 - [ ] Add tests for nadooit_payment
 
+#### Documentation
 
-
-
-#### 
+- [ ] Add documentation for nadooit_api_key
+- [ ] Add documentation for nadooit_api_execution_system  
+- [ ] Add documentation for nadooit_auth
+- [ ] Add documentation for nadooit_crm
+- [ ] Add documentation for nadooit_delivery
+- [ ] Add documentation for nadooit_funnel
+- [ ] Add documentation for nadooit_hr
+- [ ] Add documentation for nadooit_key
+- [ ] Add documentation for nadooit_network
+- [ ] Add documentation for nadooit_os
+- [ ] Add documentation for nadooit_program
+- [ ] Add documentation for nadooit_program_ownership_system
+- [ ] Add documentation for nadooit_questions_and_answers
+- [ ] Add documentation for nadooit_time_account
 
 #### Refactoring
 
-
 #### Bugs
 
+# Installation and setup
 
 # Development
 
@@ -138,11 +166,12 @@ It forms the interface to the system, hosts the website, and provides the API.
 5. Install python
 6. Install pip
 7. use the following command to install the requirements
-docker compose -f docker-compose.yml build
-docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
-docker-compose -f docker-compose.yml run --rm app python manage.py migrate
-docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
-docker-compose -f docker-compose.yml up
+
+    docker compose -f docker-compose.yml build
+    docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose.yml up
 
 ## Contributing
 
@@ -163,10 +192,9 @@ docker-compose -f docker-compose.yml up
 3. Add the following to the app to the list of apps in the settings.py file
 4. Create migrations and migrate
 
+## Production
 
-
-# Production
-## Pre-requisites
+### Pre-requisites
 
 1. git
 
@@ -177,7 +205,21 @@ See the following link for instructions on installing git on your system: <https
 
 See the following link for instructions on installing docker on your system: <https://docs.docker.com/engine/installation/>
 
-## Installation
+### Installation
+
+#### Server setup
+
+##### Create a new user
+
+        adduser nadooit
+        usermod -aG sudo nadooit
+
+##### Install docker 
+
+# TODO Fill this section
+
+
+#### Project setup
 
 1. Copy the repository to your servers home directory
 
@@ -196,19 +238,19 @@ To open the file in nano, type:
 
 sudo nano .env
 
-### Django
+#### Django
 
 Replace your_secret_key with a new secret key. You can generate one here: <https://miniwebtool.com/django-secret-key-generator/>
 
 DJANGO_SECRET_KEY=your_secret_key
 
-### Nginx
+#### Nginx
 
 ACME_DEFAUT_EMAIL=your_email
 
 DOMAIN=your_domain
 
-### Database
+#### Database
 
 1. to find the following variables, go to <https://cockroachlabs.cloud/>
 2. login or create an account
@@ -241,28 +283,28 @@ COCKROACH_DB_PASSWORD=your_cockroach_db_password
 
 COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
-### Docker
+#### Docker
 
 4. Build the docker images
     - docker compose -f docker-compose.deploy.yml build
     - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
 
-### Creating superuser
+#### Creating superuser
 
 1. Run the following command to create a superuser
 docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
 
-### Starting the server
+#### Starting the server
 
 1. Run the following command to start the server
 docker compose -f docker-compose.deploy.yml up -d
 
-### Stopping the server
+#### Stopping the server
 
 1. Run the following command to stop the server
 docker compose -f docker-compose.deploy.yml down
 
-### Updating the server
+#### Updating the server
 
 1. Run the following command to update the server
 git pull

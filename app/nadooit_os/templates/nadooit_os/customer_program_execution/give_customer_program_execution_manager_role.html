@@ -1,0 +1,61 @@
+{% extends 'nadooit_os/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+        <br/>
+        {% if submitted and not error%}
+        <div class="alert alert-success" role="alert">
+
+                <strong>Schlüssel als Manager freigeschaltet!</strong>
+            </div>
+        
+        {% elif error %}
+
+            <div class="alert alert-danger">
+                <strong>{{error}}</strong>
+            </div>
+
+        {% else %}    
+
+        <form action="" method="post">
+        {% csrf_token %}
+
+        {% comment %} give the user a choice of the customers from the list customers_the_manager_is_responsible_for the user can select multiple
+ {% endcomment %}
+
+        <div class="form-group">
+            <label for="customers">Kunden auswählen:</label>
+            <select class="form-select" multiple id="customers" name="customers">
+                {% for customer in customers_the_manager_is_responsible_for %}
+                <option value="{{ customer.id }}">{{ customer.name }}</option>
+                {% endfor %}
+            </select>	
+        </div>
+        <br/>
+        {% comment %} User Code is required {% endcomment %}
+        <div class="form-group">
+            <label for="user_code">Schlüssel User code eingeben:</label>
+            <input type="text" class="form-control" id="user_code" name="user_code" required>
+        <div class="form-group">
+            <label for="role">Rolle auswählen:</label>
+            <select class="form-select" multiple id="role" name="role">
+                {% if can_create_customer_program_execution %}
+                <option value="can_create_customer_program_execution">Kundenprogramm ausführen</option>
+                {% endif %}
+                {% if can_delete_customer_program_execution %}
+                <option value="can_delete_customer_program_execution">Kundenprogramm löschen</option>
+                {% endif %}
+                {% if can_give_customerprogramexecutionmanager_role %}
+                <option value="can_give_customerprogramexecutionmanager_role">Kundenprogrammmanager Rolle geben</option>
+                {% endif %}
+            </select>
+        </div>
+        <br/>
+
+        <input type="submit" value="Mache User Code zum API Key Mangager" class="btn btn-secondary">
+        </form>
+        {% endif %}
+</div>
+
+{% endblock %}

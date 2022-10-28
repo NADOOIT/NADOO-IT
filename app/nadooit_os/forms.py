@@ -1,3 +1,4 @@
+from cProfile import label
 import re
 import uuid
 from django import forms
@@ -16,6 +17,7 @@ class ApiKeyForm(forms.Form):
         queryset=User.objects.all(),
         to_field_name="user_code",
         required=True,
+        label="Schlüssel User code eingeben:",
         widget=forms.Select(
             attrs={
                 "class": "form-control",
@@ -47,6 +49,7 @@ class ApiKeyManagerForm(forms.Form):
     # Text input for user code not choice field
     user_code = forms.CharField(
         required=True,
+        label="Schlüssel User code eingeben:",
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
@@ -83,6 +86,7 @@ class CustomerTimeAccountManagerForm(forms.Form):
     # Text input for user code not choice field
     user_code = forms.CharField(
         required=True,
+        label="Schlüssel User code eingeben:",
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
