@@ -23,7 +23,7 @@ It forms the interface to the system, hosts the website, and provides the API.
 - [x] django-bootstrap5
 - [x] mfa using fido2 keys
 
-## List of planned features
+## List of TODOs
 
 ### Pages and features for the website (frontend)
 
@@ -72,13 +72,43 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 - [ ] Move all pages to Nadooit-OS
 
+### nadooit_images
+
+This is an app for managing images.
+It provides a model for images and a view for displaying them.
+It generates thumbnails for images and provides a view for displaying them.
+It lets you upload images and provides a view for displaying them.
+It lets you delete images and provides a view for displaying them.
+It creates easy to use urls for displaying images for use in templates and other places.
+
+#### Usage
+
+#### Installation
+
+#### Configuration
+
+#### API
+
+#### nadooit_images TODOs
+
+- [ ] Add app
+- [ ] Add model for images
+- [ ] Add view for displaying images
+- [ ] Add thumbnail generation
+- [ ] Add view for displaying thumbnails
+- [ ] Add upload functionality
+- [ ] Add view for displaying uploaded images
+- [ ] Add delete functionality
+- [ ] Add easy to use urls for displaying images
+- [ ] Add easy to use urls for displaying thumbnails
+
 ### nadooit_api_key
 
 #### Possible security issues
 
 - [ ] Currently a API Key Manager has rights for all its customers. But it each customer should have sperate settings for the manager.
 
-#### Planned features
+#### nadooit_api_key TODOs
 
 ##### List of features for the individual user
 
