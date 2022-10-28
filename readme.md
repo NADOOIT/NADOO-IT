@@ -223,12 +223,14 @@ It creates easy to use urls for displaying images for use in templates and other
 
 ### Local development setup
 
-1. Install github desktop
-2. Clone the repository
-3. Install docker
+1. Install github desktop (<https://desktop.github.com/>)
+2. Clone the repository 
+3. Install docker (<https://www.docker.com/>)
 4. Install docker-compose
-5. Install python
-6. Install pip
+5. Install newst version of python (<https://www.python.org/downloads/>)
+6. Install update pip (pip install --upgrade pip)
+   6.1 open cmd and type pip install --upgrade pip
+
 7. use the following command to install the requirements
 
     docker compose -f docker-compose.yml build
