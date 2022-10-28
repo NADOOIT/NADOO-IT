@@ -72,9 +72,19 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 - [ ] Move all pages to Nadooit-OS
 
+### nadooit_subscriptions
+
+This app is responsible for the subscription management.
+It is used to manage the subscription of the clients.
+It is used to create subscriptions for the clients.
+
+- [ ] Add subscription management
+- [ ] Add subscription management to the admin
+- [ ] Add subscription management to the API
+
 ### nadooit_os
 
-#### TODOs
+#### nadooit_os TODOs
 
 ##### Pages and features for the website (frontend)
 
