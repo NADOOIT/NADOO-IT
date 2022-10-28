@@ -456,6 +456,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1869,6 +1885,14 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgramExecutionManager",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
         "label": "post_save",
         "importPath": "django.db.models.signals",
         "description": "django.db.models.signals",
@@ -2245,6 +2269,14 @@
         "documentation": {}
     },
     {
+        "label": "label",
+        "importPath": "cProfile",
+        "description": "cProfile",
+        "isExtraImport": true,
+        "detail": "cProfile",
+        "documentation": {}
+    },
+    {
         "label": "re",
         "kind": 6,
         "isExtraImport": true,
@@ -2283,6 +2315,14 @@
         "description": "django.http",
         "isExtraImport": true,
         "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "requests",
+        "description": "requests",
+        "isExtraImport": true,
+        "detail": "requests",
         "documentation": {}
     },
     {
@@ -2906,6 +2946,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.migrations.0005_customerprogramexecutionmanager_can_give_customerprogramexecutionmanager_role",
+        "description": "app.nadooit_api_executions_system.migrations.0005_customerprogramexecutionmanager_can_give_customerprogramexecutionmanager_role",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0004_rename_employee_customerprogramexecutionmanager_employee'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogramexecutionmanager',\n            name='can_give_customerprogramexecutionmanager_role',\n            field=models.BooleanField(default=False),\n        ),",
+        "detail": "app.nadooit_api_executions_system.migrations.0005_customerprogramexecutionmanager_can_give_customerprogramexecutionmanager_role",
+        "documentation": {}
+    },
+    {
         "label": "CustomerProgramExecutionAdmin",
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.admin",
@@ -2937,7 +2986,7 @@
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgramExecutionManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program_execution = models.BooleanField(default=False)\n    can_delete_customer_program_execution = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    # if display_name is not null, then use it, otherwise use username. if username is not null, then use it, otherwise use user_code",
+        "peekOfCode": "class CustomerProgramExecutionManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program_execution = models.BooleanField(default=False)\n    can_delete_customer_program_execution = models.BooleanField(default=False)\n    can_give_customerprogramexecutionmanager_role = models.BooleanField(default=False)\n    customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3549,7 +3598,7 @@
         "kind": 6,
         "importPath": "app.nadooit_os.forms",
         "description": "app.nadooit_os.forms",
-        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        widget=forms.Select(\n            attrs={",
+        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        label=\"Schlüssel User code eingeben:\",\n        widget=forms.Select(",
         "detail": "app.nadooit_os.forms",
         "documentation": {}
     },
@@ -3558,7 +3607,7 @@
         "kind": 6,
         "importPath": "app.nadooit_os.forms",
         "description": "app.nadooit_os.forms",
-        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        widget=forms.Select(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",",
+        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        label=\"Schlüssel User code eingeben:\",\n        widget=forms.Select(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",",
         "detail": "app.nadooit_os.forms",
         "documentation": {}
     },
@@ -3567,7 +3616,7 @@
         "kind": 6,
         "importPath": "app.nadooit_os.forms",
         "description": "app.nadooit_os.forms",
-        "peekOfCode": "class ApiKeyManagerForm(forms.Form):\n    # Text input for user code not choice field\n    user_code = forms.CharField(\n        required=True,\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",\n            }",
+        "peekOfCode": "class ApiKeyManagerForm(forms.Form):\n    # Text input for user code not choice field\n    user_code = forms.CharField(\n        required=True,\n        label=\"Schlüssel User code eingeben:\",\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",",
         "detail": "app.nadooit_os.forms",
         "documentation": {}
     },
@@ -3576,7 +3625,7 @@
         "kind": 6,
         "importPath": "app.nadooit_os.forms",
         "description": "app.nadooit_os.forms",
-        "peekOfCode": "class CustomerTimeAccountManagerForm(forms.Form):\n    # Text input for user code not choice field\n    user_code = forms.CharField(\n        required=True,\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",\n            }",
+        "peekOfCode": "class CustomerTimeAccountManagerForm(forms.Form):\n    # Text input for user code not choice field\n    user_code = forms.CharField(\n        required=True,\n        label=\"Schlüssel User code eingeben:\",\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",\n                \"class\": \"form-control\",",
         "detail": "app.nadooit_os.forms",
         "documentation": {}
     },
@@ -3585,7 +3634,7 @@
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
         "description": "app.nadooit_os.urls",
-        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer-time-account-overview\",\n        customer_time_account_overview,\n        name=\"customer-time-account-overview\",\n    ),\n    path(\n        \"orders-overview\",",
+        "peekOfCode": "app_name = \"nadooit_os\"\nurlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer-time-account-overview\",\n        customer_time_account_overview,\n        name=\"customer-time-account-overview\",\n    ),\n    path(\n        \"customer-program-execution/customer-order-overview\",",
         "detail": "app.nadooit_os.urls",
         "documentation": {}
     },
@@ -3594,7 +3643,7 @@
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
         "description": "app.nadooit_os.urls",
-        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer-time-account-overview\",\n        customer_time_account_overview,\n        name=\"customer-time-account-overview\",\n    ),\n    path(\n        \"orders-overview\",\n        customer_order_overview,",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", index_nadooit_os, name=\"nadooit-os\"),\n    path(\n        \"customer-time-account-overview\",\n        customer_time_account_overview,\n        name=\"customer-time-account-overview\",\n    ),\n    path(\n        \"customer-program-execution/customer-order-overview\",\n        customer_program_execution_overview,",
         "detail": "app.nadooit_os.urls",
         "documentation": {}
     },
@@ -3630,7 +3679,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True",
+        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\ndef user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        if (\n            user.employee.customerprogramexecutionmanager.can_give_customerprogramexecutionmanager_role\n        ):\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3689,11 +3747,11 @@
         "documentation": {}
     },
     {
-        "label": "customer_order_overview",
+        "label": "customer_program_execution_overview",
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def customer_order_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programm_executions = []\n    for (",
+        "peekOfCode": "def customer_program_execution_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programm_executions = []\n    for (",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3730,6 +3788,15 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def give_customer_time_account_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = CustomerTimeAccountManagerForm(\n            request.POST,\n        )\n        if form.is_valid():\n            user_code = form.cleaned_data[\"user_code\"]\n            # get the employee object for the user\n            employee = Employee.objects.get(user__user_code=user_code)",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "give_customer_program_execution_manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def give_customer_program_execution_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if Employee.objects.filter(user__user_code=user_code).exists():\n                # get the employee object for the user\n                employee = Employee.objects.get(user__user_code=user_code)",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

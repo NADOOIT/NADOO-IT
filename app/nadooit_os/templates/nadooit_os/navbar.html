@@ -53,7 +53,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a href="{% url 'nadooit_os:give-customer-program-execution-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-execution-manager-role' %}">Schlüssel für Programmausführungsübersicht erstellen freischalten</a></li>
                 </ul>
               </li>
               {% endif %}

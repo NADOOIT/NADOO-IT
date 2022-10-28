@@ -12,8 +12,8 @@ urlpatterns = [
         name="customer-time-account-overview",
     ),
     path(
-        "orders-overview",
-        customer_order_overview,
+        "customer-program-execution/customer-order-overview",
+        customer_program_execution_overview,
         name="customer-order-overview",
     ),
     path("create-api-key", create_api_key, name="create-api-key"),
@@ -28,5 +28,10 @@ urlpatterns = [
         "give-customer-time-account-manager-role",
         give_customer_time_account_manager_role,
         name="give-customer-time-account-manager-role",
+    ),
+    path(
+        "customer-program-execution/give-customer-program-execution-manager-role",
+        give_customer_program_execution_manager_role,
+        name="give-customer-program-execution-manager-role",
     ),
 ]
