@@ -101,6 +101,12 @@ It creates easy to use urls for displaying images for use in templates and other
 - [ ] Add delete functionality
 - [ ] Add easy to use urls for displaying images
 - [ ] Add easy to use urls for displaying thumbnails
+- [ ] Add protection against directory traversal
+- [ ] Add protection against path traversal
+- [ ] Add protection against path injection
+- [ ] Add protection against path manipulation
+- [ ] Add way so that images can be shared between users but not publicly
+- [ ] Add way to protect images with a password
 
 ### nadooit_api_key
 
@@ -121,6 +127,8 @@ It creates easy to use urls for displaying images for use in templates and other
 
 ### nadooit_hr
 
+#### nadooit_hr TODOs
+
 - [ ] Add page for currently logged in user to add a new user to a customer as an employee (if he has the rights)
 - [ ] Add page for currently logged in user to remove an employee from a customer (if he has the rights)
 - [ ] Add a new role for the employee to see all employees and their roles of a customer (if he has the rights)
@@ -129,11 +137,15 @@ It creates easy to use urls for displaying images for use in templates and other
 
 ### nadooit_program_ownership_system
 
+#### nadooit_program_ownership_system TODOs
+
 - [ ] Add page for seeing the program shares
 - [ ] Add page for selling program shares
 - [ ] Add page for buying program shares
 
 ### nadooit_workflow
+
+#### nadooit_workflow TODOs
 
 - [ ] Add option to add a new process
 - [ ] Add option to add a new task
