@@ -234,7 +234,7 @@ It creates easy to use urls for displaying images for use in templates and other
 ### Local development setup
 
 1. Install github desktop (<https://desktop.github.com/>)
-2. Clone the repository 
+2. Clone the repository
 3. Install docker (<https://www.docker.com/>)
 4. Install docker-compose
 5. Install newst version of python (<https://www.python.org/downloads/>)
