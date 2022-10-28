@@ -20,6 +20,8 @@ It forms the interface to the system, hosts the website, and provides the API.
 - [x] Docker
 - [x] SSL
 - [x] django-crispy-forms
+- [x] django-bootstrap5
+- [x] mfa using fido2 keys
 
 ## List of planned features
 
@@ -68,19 +70,32 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ### TODOs
 
+- [ ] Move all pages to Nadooit-OS
+
+### nadooit_api_key
+
+#### Possible security issues
+
 - [ ] Currently a API Key Manager has rights for all its customers. But it each customer should have sperate settings for the manager.
 
+#### Planned features
+
+##### List of features for the individual user
+
 - [ ] Add option for User to create API Key for themselfs
-- [ ] Add option for Manger to revoke API Keys for a diffrent user
-- [ ] Move all pages to Nadooit-OS
+
+##### List of features for Managers
+
+- [ ] Add option for API Key Manager to create API Keys for diffrent users
+- [ ] Add option for API Key Manager to revoke API Keys for a diffrent user
 
 ### nadooit_hr
 
-- [ ] Add page for currently logged in user to add a new user to a customer (if he has the rights)
-- [ ] Add page for currently logged in user to remove a user from a customer (if he has the rights)
-- [ ] Add a new role for the user to see all users and their roles of a customer (if he has the rights)
-- [ ] Add a new role for the user to revoke roles of all users of a customer (if he has the rights)
-- [ ] Add a new role for the user to add roles to all users of a customer (if he has the rights)
+- [ ] Add page for currently logged in user to add a new user to a customer as an employee (if he has the rights)
+- [ ] Add page for currently logged in user to remove an employee from a customer (if he has the rights)
+- [ ] Add a new role for the employee to see all employees and their roles of a customer (if he has the rights)
+- [ ] Add a new role for the employee to revoke roles of all employees of a customer (if he has the rights)
+- [ ] Add a new role for the employee to add roles to all employees of a customer (if he has the rights)
 
 ### nadooit_program_ownership_system
 
@@ -214,10 +229,9 @@ See the following link for instructions on installing docker on your system: <ht
         adduser nadooit
         usermod -aG sudo nadooit
 
-##### Install docker 
+##### Install docker
 
 # TODO Fill this section
-
 
 #### Project setup
 
