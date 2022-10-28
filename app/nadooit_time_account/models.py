@@ -138,7 +138,7 @@ class TimeAccountManager(models.Model):
     can_delete_time_accounts = models.BooleanField(default=False)
     can_give_TimeAccountManager_role = models.BooleanField(default=False)
 
-    customers_the_manager_is_responsible_for = models.ManyToManyField(
+    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
 

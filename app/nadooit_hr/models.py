@@ -24,7 +24,7 @@ class Employee(models.Model):
 
 class EmployeeManager(models.Model):
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
-    customers_the_manager_is_responsible_for = models.ManyToManyField(
+    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
 
@@ -36,3 +36,18 @@ class EmployeeManager(models.Model):
         if username is not None:
             return username
         return self.employee.user.user_code
+
+
+class CustomerManager(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
+    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
+        Customer, blank=True
+    )
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
+
+    def __str__(self):
+        if self.employee.user.display_name is not None:
+            return self.employee.user.display_name + " - " + self.customer.name
+        return self.employee.name + " " + self.customer.name
