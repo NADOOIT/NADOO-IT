@@ -2,7 +2,7 @@
 #Date: 2022-10-30
 #Version: 1.0.0
 #Description: This is the settings file for the nadooit app. It contains the settings for the app.
-#Compatibility: Django 3.2.8
+#Compatibility: Django 4
 #License: TBD
 
 """

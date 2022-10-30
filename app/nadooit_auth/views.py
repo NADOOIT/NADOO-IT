@@ -1,3 +1,9 @@
+#Author: Christoph Backhaus
+#Date: 2022-10-30
+#Version: 1.0.0
+#Compatibility: Django 4
+#License: TBD
+
 import django.contrib.auth.validators
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -17,7 +23,7 @@ from nadooit_auth.models import User
 from nadooit_auth.user_code import check__valid_user_code
 from nadooit_auth.username import get__new_username
 
-
+# Checks if the given user has the Keymanager role
 def user_is_KeyManager_that_can_create_new_keys(user):
     if hasattr(user.employee, "keymanager"):
         return user.employee.keymanager.can_create_keys
@@ -30,6 +36,7 @@ def log_user_in(request, username):
 
     # loging in the user
     login(request, user)
+    
     # request.POST containing redirect might be wrong here and should be request.GET "next" instead. Test this.
     if "redirect" in request.POST:
         return redirect(request.POST["redirect"])
@@ -39,11 +46,9 @@ def log_user_in(request, username):
 
 def login_user(request):
     if request.method == "POST":
-        # username = request.POST["username"]
+        
         user_code = request.POST["user_code"]
-        # password = request.POST["password"]
 
-        # OLD user = authenticate(request, username=username)
         user = authenticate(request, user_code=user_code)
         print("user: ", user)
         err = ""
@@ -60,13 +65,16 @@ def login_user(request):
                         print("has_mfa")
                         print(res)
                         return res
+                    
                     print("has_no_mfa")
                     print(res)
                     log_user_in(request, user.username)
                     # login(request, user)
                     return redirect(request.GET.get("next") or "/nadooit-os")
                 else:
-                    pass
+                    log_user_in(request, user.username)
+                    # login(request, user)
+                    return redirect(request.GET.get("next") or "/nadooit-os")
             else:
                 err = "This user is NOT activated yet."
         else:
@@ -88,7 +96,7 @@ def logout_user(request):
 @user_passes_test(
     user_is_KeyManager_that_can_create_new_keys,
     redirect_field_name=None,
-    login_url="/nadooit-os",
+    login_url="/auth/login-user",
 )
 def register_user(request):
     if request.method == "POST":

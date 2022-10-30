@@ -2,7 +2,7 @@
 #Date: 2022-10-30
 #Version: 1.0.0
 #Description: This is a custom template tag to check if a url is active or not. When the url is active, the class "active" is added to the html element.
-#Compatibility: Django 3.2.8, Bootstrap 5
+#Compatibility: Django 4, Bootstrap 5
 #License: TBD
 #Usage: {% load is_url_active_templatetag %}
 #       {% is_url_active request 'app_name:path_name' %}

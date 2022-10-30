@@ -22,6 +22,8 @@ class NadooitProgramShare(models.Model):
 class NadooitCustomerProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)
+
+    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.
     time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)
     over_charge = models.BooleanField(default=False)
     program = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)
