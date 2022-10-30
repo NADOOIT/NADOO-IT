@@ -1,8 +1,6 @@
 {% load static %}
 <!doctype html>
 <html lang="de" dir="ltr">
-  
-
 
     {% block head %} 
     <head>
@@ -21,14 +19,15 @@
     {% comment %} <title>NADOOIT</title> {% endcomment %}
     <title>NADOOIT | {% block title %} {% endblock title %}</title>
   </head>
-    {% endblock %}
+
+    {% endblock head %}
+    
     {% block css %} {% endblock css %}  
 
-                <!-- navbar -->
-                {% comment %} {% include 'nadooit_auth/navbar.html' %} {% endcomment %}
   <body >
     {% block content %}
     {% endblock content%}
   </body>
+
 </html>
 
