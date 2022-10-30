@@ -1,3 +1,10 @@
+#Author: Christoph Backhaus
+#Date: 2022-10-30
+#Version: 1.0.0
+#Description: This is the settings file for the nadooit app. It contains the settings for the app.
+#Compatibility: Django 3.2.8
+#License: TBD
+
 """
 Django settings for nadooit project.
 
@@ -9,6 +16,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -25,11 +33,15 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme")
 # DEBUG = True
 DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 
-
+# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
+# The value is a comma separated list of hosts
+# Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
 ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
 
 # Application definition
-
+# This is the list of installed apps. If a new app is added, it must be added here.
+# The order of the apps is important. The apps are loaded in the order they are listed here. 
+# See the documentation of the apps for more information.
 INSTALLED_APPS = [
     "sslserver",
     "django_is_url_active_templatetag",
@@ -62,7 +74,10 @@ INSTALLED_APPS = [
     "debug_toolbar",
 ]
 
-
+# Middelware is a list of functions that are called for every request.
+# The order of the middleware is important. The middleware is called in the order they are listed here.
+# A request is processed from top to bottom. A response is processed from bottom to top.
+# Add new middelware to process requests and responses.
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -74,11 +89,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# The Authentication backends are used to authenticate users.
+# Multiple backends can be used.
+# If one backend fails, the next backend is used.
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "nadooit_auth.custom_user_code_auth_backend.UserCodeBackend",
 ]
 
+# Configure how templates are loaded.
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -96,21 +115,21 @@ TEMPLATES = [
 ]
 
 # Staic stettings
-
 STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
 
 # STATIC_URL = "/static/"
 STATIC_URL = "/static/static/"
 MEDIA_URL = "/static/media/"
 
-# OLD STATICFILES_DIRS = [BASE_DIR / "static", "/var/www/static/"]
-# according to doc STATIC_ROOT = "/var/www/nadooit.de/static/"
-# OLD STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
 STATIC_ROOT = "/vol/web/static/"
 MEDIA_ROOT = "/vol/web/media/"
 
 ROOT_URLCONF = "nadooit.urls"
 
+# The WSGI application is used to serve the application.
+# The WSGI application is called by the webserver.
+# This is the entry point for the application.
 WSGI_APPLICATION = "nadooit.wsgi.application"
 
 # Database
@@ -180,6 +199,8 @@ INTERNAL_IPS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Settings for additional apps
+
+# Settings for Django Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 

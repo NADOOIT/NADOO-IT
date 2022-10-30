@@ -1,3 +1,10 @@
+#Author: Christoph Backhaus
+#Date: 2022-10-30
+#Version: 1.0.0
+#Description: This is the urls file for the nadooit app. It contains the urls for the app. From this file the urls are loaded into the main urls.py file.
+#Compatibility: Django 3.2.8
+#License: TBD
+
 """NADOOIT URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
