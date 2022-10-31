@@ -18,7 +18,7 @@ from nadooit_time_account.models import (
 )
 
 # model imports
-from nadooit_program_ownership_system.models import NadooitCustomerProgram
+from nadooit_program_ownership_system.models import CustomerProgram
 from nadooit_time_account.models import CustomerTimeAccount
 from nadooit_hr.models import Employee
 from nadooit_api_key.models import NadooitApiKey
@@ -80,7 +80,7 @@ def user_is_Employee_Manager(user: User) -> bool:
 
 
 def user_is_Customer_Program_Manager(user: User) -> bool:
-    if hasattr(user.employee, "nadooitcustomerprogrammanager"):
+    if hasattr(user.employee, "CustomerProgrammanager"):
         return True
     return False
 
@@ -489,7 +489,7 @@ def customer_program_execution_overview(request: HttpRequest):
         employee.customerprogramexecutionmanager.list_of_customers_the_manager_is_responsible_for.all()
     ):
         # list of customer programms with of the customer
-        customer_programms = NadooitCustomerProgram.objects.filter(
+        customer_programms = CustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
         )
         # list of customer programm executions for the customer programm
@@ -656,7 +656,7 @@ def customer_program_overview(request: HttpRequest):
         employee.customerprogramexecutionmanager.list_of_customers_the_manager_is_responsible_for.all()
     ):
         # list of customer programms with of the customer
-        customer_programms = NadooitCustomerProgram.objects.filter(
+        customer_programms = CustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
         )
         # list of customer programm executions for the customer programm

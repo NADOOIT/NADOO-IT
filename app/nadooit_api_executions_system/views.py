@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
-from nadooit_program_ownership_system.models import NadooitCustomerProgram
+from nadooit_program_ownership_system.models import CustomerProgram
 
 
 def get__hashed_api_key__for__request(request) -> str:
@@ -75,7 +75,7 @@ def create_execution(request):
                 return Response({"error": "User is not active"}, status=400)
             else:
                 
-                nadooit_customer_program = NadooitCustomerProgram.objects.get(id=request.data["program_id"])
+                nadooit_customer_program = CustomerProgram.objects.get(id=request.data["program_id"])
                 
                 CustomerProgramExecution.objects.create(
                     program_time_saved_in_seconds=nadooit_customer_program.program_time_saved_per_execution_in_seconds,

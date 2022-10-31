@@ -1187,6 +1187,14 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1597,7 +1605,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
+        "label": "CustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1605,7 +1613,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
+        "label": "CustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1613,7 +1621,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
+        "label": "CustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1629,7 +1637,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
+        "label": "CustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1637,7 +1645,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
+        "label": "CustomerProgram",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1645,7 +1653,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgramManager",
+        "label": "CustomerProgramManager",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -3051,7 +3059,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    \"\"\"\n    a new execution is created, the time saved is charged to the time account of the customer that is assigned to the program.\n    \"\"\"\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        # gets the customer program of the execution\n        nadooit_customer_program = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)\n        # gets the time account of the customer program and reduces it by the time saved by the program\n        nadooit_customer_program.time_account.time_balance_in_seconds = (",
+        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    \"\"\"\n    a new execution is created, the time saved is charged to the time account of the customer that is assigned to the program.\n    \"\"\"\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        # gets the customer program of the execution\n        nadooit_customer_program = CustomerProgram.objects.get(id=instance.customer_program.id)\n        # gets the time account of the customer program and reduces it by the time saved by the program\n        nadooit_customer_program.time_account.time_balance_in_seconds = (",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3060,7 +3068,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    \"\"\"\n        Whenever a customer program execution is deleted this signal is triggered.\n    Args:\n        sender (_type_): _description_ \n        instance (_type_): _description_\n    \"\"\"\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (",
+        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    \"\"\"\n        Whenever a customer program execution is deleted this signal is triggered.\n    Args:\n        sender (_type_): _description_ \n        instance (_type_): _description_\n    \"\"\"\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = CustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3816,7 +3824,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitcustomerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):",
+        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"CustomerProgrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3825,7 +3833,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitcustomerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"CustomerProgrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4001,6 +4009,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0005_rename_nadooitcustomerprogram_customerprogram_and_more",
+        "description": "app.nadooit_program_ownership_system.migrations.0005_rename_nadooitcustomerprogram_customerprogram_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0006_rename_customers_the_manager_is_responsible_for_customerprogramexecutionmanager_list_of_customers_th'),\n        ('nadooit_program', '0001_initial'),\n        ('nadooit_time_account', '0012_rename_customers_the_manager_is_responsible_for_timeaccountmanager_list_of_customers_the_manager_is_'),\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_hr', '0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res'),\n        ('nadooit_program_ownership_system', '0004_rename_customers_the_manager_is_responsible_for_nadooitcustomerprogrammanager_list_of_customers_the_'),\n    ]\n    operations = [",
+        "detail": "app.nadooit_program_ownership_system.migrations.0005_rename_nadooitcustomerprogram_customerprogram_and_more",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramOwnershipSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.apps",
@@ -4014,25 +4031,25 @@
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class NadooitProgramShare(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    share_of = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.id\nclass NadooitCustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)",
+        "peekOfCode": "class NadooitProgramShare(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    share_of = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.id\nclass CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgram",
+        "label": "CustomerProgram",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class NadooitCustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
+        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },
     {
-        "label": "NadooitCustomerProgramManager",
+        "label": "CustomerProgramManager",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class NadooitCustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
+        "peekOfCode": "class CustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },

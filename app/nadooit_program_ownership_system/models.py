@@ -19,7 +19,7 @@ class NadooitProgramShare(models.Model):
         return self.id
 
 
-class NadooitCustomerProgram(models.Model):
+class CustomerProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)
 
@@ -35,7 +35,7 @@ class NadooitCustomerProgram(models.Model):
         return str(self.id) + " " + self.program.name
 
 
-class NadooitCustomerProgramManager(models.Model):
+class CustomerProgramManager(models.Model):
     employee = models.OneToOneField(
         Employee, on_delete=models.CASCADE, primary_key=True
     )

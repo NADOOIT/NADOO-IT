@@ -12,7 +12,7 @@ import uuid
 # model imports
 from nadooit_crm.models import Customer
 from nadooit_hr.models import Employee
-from nadooit_program_ownership_system.models import NadooitCustomerProgram
+from nadooit_program_ownership_system.models import CustomerProgram
 
 # django imports
 from django.dispatch import receiver
@@ -37,7 +37,7 @@ class CustomerProgramExecution(models.Model):
     
     # the customer program that was executed
     customer_program = models.ForeignKey(
-        NadooitCustomerProgram, on_delete=models.SET_NULL, null=True
+        CustomerProgram, on_delete=models.SET_NULL, null=True
     )
     
     # creation date of the execution
@@ -61,7 +61,7 @@ def cutomer_program_execution_was_created(sender, instance, created, *args, **kw
         # reduce the customer_programs time_account by the program_time_saved_in_seconds
         
         # gets the customer program of the execution
-        nadooit_customer_program = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)
+        nadooit_customer_program = CustomerProgram.objects.get(id=instance.customer_program.id)
         
         # gets the time account of the customer program and reduces it by the time saved by the program
         nadooit_customer_program.time_account.time_balance_in_seconds = (
@@ -82,7 +82,7 @@ def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):
     """
     
     # increase the customer_programs time_account by the program_time_saved_in_seconds
-    obj = NadooitCustomerProgram.objects.get(id=instance.customer_program.id)
+    obj = CustomerProgram.objects.get(id=instance.customer_program.id)
     obj.time_account.time_balance_in_seconds = (
         obj.time_account.time_balance_in_seconds
         + instance.program_time_saved_in_seconds
