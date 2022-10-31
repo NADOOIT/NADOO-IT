@@ -18,12 +18,12 @@ register = template.Library()
 def is_url_active(request:HttpRequest, url:str) -> str:
     # Main idea is to check if the url and the current path is a match
     if reverse(url) == request.path:
-        return "active"
+        return "active-link"
 
     print("url: ", url)
     print("request.path: ", request.path)
 
     if request.path in reverse(url) and len(request.path) > 1:
-        return "active"
+        return "active-link"
 
     return ""

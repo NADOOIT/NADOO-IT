@@ -56,16 +56,16 @@ ul .links li a:hover {
 }
 
 ul .links li a span {
-  color: #00b4dc;
+  color: #3e00dc;
 }
 
 ul li a span {
-  color: #00b4dc;
+  color: #3e00dc;
 }
 
 
-a.active {
-  color: #00b4dc;
+a.active-link {
+  color: #00b4dc;  
 }
 
 html {

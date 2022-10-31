@@ -90,6 +90,11 @@ def user_is_Customer_Program_Execution_Manager(user: User) -> bool:
         return True
     return False
 
+def user_is_Customer_Program_Manager(user: User) -> bool:
+    if hasattr(user.employee, "customerprogrammanager"):
+        return True
+    return False
+
 
 # Getting the user roles
 # If new roles are added, they need to be added here
@@ -460,7 +465,7 @@ def give_customer_time_account_manager_role(request: HttpRequest):
     )
 
 
-# Views for the customer program overview
+# Views for the customer program execution overview
 @login_required(login_url="/auth/login-user")
 @user_passes_test(
     user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
@@ -626,3 +631,58 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
             **get_user_manager_roles(request),
         },
     )
+    
+# Views for the customer program overview
+@login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Manager, login_url="/auth/login-user"
+)
+def customer_program_overview(request: HttpRequest):
+
+    # All orders for the current customer
+    # orders are the executions of customerprograms
+
+    # the employee is the logged in user
+    employee = Employee.objects.get(user=request.user)
+
+    # the list of customers that the time accounts that the employee is responsible for belong to
+    # the list has for its first element the customer that the employee is responsible for
+    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
+    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []
+
+    for (
+        customer_the_employe_works_for
+    ) in (
+        employee.customerprogramexecutionmanager.list_of_customers_the_manager_is_responsible_for.all()
+    ):
+        # list of customer programms with of the customer
+        customer_programms = NadooitCustomerProgram.objects.filter(
+            customer=customer_the_employe_works_for
+        )
+        # list of customer programm executions for the customer programm
+        customer_programm_executions = list(
+            CustomerProgramExecution.objects.filter(
+                customer_program__in=customer_programms
+            )
+        )
+        # add the customer and the customer programm execution to the list
+        customers_the_employee_is_responsible_for_and_the_customer_programm_executions.append(
+            [customer_the_employe_works_for, customer_programm_executions]
+        )
+
+    # Multiple lists for the different order states
+    # List one shows all orders for the current month
+    # List shows all previous orders
+    print(
+        customers_the_employee_is_responsible_for_and_the_customer_programm_executions
+    )
+    return render(
+        request,
+        "nadooit_os/customer_program_execution/customer_program_execution_overview.html",
+        {
+            "page_title": "Übersicht der Buchungen",
+            "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_programm_executions,
+            **get_user_manager_roles(request),
+        },
+    )
+

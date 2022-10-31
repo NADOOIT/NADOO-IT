@@ -2403,7 +2403,7 @@
         "kind": 2,
         "importPath": "app.django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
         "description": "app.django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
-        "peekOfCode": "def is_url_active(request:HttpRequest, url:str) -> str:\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active\"\n    return \"\"",
+        "peekOfCode": "def is_url_active(request:HttpRequest, url:str) -> str:\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-link\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-link\"\n    return \"\"",
         "detail": "app.django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
         "documentation": {}
     },
@@ -2412,7 +2412,7 @@
         "kind": 5,
         "importPath": "app.django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
         "description": "app.django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
-        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_url_active(request:HttpRequest, url:str) -> str:\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active\"",
+        "peekOfCode": "register = template.Library()\n@register.simple_tag\ndef is_url_active(request:HttpRequest, url:str) -> str:\n    # Main idea is to check if the url and the current path is a match\n    if reverse(url) == request.path:\n        return \"active-link\"\n    print(\"url: \", url)\n    print(\"request.path: \", request.path)\n    if request.path in reverse(url) and len(request.path) > 1:\n        return \"active-link\"",
         "detail": "app.django_is_url_active_templatetag.templatetags.is_url_active_templatetag",
         "documentation": {}
     },
@@ -3825,7 +3825,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitcustomerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitcustomerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3834,7 +3834,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here\n# this function uses the user_is_... functions above\ndef get_user_manager_roles(request: HttpRequest) -> dict:\n    return {\n        \"is_time_account_manager\": user_is_Time_Account_Manager(request.user),",
+        "peekOfCode": "def user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Customer_Program_Manager",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here\n# this function uses the user_is_... functions above\ndef get_user_manager_roles(request: HttpRequest) -> dict:\n    return {\n        \"is_time_account_manager\": user_is_Time_Account_Manager(request.user),",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3916,6 +3925,15 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def give_customer_program_execution_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if Employee.objects.filter(user__user_code=user_code).exists():\n                # get the employee object for the user\n                employee = Employee.objects.get(user__user_code=user_code)",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "customer_program_overview",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def customer_program_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []\n    for (",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

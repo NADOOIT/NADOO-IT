@@ -12,7 +12,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Profil</a>
+                <a class="nav-link" aria-current="page" href="#">Profil</a>
               </li>
 
               <li class="nav-item dropdown">
@@ -40,7 +40,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a href="{% url 'nadooit_os:customer-time-account-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-time-account-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel für Zeitkontonübersicht erstellen freischalten</a></li>
+                    <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel für Zeitkontonverwaltung freischalten</a></li>
                 </ul>
               </li>
               {% endif %}
@@ -53,7 +53,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a href="{% url 'nadooit_os:give-customer-program-execution-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-execution-manager-role' %}">Schlüssel für Programmausführungsübersicht erstellen freischalten</a></li>
+                    <li><a href="{% url 'nadooit_os:give-customer-program-execution-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-execution-manager-role' %}">Schlüssel für Programmausführungsverwaltung freischalten</a></li>
                 </ul>
               </li>
               {% endif %}
@@ -64,9 +64,9 @@
                   Programme
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
+                    <li><a href="{% url 'nadooit_os:customer-program-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-program-overview' %}">Übersicht</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="{% url 'nadooit_os:give-customer-program-manager-role' %}"class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-manager-role' %}">Schlüssel für Programmverwaltung freischalten</a></li>
                 </ul>
               </li>
               {% endif %}

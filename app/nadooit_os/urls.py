@@ -34,4 +34,10 @@ urlpatterns = [
         give_customer_program_execution_manager_role,
         name="give-customer-program-execution-manager-role",
     ),
+    # urls for customer programs and the profile of the customer programs
+    path(
+        "customer-program/customer-program-overview",
+        customer_program_overview,
+        name="customer-program-overview",
+    ),
 ]
