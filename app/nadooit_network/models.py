@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from nadooit_auth.models import User
-from nadooit_program_ownership_system.models import NadooitProgramShare
+from nadooit_program_ownership_system.models import ProgramShare
 
 # Create your models here.
 
@@ -13,7 +13,7 @@ class NadooitInventory(models.Model):
     money = models.IntegerField(default=0)
     # Holds shares of programs
     list_of_nadooit_program_ownership_shares = models.ManyToManyField(
-        NadooitProgramShare, blank=True
+        ProgramShare, blank=True
     )
 
     created_at = models.DateTimeField(auto_now_add=True, editable=True)

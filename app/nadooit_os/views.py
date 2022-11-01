@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 from django.http import HttpRequest, HttpResponseRedirect
 from requests import request
+from nadooit_program_ownership_system.models import CustomerProgramManager
 from nadooit_api_key.models import NadooitApiKeyManager
 
 from nadooit_auth.models import User
@@ -34,24 +35,12 @@ from django.contrib.auth.decorators import login_required
 
 
 # Tests for user roles
+
+# Tests for Time Account Manager
 def user_is_Time_Account_Manager(user: User) -> bool:
     if hasattr(user.employee, "timeaccountmanager"):
         return True
     return False
-
-
-def user_is_Api_Key_Manager(user: User) -> bool:
-    if hasattr(user.employee, "nadooitapikeymanager"):
-        return True
-    return False
-
-
-def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:
-    if hasattr(user.employee, "nadooitapikeymanager"):
-        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:
-            return True
-    return False
-
 
 def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(
     user: User,
@@ -61,6 +50,23 @@ def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(
             return True
     return False
 
+# Tests for Api Key Manager
+def user_is_Api_Key_Manager(user: User) -> bool:
+    if hasattr(user.employee, "nadooitapikeymanager"):
+        return True
+    return False
+
+def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:
+    if hasattr(user.employee, "nadooitapikeymanager"):
+        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:
+            return True
+    return False
+
+# Tests for Customer Program Execution Manager
+def user_is_Customer_Program_Execution_Manager(user: User) -> bool:
+    if hasattr(user.employee, "customerprogramexecutionmanager"):
+        return True
+    return False
 
 def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(
     user: User,
@@ -72,28 +78,40 @@ def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Exe
             return True
     return False
 
+# Tests for Customer Program Manager
+def user_is_Customer_Program_Manager(user: User) -> bool:
+    if hasattr(user.employee, "customerprogrammanager"):
+        return True
+    return False
 
+def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(
+    user: User,
+) -> bool:
+    if hasattr(user.employee, "customerprogrammanager"):
+        if (
+            user.employee.customerprogrammanager.can_give_customerprogrammanager_role
+        ):
+            return True
+    return False
+
+
+# TEsts for Employee Manager
 def user_is_Employee_Manager(user: User) -> bool:
     if hasattr(user.employee, "employeemanager"):
         return True
     return False
 
-
-def user_is_Customer_Program_Manager(user: User) -> bool:
-    if hasattr(user.employee, "CustomerProgrammanager"):
-        return True
+def user_is_Employee_Manager_and_can_give_Employee_Manager_role(
+    user: User,
+) -> bool:
+    if hasattr(user.employee, "employeemanager"):	
+        if (
+            user.employee.employeemanager.can_give_employeemanager_role
+        ):
+            return True
     return False
 
 
-def user_is_Customer_Program_Execution_Manager(user: User) -> bool:
-    if hasattr(user.employee, "customerprogramexecutionmanager"):
-        return True
-    return False
-
-def user_is_Customer_Program_Manager(user: User) -> bool:
-    if hasattr(user.employee, "customerprogrammanager"):
-        return True
-    return False
 
 
 # Getting the user roles
@@ -648,41 +666,145 @@ def customer_program_overview(request: HttpRequest):
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
-    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []
+    customers_the_user_is_responsible_for_and_the_customer_programms = []
 
     for (
         customer_the_employe_works_for
     ) in (
-        employee.customerprogramexecutionmanager.list_of_customers_the_manager_is_responsible_for.all()
+        employee.customerprogrammanager.list_of_customers_the_manager_is_responsible_for.all()
     ):
         # list of customer programms with of the customer
         customer_programms = CustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
         )
-        # list of customer programm executions for the customer programm
-        customer_programm_executions = list(
-            CustomerProgramExecution.objects.filter(
-                customer_program__in=customer_programms
-            )
-        )
         # add the customer and the customer programm execution to the list
-        customers_the_employee_is_responsible_for_and_the_customer_programm_executions.append(
-            [customer_the_employe_works_for, customer_programm_executions]
+        customers_the_user_is_responsible_for_and_the_customer_programms.append(
+            [customer_the_employe_works_for, customer_programms]
         )
 
     # Multiple lists for the different order states
     # List one shows all orders for the current month
     # List shows all previous orders
-    print(
-        customers_the_employee_is_responsible_for_and_the_customer_programm_executions
-    )
+    print(customers_the_user_is_responsible_for_and_the_customer_programms)
     return render(
         request,
-        "nadooit_os/customer_program_execution/customer_program_execution_overview.html",
+        "nadooit_os/customer_program/customer_program_overview.html",
         {
-            "page_title": "Übersicht der Buchungen",
-            "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_programm_executions,
+            "page_title": "Übersicht der Programme",
+            "customers_the_user_is_responsible_for_and_the_customer_programms": customers_the_user_is_responsible_for_and_the_customer_programms,
             **get_user_manager_roles(request),
         },
     )
 
+@login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role,
+    login_url="/auth/login-user",
+)
+def give_customer_program_manager_role(request: HttpRequest):
+    submitted = False
+    if request.method == "POST":
+        user_code = request.POST.get("user_code")
+
+        # check that user_code is not empty
+        if User.objects.filter(user_code=user_code).exists():
+
+            # check if there is an emplyee for that user code
+            if Employee.objects.filter(user__user_code=user_code).exists():
+
+                # get the employee object for the user
+                employee = Employee.objects.get(user__user_code=user_code)
+
+                # check if the user is already an CustomerProgramManager
+                if user_is_Customer_Program_Manager(employee.user):
+                    # if the employee is already an CustomerProgramManager, update the existing CustomerProgramManager object but only give more rights
+                    customer_program_manager = (
+                        CustomerProgramExecutionManager.objects.get(employee=employee)
+                    )
+                    if request.POST.get("can_create_program") == "True":
+                        CustomerProgramManager.can_create_program_execution = (
+                            True
+                        )
+
+                    if request.POST.get("can_delete_program") == "True":
+                        customer_program_manager.can_delete_program_execution = (
+                            True
+                        )
+
+                    if (
+                        request.POST.get(
+                            "can_give_CustomerProgramManager_role"
+                        )
+                        == "True"
+                    ):
+                        customer_program_manager.can_give_CustomerProgramManager_role = (
+                            True
+                        )
+
+                    customer_program_manager.save()
+
+                else:
+
+                    # create new customer program execution manager
+                    new_customer_program_execution_manager = CustomerProgramExecutionManager.objects.create(
+                        employee=employee,
+                        can_create_program_execution=request.POST.get(
+                            "can_create_program_execution"
+                        )
+                        == "True",
+                        can_delete_program_execution=request.POST.get(
+                            "can_delete_program_execution"
+                        )
+                        == "True",
+                        can_give_CustomerProgramExecutionManager_role=request.POST.get(
+                            "can_give_CustomerProgramExecutionManager_role"
+                        )
+                        == "True",
+                    )
+
+                    # add the customers the new manager is responsible for
+                    for customer in request.POST.getlist("customers"):
+                        new_customer_program_execution_manager.list_of_customers_the_manager_is_responsible_for.add(
+                            customer
+                        )
+                    new_customer_program_execution_manager.save()
+
+                return HttpResponseRedirect(
+                    "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True"
+                )
+
+            else:
+                return HttpResponseRedirect(
+                    "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True&error=Benutzercode ist nicht als Mitarbeiter registriert"
+                )
+
+        else:
+            return HttpResponseRedirect(
+                "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
+            )
+
+    else:
+        if "submitted" in request.GET:
+            submitted = True
+
+    list_of_customers_the_manager_is_responsible_for = (
+        request.user.employee.customerprogrammanager.list_of_customers_the_manager_is_responsible_for.all()
+    )
+
+    return render(
+        request,
+        "nadooit_os/customer_program/give_customer_program_manager_role.html",
+        {
+            "page_title": "Programm Manager Rolle vergeben",
+            "submitted": submitted,
+            "error": request.GET.get("error"),
+            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
+            "can_create_customer_program": request.user.employee.customerprogrammanager.can_create_customer_program,
+            "can_delete_customer_program": request.user.employee.customerprogrammanager.can_delete_customer_program,
+            "can_give_customerprogrammanager_role": request.user.employee.customerprogrammanager.can_give_customerprogrammanager_role,
+            **get_user_manager_roles(request),
+        },
+    )
+ 
+ 
+ 

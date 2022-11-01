@@ -1,5 +1,5 @@
 from django.test import TestCase
-from nadooit_program.models import NadooitProgram
+from nadooit_program.models import Program
 from nadooit_time_account.models import TimeAccount
 from nadooit_program_ownership_system.models import CustomerProgram
 from nadooit_api_executions_system.models import CustomerProgramExecution

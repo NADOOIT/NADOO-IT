@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from nadooit_crm.models import Customer
-from nadooit_program.models import NadooitProgram
+from nadooit_program.models import Program
 from nadooit_time_account.models import TimeAccount
 from nadooit_hr.models import Employee
 
@@ -9,9 +9,9 @@ from nadooit_hr.models import Employee
 # Create your models here.
 
 
-class NadooitProgramShare(models.Model):
+class ProgramShare(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    share_of = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)
+    share_of = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
@@ -26,10 +26,12 @@ class CustomerProgram(models.Model):
     # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.
     time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)
     over_charge = models.BooleanField(default=False)
-    program = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)
+    program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
+
 
     def __str__(self):
         return str(self.id) + " " + self.program.name
@@ -42,8 +44,14 @@ class CustomerProgramManager(models.Model):
     can_create_customer_program = models.BooleanField(default=False)
     can_delete_customer_program = models.BooleanField(default=False)
 
+    can_give_customerprogrammanager_role = models.BooleanField(default=False)
+    
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
+    )
+    
+    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
+        Employee, blank=True, related_name="list_of_employees_the_customer_program_manager_has_given_the_role_to"
     )
 
     def __str__(self):

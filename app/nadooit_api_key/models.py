@@ -61,9 +61,15 @@ class NadooitApiKeyManager(models.Model):
 
     can_create_api_key = models.BooleanField(default=False)
     can_delete_api_key = models.BooleanField(default=False)
+    
     can_give_ApiKeyManager_role = models.BooleanField(default=False)
+    
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
+    )
+    
+    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
+        Employee, blank=True, related_name="list_of_employees_the_api_key_manager_has_given_the_role_to"
     )
 
     def __str__(self):

@@ -739,14 +739,6 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -756,94 +748,6 @@
     },
     {
         "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -947,6 +851,134 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1035,71 +1067,7 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1171,7 +1139,175 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1629,7 +1765,15 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgramShare",
+        "label": "ProgramShare",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramManager",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1661,7 +1805,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgram",
+        "label": "Program",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -1685,7 +1829,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgram",
+        "label": "Program",
         "importPath": "nadooit_program.models",
         "description": "nadooit_program.models",
         "isExtraImport": true,
@@ -1693,7 +1837,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgram",
+        "label": "Program",
         "importPath": "nadooit_program.models",
         "description": "nadooit_program.models",
         "isExtraImport": true,
@@ -1701,7 +1845,7 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgram",
+        "label": "Program",
         "importPath": "nadooit_program.models",
         "description": "nadooit_program.models",
         "isExtraImport": true,
@@ -3028,6 +3172,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.migrations.0007_customerprogramexecutionmanager_list_of_employees_the_manager_has_given_the_role_to",
+        "description": "app.nadooit_api_executions_system.migrations.0007_customerprogramexecutionmanager_list_of_employees_the_manager_has_given_the_role_to",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more'),\n        ('nadooit_api_executions_system', '0006_rename_customers_the_manager_is_responsible_for_customerprogramexecutionmanager_list_of_customers_th'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogramexecutionmanager',\n            name='list_of_employees_the_manager_has_given_the_role_to',\n            field=models.ManyToManyField(blank=True, related_name='list_of_employees_the_customer_program_execution_manager_has_given_the_role_to', to='nadooit_hr.employee'),",
+        "detail": "app.nadooit_api_executions_system.migrations.0007_customerprogramexecutionmanager_list_of_employees_the_manager_has_given_the_role_to",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiExecutionsSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.apps",
@@ -3232,6 +3385,15 @@
         "description": "app.nadooit_api_key.migrations.0010_rename_customers_the_manager_is_responsible_for_nadooitapikeymanager_list_of_customers_the_manager_i",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_key', '0009_nadooitapikeymanager_can_give_apikeymanager_role'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='nadooitapikeymanager',\n            old_name='customers_the_manager_is_responsible_for',\n            new_name='list_of_customers_the_manager_is_responsible_for',\n        ),",
         "detail": "app.nadooit_api_key.migrations.0010_rename_customers_the_manager_is_responsible_for_nadooitapikeymanager_list_of_customers_the_manager_i",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_key.migrations.0011_nadooitapikeymanager_list_of_employees_the_manager_has_given_the_role_to",
+        "description": "app.nadooit_api_key.migrations.0011_nadooitapikeymanager_list_of_employees_the_manager_has_given_the_role_to",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res'),\n        ('nadooit_api_key', '0010_rename_customers_the_manager_is_responsible_for_nadooitapikeymanager_list_of_customers_the_manager_i'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='nadooitapikeymanager',\n            name='list_of_employees_the_manager_has_given_the_role_to',\n            field=models.ManyToManyField(blank=True, related_name='list_of_employees_the_api_key_manager_has_given_the_role_to', to='nadooit_hr.employee'),",
+        "detail": "app.nadooit_api_key.migrations.0011_nadooitapikeymanager_list_of_employees_the_manager_has_given_the_role_to",
         "documentation": {}
     },
     {
@@ -3559,6 +3721,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.migrations.0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more",
+        "description": "app.nadooit_hr.migrations.0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customermanager',\n            name='list_of_employees_the_manager_has_given_the_role_to',\n            field=models.ManyToManyField(blank=True, related_name='list_of_employees_the_customer_manager_has_given_the_role_to', to='nadooit_hr.employee'),\n        ),",
+        "detail": "app.nadooit_hr.migrations.0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.migrations.0006_customermanager_can_give_customermanager_role_and_more",
+        "description": "app.nadooit_hr.migrations.0006_customermanager_can_give_customermanager_role_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customermanager',\n            name='can_give_CustomerManager_role',\n            field=models.BooleanField(default=False),\n        ),",
+        "detail": "app.nadooit_hr.migrations.0006_customermanager_can_give_customermanager_role_and_more",
+        "documentation": {}
+    },
+    {
         "label": "NadooitHrConfig",
         "kind": 6,
         "importPath": "app.nadooit_hr.apps",
@@ -3581,7 +3761,7 @@
         "kind": 6,
         "importPath": "app.nadooit_hr.models",
         "description": "app.nadooit_hr.models",
-        "peekOfCode": "class EmployeeManager(models.Model):\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):\n        display_name = self.employee.user.display_name\n        if display_name is not None:\n            return display_name\n        username = self.employee.user.username",
+        "peekOfCode": "class EmployeeManager(models.Model):\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(\n        Employee, blank=True, related_name=\"list_of_employees_the_employee_manager_has_given_the_role_to\"\n    )\n    can_give_EmployeeManager_role = models.BooleanField(default=False)\n    def __str__(self):",
         "detail": "app.nadooit_hr.models",
         "documentation": {}
     },
@@ -3590,7 +3770,7 @@
         "kind": 6,
         "importPath": "app.nadooit_hr.models",
         "description": "app.nadooit_hr.models",
-        "peekOfCode": "class CustomerManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        if self.employee.user.display_name is not None:",
+        "peekOfCode": "class CustomerManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)\n    can_give_CustomerManager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(\n    Employee, blank=True, related_name=\"list_of_employees_the_customer_manager_has_given_the_role_to\"\n    )",
         "detail": "app.nadooit_hr.models",
         "documentation": {}
     },
@@ -3653,7 +3833,7 @@
         "kind": 6,
         "importPath": "app.nadooit_network.models",
         "description": "app.nadooit_network.models",
-        "peekOfCode": "class NadooitInventory(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # Holds the amount of money in the inventory\n    money = models.IntegerField(default=0)\n    # Holds shares of programs\n    list_of_nadooit_program_ownership_shares = models.ManyToManyField(\n        NadooitProgramShare, blank=True\n    )\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
+        "peekOfCode": "class NadooitInventory(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # Holds the amount of money in the inventory\n    money = models.IntegerField(default=0)\n    # Holds shares of programs\n    list_of_nadooit_program_ownership_shares = models.ManyToManyField(\n        ProgramShare, blank=True\n    )\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
         "detail": "app.nadooit_network.models",
         "documentation": {}
     },
@@ -3779,25 +3959,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Time_Account_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):",
-        "detail": "app.nadooit_os.views",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_Api_Key_Manager",
-        "kind": 2,
-        "importPath": "app.nadooit_os.views",
-        "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(",
-        "detail": "app.nadooit_os.views",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role",
-        "kind": 2,
-        "importPath": "app.nadooit_os.views",
-        "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:",
+        "peekOfCode": "def user_is_Time_Account_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        return True\n    return False\ndef user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3806,34 +3968,25 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\ndef user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:",
+        "peekOfCode": "def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"timeaccountmanager\"):\n        if user.employee.timeaccountmanager.can_give_TimeAccountManager_role:\n            return True\n    return False\n# Tests for Api Key Manager\ndef user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
     {
-        "label": "user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role",
+        "label": "user_is_Api_Key_Manager",
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        if (\n            user.employee.customerprogramexecutionmanager.can_give_customerprogramexecutionmanager_role\n        ):\n            return True\n    return False\ndef user_is_Employee_Manager(user: User) -> bool:",
+        "peekOfCode": "def user_is_Api_Key_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        return True\n    return False\ndef user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\n# Tests for Customer Program Execution Manager",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
     {
-        "label": "user_is_Employee_Manager",
+        "label": "user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role",
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"CustomerProgrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):",
-        "detail": "app.nadooit_os.views",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_Customer_Program_Manager",
-        "kind": 2,
-        "importPath": "app.nadooit_os.views",
-        "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"CustomerProgrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):",
+        "peekOfCode": "def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:\n    if hasattr(user.employee, \"nadooitapikeymanager\"):\n        if user.employee.nadooitapikeymanager.can_give_ApiKeyManager_role:\n            return True\n    return False\n# Tests for Customer Program Execution Manager\ndef user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3842,7 +3995,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here",
+        "peekOfCode": "def user_is_Customer_Program_Execution_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        if (\n            user.employee.customerprogramexecutionmanager.can_give_customerprogramexecutionmanager_role",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        if (\n            user.employee.customerprogramexecutionmanager.can_give_customerprogramexecutionmanager_role\n        ):\n            return True\n    return False\n# Tests for Customer Program Manager",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3851,7 +4013,34 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here\n# this function uses the user_is_... functions above\ndef get_user_manager_roles(request: HttpRequest) -> dict:\n    return {\n        \"is_time_account_manager\": user_is_Time_Account_Manager(request.user),",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if (\n            user.employee.customerprogrammanager.can_give_customerprogrammanager_role",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if (\n            user.employee.customerprogrammanager.can_give_customerprogrammanager_role\n        ):\n            return True\n    return False\n# TEsts for Employee Manager",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Employee_Manager",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\t\n        if (\n            user.employee.employeemanager.can_give_employeemanager_role",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Employee_Manager_and_can_give_Employee_Manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\t\n        if (\n            user.employee.employeemanager.can_give_employeemanager_role\n        ):\n            return True\n    return False\n# Getting the user roles",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3941,7 +4130,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def customer_program_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []\n    for (",
+        "peekOfCode": "def customer_program_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programms = []\n    for (",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "give_customer_program_manager_role",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def give_customer_program_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if Employee.objects.filter(user__user_code=user_code).exists():\n                # get the employee object for the user\n                employee = Employee.objects.get(user__user_code=user_code)",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -3955,6 +4153,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program.migrations.0002_rename_nadooitprogram_program",
+        "description": "app.nadooit_program.migrations.0002_rename_nadooitprogram_program",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0010_rename_nadooitprogramshare_programshare'),\n        ('nadooit_workflow', '0001_initial'),\n        ('nadooit_program', '0001_initial'),\n    ]\n    operations = [\n        migrations.RenameModel(\n            old_name='NadooitProgram',\n            new_name='Program',",
+        "detail": "app.nadooit_program.migrations.0002_rename_nadooitprogram_program",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramConfig",
         "kind": 6,
         "importPath": "app.nadooit_program.apps",
@@ -3964,11 +4171,11 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgram",
+        "label": "Program",
         "kind": 6,
         "importPath": "app.nadooit_program.models",
         "description": "app.nadooit_program.models",
-        "peekOfCode": "class NadooitProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    # program_dependencies is a list of programs that this program depends on. They are represented as a list of strings. The list is empty if there are no dependencies.\n    program_dependencies = models.TextField(\n        default=\"\", blank=True, null=True, editable=True\n    )",
+        "peekOfCode": "class Program(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    name = models.CharField(max_length=255)\n    description = models.TextField()\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    # program_dependencies is a list of programs that this program depends on. They are represented as a list of strings. The list is empty if there are no dependencies.\n    program_dependencies = models.TextField(\n        default=\"\", blank=True, null=True, editable=True\n    )",
         "detail": "app.nadooit_program.models",
         "documentation": {}
     },
@@ -4018,6 +4225,51 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0006_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        "description": "app.nadooit_program_ownership_system.migrations.0006_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res'),\n        ('nadooit_program_ownership_system', '0005_rename_nadooitcustomerprogram_customerprogram_and_more'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogrammanager',\n            name='list_of_employees_the_manager_has_given_the_role_to',\n            field=models.ManyToManyField(blank=True, related_name='list_of_employees_the_manager_has_given_the_role_to', to='nadooit_hr.employee'),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0006_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0007_alter_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        "description": "app.nadooit_program_ownership_system.migrations.0007_alter_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res'),\n        ('nadooit_program_ownership_system', '0006_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='customerprogrammanager',\n            name='list_of_employees_the_manager_has_given_the_role_to',\n            field=models.ManyToManyField(blank=True, related_name='list_of_employees_the_customer_program_manager_has_given_the_role_to', to='nadooit_hr.employee'),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0007_alter_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0008_customerprogrammanager_can_give_customerprogrammanager_role",
+        "description": "app.nadooit_program_ownership_system.migrations.0008_customerprogrammanager_can_give_customerprogrammanager_role",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0007_alter_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogrammanager',\n            name='can_give_CustomerProgramManager_role',\n            field=models.BooleanField(default=False),\n        ),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0008_customerprogrammanager_can_give_customerprogrammanager_role",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0009_rename_can_give_customerprogrammanager_role_customerprogrammanager_can_give_customerprogrammanager_r",
+        "description": "app.nadooit_program_ownership_system.migrations.0009_rename_can_give_customerprogrammanager_role_customerprogrammanager_can_give_customerprogrammanager_r",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0008_customerprogrammanager_can_give_customerprogrammanager_role'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='customerprogrammanager',\n            old_name='can_give_CustomerProgramManager_role',\n            new_name='can_give_customerprogrammanager_role',\n        ),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0009_rename_can_give_customerprogrammanager_role_customerprogrammanager_can_give_customerprogrammanager_r",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0010_rename_nadooitprogramshare_programshare",
+        "description": "app.nadooit_program_ownership_system.migrations.0010_rename_nadooitprogramshare_programshare",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_network', '0001_initial'),\n        ('nadooit_program', '0001_initial'),\n        ('nadooit_program_ownership_system', '0009_rename_can_give_customerprogrammanager_role_customerprogrammanager_can_give_customerprogrammanager_r'),\n    ]\n    operations = [\n        migrations.RenameModel(\n            old_name='NadooitProgramShare',\n            new_name='ProgramShare',",
+        "detail": "app.nadooit_program_ownership_system.migrations.0010_rename_nadooitprogramshare_programshare",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramOwnershipSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.apps",
@@ -4027,11 +4279,11 @@
         "documentation": {}
     },
     {
-        "label": "NadooitProgramShare",
+        "label": "ProgramShare",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class NadooitProgramShare(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    share_of = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.id\nclass CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)",
+        "peekOfCode": "class ProgramShare(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    share_of = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        return self.id\nclass CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },
@@ -4040,7 +4292,7 @@
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(NadooitProgram, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
+        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },
@@ -4049,7 +4301,7 @@
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class CustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    def __str__(self):",
+        "peekOfCode": "class CustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    can_give_customerprogrammanager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },

@@ -110,6 +110,10 @@ class CustomerProgramExecutionManager(models.Model):
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
+    
+    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
+        Employee, blank=True, related_name="list_of_employees_the_customer_program_execution_manager_has_given_the_role_to"
+    )
 
     # if display_name is not null, then use it, otherwise use username. if username is not null, then use it, otherwise use user_code
     def __str__(self):

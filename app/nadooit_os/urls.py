@@ -40,4 +40,9 @@ urlpatterns = [
         customer_program_overview,
         name="customer-program-overview",
     ),
+    path(
+    "customer-program/give-customer-program-manager-role",
+    give_customer_program_manager_role,
+    name="give-customer-program-manager-role",
+    ),
 ]

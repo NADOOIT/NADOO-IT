@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-from nadooit_program_ownership_system.models import NadooitProgram
+from nadooit_program_ownership_system.models import Program
 from nadooit_crm.models import Customer
 
 # Create your models here.
@@ -17,7 +17,7 @@ class Process(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
-    list_of_nadooit_programs = models.ManyToManyField(NadooitProgram)
+    list_of_nadooit_programs = models.ManyToManyField(Program)
 
     def __str__(self):
         return self.name

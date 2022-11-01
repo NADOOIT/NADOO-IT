@@ -24,9 +24,16 @@ class Employee(models.Model):
 
 class EmployeeManager(models.Model):
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
+    
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
+
+    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
+        Employee, blank=True, related_name="list_of_employees_the_employee_manager_has_given_the_role_to"
+    )
+    
+    can_give_EmployeeManager_role = models.BooleanField(default=False)
 
     def __str__(self):
         display_name = self.employee.user.display_name
@@ -39,11 +46,21 @@ class EmployeeManager(models.Model):
 
 
 class CustomerManager(models.Model):
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    
     employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
+    
+    can_give_CustomerManager_role = models.BooleanField(default=False)
+    
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
+    
+    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
+    Employee, blank=True, related_name="list_of_employees_the_customer_manager_has_given_the_role_to"
+    )
+    
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
