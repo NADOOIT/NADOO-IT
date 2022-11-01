@@ -677,6 +677,7 @@ def customer_program_overview(request: HttpRequest):
         customer_programms = CustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
         )
+                
         # add the customer and the customer programm execution to the list
         customers_the_user_is_responsible_for_and_the_customer_programms.append(
             [customer_the_employe_works_for, customer_programms]

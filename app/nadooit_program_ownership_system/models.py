@@ -28,13 +28,20 @@ class CustomerProgram(models.Model):
     over_charge = models.BooleanField(default=False)
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
-    
+
+    price_per_second_in_cent = models.IntegerField(default=0)
+
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
-
     def __str__(self):
         return str(self.id) + " " + self.program.name
+
+    def price_per_execution(self):
+        return (
+            self.price_per_second_in_cent
+            * self.program_time_saved_per_execution_in_seconds
+        )
 
 
 class CustomerProgramManager(models.Model):
@@ -45,13 +52,15 @@ class CustomerProgramManager(models.Model):
     can_delete_customer_program = models.BooleanField(default=False)
 
     can_give_customerprogrammanager_role = models.BooleanField(default=False)
-    
+
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
-    
+
     list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
-        Employee, blank=True, related_name="list_of_employees_the_customer_program_manager_has_given_the_role_to"
+        Employee,
+        blank=True,
+        related_name="list_of_employees_the_customer_program_manager_has_given_the_role_to",
     )
 
     def __str__(self):

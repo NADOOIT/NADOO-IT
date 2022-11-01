@@ -755,150 +755,6 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -924,246 +780,6 @@
     },
     {
         "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -1267,6 +883,174 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -1316,6 +1100,262 @@
     },
     {
         "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -3181,6 +3221,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.migrations.0008_customerprogramexecution_price_per_second_in_cent_at_the_time_of_execution",
+        "description": "app.nadooit_api_executions_system.migrations.0008_customerprogramexecution_price_per_second_in_cent_at_the_time_of_execution",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0007_customerprogramexecutionmanager_list_of_employees_the_manager_has_given_the_role_to'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogramexecution',\n            name='price_per_second_in_cent_at_the_time_of_execution',\n            field=models.IntegerField(default=0),\n        ),",
+        "detail": "app.nadooit_api_executions_system.migrations.0008_customerprogramexecution_price_per_second_in_cent_at_the_time_of_execution",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiExecutionsSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.apps",
@@ -3194,7 +3243,7 @@
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    \"\"\"_summary_\n    model for a single execution of a nadooit program.\n    \"\"\"\n    # id of the execution\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # time saved by the program in seconds\n    program_time_saved_in_seconds = models.IntegerField(default=0)\n    # the customer program that was executed\n    customer_program = models.ForeignKey(",
+        "peekOfCode": "class CustomerProgramExecution(models.Model):\n    \"\"\"_summary_\n    model for a single execution of a nadooit program.\n    \"\"\"\n    # id of the execution\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # time saved by the program in seconds\n    program_time_saved_in_seconds = models.IntegerField(default=0)\n    # price at the time of the execution for the program\n    price_per_second_in_cent_at_the_time_of_execution = models.IntegerField(default=0)",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3203,7 +3252,7 @@
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "class CustomerProgramExecutionManager(models.Model):\n    # The employee that gets the rights\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    # If true the customer can create customer program executions\n    can_create_customer_program_execution = models.BooleanField(default=False)\n    # If true the customer can delete customer program executions\n    can_delete_customer_program_execution = models.BooleanField(default=False)\n    # If true the customer can give the rights to other users ",
+        "peekOfCode": "class CustomerProgramExecutionManager(models.Model):\n    # The employee that gets the rights\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    # If true the customer can create customer program executions\n    can_create_customer_program_execution = models.BooleanField(default=False)\n    # If true the customer can delete customer program executions\n    can_delete_customer_program_execution = models.BooleanField(default=False)\n    # If true the customer can give the rights to other users",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3212,7 +3261,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    \"\"\"\n    a new execution is created, the time saved is charged to the time account of the customer that is assigned to the program.\n    \"\"\"\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        # gets the customer program of the execution\n        nadooit_customer_program = CustomerProgram.objects.get(id=instance.customer_program.id)\n        # gets the time account of the customer program and reduces it by the time saved by the program\n        nadooit_customer_program.time_account.time_balance_in_seconds = (",
+        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    \"\"\"\n    a new execution is created, the time saved is charged to the time account of the customer that is assigned to the program.\n    \"\"\"\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        # gets the customer program of the execution\n        nadooit_customer_program = CustomerProgram.objects.get(\n            id=instance.customer_program.id\n        )",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3221,7 +3270,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    \"\"\"\n        Whenever a customer program execution is deleted this signal is triggered.\n    Args:\n        sender (_type_): _description_ \n        instance (_type_): _description_\n    \"\"\"\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = CustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (",
+        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    \"\"\"\n        Whenever a customer program execution is deleted this signal is triggered.\n    Args:\n        sender (_type_): _description_\n        instance (_type_): _description_\n    \"\"\"\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = CustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -3257,7 +3306,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.views",
         "description": "app.nadooit_api_executions_system.views",
-        "peekOfCode": "def get__hashed_api_key__for__request(request) -> str:\n    \"\"\"\n    gets the hashed api key from the request\n    \"\"\"\n    # gets the api key from the request\n    api_key = request.data.get(\"NADOOIT__API_KEY\")\n    # hashes the api key\n    hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()\n    return hashed_api_key\t\ndef get__user_code__for__request(request) -> str:",
+        "peekOfCode": "def get__hashed_api_key__for__request(request) -> str:\n    \"\"\"\n    gets the hashed api key from the request\n    \"\"\"\n    # gets the api key from the request\n    api_key = request.data.get(\"NADOOIT__API_KEY\")\n    # hashes the api key\n    hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()\n    return hashed_api_key\ndef get__user_code__for__request(request) -> str:",
         "detail": "app.nadooit_api_executions_system.views",
         "documentation": {}
     },
@@ -3266,7 +3315,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.views",
         "description": "app.nadooit_api_executions_system.views",
-        "peekOfCode": "def get__user_code__for__request(request) -> str:\n    \"\"\"\n    gets the user code from the request\t\n    Returns:\n        _type_: the user code as a string\n    \"\"\"\n    return request.data.get(\n                \"NADOOIT__USER_CODE\"\n            )\ndef get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:",
+        "peekOfCode": "def get__user_code__for__request(request) -> str:\n    \"\"\"\n    gets the user code from the request\n    Returns:\n        _type_: the user code as a string\n    \"\"\"\n    return request.data.get(\"NADOOIT__USER_CODE\")\ndef get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:\n    return nadooit_api_key.user.user_code\n# Create your views here.",
         "detail": "app.nadooit_api_executions_system.views",
         "documentation": {}
     },
@@ -3284,7 +3333,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.views",
         "description": "app.nadooit_api_executions_system.views",
-        "peekOfCode": "def create_execution(request):\n    try:\n        # gets the hashed api key from the request\n        hashed_api_key = get__hashed_api_key__for__request(request)\n        try:\n            # checks if the api key is active\n            nadooit_api_key = NadooitApiKey.objects.get(\n                api_key=hashed_api_key, is_active=True\n            )\n            user_code__for__nadooit_api_key = get__user_code__for__nadooit_api_key(nadooit_api_key)",
+        "peekOfCode": "def create_execution(request):\n    try:\n        # gets the hashed api key from the request\n        hashed_api_key = get__hashed_api_key__for__request(request)\n        try:\n            # checks if the api key is active\n            nadooit_api_key = NadooitApiKey.objects.get(\n                api_key=hashed_api_key, is_active=True\n            )\n            user_code__for__nadooit_api_key = get__user_code__for__nadooit_api_key(",
         "detail": "app.nadooit_api_executions_system.views",
         "documentation": {}
     },
@@ -4270,6 +4319,24 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0011_customerprogram_price_per_hour_in_cent",
+        "description": "app.nadooit_program_ownership_system.migrations.0011_customerprogram_price_per_hour_in_cent",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0010_rename_nadooitprogramshare_programshare'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogram',\n            name='price_per_hour_in_cent',\n            field=models.IntegerField(default=0),\n        ),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0011_customerprogram_price_per_hour_in_cent",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0012_rename_price_per_hour_in_cent_customerprogram_price_per_second_in_cent",
+        "description": "app.nadooit_program_ownership_system.migrations.0012_rename_price_per_hour_in_cent_customerprogram_price_per_second_in_cent",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0011_customerprogram_price_per_hour_in_cent'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='customerprogram',\n            old_name='price_per_hour_in_cent',\n            new_name='price_per_second_in_cent',\n        ),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0012_rename_price_per_hour_in_cent_customerprogram_price_per_second_in_cent",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramOwnershipSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.apps",
@@ -4292,7 +4359,7 @@
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)",
+        "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    price_per_second_in_cent = models.IntegerField(default=0)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },

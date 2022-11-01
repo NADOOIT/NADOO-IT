@@ -86,7 +86,16 @@ It is used to create subscriptions for the clients.
 
 #### nadooit_os TODOs
 
-##### Pages and features for the website (frontend)
+##### Pages and features for the nadooit_os (frontend)
+
+###### Programexecution Page
+
+- [ ] Add navbar to the table that shows the program executions
+- [ ] In the navbar there are  buttons for quick filters: All, This month, last month, this year, today
+- [ ] Add a sorting to the diffrent columns of the table, sort by: date, time, program, status
+- [ ] Add a row to the table that shows the program executions that shows the total time saved, total price for all executions
+
+
 
 ##### Bugfixes
 
