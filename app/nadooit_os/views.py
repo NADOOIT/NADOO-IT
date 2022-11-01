@@ -42,6 +42,7 @@ def user_is_Time_Account_Manager(user: User) -> bool:
         return True
     return False
 
+
 def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(
     user: User,
 ) -> bool:
@@ -50,11 +51,13 @@ def user_is_Time_Account_Manager_and_can_give_TimeAccountManager_role(
             return True
     return False
 
+
 # Tests for Api Key Manager
 def user_is_Api_Key_Manager(user: User) -> bool:
     if hasattr(user.employee, "nadooitapikeymanager"):
         return True
     return False
+
 
 def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:
     if hasattr(user.employee, "nadooitapikeymanager"):
@@ -62,11 +65,13 @@ def user_is_Api_Key_Manager_and_can_give_ApiKeyManager_role(user: User) -> bool:
             return True
     return False
 
+
 # Tests for Customer Program Execution Manager
 def user_is_Customer_Program_Execution_Manager(user: User) -> bool:
     if hasattr(user.employee, "customerprogramexecutionmanager"):
         return True
     return False
+
 
 def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(
     user: User,
@@ -78,40 +83,37 @@ def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Exe
             return True
     return False
 
+
 # Tests for Customer Program Manager
 def user_is_Customer_Program_Manager(user: User) -> bool:
     if hasattr(user.employee, "customerprogrammanager"):
         return True
     return False
 
+
 def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(
     user: User,
 ) -> bool:
     if hasattr(user.employee, "customerprogrammanager"):
-        if (
-            user.employee.customerprogrammanager.can_give_customerprogrammanager_role
-        ):
+        if user.employee.customerprogrammanager.can_give_customerprogrammanager_role:
             return True
     return False
 
 
-# TEsts for Employee Manager
+# Tests for Employee Manager
 def user_is_Employee_Manager(user: User) -> bool:
     if hasattr(user.employee, "employeemanager"):
         return True
     return False
 
+
 def user_is_Employee_Manager_and_can_give_Employee_Manager_role(
     user: User,
 ) -> bool:
-    if hasattr(user.employee, "employeemanager"):	
-        if (
-            user.employee.employeemanager.can_give_employeemanager_role
-        ):
+    if hasattr(user.employee, "employeemanager"):
+        if user.employee.employeemanager.can_give_employeemanager_role:
             return True
     return False
-
-
 
 
 # Getting the user roles
@@ -158,6 +160,7 @@ def customer_time_account_overview(request: HttpRequest):
         ).time_accounts.all()
     )
     list_of_customer_time_accounts = []
+
     for time_account in time_accounts_the_user_is_responsible_for:
         # get the customertimeaccount for the time account
         customer_time_account = CustomerTimeAccount.objects.get(
@@ -281,7 +284,7 @@ def revoke_api_key(request: HttpRequest):
         for api_key in api_keys:
             api_key.is_active = False
             api_key.save()
-        return HttpResponseRedirect("/nadooit-os/revoke-api-key?submitted=True")
+        return HttpResponseRedirect("/nadooit-os/api_key/revoke-api-key?submitted=True")
     else:
         if "submitted" in request.GET:
             submitted = True
@@ -649,12 +652,11 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
             **get_user_manager_roles(request),
         },
     )
-    
+
+
 # Views for the customer program overview
 @login_required(login_url="/auth/login-user")
-@user_passes_test(
-    user_is_Customer_Program_Manager, login_url="/auth/login-user"
-)
+@user_passes_test(user_is_Customer_Program_Manager, login_url="/auth/login-user")
 def customer_program_overview(request: HttpRequest):
 
     # All orders for the current customer
@@ -677,7 +679,7 @@ def customer_program_overview(request: HttpRequest):
         customer_programms = CustomerProgram.objects.filter(
             customer=customer_the_employe_works_for
         )
-                
+
         # add the customer and the customer programm execution to the list
         customers_the_user_is_responsible_for_and_the_customer_programms.append(
             [customer_the_employe_works_for, customer_programms]
@@ -696,6 +698,7 @@ def customer_program_overview(request: HttpRequest):
             **get_user_manager_roles(request),
         },
     )
+
 
 @login_required(login_url="/auth/login-user")
 @user_passes_test(
@@ -723,19 +726,13 @@ def give_customer_program_manager_role(request: HttpRequest):
                         CustomerProgramExecutionManager.objects.get(employee=employee)
                     )
                     if request.POST.get("can_create_program") == "True":
-                        CustomerProgramManager.can_create_program_execution = (
-                            True
-                        )
+                        CustomerProgramManager.can_create_program_execution = True
 
                     if request.POST.get("can_delete_program") == "True":
-                        customer_program_manager.can_delete_program_execution = (
-                            True
-                        )
+                        customer_program_manager.can_delete_program_execution = True
 
                     if (
-                        request.POST.get(
-                            "can_give_CustomerProgramManager_role"
-                        )
+                        request.POST.get("can_give_CustomerProgramManager_role")
                         == "True"
                     ):
                         customer_program_manager.can_give_CustomerProgramManager_role = (
@@ -806,6 +803,3 @@ def give_customer_program_manager_role(request: HttpRequest):
             **get_user_manager_roles(request),
         },
     )
- 
- 
- 

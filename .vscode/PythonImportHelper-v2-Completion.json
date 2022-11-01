@@ -1115,6 +1115,46 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1726,6 +1766,14 @@
     },
     {
         "label": "CustomerManager",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeContract",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
         "isExtraImport": true,
@@ -2522,6 +2570,22 @@
         "description": "nadooit_auth.username",
         "isExtraImport": true,
         "detail": "nadooit_auth.username",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "default",
+        "importPath": "email.policy",
+        "description": "email.policy",
+        "isExtraImport": true,
+        "detail": "email.policy",
         "documentation": {}
     },
     {
@@ -3788,6 +3852,33 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.migrations.0007_employeecontract",
+        "description": "app.nadooit_hr.migrations.0007_employeecontract",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_crm', '0001_initial'),\n        ('nadooit_hr', '0006_customermanager_can_give_customermanager_role_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='EmployeeContract',\n            fields=[\n                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),",
+        "detail": "app.nadooit_hr.migrations.0007_employeecontract",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.migrations.0008_employee_created_at_employee_updated_at",
+        "description": "app.nadooit_hr.migrations.0008_employee_created_at_employee_updated_at",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0007_employeecontract'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='employee',\n            name='created_at',\n            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),\n            preserve_default=False,",
+        "detail": "app.nadooit_hr.migrations.0008_employee_created_at_employee_updated_at",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.migrations.0009_remove_employee_customers_the_employee_works_for",
+        "description": "app.nadooit_hr.migrations.0009_remove_employee_customers_the_employee_works_for",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_hr', '0008_employee_created_at_employee_updated_at'),\n    ]\n    operations = [\n        migrations.RemoveField(\n            model_name='employee',\n            name='customers_the_employee_works_for',\n        ),\n    ]",
+        "detail": "app.nadooit_hr.migrations.0009_remove_employee_customers_the_employee_works_for",
+        "documentation": {}
+    },
+    {
         "label": "NadooitHrConfig",
         "kind": 6,
         "importPath": "app.nadooit_hr.apps",
@@ -3801,7 +3892,16 @@
         "kind": 6,
         "importPath": "app.nadooit_hr.models",
         "description": "app.nadooit_hr.models",
-        "peekOfCode": "class Employee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    # a customers field that shows what customers the employee is assigned to\n    customers_the_employee_works_for = models.ManyToManyField(Customer)\n    def __str__(self):\n        display_name = self.user.display_name\n        if display_name is not None:\n            return display_name\n        username = self.user.username",
+        "peekOfCode": "class Employee(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    user = models.OneToOneField(User, on_delete=models.CASCADE)\n    # a customers field that shows what customers the employee is assigned to\n    # customers_the_employee_works_for = models.ManyToManyField(Customer)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)\n    updated_at = models.DateTimeField(auto_now=True, editable=True)\n    def __str__(self):\n        display_name = self.user.display_name\n        if display_name is not None:",
+        "detail": "app.nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeContract",
+        "kind": 6,
+        "importPath": "app.nadooit_hr.models",
+        "description": "app.nadooit_hr.models",
+        "peekOfCode": "class EmployeeContract(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    # the employee that is assigned to the customer\n    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)\n    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)\n    # the start date of the contract\n    start_date = models.DateField(auto_now_add=True)\n    # the end date of the contract\n    end_date = models.DateField(null=True, blank=True)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)",
         "detail": "app.nadooit_hr.models",
         "documentation": {}
     },
@@ -3810,7 +3910,7 @@
         "kind": 6,
         "importPath": "app.nadooit_hr.models",
         "description": "app.nadooit_hr.models",
-        "peekOfCode": "class EmployeeManager(models.Model):\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(\n        Employee, blank=True, related_name=\"list_of_employees_the_employee_manager_has_given_the_role_to\"\n    )\n    can_give_EmployeeManager_role = models.BooleanField(default=False)\n    def __str__(self):",
+        "peekOfCode": "class EmployeeManager(models.Model):\n    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(\n        Employee,\n        blank=True,\n        related_name=\"list_of_employees_the_employee_manager_has_given_the_role_to\",\n    )",
         "detail": "app.nadooit_hr.models",
         "documentation": {}
     },
@@ -3819,7 +3919,7 @@
         "kind": 6,
         "importPath": "app.nadooit_hr.models",
         "description": "app.nadooit_hr.models",
-        "peekOfCode": "class CustomerManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)\n    can_give_CustomerManager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(\n    Employee, blank=True, related_name=\"list_of_employees_the_customer_manager_has_given_the_role_to\"\n    )",
+        "peekOfCode": "class CustomerManager(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)\n    can_give_CustomerManager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )\n    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(\n        Employee,\n        blank=True,",
         "detail": "app.nadooit_hr.models",
         "documentation": {}
     },
@@ -4062,7 +4162,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if (\n            user.employee.customerprogrammanager.can_give_customerprogrammanager_role",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if user.employee.customerprogrammanager.can_give_customerprogrammanager_role:\n            return True",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4071,7 +4171,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if (\n            user.employee.customerprogrammanager.can_give_customerprogrammanager_role\n        ):\n            return True\n    return False\n# TEsts for Employee Manager",
+        "peekOfCode": "def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if user.employee.customerprogrammanager.can_give_customerprogrammanager_role:\n            return True\n    return False\n# Tests for Employee Manager\ndef user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4080,7 +4180,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\t\n        if (\n            user.employee.employeemanager.can_give_employeemanager_role",
+        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\ndef user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        if user.employee.employeemanager.can_give_employeemanager_role:\n            return True",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4089,7 +4189,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\t\n        if (\n            user.employee.employeemanager.can_give_employeemanager_role\n        ):\n            return True\n    return False\n# Getting the user roles",
+        "peekOfCode": "def user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        if user.employee.employeemanager.can_give_employeemanager_role:\n            return True\n    return False\n# Getting the user roles\n# If new roles are added, they need to be added here\n# this function uses the user_is_... functions above",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4134,7 +4234,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def revoke_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        # get list of all api keys that are active for the user and set them to inactive\n        api_keys = NadooitApiKey.objects.filter(user=request.user, is_active=True)\n        for api_key in api_keys:\n            api_key.is_active = False\n            api_key.save()\n        return HttpResponseRedirect(\"/nadooit-os/revoke-api-key?submitted=True\")\n    else:",
+        "peekOfCode": "def revoke_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        # get list of all api keys that are active for the user and set them to inactive\n        api_keys = NadooitApiKey.objects.filter(user=request.user, is_active=True)\n        for api_key in api_keys:\n            api_key.is_active = False\n            api_key.save()\n        return HttpResponseRedirect(\"/nadooit-os/api_key/revoke-api-key?submitted=True\")\n    else:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

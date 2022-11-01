@@ -16,11 +16,11 @@ urlpatterns = [
         customer_program_execution_overview,
         name="customer-order-overview",
     ),
-    path("create-api-key", create_api_key, name="create-api-key"),
+    path("api_key/create-api-key", create_api_key, name="create-api-key"),
     # Page to revoke API key their API key
-    path("revoke-api-key", revoke_api_key, name="revoke-api-key"),
+    path("api_key/revoke-api-key", revoke_api_key, name="revoke-api-key"),
     path(
-        "give-api-key-manager-role",
+        "api_key/give-api-key-manager-role",
         give_api_key_manager_role,
         name="give-api-key-manager-role",
     ),
@@ -41,8 +41,8 @@ urlpatterns = [
         name="customer-program-overview",
     ),
     path(
-    "customer-program/give-customer-program-manager-role",
-    give_customer_program_manager_role,
-    name="give-customer-program-manager-role",
+        "customer-program/give-customer-program-manager-role",
+        give_customer_program_manager_role,
+        name="give-customer-program-manager-role",
     ),
 ]
