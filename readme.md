@@ -95,7 +95,9 @@ It is used to create subscriptions for the clients.
 - [ ] Add a sorting to the diffrent columns of the table, sort by: date, time, program, status
 - [ ] Add a row to the table that shows the program executions that shows the total time saved, total price for all executions
 
-
+If I want to add filters I need to change it so that the tabel is a seperate view more like a rest api where I can say something like /executions/year/month/day and it returns me the table depending on what data was given for the route.
+At the moment all data is retrieved from the backend and then pushed into the template and displayed.
+This could result in huge table later and should be reworked
 
 ##### Bugfixes
 
