@@ -803,3 +803,17 @@ def give_customer_program_manager_role(request: HttpRequest):
             **get_user_manager_roles(request),
         },
     )
+
+
+# views for the hr department
+@user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
+@login_required(login_url="/auth/login-user")
+def hr_department(request: HttpRequest):
+    return render(
+        request,
+        "nadooit_os/hr_department/hr_department.html",
+        {
+            "page_title": "HR Abteilung",
+            **get_user_manager_roles(request),
+        },
+    )
