@@ -11,6 +11,7 @@ from nadooit_api_key.models import NadooitApiKeyManager
 from nadooit_auth.models import User
 
 from nadooit_hr.models import Employee
+from nadooit_hr.models import EmployeeContract
 from .forms import ApiKeyForm, ApiKeyManagerForm, CustomerTimeAccountManagerForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -808,12 +809,76 @@ def give_customer_program_manager_role(request: HttpRequest):
 # views for the hr department
 @user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
 @login_required(login_url="/auth/login-user")
-def hr_department(request: HttpRequest):
+def employee_overview(request: HttpRequest):
+
+    # This page displays all the employees that the logged in user is responsible for
+    # The user can be the employee manager of multiple companies
+    # Each company has multiple employees
+    # The page displays all the employees of all the companies the user is responsible for as a lists
+    # Each list is a company and the employees are the employees of that company
+    customers_the_user_is_responsible_for_and_the_customers_employees = []
+
+    # get all the customers the user is responsible for
+    employee = Employee.objects.get(user=request.user)
+
+    # get all the customers the user is responsible for
+    customers_the_user_is_responsible_for = (
+        employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()
+    )
+
+    # get all the employees of the customers the user is responsible for
+    for customer in customers_the_user_is_responsible_for:
+        customers_the_user_is_responsible_for_and_the_customers_employees.append(
+            [
+                customer,
+                Employee.objects.filter(employeecontract__customer=customer),
+            ]
+        )
+
     return render(
         request,
-        "nadooit_os/hr_department/hr_department.html",
+        "nadooit_os/hr_department/employee_overview.html",
         {
-            "page_title": "HR Abteilung",
+            "page_title": "Mitarbeiter Übersicht",
+            "customers_the_user_is_responsible_for_and_the_customers_employees": customers_the_user_is_responsible_for_and_the_customers_employees,
+            **get_user_manager_roles(request),
+        },
+    )
+
+
+@user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
+@login_required(login_url="/auth/login-user")
+def employee_profile(request: HttpRequest, employee_id: int):
+    # get the employee object
+    employee = Employee.objects.get(id=employee_id)
+
+    # TODO create this page
+
+    return render(
+        request,
+        "nadooit_os/hr_department/employee_profile.html",
+        {
+            "page_title": "Mitarbeiter Profil",
+            "employee": employee,
+            **get_user_manager_roles(request),
+        },
+    )
+
+
+@user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
+@login_required(login_url="/auth/login-user")
+def add_employee(request: HttpRequest):
+    # get the employee object
+    employee = Employee.objects.get(user=request.user)
+
+    # TODO create this page
+
+    return render(
+        request,
+        "nadooit_os/hr_department/employee_profile.html",
+        {
+            "page_title": "Mitarbeiter Profil",
+            "employee": employee,
             **get_user_manager_roles(request),
         },
     )

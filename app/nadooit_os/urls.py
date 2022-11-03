@@ -59,10 +59,11 @@ urlpatterns = [
     path(
         "hr/employee-profile/<int:employee_id>",
         employee_profile,
-        name="employee-profile"
+        name="employee-profile",
     ),
-    # This is the url for the profile of an employee	
-    path(	
-         
-    
+    path(
+        "hr/add-employee",
+        add_employee,
+        name="add-employee",
+    ),
 ]

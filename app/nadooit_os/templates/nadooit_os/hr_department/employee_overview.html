@@ -1,0 +1,47 @@
+{% extends 'nadooit_os/base.html' %} {% block content %} {% csrf_token %}
+
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col">
+      {% for cutomer in customers_the_user_is_responsible_for_and_the_customers_employees %}
+
+      <div class="table-responsive">
+        <table class="table caption-top">
+          <caption>
+            {{cutomer.0}}
+          </caption>
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Anzeige Name</th>
+              <th scope="col">User Code</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for employee in cutomer.1 %}
+            <tr>
+              <td>{{ employee.user.display_name }}</td>
+              <td>
+                {{employee.user.user_code}}
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4">Keine Angestellten gefunden</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br />
+
+      {% empty %}
+      <div class="alert alert-info" role="alert">Keine Angestellten gefunden</div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}
