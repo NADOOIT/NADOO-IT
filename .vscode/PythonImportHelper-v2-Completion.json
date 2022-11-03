@@ -4293,6 +4293,15 @@
         "documentation": {}
     },
     {
+        "label": "hr_department",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def hr_department(request: HttpRequest):\n    return render(\n        request,\n        \"nadooit_os/hr_department/hr_department.html\",\n        {\n            \"page_title\": \"HR Abteilung\",\n            **get_user_manager_roles(request),\n        },\n    )",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
         "label": "Migration",
         "kind": 6,
         "importPath": "app.nadooit_program.migrations.0001_initial",
