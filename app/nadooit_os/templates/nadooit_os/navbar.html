@@ -25,11 +25,13 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               
               <li><a href="{% url 'nadooit_os:employee-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:employee-overview' %}">Angestelltenübersicht</a></li>
-              <li><a href="{% url 'nadooit_os:add-employee' %}" class="dropdown-item {% is_url_active request 'nadooit_os:add-employee' %}">Angestellten hinzufügen</a></li>
-
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'nadooit_os:give-api-key-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-api-key-manager-role' %}">Schlüssel für HR erstellen freischalten</a></li>
-              
+              {% if user_is_Employee_Manager_and_can_can_add_new_employee%}
+                <li><a href="{% url 'nadooit_os:add-employee' %}" class="dropdown-item {% is_url_active request 'nadooit_os:add-employee' %}">Angestellten hinzufügen</a></li>
+              {% endif %}
+              {% if user_is_Time_Account_Manager_and_can_give_manager_role %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'nadooit_os:give-employee-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-employee-manager-role' %}">Schlüssel freischalten</a></li>
+              {% endif %}
           </ul>
         </li>
        {% endif %}
@@ -45,7 +47,7 @@
               {% comment %} add a menue item where the user can revoke his own api key and create a new one for himself {% endcomment %}
               <li><a href="{% url 'nadooit_os:revoke-api-key' %}" class="dropdown-item {% is_url_active request 'nadooit_os:revoke-api-key' %}">NADOOIT API KEY löschen</a></li>	
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'nadooit_os:give-api-key-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-api-key-manager-role' %}">Schlüssel für API Key erstellen freischalten</a></li>
+              <li><a class="dropdown-item" href="{% url 'nadooit_os:give-api-key-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-api-key-manager-role' %}">Schlüssel freischalten</a></li>
               
           </ul>
         </li>
@@ -58,9 +60,11 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a href="{% url 'nadooit_os:customer-time-account-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-time-account-overview' %}">Übersicht</a></li>
+          {% if user_is_Time_Account_Manager_and_can_give_manager_role%}    
               <li><hr class="dropdown-divider"></li>
-              <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel für Zeitkontonverwaltung freischalten</a></li>
-          </ul>
+              <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel freischalten</a></li>
+          {% endif %}
+            </ul>
         </li>
         {% endif %}
 
@@ -72,7 +76,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a href="{% url 'nadooit_os:customer-order-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-order-overview' %}">Übersicht</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a href="{% url 'nadooit_os:give-customer-program-execution-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-execution-manager-role' %}">Schlüssel für Programmausführungsverwaltung freischalten</a></li>
+              <li><a href="{% url 'nadooit_os:give-customer-program-execution-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-execution-manager-role' %}">Schlüssel freischalten</a></li>
           </ul>
         </li>
         {% endif %}
@@ -85,7 +89,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a href="{% url 'nadooit_os:customer-program-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-program-overview' %}">Übersicht</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'nadooit_os:give-customer-program-manager-role' %}"class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-manager-role' %}">Schlüssel für Programmverwaltung freischalten</a></li>
+              <li><a class="dropdown-item" href="{% url 'nadooit_os:give-customer-program-manager-role' %}"class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-program-manager-role' %}">Schlüssel freischalten</a></li>
           </ul>
         </li>
         {% endif %}

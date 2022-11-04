@@ -42,6 +42,10 @@ class EmployeeContract(models.Model):
     # the end date of the contract
     end_date = models.DateField(null=True, blank=True)
 
+    # if false the contract is not active and hidden from the frontend
+    is_active = models.BooleanField(default=True)
+    deactivation_date = models.DateField(null=True, blank=True)
+
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
@@ -50,19 +54,30 @@ class EmployeeContract(models.Model):
 
 
 class EmployeeManager(models.Model):
+
+    # the employee that gets the manager role
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
 
+    # A list of all the customers the employee manager is assigned to
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
 
+    # A list of all the epmloyees that are managed by this manager
     list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
         Employee,
         blank=True,
         related_name="list_of_employees_the_employee_manager_has_given_the_role_to",
     )
 
-    can_give_EmployeeManager_role = models.BooleanField(default=False)
+    # if true, the employee manager can assign employees to customers
+    can_add_new_employee = models.BooleanField(default=False)
+
+    # if true, the employee manager can remove employees from customers
+    can_delete_employee = models.BooleanField(default=False)
+
+    # if true, the employee manager can give the role of employee manager to other employees
+    can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self):
         display_name = self.employee.user.display_name
@@ -80,7 +95,7 @@ class CustomerManager(models.Model):
 
     employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
 
-    can_give_CustomerManager_role = models.BooleanField(default=False)
+    can_give_manager_role = models.BooleanField(default=False)
 
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True

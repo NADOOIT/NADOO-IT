@@ -66,4 +66,9 @@ urlpatterns = [
         add_employee,
         name="add-employee",
     ),
+    path(
+        "hr/give-employee-manager-role",
+        give_employee_manager_role,
+        name="give-employee-manager-role",
+    ),
 ]

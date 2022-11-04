@@ -73,7 +73,7 @@ class ApiKeyManagerForm(forms.Form):
         widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
     )
     # Add lable that says "New API Key Manager can give other users API Key Manager permissions"
-    can_give_ApiKeyManager_role = forms.BooleanField(
+    can_give_manager_role = forms.BooleanField(
         label="Kann Schlüßel API Key Manager Rechte vergeben",
         required=False,
         initial=False,

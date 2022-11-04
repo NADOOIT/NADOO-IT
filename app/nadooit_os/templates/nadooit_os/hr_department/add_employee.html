@@ -6,15 +6,14 @@
         <br/>
         {% if submitted and not error%}
         <div class="alert alert-success" role="alert">
-
-                <strong>Schlüssel als Manager freigeschaltet!</strong>
-            </div>
+            <strong>Schlüssel hinzugefügt!</strong>
+        </div>
         
         {% elif error %}
 
-            <div class="alert alert-danger">
-                <strong>{{error}}</strong>
-            </div>
+        <div class="alert alert-danger">
+            <strong>{{error}}</strong>
+        </div>
 
         {% else %}    
 
@@ -25,7 +24,7 @@
  {% endcomment %}
 
         <div class="form-group">
-            <label for="customers">Kunden auswählen:</label>
+            <label for="customers">Unternehmen auswählen:</label>
             <select class="form-select" multiple id="customers" name="customers">
                 {% for customer in list_of_customers_the_manager_is_responsible_for %}
                 <option value="{{ customer.id }}">{{ customer.name }}</option>
@@ -37,23 +36,10 @@
         <div class="form-group">
             <label for="user_code">Schlüssel User code eingeben:</label>
             <input type="text" class="form-control" id="user_code" name="user_code" required>
-        <div class="form-group">
-            <label for="role">Rolle auswählen:</label>
-            <select class="form-select" multiple id="role" name="role">
-                {% if can_create_customer_program %}
-                <option value="can_create_customer_program">Kundenprogrammausführungen hinzufügen</option>
-                {% endif %}
-                {% if can_delete_customer_program_execution %}
-                <option value="can_delete_customer_program">Kundenprogrammausführungen löschen</option>
-                {% endif %}
-                {% if can_give_manager_role %}
-                <option value="can_give_manager_role">Kundenprogrammmanager Rolle vergeben</option>
-                {% endif %}
-            </select>
         </div>
         <br/>
 
-        <input type="submit" value="Mache User Code zum API Key Mangager" class="btn btn-secondary">
+        <input type="submit" value=" User Code zum Kunden hinzufügen" class="btn btn-secondary">
         </form>
         {% endif %}
 </div>

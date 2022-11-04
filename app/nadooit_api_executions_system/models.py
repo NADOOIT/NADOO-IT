@@ -115,7 +115,7 @@ class CustomerProgramExecutionManager(models.Model):
     can_delete_customer_program_execution = models.BooleanField(default=False)
 
     # If true the customer can give the rights to other users
-    can_give_customerprogramexecutionmanager_role = models.BooleanField(default=False)
+    can_give_manager_role = models.BooleanField(default=False)
 
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
