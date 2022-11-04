@@ -861,19 +861,26 @@ def employee_overview(request: HttpRequest):
 @user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
 @login_required(login_url="/auth/login-user")
 def employee_profile(request: HttpRequest, employee_id: int):
+    #TODO This is not doen yet and can and should not be used
+    
     # get the employee object
     employee = Employee.objects.get(id=employee_id)
 
-    # TODO create this page
+    # A list of all the customers the user is responsible for so that in the profile the user only sees the infroation of the employee that is also part of the customers the user is responsible for
+    customers_the_user_is_responsible_for = (request.user.employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all())
 
-    return render(
-        request,
-        "nadooit_os/hr_department/employee_profile.html",
-        {
-            "page_title": "Mitarbeiter Profil",
-            "employee": employee,
-            **get__user__roles_and_rights(request),
-        },
+    # get the employee contracts of the employee that are part of the customers the user is responsible for
+    employee_contracts_of_customers_the_user_is_responsible_for = EmployeeContract.objects.filter(employee=employee, customer__in=customers_the_user_is_responsible_for)	
+    
+    return render(	
+        request,		
+        "nadooit_os/hr_department/employee_profile.html",		
+        {		
+            "page_title": "Mitarbeiter Profil",		
+            "employee": employee,		
+            "employee_contracts_of_customers_the_user_is_responsible_for": employee_contracts_of_customers_the_user_is_responsible_for,		
+            **get__user__roles_and_rights(request),		
+        },		
     )
 
 

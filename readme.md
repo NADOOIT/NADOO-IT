@@ -160,12 +160,12 @@ It creates easy to use urls for displaying images for use in templates and other
 
 #### nadooit_hr TODOs
 
-- [ ] Add page for currently logged in user to add a new user to a customer as an employee (if he has the rights)
+- [x] Add page for currently logged in user to add a new user to a customer as an employee (if he has the rights)
 - [ ] Add page for currently logged in user to remove an employee from a customer (if he has the rights)
 - [ ] Add a new role for the employee to see all employees and their roles of a customer (if he has the rights)
 - [ ] Add a new role for the employee to revoke roles of all employees of a customer (if he has the rights)
 - [ ] Add a new role for the employee to add roles to all employees of a customer (if he has the rights)
-- [ ] Create a list of all employees of a customer (if he has the rights)
+- [x] Create a list of all employees of a customer (if he has the rights)
   - [ ] Create a list of all employees of a customer with their roles and rights (if he has the rights)
 
 ### nadooit_program_ownership_system

@@ -4507,7 +4507,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def employee_profile(request: HttpRequest, employee_id: int):\n    # get the employee object\n    employee = Employee.objects.get(id=employee_id)\n    # TODO create this page\n    return render(\n        request,\n        \"nadooit_os/hr_department/employee_profile.html\",\n        {\n            \"page_title\": \"Mitarbeiter Profil\",\n            \"employee\": employee,",
+        "peekOfCode": "def employee_profile(request: HttpRequest, employee_id: int):\n    #TODO This is not doen yet and can and should not be used\n    # get the employee object\n    employee = Employee.objects.get(id=employee_id)\n    # A list of all the customers the user is responsible for so that in the profile the user only sees the infroation of the employee that is also part of the customers the user is responsible for\n    customers_the_user_is_responsible_for = (request.user.employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all())\n    # get the employee contracts of the employee that are part of the customers the user is responsible for\n    employee_contracts_of_customers_the_user_is_responsible_for = EmployeeContract.objects.filter(employee=employee, customer__in=customers_the_user_is_responsible_for)\t\n    return render(\t\n        request,\t\t",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
