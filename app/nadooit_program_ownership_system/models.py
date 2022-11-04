@@ -51,7 +51,7 @@ class CustomerProgramManager(models.Model):
     can_create_customer_program = models.BooleanField(default=False)
     can_delete_customer_program = models.BooleanField(default=False)
 
-    can_give_customerprogrammanager_role = models.BooleanField(default=False)
+    can_give_manager_role = models.BooleanField(default=False)
 
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True

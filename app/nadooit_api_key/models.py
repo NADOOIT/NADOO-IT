@@ -14,10 +14,10 @@ from django.dispatch import receiver
 class NadooitApiKey(models.Model):
     # id of the api key
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    
+
     # the user that owns the api key
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
     # api_keys are unique and are stored in the database as a hash of the api key
     # this is done to prevent the api key from being stored in plain text in the database
     api_key = models.CharField(
@@ -28,11 +28,11 @@ class NadooitApiKey(models.Model):
         blank=False,
         default=uuid.uuid4,
     )
-    
+
     # date and time when the api key was created
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
-    
+
     # property that tracs if the api key still active or not
     is_active = models.BooleanField(default=True)
 
@@ -41,6 +41,7 @@ class NadooitApiKey(models.Model):
             return f"{self.user.display_name}  {self.user.user_code}"
         else:
             return f"{self.user.username}  {self.user.user_code}"
+
 
 # function that is called when a new api key is created
 @receiver(models.signals.post_save, sender=NadooitApiKey)
@@ -61,15 +62,17 @@ class NadooitApiKeyManager(models.Model):
 
     can_create_api_key = models.BooleanField(default=False)
     can_delete_api_key = models.BooleanField(default=False)
-    
-    can_give_ApiKeyManager_role = models.BooleanField(default=False)
-    
+
+    can_give_manager_role = models.BooleanField(default=False)
+
     list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
         Customer, blank=True
     )
-    
+
     list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
-        Employee, blank=True, related_name="list_of_employees_the_api_key_manager_has_given_the_role_to"
+        Employee,
+        blank=True,
+        related_name="list_of_employees_the_api_key_manager_has_given_the_role_to",
     )
 
     def __str__(self):

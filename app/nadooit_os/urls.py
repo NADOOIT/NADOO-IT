@@ -45,4 +45,30 @@ urlpatterns = [
         give_customer_program_manager_role,
         name="give-customer-program-manager-role",
     ),
+    # These are the urls for the hr department of the company
+    # They include an overview of all employees and the possibility to create new employees, edit them and delete them
+    # An employee can be selected and their profile can be viewed
+    # The employee profile contains the employee's personal information and the employee's roles, which are the rights the employee has, e.g. the right to create customer programs
+    # It also contains the option to see the employees contracts and the option to create a new contract for the employee
+    path(
+        "hr/employee-overview",
+        employee_overview,
+        name="employee-overview",
+    ),
+    # This is the url for the profile of an employee
+    path(
+        "hr/employee-profile/<int:employee_id>",
+        employee_profile,
+        name="employee-profile",
+    ),
+    path(
+        "hr/add-employee",
+        add_employee,
+        name="add-employee",
+    ),
+    path(
+        "hr/give-employee-manager-role",
+        give_employee_manager_role,
+        name="give-employee-manager-role",
+    ),
 ]

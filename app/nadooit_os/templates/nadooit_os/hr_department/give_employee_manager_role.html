@@ -38,16 +38,16 @@
             <label for="user_code">Schlüssel User code eingeben:</label>
             <input type="text" class="form-control" id="user_code" name="user_code" required>
         <div class="form-group">
-            <label for="role">Rolle auswählen:</label>
+            <label for="role">Fähigkeiten auswählen:</label>
             <select class="form-select" multiple id="role" name="role">
-                {% if can_create_customer_program %}
-                <option value="can_create_customer_program">Kundenprogrammausführungen hinzufügen</option>
+                {% if can_add_new_employee %}
+                <option value="can_add_new_employee">Kann neue Angestellte hinzufügen</option>
                 {% endif %}
-                {% if can_delete_customer_program_execution %}
-                <option value="can_delete_customer_program">Kundenprogrammausführungen löschen</option>
+                {% if can_delete_employee %}
+                <option value="can_delete_employee">Kann Angestellte löschen</option>
                 {% endif %}
                 {% if can_give_manager_role %}
-                <option value="can_give_manager_role">Kundenprogrammmanager Rolle vergeben</option>
+                <option value="can_give_manager_role">Kann HR Manager Rolle vergeben</option>
                 {% endif %}
             </select>
         </div>
