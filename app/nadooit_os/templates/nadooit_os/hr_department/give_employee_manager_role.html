@@ -26,9 +26,9 @@
 
         <div class="form-group">
             <label for="customers">Kunden auswählen:</label>
-            <select class="form-select" multiple id="customers" name="customers">
+            <select class="form-select" id="customers" name="customers">
                 {% for customer in list_of_customers_the_manager_is_responsible_for %}
-                <option value="{{ customer.id }}">{{ customer.name }}</option>
+                <option value="{{ customer.id }}">{{ customer }}</option>
                 {% endfor %}
             </select>	
         </div>
@@ -40,6 +40,13 @@
         <div class="form-group">
             <label for="role">Fähigkeiten auswählen:</label>
             <select class="form-select" multiple id="role" name="role">
+
+                <option value="can_add_new_employee">Kann neue Angestellte hinzufügen</option>
+                <option value="can_delete_employee">Kann Angestellte löschen</option>
+                <option value="can_give_manager_role">Kann HR Manager Rolle vergeben</option>
+
+                
+{% comment %} This part of the code should be extracted into a separate template where depending on the chosen customer the list of roles is displayed
                 {% if can_add_new_employee %}
                 <option value="can_add_new_employee">Kann neue Angestellte hinzufügen</option>
                 {% endif %}
@@ -49,6 +56,7 @@
                 {% if can_give_manager_role %}
                 <option value="can_give_manager_role">Kann HR Manager Rolle vergeben</option>
                 {% endif %}
+ {% endcomment %}
             </select>
         </div>
         <br/>
