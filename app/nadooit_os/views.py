@@ -310,8 +310,8 @@ def create_api_key(request: HttpRequest):
         if form.is_valid():
             new_api_key = NadooitApiKey(
                 api_key=form.cleaned_data["api_key"],
-                user=form.cleaned_data["user_code"],
-                is_active=form.cleaned_data["is_active"],
+                user=request.user,
+                is_active=True,
             )
             new_api_key.updated_at = timezone.now()
             new_api_key.created_at = timezone.now()
@@ -363,6 +363,8 @@ def revoke_api_key(request: HttpRequest):
     )
 
 
+# This has been deprecated and is not used anymore
+""" 
 @login_required(login_url="/auth/login-user")
 @user_passes_test(
     user_is_Api_Key_Manager_and_can_give_manager_role,
@@ -450,7 +452,7 @@ def give_api_key_manager_role(request: HttpRequest):
             **get__user__roles_and_rights(request),
         },
     )
-
+ """
 
 @login_required(login_url="/auth/login-user")
 @user_passes_test(

@@ -1997,6 +1997,14 @@
         "documentation": {}
     },
     {
+        "label": "EmployeeContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
         "label": "Employee",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
@@ -4473,7 +4481,7 @@
         "kind": 6,
         "importPath": "app.nadooit_os.forms",
         "description": "app.nadooit_os.forms",
-        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        label=\"Schlüssel User code eingeben:\",\n        widget=forms.Select(",
+        "peekOfCode": "class UserCodeModelChoiceField(ModelChoiceField):\n    def label_from_instance(self, obj):\n        return obj.user_code\nclass ApiKeyForm(forms.Form):\n    api_key = forms.UUIDField(\n        initial=uuid.uuid4,\n        required=True,\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",",
         "detail": "app.nadooit_os.forms",
         "documentation": {}
     },
@@ -4482,7 +4490,7 @@
         "kind": 6,
         "importPath": "app.nadooit_os.forms",
         "description": "app.nadooit_os.forms",
-        "peekOfCode": "class ApiKeyForm(forms.Form):\n    user_code = UserCodeModelChoiceField(\n        queryset=User.objects.all(),\n        to_field_name=\"user_code\",\n        required=True,\n        label=\"Schlüssel User code eingeben:\",\n        widget=forms.Select(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 150px;\",",
+        "peekOfCode": "class ApiKeyForm(forms.Form):\n    api_key = forms.UUIDField(\n        initial=uuid.uuid4,\n        required=True,\n        widget=forms.TextInput(\n            attrs={\n                \"class\": \"form-control\",\n                \"style\": \"width: 390px;\",\n                \"class\": \"form-control\",\n            }",
         "detail": "app.nadooit_os.forms",
         "documentation": {}
     },
@@ -4653,7 +4661,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def create_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=form.cleaned_data[\"user_code\"],\n                is_active=form.cleaned_data[\"is_active\"],\n            )",
+        "peekOfCode": "def create_api_key(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        form = ApiKeyForm(request.POST)\n        if form.is_valid():\n            new_api_key = NadooitApiKey(\n                api_key=form.cleaned_data[\"api_key\"],\n                user=request.user,\n                is_active=True,\n            )",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
