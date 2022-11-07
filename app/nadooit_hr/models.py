@@ -93,6 +93,44 @@ class CustomerProgramManagerContract(models.Model):
         )
 
 
+class CustomerProgramExecutionManagerContract(models.Model):
+
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+
+    # If true the customer can create customer program executions
+    can_create_customer_program_execution = models.BooleanField(default=False)
+
+    # If true the customer can delete customer program executions
+    can_delete_customer_program_execution = models.BooleanField(default=False)
+
+    # If true the customer can give the rights to other users
+    can_give_manager_role = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
+
+
+class TimeAccountManagerContract(models.Model):
+
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+
+    # If true the customer can create customer program executions
+    can_create_time_accounts = models.BooleanField(default=False)
+
+    # If true the customer can delete customer program executions
+    can_delete_time_accounts = models.BooleanField(default=False)
+
+    # If true the customer can give the rights to other users
+    can_give_manager_role = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
+
+
 class CustomerManagerContract(models.Model):
 
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)

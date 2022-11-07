@@ -125,28 +125,3 @@ class WorkTimeAccountEntry(models.Model):
                 + " "
                 + self.employee_time_account.employee.user.display_name
             )
-
-
-class TimeAccountManager(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    # A list of all time accounts the manager is responsible for
-    time_accounts = models.ManyToManyField(TimeAccount, blank=True)
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
-    # employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-
-    can_create_time_accounts = models.BooleanField(default=False)
-    can_delete_time_accounts = models.BooleanField(default=False)
-    can_give_manager_role = models.BooleanField(default=False)
-
-    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
-        Customer, blank=True
-    )
-
-    def __str__(self):
-        display_name = self.employee.user.display_name
-        if display_name is not None:
-            return display_name
-        username = self.employee.user.username
-        if username is not None:
-            return username
-        return self.employee.user.user_code
