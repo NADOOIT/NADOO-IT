@@ -452,7 +452,8 @@ def give_api_key_manager_role(request: HttpRequest):
             **get__user__roles_and_rights(request),
         },
     )
- """
+"""
+
 
 @login_required(login_url="/auth/login-user")
 @user_passes_test(

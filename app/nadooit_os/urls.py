@@ -24,13 +24,6 @@ urlpatterns = [
     path("api_key/create-api-key", create_api_key, name="create-api-key"),
     # Page to revoke API key their API key
     path("api_key/revoke-api-key", revoke_api_key, name="revoke-api-key"),
-""" Deactivate API key Manager role    
-    path(
-        "api_key/give-api-key-manager-role",
-        give_api_key_manager_role,
-        name="give-api-key-manager-role",
-    ),
-     """
     path(
         "customer-program-execution/give-customer-program-execution-manager-role",
         give_customer_program_execution_manager_role,
