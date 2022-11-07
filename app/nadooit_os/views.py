@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponseRedirect
 from requests import request
 
+from nadooit_hr.models import CustomerProgramManagerContract
 from .forms import ApiKeyForm, ApiKeyManagerForm, CustomerTimeAccountManagerForm
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -28,7 +29,6 @@ from nadooit_hr.models import EmployeeManagerContract
 from nadooit_time_account.models import TimeAccountManager
 from nadooit_api_executions_system.models import CustomerProgramExecutionManager
 from nadooit_api_key.models import NadooitApiKeyManager
-from nadooit_program_ownership_system.models import CustomerProgramManager
 
 
 from django.contrib.auth.decorators import user_passes_test
@@ -85,27 +85,28 @@ def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Exe
 
 # Tests for Customer Program Manager
 def user_is_Customer_Program_Manager(user: User) -> bool:
-    if hasattr(user.employee, "customerprogrammanager"):
+    # checks if the employee for the user is an employee manager
+    if CustomerProgramManagerContract.objects.filter(
+        contract__employee=user.employee, contract__is_active=True
+    ).exists():
         return True
-    return False
+    else:
+        return False
 
 
 def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(
     user: User,
 ) -> bool:
-    if hasattr(user.employee, "customerprogrammanager"):
-        if user.employee.customerprogrammanager.can_give_manager_role:
-            return True
-    return False
-
-
-# Tests for Employee Manager
-""" OLD
-def user_is_Employee_Manager(user: User) -> bool:
-    if hasattr(user.employee, "employeemanager"):
+    if CustomerProgramManagerContract.objects.filter(
+        contract__employee=user.employee,
+        contract__is_active=True,
+        can_give_manager_role=True,
+    ).exists():
         return True
-    return False
- """
+    else:
+        return False
+
+
 # Tests for Employee Manager
 def user_is_Employee_Manager(user: User) -> bool:
     # checks if the employee for the user is an employee manager
@@ -115,17 +116,6 @@ def user_is_Employee_Manager(user: User) -> bool:
         return True
     else:
         return False
-
-
-""" OLD
-def user_is_Employee_Manager_and_can_give_Employee_Manager_role(
-    user: User,
-) -> bool:
-    if hasattr(user.employee, "employeemanager"):
-        if user.employee.employeemanager.can_give_manager_role:
-            return True
-    return False
- """
 
 
 def user_is_Employee_Manager_and_can_give_Employee_Manager_role(
@@ -139,17 +129,6 @@ def user_is_Employee_Manager_and_can_give_Employee_Manager_role(
         return True
     else:
         return False
-
-
-""" OLD
-def user_is_Employee_Manager_and_can_can_add_new_employee(
-    user: User,
-) -> bool:
-    if hasattr(user.employee, "employeemanager"):
-        if user.employee.employeemanager.can_add_new_employee:
-            return True
-    return False
- """
 
 
 def user_is_Employee_Manager_and_can_can_add_new_employee(
@@ -720,33 +699,33 @@ def customer_program_overview(request: HttpRequest):
     # All orders for the current customer
     # orders are the executions of customerprograms
 
-    # the employee is the logged in user
-    employee = Employee.objects.get(user=request.user)
-
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
     customers_the_user_is_responsible_for_and_the_customer_programms = []
 
-    for (
-        customer_the_employe_works_for
-    ) in (
-        employee.customerprogrammanager.list_of_customers_the_manager_is_responsible_for.all()
-    ):
+    list_of_customer_program_manger_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=request.user.employee, can_give_manager_role=True
+        ).distinct("contract__customer")
+    )
+
+    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
+    for contract in list_of_customer_program_manger_contract_for_logged_in_user:
+
         # list of customer programms with of the customer
         customer_programms = CustomerProgram.objects.filter(
-            customer=customer_the_employe_works_for
+            customer=contract.contract.customer
         )
 
         # add the customer and the customer programm execution to the list
         customers_the_user_is_responsible_for_and_the_customer_programms.append(
-            [customer_the_employe_works_for, customer_programms]
+            [contract.contract.customer, customer_programms]
         )
 
     # Multiple lists for the different order states
     # List one shows all orders for the current month
     # List shows all previous orders
-    print(customers_the_user_is_responsible_for_and_the_customer_programms)
     return render(
         request,
         "nadooit_os/customer_program/customer_program_overview.html",
@@ -772,77 +751,98 @@ def give_customer_program_manager_role(request: HttpRequest):
         if User.objects.filter(user_code=user_code).exists():
 
             # check if there is an emplyee for that user code
-            if Employee.objects.filter(user__user_code=user_code).exists():
+            if not Employee.objects.filter(user__user_code=user_code).exists():
+                # create new employee for the user_code
+                Employee.objects.create(user=User.objects.get(user_code=user_code))
 
-                # get the employee object for the user
-                employee = Employee.objects.get(user__user_code=user_code)
+            # get the employee object for the user
+            employee = Employee.objects.get(user__user_code=user_code)
 
-                # check if the user is already an CustomerProgramManager
-                if user_is_Customer_Program_Manager(employee.user):
-                    # if the employee is already an CustomerProgramManager, update the existing CustomerProgramManager object but only give more rights
-                    customer_program_manager = (
-                        CustomerProgramExecutionManager.objects.get(employee=employee)
+            # check if the employee already has the role
+            if not CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee
+            ).exists():
+                # Check if the employee has a contract with the customer
+                if not EmployeeContract.objects.filter(employee=employee).exists():
+                    EmployeeContract.objects.create(
+                        employee=employee,
+                        customer=Customer.objects.get(id=request.POST.get("customers")),
                     )
-                    if request.POST.get("can_create_program") == "True":
-                        CustomerProgramManager.can_create_program_execution = True
-
-                    if request.POST.get("can_delete_program") == "True":
-                        customer_program_manager.can_delete_program_execution = True
-
-                    if request.POST.get("can_give_manager_role") == "True":
-                        customer_program_manager.can_give_manager_role = True
-
-                    customer_program_manager.save()
-
-                else:
-
-                    # create new customer program execution manager
-                    new_customer_program_execution_manager = (
-                        CustomerProgramExecutionManager.objects.create(
-                            employee=employee,
-                            can_create_program_execution=request.POST.get(
-                                "can_create_program_execution"
-                            )
-                            == "True",
-                            can_delete_program_execution=request.POST.get(
-                                "can_delete_program_execution"
-                            )
-                            == "True",
-                            can_give_manager_role=request.POST.get(
-                                "can_give_manager_role"
-                            )
-                            == "True",
-                        )
+                # Check if there is more then one EmployeeContract for the employee
+                elif (
+                    EmployeeContract.objects.filter(
+                        employee=employee,
+                        customer=Customer.objects.get(id=request.POST.get("customers")),
+                    ).count()
+                    > 1
+                ):
+                    # TODO add a way to select the correct contract if there is more then one contract for the employee
+                    # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
+                    return HttpResponseRedirect(
+                        "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True&error=Der Mitarbeiter hat mehr als einen Vertrag mit diesem Kunden."
                     )
-
-                    # add the customers the new manager is responsible for
-                    for customer in request.POST.getlist("customers"):
-                        new_customer_program_execution_manager.list_of_customers_the_manager_is_responsible_for.add(
-                            customer
-                        )
-                    new_customer_program_execution_manager.save()
-
-                return HttpResponseRedirect(
-                    "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True"
+                # create the CustomerProgramManagerContract
+                CustomerProgramManagerContract.objects.create(
+                    contract=EmployeeContract.objects.get(employee=employee)
                 )
+            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
+            # get the "role"
+            list_of_abilities = request.POST.getlist("role")
+            for ability in list_of_abilities:
+                # check if the employee already has the ability
+                if ability == "can_create_customer_program":
+                    if CustomerProgramManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_create_customer_program=True,
+                    ).exists():
+                        # Set the ability for the CustomerProgramManagerContract object to the value of the ability
+                        CustomerProgramManagerContract.objects.filter(
+                            contract__employee=employee
+                        ).update(can_create_customer_program=True)
+                if ability == "can_delete_customer_program":
+                    if CustomerProgramManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_delete_customer_program=True,
+                    ).exists():
+                        # Set the ability for the CustomerProgramManagerContract object to the value of the ability
+                        CustomerProgramManagerContract.objects.filter(
+                            contract__employee=employee
+                        ).update(can_delete_customer_program=True)
+                if ability == "can_give_manager_role":
+                    if CustomerProgramManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_give_manager_role=True,
+                    ).exists():
+                        # Set the ability for the CustomerProgramManagerContract object to the value of the ability
+                        CustomerProgramManagerContract.objects.filter(
+                            contract__employee=employee
+                        ).update(can_give_manager_role=True)
 
-            else:
-                return HttpResponseRedirect(
-                    "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True&error=Benutzercode ist nicht als Mitarbeiter registriert"
-                )
+            return HttpResponseRedirect(
+                "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True"
+            )
 
         else:
             return HttpResponseRedirect(
-                "/nadooit-os/customer-program/give-customer-program-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
+                "/nadooit-os/cutomer-program/give-customer-program-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
             )
 
     else:
         if "submitted" in request.GET:
             submitted = True
 
-    list_of_customers_the_manager_is_responsible_for = (
-        request.user.employee.customerprogrammanager.list_of_customers_the_manager_is_responsible_for.all()
+    list_of_employee_manager_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=request.user.employee, can_give_manager_role=True
+        ).distinct("contract__customer")
     )
+
+    # get the list of customers the customer program manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
+    list_of_customers_the_manager_is_responsible_for = []
+    for contract in list_of_employee_manager_contract_for_logged_in_user:
+        list_of_customers_the_manager_is_responsible_for.append(
+            contract.contract.customer
+        )
 
     return render(
         request,
@@ -852,9 +852,6 @@ def give_customer_program_manager_role(request: HttpRequest):
             "submitted": submitted,
             "error": request.GET.get("error"),
             "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
-            "can_create_customer_program": request.user.employee.customerprogrammanager.can_create_customer_program,
-            "can_delete_customer_program": request.user.employee.customerprogrammanager.can_delete_customer_program,
-            "can_give_manager_role": request.user.employee.customerprogrammanager.can_give_manager_role,
             **get__user__roles_and_rights(request),
         },
     )
@@ -997,7 +994,7 @@ def add_employee(request: HttpRequest):
         list_of_customers_the_manager_is_responsible_for.append(
             contract.contract.customer
         )
-        
+
     return render(
         request,
         "nadooit_os/hr_department/add_employee.html",

@@ -1595,6 +1595,14 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1981,7 +1989,23 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgramManagerContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
         "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramManagerContract",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
         "isExtraImport": true,
@@ -2077,23 +2101,7 @@
         "documentation": {}
     },
     {
-        "label": "CustomerProgramManager",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
-        "documentation": {}
-    },
-    {
         "label": "CustomerProgram",
-        "importPath": "nadooit_program_ownership_system.models",
-        "description": "nadooit_program_ownership_system.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program_ownership_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramManager",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
         "isExtraImport": true,
@@ -4496,7 +4504,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        if user.employee.customerprogramexecutionmanager.can_give_manager_role:\n            return True\n    return False\n# Tests for Customer Program Manager\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):",
+        "peekOfCode": "def user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogramexecutionmanager\"):\n        if user.employee.customerprogramexecutionmanager.can_give_manager_role:\n            return True\n    return False\n# Tests for Customer Program Manager\ndef user_is_Customer_Program_Manager(user: User) -> bool:\n    # checks if the employee for the user is an employee manager",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4505,7 +4513,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        return True\n    return False\ndef user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if user.employee.customerprogrammanager.can_give_manager_role:\n            return True",
+        "peekOfCode": "def user_is_Customer_Program_Manager(user: User) -> bool:\n    # checks if the employee for the user is an employee manager\n    if CustomerProgramManagerContract.objects.filter(\n        contract__employee=user.employee, contract__is_active=True\n    ).exists():\n        return True\n    else:\n        return False\ndef user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4514,7 +4522,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"customerprogrammanager\"):\n        if user.employee.customerprogrammanager.can_give_manager_role:\n            return True\n    return False\n# Tests for Employee Manager\n\"\"\" OLD\ndef user_is_Employee_Manager(user: User) -> bool:",
+        "peekOfCode": "def user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(\n    user: User,\n) -> bool:\n    if CustomerProgramManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        can_give_manager_role=True,\n    ).exists():\n        return True\n    else:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4523,25 +4531,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        return True\n    return False\n \"\"\"\n# Tests for Employee Manager\ndef user_is_Employee_Manager(user: User) -> bool:\n    # checks if the employee for the user is an employee manager\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, contract__is_active=True",
-        "detail": "app.nadooit_os.views",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_Employee_Manager",
-        "kind": 2,
-        "importPath": "app.nadooit_os.views",
-        "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    # checks if the employee for the user is an employee manager\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, contract__is_active=True\n    ).exists():\n        return True\n    else:\n        return False\n\"\"\" OLD\ndef user_is_Employee_Manager_and_can_give_Employee_Manager_role(",
-        "detail": "app.nadooit_os.views",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_Employee_Manager_and_can_give_Employee_Manager_role",
-        "kind": 2,
-        "importPath": "app.nadooit_os.views",
-        "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        if user.employee.employeemanager.can_give_manager_role:\n            return True\n    return False\n \"\"\"\ndef user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,",
+        "peekOfCode": "def user_is_Employee_Manager(user: User) -> bool:\n    # checks if the employee for the user is an employee manager\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, contract__is_active=True\n    ).exists():\n        return True\n    else:\n        return False\ndef user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4551,15 +4541,6 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def user_is_Employee_Manager_and_can_give_Employee_Manager_role(\n    user: User,\n) -> bool:\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        can_give_manager_role=True,\n    ).exists():\n        return True\n    else:",
-        "detail": "app.nadooit_os.views",
-        "documentation": {}
-    },
-    {
-        "label": "user_is_Employee_Manager_and_can_can_add_new_employee",
-        "kind": 2,
-        "importPath": "app.nadooit_os.views",
-        "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager_and_can_can_add_new_employee(\n    user: User,\n) -> bool:\n    if hasattr(user.employee, \"employeemanager\"):\n        if user.employee.employeemanager.can_add_new_employee:\n            return True\n    return False\n \"\"\"\ndef user_is_Employee_Manager_and_can_can_add_new_employee(\n    user: User,",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4658,7 +4639,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def customer_program_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the employee is the logged in user\n    employee = Employee.objects.get(user=request.user)\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programms = []\n    for (",
+        "peekOfCode": "def customer_program_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_user_is_responsible_for_and_the_customer_programms = []\n    list_of_customer_program_manger_contract_for_logged_in_user = (\n        CustomerProgramManagerContract.objects.filter(\n            contract__employee=request.user.employee, can_give_manager_role=True",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4667,7 +4648,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def give_customer_program_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if Employee.objects.filter(user__user_code=user_code).exists():\n                # get the employee object for the user\n                employee = Employee.objects.get(user__user_code=user_code)",
+        "peekOfCode": "def give_customer_program_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if not Employee.objects.filter(user__user_code=user_code).exists():\n                # create new employee for the user_code\n                Employee.objects.create(user=User.objects.get(user_code=user_code))",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4861,6 +4842,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0014_delete_customerprogrammanager",
+        "description": "app.nadooit_program_ownership_system.migrations.0014_delete_customerprogrammanager",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0013_rename_can_give_customerprogrammanager_role_customerprogrammanager_can_give_manager_role'),\n    ]\n    operations = [\n        migrations.DeleteModel(\n            name='CustomerProgramManager',\n        ),\n    ]",
+        "detail": "app.nadooit_program_ownership_system.migrations.0014_delete_customerprogrammanager",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramOwnershipSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.apps",
@@ -4884,15 +4874,6 @@
         "importPath": "app.nadooit_program_ownership_system.models",
         "description": "app.nadooit_program_ownership_system.models",
         "peekOfCode": "class CustomerProgram(models.Model):\n    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)\n    program_time_saved_per_execution_in_seconds = models.IntegerField(default=0)\n    # TODO this relation means that every program can only be assigned to one time account. This is not correct. A program can be assigned to multiple time accounts.\n    time_account = models.ForeignKey(TimeAccount, on_delete=models.SET_NULL, null=True)\n    over_charge = models.BooleanField(default=False)\n    program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)\n    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)\n    price_per_second_in_cent = models.IntegerField(default=0)\n    created_at = models.DateTimeField(auto_now_add=True, editable=True)",
-        "detail": "app.nadooit_program_ownership_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerProgramManager",
-        "kind": 6,
-        "importPath": "app.nadooit_program_ownership_system.models",
-        "description": "app.nadooit_program_ownership_system.models",
-        "peekOfCode": "class CustomerProgramManager(models.Model):\n    employee = models.OneToOneField(\n        Employee, on_delete=models.CASCADE, primary_key=True\n    )\n    can_create_customer_program = models.BooleanField(default=False)\n    can_delete_customer_program = models.BooleanField(default=False)\n    can_give_manager_role = models.BooleanField(default=False)\n    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(\n        Customer, blank=True\n    )",
         "detail": "app.nadooit_program_ownership_system.models",
         "documentation": {}
     },

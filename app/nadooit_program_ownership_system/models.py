@@ -42,32 +42,3 @@ class CustomerProgram(models.Model):
             self.price_per_second_in_cent
             * self.program_time_saved_per_execution_in_seconds
         )
-
-
-class CustomerProgramManager(models.Model):
-    employee = models.OneToOneField(
-        Employee, on_delete=models.CASCADE, primary_key=True
-    )
-    can_create_customer_program = models.BooleanField(default=False)
-    can_delete_customer_program = models.BooleanField(default=False)
-
-    can_give_manager_role = models.BooleanField(default=False)
-
-    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
-        Customer, blank=True
-    )
-
-    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
-        Employee,
-        blank=True,
-        related_name="list_of_employees_the_customer_program_manager_has_given_the_role_to",
-    )
-
-    def __str__(self):
-        display_name = self.employee.user.display_name
-        if display_name is not None:
-            return display_name
-        username = self.employee.user.username
-        if username is not None:
-            return username
-        return self.employee.user.user_code
