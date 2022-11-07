@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
 
-  <a class="navbar-brand" href="#">{{page_title}}</a>
+  <a class="navbar-brand" href="/nadooit-os">{{page_title}}</a>
 
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -41,14 +41,13 @@
             NADOOIT API KEY
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% if is_api_key_manager%}
               <li><a href="{% url 'nadooit_os:create-api-key' %}" class="dropdown-item {% is_url_active request 'nadooit_os:create-api-key' %}">NADOOIT API KEY erstellen</a></li>
-              {% endif %}
               {% comment %} add a menue item where the user can revoke his own api key and create a new one for himself {% endcomment %}
               <li><a href="{% url 'nadooit_os:revoke-api-key' %}" class="dropdown-item {% is_url_active request 'nadooit_os:revoke-api-key' %}">NADOOIT API KEY löschen</a></li>	
+              {% comment %} 
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{% url 'nadooit_os:give-api-key-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-api-key-manager-role' %}">Schlüssel freischalten</a></li>
-              
+               {% endcomment %}
           </ul>
         </li>
 

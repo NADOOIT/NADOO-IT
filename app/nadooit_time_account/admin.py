@@ -5,7 +5,6 @@ from nadooit_time_account.models import (
     TimeAccount,
     EmployeeTimeAccount,
     WorkTimeAccountEntry,
-    TimeAccountManager,
 )
 
 # Register your models here.
@@ -13,4 +12,3 @@ admin.site.register(TimeAccount)
 admin.site.register(EmployeeTimeAccount)
 admin.site.register(WorkTimeAccountEntry)
 admin.site.register(CustomerTimeAccount)
-admin.site.register(TimeAccountManager)

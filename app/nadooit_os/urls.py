@@ -7,9 +7,14 @@ app_name = "nadooit_os"
 urlpatterns = [
     path("", index_nadooit_os, name="nadooit-os"),
     path(
-        "customer-time-account-overview",
+        "time-account/customer-time-account-overview",
         customer_time_account_overview,
         name="customer-time-account-overview",
+    ),
+    path(
+        "time-account/give-customer-time-account-manager-role",
+        give_customer_time_account_manager_role,
+        name="give-customer-time-account-manager-role",
     ),
     path(
         "customer-program-execution/customer-order-overview",
@@ -19,16 +24,6 @@ urlpatterns = [
     path("api_key/create-api-key", create_api_key, name="create-api-key"),
     # Page to revoke API key their API key
     path("api_key/revoke-api-key", revoke_api_key, name="revoke-api-key"),
-    path(
-        "api_key/give-api-key-manager-role",
-        give_api_key_manager_role,
-        name="give-api-key-manager-role",
-    ),
-    path(
-        "give-customer-time-account-manager-role",
-        give_customer_time_account_manager_role,
-        name="give-customer-time-account-manager-role",
-    ),
     path(
         "customer-program-execution/give-customer-program-execution-manager-role",
         give_customer_program_execution_manager_role,

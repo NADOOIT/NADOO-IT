@@ -40,6 +40,7 @@
         <div class="form-group">
             <label for="role">Rolle auswählen:</label>
             <select class="form-select" multiple id="role" name="role">
+{% comment %}                 OLD
                 {% if can_create_customer_program_execution %}
                 <option value="can_create_customer_program_execution">Kundenprogrammausführungen hinzufügen</option>
                 {% endif %}
@@ -49,6 +50,12 @@
                 {% if can_give_manager_role %}
                 <option value="can_give_manager_role">Kundenprogrammmanager Rolle vergeben</option>
                 {% endif %}
+                 {% endcomment %}
+
+                <option value="can_create_customer_program_execution">Kundenprogrammausführungen hinzufügen</option>
+                <option value="can_delete_customer_program_execution">Kundenprogrammausführungen löschen</option>
+                <option value="can_give_manager_role">Kundenprogrammmanager Rolle vergeben</option>
+
             </select>
         </div>
         <br/>

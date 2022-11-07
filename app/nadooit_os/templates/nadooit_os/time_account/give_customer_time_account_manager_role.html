@@ -27,6 +27,7 @@
         </div>
         <br/>
         {% comment %} give the user a choice of the time_accounts from the list time_accounts_the_manager_is_responsible_for the user can select multiple  {% endcomment %}	
+{% comment %}         
         <div class="form-group">
             <label for="time_accounts">Zeitkonten auswählen:</label>
             <select class="form-select" multiple id="time_accounts" name="time_accounts">
@@ -34,8 +35,23 @@
                 <option value="{{ time_account.id }}">{{ time_account.name }}</option>
                 {% endfor %}
             </select>
-
-        {{ form|crispy  }}
+ {% endcomment %}
+            {% comment %} OLD
+                    {{ form|crispy  }}
+            {% endcomment %}
+        <div class="form-group">
+            <label for="user_code">Schlüssel User code eingeben:</label>
+            <input type="text" class="form-control" id="user_code" name="user_code" required>
+        <div class="form-group">
+        <div class="form-group">
+            <label for="role">Rolle auswählen:</label>
+            <select class="form-select" multiple id="role" name="role">
+            <option value="can_create_time_accounts">Kann Zeitkonten erstellen</option>
+            <option value="can_delete_time_accounts">Kann Zeitkonten löschen</option>
+            <option value="can_give_manager_role">Kann Schlüßel Zeitkonto Manager Rechte vergeben</option>
+            </select>
+        </div>
+        <br/>
 
         <input type="submit" value="Mache User Code zum API Key Mangager" class="btn btn-secondary">
         </form>

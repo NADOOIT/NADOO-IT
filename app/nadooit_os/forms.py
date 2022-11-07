@@ -13,19 +13,6 @@ class UserCodeModelChoiceField(ModelChoiceField):
 
 class ApiKeyForm(forms.Form):
 
-    user_code = UserCodeModelChoiceField(
-        queryset=User.objects.all(),
-        to_field_name="user_code",
-        required=True,
-        label="Schlüssel User code eingeben:",
-        widget=forms.Select(
-            attrs={
-                "class": "form-control",
-                "style": "width: 150px;",
-                "class": "form-control",
-            }
-        ),
-    )
     api_key = forms.UUIDField(
         initial=uuid.uuid4,
         required=True,
@@ -36,11 +23,6 @@ class ApiKeyForm(forms.Form):
                 "class": "form-control",
             }
         ),
-    )
-    is_active = forms.BooleanField(
-        required=True,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
     )
 
 

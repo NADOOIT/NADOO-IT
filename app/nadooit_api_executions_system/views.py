@@ -6,6 +6,7 @@
 # License: TBD
 
 import hashlib
+from nadooit_hr.models import EmployeeContract
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from nadooit_api_executions_system.models import CustomerProgramExecution
@@ -75,10 +76,25 @@ def create_execution(request):
             ):
                 return Response({"error": "User is not active"}, status=400)
             else:
+                # check if customer program exists
+                if not CustomerProgram.objects.filter(
+                    id=request.data["program_id"]
+                ).exists():
+                    return Response({"error": "Program does not exist"}, status=400)
 
                 nadooit_customer_program = CustomerProgram.objects.get(
                     id=request.data["program_id"]
                 )
+
+                # check if the user is an employee of the company that owns the program
+                if not EmployeeContract.objects.filter(
+                    contract__employee__user_code=user_code__for__request,
+                    contract__customer=nadooit_customer_program.customer,
+                    is_active=True,
+                ).exists():
+                    return Response(
+                        {"error": "User is not an employee of the company"}, status=400
+                    )
 
                 CustomerProgramExecution.objects.create(
                     program_time_saved_in_seconds=nadooit_customer_program.program_time_saved_per_execution_in_seconds,

@@ -44,6 +44,8 @@ class EmployeeContract(models.Model):
 
     # if false the contract is not active and hidden from the frontend
     is_active = models.BooleanField(default=True)
+
+    # the date the contract was deactivated
     deactivation_date = models.DateField(null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
@@ -53,22 +55,9 @@ class EmployeeContract(models.Model):
         return f"{self.employee} - {self.customer}"
 
 
-class EmployeeManager(models.Model):
+class EmployeeManagerContract(models.Model):
 
-    # the employee that gets the manager role
-    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)
-
-    # A list of all the customers the employee manager is assigned to
-    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
-        Customer, blank=True
-    )
-
-    # A list of all the epmloyees that are managed by this manager
-    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
-        Employee,
-        blank=True,
-        related_name="list_of_employees_the_employee_manager_has_given_the_role_to",
-    )
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # if true, the employee manager can assign employees to customers
     can_add_new_employee = models.BooleanField(default=False)
@@ -79,38 +68,77 @@ class EmployeeManager(models.Model):
     # if true, the employee manager can give the role of employee manager to other employees
     can_give_manager_role = models.BooleanField(default=False)
 
-    def __str__(self):
-        display_name = self.employee.user.display_name
-        if display_name is not None:
-            return display_name
-        username = self.employee.user.username
-        if username is not None:
-            return username
-        return self.employee.user.user_code
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
 
 
-class CustomerManager(models.Model):
+class CustomerProgramManagerContract(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
-    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True)
+    # if true, the employee manager can assign employees to customers
+    can_create_customer_program = models.BooleanField(default=False)
 
+    # if true, the employee manager can remove employees from customers
+    can_delete_customer_program = models.BooleanField(default=False)
+
+    # if true, the employee manager can give the role of employee manager to other employees
     can_give_manager_role = models.BooleanField(default=False)
 
-    list_of_customers_the_manager_is_responsible_for = models.ManyToManyField(
-        Customer, blank=True
-    )
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
 
-    list_of_employees_the_manager_has_given_the_role_to = models.ManyToManyField(
-        Employee,
-        blank=True,
-        related_name="list_of_employees_the_customer_manager_has_given_the_role_to",
-    )
 
-    created_at = models.DateTimeField(auto_now_add=True, editable=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
+class CustomerProgramExecutionManagerContract(models.Model):
 
-    def __str__(self):
-        if self.employee.user.display_name is not None:
-            return self.employee.user.display_name
-        return self.employee.user.user_code
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+
+    # If true the customer can create customer program executions
+    can_create_customer_program_execution = models.BooleanField(default=False)
+
+    # If true the customer can delete customer program executions
+    can_delete_customer_program_execution = models.BooleanField(default=False)
+
+    # If true the customer can give the rights to other users
+    can_give_manager_role = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
+
+
+class TimeAccountManagerContract(models.Model):
+
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+
+    # If true the customer can create customer program executions
+    can_create_time_accounts = models.BooleanField(default=False)
+
+    # If true the customer can delete customer program executions
+    can_delete_time_accounts = models.BooleanField(default=False)
+
+    # If true the customer can give the rights to other users
+    can_give_manager_role = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
+
+
+class CustomerManagerContract(models.Model):
+
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+
+    # if true, the employee manager can give the role of employee manager to other employees
+    can_give_manager_role = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return (
+            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
+        )
