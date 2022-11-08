@@ -15,15 +15,41 @@
             <tr>
               <th scope="col">Anzeige Name</th>
               <th scope="col">User Code</th>
+              <th scope="col">Vertrag Status</th>
+              <th scope="col"></th>
             </tr>
           </thead>
 
           <tbody>
-            {% for employee in cutomer.1 %}
+            {% for employeecontract in cutomer.1 %}
             <tr>
-              <td>{{ employee.user.display_name }}</td>
+              <td>{{ employeecontract.employee.user.display_name }}</td>
               <td>
-                {{employee.user.user_code}}
+                {{employeecontract.employee.user.user_code}}
+                 
+                  
+              </td>
+              {% comment %} A button with the lable Vertrag deaktivieren. Use htmx to send a post request to nadooit-os/hr/deactivate-contract/{{customer.1.id}}/{{{employee.user.id}}} {% endcomment %}
+              <td>
+                {% if employee_can_change_contract_status %}
+                  {% if employeecontract.is_active %}
+                  <button type="submit" class="btn btn-danger" hx-post="{% url 'nadooit_os:deactivate-contract' employeecontract.id %}" hx-swap="outerHTML">
+                    Vertrag deaktivieren
+                  </button>	
+                  {% else %}
+                  <button type="submit" class="btn btn-success" hx-post="{% url 'nadooit_os:activate-contract' employeecontract.id %}" hx-swap="outerHTML">
+                    Vertrag aktivieren
+                  </button>
+                  {% endif %}
+                {% else %}
+                  {% if employeecontract.is_active %}
+                  {% comment %} show badges with the status {% endcomment %}
+                  <span class="badge bg-success">Aktiv</span>
+                  {% else %}
+                  <span class="badge bg-danger">Inaktiv</span>
+                  {% endif %}
+                {% endif %}
+
               </td>
             </tr>
             {% empty %}

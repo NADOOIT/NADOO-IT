@@ -16,6 +16,14 @@
         "documentation": {}
     },
     {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponseRedirect",
         "importPath": "django.http",
         "description": "django.http",
@@ -2969,7 +2977,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = [] if DEBUG else os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n# Application definition\n# This is the list of installed apps. If a new app is added, it must be added here.\n# The order of the apps is important. The apps are loaded in the order they are listed here. \n# See the documentation of the apps for more information.\nINSTALLED_APPS = [",
+        "peekOfCode": "DEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = [] if DEBUG else os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n# Application definition\n# This is the list of installed apps. If a new app is added, it must be added here.\n# The order of the apps is important. The apps are loaded in the order they are listed here.\n# See the documentation of the apps for more information.\nINSTALLED_APPS = [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2978,7 +2986,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = [] if DEBUG else os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n# Application definition\n# This is the list of installed apps. If a new app is added, it must be added here.\n# The order of the apps is important. The apps are loaded in the order they are listed here. \n# See the documentation of the apps for more information.\nINSTALLED_APPS = [\n    \"sslserver\",\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",",
+        "peekOfCode": "ALLOWED_HOSTS = [] if DEBUG else os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n# Application definition\n# This is the list of installed apps. If a new app is added, it must be added here.\n# The order of the apps is important. The apps are loaded in the order they are listed here.\n# See the documentation of the apps for more information.\nINSTALLED_APPS = [\n    \"sslserver\",\n    \"django_is_url_active_templatetag\",\n    \"grappelli\",\n    \"django.contrib.admin\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -2996,7 +3004,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]",
+        "peekOfCode": "MIDDLEWARE = [\n    \"debug_toolbar.middleware.DebugToolbarMiddleware\",\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n    \"django_htmx.middleware.HtmxMiddleware\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -4621,11 +4629,20 @@
         "documentation": {}
     },
     {
-        "label": "user_is_Employee_Manager_and_can_can_add_new_employee",
+        "label": "user_is_Employee_Manager_and_can_add_new_employee",
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def user_is_Employee_Manager_and_can_can_add_new_employee(\n    user: User,\n) -> bool:\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        can_add_new_employee=True,\n    ).exists():\n        return True\n    else:",
+        "peekOfCode": "def user_is_Employee_Manager_and_can_add_new_employee(\n    user: User,\n) -> bool:\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        can_add_new_employee=True,\n    ).exists():\n        return True\n    else:",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "user_is_Employee_Manager_and_can_delete_employee",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def user_is_Employee_Manager_and_can_delete_employee(\n    user: User,\n) -> bool:\n    if EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        can_delete_employee=True,\n    ).exists():\n        return True\n    else:",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4733,7 +4750,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def employee_overview(request: HttpRequest):\n    # This page displays all the employees that the logged in user is responsible for\n    # The user can be the employee manager of multiple companies\n    # Each company has multiple employees\n    # The page displays all the employees of all the companies the user is responsible for as a lists\n    # Each list is a company and the employees are the employees of that company\n    customers_the_user_is_responsible_for_and_the_customers_employees = []\n    # get all the customers the user is responsible for\n    employee = Employee.objects.get(user=request.user)\n    # get all the customers the employee has contracts with and is an employee manager for",
+        "peekOfCode": "def employee_overview(request: HttpRequest):\n    # This page displays all the employees that the logged in user is responsible for\n    # The user can be the employee manager of multiple companies\n    # Each company has multiple employees\n    # The page displays all the employees of all the companies the user is responsible for as a lists\n    # Each list is a company and the employees are the employees of that company\n    customers_the_user_is_responsible_for_and_the_customers_employees = []\n    # get all the customers the user is responsible for\n    employee_that_is_logged_in = Employee.objects.get(user=request.user)\n    # get all the customers the employee has contracts with and is an employee manager for",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4761,6 +4778,24 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def give_employee_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if not Employee.objects.filter(user__user_code=user_code).exists():\n                # create new employee for the user_code\n                Employee.objects.create(user=User.objects.get(user_code=user_code))",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "deactivate_contract",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def deactivate_contract(request: HttpRequest, employeecontract_id: str):\n    if request.method == \"POST\":\n        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)\n    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)\n    return render(\n        request,\n        \"nadooit_os/hr_department/components/activate_contract_button.html\",\n        {\n            \"employee_contract\": employee_contract,\n        },",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "activate_contract",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def activate_contract(request: HttpRequest, employeecontract_id: str):\n    if request.method == \"POST\":\n        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=True)\n    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)\n    return render(\n        request,\n        \"nadooit_os/hr_department/components/deactivate_contract_button.html\",\n        {\n            \"employee_contract\": employee_contract,\n        },",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

@@ -168,6 +168,7 @@ It creates easy to use urls for displaying images for use in templates and other
 - [x] Create a list of all employees of a customer (if he has the rights)
   - [ ] Create a list of all employees of a customer with their roles and rights (if he has the rights)
 
+
 ### nadooit_program_ownership_system
 
 #### nadooit_program_ownership_system TODOs
