@@ -971,7 +971,7 @@ def employee_overview(request: HttpRequest):
                     customer.contract.customer,
                     EmployeeContract.objects.filter(
                         customer=customer.contract.customer
-                    ).distinct(),
+                    ).distinct().order_by("-is_active"),
                 ]
             )
         else:
@@ -981,7 +981,9 @@ def employee_overview(request: HttpRequest):
                     EmployeeContract.objects.filter(
                         customer=customer.contract.customer,
                         employee__user__is_staff=False,
-                    ).distinct(),
+                    )
+                    .distinct()
+                    .order_by("-is_active"),
                 ]
             )
 
