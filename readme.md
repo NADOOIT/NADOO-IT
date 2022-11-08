@@ -8,7 +8,6 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ## List of planned packages
 
-- [ ] htmx
 - [ ] django-extensions
 - [ ] django-filter
 
@@ -22,6 +21,7 @@ It forms the interface to the system, hosts the website, and provides the API.
 - [x] django-crispy-forms
 - [x] django-bootstrap5
 - [x] mfa using fido2 keys
+- [x] htmx
 
 ## List of TODOs
 
