@@ -4735,6 +4735,15 @@
         "documentation": {}
     },
     {
+        "label": "customer_program_execution_overview_filter_tabs",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def customer_program_execution_overview_filter_tabs(\n    request: HttpRequest, filter_type, cutomer_id\n):\n    return render(\n        request,\n        \"nadooit_os/customer_program_execution/components/filter_tabs.html\",\n        {\n            \"filter_type\": filter_type,\n            \"cutomer_id\": cutomer_id,\n        },",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
         "label": "give_customer_program_execution_manager_role",
         "kind": 2,
         "importPath": "app.nadooit_os.views",

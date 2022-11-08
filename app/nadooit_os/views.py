@@ -614,20 +614,43 @@ def customer_program_execution_overview(request: HttpRequest):
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
 
         # list of customer programms with of the customer
-        customer_programm_executions = CustomerProgramExecution.objects.filter(customer_program__customer=contract.contract.customer).order_by("created_at").reverse()[:20]
-       
+        customer_programm_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer=contract.contract.customer
+            )
+            .order_by("created_at")
+            .reverse()[:20]
+        )
 
         # add the customer and the customer programm execution to the list
         customers_the_employee_is_responsible_for_and_the_customer_programm_executions.append(
             [contract.contract.customer, customer_programm_executions]
         )
+
+    filter_type = "first20"
+
     return render(
         request,
         "nadooit_os/customer_program_execution/customer_program_execution_overview.html",
         {
             "page_title": "Übersicht der Buchungen",
+            "filter_type": filter_type,
             "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_programm_executions,
             **get__user__roles_and_rights(request),
+        },
+    )
+
+
+def customer_program_execution_overview_filter_tabs(
+    request: HttpRequest, filter_type, cutomer_id
+):
+
+    return render(
+        request,
+        "nadooit_os/customer_program_execution/components/filter_tabs.html",
+        {
+            "filter_type": filter_type,
+            "cutomer_id": cutomer_id,
         },
     )
 

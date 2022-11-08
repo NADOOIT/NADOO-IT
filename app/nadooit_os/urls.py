@@ -21,6 +21,11 @@ urlpatterns = [
         customer_program_execution_overview,
         name="customer-order-overview",
     ),
+    path(
+        "customer-program-execution-filter-tabs/<filter_type>/<uuid:cutomer_id>",
+        customer_program_execution_overview_filter_tabs,
+        name="customer-program-execution-filter-tabs",
+    ),
     path("api_key/create-api-key", create_api_key, name="create-api-key"),
     # Page to revoke API key their API key
     path("api_key/revoke-api-key", revoke_api_key, name="revoke-api-key"),
