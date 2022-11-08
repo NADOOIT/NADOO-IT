@@ -1,9 +1,9 @@
-#Author: Christoph Backhaus
-#Date: 2022-10-30
-#Version: 1.0.0
-#Description: This is the settings file for the nadooit app. It contains the settings for the app.
-#Compatibility: Django 4
-#License: TBD
+# Author: Christoph Backhaus
+# Date: 2022-10-30
+# Version: 1.0.0
+# Description: This is the settings file for the nadooit app. It contains the settings for the app.
+# Compatibility: Django 4
+# License: TBD
 
 """
 Django settings for nadooit project.
@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").spli
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
-# The order of the apps is important. The apps are loaded in the order they are listed here. 
+# The order of the apps is important. The apps are loaded in the order they are listed here.
 # See the documentation of the apps for more information.
 INSTALLED_APPS = [
     "sslserver",
@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "debug_toolbar",
+    "django_htmx",
 ]
 
 # Middelware is a list of functions that are called for every request.
@@ -87,6 +88,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 # The Authentication backends are used to authenticate users.

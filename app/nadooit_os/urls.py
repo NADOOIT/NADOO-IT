@@ -66,4 +66,14 @@ urlpatterns = [
         give_employee_manager_role,
         name="give-employee-manager-role",
     ),
+    path(
+        "hr/deactivate-contract/<employeecontract_id>",
+        deactivate_contract,
+        name="deactivate-contract",
+    ),
+    path(
+        "hr/activate-contract/<employeecontract_id>",
+        activate_contract,
+        name="activate-contract",
+    ),
 ]
