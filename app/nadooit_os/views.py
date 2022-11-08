@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.utils import timezone
 from django.shortcuts import render
 
@@ -33,7 +34,7 @@ from nadooit_api_key.models import NadooitApiKeyManager
 
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import login_required
-
+from django.views.decorators.http import require_POST
 
 # Tests for user roles
 
@@ -613,9 +614,8 @@ def customer_program_execution_overview(request: HttpRequest):
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
 
         # list of customer programms with of the customer
-        customer_programm_executions = CustomerProgramExecution.objects.filter(
-            customer_program__customer=contract.contract.customer
-        )
+        customer_programm_executions = CustomerProgramExecution.objects.filter(customer_program__customer=contract.contract.customer).order_by("created_at").reverse()[:20]
+       
 
         # add the customer and the customer programm execution to the list
         customers_the_employee_is_responsible_for_and_the_customer_programm_executions.append(
@@ -969,9 +969,9 @@ def employee_overview(request: HttpRequest):
             customers_the_user_is_responsible_for_and_the_customers_employees.append(
                 [
                     customer.contract.customer,
-                    EmployeeContract.objects.filter(
-                        customer=customer.contract.customer
-                    ).distinct().order_by("-is_active"),
+                    EmployeeContract.objects.filter(customer=customer.contract.customer)
+                    .distinct()
+                    .order_by("-is_active"),
                 ]
             )
         else:
@@ -1223,6 +1223,7 @@ def give_employee_manager_role(request: HttpRequest):
     )
 
 
+@require_POST
 @user_passes_test(
     user_is_Employee_Manager_and_can_delete_employee,
     login_url="/auth/login-user",
@@ -1232,17 +1233,27 @@ def deactivate_contract(request: HttpRequest, employeecontract_id: str):
     if request.method == "POST":
         EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)
 
-    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)
+        employee_contract = EmployeeContract.objects.get(id=employeecontract_id)
 
-    return render(
-        request,
-        "nadooit_os/hr_department/components/activate_contract_button.html",
-        {
-            "employee_contract": employee_contract,
-        },
-    )
+        # add the current date to the EmployeeContract into the deactivation_date
+        employee_contract.deactivation_date = datetime.now()
+        employee_contract.save()
+
+        return render(
+            request,
+            "nadooit_os/hr_department/components/activate_contract_button.html",
+            {
+                "employee_contract": employee_contract,
+            },
+        )
 
 
+@require_POST
+@user_passes_test(
+    user_is_Employee_Manager_and_can_delete_employee,
+    login_url="/auth/login-user",
+)
+@login_required(login_url="/auth/login-user")
 def activate_contract(request: HttpRequest, employeecontract_id: str):
     if request.method == "POST":
         EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=True)

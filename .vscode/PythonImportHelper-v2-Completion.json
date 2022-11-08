@@ -2845,6 +2845,14 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "default",
         "importPath": "email.policy",
         "description": "email.policy",
@@ -2899,6 +2907,14 @@
         "description": "requests",
         "isExtraImport": true,
         "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "require_POST",
+        "importPath": "django.views.decorators.http",
+        "description": "django.views.decorators.http",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.http",
         "documentation": {}
     },
     {
@@ -4786,7 +4802,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def deactivate_contract(request: HttpRequest, employeecontract_id: str):\n    if request.method == \"POST\":\n        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)\n    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)\n    return render(\n        request,\n        \"nadooit_os/hr_department/components/activate_contract_button.html\",\n        {\n            \"employee_contract\": employee_contract,\n        },",
+        "peekOfCode": "def deactivate_contract(request: HttpRequest, employeecontract_id: str):\n    if request.method == \"POST\":\n        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)\n        employee_contract = EmployeeContract.objects.get(id=employeecontract_id)\n        # add the current date to the EmployeeContract into the deactivation_date\n        employee_contract.deactivation_date = datetime.now()\n        employee_contract.save()\n        return render(\n            request,\n            \"nadooit_os/hr_department/components/activate_contract_button.html\",",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
