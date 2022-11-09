@@ -2845,6 +2845,14 @@
         "documentation": {}
     },
     {
+        "label": "date",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -4731,6 +4739,15 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def customer_program_execution_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []\n    list_of_customer_program_manger_contract_for_logged_in_user = (\n        CustomerProgramExecutionManagerContract.objects.filter(\n            contract__employee=request.user.employee, can_give_manager_role=True",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "customer_program_execution_list_for_cutomer",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def customer_program_execution_list_for_cutomer(\n    request: HttpRequest, filter_type, cutomer_id\n):\n    # Get the executions depending on the filter type\n    customer_program_executions = []\n    todays_date = date.today()\n    if filter_type == \"last20\":\n        customer_program_executions = (\n            CustomerProgramExecution.objects.filter(\n                customer_program__customer__id=cutomer_id",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

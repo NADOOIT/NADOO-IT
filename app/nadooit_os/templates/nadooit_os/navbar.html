@@ -92,15 +92,18 @@
           </ul>
         </li>
         {% endif %}
-
+        {% comment %} 
         <li  class="nav-item">
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
         </li>
+        {% endcomment %}
+        
         <li class="nav-item">
           <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"></a>
+        </li>
         <li class="nav-item">
           <a class="btn btn-danger" href="{% url 'nadooit_auth:logout-user' %}"role="button">Logout</a>
         </li>
