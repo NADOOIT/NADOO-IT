@@ -1,47 +1,47 @@
-<ul id="quickfilter{{ cutomer_id }}" class="nav nav-pills">
-    {% if filter_type == "first20" %}
+<ul class="nav nav-pills">
+    {% if filter_type == "last20" %}
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'first20' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzte 20 Buchungen</a>
+            <a class="nav-link active" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'last20' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzte 20 Buchungen</a>
         </li>
     {% else %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'first20' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzte 20 Buchungen</a>
+            <a class="nav-link" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'last20' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzte 20 Buchungen</a>
         </li>
     {% endif %}
     {% if filter_type == "lastmonth" %}
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'lastmonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzter Monat</a>
+            <a class="nav-link active" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'lastmonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzter Monat</a>
         </li>
     {% else %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'lastmonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzter Monat</a>
+            <a class="nav-link" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'lastmonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Letzter Monat</a>
         </li>
     {% endif %}
     {% if filter_type == "today" %}
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'today' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Heute</a>
+            <a class="nav-link active" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'today' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Heute</a>
         </li>
     {% else %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'today' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Heute</a>
+            <a class="nav-link" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'today' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Heute</a>
         </li>
     {% endif %}
     {% if filter_type == "thismonth" %}
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'thismonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieser Monat</a>
+            <a class="nav-link active" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'thismonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieser Monat</a>
         </li>
     {% else %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'thismonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieser Monat</a>
+            <a class="nav-link" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'thismonth' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieser Monat</a>
         </li>
     {% endif %}
     {% if filter_type == "thisyear" %}
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'thisyear' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieses Jahr</a>
+            <a class="nav-link active" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'thisyear' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieses Jahr</a>
         </li>
     {% else %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" hx-get="{% url 'nadooit_os:customer-program-execution-filter-tabs' 'thisyear' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieses Jahr</a>
+            <a class="nav-link" aria-current="page" hx-swap="outerHTML" hx-get="{% url 'nadooit_os:customer-program-execution-list-for-cutomer' 'thisyear' cutomer_id %}" hx-target="#quickfilter{{ cutomer_id }}">Dieses Jahr</a>
         </li>
     {% endif %}
 {% comment %} Add filter for entering year month and day {% endcomment %}

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from django.utils import timezone
 from django.shortcuts import render
 
@@ -627,7 +627,7 @@ def customer_program_execution_overview(request: HttpRequest):
             [contract.contract.customer, customer_programm_executions]
         )
 
-    filter_type = "first20"
+    filter_type = "last20"
 
     return render(
         request,
@@ -641,16 +641,71 @@ def customer_program_execution_overview(request: HttpRequest):
     )
 
 
-def customer_program_execution_overview_filter_tabs(
+@login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
+)
+def customer_program_execution_list_for_cutomer(
     request: HttpRequest, filter_type, cutomer_id
 ):
+    # Get the executions depending on the filter type
+    customer_program_executions = []
+
+    todays_date = date.today()
+
+    if filter_type == "last20":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id
+            )
+            .order_by("created_at")
+            .reverse()[:20]
+        )
+    elif filter_type == "lastmonth":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id,
+                created_at__month=todays_date.month - 1,
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "today":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id, created_at__date=todays_date
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "thismonth":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id,
+                created_at__month=todays_date.month,
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+
+    elif filter_type == "thisyear":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id,
+                created_at__year=todays_date.year,
+            )
+            .order_by("created_at")
+            .reverse()
+        )
 
     return render(
         request,
-        "nadooit_os/customer_program_execution/components/filter_tabs.html",
+        "nadooit_os/customer_program_execution/components/cutomer_orders_with_tabs.html",
         {
             "filter_type": filter_type,
             "cutomer_id": cutomer_id,
+            "cutomer_name": Customer.objects.get(id=cutomer_id).name,
+            "customer_program_executions": customer_program_executions,
         },
     )
 
