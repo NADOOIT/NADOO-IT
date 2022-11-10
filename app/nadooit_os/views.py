@@ -4,7 +4,12 @@ from django.shortcuts import render
 
 # imoport for userforms
 
-from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.http import (
+    HttpRequest,
+    HttpResponse,
+    HttpResponseForbidden,
+    HttpResponseRedirect,
+)
 from requests import request
 from nadooit_hr.models import TimeAccountManagerContract
 from nadooit_hr.models import CustomerProgramExecutionManagerContract
@@ -648,6 +653,16 @@ def customer_program_execution_overview(request: HttpRequest):
 def customer_program_execution_list_for_cutomer(
     request: HttpRequest, filter_type, cutomer_id
 ):
+   
+   # Check if the user is a customer program execution manager for the customer
+    if not  CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=request.user.employee,
+            contract__is_active=True,
+            contract__customer__id=cutomer_id,
+        ).exists():
+        return HttpResponseForbidden()
+   
+   
     # Get the executions depending on the filter type
     customer_program_executions = []
 
@@ -717,6 +732,16 @@ def customer_program_execution_list_for_cutomer(
 def customer_program_execution_list_compaint_modal(
     request: HttpRequest, customer_program_execution_id
 ):
+    # Check that the user is a a customer program execution manager for the customer that the customer program execution belongs to
+    if not CustomerProgramExecutionManagerContract.objects.filter(
+        contract__employee=request.user.employee,
+        contract__is_active=True,
+        contract__customer=CustomerProgramExecution.objects.get(
+            id=customer_program_execution_id
+        ).customer_program.customer,
+    ).exists():
+        return HttpResponseForbidden()
+
     # Get the executions depending on the filter type
     customer_program_execution = CustomerProgramExecution.objects.get(
         id=customer_program_execution_id
