@@ -9,13 +9,13 @@
 		 {% comment %} A textfield in that the customer can enter the reson why he want to complain. {% endcomment %}
 		  <div class="form-group">	
 			<label for="reklamation">Reklamation</label>	
-			<textarea class="form-control" id="reklamation" rows="3" placeholder="Bitte beschreiben Sie wieso Sie diese Transaktion reklamieren möchten"></textarea>
+			<textarea name="complainttext" class="form-control" id="reklamation" rows="3" placeholder="Bitte beschreiben Sie wieso Sie diese Transaktion reklamieren möchten"></textarea>
 		  </div>	
 
 		</div>
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-primary" onclick="closeModal()">Abbrechen</button>
-		  <button type="button" class="btn btn-primary" onclick="closeModal()">Abschicken</button>
+		  <button type="button" class="btn btn-primary" action="{% url 'nadooit_os:customer-program-execution-send-complaint' customer_program_execution.id %}"  onclick="closeModal()">Abschicken</button>
 		</div>
 	  </div>
 	</div>
