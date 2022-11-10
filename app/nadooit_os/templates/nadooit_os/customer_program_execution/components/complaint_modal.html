@@ -1,0 +1,22 @@
+<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+	<div class="modal-dialog modal-dialog-centered">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title">Ausführung reklamieren</h5>
+		</div>
+		<div class="modal-body">
+		 {% comment %} A textfield in that the customer can enter the reson why he want to complain. {% endcomment %}
+		  <div class="form-group">	
+			<label for="reklamation">Reklamation</label>	
+			<textarea class="form-control" id="reklamation" rows="3"></textarea>
+		  </div>	
+
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-primary" onclick="closeModal()">Abbrechen</button>
+		  <button type="button" class="btn btn-primary" onclick="closeModal()">Abschicken</button>
+		</div>
+	  </div>
+	</div>
+  </div>

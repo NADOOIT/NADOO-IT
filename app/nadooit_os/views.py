@@ -710,6 +710,27 @@ def customer_program_execution_list_for_cutomer(
     )
 
 
+@login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
+)
+def customer_program_execution_list_compaint_modal(
+    request: HttpRequest, customer_program_execution_id
+):
+    # Get the executions depending on the filter type
+    customer_program_execution = CustomerProgramExecution.objects.get(
+        id=customer_program_execution_id
+    )
+
+    return render(
+        request,
+        "nadooit_os/customer_program_execution/components/complaint_modal.html",
+        {
+            "customer_program_execution": customer_program_execution,
+        },
+    )
+
+
 # login required and user must have the CustomerProgramExecutionManager role and can give the role
 # does not use a form
 @login_required(login_url="/auth/login-user")
