@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "debug_toolbar",
     "django_htmx",
+    "nadoo_complaint_management",
 ]
 
 # Middelware is a list of functions that are called for every request.

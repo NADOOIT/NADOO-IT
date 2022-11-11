@@ -11,6 +11,7 @@ from django.http import (
     HttpResponseRedirect,
 )
 from requests import request
+from nadoo_complaint_management.models import Complaint
 from nadooit_hr.models import TimeAccountManagerContract
 from nadooit_hr.models import CustomerProgramExecutionManagerContract
 
@@ -762,6 +763,7 @@ def customer_program_execution_list_complaint_modal(
 def customer_program_execution_send_complaint(
     request: HttpRequest, customer_program_execution_id
 ):
+    print("request")
     print(request.POST)
     # Check that the user is a a customer program execution manager for the customer that the customer program execution belongs to
     if not CustomerProgramExecutionManagerContract.objects.filter(
@@ -778,13 +780,14 @@ def customer_program_execution_send_complaint(
         id=customer_program_execution_id
     )
 
-    return render(
-        request,
-        "nadooit_os/customer_program_execution/components/complaint_modal.html",
-        {
-            "customer_program_execution": customer_program_execution,
-        },
+    # Create a complaint
+    complaint = Complaint.objects.create(
+        customer_program_execution=customer_program_execution,
+        complaint=request.POST["complainttext"],
+        customer_program_execution_manager=request.user.employee,
     )
+
+    return HttpResponse("ok")
 
 
 # login required and user must have the CustomerProgramExecutionManager role and can give the role

@@ -1,22 +1,26 @@
-<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
-<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
-	<div class="modal-dialog modal-dialog-centered">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title">Ausführung reklamieren</h5>
-		</div>
-		<div class="modal-body">
-		 {% comment %} A textfield in that the customer can enter the reson why he want to complain. {% endcomment %}
-		  <div class="form-group">	
-			<label for="reklamation">Reklamation</label>	
-			<textarea name="complainttext" class="form-control" id="reklamation" rows="3" placeholder="Bitte beschreiben Sie wieso Sie diese Transaktion reklamieren möchten"></textarea>
-		  </div>	
+<form hx-post="{% url 'nadooit_os:customer-program-execution-send-complaint' customer_program_execution.id %}" hx-swap="none" hx-include="[name='complainttext']">
+	{% csrf_token %}
+	<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
+		<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">
+			<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
 
+				<div class="modal-header">
+				<h5 class="modal-title">Ausführung reklamieren</h5>
+				</div>
+				<div class="modal-body">
+				{% comment %} A textfield in that the customer can enter the reson why he want to complain. {% endcomment %}
+				<div class="form-group">	
+					<label for="complainttext">Reklamation</label>	
+					<textarea name="complainttext" class="form-control" id="complainttext" rows="3" placeholder="Bitte beschreiben Sie wieso Sie diese Transaktion reklamieren möchten"></textarea>
+				</div>	
+
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-primary" onclick="closeModal()">Abbrechen</button>
+			<button type="submit" class="btn btn-primary" onclick="closeModal()">Abschicken</button>
+			</div>
 		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-primary" onclick="closeModal()">Abbrechen</button>
-		  <button type="button" class="btn btn-primary" action="{% url 'nadooit_os:customer-program-execution-send-complaint' customer_program_execution.id %}"  onclick="closeModal()">Abschicken</button>
-		</div>
-	  </div>
 	</div>
   </div>
+</form>
