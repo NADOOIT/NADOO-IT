@@ -31,6 +31,16 @@ urlpatterns = [
         customer_program_execution_list_for_cutomer,
         name="customer-program-execution-list-for-cutomer",
     ),
+    path(
+        "customer-program-execution-list-complaint-modal/<uuid:customer_program_execution_id>",
+        customer_program_execution_list_complaint_modal,
+        name="customer-program-execution-list-complaint-modal",
+    ),
+    path(
+        "customer-program-execution-send-complaint/<uuid:customer_program_execution_id>",
+        customer_program_execution_send_complaint,
+        name="customer-program-execution-send-complaint",
+    ),
     path("api_key/create-api-key", create_api_key, name="create-api-key"),
     # Page to revoke API key their API key
     path("api_key/revoke-api-key", revoke_api_key, name="revoke-api-key"),
