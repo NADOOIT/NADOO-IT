@@ -8,15 +8,16 @@
 
 import uuid
 
+from django.db import models
+
+# django imports
+from django.dispatch import receiver
+
 # model imports
 from nadooit_crm.models import Customer
 from nadooit_hr.models import Employee
 from nadooit_program_ownership_system.models import CustomerProgram
-
-# django imports
-from django.dispatch import receiver
-from django.db import models
-
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 
@@ -27,6 +28,12 @@ class CustomerProgramExecution(models.Model):
     """_summary_
     model for a single execution of a nadooit program.
     """
+
+    class PaymentStatus(models.TextChoices):
+        NOT_PAID = "NOT_PAID", _("Not Paid")
+        PAID = "PAID", _("Paid")
+        REFUNDED = "REFUNDED", _("Refunded")
+        REVOKED = "REVOKED", _("Revoked")
 
     # id of the execution
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -42,12 +49,23 @@ class CustomerProgramExecution(models.Model):
         CustomerProgram, on_delete=models.SET_NULL, null=True
     )
 
+    # A field that holds the status of the execution. It can be one of the following: "Paid", "Unpaid", "Refunded", "Revoked"
+    payment_status = models.CharField(
+        max_length=20, choices=PaymentStatus.choices, default=PaymentStatus.NOT_PAID
+    )
+
     # creation date of the execution
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return self.customer_program.program.name
+        return (
+            self.customer_program.program.name
+            + " "
+            + self.customer_program.customer.name
+            + " "
+            + self.payment_status
+        )
 
     def price_for_execution(self):
         return (

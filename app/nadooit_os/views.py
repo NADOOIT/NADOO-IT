@@ -1,46 +1,43 @@
 from datetime import date, datetime
-from django.utils import timezone
-from django.shortcuts import render
 
-# imoport for userforms
-
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
     HttpRequest,
     HttpResponse,
     HttpResponseForbidden,
     HttpResponseRedirect,
 )
-from requests import request
-from nadoo_complaint_management.models import Complaint
-from nadooit_hr.models import TimeAccountManagerContract
-from nadooit_hr.models import CustomerProgramExecutionManagerContract
-
-from nadooit_hr.models import CustomerProgramManagerContract
-from .forms import ApiKeyForm, ApiKeyManagerForm, CustomerTimeAccountManagerForm
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from django.views.decorators.http import require_POST
+from nadoo_complaint_management.models import Complaint
+from nadooit_api_executions_system.models import CustomerProgramExecution
+from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
+from nadooit_auth.models import User
+from nadooit_crm.models import Customer
+
+# Manager Roles
+from nadooit_hr.models import (
+    CustomerProgramExecutionManagerContract,
+    CustomerProgramManagerContract,
+    Employee,
+    EmployeeContract,
+    EmployeeManagerContract,
+    TimeAccountManagerContract,
+)
 
 # model imports
 from nadooit_program_ownership_system.models import CustomerProgram
-from nadooit_time_account.models import CustomerTimeAccount
-from nadooit_api_key.models import NadooitApiKey
-from nadooit_api_executions_system.models import CustomerProgramExecution
-from nadooit_crm.models import Customer
-from nadooit_auth.models import User
 from nadooit_time_account.models import (
+    CustomerTimeAccount,
     get_time_as_string_in_hour_format_for_time_in_seconds_as_integer,
 )
-from nadooit_hr.models import Employee
-from nadooit_hr.models import EmployeeContract
+from requests import request
 
-# Manager Roles
-from nadooit_hr.models import EmployeeManagerContract
-from nadooit_api_key.models import NadooitApiKeyManager
+from .forms import ApiKeyForm, ApiKeyManagerForm, CustomerTimeAccountManagerForm
 
+# imoport for userforms
 
-from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
 
 # Tests for user roles
 
@@ -763,8 +760,6 @@ def customer_program_execution_list_complaint_modal(
 def customer_program_execution_send_complaint(
     request: HttpRequest, customer_program_execution_id
 ):
-    print("request")
-    print(request.POST)
     # Check that the user is a a customer program execution manager for the customer that the customer program execution belongs to
     if not CustomerProgramExecutionManagerContract.objects.filter(
         contract__employee=request.user.employee,
@@ -780,8 +775,12 @@ def customer_program_execution_send_complaint(
         id=customer_program_execution_id
     )
 
+    # Set the PaymentStatus for the customer program execution to "REVOKED"
+    customer_program_execution.payment_status = "REVOKED"
+    customer_program_execution.save()
+
     # Create a complaint
-    complaint = Complaint.objects.create(
+    Complaint.objects.create(
         customer_program_execution=customer_program_execution,
         complaint=request.POST["complainttext"],
         customer_program_execution_manager=request.user.employee,

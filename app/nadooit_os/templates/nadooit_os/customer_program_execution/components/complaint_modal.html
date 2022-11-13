@@ -1,4 +1,4 @@
-<form hx-post="{% url 'nadooit_os:customer-program-execution-send-complaint' customer_program_execution.id %}" hx-swap="none" hx-include="[name='complainttext']">
+<form id="modal-form" hx-post="{% url 'nadooit_os:customer-program-execution-send-complaint' customer_program_execution.id %}" hx-swap="none" hx-include="[name='complainttext']">
 	{% csrf_token %}
 	<div id="modal-backdrop" class="modal-backdrop fade show" style="display:block;"></div>
 		<div id="modal" class="modal fade show" tabindex="-1" style="display:block;">

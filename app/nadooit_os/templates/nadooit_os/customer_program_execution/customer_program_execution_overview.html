@@ -68,7 +68,8 @@
                   <th scope="col">Zeitersparnis</th>
                   <th scope="col">Preis</th>
                   <th scope="col">Erstellt am</th>
-                  <th scope="col"></th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Aktion</th>
                 </tr>
               </thead>
 
@@ -81,11 +82,27 @@
                     <td>{{ customer_program_execution.price_for_execution}} Cent</td>
                     <td>{{ customer_program_execution.created_at}}</td>
                     <td>
-
-                    {% comment %} A button that shows "reklamieren" {% endcomment %}
-                    {% include 'nadooit_os/customer_program_execution/components/complaint_modal_button.html' %}
-
+                {% if customer_program_execution.payment_status == "REVOKED" %}
+                    <span class="badge bg-danger">Storniert</span>
+                {% elif customer_program_execution.payment_status == "REFUNDED" %}
+                    <span class="badge bg-success">Erstattet</span>
+                {% elif customer_program_execution.payment_status == "PAID" %}
+                    <span class="badge bg-success">Bezahlt</span>
+                {% else %}
+                    <span class="badge bg-warning">Offen</span>
+                {% endif %}	
                     </td>
+                                    <td>
+                {% if customer_program_execution.payment_status == "REVOKED" %}
+
+                {% elif customer_program_execution.payment_status == "REFUNDED" %}
+
+                {% elif customer_program_execution.payment_status == "PAID" %}
+
+                {% else %}
+                    {% include 'nadooit_os/customer_program_execution/components/complaint_modal_button.html' %}
+                {% endif %}	
+                </td>
                   </tr>
                   {% empty %}
                   <tr>
