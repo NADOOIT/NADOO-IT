@@ -2173,6 +2173,30 @@
         "documentation": {}
     },
     {
+        "label": "EmployeeManagerContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomerProgramExecutionManagerContract",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
@@ -2524,6 +2548,14 @@
         "description": "nadooit_api_key.models",
         "isExtraImport": true,
         "detail": "nadooit_api_key.models",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
         "documentation": {}
     },
     {
@@ -2941,7 +2973,7 @@
         "documentation": {}
     },
     {
-        "label": "date",
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -2949,7 +2981,7 @@
         "documentation": {}
     },
     {
-        "label": "datetime",
+        "label": "date",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -3019,6 +3051,70 @@
         "description": "nadoo_complaint_management.models",
         "isExtraImport": true,
         "detail": "nadoo_complaint_management.models",
+        "documentation": {}
+    },
+    {
+        "label": "check__employee_contract__exists__for__user_code",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__employee_contract__for__employee_contract_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "set__employee_contract__is_active__for__employee_contract_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "set_employee_contract__as_inactive__for__employee_contract_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__user__exists__for__user_code",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "create__employee__for__user_code",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__employee__for__user_code",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__employee_manager_contract__exists__for__employee",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
         "documentation": {}
     },
     {
@@ -4658,6 +4754,87 @@
         "documentation": {}
     },
     {
+        "label": "set__employee_contract__is_active__for__employee_contract_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def set__employee_contract__is_active__for__employee_contract_id(\n    employee_contract_id, contract_state\n) -> EmployeeContract:\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    employee_contract.is_active = contract_state\n    employee_contract.save()\n    return employee_contract\n# Returns the employee contract for the given employee contract id\ndef get__employee_contract__for__employee_contract_id(employee_contract_id):\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__employee_contract__for__employee_contract_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__employee_contract__for__employee_contract_id(employee_contract_id):\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    return employee_contract\n# Sets the deactivation date of a employee contract for the given employee contract id\ndef set__employee_contract__deactivation_date__for__employee_contract_id(\n    employee_contract_id, deactivation_date\n) -> EmployeeContract:\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    employee_contract.deactivation_date = deactivation_date\n    employee_contract.save()",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "set__employee_contract__deactivation_date__for__employee_contract_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def set__employee_contract__deactivation_date__for__employee_contract_id(\n    employee_contract_id, deactivation_date\n) -> EmployeeContract:\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    employee_contract.deactivation_date = deactivation_date\n    employee_contract.save()\n    return employee_contract\n# Sets an employee contract as inactive for the given employee contract id\ndef set_employee_contract__as_inactive__for__employee_contract_id(\n    employee_contract_id,",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "set_employee_contract__as_inactive__for__employee_contract_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def set_employee_contract__as_inactive__for__employee_contract_id(\n    employee_contract_id,\n) -> EmployeeContract:\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    employee_contract.is_active = False\n    employee_contract.deactivation_date = datetime.now()\n    employee_contract.save()\n    return employee_contract\n# Checks if an employee contract exists for the given user code\ndef check__employee_contract__exists__for__user_code(user_code) -> bool:",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__employee_contract__exists__for__user_code",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def check__employee_contract__exists__for__user_code(user_code) -> bool:\n    return Employee.objects.filter(user__user_code=user_code).exists()\n# Checks if a user exists for the given user code\ndef check__user__exists__for__user_code(user_code) -> bool:\n    return User.objects.filter(user_code=user_code).exists()\n# Creates and returns a new employee  for the given user code\ndef create__employee__for__user_code(user_code) -> Employee:\n    user = User.objects.get(user_code=user_code)\n    employee = Employee.objects.create(user=user)\n    return employee",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__user__exists__for__user_code",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def check__user__exists__for__user_code(user_code) -> bool:\n    return User.objects.filter(user_code=user_code).exists()\n# Creates and returns a new employee  for the given user code\ndef create__employee__for__user_code(user_code) -> Employee:\n    user = User.objects.get(user_code=user_code)\n    employee = Employee.objects.create(user=user)\n    return employee\n# Returns the employee for the given user code\ndef get__employee__for__user_code(user_code) -> Employee:\n    return Employee.objects.get(user__user_code=user_code)",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "create__employee__for__user_code",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def create__employee__for__user_code(user_code) -> Employee:\n    user = User.objects.get(user_code=user_code)\n    employee = Employee.objects.create(user=user)\n    return employee\n# Returns the employee for the given user code\ndef get__employee__for__user_code(user_code) -> Employee:\n    return Employee.objects.get(user__user_code=user_code)\ndef check__employee_manager_contract__exists__for__employee(employee) -> bool:\n    return EmployeeManagerContract.objects.filter(contract__employee=employee).exists()",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__employee__for__user_code",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__employee__for__user_code(user_code) -> Employee:\n    return Employee.objects.get(user__user_code=user_code)\ndef check__employee_manager_contract__exists__for__employee(employee) -> bool:\n    return EmployeeManagerContract.objects.filter(contract__employee=employee).exists()",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__employee_manager_contract__exists__for__employee",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def check__employee_manager_contract__exists__for__employee(employee) -> bool:\n    return EmployeeManagerContract.objects.filter(contract__employee=employee).exists()",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
         "label": "app_name",
         "kind": 5,
         "importPath": "app.nadooit_os.urls",
@@ -4941,7 +5118,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def give_employee_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if not Employee.objects.filter(user__user_code=user_code).exists():\n                # create new employee for the user_code\n                Employee.objects.create(user=User.objects.get(user_code=user_code))",
+        "peekOfCode": "def give_employee_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if check__user__exists__for__user_code(user_code):\n            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities\n            # get the \"role\"\n            list_of_abilities = request.POST.getlist(\"role\")\n            customer = request.POST.get(\"customers\")",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4950,7 +5127,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def deactivate_contract(request: HttpRequest, employeecontract_id: str):\n    if request.method == \"POST\":\n        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)\n        employee_contract = EmployeeContract.objects.get(id=employeecontract_id)\n        # add the current date to the EmployeeContract into the deactivation_date\n        employee_contract.deactivation_date = datetime.now()\n        employee_contract.save()\n        return render(\n            request,\n            \"nadooit_os/hr_department/components/activate_contract_button.html\",",
+        "peekOfCode": "def deactivate_contract(request: HttpRequest, employee_contract_id: str):\n    if request.method == \"POST\":\n        employee_contract = (\n            set_employee_contract__as_inactive__for__employee_contract_id(\n                employee_contract_id\n            )\n        )\n        return render(\n            request,\n            \"nadooit_os/hr_department/components/activate_contract_button.html\",",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -4959,7 +5136,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def activate_contract(request: HttpRequest, employeecontract_id: str):\n    if request.method == \"POST\":\n        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=True)\n    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)\n    return render(\n        request,\n        \"nadooit_os/hr_department/components/deactivate_contract_button.html\",\n        {\n            \"employee_contract\": employee_contract,\n        },",
+        "peekOfCode": "def activate_contract(request: HttpRequest, employee_contract_id: str):\n    if request.method == \"POST\":\n        set__employee_contract__is_active__for__employee_contract_id(\n            employee_contract_id, True\n        )\n    employee_contract = get__employee_contract__for__employee_contract_id(\n        employee_contract_id\n    )\n    return render(\n        request,",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

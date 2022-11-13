@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
@@ -24,6 +24,16 @@ from nadooit_hr.models import (
     EmployeeContract,
     EmployeeManagerContract,
     TimeAccountManagerContract,
+)
+from nadooit_os.services import (
+    check__employee_contract__exists__for__user_code,
+    get__employee_contract__for__employee_contract_id,
+    set__employee_contract__is_active__for__employee_contract_id,
+    set_employee_contract__as_inactive__for__employee_contract_id,
+    check__user__exists__for__user_code,
+    create__employee__for__user_code,
+    get__employee__for__user_code,
+    check__employee_manager_contract__exists__for__employee,
 )
 
 # model imports
@@ -1270,31 +1280,37 @@ def give_employee_manager_role(request: HttpRequest):
         user_code = request.POST.get("user_code")
 
         # check that user_code is not empty
-        if User.objects.filter(user_code=user_code).exists():
+        if check__user__exists__for__user_code(user_code):
+
+            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
+            # get the "role"
+            list_of_abilities = request.POST.getlist("role")
+            customer = request.POST.get("customers")
+
+            employee = None
 
             # check if there is an emplyee for that user code
-            if not Employee.objects.filter(user__user_code=user_code).exists():
+            if not check__employee_contract__exists__for__user_code(user_code):
                 # create new employee for the user_code
-                Employee.objects.create(user=User.objects.get(user_code=user_code))
+                employee = create__employee__for__user_code(user_code)
 
-            # get the employee object for the user
-            employee = Employee.objects.get(user__user_code=user_code)
+            if employee == None:
+                # get the employee object for the user
+                employee = get__employee__for__user_code(user_code)
 
             # check if the employee already has the role
-            if not EmployeeManagerContract.objects.filter(
-                contract__employee=employee
-            ).exists():
+            if not check__employee_manager_contract__exists__for__employee(employee):
                 # Check if the employee has a contract with the customer
                 if not EmployeeContract.objects.filter(employee=employee).exists():
                     EmployeeContract.objects.create(
                         employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
+                        customer=Customer.objects.get(id=customer),
                     )
                 # Check if there is more then one EmployeeContract for the employee
                 elif (
                     EmployeeContract.objects.filter(
                         employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
+                        customer=Customer.objects.get(id=customer),
                     ).count()
                     > 1
                 ):
@@ -1307,10 +1323,8 @@ def give_employee_manager_role(request: HttpRequest):
                 EmployeeManagerContract.objects.create(
                     contract=EmployeeContract.objects.get(employee=employee)
                 )
-            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
-            # get the "role"
-            list_of_abilities = request.POST.getlist("role")
-            print(list_of_abilities)
+
+            # sets the abilities for the employee manager
             for ability in list_of_abilities:
                 # check if the employee already has the ability
                 if ability == "can_add_new_employee":
@@ -1386,15 +1400,14 @@ def give_employee_manager_role(request: HttpRequest):
     login_url="/auth/login-user",
 )
 @login_required(login_url="/auth/login-user")
-def deactivate_contract(request: HttpRequest, employeecontract_id: str):
+def deactivate_contract(request: HttpRequest, employee_contract_id: str):
     if request.method == "POST":
-        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)
 
-        employee_contract = EmployeeContract.objects.get(id=employeecontract_id)
-
-        # add the current date to the EmployeeContract into the deactivation_date
-        employee_contract.deactivation_date = datetime.now()
-        employee_contract.save()
+        employee_contract = (
+            set_employee_contract__as_inactive__for__employee_contract_id(
+                employee_contract_id
+            )
+        )
 
         return render(
             request,
@@ -1411,11 +1424,15 @@ def deactivate_contract(request: HttpRequest, employeecontract_id: str):
     login_url="/auth/login-user",
 )
 @login_required(login_url="/auth/login-user")
-def activate_contract(request: HttpRequest, employeecontract_id: str):
+def activate_contract(request: HttpRequest, employee_contract_id: str):
     if request.method == "POST":
-        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=True)
+        set__employee_contract__is_active__for__employee_contract_id(
+            employee_contract_id, True
+        )
 
-    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)
+    employee_contract = get__employee_contract__for__employee_contract_id(
+        employee_contract_id
+    )
 
     return render(
         request,
