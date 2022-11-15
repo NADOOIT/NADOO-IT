@@ -25,7 +25,7 @@
 
         <div class="form-group">
             <label for="customers">Unternehmen auswählen:</label>
-            <select class="form-select" multiple id="customers" name="customers">
+            <select class="form-select" id="customers" name="customers">
                 {% for customer in list_of_customers_the_manager_is_responsible_for %}
                 <option value="{{ customer.id }}">{{ customer.name }}</option>
                 {% endfor %}
