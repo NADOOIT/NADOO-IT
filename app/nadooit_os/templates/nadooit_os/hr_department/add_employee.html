@@ -20,13 +20,13 @@
         <form action="" method="post">
         {% csrf_token %}
 
-        {% comment %} give the user a choice of the customers from the list list_of_customers_the_manager_is_responsible_for the user can select multiple
+        {% comment %} give the user a choice of the customers from the list list_of_customers__for__employee_manager_contract the user can select multiple
  {% endcomment %}
 
         <div class="form-group">
             <label for="customers">Unternehmen auswählen:</label>
             <select class="form-select" id="customers" name="customers">
-                {% for customer in list_of_customers_the_manager_is_responsible_for %}
+                {% for customer in list_of_customers__for__employee_manager_contract %}
                 <option value="{{ customer.id }}">{{ customer.name }}</option>
                 {% endfor %}
             </select>	

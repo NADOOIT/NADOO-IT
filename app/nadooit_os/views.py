@@ -38,6 +38,10 @@ from nadooit_os.services import (
     check__employee_manager_contract__for__user__can_give_manager_role,
     check__more_then_one_contract_between__user_code__and__customer_id,
     get__employee_manager_contract__for__user_code__and__customer_id,
+    check__customer__exists__for__customer_id,
+    get__employee_contract__for__user_code__and__customer_id,
+    get__list_of_customers__for__employee_manager_contract__for__logged_in_user,
+    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add__users,
 )
 
 # model imports
@@ -1213,36 +1217,41 @@ def add_employee(request: HttpRequest):
         # check that user_code is not empty
         if check__user__exists__for__user_code(user_code):
 
-            employee = get__employee__for__user_code(user_code)
+            if check__customer__exists__for__customer_id(customer_id):
 
-            # Create a new employee contract for the employee between selected customer and the employee
-            employee_contract = get__employee_contract__for__employee__and__customer_id(
-                employee, customer_id
-            )
+                if check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add__users(
+                    request.user.employee, customer_id
+                ):
+                    # makes sure that there is a employee contract between the employee the selected customer
 
-            return HttpResponseRedirect("/nadooit-os/hr/add-employee?submitted=True")
+                    employee_contract = (
+                        get__employee_contract__for__user_code__and__customer_id(
+                            user_code, customer_id
+                        )
+                    )
+
+                    return HttpResponseRedirect(
+                        "/nadooit-os/hr/add-employee?submitted=True"
+                    )
+
+                else:
+                    return HttpResponseRedirect(
+                        "/nadooit-os/hr/add-employee?submitted=False&error=Sie haben nicht die notwendige Berechtigung um einen Mitarbeiter für diesen Kunden hinzuzufügen"
+                    )	
+                
+            else:
+                return HttpResponseRedirect(
+                    "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Kunde ausgewählt"
+                )
 
         else:
             return HttpResponseRedirect(
-                "/nadooit-os/hr/add-employee?submitted=True&error=Kein gültiger Benutzercode eingegeben"
+                "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Benutzercode eingegeben"
             )
 
     else:
         if "submitted" in request.GET:
             submitted = True
-
-    list_of_employee_manager_contract_for_logged_in_user = (
-        EmployeeManagerContract.objects.filter(
-            contract__employee=request.user.employee, can_add_new_employee=True
-        ).distinct("contract__customer")
-    )
-
-    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
-    list_of_customers_the_manager_is_responsible_for = []
-    for contract in list_of_employee_manager_contract_for_logged_in_user:
-        list_of_customers_the_manager_is_responsible_for.append(
-            contract.contract.customer
-        )
 
     return render(
         request,
@@ -1250,7 +1259,9 @@ def add_employee(request: HttpRequest):
         {
             "submitted": submitted,
             "page_title": "Mitarbeiter hinzufügen",
-            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
+            "list_of_customers__for__employee_manager_contract": get__list_of_customers__for__employee_manager_contract__for__logged_in_user(
+                request.user
+            ),
             **get__user__roles_and_rights(request),
         },
     )

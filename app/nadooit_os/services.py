@@ -1,3 +1,4 @@
+from typing import List
 from nadooit_crm.models import Customer
 from nadooit_hr.models import EmployeeManagerContract
 from nadooit_hr.models import Employee
@@ -167,4 +168,50 @@ def check__employee_manager_contract__for__user__can_give_manager_role(
         contract__employee=user.employee,
         contract__is_active=True,
         can_give_manager_role=True,
+    ).exists()
+
+
+def check__customer__exists__for__customer_id(customer_id) -> bool:
+    return Customer.objects.filter(id=customer_id).exists()
+
+
+def get__employee_contract__for__user_code__and__customer_id(
+    user_code, customer_id
+) -> EmployeeContract:
+
+    employee = get__employee__for__user_code(user_code)
+    employee_contract = get__employee_contract__for__employee__and__customer_id(
+        employee, customer_id
+    )
+
+    return employee_contract
+
+
+def get__list_of_customers__for__employee_manager_contract__for__logged_in_user(
+    user,
+) -> List[Customer]:
+
+    list_of_employee_manager_contract_for_logged_in_user = (
+        EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee, can_add_new_employee=True
+        ).distinct("contract__customer")
+    )
+
+    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
+    list_of_customers__for__employee_manager_contract = []
+    for contract in list_of_employee_manager_contract_for_logged_in_user:
+        list_of_customers__for__employee_manager_contract.append(
+            contract.contract.customer
+        )
+
+    return list_of_customers__for__employee_manager_contract
+
+
+def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add__users(
+    employee_manager, customer
+) -> bool:
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=employee_manager,
+        contract__customer=customer,
+        can_add_new_employee=True,
     ).exists()
