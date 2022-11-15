@@ -1,4 +1,8 @@
 from typing import List
+import hashlib
+
+from nadooit_api_key.models import NadooitApiKey
+from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_crm.models import Customer
 from nadooit_hr.models import EmployeeManagerContract
 from nadooit_hr.models import Employee
@@ -12,18 +16,27 @@ def check__user__exists__for__user_code(user_code) -> bool:
 
 
 # Sets the employee contract as the given state
-def set__employee_contract__is_active__for__employee_contract_id(
+def set__employee_contract__is_active_state__for__employee_contract_id(
     employee_contract_id, contract_state
 ) -> EmployeeContract:
-    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)
+
+    employee_contract = get__employee_contract__for__employee_contract_id(
+        employee_contract_id
+    )
     employee_contract.is_active = contract_state
+
+    # If the contract is set to active, set the deactivation date to null
     employee_contract.deactivation_date = None
     employee_contract.save()
+
+    # returns the changed employee contract
     return employee_contract
 
 
 # Returns the employee contract for the given employee contract id
-def get__employee_contract__for__employee_contract_id(employee_contract_id):
+def get__employee_contract__for__employee_contract_id(
+    employee_contract_id,
+) -> EmployeeContract:
     employee_contract = EmployeeContract.objects.get(id=employee_contract_id)
     return employee_contract
 
@@ -42,8 +55,14 @@ def set__employee_contract__deactivation_date__for__employee_contract_id(
 def set_employee_contract__as_inactive__for__employee_contract_id(
     employee_contract_id,
 ) -> EmployeeContract:
+
+    # Gets the contract for the given employee contract id
     employee_contract = EmployeeContract.objects.get(id=employee_contract_id)
+
+    # Sets the contract as inactive
     employee_contract.is_active = False
+
+    # Sets the deactivation date to the current date
     employee_contract.deactivation_date = datetime.now()
     employee_contract.save()
     return employee_contract
@@ -55,10 +74,14 @@ def check__employee__exists__for__user_code(user_code) -> bool:
 
 
 # Creates and returns a new employee  for the given user code
-def create__employee__for__user_code(user_code) -> Employee:
-    user = User.objects.get(user_code=user_code)
-    employee = Employee.objects.create(user=user)
-    return employee
+def create__employee__for__user_code(user_code) -> Employee | None:
+
+    if not check__employee__exists__for__user_code(user_code):
+        # create new employee for the user_code
+        user = User.objects.get(user_code=user_code)
+        return Employee.objects.create(user=user)
+
+    return None
 
 
 def check__employee_contract__exists__for__employee__and__customer_id(
@@ -84,6 +107,7 @@ def get__employee__for__user_code(user_code) -> Employee:
     employee = None
 
     if not check__employee__exists__for__user_code(user_code):
+
         # create new employee for the user_code
         employee = create__employee__for__user_code(user_code)
 
@@ -187,7 +211,7 @@ def get__employee_contract__for__user_code__and__customer_id(
     return employee_contract
 
 
-def get__list_of_customers__for__employee_manager_contract__for__logged_in_user(
+def get__list_of_customers__for__employee_manager_contract__for_user(
     user,
 ) -> List[Customer]:
 
@@ -207,11 +231,127 @@ def get__list_of_customers__for__employee_manager_contract__for__logged_in_user(
     return list_of_customers__for__employee_manager_contract
 
 
-def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add__users(
+def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
     employee_manager, customer
 ) -> bool:
     return EmployeeManagerContract.objects.filter(
         contract__employee=employee_manager,
         contract__customer=customer,
+        contract__is_active=True,
         can_add_new_employee=True,
     ).exists()
+
+
+def get__employee__for__user(user) -> Employee:
+    return Employee.objects.get(user=user)
+
+
+# This function describes the logic for the price of executions
+# It defines a graph that is used to calculate the price of executions
+# To define the graph, a dictionare of points is used. Each point defines a price for a certain amount of time (in seconds) saved by the program
+# The graph is defined by the points in the dictionary. With each exectution, the program will check if the time saved is greater than the time of the next point.
+# Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.
+def get__price_for_execution__for__customer_program_exectution(
+    customer_program_execution: CustomerProgramExecution,
+) -> float:
+
+    # Define	points for the graph
+    # The time saved starts at 0 seconds and increases with each point
+    # The price starts at 230 and decreases with each point untill it reaches 30
+    points = {  # time: price
+        0: 230,
+        1: 230,
+        2: 230,
+        3: 230,
+        4: 230,
+        5: 230,
+        6: 200,
+        7: 200,
+        8: 200,
+        9: 200,
+        10: 200,
+        11: 170,
+        12: 170,
+        13: 170,
+        14: 170,
+        15: 170,
+        16: 140,
+        17: 140,
+        18: 140,
+        19: 140,
+        20: 140,
+        21: 110,
+        22: 110,
+        23: 110,
+        24: 110,
+        25: 110,
+        26: 80,
+        27: 80,
+        28: 80,
+        29: 80,
+        30: 80,
+        31: 50,
+        32: 50,
+        33: 50,
+        34: 50,
+        35: 50,
+        36: 50,
+        37: 50,
+        38: 50,
+        39: 50,
+        40: 50,
+        41: 50,
+        42: 50,
+        43: 50,
+        44: 50,
+        45: 30,
+    }
+
+    # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be
+    # Get all the customer program executions belonging to the program of the customer program execution
+    total_time_saved_program_executions_in_seconds = CustomerProgramExecution.objects.filter(
+        customer_program=customer_program_execution.customer_program,
+        payment_status="PAID" | "NOT_PAID",
+    ).aggregate(
+        total_time_saved_program_executions_in_seconds="program_time_saved_in_seconds"
+    )
+
+    total_time_saved_program_executions_in_hours = (
+        total_time_saved_program_executions_in_seconds / 3600
+    )
+
+    # Get the price for the current amount of time saved by the program belonging to the customer program execution
+    price = 0
+    for time in points:
+        if total_time_saved_program_executions_in_hours > time:
+            # If the time saved is greater than the time of the next point, the price of the last point before will be used
+            price = points[time]
+        else:
+            break
+
+    return price
+
+
+def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:
+    return NadooitApiKey.objects.get(hashed_api_key=hashed_api_key)
+
+
+def get__hashed_api_key__for__request(request) -> str:
+    """
+    gets the hashed api key from the request
+    """
+    # gets the api key from the request
+    api_key = request.data.get("NADOOIT__API_KEY")
+
+    # hashes the api key
+    hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()
+
+    return hashed_api_key
+
+
+def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:
+    return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()
+
+
+def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:
+    return nadooit_api_key.user.user_code

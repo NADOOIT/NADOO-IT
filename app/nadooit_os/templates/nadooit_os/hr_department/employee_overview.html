@@ -4,12 +4,12 @@
   <br />
   <div class="row">
     <div class="col">
-      {% for cutomer in customers_the_user_is_responsible_for_and_the_customers_employees %}
+      {% for customer in customers_the_user_is_responsible_for_and_the_customers_employees %}
 
       <div class="table-responsive">
         <table class="table caption-top">
           <caption>
-            {{cutomer.0}}
+            {{customer.0}}
           </caption>
           <thead class="table-dark">
             <tr>
@@ -21,7 +21,7 @@
           </thead>
 
           <tbody>
-            {% for employeecontract in cutomer.1 %}
+            {% for employeecontract in customer.1 %}
             <tr>
               <td>{{ employeecontract.employee.user.display_name }}</td>
               <td>
@@ -31,7 +31,7 @@
               </td>
               {% comment %} A button with the lable Vertrag deaktivieren. Use htmx to send a post request to nadooit-os/hr/deactivate-contract/{{customer.1.id}}/{{{employee.user.id}}} {% endcomment %}
               <td>
-                {% if employee_can_change_contract_status %}
+                {% if customer.2 == True %}
                   {% if employeecontract.is_active %}
                   <button type="submit" class="btn btn-danger" hx-post="{% url 'nadooit_os:deactivate-contract' employeecontract.id %}" hx-swap="outerHTML">
                     Vertrag deaktivieren
@@ -41,7 +41,7 @@
                     Vertrag aktivieren
                   </button>
                   {% endif %}
-                {% else %}
+                {% elif customer.2 == False %}
                   {% if employeecontract.is_active %}
                   {% comment %} show badges with the status {% endcomment %}
                   <span class="badge bg-success">Aktiv</span>
