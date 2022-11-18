@@ -3133,6 +3133,14 @@
         "documentation": {}
     },
     {
+        "label": "timezone",
+        "importPath": "django.utils",
+        "description": "django.utils",
+        "isExtraImport": true,
+        "detail": "django.utils",
+        "documentation": {}
+    },
+    {
         "label": "authenticate",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -4937,7 +4945,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def set_employee_contract__as_inactive__for__employee_contract_id(\n    employee_contract_id,\n) -> EmployeeContract:\n    # Gets the contract for the given employee contract id\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    # Sets the contract as inactive\n    employee_contract.is_active = False\n    # Sets the deactivation date to the current date\n    employee_contract.deactivation_date = datetime.now()\n    employee_contract.save()",
+        "peekOfCode": "def set_employee_contract__as_inactive__for__employee_contract_id(\n    employee_contract_id,\n) -> EmployeeContract:\n    # Gets the contract for the given employee contract id\n    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)\n    # Sets the contract as inactive\n    employee_contract.is_active = False\n    # Sets the deactivation date to the current date\n    employee_contract.deactivation_date = timezone.now()\n    employee_contract.save()",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
