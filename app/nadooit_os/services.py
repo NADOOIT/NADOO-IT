@@ -1,6 +1,9 @@
 import math
 from typing import List
 import hashlib
+
+from django.utils import timezone
+
 from nadooit_program_ownership_system.models import CustomerProgram
 
 from nadooit_api_key.models import NadooitApiKey
@@ -65,7 +68,7 @@ def set_employee_contract__as_inactive__for__employee_contract_id(
     employee_contract.is_active = False
 
     # Sets the deactivation date to the current date
-    employee_contract.deactivation_date = datetime.now()
+    employee_contract.deactivation_date = timezone.now()
     employee_contract.save()
     return employee_contract
 
