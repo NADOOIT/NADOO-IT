@@ -10,6 +10,7 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from nadooit_api_executions_system.views import create_execution
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -1133,8 +1134,12 @@ def employee_overview(request: HttpRequest):
                     EmployeeContract.objects.filter(customer=customer)
                     .distinct()
                     .order_by("-is_active"),
-                    #user_can_deactivate_contracts
-                    EmployeeManagerContract.objects.filter(contract__employee=request.user.employee, can_delete_employee=True, contract__is_active=True).exists(),
+                    # user_can_deactivate_contracts
+                    EmployeeManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_delete_employee=True,
+                        contract__is_active=True,
+                    ).exists(),
                 ]
             )
         else:
@@ -1147,8 +1152,12 @@ def employee_overview(request: HttpRequest):
                     )
                     .distinct()
                     .order_by("-is_active"),
-                    #user_can_deactivate_contracts
-                    EmployeeManagerContract.objects.filter(contract__employee=request.user.employee, can_delete_employee=True, contract__is_active=True).exists()
+                    # user_can_deactivate_contracts
+                    EmployeeManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_delete_employee=True,
+                        contract__is_active=True,
+                    ).exists(),
                 ]
             )
 
@@ -1400,6 +1409,7 @@ def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 @login_required(login_url="/auth/login-user")
 def activate_contract(request: HttpRequest, employee_contract_id: str):
     if request.method == "POST":
+
         set__employee_contract__is_active_state__for__employee_contract_id(
             employee_contract_id, True
         )

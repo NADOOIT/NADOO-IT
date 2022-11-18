@@ -49,3 +49,4 @@ Werkzeug==2.2.2
 uWSGI
 crispy-bootstrap5
 django-htmx
+django-money

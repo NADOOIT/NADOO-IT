@@ -1,5 +1,7 @@
+import math
 from typing import List
 import hashlib
+from nadooit_program_ownership_system.models import CustomerProgram
 
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_api_executions_system.models import CustomerProgramExecution
@@ -251,9 +253,11 @@ def get__employee__for__user(user) -> Employee:
 # To define the graph, a dictionare of points is used. Each point defines a price for a certain amount of time (in seconds) saved by the program
 # The graph is defined by the points in the dictionary. With each exectution, the program will check if the time saved is greater than the time of the next point.
 # Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.
-def get__price_for_execution__for__customer_program_exectution(
-    customer_program_execution: CustomerProgramExecution,
+def get__new_price_per_second_in_cent__for__customer_program(
+    customer_program: CustomerProgram,
 ) -> float:
+    from django.db.models import Q
+    from django.db.models import Sum
 
     # Define	points for the graph
     # The time saved starts at 0 seconds and increases with each point
@@ -306,34 +310,48 @@ def get__price_for_execution__for__customer_program_exectution(
         44: 50,
         45: 30,
     }
-
+    print("Kommt bis hier hin")
     # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be
     # Get all the customer program executions belonging to the program of the customer program execution
-    total_time_saved_program_executions_in_seconds = CustomerProgramExecution.objects.filter(
-        customer_program=customer_program_execution.customer_program,
-        payment_status="PAID" | "NOT_PAID",
-    ).aggregate(
-        total_time_saved_program_executions_in_seconds="program_time_saved_in_seconds"
-    )
+    total_time_saved_program_executions_in_seconds = (
+        CustomerProgramExecution.objects.filter(
+            Q(customer_program=customer_program) & Q(payment_status="PAID")
+            | Q(payment_status="NOT_PAID")
+        )
+    ).aggregate(Sum("program_time_saved_in_seconds"))
+
+    print(total_time_saved_program_executions_in_seconds)
+    print("Kommt bis hier hin 2")
 
     total_time_saved_program_executions_in_hours = (
-        total_time_saved_program_executions_in_seconds / 3600
+        total_time_saved_program_executions_in_seconds[
+            "program_time_saved_in_seconds__sum"
+        ]
+        / 3600
     )
 
+    print(total_time_saved_program_executions_in_hours)
+
     # Get the price for the current amount of time saved by the program belonging to the customer program execution
-    price = 0
+    price_per_hour = 0
     for time in points:
         if total_time_saved_program_executions_in_hours > time:
             # If the time saved is greater than the time of the next point, the price of the last point before will be used
-            price = points[time]
+            price_per_hour = points[time]
         else:
             break
 
-    return price
+    print(price_per_hour)
+
+    # TODO add things to calculate the price of the execution including discounts and stuff
+
+    price_in_seconds = price_per_hour / 3600
+
+    return price_in_seconds
 
 
 def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:
-    return NadooitApiKey.objects.get(hashed_api_key=hashed_api_key)
+    return NadooitApiKey.objects.get(api_key=hashed_api_key)
 
 
 def get__hashed_api_key__for__request(request) -> str:

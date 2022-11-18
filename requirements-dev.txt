@@ -47,6 +47,7 @@ user-agents==2.2.0
 Werkzeug==2.2.2
 model_bakery
 django-htmx
+django-money
 
 pytest
 pytest-django

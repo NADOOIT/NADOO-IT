@@ -17,6 +17,7 @@ from nadooit_os.services import (
     get__hashed_api_key__for__request,
     check__nadooit_api_key__has__is_active,
     get__user_code__for__nadooit_api_key,
+    get__new_price_per_second_in_cent__for__customer_program,
 )
 
 
@@ -53,7 +54,6 @@ def create_execution(request):
                 user_code__for__nadooit_api_key = get__user_code__for__nadooit_api_key(
                     nadooit_api_key
                 )
-
                 user_code__for__request = get__user_code__for__request(request)
 
                 # checks if the user code in the request is the same user code that is registered in the api key
@@ -79,20 +79,31 @@ def create_execution(request):
 
                     # check if the user is an employee of the company that owns the program
                     if not EmployeeContract.objects.filter(
-                        contract__employee__user_code=user_code__for__request,
-                        contract__customer=nadooit_customer_program.customer,
+                        employee__user__user_code=user_code__for__request,
+                        customer=nadooit_customer_program.customer,
                         is_active=True,
                     ).exists():
                         return Response(
                             {"error": "User is not an employee of the company"},
                             status=400,
                         )
+                    print("TEST2")
 
-                    CustomerProgramExecution.objects.create(
+                    nadooit_customer_program_execution = CustomerProgramExecution.objects.create(
                         program_time_saved_in_seconds=nadooit_customer_program.program_time_saved_per_execution_in_seconds,
                         customer_program=nadooit_customer_program,
                         price_per_second_in_cent_at_the_time_of_execution=nadooit_customer_program.price_per_second_in_cent,
                     )
+                    print("TEST3")
+
+                    nadooit_customer_program.price_per_second_in_cent = (
+                        get__new_price_per_second_in_cent__for__customer_program(
+                            nadooit_customer_program_execution.customer_program
+                        )
+                    )
+
+                    nadooit_customer_program.save()
+
                     return Response({"success": "Execution created"}, status=200)
 
         except NadooitApiKey.DoesNotExist:

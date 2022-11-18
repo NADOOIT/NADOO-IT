@@ -173,6 +173,7 @@ It creates easy to use urls for displaying images for use in templates and other
   - [ ] This page can be accessed by the user and other users.
   - [ ] As a manager you can see all roles and rights of all employees of a customer (if you have the rights)
   - [ ] As a manager you can revoke roles and rights of all employees of a customer (if you have the rights)
+-[ ] Add the deactivation date to the reactivation button
 
 ### nadooit_program_ownership_system
 
@@ -277,6 +278,17 @@ It creates easy to use urls for displaying images for use in templates and other
     docker-compose -f docker-compose.yml run --rm app python manage.py migrate
     docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
     docker-compose -f docker-compose.yml up
+
+#### Running tests
+
+To test the api go to https://127.0.0.1:8000/api/executions
+
+give as Content: 
+{
+        "NADOOIT__API_KEY" : "98b10977-812d-430e-a89b-83bcf4101af3",
+        "NADOOIT__USER_CODE" : "ePo2L7",
+        "program_id" : "07c3a406-bd1b-43c2-b6a1-7fceb4389323"
+}
 
 ### Adding a new User Role to the system
 

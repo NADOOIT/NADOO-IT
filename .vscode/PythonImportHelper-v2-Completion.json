@@ -2325,6 +2325,14 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
         "label": "Program",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
@@ -2518,6 +2526,14 @@
         "documentation": {}
     },
     {
+        "label": "create_execution",
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
         "label": "api_view",
         "importPath": "rest_framework.decorators",
         "description": "rest_framework.decorators",
@@ -2655,6 +2671,14 @@
     },
     {
         "label": "get__user_code__for__nadooit_api_key",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__new_price_per_second_in_cent__for__customer_program",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3211,6 +3235,15 @@
         "description": "django.forms",
         "isExtraImport": true,
         "detail": "django.forms",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
         "documentation": {}
     },
     {
@@ -5057,16 +5090,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee__for__user(user) -> Employee:\n    return Employee.objects.get(user=user)\n# This function describes the logic for the price of executions\n# It defines a graph that is used to calculate the price of executions\n# To define the graph, a dictionare of points is used. Each point defines a price for a certain amount of time (in seconds) saved by the program\n# The graph is defined by the points in the dictionary. With each exectution, the program will check if the time saved is greater than the time of the next point.\n# Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.\ndef get__price_for_execution__for__customer_program_exectution(\n    customer_program_execution: CustomerProgramExecution,\n) -> float:",
+        "peekOfCode": "def get__employee__for__user(user) -> Employee:\n    return Employee.objects.get(user=user)\n# This function describes the logic for the price of executions\n# It defines a graph that is used to calculate the price of executions\n# To define the graph, a dictionare of points is used. Each point defines a price for a certain amount of time (in seconds) saved by the program\n# The graph is defined by the points in the dictionary. With each exectution, the program will check if the time saved is greater than the time of the next point.\n# Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.\ndef get__new_price_per_second_in_cent__for__customer_program(\n    customer_program: CustomerProgram,\n) -> float:",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__price_for_execution__for__customer_program_exectution",
+        "label": "get__new_price_per_second_in_cent__for__customer_program",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__price_for_execution__for__customer_program_exectution(\n    customer_program_execution: CustomerProgramExecution,\n) -> float:\n    # Define\tpoints for the graph\n    # The time saved starts at 0 seconds and increases with each point\n    # The price starts at 230 and decreases with each point untill it reaches 30\n    points = {  # time: price\n        0: 230,\n        1: 230,\n        2: 230,",
+        "peekOfCode": "def get__new_price_per_second_in_cent__for__customer_program(\n    customer_program: CustomerProgram,\n) -> float:\n    from django.db.models import Q\n    from django.db.models import Sum\n    # Define\tpoints for the graph\n    # The time saved starts at 0 seconds and increases with each point\n    # The price starts at 230 and decreases with each point untill it reaches 30\n    points = {  # time: price\n        0: 230,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5075,7 +5108,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:\n    return NadooitApiKey.objects.get(hashed_api_key=hashed_api_key)\ndef get__hashed_api_key__for__request(request) -> str:\n    \"\"\"\n    gets the hashed api key from the request\n    \"\"\"\n    # gets the api key from the request\n    api_key = request.data.get(\"NADOOIT__API_KEY\")\n    # hashes the api key\n    hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()",
+        "peekOfCode": "def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:\n    return NadooitApiKey.objects.get(api_key=hashed_api_key)\ndef get__hashed_api_key__for__request(request) -> str:\n    \"\"\"\n    gets the hashed api key from the request\n    \"\"\"\n    # gets the api key from the request\n    api_key = request.data.get(\"NADOOIT__API_KEY\")\n    # hashes the api key\n    hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
