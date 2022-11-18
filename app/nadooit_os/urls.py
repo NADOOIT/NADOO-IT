@@ -87,12 +87,12 @@ urlpatterns = [
         name="give-employee-manager-role",
     ),
     path(
-        "hr/deactivate-contract/<employeecontract_id>",
+        "hr/deactivate-contract/<employee_contract_id>",
         deactivate_contract,
         name="deactivate-contract",
     ),
     path(
-        "hr/activate-contract/<employeecontract_id>",
+        "hr/activate-contract/<employee_contract_id>",
         activate_contract,
         name="activate-contract",
     ),

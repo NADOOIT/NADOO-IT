@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
@@ -10,6 +10,7 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
+from nadooit_api_executions_system.views import create_execution
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -24,6 +25,24 @@ from nadooit_hr.models import (
     EmployeeContract,
     EmployeeManagerContract,
     TimeAccountManagerContract,
+)
+from nadooit_os.services import (
+    get__employee_contract__for__employee__and__customer_id,
+    get__employee_contract__for__employee_contract_id,
+    get__employee__for__user_code,
+    get__employee_manager_contract__for__employee_contract,
+    set__employee_contract__is_active_state__for__employee_contract_id,
+    set_employee_contract__as_inactive__for__employee_contract_id,
+    check__user__exists__for__user_code,
+    check__employee_manager_contract__exists__for__employee_contract,
+    check__employee_manager_contract__for__user__can_deactivate__employee_contracts,
+    check__employee_manager_contract__for__user__can_give_manager_role,
+    check__more_then_one_contract_between__user_code__and__customer_id,
+    get__employee_manager_contract__for__user_code__and__customer_id,
+    check__customer__exists__for__customer_id,
+    get__employee_contract__for__user_code__and__customer_id,
+    get__list_of_customers__for__employee_manager_contract__for_user,
+    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
 )
 
 # model imports
@@ -141,11 +160,7 @@ def user_is_Employee_Manager(user: User) -> bool:
 def user_is_Employee_Manager_and_can_give_Employee_Manager_role(
     user: User,
 ) -> bool:
-    if EmployeeManagerContract.objects.filter(
-        contract__employee=user.employee,
-        contract__is_active=True,
-        can_give_manager_role=True,
-    ).exists():
+    if check__employee_manager_contract__for__user__can_give_manager_role(user):
         return True
     else:
         return False
@@ -167,11 +182,9 @@ def user_is_Employee_Manager_and_can_add_new_employee(
 def user_is_Employee_Manager_and_can_delete_employee(
     user: User,
 ) -> bool:
-    if EmployeeManagerContract.objects.filter(
-        contract__employee=user.employee,
-        contract__is_active=True,
-        can_delete_employee=True,
-    ).exists():
+    if check__employee_manager_contract__for__user__can_deactivate__employee_contracts(
+        user
+    ):
         return True
     else:
         return False
@@ -1098,26 +1111,18 @@ def employee_overview(request: HttpRequest):
     # This is because the employee manager will be deprecated in the future
     # Only list a customer once
 
+    """
     list_of_customers_the_employee_has_an_employee_manager_contract_with = (
         EmployeeManagerContract.objects.filter(
             contract__employee=employee_that_is_logged_in, contract__is_active=True
         ).distinct("contract__customer")
     )
+    """
+    list_of_customers_the_employee_has_an_employee_manager_contract_with = (
+        get__list_of_customers__for__employee_manager_contract__for_user(request.user)
+    )
 
     # get all the employees of the customers the user is responsible for
-    """     
-    for (
-        customer
-    ) in list_of_customers_the_employee_has_an_employee_manager_contract_with:
-        customers_the_user_is_responsible_for_and_the_customers_employees.append(
-            [
-                customer.contract.customer,
-                Employee.objects.filter(
-                    employeecontract__customer=customer.contract.customer
-                ).distinct(),
-            ]
-        )
-        """
     for (
         customer
     ) in list_of_customers_the_employee_has_an_employee_manager_contract_with:
@@ -1125,35 +1130,42 @@ def employee_overview(request: HttpRequest):
         if request.user.is_staff:
             customers_the_user_is_responsible_for_and_the_customers_employees.append(
                 [
-                    customer.contract.customer,
-                    EmployeeContract.objects.filter(customer=customer.contract.customer)
+                    customer,
+                    EmployeeContract.objects.filter(customer=customer)
                     .distinct()
                     .order_by("-is_active"),
+                    # user_can_deactivate_contracts
+                    EmployeeManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_delete_employee=True,
+                        contract__is_active=True,
+                    ).exists(),
                 ]
             )
         else:
             customers_the_user_is_responsible_for_and_the_customers_employees.append(
                 [
-                    customer.contract.customer,
+                    customer,
                     EmployeeContract.objects.filter(
-                        customer=customer.contract.customer,
+                        customer=customer,
                         employee__user__is_staff=False,
                     )
                     .distinct()
                     .order_by("-is_active"),
+                    # user_can_deactivate_contracts
+                    EmployeeManagerContract.objects.filter(
+                        contract__employee=request.user.employee,
+                        can_delete_employee=True,
+                        contract__is_active=True,
+                    ).exists(),
                 ]
             )
-
-    employee_can_change_contract_status = EmployeeManagerContract.objects.filter(
-        contract__employee=employee_that_is_logged_in, can_delete_employee=True
-    ).exists()
 
     return render(
         request,
         "nadooit_os/hr_department/employee_overview.html",
         {
             "page_title": "Mitarbeiter Übersicht",
-            "employee_can_change_contract_status": employee_can_change_contract_status,
             "customers_the_user_is_responsible_for_and_the_customers_employees": customers_the_user_is_responsible_for_and_the_customers_employees,
             **get__user__roles_and_rights(request),
         },
@@ -1200,52 +1212,46 @@ def add_employee(request: HttpRequest):
     submitted = False
     if request.method == "POST":
         user_code = request.POST.get("user_code")
+        customer_id = request.POST.get("customers")
 
         # check that user_code is not empty
-        if User.objects.filter(user_code=user_code).exists():
+        if check__user__exists__for__user_code(user_code):
 
-            # check if there is an emplyee for that user code
-            if not Employee.objects.filter(user__user_code=user_code).exists():
-                # create new employee for the user_code
-                Employee.objects.create(user=User.objects.get(user_code=user_code))
+            if check__customer__exists__for__customer_id(customer_id):
 
-            # get the employee object for the user
-            employee = Employee.objects.get(user__user_code=user_code)
+                if check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
+                    request.user.employee, customer_id
+                ):
+                    # makes sure that there is a employee contract between the employee the selected customer
 
-            # Create a new employee contract for the employee between selected customers and the employee
-            for customer in request.POST.getlist("customers"):
-
-                # check if the employee already has a contract with the customer
-                if not EmployeeContract.objects.filter(
-                    employee=employee, customer=customer
-                ).exists():
-                    EmployeeContract.objects.create(
-                        employee=employee,
-                        customer=Customer.objects.get(id=customer),
+                    employee_contract = (
+                        get__employee_contract__for__user_code__and__customer_id(
+                            user_code, customer_id
+                        )
                     )
-            return HttpResponseRedirect("/nadooit-os/hr/add-employee?submitted=True")
+
+                    return HttpResponseRedirect(
+                        "/nadooit-os/hr/add-employee?submitted=True"
+                    )
+
+                else:
+                    return HttpResponseRedirect(
+                        "/nadooit-os/hr/add-employee?submitted=False&error=Sie haben nicht die notwendige Berechtigung um einen Mitarbeiter für diesen Kunden hinzuzufügen"
+                    )
+
+            else:
+                return HttpResponseRedirect(
+                    "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Kunde ausgewählt"
+                )
 
         else:
             return HttpResponseRedirect(
-                "/nadooit-os/hr/add-employee?submitted=True&error=Kein gültiger Benutzercode eingegeben"
+                "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Benutzercode eingegeben"
             )
 
     else:
         if "submitted" in request.GET:
             submitted = True
-
-    list_of_employee_manager_contract_for_logged_in_user = (
-        EmployeeManagerContract.objects.filter(
-            contract__employee=request.user.employee, can_add_new_employee=True
-        ).distinct("contract__customer")
-    )
-
-    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
-    list_of_customers_the_manager_is_responsible_for = []
-    for contract in list_of_employee_manager_contract_for_logged_in_user:
-        list_of_customers_the_manager_is_responsible_for.append(
-            contract.contract.customer
-        )
 
     return render(
         request,
@@ -1253,7 +1259,9 @@ def add_employee(request: HttpRequest):
         {
             "submitted": submitted,
             "page_title": "Mitarbeiter hinzufügen",
-            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
+            "list_of_customers__for__employee_manager_contract": get__list_of_customers__for__employee_manager_contract__for_user(
+                request.user
+            ),
             **get__user__roles_and_rights(request),
         },
     )
@@ -1265,87 +1273,76 @@ def add_employee(request: HttpRequest):
 )
 @login_required(login_url="/auth/login-user")
 def give_employee_manager_role(request: HttpRequest):
+
+    employee_manager_giving_the_role = request.user.employee
+
     submitted = False
     if request.method == "POST":
+
         user_code = request.POST.get("user_code")
+        list_of_abilities = request.POST.getlist("role")
+        customer_id = request.POST.get("customers")
+
+        if check__more_then_one_contract_between__user_code__and__customer_id(
+            user_code, customer_id
+        ):
+            # TODO add a way to select the correct contract if there is more then one contract for the employee
+            # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Der Mitarbeiter hat mehr als einen Vertrag mit diesem Kunden."
+            )
+
+        employee_manager_contract = None
 
         # check that user_code is not empty
-        if User.objects.filter(user_code=user_code).exists():
+        if check__user__exists__for__user_code(user_code):
 
-            # check if there is an emplyee for that user code
-            if not Employee.objects.filter(user__user_code=user_code).exists():
-                # create new employee for the user_code
-                Employee.objects.create(user=User.objects.get(user_code=user_code))
-
-            # get the employee object for the user
-            employee = Employee.objects.get(user__user_code=user_code)
-
-            # check if the employee already has the role
-            if not EmployeeManagerContract.objects.filter(
-                contract__employee=employee
-            ).exists():
-                # Check if the employee has a contract with the customer
-                if not EmployeeContract.objects.filter(employee=employee).exists():
-                    EmployeeContract.objects.create(
-                        employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
-                    )
-                # Check if there is more then one EmployeeContract for the employee
-                elif (
-                    EmployeeContract.objects.filter(
-                        employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
-                    ).count()
-                    > 1
-                ):
-                    # TODO add a way to select the correct contract if there is more then one contract for the employee
-                    # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
-                    return HttpResponseRedirect(
-                        "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Der Mitarbeiter hat mehr als einen Vertrag mit diesem Kunden."
-                    )
-                # create the EmployeeManagerContract
-                EmployeeManagerContract.objects.create(
-                    contract=EmployeeContract.objects.get(employee=employee)
+            employee_manager_contract = (
+                get__employee_manager_contract__for__user_code__and__customer_id(
+                    user_code, customer_id
                 )
+            )
+
             # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
             # get the "role"
-            list_of_abilities = request.POST.getlist("role")
-            print(list_of_abilities)
+
+            # TODO split the form for asking for the abities so that it shows the abilites for the active employee manager contract so that the employee manager can only give the abilities that are allowed for the contract
+            # sets the abilities for the employee manager
             for ability in list_of_abilities:
                 # check if the employee already has the ability
                 if ability == "can_add_new_employee":
                     if EmployeeManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
+                        contract__employee=employee_manager_giving_the_role,
+                        contract__customer=employee_manager_contract.contract.customer,
                         can_add_new_employee=True,
                     ).exists():
                         # Set the ability for the EmployeeManagerContract object to the value of the ability
-                        EmployeeManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_add_new_employee=True)
+                        employee_manager_contract.can_add_new_employee = True
                 if ability == "can_delete_employee":
                     if EmployeeManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
+                        contract__employee=employee_manager_giving_the_role,
+                        contract__customer=employee_manager_contract.contract.customer,
                         can_delete_employee=True,
                     ).exists():
                         # Set the ability for the EmployeeManagerContract object to the value of the ability
-                        EmployeeManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_delete_employee=True)
+                        employee_manager_contract.can_delete_employee = True
                 if ability == "can_give_manager_role":
                     if EmployeeManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
+                        contract__employee=employee_manager_giving_the_role,
+                        contract__customer=employee_manager_contract.contract.customer,
                         can_give_manager_role=True,
                     ).exists():
                         # Set the ability for the EmployeeManagerContract object to the value of the ability
-                        EmployeeManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_give_manager_role=True)
+                        employee_manager_contract.can_give_manager_role = True
+
+                employee_manager_contract.save()
 
             return HttpResponseRedirect(
                 "/nadooit-os/hr/give-employee-manager-role?submitted=True"
             )
 
         else:
+
             return HttpResponseRedirect(
                 "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
             )
@@ -1386,15 +1383,14 @@ def give_employee_manager_role(request: HttpRequest):
     login_url="/auth/login-user",
 )
 @login_required(login_url="/auth/login-user")
-def deactivate_contract(request: HttpRequest, employeecontract_id: str):
+def deactivate_contract(request: HttpRequest, employee_contract_id: str):
     if request.method == "POST":
-        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=False)
 
-        employee_contract = EmployeeContract.objects.get(id=employeecontract_id)
-
-        # add the current date to the EmployeeContract into the deactivation_date
-        employee_contract.deactivation_date = datetime.now()
-        employee_contract.save()
+        employee_contract = (
+            set_employee_contract__as_inactive__for__employee_contract_id(
+                employee_contract_id
+            )
+        )
 
         return render(
             request,
@@ -1411,11 +1407,16 @@ def deactivate_contract(request: HttpRequest, employeecontract_id: str):
     login_url="/auth/login-user",
 )
 @login_required(login_url="/auth/login-user")
-def activate_contract(request: HttpRequest, employeecontract_id: str):
+def activate_contract(request: HttpRequest, employee_contract_id: str):
     if request.method == "POST":
-        EmployeeContract.objects.filter(id=employeecontract_id).update(is_active=True)
 
-    employee_contract = EmployeeContract.objects.get(id=employeecontract_id)
+        set__employee_contract__is_active_state__for__employee_contract_id(
+            employee_contract_id, True
+        )
+
+    employee_contract = get__employee_contract__for__employee_contract_id(
+        employee_contract_id
+    )
 
     return render(
         request,

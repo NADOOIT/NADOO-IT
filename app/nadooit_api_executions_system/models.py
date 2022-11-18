@@ -95,7 +95,7 @@ def cutomer_program_execution_was_created(sender, instance, created, *args, **kw
             nadooit_customer_program.time_account.time_balance_in_seconds
             - instance.program_time_saved_in_seconds
         )
-        print("nadooit_customer_program.time_account.time_balance_in_seconds")
+        print(nadooit_customer_program.time_account.time_balance_in_seconds)
         nadooit_customer_program.time_account.save()
 
 
