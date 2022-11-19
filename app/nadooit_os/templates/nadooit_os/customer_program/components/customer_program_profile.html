@@ -1,0 +1,63 @@
+{% csrf_token %}
+<br>
+<tr id="profile_for_customer_program_{{customer_program.id}}">
+        <div class="col-md-4">
+            <h5> {{customer_program.program.name}}</h5>
+            <p>{{ customer_program.id }}</p>
+        </div>
+    <div class="row">
+    {% comment %} A list of information about the program. Including total time saved by all executions, current price per execution, next price change at time saved x, time saved by each execution {% endcomment %}
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+            <b>Zeitersparnis pro Ausführung:</b>
+            {{customer_program.program_time_saved_per_execution_in_seconds}} sek
+            </li>
+            <li class="list-group-item">
+            <b>Preis pro Sekunde:</b>
+            {{customer_program.price_per_second}}
+            </li>
+            <li class="list-group-item">
+            <b>Preis pro Ausführung:</b>
+            {{customer_program.price_per_execution}}
+            </li>	
+            <li class="list-group-item">
+            <b>Nächster Preis pro Ausführung:</b>
+            {{next_price}}
+            </li>	
+            <li class="list-group-item">
+            <b>Erstellt am:</b>
+            {{ customer_program.created_at}}
+            </li>	
+        </ul>	
+    </div>
+    {% comment %} a row of action buttons. See current compaints, create complaint, contact developer, deactivate program {% endcomment %}
+    <div class="row">
+        <div class="col">
+        <a href="#" class="btn btn-primary">Aktuelle Beschwerden</a>
+        </div>
+        <div class="col">
+        <a href="#" class="btn btn-primary">Beschwerde erstellen</a>
+        </div>
+        <div class="col">
+        <a href="#" class="btn btn-primary">Entwickler kontaktieren</a>
+        </div>
+        <div class="col">
+        <a href="#" class="btn btn-primary">Programm deaktivieren</a>
+    </div>	
+        {% comment %}                       
+        <div class="col">
+        <a href="{% url 'customer_program_complaints' customer_program.id %}" class="btn btn-primary">Aktuelle Beschwerden</a>
+        </div>
+        <div class="col">
+        <a href="{% url 'create_customer_program_complaint' customer_program.id %}" class="btn btn-primary">Beschwerde erstellen</a>
+        </div>
+        <div class="col">
+        <a href="{% url 'customer_program_contact_developer' customer_program.id %}" class="btn btn-primary">Entwickler kontaktieren</a>
+        </div>
+        <div class="col">
+        <a href="{% url 'deactivate_customer_program' customer_program.id %}" class="btn btn-primary">Programm deaktivieren</a>
+        </div>	 
+        {% endcomment %}
+    </div>
+
+</tr>

@@ -79,7 +79,7 @@
                     <td>{{ customer_program_execution.id }}</td>
                     <td>{{ customer_program_execution.customer_program.program.name }}</td>
                     <td>{{ customer_program_execution.program_time_saved_in_seconds}} sek</td>
-                    <td>{{ customer_program_execution.price_for_execution}} Cent</td>
+                    <td>{{ customer_program_execution.price_for_execution}}</td>
                     {% comment %} TODO CHECK IF THIS IS BEST PRACTICE AND IF NOT CHANGE IT! {% endcomment %}
                     <td>{{ customer_program_execution.created_at|timezone:"CET"}}</td>
 

@@ -10,7 +10,6 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
-from nadooit_api_executions_system.views import create_execution
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -43,6 +42,7 @@ from nadooit_os.services import (
     get__employee_contract__for__user_code__and__customer_id,
     get__list_of_customers__for__employee_manager_contract__for_user,
     check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
+    get__next_price_level__for__customer_program,
 )
 
 # model imports
@@ -970,6 +970,37 @@ def customer_program_overview(request: HttpRequest):
     )
 
 
+@require_POST
+@user_passes_test(
+    user_is_Customer_Program_Manager,
+    login_url="/auth/login-user",
+)
+@login_required(login_url="/auth/login-user")
+def get__customer_program_profile(request: HttpRequest, customer_program_id: str) -> HttpResponse:
+    # Check that the user is a a customer program  manager for the customer that the customer program belongs to
+    print("customer_program_id", customer_program_id)
+    if not CustomerProgramManagerContract.objects.filter(
+        contract__employee=request.user.employee,
+        contract__is_active=True,
+        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,
+    ).exists():
+        return HttpResponseForbidden()
+
+    # Get the customer program
+    customer_program = CustomerProgram.objects.get(id=customer_program_id)
+    print("customer_program", customer_program)
+    next_price = get__next_price_level__for__customer_program(customer_program)
+
+    return render(
+        request,
+        "nadooit_os/customer_program/components/customer_program_profile.html",
+        {
+            "next_price": next_price,
+            "customer_program": customer_program,
+        },
+    )
+
+
 @login_required(login_url="/auth/login-user")
 @user_passes_test(
     user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role,
@@ -1384,21 +1415,18 @@ def give_employee_manager_role(request: HttpRequest):
 )
 @login_required(login_url="/auth/login-user")
 def deactivate_contract(request: HttpRequest, employee_contract_id: str):
-    if request.method == "POST":
 
-        employee_contract = (
-            set_employee_contract__as_inactive__for__employee_contract_id(
-                employee_contract_id
-            )
-        )
+    employee_contract = set_employee_contract__as_inactive__for__employee_contract_id(
+        employee_contract_id
+    )
 
-        return render(
-            request,
-            "nadooit_os/hr_department/components/activate_contract_button.html",
-            {
-                "employee_contract": employee_contract,
-            },
-        )
+    return render(
+        request,
+        "nadooit_os/hr_department/components/activate_contract_button.html",
+        {
+            "employee_contract": employee_contract,
+        },
+    )
 
 
 @require_POST
@@ -1408,11 +1436,10 @@ def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 )
 @login_required(login_url="/auth/login-user")
 def activate_contract(request: HttpRequest, employee_contract_id: str):
-    if request.method == "POST":
 
-        set__employee_contract__is_active_state__for__employee_contract_id(
-            employee_contract_id, True
-        )
+    set__employee_contract__is_active_state__for__employee_contract_id(
+        employee_contract_id, True
+    )
 
     employee_contract = get__employee_contract__for__employee_contract_id(
         employee_contract_id

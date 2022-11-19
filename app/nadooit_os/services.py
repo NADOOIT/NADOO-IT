@@ -1,3 +1,4 @@
+import decimal
 import math
 from typing import List
 import hashlib
@@ -251,21 +252,25 @@ def get__employee__for__user(user) -> Employee:
     return Employee.objects.get(user=user)
 
 
-# This function describes the logic for the price of executions
-# It defines a graph that is used to calculate the price of executions
-# To define the graph, a dictionare of points is used. Each point defines a price for a certain amount of time (in seconds) saved by the program
-# The graph is defined by the points in the dictionary. With each exectution, the program will check if the time saved is greater than the time of the next point.
-# Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.
-def get__new_price_per_second_in_cent__for__customer_program(
-    customer_program: CustomerProgram,
-) -> float:
-    from django.db.models import Q
-    from django.db.models import Sum
+def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:
+    print("total_time_saved", total_time_saved)
 
+    price_per_hour = 0
+    points = get__price_list()
+    for time in points:
+        if total_time_saved > time:
+            # If the time saved is greater than the time of the next point, the price of the last point before will be used
+            price_per_hour = points[time]
+        else:
+            break
+    return price_per_hour
+
+
+def get__price_list() -> dict:
     # Define	points for the graph
     # The time saved starts at 0 seconds and increases with each point
     # The price starts at 230 and decreases with each point untill it reaches 30
-    points = {  # time: price
+    return {  # time: price
         0: 230,
         1: 230,
         2: 230,
@@ -313,15 +318,23 @@ def get__new_price_per_second_in_cent__for__customer_program(
         44: 50,
         45: 30,
     }
+
+
+# This function describes the logic for the price of executions
+# It defines a graph that is used to calculate the price of executions
+# To define the graph, a dictionare of points is used. Each point defines a price for a certain amount of time (in seconds) saved by the program
+# The graph is defined by the points in the dictionary. With each exectution, the program will check if the time saved is greater than the time of the next point.
+# Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.
+def get__new_price_per_second__for__customer_program(
+    customer_program: CustomerProgram,
+) -> decimal:
+
     print("Kommt bis hier hin")
     # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be
     # Get all the customer program executions belonging to the program of the customer program execution
     total_time_saved_program_executions_in_seconds = (
-        CustomerProgramExecution.objects.filter(
-            Q(customer_program=customer_program) & Q(payment_status="PAID")
-            | Q(payment_status="NOT_PAID")
-        )
-    ).aggregate(Sum("program_time_saved_in_seconds"))
+        get__total_time_saved__for__customer_program(customer_program)
+    )
 
     print(total_time_saved_program_executions_in_seconds)
     print("Kommt bis hier hin 2")
@@ -333,16 +346,12 @@ def get__new_price_per_second_in_cent__for__customer_program(
         / 3600
     )
 
-    print(total_time_saved_program_executions_in_hours)
+    print(f"Total Time saved: {total_time_saved_program_executions_in_hours}")
 
     # Get the price for the current amount of time saved by the program belonging to the customer program execution
-    price_per_hour = 0
-    for time in points:
-        if total_time_saved_program_executions_in_hours > time:
-            # If the time saved is greater than the time of the next point, the price of the last point before will be used
-            price_per_hour = points[time]
-        else:
-            break
+    price_per_hour = get__price_per_hour__for__total_time_saved(
+        total_time_saved_program_executions_in_hours
+    )
 
     print(price_per_hour)
 
@@ -351,6 +360,40 @@ def get__new_price_per_second_in_cent__for__customer_program(
     price_in_seconds = price_per_hour / 3600
 
     return price_in_seconds
+
+
+def get__total_time_saved__for__customer_program(customer_program: CustomerProgram):
+    from django.db.models import Q
+    from django.db.models import Sum
+
+    return (
+        CustomerProgramExecution.objects.filter(
+            Q(customer_program=customer_program) & Q(payment_status="PAID")
+            | Q(payment_status="NOT_PAID")
+        )
+    ).aggregate(Sum("program_time_saved_in_seconds"))[
+        "program_time_saved_in_seconds__sum"
+    ]
+
+
+def get__next_price_level__for__customer_program(
+    customer_program: CustomerProgram,
+) -> str:
+
+    totat_time_saved = get__total_time_saved__for__customer_program(customer_program)
+
+    # get the list of price levels
+    list_of_price_levels = get__price_list()
+
+    # get the price level for the total time saved
+    currnet_price_level = get__price_per_hour__for__total_time_saved(totat_time_saved)
+
+    # find the position in the list of price levels for the current price level and return the next price level
+    for price_level in list_of_price_levels:
+        if price_level == currnet_price_level:
+            return list_of_price_levels[price_level + 1]
+        else:
+            continue
 
 
 def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:

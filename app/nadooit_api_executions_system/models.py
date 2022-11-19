@@ -18,6 +18,7 @@ from nadooit_crm.models import Customer
 from nadooit_hr.models import Employee
 from nadooit_program_ownership_system.models import CustomerProgram
 from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
@@ -42,7 +43,9 @@ class CustomerProgramExecution(models.Model):
     program_time_saved_in_seconds = models.IntegerField(default=0)
 
     # price at the time of the execution for the program
-    price_per_second_in_cent_at_the_time_of_execution = models.IntegerField(default=0)
+    price_per_second_at_the_time_of_execution = MoneyField(
+        max_digits=14, decimal_places=6, default_currency="EUR", default=0
+    )
 
     # the customer program that was executed
     customer_program = models.ForeignKey(
@@ -69,7 +72,7 @@ class CustomerProgramExecution(models.Model):
 
     def price_for_execution(self):
         return (
-            self.price_per_second_in_cent_at_the_time_of_execution
+            self.price_per_second_at_the_time_of_execution
             * self.program_time_saved_in_seconds
         )
 
