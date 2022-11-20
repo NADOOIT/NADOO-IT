@@ -1,4 +1,5 @@
 import decimal
+from decimal import Decimal
 import math
 from typing import List
 import hashlib
@@ -15,6 +16,87 @@ from nadooit_hr.models import Employee
 from nadooit_hr.models import EmployeeContract
 from nadooit_auth.models import User
 from datetime import datetime
+
+def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+    filter_type, cutomer_id
+):
+    customer_program_executions = get__customer_program_executions__for__filter_type_and_cutomer_id(
+            filter_type, cutomer_id
+        ).filter(payment_status = "NOT_PAID")
+    
+    return customer_program_executions	
+
+def get__customer_program_executions__for__filter_type_and_cutomer_id(
+    filter_type, cutomer_id
+):
+    from datetime import date
+
+    todays_date = date.today()
+
+    if filter_type == "last20":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id
+            )
+            .order_by("created_at")
+            .reverse()[:20]
+        )
+    elif filter_type == "lastmonth":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id,
+                created_at__month=todays_date.month - 1,
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "today":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id, created_at__date=todays_date
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "thismonth":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id,
+                created_at__month=todays_date.month,
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "thisyear":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id,
+                created_at__year=todays_date.year,
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    return customer_program_executions
+
+
+def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price):
+    # Round to the last three decimal places
+    if price is None:
+        price = 0
+    return str(round(price, 3)) + " €"
+
+
+def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):
+
+    return (
+        str(time // 3600)
+        + " std : "
+        + str((time % 3600) // 60)
+        + " min : "
+        + str(time % 60)
+        + " sek"
+    )
+
 
 # Checks if a user exists for the given user code
 def check__user__exists__for__user_code(user_code) -> bool:
@@ -258,11 +340,12 @@ def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:
     price_per_hour = 0
     points = get__price_list()
     for time in points:
-        if total_time_saved > time:
+        if total_time_saved >= time:
             # If the time saved is greater than the time of the next point, the price of the last point before will be used
             price_per_hour = points[time]
         else:
             break
+
     return price_per_hour
 
 
@@ -327,7 +410,7 @@ def get__price_list() -> dict:
 # Has the time saved exceeded the time of the next point, the price of the next point will be used. If the time saved is less than the time of the next point, the price of the current point will be used.
 def get__new_price_per_second__for__customer_program(
     customer_program: CustomerProgram,
-) -> decimal:
+) -> Decimal:
 
     print("Kommt bis hier hin")
     # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be
@@ -336,14 +419,13 @@ def get__new_price_per_second__for__customer_program(
         get__total_time_saved__for__customer_program(customer_program)
     )
 
-    print(total_time_saved_program_executions_in_seconds)
-    print("Kommt bis hier hin 2")
+    print(
+        "total_time_saved_program_executions_in_seconds",
+        total_time_saved_program_executions_in_seconds,
+    )
 
     total_time_saved_program_executions_in_hours = (
-        total_time_saved_program_executions_in_seconds[
-            "program_time_saved_in_seconds__sum"
-        ]
-        / 3600
+        total_time_saved_program_executions_in_seconds / 3600
     )
 
     print(f"Total Time saved: {total_time_saved_program_executions_in_hours}")
@@ -353,19 +435,57 @@ def get__new_price_per_second__for__customer_program(
         total_time_saved_program_executions_in_hours
     )
 
-    print(price_per_hour)
+    print(f"Price per hour: {price_per_hour}")
 
     # TODO add things to calculate the price of the execution including discounts and stuff
 
-    price_in_seconds = price_per_hour / 3600
+    new_price_per_second = price_per_hour / 3600
 
-    return price_in_seconds
+    return new_price_per_second
+
+
+def get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+    list_of_customer_program_executions,
+) -> int:
+    from django.db.models import Sum
+
+    total_time_saved_in_seconds = list_of_customer_program_executions.aggregate(
+        Sum("program_time_saved_in_seconds")
+    )["program_time_saved_in_seconds__sum"]
+
+    if total_time_saved_in_seconds == None:
+        total_time_saved_in_seconds = 0
+
+    return total_time_saved_in_seconds
+
+
+def get__sum_of_price_for_execution__for__list_of_customer_program_exections(
+    list_of_customer_program_executions,
+) -> Decimal:
+    from django.db.models import Sum
+
+    print("list_of_customer_program_executions", list_of_customer_program_executions)
+    return list_of_customer_program_executions.aggregate(Sum("price_for_execution"))[
+        "price_for_execution__sum"
+    ]
+
+
+def get__price_for_execution__for__cutomer_program(customer_program: CustomerProgram):
+    return get__new_price_per_second__for__customer_program(customer_program) * (
+        customer_program.program_time_saved_per_execution_in_seconds
+    )
 
 
 def get__total_time_saved__for__customer_program(customer_program: CustomerProgram):
     from django.db.models import Q
-    from django.db.models import Sum
 
+    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+        CustomerProgramExecution.objects.filter(
+            Q(customer_program=customer_program) & Q(payment_status="PAID")
+            | Q(payment_status="NOT_PAID")
+        )
+    )
+    """ 
     return (
         CustomerProgramExecution.objects.filter(
             Q(customer_program=customer_program) & Q(payment_status="PAID")
@@ -373,7 +493,7 @@ def get__total_time_saved__for__customer_program(customer_program: CustomerProgr
         )
     ).aggregate(Sum("program_time_saved_in_seconds"))[
         "program_time_saved_in_seconds__sum"
-    ]
+    ] """
 
 
 def get__next_price_level__for__customer_program(

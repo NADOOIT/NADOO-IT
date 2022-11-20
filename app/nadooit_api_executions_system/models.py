@@ -6,6 +6,7 @@
 # License: TBD
 
 
+from django.utils.functional import cached_property
 import uuid
 
 from django.db import models
@@ -47,6 +48,10 @@ class CustomerProgramExecution(models.Model):
         max_digits=14, decimal_places=6, default_currency="EUR", default=0
     )
 
+    price_for_execution = MoneyField(
+        max_digits=14, decimal_places=6, default_currency="EUR", default=0
+    )
+
     # the customer program that was executed
     customer_program = models.ForeignKey(
         CustomerProgram, on_delete=models.SET_NULL, null=True
@@ -68,12 +73,6 @@ class CustomerProgramExecution(models.Model):
             + self.customer_program.customer.name
             + " "
             + self.payment_status
-        )
-
-    def price_for_execution(self):
-        return (
-            self.price_per_second_at_the_time_of_execution
-            * self.program_time_saved_in_seconds
         )
 
 

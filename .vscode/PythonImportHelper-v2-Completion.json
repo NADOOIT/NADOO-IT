@@ -867,6 +867,14 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -2062,6 +2070,22 @@
         "documentation": {}
     },
     {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
         "label": "djmoney.models.fields",
         "kind": 6,
         "isExtraImport": true,
@@ -2084,6 +2108,14 @@
         "description": "djmoney.models.fields",
         "isExtraImport": true,
         "detail": "djmoney.models.fields",
+        "documentation": {}
+    },
+    {
+        "label": "cached_property",
+        "importPath": "django.utils.functional",
+        "description": "django.utils.functional",
+        "isExtraImport": true,
+        "detail": "django.utils.functional",
         "documentation": {}
     },
     {
@@ -2792,7 +2824,23 @@
         "documentation": {}
     },
     {
+        "label": "get__price_for_execution__for__cutomer_program",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
         "label": "get__employee_contract__for__employee__and__customer_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -2921,6 +2969,46 @@
     },
     {
         "label": "get__next_price_level__for__customer_program",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__sum_of_price_for_execution__for__list_of_customer_program_exections",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__time_as_string_in_hour_format__for__time_in_seconds_as_integer",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__price_as_string_in_euro_format__for__price_in_euro_as_decimal",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__customer_program_executions__for__filter_type_and_cutomer_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3311,14 +3399,6 @@
         "documentation": {}
     },
     {
-        "label": "date",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
         "label": "default",
         "importPath": "email.policy",
         "description": "email.policy",
@@ -3382,6 +3462,15 @@
         "description": "nadooit_os.views",
         "isExtraImport": true,
         "detail": "nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
         "documentation": {}
     },
     {
@@ -4116,6 +4205,15 @@
         "description": "app.nadooit_api_executions_system.migrations.0014_rename_price_per_second_in_cent_at_the_time_of_execution_customerprogramexecution_price_per_second_a",
         "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0013_alter_customerprogramexecution_price_per_second_in_cent_at_the_time_of_execution'),\n    ]\n    operations = [\n        migrations.RenameField(\n            model_name='customerprogramexecution',\n            old_name='price_per_second_in_cent_at_the_time_of_execution',\n            new_name='price_per_second_at_the_time_of_execution',\n        ),",
         "detail": "app.nadooit_api_executions_system.migrations.0014_rename_price_per_second_in_cent_at_the_time_of_execution_customerprogramexecution_price_per_second_a",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.migrations.0015_customerprogramexecution_price_for_execution_and_more",
+        "description": "app.nadooit_api_executions_system.migrations.0015_customerprogramexecution_price_for_execution_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_api_executions_system', '0014_rename_price_per_second_in_cent_at_the_time_of_execution_customerprogramexecution_price_per_second_a'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogramexecution',\n            name='price_for_execution',\n            field=djmoney.models.fields.MoneyField(decimal_places=6, default=Decimal('0'), default_currency='EUR', max_digits=14),\n        ),",
+        "detail": "app.nadooit_api_executions_system.migrations.0015_customerprogramexecution_price_for_execution_and_more",
         "documentation": {}
     },
     {
@@ -5046,6 +5144,42 @@
         "documentation": {}
     },
     {
+        "label": "get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):\n    customer_program_executions = get__customer_program_executions__for__filter_type_and_cutomer_id(\n            filter_type, cutomer_id\n        ).filter(payment_status = \"NOT_PAID\")\n    return customer_program_executions\t\ndef get__customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__customer_program_executions__for__filter_type_and_cutomer_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):\n    from datetime import date\n    todays_date = date.today()\n    if filter_type == \"last20\":\n        customer_program_executions = (\n            CustomerProgramExecution.objects.filter(\n                customer_program__customer__id=cutomer_id\n            )",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__price_as_string_in_euro_format__for__price_in_euro_as_decimal",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price):\n    # Round to the last three decimal places\n    if price is None:\n        price = 0\n    return str(round(price, 3)) + \" €\"\ndef get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__time_as_string_in_hour_format__for__time_in_seconds_as_integer",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)\n        + \" min : \"\n        + str(time % 60)\n        + \" sek\"\n    )\n# Checks if a user exists for the given user code",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
         "label": "check__user__exists__for__user_code",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
@@ -5239,7 +5373,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee__for__user(user) -> Employee:\n    return Employee.objects.get(user=user)\ndef get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:\n    print(\"total_time_saved\", total_time_saved)\n    price_per_hour = 0\n    points = get__price_list()\n    for time in points:\n        if total_time_saved > time:\n            # If the time saved is greater than the time of the next point, the price of the last point before will be used\n            price_per_hour = points[time]",
+        "peekOfCode": "def get__employee__for__user(user) -> Employee:\n    return Employee.objects.get(user=user)\ndef get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:\n    print(\"total_time_saved\", total_time_saved)\n    price_per_hour = 0\n    points = get__price_list()\n    for time in points:\n        if total_time_saved >= time:\n            # If the time saved is greater than the time of the next point, the price of the last point before will be used\n            price_per_hour = points[time]",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5248,7 +5382,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:\n    print(\"total_time_saved\", total_time_saved)\n    price_per_hour = 0\n    points = get__price_list()\n    for time in points:\n        if total_time_saved > time:\n            # If the time saved is greater than the time of the next point, the price of the last point before will be used\n            price_per_hour = points[time]\n        else:\n            break",
+        "peekOfCode": "def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:\n    print(\"total_time_saved\", total_time_saved)\n    price_per_hour = 0\n    points = get__price_list()\n    for time in points:\n        if total_time_saved >= time:\n            # If the time saved is greater than the time of the next point, the price of the last point before will be used\n            price_per_hour = points[time]\n        else:\n            break",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5266,7 +5400,34 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__new_price_per_second__for__customer_program(\n    customer_program: CustomerProgram,\n) -> decimal:\n    print(\"Kommt bis hier hin\")\n    # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be\n    # Get all the customer program executions belonging to the program of the customer program execution\n    total_time_saved_program_executions_in_seconds = (\n        get__total_time_saved__for__customer_program(customer_program)\n    )\n    print(total_time_saved_program_executions_in_seconds)",
+        "peekOfCode": "def get__new_price_per_second__for__customer_program(\n    customer_program: CustomerProgram,\n) -> Decimal:\n    print(\"Kommt bis hier hin\")\n    # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be\n    # Get all the customer program executions belonging to the program of the customer program execution\n    total_time_saved_program_executions_in_seconds = (\n        get__total_time_saved__for__customer_program(customer_program)\n    )\n    print(",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n    list_of_customer_program_executions,\n) -> int:\n    from django.db.models import Sum\n    total_time_saved_in_seconds = list_of_customer_program_executions.aggregate(\n        Sum(\"program_time_saved_in_seconds\")\n    )[\"program_time_saved_in_seconds__sum\"]\n    if total_time_saved_in_seconds == None:\n        total_time_saved_in_seconds = 0\n    return total_time_saved_in_seconds",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__sum_of_price_for_execution__for__list_of_customer_program_exections",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__sum_of_price_for_execution__for__list_of_customer_program_exections(\n    list_of_customer_program_executions,\n) -> Decimal:\n    from django.db.models import Sum\n    print(\"list_of_customer_program_executions\", list_of_customer_program_executions)\n    return list_of_customer_program_executions.aggregate(Sum(\"price_for_execution\"))[\n        \"price_for_execution__sum\"\n    ]\ndef get__price_for_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__price_for_execution__for__cutomer_program",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__price_for_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (\n        customer_program.program_time_saved_per_execution_in_seconds\n    )\ndef get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5275,7 +5436,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    from django.db.models import Sum\n    return (\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")\n        )\n    ).aggregate(Sum(\"program_time_saved_in_seconds\"))[\n        \"program_time_saved_in_seconds__sum\"",
+        "peekOfCode": "def get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")\n        )\n    )\n    \"\"\" \n    return (",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5518,7 +5679,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def customer_program_execution_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []\n    list_of_customer_program_manger_contract_for_logged_in_user = (\n        CustomerProgramExecutionManagerContract.objects.filter(\n            contract__employee=request.user.employee, can_give_manager_role=True",
+        "peekOfCode": "def customer_program_execution_overview(request: HttpRequest):\n    # All orders for the current customer\n    # orders are the executions of customerprograms\n    # the list of customers that the time accounts that the employee is responsible for belong to\n    # the list has for its first element the customer that the employee is responsible for\n    # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for\n    customers_the_employee_is_responsible_for_and_the_customer_program_executions = []\n    list_of_customer_program_manger_contract_for_logged_in_user = (\n        CustomerProgramExecutionManagerContract.objects.filter(\n            contract__employee=request.user.employee, can_give_manager_role=True",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -5572,7 +5733,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def get__customer_program_profile(request: HttpRequest, customer_program_id: str) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    print(\"customer_program_id\", customer_program_id)\n    if not CustomerProgramManagerContract.objects.filter(\n        contract__employee=request.user.employee,\n        contract__is_active=True,\n        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,\n    ).exists():\n        return HttpResponseForbidden()\n    # Get the customer program",
+        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    print(\"customer_program_id\", customer_program_id)\n    if not CustomerProgramManagerContract.objects.filter(\n        contract__employee=request.user.employee,\n        contract__is_active=True,\n        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,\n    ).exists():",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -5636,6 +5797,15 @@
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
         "peekOfCode": "def activate_contract(request: HttpRequest, employee_contract_id: str):\n    set__employee_contract__is_active_state__for__employee_contract_id(\n        employee_contract_id, True\n    )\n    employee_contract = get__employee_contract__for__employee_contract_id(\n        employee_contract_id\n    )\n    return render(\n        request,\n        \"nadooit_os/hr_department/components/deactivate_contract_button.html\",",
+        "detail": "app.nadooit_os.views",
+        "documentation": {}
+    },
+    {
+        "label": "export_transactions",
+        "kind": 2,
+        "importPath": "app.nadooit_os.views",
+        "description": "app.nadooit_os.views",
+        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(filter_type, cutomer_id)\n    )\n    # create a response object with the correct content type\n    response = HttpResponse(content_type=\"text/csv\")\n    # set the filename of the cvs file\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    # create a writer object for the response object\n    writer = csv.writer(response)",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

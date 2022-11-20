@@ -32,6 +32,11 @@ urlpatterns = [
         name="customer-program-execution-list-for-cutomer",
     ),
     path(
+        "customer-program-execution/export/<filter_type>/<uuid:cutomer_id>",
+        export_transactions,
+        name="export-transactions",
+    ),
+    path(
         "customer-program-execution-list-complaint-modal/<uuid:customer_program_execution_id>",
         customer_program_execution_list_complaint_modal,
         name="customer-program-execution-list-complaint-modal",
