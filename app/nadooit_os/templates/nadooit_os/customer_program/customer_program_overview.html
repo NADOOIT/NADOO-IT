@@ -24,6 +24,7 @@
 
           <tbody>
             {% for customer_program in cutomer.1 %}
+            {% comment %}<tr hx-post="{% url 'nadooit_os:customer-program-profile' customer_program.id %}" hx-swap="outerHTML" hx-target="#profile_for_customer_program_{{customer_program.id}}"> {% endcomment %}
             <tr>
               <td>{{ customer_program.id }}</td>
               <td>{{ customer_program.program.name }}</td>
@@ -31,12 +32,16 @@
                 {{customer_program.program_time_saved_per_execution_in_seconds}} sek
               </td>
               <td>
-                {{customer_program.price_per_second_in_cent}} Cent
+                {{customer_program.price_per_second}}
               </td>
               <td>
-                {{customer_program.price_per_execution}} Cent
+                {{customer_program.price_per_execution}}
               </td>
               <td>{{ customer_program.created_at}}</td>
+            </tr>
+            {% comment %} A hidden table row {% endcomment %}
+            <tr class="d-none" id="profile_for_customer_program_{{customer_program.id}}">
+             
             </tr>
             {% empty %}
             <tr>

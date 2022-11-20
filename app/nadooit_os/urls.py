@@ -32,6 +32,11 @@ urlpatterns = [
         name="customer-program-execution-list-for-cutomer",
     ),
     path(
+        "customer-program-execution/export/<filter_type>/<uuid:cutomer_id>",
+        export_transactions,
+        name="export-transactions",
+    ),
+    path(
         "customer-program-execution-list-complaint-modal/<uuid:customer_program_execution_id>",
         customer_program_execution_list_complaint_modal,
         name="customer-program-execution-list-complaint-modal",
@@ -56,6 +61,11 @@ urlpatterns = [
         name="customer-program-overview",
     ),
     path(
+        "customer-program/customer-program-profile/<uuid:customer_program_id>",
+        get__customer_program_profile,
+        name="customer-program-profile",
+    ),
+    path(
         "customer-program/give-customer-program-manager-role",
         give_customer_program_manager_role,
         name="give-customer-program-manager-role",
@@ -72,7 +82,7 @@ urlpatterns = [
     ),
     # This is the url for the profile of an employee
     path(
-        "hr/employee-profile/<int:employee_id>",
+        "hr/employee-profile/<employee_id>",
         employee_profile,
         name="employee-profile",
     ),

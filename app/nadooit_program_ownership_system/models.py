@@ -4,7 +4,7 @@ from nadooit_crm.models import Customer
 from nadooit_program.models import Program
 from nadooit_time_account.models import TimeAccount
 from nadooit_hr.models import Employee
-
+from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
@@ -29,16 +29,17 @@ class CustomerProgram(models.Model):
     program = models.ForeignKey(Program, on_delete=models.SET_NULL, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
 
-    price_per_second_in_cent = models.IntegerField(default=0)
+    price_per_second = MoneyField(
+        max_digits=14, decimal_places=6, default_currency="EUR", default=0
+    )
 
     created_at = models.DateTimeField(auto_now_add=True, editable=True)
     updated_at = models.DateTimeField(auto_now=True, editable=True)
+
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.id) + " " + self.program.name
 
     def price_per_execution(self):
-        return (
-            self.price_per_second_in_cent
-            * self.program_time_saved_per_execution_in_seconds
-        )
+        return self.price_per_second * self.program_time_saved_per_execution_in_seconds

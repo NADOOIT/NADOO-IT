@@ -1,5 +1,4 @@
-from datetime import date
-
+import csv
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
     HttpRequest,
@@ -10,7 +9,6 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST
-from nadooit_api_executions_system.views import create_execution
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -28,6 +26,7 @@ from nadooit_hr.models import (
 )
 from nadooit_os.services import (
     get__employee_contract__for__employee__and__customer_id,
+    get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections,
     get__employee_contract__for__employee_contract_id,
     get__employee__for__user_code,
     get__employee_manager_contract__for__employee_contract,
@@ -43,6 +42,12 @@ from nadooit_os.services import (
     get__employee_contract__for__user_code__and__customer_id,
     get__list_of_customers__for__employee_manager_contract__for_user,
     check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
+    get__next_price_level__for__customer_program,
+    get__sum_of_price_for_execution__for__list_of_customer_program_exections,
+    get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
+    get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
+    get__customer_program_executions__for__filter_type_and_cutomer_id,
+    get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
 )
 
 # model imports
@@ -618,7 +623,7 @@ def customer_program_execution_overview(request: HttpRequest):
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
-    customers_the_employee_is_responsible_for_and_the_customer_programm_executions = []
+    customers_the_employee_is_responsible_for_and_the_customer_program_executions = []
 
     list_of_customer_program_manger_contract_for_logged_in_user = (
         CustomerProgramExecutionManagerContract.objects.filter(
@@ -626,11 +631,14 @@ def customer_program_execution_overview(request: HttpRequest):
         ).distinct("contract__customer")
     )
 
+    # Get the executions depending on the filter type
+    customer_program_executions = []
+
     # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
 
         # list of customer programms with of the customer
-        customer_programm_executions = (
+        customer_program_executions = (
             CustomerProgramExecution.objects.filter(
                 customer_program__customer=contract.contract.customer
             )
@@ -639,8 +647,8 @@ def customer_program_execution_overview(request: HttpRequest):
         )
 
         # add the customer and the customer programm execution to the list
-        customers_the_employee_is_responsible_for_and_the_customer_programm_executions.append(
-            [contract.contract.customer, customer_programm_executions]
+        customers_the_employee_is_responsible_for_and_the_customer_program_executions.append(
+            [contract.contract.customer, customer_program_executions]
         )
 
     filter_type = "last20"
@@ -651,7 +659,7 @@ def customer_program_execution_overview(request: HttpRequest):
         {
             "page_title": "Übersicht der Buchungen",
             "filter_type": filter_type,
-            "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_programm_executions,
+            "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_program_executions,
             **get__user__roles_and_rights(request),
         },
     )
@@ -674,54 +682,33 @@ def customer_program_execution_list_for_cutomer(
         return HttpResponseForbidden()
 
     # Get the executions depending on the filter type
-    customer_program_executions = []
+    customer_program_executions = (
+        get__customer_program_executions__for__filter_type_and_cutomer_id(
+            filter_type, cutomer_id
+        )
+    )
 
-    todays_date = date.today()
-
-    if filter_type == "last20":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id
-            )
-            .order_by("created_at")
-            .reverse()[:20]
+    total_time_saved_in_seconds = (
+        get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+            customer_program_executions
         )
-    elif filter_type == "lastmonth":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id,
-                created_at__month=todays_date.month - 1,
-            )
-            .order_by("created_at")
-            .reverse()
+    )
+    total_price_for_execution_decimal = (
+        get__sum_of_price_for_execution__for__list_of_customer_program_exections(
+            customer_program_executions
         )
-    elif filter_type == "today":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id, created_at__date=todays_date
-            )
-            .order_by("created_at")
-            .reverse()
+    )
+    total_time_saved = (
+        get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(
+            total_time_saved_in_seconds
         )
-    elif filter_type == "thismonth":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id,
-                created_at__month=todays_date.month,
-            )
-            .order_by("created_at")
-            .reverse()
+    )
+    print("total_price_for_execution_decimal", total_price_for_execution_decimal)
+    total_price_for_execution = (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            total_price_for_execution_decimal
         )
-
-    elif filter_type == "thisyear":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id,
-                created_at__year=todays_date.year,
-            )
-            .order_by("created_at")
-            .reverse()
-        )
+    )
 
     return render(
         request,
@@ -731,6 +718,8 @@ def customer_program_execution_list_for_cutomer(
             "cutomer_id": cutomer_id,
             "cutomer_name": Customer.objects.get(id=cutomer_id).name,
             "customer_program_executions": customer_program_executions,
+            "total_time_saved": total_time_saved,
+            "total_price_for_execution": total_price_for_execution,
         },
     )
 
@@ -966,6 +955,39 @@ def customer_program_overview(request: HttpRequest):
             "page_title": "Übersicht der Programme",
             "customers_the_user_is_responsible_for_and_the_customer_programms": customers_the_user_is_responsible_for_and_the_customer_programms,
             **get__user__roles_and_rights(request),
+        },
+    )
+
+
+@require_POST
+@user_passes_test(
+    user_is_Customer_Program_Manager,
+    login_url="/auth/login-user",
+)
+@login_required(login_url="/auth/login-user")
+def get__customer_program_profile(
+    request: HttpRequest, customer_program_id: str
+) -> HttpResponse:
+    # Check that the user is a a customer program  manager for the customer that the customer program belongs to
+    print("customer_program_id", customer_program_id)
+    if not CustomerProgramManagerContract.objects.filter(
+        contract__employee=request.user.employee,
+        contract__is_active=True,
+        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,
+    ).exists():
+        return HttpResponseForbidden()
+
+    # Get the customer program
+    customer_program = CustomerProgram.objects.get(id=customer_program_id)
+    print("customer_program", customer_program)
+    next_price = get__next_price_level__for__customer_program(customer_program)
+
+    return render(
+        request,
+        "nadooit_os/customer_program/components/customer_program_profile.html",
+        {
+            "next_price": next_price,
+            "customer_program": customer_program,
         },
     )
 
@@ -1384,21 +1406,18 @@ def give_employee_manager_role(request: HttpRequest):
 )
 @login_required(login_url="/auth/login-user")
 def deactivate_contract(request: HttpRequest, employee_contract_id: str):
-    if request.method == "POST":
 
-        employee_contract = (
-            set_employee_contract__as_inactive__for__employee_contract_id(
-                employee_contract_id
-            )
-        )
+    employee_contract = set_employee_contract__as_inactive__for__employee_contract_id(
+        employee_contract_id
+    )
 
-        return render(
-            request,
-            "nadooit_os/hr_department/components/activate_contract_button.html",
-            {
-                "employee_contract": employee_contract,
-            },
-        )
+    return render(
+        request,
+        "nadooit_os/hr_department/components/activate_contract_button.html",
+        {
+            "employee_contract": employee_contract,
+        },
+    )
 
 
 @require_POST
@@ -1408,11 +1427,10 @@ def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 )
 @login_required(login_url="/auth/login-user")
 def activate_contract(request: HttpRequest, employee_contract_id: str):
-    if request.method == "POST":
 
-        set__employee_contract__is_active_state__for__employee_contract_id(
-            employee_contract_id, True
-        )
+    set__employee_contract__is_active_state__for__employee_contract_id(
+        employee_contract_id, True
+    )
 
     employee_contract = get__employee_contract__for__employee_contract_id(
         employee_contract_id
@@ -1425,3 +1443,35 @@ def activate_contract(request: HttpRequest, employee_contract_id: str):
             "employee_contract": employee_contract,
         },
     )
+
+
+# A view that creates a cvs file with all transactions for the given customer_id
+@require_POST
+@login_required(login_url="/auth/login-user")
+def export_transactions(request: HttpRequest, filter_type, cutomer_id):
+
+    unpaid_customer_program_executions = (
+        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(filter_type, cutomer_id)
+    )
+
+    # create a response object with the correct content type
+    response = HttpResponse(content_type="text/csv")
+    # set the filename of the cvs file
+    response["Content-Disposition"] = 'attachment; filename="transactions.csv"'
+    # create a writer object for the response object
+    writer = csv.writer(response)
+    # write the header row for the cvs file
+    writer.writerow(["id", "Programm", "Zeitersparnis", "Preis", "Datum"])
+    # write the data for the cvs file
+    for transaction in unpaid_customer_program_executions:
+        writer.writerow(
+            [
+                transaction.id,	
+                transaction.program.name,	
+                transaction.program_time_saved_in_seconds,		
+                transaction.price_for_execution,		
+                transaction.date,			
+            ]
+        )
+    # return the response object
+    return response
