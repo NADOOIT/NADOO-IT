@@ -1,6 +1,6 @@
 # Intro
 
-This is the nadooit execution manegment system.
+This is the nadooit manegment system.
 
 It forms the interface to the system, hosts the website, and provides the API.
 
