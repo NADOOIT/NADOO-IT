@@ -176,6 +176,13 @@ It creates easy to use urls for displaying images for use in templates and other
   - [ ] As a manager you can see all roles and rights of all employees of a customer (if you have the rights)
   - [ ] As a manager you can revoke roles and rights of all employees of a customer (if you have the rights)
 -[ ] Add the deactivation date to the reactivation button
+- [ ] Add a button to deactivate an employee	
+- [ ] Add a button to reactivate an employee
+- [ ] Add a button to delete an employee
+- [ ] Add a button to add an employee
+- [ ] Add a button to edit an employee
+- [ ] Add a button to view an employee
+
 
 ### nadooit_program_ownership_system
 

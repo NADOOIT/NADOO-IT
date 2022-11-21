@@ -17,7 +17,8 @@ from nadooit_os.services import (
     get__hashed_api_key__for__request,
     check__nadooit_api_key__has__is_active,
     get__user_code__for__nadooit_api_key,
-    get__new_price_per_second_in_cent__for__customer_program,
+    get__new_price_per_second__for__customer_program,
+    get__price_for_execution__for__cutomer_program,
 )
 
 
@@ -89,15 +90,21 @@ def create_execution(request):
                         )
                     print("TEST2")
 
+                    price_for_execution = (
+                        get__price_for_execution__for__cutomer_program(
+                            nadooit_customer_program
+                        )
+                    )
+                    print("TEST3")
                     nadooit_customer_program_execution = CustomerProgramExecution.objects.create(
                         program_time_saved_in_seconds=nadooit_customer_program.program_time_saved_per_execution_in_seconds,
                         customer_program=nadooit_customer_program,
-                        price_per_second_in_cent_at_the_time_of_execution=nadooit_customer_program.price_per_second_in_cent,
+                        price_per_second_at_the_time_of_execution=nadooit_customer_program.price_per_second,
+                        price_for_execution=price_for_execution,
                     )
-                    print("TEST3")
 
-                    nadooit_customer_program.price_per_second_in_cent = (
-                        get__new_price_per_second_in_cent__for__customer_program(
+                    nadooit_customer_program.price_per_second = (
+                        get__new_price_per_second__for__customer_program(
                             nadooit_customer_program_execution.customer_program
                         )
                     )
