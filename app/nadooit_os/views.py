@@ -8,7 +8,7 @@ from django.http import (
 )
 from django.shortcuts import render
 from django.utils import timezone
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -1446,31 +1446,32 @@ def activate_contract(request: HttpRequest, employee_contract_id: str):
 
 
 # A view that creates a cvs file with all transactions for the given customer_id
-@require_POST
+@require_GET
 @login_required(login_url="/auth/login-user")
 def export_transactions(request: HttpRequest, filter_type, cutomer_id):
 
     unpaid_customer_program_executions = (
-        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(filter_type, cutomer_id)
+        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+            filter_type, cutomer_id
+        )
     )
 
-    # create a response object with the correct content type
     response = HttpResponse(content_type="text/csv")
-    # set the filename of the cvs file
     response["Content-Disposition"] = 'attachment; filename="transactions.csv"'
-    # create a writer object for the response object
     writer = csv.writer(response)
-    # write the header row for the cvs file
-    writer.writerow(["id", "Programm", "Zeitersparnis", "Preis", "Datum"])
-    # write the data for the cvs file
+
+    # write the header
+    writer.writerow(["id", "Programmname", "erspaarte Zeit", "Preis", "Erstellt"])
+
     for transaction in unpaid_customer_program_executions:
+
         writer.writerow(
             [
-                transaction.id,	
-                transaction.program.name,	
-                transaction.program_time_saved_in_seconds,		
-                transaction.price_for_execution,		
-                transaction.date,			
+                transaction.id,
+                transaction.customer_program.program.name,
+                transaction.program_time_saved_in_seconds,
+                transaction.price_for_execution,
+                transaction.created_at,
             ]
         )
     # return the response object

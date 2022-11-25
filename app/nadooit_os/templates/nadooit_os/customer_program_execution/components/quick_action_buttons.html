@@ -1,0 +1,28 @@
+<ul class="nav nav-pills">
+    {% if filter_type == "last20" %}
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  href="{% url 'nadooit_os:export-transactions' 'last20' cutomer_id %}">CSV-Export</a>
+        </li>
+    {% endif %}
+    {% if filter_type == "lastmonth" %}
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  href="{% url 'nadooit_os:export-transactions' 'lastmonth' cutomer_id %}">CSV-Export</a>
+        </li>
+    {% endif %}
+    {% if filter_type == "today" %}
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  href="{% url 'nadooit_os:export-transactions' 'today' cutomer_id %}">CSV-Export</a>
+        </li>
+    {% endif %}
+    {% if filter_type == "thismonth" %}
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  href="{% url 'nadooit_os:export-transactions' 'thismonth' cutomer_id %}">CSV-Export</a>
+        </li>
+    {% endif %}
+    {% if filter_type == "thisyear" %}
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page"  href="{% url 'nadooit_os:export-transactions' 'thisyear' cutomer_id %}">CSV-Export</a>
+        </li>
+    {% endif %}
+{% comment %} Add filter for entering year month and day {% endcomment %}
+</ul>
