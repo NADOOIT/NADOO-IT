@@ -299,7 +299,7 @@ def customer_time_account_overview(request: HttpRequest):
                 "customer_time_account_total_time_balance": customer_time_account.time_account.time_balance_in_seconds,
             }
 
-    print(customer_time_accounts_grouped_by_customer)
+    # print(customer_time_accounts_grouped_by_customer)
 
     # format the time balances first to int then using the get_time_as_string_in_hour_format_for_time_in_seconds_as_integer function
     for customer in customer_time_accounts_grouped_by_customer:
@@ -703,7 +703,7 @@ def customer_program_execution_list_for_cutomer(
             total_time_saved_in_seconds
         )
     )
-    print("total_price_for_execution_decimal", total_price_for_execution_decimal)
+    # print("total_price_for_execution_decimal", total_price_for_execution_decimal)
     total_price_for_execution = (
         get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
             total_price_for_execution_decimal
@@ -969,7 +969,7 @@ def get__customer_program_profile(
     request: HttpRequest, customer_program_id: str
 ) -> HttpResponse:
     # Check that the user is a a customer program  manager for the customer that the customer program belongs to
-    print("customer_program_id", customer_program_id)
+    # print("customer_program_id", customer_program_id)
     if not CustomerProgramManagerContract.objects.filter(
         contract__employee=request.user.employee,
         contract__is_active=True,
@@ -979,7 +979,7 @@ def get__customer_program_profile(
 
     # Get the customer program
     customer_program = CustomerProgram.objects.get(id=customer_program_id)
-    print("customer_program", customer_program)
+    # print("customer_program", customer_program)
     next_price = get__next_price_level__for__customer_program(customer_program)
 
     return render(

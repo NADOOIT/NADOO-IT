@@ -5741,7 +5741,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    print(\"customer_program_id\", customer_program_id)\n    if not CustomerProgramManagerContract.objects.filter(\n        contract__employee=request.user.employee,\n        contract__is_active=True,\n        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,\n    ).exists():",
+        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if not CustomerProgramManagerContract.objects.filter(\n        contract__employee=request.user.employee,\n        contract__is_active=True,\n        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,\n    ).exists():",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
