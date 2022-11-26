@@ -50,10 +50,10 @@ def login_user(request):
         user_code = request.POST["user_code"]
 
         user = authenticate(request, user_code=user_code)
-        print("user: ", user)
+        #print("user: ", user)
         err = ""
         if user is not None:
-            print("found user")
+            #print("found user")
             if user.is_active:  # if the user object exist
                 if "mfa" in settings.INSTALLED_APPS and settings.DEBUG == False:
                     from mfa.helpers import has_mfa, recheck
@@ -62,12 +62,12 @@ def login_user(request):
                         username=user.username, request=request
                     )  # has_mfa returns false or HttpResponseRedirect
                     if res:
-                        print("has_mfa")
-                        print(res)
+                        #print("has_mfa")
+                        #print(res)
                         return res
                     
-                    print("has_no_mfa")
-                    print(res)
+                    #print("has_no_mfa")
+                    #print(res)
                     log_user_in(request, user.username)
                     # login(request, user)
                     return redirect(request.GET.get("next") or "/nadooit-os")

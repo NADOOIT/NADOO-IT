@@ -1,7 +1,7 @@
 import decimal
 from decimal import Decimal
 import math
-from typing import List
+from typing import List, Union
 import hashlib
 
 from django.utils import timezone
@@ -17,14 +17,18 @@ from nadooit_hr.models import EmployeeContract
 from nadooit_auth.models import User
 from datetime import datetime
 
+
 def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
     filter_type, cutomer_id
 ):
-    customer_program_executions = get__customer_program_executions__for__filter_type_and_cutomer_id(
+    customer_program_executions = (
+        get__customer_program_executions__for__filter_type_and_cutomer_id(
             filter_type, cutomer_id
-        ).filter(payment_status = "NOT_PAID")
-    
-    return customer_program_executions	
+        ).filter(payment_status="NOT_PAID")
+    )
+
+    return customer_program_executions
+
 
 def get__customer_program_executions__for__filter_type_and_cutomer_id(
     filter_type, cutomer_id
@@ -299,7 +303,66 @@ def get__employee_contract__for__user_code__and__customer_id(
     return employee_contract
 
 
-def get__list_of_customers__for__employee_manager_contract__for_user(
+def get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(
+    user,
+) -> list[dict[str, Union[Customer, Employee]]]:
+
+    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = (
+        []
+    )
+
+    # get all the customers the employee has contracts with and is an employee manager for
+    # Do not use employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()!
+    # Instead look at the contracts the employee has and get the customers from the contracts
+    # This is because the employee manager will be deprecated in the future
+    # Only list a customer once
+    list_of_customers_the_employee_has_an_employee_manager_contract_with = get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
+        user
+    )
+
+    # get all the employees of the customers the user is responsible for
+    for (
+        customer
+    ) in list_of_customers_the_employee_has_an_employee_manager_contract_with:
+
+        if user.is_staff:
+            customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user.append(
+                [
+                    customer,
+                    EmployeeContract.objects.filter(customer=customer)
+                    .distinct()
+                    .order_by("-is_active"),
+                    # user_can_deactivate_contracts
+                    EmployeeManagerContract.objects.filter(
+                        contract__employee=user.employee,
+                        can_delete_employee=True,
+                        contract__is_active=True,
+                    ).exists(),
+                ]
+            )
+        else:
+            customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user.append(
+                [
+                    customer,
+                    EmployeeContract.objects.filter(
+                        customer=customer,
+                        employee__user__is_staff=False,
+                    )
+                    .distinct()
+                    .order_by("-is_active"),
+                    # user_can_deactivate_contracts
+                    EmployeeManagerContract.objects.filter(
+                        contract__employee=user.employee,
+                        can_delete_employee=True,
+                        contract__is_active=True,
+                    ).exists(),
+                ]
+            )
+
+    return customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user
+
+
+def get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
     user,
 ) -> List[Customer]:
 
@@ -310,13 +373,49 @@ def get__list_of_customers__for__employee_manager_contract__for_user(
     )
 
     # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
+    return get__list_of_customers__for__list_of_employee_manager_contracts(
+        list_of_employee_manager_contract_for_logged_in_user
+    )
+
+
+def get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user(
+    user,
+) -> List[Customer]:
+
+    list_of_employee_manager_contract_for_logged_in_user = (
+        EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee, can_give_manager_role=True
+        ).distinct("contract__customer")
+    )
+
+    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
+    return get__list_of_customers__for__list_of_employee_manager_contracts(
+        list_of_employee_manager_contract_for_logged_in_user
+    )
+
+
+def get__list_of_customers__for__list_of_employee_manager_contracts(
+    list_of_employee_manager_contracts,
+) -> List[Customer]:
+
+    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
     list_of_customers__for__employee_manager_contract = []
-    for contract in list_of_employee_manager_contract_for_logged_in_user:
+    for contract in list_of_employee_manager_contracts:
         list_of_customers__for__employee_manager_contract.append(
             contract.contract.customer
         )
 
     return list_of_customers__for__employee_manager_contract
+
+
+# TODO add tests for this function and if it works correctly replace the part of the other fuctions that are looking for employee manager contracts
+def get__list_of_employee_manager_contract__with__given_abitly__for__user(
+    user, ability
+) -> List[EmployeeManagerContract]:
+
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee, **{ability: True}
+    ).distinct("contract__customer")
 
 
 def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
@@ -335,7 +434,7 @@ def get__employee__for__user(user) -> Employee:
 
 
 def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:
-    print("total_time_saved", total_time_saved)
+    # print("total_time_saved", total_time_saved)
 
     price_per_hour = 0
     points = get__price_list()
@@ -412,30 +511,30 @@ def get__new_price_per_second__for__customer_program(
     customer_program: CustomerProgram,
 ) -> Decimal:
 
-    print("Kommt bis hier hin")
+    # print("Kommt bis hier hin")
     # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be
     # Get all the customer program executions belonging to the program of the customer program execution
     total_time_saved_program_executions_in_seconds = (
         get__total_time_saved__for__customer_program(customer_program)
     )
 
-    print(
+    """     print(
         "total_time_saved_program_executions_in_seconds",
         total_time_saved_program_executions_in_seconds,
-    )
+    ) """
 
     total_time_saved_program_executions_in_hours = (
         total_time_saved_program_executions_in_seconds / 3600
     )
 
-    print(f"Total Time saved: {total_time_saved_program_executions_in_hours}")
+    # print(f"Total Time saved: {total_time_saved_program_executions_in_hours}")
 
     # Get the price for the current amount of time saved by the program belonging to the customer program execution
     price_per_hour = get__price_per_hour__for__total_time_saved(
         total_time_saved_program_executions_in_hours
     )
 
-    print(f"Price per hour: {price_per_hour}")
+    # print(f"Price per hour: {price_per_hour}")
 
     # TODO add things to calculate the price of the execution including discounts and stuff
 
@@ -464,7 +563,7 @@ def get__sum_of_price_for_execution__for__list_of_customer_program_exections(
 ) -> Decimal:
     from django.db.models import Sum
 
-    print("list_of_customer_program_executions", list_of_customer_program_executions)
+    # print("list_of_customer_program_executions", list_of_customer_program_executions)
     return list_of_customer_program_executions.aggregate(Sum("price_for_execution"))[
         "price_for_execution__sum"
     ]
