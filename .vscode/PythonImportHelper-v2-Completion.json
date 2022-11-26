@@ -3482,6 +3482,14 @@
         "documentation": {}
     },
     {
+        "label": "require_GET",
+        "importPath": "django.views.decorators.http",
+        "description": "django.views.decorators.http",
+        "isExtraImport": true,
+        "detail": "django.views.decorators.http",
+        "documentation": {}
+    },
+    {
         "label": "Complaint",
         "importPath": "nadoo_complaint_management.models",
         "description": "nadoo_complaint_management.models",
@@ -5805,7 +5813,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(filter_type, cutomer_id)\n    )\n    # create a response object with the correct content type\n    response = HttpResponse(content_type=\"text/csv\")\n    # set the filename of the cvs file\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    # create a writer object for the response object\n    writer = csv.writer(response)",
+        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(\n            filter_type, cutomer_id\n        )\n    )\n    response = HttpResponse(content_type=\"text/csv\")\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    writer = csv.writer(response)\n    # write the header",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
