@@ -27,7 +27,6 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ### Pages and features for the website (frontend)
 
-- [ ] Page for Nadooit_Workflow for adding new Processess
 - [ ] Page for clients to see their time tracking
 - [ ] Page for clients to see their invoices
 - [ ] Page for clients to see their projects
