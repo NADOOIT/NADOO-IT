@@ -2824,7 +2824,7 @@
         "documentation": {}
     },
     {
-        "label": "get__price_for_execution__for__cutomer_program",
+        "label": "get__price_for_new_customer_program_execution__for__cutomer_program",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5486,16 +5486,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__sum_of_price_for_execution__for__list_of_customer_program_exections(\n    list_of_customer_program_executions,\n) -> Decimal:\n    from django.db.models import Sum\n    # print(\"list_of_customer_program_executions\", list_of_customer_program_executions)\n    return list_of_customer_program_executions.aggregate(Sum(\"price_for_execution\"))[\n        \"price_for_execution__sum\"\n    ]\ndef get__price_for_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (",
+        "peekOfCode": "def get__sum_of_price_for_execution__for__list_of_customer_program_exections(\n    list_of_customer_program_executions,\n) -> Decimal:\n    from django.db.models import Sum\n    # print(\"list_of_customer_program_executions\", list_of_customer_program_executions)\n    return list_of_customer_program_executions.aggregate(Sum(\"price_for_execution\"))[\n        \"price_for_execution__sum\"\n    ]\ndef get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__price_for_execution__for__cutomer_program",
+        "label": "get__price_for_new_customer_program_execution__for__cutomer_program",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__price_for_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (\n        customer_program.program_time_saved_per_execution_in_seconds\n    )\ndef get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")",
+        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (\n        customer_program.program_time_saved_per_execution_in_seconds\n    )\ndef get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
