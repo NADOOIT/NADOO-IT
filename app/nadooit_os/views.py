@@ -50,6 +50,9 @@ from nadooit_os.services import (
     get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
     get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
     get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user,
+    get__customer_program__for__customer_program_id,
+    check__customer_program__for__customer_program_id__exists,
+    check__user__is__customer_program_manager__for__customer_prgram
 )
 
 # model imports
@@ -972,15 +975,19 @@ def get__customer_program_profile(
 ) -> HttpResponse:
     # Check that the user is a a customer program  manager for the customer that the customer program belongs to
     # print("customer_program_id", customer_program_id)
-    if not CustomerProgramManagerContract.objects.filter(
-        contract__employee=request.user.employee,
-        contract__is_active=True,
-        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,
-    ).exists():
-        return HttpResponseForbidden()
+
+    if check__customer_program__for__customer_program_id__exists(customer_program_id):
+        if not check__user__is__customer_program_manager__for__customer_prgram(request.user, get__customer_program__for__customer_program_id(
+                customer_program_id
+            )):
+            return HttpResponseForbidden()
+    else:
+        return HttpResponse(status=404)
 
     # Get the customer program
-    customer_program = CustomerProgram.objects.get(id=customer_program_id)
+    customer_program = get__customer_program__for__customer_program_id(
+        customer_program_id
+    )
     # print("customer_program", customer_program)
     next_price = get__next_price_level__for__customer_program(customer_program)
 

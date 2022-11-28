@@ -5,6 +5,7 @@ from typing import List, Union
 import hashlib
 
 from django.utils import timezone
+from nadooit_hr.models import CustomerProgramManagerContract
 
 from nadooit_program_ownership_system.models import CustomerProgram
 
@@ -100,6 +101,24 @@ def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):
         + str(time % 60)
         + " sek"
     )
+
+
+def check__user__is__customer_program_manager__for__customer_prgram(
+    user, customer_program
+):
+    return CustomerProgramManagerContract.objects.filter(
+        contract__employee=user.employee,
+        contract__is_active=True,
+        contract__customer=customer_program.customer,
+    ).exists()
+
+
+def check__customer_program__for__customer_program_id__exists(customer_program_id):
+    return CustomerProgram.objects.filter(id=customer_program_id).exists()
+
+
+def get__customer_program__for__customer_program_id(customer_program_id):
+    return CustomerProgram.objects.get(id=customer_program_id)
 
 
 # Checks if a user exists for the given user code
