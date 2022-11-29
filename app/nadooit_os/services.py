@@ -553,7 +553,7 @@ def get__new_price_per_second__for__customer_program(
         total_time_saved_program_executions_in_hours
     )
 
-    # print(f"Price per hour: {price_per_hour}")
+    print(f"Price per hour: {price_per_hour}")
 
     # TODO add things to calculate the price of the execution including discounts and stuff
 
@@ -686,6 +686,8 @@ def create__customer_program_execution__for__customer_program(
 
     print("changed time account according to time of exectution")
 
+    print("customer", customer_program.customer)
+    
     set__new_price_per_second__for__customer_program(customer_program)
 
     return customer_program_execution

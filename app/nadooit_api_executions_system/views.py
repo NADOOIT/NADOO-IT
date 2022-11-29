@@ -17,7 +17,6 @@ from nadooit_os.services import (
     get__hashed_api_key__for__request,
     check__nadooit_api_key__has__is_active,
     get__user_code__for__nadooit_api_key,
-    get__new_price_per_second__for__customer_program,
     create__customer_program_execution__for__customer_program,
     check__customer_program__for__customer_program_id__exists,
     get__customer_program__for__customer_program_id,

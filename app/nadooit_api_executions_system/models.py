@@ -75,14 +75,9 @@ class CustomerProgramExecution(models.Model):
             + self.payment_status
         )
 
-
+    """ 
 @receiver(models.signals.post_save, sender=CustomerProgramExecution)
 def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):
-    """
-
-    a new execution is created, the time saved is charged to the time account of the customer that is assigned to the program.
-
-    """
 
     if created:
         # reduce the customer_programs time_account by the program_time_saved_in_seconds
@@ -99,8 +94,10 @@ def cutomer_program_execution_was_created(sender, instance, created, *args, **kw
         )
         # print(nadooit_customer_program.time_account.time_balance_in_seconds)
         nadooit_customer_program.time_account.save()
+    """
 
 
+# TODO remove this function and add a view that does this instead
 @receiver(models.signals.post_delete, sender=CustomerProgramExecution)
 def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):
     """
