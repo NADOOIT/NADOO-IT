@@ -5,6 +5,7 @@ from typing import List, Union
 import hashlib
 
 from django.utils import timezone
+from nadooit_time_account.models import TimeAccount
 from nadooit_hr.models import CustomerProgramManagerContract
 
 from nadooit_program_ownership_system.models import CustomerProgram
@@ -529,7 +530,6 @@ def get__price_list() -> dict:
 def get__new_price_per_second__for__customer_program(
     customer_program: CustomerProgram,
 ) -> Decimal:
-
     # print("Kommt bis hier hin")
     # Get the current amount of time saved by the program belonging to the customer program execution (in hours) check what the price should be
     # Get all the customer program executions belonging to the program of the customer program execution
@@ -588,10 +588,106 @@ def get__sum_of_price_for_execution__for__list_of_customer_program_exections(
     ]
 
 
-def get__price_for_execution__for__cutomer_program(customer_program: CustomerProgram):
-    return get__new_price_per_second__for__customer_program(customer_program) * (
-        customer_program.program_time_saved_per_execution_in_seconds
+def set__customer_program__time_account__for__customer_program_execution(
+    customer_program_execution: CustomerProgramExecution,
+) -> None:
+    # Get the time account of the customer program
+    time_account = customer_program_execution.customer_program.time_account
+
+    # Get the time saved by the program execution
+    time_saved_in_seconds = customer_program_execution.program_time_saved_in_seconds
+
+    # Reduce the time account by the time saved by the program execution
+    reduce__time_account__by__time_in_seconds(time_account, time_saved_in_seconds)
+
+
+def reduce__time_account__by__time_in_seconds(
+    time_account: TimeAccount, time_in_seconds: int
+) -> None:
+    # First check if the time account has enough time to pay for the execution
+    if time_account.time_balance_in_seconds >= time_in_seconds:
+        # If the time account has enough time, the time saved by the execution will be subtracted from the time account
+        time_account.time_balance_in_seconds -= time_in_seconds
+    else:
+        # If the time account does not have enough time, the time account will be set to 0
+        time_account.time_balance_in_seconds = 0
+
+    # Set the new time account
+    time_account.save()
+
+
+def get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):
+
+    # The price for a program execution is calculated each time a new execution is added to the program
+    # First it is checked if there is currently time allocated to the program already
+    # If there is, the price for the exectution is 0 since the time is already paid for
+    # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated
+    # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution
+
+    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+
+    # First it is checked if there is currently time allocated to the program already
+    if (
+        customer_program.time_account
+        - customer_program.program_time_saved_per_execution_in_seconds
+        >= 0
+    ):
+        # If there is, the price for the exectution is 0 since the time is already paid for
+        return 0
+    elif (
+        customer_program.time_account
+        - customer_program.program_time_saved_per_execution_in_seconds
+        < 0
+    ):
+        # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated
+        # the time is alwasys positive
+        time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = abs(
+            customer_program.time_account
+            - customer_program.program_time_saved_per_execution_in_seconds
+        )
+
+        return (
+            get__new_price_per_second__for__customer_program(customer_program)
+            * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+        )
+
+
+def create__customer_program_execution__for__customer_program(
+    customer_program: CustomerProgram,
+) -> CustomerProgramExecution:
+    # Create a new customer program execution with the current price for an execution
+    customer_program_execution = CustomerProgramExecution.objects.create(
+        customer_program=customer_program,
+        program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,
+        price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(
+            customer_program
+        ),
     )
+
+    # Set the time account of the customer program execution
+    set__customer_program__time_account__for__customer_program_execution(
+        customer_program_execution
+    )
+
+    set__new_price_per_second__for__customer_program(customer_program)
+
+    return customer_program_execution
+
+
+def set__new_price_per_second__for__customer_program(
+    customer_program: CustomerProgram,
+):
+    customer_program.price_per_second = (
+        get__new_price_per_second__for__customer_program(customer_program)
+    )
+
+    customer_program.save()
+
+
+def get__next_customer_program_execution_price__for__customer_program_execution(
+    customer_program_execution: CustomerProgramExecution,
+):
+    pass
 
 
 def get__total_time_saved__for__customer_program(customer_program: CustomerProgram):
