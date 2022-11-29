@@ -2327,6 +2327,14 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgramManagerContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
         "label": "EmployeeManagerContract",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
@@ -3025,6 +3033,30 @@
     },
     {
         "label": "get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__customer_program__for__customer_program_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__customer_program__for__customer_program_id__exists",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__user__is__customer_program_manager__for__customer_prgram",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5207,7 +5239,34 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)\n        + \" min : \"\n        + str(time % 60)\n        + \" sek\"\n    )\n# Checks if a user exists for the given user code",
+        "peekOfCode": "def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)\n        + \" min : \"\n        + str(time % 60)\n        + \" sek\"\n    )\ndef check__user__is__customer_program_manager__for__customer_prgram(",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__user__is__customer_program_manager__for__customer_prgram",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    return CustomerProgramManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        contract__customer=customer_program.customer,\n    ).exists()\ndef check__customer_program__for__customer_program_id__exists(customer_program_id):\n    return CustomerProgram.objects.filter(id=customer_program_id).exists()",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "check__customer_program__for__customer_program_id__exists",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def check__customer_program__for__customer_program_id__exists(customer_program_id):\n    return CustomerProgram.objects.filter(id=customer_program_id).exists()\ndef get__customer_program__for__customer_program_id(customer_program_id):\n    return CustomerProgram.objects.get(id=customer_program_id)\n# Checks if a user exists for the given user code\ndef check__user__exists__for__user_code(user_code) -> bool:\n    return User.objects.filter(user_code=user_code).exists()\n# Sets the employee contract as the given state\ndef set__employee_contract__is_active_state__for__employee_contract_id(\n    employee_contract_id, contract_state",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__customer_program__for__customer_program_id",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__customer_program__for__customer_program_id(customer_program_id):\n    return CustomerProgram.objects.get(id=customer_program_id)\n# Checks if a user exists for the given user code\ndef check__user__exists__for__user_code(user_code) -> bool:\n    return User.objects.filter(user_code=user_code).exists()\n# Sets the employee contract as the given state\ndef set__employee_contract__is_active_state__for__employee_contract_id(\n    employee_contract_id, contract_state\n) -> EmployeeContract:\n    employee_contract = get__employee_contract__for__employee_contract_id(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5801,7 +5860,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if not CustomerProgramManagerContract.objects.filter(\n        contract__employee=request.user.employee,\n        contract__is_active=True,\n        contract__customer=CustomerProgram.objects.get(id=customer_program_id).customer,\n    ).exists():",
+        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if check__customer_program__for__customer_program_id__exists(customer_program_id):\n        if not check__user__is__customer_program_manager__for__customer_prgram(request.user, get__customer_program__for__customer_program_id(\n                customer_program_id\n            )):\n            return HttpResponseForbidden()",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -5810,7 +5869,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def give_customer_program_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if User.objects.filter(user_code=user_code).exists():\n            # check if there is an emplyee for that user code\n            if not Employee.objects.filter(user__user_code=user_code).exists():\n                # create new employee for the user_code\n                Employee.objects.create(user=User.objects.get(user_code=user_code))",
+        "peekOfCode": "def give_customer_program_manager_role(request: HttpRequest):\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        # check that user_code is not empty\n        if check__user__exists__for__user_code(user_code):\n            # check if there is an emplyee for that user code\n            if not Employee.objects.filter(user__user_code=user_code).exists():\n                # create new employee for the user_code\n                Employee.objects.create(user=User.objects.get(user_code=user_code))",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
