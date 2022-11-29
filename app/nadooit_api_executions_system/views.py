@@ -19,6 +19,8 @@ from nadooit_os.services import (
     get__user_code__for__nadooit_api_key,
     get__new_price_per_second__for__customer_program,
     create__customer_program_execution__for__customer_program,
+    check__customer_program__for__customer_program_id__exists,
+    get__customer_program__for__customer_program_id,
 )
 
 
@@ -43,10 +45,11 @@ def create_execution(request):
     try:
         # gets the hashed api key from the request
         hashed_api_key = get__hashed_api_key__for__request(request)
-
+        print(hashed_api_key)
         try:
             # checks if the api key is active
             if check__nadooit_api_key__has__is_active(hashed_api_key):
+                print("api key is active")
 
                 nadooit_api_key = get__nadooit_api_key__for__hashed_api_key(
                     hashed_api_key
@@ -61,6 +64,8 @@ def create_execution(request):
                 if user_code__for__nadooit_api_key != user_code__for__request:
                     return Response({"error": "User code is not valid"}, status=400)
 
+                print("user code is valid")
+
                 # checks if the user code is active in the system
                 if (
                     user_code__for__nadooit_api_key == user_code__for__request
@@ -69,14 +74,18 @@ def create_execution(request):
                     return Response({"error": "User is not active"}, status=400)
                 else:
                     # check if customer program exists
-                    if not CustomerProgram.objects.filter(
-                        id=request.data["program_id"]
-                    ).exists():
+                    if not check__customer_program__for__customer_program_id__exists(
+                        request.data["program_id"]
+                    ):
                         return Response({"error": "Program does not exist"}, status=400)
 
-                    nadooit_customer_program = CustomerProgram.objects.get(
-                        id=request.data["program_id"]
+                    nadooit_customer_program = (
+                        get__customer_program__for__customer_program_id(
+                            request.data["program_id"]
+                        )
                     )
+
+                    print("customer program exists")
 
                     # check if the user is an employee of the company that owns the program
                     if not EmployeeContract.objects.filter(
@@ -89,6 +98,8 @@ def create_execution(request):
                             status=400,
                         )
 
+                    print("user is an employee of the company")
+
                     nadooit_customer_program_execution = (
                         create__customer_program_execution__for__customer_program(
                             nadooit_customer_program
@@ -98,7 +109,8 @@ def create_execution(request):
 
         except NadooitApiKey.DoesNotExist:
             return Response({"error": "Invalid API Key"}, status=401)
-    except:
+    except Exception as e:
+        print(e)
         return Response({"error": "Invalid request"}, status=400)
 
 

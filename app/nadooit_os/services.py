@@ -453,7 +453,7 @@ def get__employee__for__user(user) -> Employee:
     return Employee.objects.get(user=user)
 
 
-def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:
+def get__price_per_hour__for__total_time_saved(total_time_saved: Decimal) -> Decimal:
     # print("total_time_saved", total_time_saved)
 
     price_per_hour = 0
@@ -465,7 +465,7 @@ def get__price_per_hour__for__total_time_saved(total_time_saved: int) -> str:
         else:
             break
 
-    return price_per_hour
+    return Decimal(price_per_hour)
 
 
 def get__price_list() -> dict:
@@ -616,7 +616,11 @@ def reduce__time_account__by__time_in_seconds(
     time_account.save()
 
 
-def get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):
+def get__price_for_new_customer_program_execution__for__cutomer_program(
+    customer_program: CustomerProgram,
+):
+
+    print("get__price_for_new_customer_program_execution__for__cutomer_program")
 
     # The price for a program execution is calculated each time a new execution is added to the program
     # First it is checked if there is currently time allocated to the program already
@@ -624,26 +628,32 @@ def get__price_for_new_customer_program_execution__for__cutomer_program(customer
     # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated
     # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution
 
-    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0
 
     # First it is checked if there is currently time allocated to the program already
     if (
-        customer_program.time_account
+        customer_program.time_account.time_balance_in_seconds
         - customer_program.program_time_saved_per_execution_in_seconds
         >= 0
     ):
         # If there is, the price for the exectution is 0 since the time is already paid for
         return 0
     elif (
-        customer_program.time_account
+        customer_program.time_account.time_balance_in_seconds
         - customer_program.program_time_saved_per_execution_in_seconds
         < 0
     ):
+        print("customer_program.time_account", customer_program.time_account)
+
         # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated
         # the time is alwasys positive
         time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = abs(
-            customer_program.time_account
+            customer_program.time_account.time_balance_in_seconds
             - customer_program.program_time_saved_per_execution_in_seconds
+        )
+
+        print(
+            time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
         )
 
         return (
@@ -655,6 +665,9 @@ def get__price_for_new_customer_program_execution__for__cutomer_program(customer
 def create__customer_program_execution__for__customer_program(
     customer_program: CustomerProgram,
 ) -> CustomerProgramExecution:
+
+    print("create__customer_program_execution__for__customer_program")
+
     # Create a new customer program execution with the current price for an execution
     customer_program_execution = CustomerProgramExecution.objects.create(
         customer_program=customer_program,
@@ -664,10 +677,14 @@ def create__customer_program_execution__for__customer_program(
         ),
     )
 
+    print("customer_program_execution", customer_program_execution)
+
     # Set the time account of the customer program execution
     set__customer_program__time_account__for__customer_program_execution(
         customer_program_execution
     )
+
+    print("changed time account according to time of exectution")
 
     set__new_price_per_second__for__customer_program(customer_program)
 
@@ -690,7 +707,9 @@ def get__next_customer_program_execution_price__for__customer_program_execution(
     pass
 
 
-def get__total_time_saved__for__customer_program(customer_program: CustomerProgram):
+def get__total_time_saved__for__customer_program(
+    customer_program: CustomerProgram,
+) -> Decimal:
     from django.db.models import Q
 
     return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
@@ -734,10 +753,11 @@ def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:
     return NadooitApiKey.objects.get(api_key=hashed_api_key)
 
 
-def get__hashed_api_key__for__request(request) -> str:
+def get__hashed_api_key__for__request(request) -> str | None:
     """
     gets the hashed api key from the request
     """
+
     # gets the api key from the request
     api_key = request.data.get("NADOOIT__API_KEY")
 
