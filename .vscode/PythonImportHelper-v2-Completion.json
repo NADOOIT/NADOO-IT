@@ -2543,6 +2543,14 @@
         "documentation": {}
     },
     {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomerTimeAccount",
         "importPath": "nadooit_time_account.models",
         "description": "nadooit_time_account.models",
@@ -2832,7 +2840,7 @@
         "documentation": {}
     },
     {
-        "label": "get__price_for_new_customer_program_execution__for__cutomer_program",
+        "label": "create__customer_program_execution__for__customer_program",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5545,7 +5553,25 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__sum_of_price_for_execution__for__list_of_customer_program_exections(\n    list_of_customer_program_executions,\n) -> Decimal:\n    from django.db.models import Sum\n    # print(\"list_of_customer_program_executions\", list_of_customer_program_executions)\n    return list_of_customer_program_executions.aggregate(Sum(\"price_for_execution\"))[\n        \"price_for_execution__sum\"\n    ]\ndef get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (",
+        "peekOfCode": "def get__sum_of_price_for_execution__for__list_of_customer_program_exections(\n    list_of_customer_program_executions,\n) -> Decimal:\n    from django.db.models import Sum\n    # print(\"list_of_customer_program_executions\", list_of_customer_program_executions)\n    return list_of_customer_program_executions.aggregate(Sum(\"price_for_execution\"))[\n        \"price_for_execution__sum\"\n    ]\ndef set__customer_program__time_account__for__customer_program_execution(\n    customer_program_execution: CustomerProgramExecution,",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "set__customer_program__time_account__for__customer_program_execution",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def set__customer_program__time_account__for__customer_program_execution(\n    customer_program_execution: CustomerProgramExecution,\n) -> None:\n    # Get the time account of the customer program\n    time_account = customer_program_execution.customer_program.time_account\n    # Get the time saved by the program execution\n    time_saved_in_seconds = customer_program_execution.program_time_saved_in_seconds\n    # Reduce the time account by the time saved by the program execution\n    reduce__time_account__by__time_in_seconds(time_account, time_saved_in_seconds)\ndef reduce__time_account__by__time_in_seconds(",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "reduce__time_account__by__time_in_seconds",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def reduce__time_account__by__time_in_seconds(\n    time_account: TimeAccount, time_in_seconds: int\n) -> None:\n    # First check if the time account has enough time to pay for the execution\n    if time_account.time_balance_in_seconds >= time_in_seconds:\n        # If the time account has enough time, the time saved by the execution will be subtracted from the time account\n        time_account.time_balance_in_seconds -= time_in_seconds\n    else:\n        # If the time account does not have enough time, the time account will be set to 0\n        time_account.time_balance_in_seconds = 0",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5554,7 +5580,34 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):\n    return get__new_price_per_second__for__customer_program(customer_program) * (\n        customer_program.program_time_saved_per_execution_in_seconds\n    )\ndef get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")",
+        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(customer_program: CustomerProgram):\n    # The price for a program execution is calculated each time a new execution is added to the program\n    # First it is checked if there is currently time allocated to the program already\n    # If there is, the price for the exectution is 0 since the time is already paid for\n    # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated\n    # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution\n    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program\n    # First it is checked if there is currently time allocated to the program already\n    if (\n        customer_program.time_account",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "create__customer_program_execution__for__customer_program",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def create__customer_program_execution__for__customer_program(\n    customer_program: CustomerProgram,\n) -> CustomerProgramExecution:\n    # Create a new customer program execution with the current price for an execution\n    customer_program_execution = CustomerProgramExecution.objects.create(\n        customer_program=customer_program,\n        program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,\n        price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(\n            customer_program\n        ),",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "set__new_price_per_second__for__customer_program",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def set__new_price_per_second__for__customer_program(\n    customer_program: CustomerProgram,\n):\n    customer_program.price_per_second = (\n        get__new_price_per_second__for__customer_program(customer_program)\n    )\n    customer_program.save()\ndef get__next_customer_program_execution_price__for__customer_program_execution(\n    customer_program_execution: CustomerProgramExecution,\n):",
+        "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "get__next_customer_program_execution_price__for__customer_program_execution",
+        "kind": 2,
+        "importPath": "app.nadooit_os.services",
+        "description": "app.nadooit_os.services",
+        "peekOfCode": "def get__next_customer_program_execution_price__for__customer_program_execution(\n    customer_program_execution: CustomerProgramExecution,\n):\n    pass\ndef get__total_time_saved__for__customer_program(customer_program: CustomerProgram):\n    from django.db.models import Q\n    return get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(\n        CustomerProgramExecution.objects.filter(\n            Q(customer_program=customer_program) & Q(payment_status=\"PAID\")\n            | Q(payment_status=\"NOT_PAID\")",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
