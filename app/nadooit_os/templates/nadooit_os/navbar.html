@@ -24,7 +24,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               
-              <li><a href="{% url 'nadooit_os:employee-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:employee-overview' %}">Angestelltenübersicht</a></li>
+              <li><a href="{% url 'nadooit_os:employee-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:employee-overview' %}">Übersicht</a></li>
               {% if user_is_Employee_Manager_and_can_add_new_employee%}
                 <li><a href="{% url 'nadooit_os:add-employee' %}" class="dropdown-item {% is_url_active request 'nadooit_os:add-employee' %}">Angestellten hinzufügen</a></li>
               {% endif %}
