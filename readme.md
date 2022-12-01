@@ -35,7 +35,7 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 #### Running tests
 
-To test the api go to https://127.0.0.1:8000/api/executions
+To test the api go to <https://127.0.0.1:8000/api/executions>
 
 give as Content: 
 {
