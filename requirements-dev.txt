@@ -54,3 +54,4 @@ pytest-django
 crispy-bootstrap5
 django-debug-toolbar==3.6.0
 pytest-factoryboy
+python-dotenv

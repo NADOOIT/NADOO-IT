@@ -3481,6 +3481,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "Program",
         "importPath": "nadooit_program.models",
         "description": "nadooit_program.models",
@@ -5629,6 +5637,15 @@
         "description": "app.nadooit_os.services",
         "peekOfCode": "def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:\n    return nadooit_api_key.user.user_code",
         "detail": "app.nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "load_env",
+        "kind": 2,
+        "importPath": "app.nadooit_os.test_services",
+        "description": "app.nadooit_os.test_services",
+        "peekOfCode": "def load_env():\n    print(\"Loading .env file\")\n    load_dotenv(\n        r\"C:\\Users\\ChristophBackhaus\\OneDriveChristophBackhausIT\\NADOOIT\\Produkt-Abteilung\\nadooit\\Software\\Dev\\Server\\managmentsystem\\.env\"\n    )\n    print(os.getenv(\"COCKROACH_DB_NAME\"))\nfrom nadooit_os.services import (\n    check__user__is__customer_program_manager__for__customer_prgram,\n)\n# A pytest fixure that returns a user object",
+        "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
     {
