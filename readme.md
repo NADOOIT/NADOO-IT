@@ -27,11 +27,11 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 7. use the following command to install the requirements
 
-    docker compose -f docker-compose.yml build
-    docker-compose -f docker-compose.yml run --rm app python manage.py makemigrations
-    docker-compose -f docker-compose.yml run --rm app python manage.py migrate
-    docker-compose -f docker-compose.yml run --rm app python manage.py createsuperuser
-    docker-compose -f docker-compose.yml up
+    docker compose -f docker-compose-dev.yml build
+    docker-compose -f docker-compose-dev.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev.yml up
 
 #### Running tests
 
