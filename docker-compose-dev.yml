@@ -12,7 +12,7 @@ services:
     volumes:
       - ./app:/app
       - ./data/web:/vol/web
-      - C:\Users\backh\AppData\Roaming\postgresql\:/home/django/.postgresql/
+      - ${USERPROFILE}\AppData\Roaming\postgresql\:/home/django/.postgresql/
     environment:
       - 'DJANGO_DEBUG=${DJANGO_DEBUG}'
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
