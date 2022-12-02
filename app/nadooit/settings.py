@@ -20,6 +20,16 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+# Build a path to the .env file
+env_path = Path(__file__).resolve().parent.parent.parent / ".env"
+
+# Load the .env file into the environment. This is done before the settings are loaded.
+# This is done to make sure that the environment variables are available when the settings are loaded.
+# Was required to make the environment variables available in the test_services.py file.
+load_dotenv(dotenv_path=env_path)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -142,14 +152,14 @@ WSGI_APPLICATION = "nadooit.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django_cockroachdb",
-        "NAME": os.environ.get("COCKROACH_DB_NAME"),
-        "USER": os.environ.get("COCKROACH_DB_USER"),
-        "PASSWORD": os.environ.get("COCKROACH_DB_PASSWORD"),
-        "HOST": os.environ.get("COCKROACH_DB_HOST"),
-        "PORT": os.environ.get("COCKROACH_DB_PORT"),
+        "NAME": os.getenv("COCKROACH_DB_NAME"),
+        "USER": os.getenv("COCKROACH_DB_USER"),
+        "PASSWORD": os.getenv("COCKROACH_DB_PASSWORD"),
+        "HOST": os.getenv("COCKROACH_DB_HOST"),
+        "PORT": os.getenv("COCKROACH_DB_PORT"),
         "OPTIONS": {
             "sslmode": "verify-full",
-            "options": os.environ.get("COCKROACH_DB_OPTIONS"),
+            "options": os.getenv("COCKROACH_DB_OPTIONS"),
         },
     }
 }
