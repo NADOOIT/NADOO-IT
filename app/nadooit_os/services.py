@@ -687,7 +687,7 @@ def create__customer_program_execution__for__customer_program(
     print("changed time account according to time of exectution")
 
     print("customer", customer_program.customer)
-    
+
     set__new_price_per_second__for__customer_program(customer_program)
 
     return customer_program_execution
@@ -770,6 +770,7 @@ def get__hashed_api_key__for__request(request) -> str | None:
 
 
 def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:
+    print("check__nadooit_api_key__has__is_active")
     return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()
 
 

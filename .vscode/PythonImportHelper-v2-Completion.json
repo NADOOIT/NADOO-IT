@@ -64,6 +64,14 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -289,6 +297,14 @@
     },
     {
         "label": "TestCase",
+        "importPath": "django.test",
+        "description": "django.test",
+        "isExtraImport": true,
+        "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
         "importPath": "django.test",
         "description": "django.test",
         "isExtraImport": true,
@@ -2143,6 +2159,14 @@
         "documentation": {}
     },
     {
+        "label": "Customer",
+        "importPath": "nadooit_crm.models",
+        "description": "nadooit_crm.models",
+        "isExtraImport": true,
+        "detail": "nadooit_crm.models",
+        "documentation": {}
+    },
+    {
         "label": "Address",
         "importPath": "nadooit_crm.models",
         "description": "nadooit_crm.models",
@@ -2240,6 +2264,30 @@
     },
     {
         "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramManagerContract",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
         "isExtraImport": true,
@@ -2471,6 +2519,14 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgram",
+        "importPath": "nadooit_program_ownership_system.models",
+        "description": "nadooit_program_ownership_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program_ownership_system.models",
+        "documentation": {}
+    },
+    {
         "label": "ProgramShare",
         "importPath": "nadooit_program_ownership_system.models",
         "description": "nadooit_program_ownership_system.models",
@@ -2535,67 +2591,157 @@
         "documentation": {}
     },
     {
-        "label": "create_execution",
-        "importPath": "nadooit_api_executions_system.views",
-        "description": "nadooit_api_executions_system.views",
+        "label": "pytest",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views",
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
         "documentation": {}
     },
     {
-        "label": "check_user",
-        "importPath": "nadooit_api_executions_system.views",
-        "description": "nadooit_api_executions_system.views",
+        "label": "baker",
+        "importPath": "model_bakery",
+        "description": "model_bakery",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.views",
+        "detail": "model_bakery",
         "documentation": {}
     },
     {
-        "label": "api_view",
-        "importPath": "rest_framework.decorators",
-        "description": "rest_framework.decorators",
+        "label": "baker",
+        "importPath": "model_bakery",
+        "description": "model_bakery",
         "isExtraImport": true,
-        "detail": "rest_framework.decorators",
+        "detail": "model_bakery",
         "documentation": {}
     },
     {
-        "label": "Response",
-        "importPath": "rest_framework.response",
-        "description": "rest_framework.response",
+        "label": "nadooit_time_account.models",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "rest_framework.response",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
+        "detail": "nadooit_time_account.models",
         "documentation": {}
     },
     {
-        "label": "CustomerProgramExecution",
-        "importPath": "nadooit_api_executions_system.models",
-        "description": "nadooit_api_executions_system.models",
+        "label": "CustomerTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
         "isExtraImport": true,
-        "detail": "nadooit_api_executions_system.models",
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "TimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeTimeAccount",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "WorkTimeAccountEntry",
+        "importPath": "nadooit_time_account.models",
+        "description": "nadooit_time_account.models",
+        "isExtraImport": true,
+        "detail": "nadooit_time_account.models",
+        "documentation": {}
+    },
+    {
+        "label": "Program",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "Program",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "Program",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "Program",
+        "importPath": "nadooit_program.models",
+        "description": "nadooit_program.models",
+        "isExtraImport": true,
+        "detail": "nadooit_program.models",
+        "documentation": {}
+    },
+    {
+        "label": "NadooitApiKey",
+        "importPath": "nadooit_api_key.models",
+        "description": "nadooit_api_key.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_key.models",
         "documentation": {}
     },
     {
@@ -2703,6 +2849,87 @@
         "documentation": {}
     },
     {
+        "label": "User",
+        "importPath": "nadooit_auth.models",
+        "description": "nadooit_auth.models",
+        "isExtraImport": true,
+        "detail": "nadooit_auth.models",
+        "documentation": {}
+    },
+    {
+        "label": "rest_framework.response",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
+        "label": "create_execution",
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "check_user",
+        "importPath": "nadooit_api_executions_system.views",
+        "description": "nadooit_api_executions_system.views",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.views",
+        "documentation": {}
+    },
+    {
+        "label": "api_view",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramExecution",
+        "importPath": "nadooit_api_executions_system.models",
+        "description": "nadooit_api_executions_system.models",
+        "isExtraImport": true,
+        "detail": "nadooit_api_executions_system.models",
+        "documentation": {}
+    },
+    {
         "label": "get__nadooit_api_key__for__hashed_api_key",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
@@ -2752,6 +2979,14 @@
     },
     {
         "label": "get__customer_program__for__customer_program_id",
+        "importPath": "nadooit_os.services",
+        "description": "nadooit_os.services",
+        "isExtraImport": true,
+        "detail": "nadooit_os.services",
+        "documentation": {}
+    },
+    {
+        "label": "create__customer_program_execution__for__customer_program",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3437,103 +3672,6 @@
         "description": "typing",
         "isExtraImport": true,
         "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "get_time_as_string_in_hour_format_for_time_in_seconds_as_integer",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "CustomerTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "TimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "EmployeeTimeAccount",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "WorkTimeAccountEntry",
-        "importPath": "nadooit_time_account.models",
-        "description": "nadooit_time_account.models",
-        "isExtraImport": true,
-        "detail": "nadooit_time_account.models",
-        "documentation": {}
-    },
-    {
-        "label": "pytest",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pytest",
-        "description": "pytest",
-        "detail": "pytest",
-        "documentation": {}
-    },
-    {
-        "label": "Program",
-        "importPath": "nadooit_program.models",
-        "description": "nadooit_program.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program.models",
-        "documentation": {}
-    },
-    {
-        "label": "Program",
-        "importPath": "nadooit_program.models",
-        "description": "nadooit_program.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program.models",
-        "documentation": {}
-    },
-    {
-        "label": "Program",
-        "importPath": "nadooit_program.models",
-        "description": "nadooit_program.models",
-        "isExtraImport": true,
-        "detail": "nadooit_program.models",
         "documentation": {}
     },
     {
@@ -4350,6 +4488,42 @@
         "documentation": {}
     },
     {
+        "label": "test_create_execution",
+        "kind": 2,
+        "importPath": "app.nadooit_api_executions_system.test_views",
+        "description": "app.nadooit_api_executions_system.test_views",
+        "peekOfCode": "def test_create_execution():\n    # create a user\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    EmployeeContract.objects.create(\n        employee=user.employee,\n        customer=customer,\n    )\n    customer_program = baker.make(",
+        "detail": "app.nadooit_api_executions_system.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_create_execution__with__invalid__user_code",
+        "kind": 2,
+        "importPath": "app.nadooit_api_executions_system.test_views",
+        "description": "app.nadooit_api_executions_system.test_views",
+        "peekOfCode": "def test_create_execution__with__invalid__user_code():\n    # create a user\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    EmployeeContract.objects.create(\n        employee=user.employee,\n        customer=customer,\n    )\n    customer_program = baker.make(",
+        "detail": "app.nadooit_api_executions_system.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_create_execution__with__invalid__api_key",
+        "kind": 2,
+        "importPath": "app.nadooit_api_executions_system.test_views",
+        "description": "app.nadooit_api_executions_system.test_views",
+        "peekOfCode": "def test_create_execution__with__invalid__api_key():\n    # create a user\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    EmployeeContract.objects.create(\n        employee=user.employee,\n        customer=customer,\n    )\n    customer_program = baker.make(",
+        "detail": "app.nadooit_api_executions_system.test_views",
+        "documentation": {}
+    },
+    {
+        "label": "test_check_user",
+        "kind": 2,
+        "importPath": "app.nadooit_api_executions_system.test_views",
+        "description": "app.nadooit_api_executions_system.test_views",
+        "peekOfCode": "def test_check_user():\n    # create a user\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    EmployeeContract.objects.create(\n        employee=user.employee,\n        customer=customer,\n    )\n    Nadooit_api_key = baker.make(NadooitApiKey, user=user)",
+        "detail": "app.nadooit_api_executions_system.test_views",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "app.nadooit_api_executions_system.urls",
@@ -4372,7 +4546,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.views",
         "description": "app.nadooit_api_executions_system.views",
-        "peekOfCode": "def create_execution(request):\n    try:\n        # gets the hashed api key from the request\n        hashed_api_key = get__hashed_api_key__for__request(request)\n        print(hashed_api_key)\n        try:\n            # checks if the api key is active\n            if check__nadooit_api_key__has__is_active(hashed_api_key):\n                print(\"api key is active\")\n                nadooit_api_key = get__nadooit_api_key__for__hashed_api_key(",
+        "peekOfCode": "def create_execution(request):\n    print(\"create_execution\")\n    print(request.data)\n    try:\n        # gets the hashed api key from the request\n        hashed_api_key = get__hashed_api_key__for__request(request)\n        print(\"hashed_api_key\", hashed_api_key)\n        try:\n            # checks if the api key is active\n            if check__nadooit_api_key__has__is_active(hashed_api_key):",
         "detail": "app.nadooit_api_executions_system.views",
         "documentation": {}
     },
@@ -5659,7 +5833,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:\n    return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()\ndef get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:\n    return nadooit_api_key.user.user_code",
+        "peekOfCode": "def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:\n    print(\"check__nadooit_api_key__has__is_active\")\n    return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()\ndef get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:\n    return nadooit_api_key.user.user_code",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5695,7 +5869,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.test_services",
         "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    Employee.objects.create(\n        user=user,\n    )",
+        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram():\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    CustomerProgramManagerContract.objects.create(\n        contract=EmployeeContract.objects.create(",
+        "detail": "app.nadooit_os.test_services",
+        "documentation": {}
+    },
+    {
+        "label": "test_create__customer_program_execution__for__customer_program",
+        "kind": 2,
+        "importPath": "app.nadooit_os.test_services",
+        "description": "app.nadooit_os.test_services",
+        "peekOfCode": "def test_create__customer_program_execution__for__customer_program():\n    customer = baker.make(Customer)\n    customer_program = baker.make(\n        CustomerProgram,\n        customer=customer,\n        program=baker.make(Program, name=\"test\"),\n        time_account=baker.make(TimeAccount, time_balance_in_seconds=0),\n    )\n    create__customer_program_execution__for__customer_program(customer_program)",
         "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
