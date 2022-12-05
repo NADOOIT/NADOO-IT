@@ -441,6 +441,14 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "admin",
         "importPath": "django.contrib",
         "description": "django.contrib",
@@ -3481,14 +3489,6 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
         "label": "Program",
         "importPath": "nadooit_program.models",
         "description": "nadooit_program.models",
@@ -3612,6 +3612,15 @@
         "description": "app.nadooit.asgi",
         "peekOfCode": "application = get_asgi_application()",
         "detail": "app.nadooit.asgi",
+        "documentation": {}
+    },
+    {
+        "label": "env_path",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "env_path = Path(__file__).resolve().parent.parent.parent / \".env\"\n# Load the .env file into the environment. This is done before the settings are loaded.\n# This is done to make sure that the environment variables are available when the settings are loaded.\n# Was required to make the environment variables available in the test_services.py file.\nload_dotenv(dotenv_path=env_path)\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\nBASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!",
+        "detail": "app.nadooit.settings",
         "documentation": {}
     },
     {
@@ -3745,7 +3754,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "WSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),\n        \"PASSWORD\": os.environ.get(\"COCKROACH_DB_PASSWORD\"),\n        \"HOST\": os.environ.get(\"COCKROACH_DB_HOST\"),",
+        "peekOfCode": "WSGI_APPLICATION = \"nadooit.wsgi.application\"\n# Database\n# https://docs.djangoproject.com/en/4.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.getenv(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.getenv(\"COCKROACH_DB_USER\"),\n        \"PASSWORD\": os.getenv(\"COCKROACH_DB_PASSWORD\"),\n        \"HOST\": os.getenv(\"COCKROACH_DB_HOST\"),",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -3754,7 +3763,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.environ.get(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.environ.get(\"COCKROACH_DB_USER\"),\n        \"PASSWORD\": os.environ.get(\"COCKROACH_DB_PASSWORD\"),\n        \"HOST\": os.environ.get(\"COCKROACH_DB_HOST\"),\n        \"PORT\": os.environ.get(\"COCKROACH_DB_PORT\"),\n        \"OPTIONS\": {\n            \"sslmode\": \"verify-full\",",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django_cockroachdb\",\n        \"NAME\": os.getenv(\"COCKROACH_DB_NAME\"),\n        \"USER\": os.getenv(\"COCKROACH_DB_USER\"),\n        \"PASSWORD\": os.getenv(\"COCKROACH_DB_PASSWORD\"),\n        \"HOST\": os.getenv(\"COCKROACH_DB_HOST\"),\n        \"PORT\": os.getenv(\"COCKROACH_DB_PORT\"),\n        \"OPTIONS\": {\n            \"sslmode\": \"verify-full\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -5640,20 +5649,11 @@
         "documentation": {}
     },
     {
-        "label": "load_env",
-        "kind": 2,
-        "importPath": "app.nadooit_os.test_services",
-        "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def load_env():\n    print(\"Loading .env file\")\n    load_dotenv(\n        r\"C:\\Users\\ChristophBackhaus\\OneDriveChristophBackhausIT\\NADOOIT\\Produkt-Abteilung\\nadooit\\Software\\Dev\\Server\\managmentsystem\\.env\"\n    )\n    print(os.getenv(\"COCKROACH_DB_NAME\"))\nfrom nadooit_os.services import (\n    check__user__is__customer_program_manager__for__customer_prgram,\n)\n# A pytest fixure that returns a user object",
-        "detail": "app.nadooit_os.test_services",
-        "documentation": {}
-    },
-    {
         "label": "user",
         "kind": 2,
         "importPath": "app.nadooit_os.test_services",
         "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def user():\n    return User.objects.create(\n        username=\"test\",\n        display_name=\"test\",\n    )\n# A pytest fixure that returns a customer program object\n@pytest.fixture\ndef customer_program():\n    return CustomerProgram.objects.create(\n        name=\"test\",",
+        "peekOfCode": "def user():\n    return User.objects.create(\n        username=\"test\",\n        display_name=\"test\",\n    )\n# A pytest fixure that returns a customer program object\n@pytest.fixture\ndef customer_program():\n    return CustomerProgram.objects.create(\n        customer=Customer.objects.create(",
         "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
@@ -5662,7 +5662,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.test_services",
         "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def customer_program():\n    return CustomerProgram.objects.create(\n        name=\"test\",\n        description=\"test\",\n        customer=Customer.objects.create(\n            name=\"test\",\n        ),\n        program=Program.objects.create(\n            name=\"test\",\n            description=\"test\",",
+        "peekOfCode": "def customer_program():\n    return CustomerProgram.objects.create(\n        customer=Customer.objects.create(\n            name=\"test\",\n        ),\n        program=Program.objects.create(\n            name=\"test\",\n            description=\"test\",\n        ),\n    )",
         "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
@@ -5671,7 +5671,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.test_services",
         "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    # Arrange\n    # Act\n    # Assert\n    assert check__user__is__customer_program_manager__for__customer_prgram() == True",
+        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    assert (\n        check__user__is__customer_program_manager__for__customer_prgram(\n            user, customer_program",
         "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
