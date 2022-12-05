@@ -1,4 +1,5 @@
 import pytest
+from nadooit_hr.models import Employee
 
 from nadooit_crm.models import Customer
 from nadooit_program.models import Program
@@ -8,6 +9,7 @@ from nadooit_auth.models import User
 from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
+from nadooit_hr.models import CustomerProgramManagerContract, EmployeeContract
 
 # A pytest fixure that returns a user object
 @pytest.fixture
@@ -40,6 +42,20 @@ def test_check__user__is__customer_program_manager__for__customer_prgram(
     # Arrange
     # Act
     # Assert
+
+    Employee.objects.create(
+        user=user,
+    )
+
+    employee_contract = EmployeeContract.objects.create(
+        employee=user.employee,
+        customer=customer_program.customer,
+    )
+
+    CustomerProgramManagerContract.objects.create(
+        contract=employee_contract,
+    )
+
     assert (
         check__user__is__customer_program_manager__for__customer_prgram(
             user, customer_program

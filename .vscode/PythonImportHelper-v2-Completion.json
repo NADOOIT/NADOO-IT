@@ -2359,6 +2359,30 @@
         "documentation": {}
     },
     {
+        "label": "Employee",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomerProgramManagerContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmployeeContract",
+        "importPath": "nadooit_hr.models",
+        "description": "nadooit_hr.models",
+        "isExtraImport": true,
+        "detail": "nadooit_hr.models",
+        "documentation": {}
+    },
+    {
         "label": "CustomerProgramExecutionManagerContract",
         "importPath": "nadooit_hr.models",
         "description": "nadooit_hr.models",
@@ -5671,7 +5695,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.test_services",
         "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    assert (\n        check__user__is__customer_program_manager__for__customer_prgram(\n            user, customer_program",
+        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    Employee.objects.create(\n        user=user,\n    )",
         "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
