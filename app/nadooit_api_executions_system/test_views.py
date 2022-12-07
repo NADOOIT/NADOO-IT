@@ -127,7 +127,7 @@ def test_create_execution__with__invalid__api_key():
 @pytest.mark.django_db
 def test_check_user():
     # create a user
-    user = baker.make(User)
+    user = baker.make(User, user_code="nadoo01")
 
     baker.make(Employee, user=user)
 

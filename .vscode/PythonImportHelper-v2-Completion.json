@@ -4519,7 +4519,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.test_views",
         "description": "app.nadooit_api_executions_system.test_views",
-        "peekOfCode": "def test_check_user():\n    # create a user\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    EmployeeContract.objects.create(\n        employee=user.employee,\n        customer=customer,\n    )\n    Nadooit_api_key = baker.make(NadooitApiKey, user=user)",
+        "peekOfCode": "def test_check_user():\n    # create a user\n    user = baker.make(User, user_code=\"nadoo01\")\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    EmployeeContract.objects.create(\n        employee=user.employee,\n        customer=customer,\n    )\n    Nadooit_api_key = baker.make(NadooitApiKey, user=user)",
         "detail": "app.nadooit_api_executions_system.test_views",
         "documentation": {}
     },
@@ -4555,7 +4555,7 @@
         "kind": 2,
         "importPath": "app.nadooit_api_executions_system.views",
         "description": "app.nadooit_api_executions_system.views",
-        "peekOfCode": "def check_user(request):\n    try:\n        hashed_api_key = get__hashed_api_key__for__request(request)\n        try:\n            found_nadooit_api_key = NadooitApiKey.objects.get(\n                api_key=hashed_api_key, is_active=True\n            )\n            if found_nadooit_api_key.user.user_code == request.data.get(\n                \"NADOOIT__USER_CODE\"\n            ):",
+        "peekOfCode": "def check_user(request):\n    try:\n        hashed_api_key = get__hashed_api_key__for__request(request)\n        found_nadooit_api_key = get__nadooit_api_key__for__hashed_api_key(\n            hashed_api_key\n        )\n        if not check__nadooit_api_key__has__is_active(hashed_api_key):\n            return Response({\"error\": \"Your API Key is not valid\"}, status=403)\n        if not found_nadooit_api_key.user.user_code == request.data.get(\n            \"NADOOIT__USER_CODE\"",
         "detail": "app.nadooit_api_executions_system.views",
         "documentation": {}
     },
