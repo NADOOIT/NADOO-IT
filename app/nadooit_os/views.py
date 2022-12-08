@@ -52,7 +52,7 @@ from nadooit_os.services import (
     get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user,
     get__customer_program__for__customer_program_id,
     check__customer_program__for__customer_program_id__exists,
-    check__user__is__customer_program_manager__for__customer_prgram
+    check__user__is__customer_program_manager__for__customer_prgram,
 )
 
 # model imports
@@ -284,8 +284,6 @@ def customer_time_account_overview(request: HttpRequest):
             customer_time_account_total_time_balance: 123456
         }	
     }	
-    
-
     """
     customer_time_accounts_grouped_by_customer = {}
     for customer_time_account in list_of_customer_time_accounts:
@@ -977,9 +975,10 @@ def get__customer_program_profile(
     # print("customer_program_id", customer_program_id)
 
     if check__customer_program__for__customer_program_id__exists(customer_program_id):
-        if not check__user__is__customer_program_manager__for__customer_prgram(request.user, get__customer_program__for__customer_program_id(
-                customer_program_id
-            )):
+        if not check__user__is__customer_program_manager__for__customer_prgram(
+            request.user,
+            get__customer_program__for__customer_program_id(customer_program_id),
+        ):
             return HttpResponseForbidden()
     else:
         return HttpResponse(status=404)

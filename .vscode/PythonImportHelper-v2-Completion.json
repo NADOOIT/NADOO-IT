@@ -6130,7 +6130,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if check__customer_program__for__customer_program_id__exists(customer_program_id):\n        if not check__user__is__customer_program_manager__for__customer_prgram(request.user, get__customer_program__for__customer_program_id(\n                customer_program_id\n            )):\n            return HttpResponseForbidden()",
+        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if check__customer_program__for__customer_program_id__exists(customer_program_id):\n        if not check__user__is__customer_program_manager__for__customer_prgram(\n            request.user,\n            get__customer_program__for__customer_program_id(customer_program_id),\n        ):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
