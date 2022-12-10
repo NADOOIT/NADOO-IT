@@ -63,7 +63,7 @@ from nadooit_time_account.models import (
 )
 from requests import request
 
-from .forms import ApiKeyForm, ApiKeyManagerForm, CustomerTimeAccountManagerForm
+from .forms import ApiKeyForm
 
 # imoport for userforms
 
@@ -203,38 +203,38 @@ def user_is_Employee_Manager_and_can_delete_employee(
 # Getting the user roles
 # If new roles are added, they need to be added here
 # this function uses the user_is_... functions above
-def get__user__roles_and_rights__for__User(user: User) -> dict:
+def get__employee_roles_and_rights__for__employee(employee: Employee) -> dict:
     return {
-        "is_time_account_manager": user_is_Time_Account_Manager(user),
+        "is_time_account_manager": user_is_Time_Account_Manager(employee.user),
         "user_is_Time_Account_Manager_and_can_give_manager_role": user_is_Time_Account_Manager_and_can_give_manager_role(
-            user
+            employee.user
         ),
-        "is_api_key_manager": user_is_Api_Key_Manager(user),
+        "is_api_key_manager": user_is_Api_Key_Manager(employee.user),
         "user_is_api_key_manager_and_can_give_manager_role": user_is_Api_Key_Manager_and_can_give_manager_role(
-            user
+            employee.user
         ),
-        "is_employee_manager": user_is_Employee_Manager(user),
+        "is_employee_manager": user_is_Employee_Manager(employee.user),
         "user_is_Employee_Manager_and_can_give_Employee_Manager_role": user_is_Employee_Manager_and_can_give_Employee_Manager_role(
-            user
+            employee.user
         ),
         "user_is_Employee_Manager_and_can_add_new_employee": user_is_Employee_Manager_and_can_add_new_employee(
-            user
+            employee.user
         ),
-        "is_customer_program_manager": user_is_Customer_Program_Manager(user),
+        "is_customer_program_manager": user_is_Customer_Program_Manager(employee.user),
         "user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role": user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(
-            user
+            employee.user
         ),
         "is_customer_program_execution_manager": user_is_Customer_Program_Execution_Manager(
-            user
+            employee.user
         ),
         "user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role": user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(
-            user
+            employee.user
         ),
     }
 
 
 def get__user__roles_and_rights__for__http_request(request: HttpRequest):
-    return get__user__roles_and_rights__for__User(request.user)
+    return get__employee_roles_and_rights__for__employee(request.user.employee)
 
 
 # Create your views here.

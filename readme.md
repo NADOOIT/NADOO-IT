@@ -44,6 +44,9 @@ give as Content:
         "program_id" : "07c3a406-bd1b-43c2-b6a1-7fceb4389323"
 }
 
+Tests with a specific name:
+pytest -s -k  "test_get__employee_roles_and_rights__for__employee__with__"
+
 ### Adding a new User Role to the system
 
 1. Create a new app
