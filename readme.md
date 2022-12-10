@@ -37,7 +37,7 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 To test the api go to <https://127.0.0.1:8000/api/executions>
 
-give as Content: 
+give as Content:
 {
         "NADOOIT__API_KEY" : "98b10977-812d-430e-a89b-83bcf4101af3",
         "NADOOIT__USER_CODE" : "ePo2L7",
@@ -65,7 +65,7 @@ pytest -s -k  "test_get__employee_roles_and_rights__for__employee__with__"
 
 1. git
 
-See the following link for instructions on installing git on your system: <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>
+    See the following link for instructions on installing git on your system: <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>
 
 2. docker
 3. docker-compose
@@ -89,11 +89,11 @@ TODO Fill this section
 
 1. Copy the repository to your servers home directory
 
-git clone git@github.com:NADOOITChristophBa/nadooit_managmentsystem.git
+    git clone git@github.com:NADOOITChristophBa/nadooit_managmentsystem.git
 
 2. Change into the directory
 
-cd nadooit_managmentsystem
+    cd nadooit_managmentsystem
 
 3. create .env file
 
@@ -151,7 +151,7 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 #### Docker
 
-4. Build the docker images
+Build the docker images
     - docker compose -f docker-compose.deploy.yml build
     - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
 

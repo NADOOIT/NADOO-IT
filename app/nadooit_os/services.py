@@ -104,6 +104,7 @@ def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):
     )
 
 
+# Refactore this function because it requeres an employee and not a user. This is dangerous because it is not clear by the name of the function
 def check__user__is__customer_program_manager__for__customer_prgram(
     user, customer_program
 ):
