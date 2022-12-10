@@ -203,34 +203,38 @@ def user_is_Employee_Manager_and_can_delete_employee(
 # Getting the user roles
 # If new roles are added, they need to be added here
 # this function uses the user_is_... functions above
-def get__user__roles_and_rights(request: HttpRequest) -> dict:
+def get__user__roles_and_rights__for__User(user: User) -> dict:
     return {
-        "is_time_account_manager": user_is_Time_Account_Manager(request.user),
+        "is_time_account_manager": user_is_Time_Account_Manager(user),
         "user_is_Time_Account_Manager_and_can_give_manager_role": user_is_Time_Account_Manager_and_can_give_manager_role(
-            request.user
+            user
         ),
-        "is_api_key_manager": user_is_Api_Key_Manager(request.user),
+        "is_api_key_manager": user_is_Api_Key_Manager(user),
         "user_is_api_key_manager_and_can_give_manager_role": user_is_Api_Key_Manager_and_can_give_manager_role(
-            request.user
+            user
         ),
-        "is_employee_manager": user_is_Employee_Manager(request.user),
+        "is_employee_manager": user_is_Employee_Manager(user),
         "user_is_Employee_Manager_and_can_give_Employee_Manager_role": user_is_Employee_Manager_and_can_give_Employee_Manager_role(
-            request.user
+            user
         ),
         "user_is_Employee_Manager_and_can_add_new_employee": user_is_Employee_Manager_and_can_add_new_employee(
-            request.user
+            user
         ),
-        "is_customer_program_manager": user_is_Customer_Program_Manager(request.user),
+        "is_customer_program_manager": user_is_Customer_Program_Manager(user),
         "user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role": user_is_Customer_Program_Manager_and_can_give_Customer_Program_Manager_role(
-            request.user
+            user
         ),
         "is_customer_program_execution_manager": user_is_Customer_Program_Execution_Manager(
-            request.user
+            user
         ),
         "user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role": user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role(
-            request.user
+            user
         ),
     }
+
+
+def get__user__roles_and_rights__for__http_request(request: HttpRequest):
+    return get__user__roles_and_rights__for__User(request.user)
 
 
 # Create your views here.
@@ -243,10 +247,10 @@ def index_nadooit_os(request: HttpRequest):
         "nadooit_os/index.html",
         # context as dict
         # first item is page_title
-        # dict from get__user__roles_and_rights is added
+        # dict from get__user__roles_and_rights__for__http_request is added
         {
             "page_title": "Nadooit OS",
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -333,7 +337,7 @@ def customer_time_account_overview(request: HttpRequest):
         {
             "page_title": "Übersicht der Zeitkonten",
             "customer_time_accounts_grouped_by_customer": customer_time_accounts_grouped_by_customer,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -370,7 +374,7 @@ def create_api_key(request: HttpRequest):
             "form": form,
             "submitted": submitted,
             "page_title": "NADOOIT API KEY erstellen",
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -396,7 +400,7 @@ def revoke_api_key(request: HttpRequest):
         {
             "submitted": submitted,
             "page_title": "NADOOIT API KEY löschen",
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -487,7 +491,7 @@ def give_api_key_manager_role(request: HttpRequest):
             "form": form,
             "submitted": submitted,
             "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 """
@@ -608,7 +612,7 @@ def give_customer_time_account_manager_role(request: HttpRequest):
             "submitted": submitted,
             "error": request.GET.get("error"),
             "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -663,7 +667,7 @@ def customer_program_execution_overview(request: HttpRequest):
             "page_title": "Übersicht der Buchungen",
             "filter_type": filter_type,
             "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_program_executions,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -911,7 +915,7 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
             "submitted": submitted,
             "error": request.GET.get("error"),
             "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -957,7 +961,7 @@ def customer_program_overview(request: HttpRequest):
         {
             "page_title": "Übersicht der Programme",
             "customers_the_user_is_responsible_for_and_the_customer_programms": customers_the_user_is_responsible_for_and_the_customer_programms,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -1115,7 +1119,7 @@ def give_customer_program_manager_role(request: HttpRequest):
             "submitted": submitted,
             "error": request.GET.get("error"),
             "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -1142,7 +1146,7 @@ def employee_overview(request: HttpRequest):
         {
             "page_title": "Mitarbeiter Übersicht",
             "customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user": customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -1174,7 +1178,7 @@ def employee_profile(request: HttpRequest, employee_id: int):
             "page_title": "Mitarbeiter Profil",
             "employee": employee,
             "employee_contracts_of_customers_the_user_is_responsible_for": employee_contracts_of_customers_the_user_is_responsible_for,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -1234,7 +1238,7 @@ def add_employee(request: HttpRequest):
             "list_of_customers__for__employee_manager_contract": get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
                 request.user
             ),
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 
@@ -1335,7 +1339,7 @@ def give_employee_manager_role(request: HttpRequest):
             "submitted": submitted,
             "error": request.GET.get("error"),
             "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
-            **get__user__roles_and_rights(request),
+            **get__user__roles_and_rights__for__http_request(request),
         },
     )
 

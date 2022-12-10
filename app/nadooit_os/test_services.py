@@ -1,10 +1,7 @@
-from nadooit_time_account.models import TimeAccount
-import nadooit_time_account.models
 import pytest
 from nadooit_os.services import (
-    create__customer_program_execution__for__customer_program,
+    check__customer_program__for__customer_program_id__exists,
 )
-from nadooit_hr.models import Employee
 
 from nadooit_crm.models import Customer
 from nadooit_program.models import Program
@@ -14,11 +11,6 @@ from nadooit_auth.models import User
 from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
-from nadooit_hr.models import CustomerProgramManagerContract, EmployeeContract
-
-
-from model_bakery import baker
-
 
 # A pytest fixure that returns a user object
 @pytest.fixture
@@ -44,27 +36,12 @@ def customer_program():
 
 
 @pytest.mark.django_db
-def test_check__user__is__customer_program_manager__for__customer_prgram():
-    print("Is this run first?")
+def test_check__user__is__customer_program_manager__for__customer_prgram(
+    user, customer_program
+):
     # Arrange
     # Act
     # Assert
-
-    user = baker.make(User)
-
-    baker.make(Employee, user=user)
-
-    customer = baker.make(Customer)
-
-    CustomerProgramManagerContract.objects.create(
-        contract=EmployeeContract.objects.create(
-            employee=user.employee,
-            customer=customer,
-        ),
-    )
-
-    customer_program = baker.make(CustomerProgram, customer=customer)
-
     assert (
         check__user__is__customer_program_manager__for__customer_prgram(
             user, customer_program
@@ -74,15 +51,13 @@ def test_check__user__is__customer_program_manager__for__customer_prgram():
 
 
 @pytest.mark.django_db
-def test_create__customer_program_execution__for__customer_program():
-
-    customer = baker.make(Customer)
-
-    customer_program = baker.make(
-        CustomerProgram,
-        customer=customer,
-        program=baker.make(Program, name="test"),
-        time_account=baker.make(TimeAccount, time_balance_in_seconds=0),
+def test_check__customer_program__for__customer_program_id__exists(customer_program):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        check__customer_program__for__customer_program_id__exists(
+            customer_program_id=customer_program.id
+        )
+        == True
     )
-
-    create__customer_program_execution__for__customer_program(customer_program)
