@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_key', '0008_nadooitapikeymanager'),
+        ("nadooit_api_key", "0008_nadooitapikeymanager"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='nadooitapikeymanager',
-            name='can_give_ApiKeyManager_role',
+            model_name="nadooitapikeymanager",
+            name="can_give_ApiKeyManager_role",
             field=models.BooleanField(default=False),
         ),
     ]

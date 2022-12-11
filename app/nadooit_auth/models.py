@@ -1,8 +1,8 @@
-#Author: Christoph Backhaus
-#Date: 2022-10-30
-#Version: 1.0.0
-#Compatibility: Django 4
-#License: TBD
+# Author: Christoph Backhaus
+# Date: 2022-10-30
+# Version: 1.0.0
+# Compatibility: Django 4
+# License: TBD
 
 import uuid
 from django.db import models
@@ -17,10 +17,10 @@ from nadooit_auth.user_code import get__new_user_code
 # - user_code: a unique code that is used to identify the user
 # - display_name: the name that is displayed in the UI
 class User(AbstractUser, PermissionsMixin):
-    
+
     # id is a unique identifier for the user
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    
+
     # The user code is a unique code that is used to identify the user.
     # The user code is generated automatically when the user is created.
     # The user can change the user code in the settings.
@@ -33,7 +33,7 @@ class User(AbstractUser, PermissionsMixin):
         blank=False,
         default=get__new_user_code,
     )
-    
+
     # The display name is the name that is displayed in the UI.
     display_name = models.CharField(max_length=32, editable=True)
 

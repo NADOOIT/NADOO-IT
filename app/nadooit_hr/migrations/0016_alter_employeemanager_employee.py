@@ -7,13 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0015_rename_can_add_new_employees_employeemanager_can_add_new_employee'),
+        (
+            "nadooit_hr",
+            "0015_rename_can_add_new_employees_employeemanager_can_add_new_employee",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='employeemanager',
-            name='employee',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employee'),
+            model_name="employeemanager",
+            name="employee",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to="nadooit_hr.employee"
+            ),
         ),
     ]

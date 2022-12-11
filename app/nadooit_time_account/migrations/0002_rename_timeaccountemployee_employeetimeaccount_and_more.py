@@ -8,22 +8,41 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0001_initial'),
-        ('nadooit_crm', '0001_initial'),
-        ('nadooit_time_account', '0001_initial'),
+        ("nadooit_hr", "0001_initial"),
+        ("nadooit_crm", "0001_initial"),
+        ("nadooit_time_account", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='TimeAccountEmployee',
-            new_name='EmployeeTimeAccount',
+            old_name="TimeAccountEmployee",
+            new_name="EmployeeTimeAccount",
         ),
         migrations.CreateModel(
-            name='TimeAccountManager',
+            name="TimeAccountManager",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('employee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employee')),
-                ('time_accounts', models.ManyToManyField(blank=True, to='nadooit_time_account.timeaccount')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    "employee",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="nadooit_hr.employee",
+                    ),
+                ),
+                (
+                    "time_accounts",
+                    models.ManyToManyField(
+                        blank=True, to="nadooit_time_account.timeaccount"
+                    ),
+                ),
             ],
         ),
     ]

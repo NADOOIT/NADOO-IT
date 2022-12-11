@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_executions_system', '0007_customerprogramexecutionmanager_list_of_employees_the_manager_has_given_the_role_to'),
+        (
+            "nadooit_api_executions_system",
+            "0007_customerprogramexecutionmanager_list_of_employees_the_manager_has_given_the_role_to",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customerprogramexecution',
-            name='price_per_second_in_cent_at_the_time_of_execution',
+            model_name="customerprogramexecution",
+            name="price_per_second_in_cent_at_the_time_of_execution",
             field=models.IntegerField(default=0),
         ),
     ]

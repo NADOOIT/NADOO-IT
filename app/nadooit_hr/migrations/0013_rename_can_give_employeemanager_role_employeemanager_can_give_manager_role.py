@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0012_employeemanager_can_delete_employee'),
+        ("nadooit_hr", "0012_employeemanager_can_delete_employee"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='employeemanager',
-            old_name='can_give_EmployeeManager_role',
-            new_name='can_give_manager_role',
+            model_name="employeemanager",
+            old_name="can_give_EmployeeManager_role",
+            new_name="can_give_manager_role",
         ),
     ]

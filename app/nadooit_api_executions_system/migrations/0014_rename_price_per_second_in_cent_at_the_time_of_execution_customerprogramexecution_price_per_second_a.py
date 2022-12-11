@@ -6,18 +6,21 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_executions_system', '0013_alter_customerprogramexecution_price_per_second_in_cent_at_the_time_of_execution'),
+        (
+            "nadooit_api_executions_system",
+            "0013_alter_customerprogramexecution_price_per_second_in_cent_at_the_time_of_execution",
+        ),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='customerprogramexecution',
-            old_name='price_per_second_in_cent_at_the_time_of_execution',
-            new_name='price_per_second_at_the_time_of_execution',
+            model_name="customerprogramexecution",
+            old_name="price_per_second_in_cent_at_the_time_of_execution",
+            new_name="price_per_second_at_the_time_of_execution",
         ),
         migrations.RenameField(
-            model_name='customerprogramexecution',
-            old_name='price_per_second_in_cent_at_the_time_of_execution_currency',
-            new_name='price_per_second_at_the_time_of_execution_currency',
+            model_name="customerprogramexecution",
+            old_name="price_per_second_in_cent_at_the_time_of_execution_currency",
+            new_name="price_per_second_at_the_time_of_execution_currency",
         ),
     ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0011_employeecontract_deactivation_date'),
+        ("nadooit_hr", "0011_employeecontract_deactivation_date"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='employeemanager',
-            name='can_delete_employee',
+            model_name="employeemanager",
+            name="can_delete_employee",
             field=models.BooleanField(default=False),
         ),
     ]

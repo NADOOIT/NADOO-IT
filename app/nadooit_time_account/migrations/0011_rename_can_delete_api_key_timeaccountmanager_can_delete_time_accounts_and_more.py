@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_time_account', '0010_timeaccount_is_active_and_more'),
+        ("nadooit_time_account", "0010_timeaccount_is_active_and_more"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='timeaccountmanager',
-            old_name='can_delete_api_key',
-            new_name='can_delete_time_accounts',
+            model_name="timeaccountmanager",
+            old_name="can_delete_api_key",
+            new_name="can_delete_time_accounts",
         ),
         migrations.RenameField(
-            model_name='timeaccountmanager',
-            old_name='can_give_ApiKeyManager_role',
-            new_name='can_give_TimeAccountManager_role',
+            model_name="timeaccountmanager",
+            old_name="can_give_ApiKeyManager_role",
+            new_name="can_give_TimeAccountManager_role",
         ),
     ]

@@ -6,11 +6,14 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_executions_system', '0009_rename_can_give_customerprogramexecutionmanager_role_customerprogramexecutionmanager_can_give_manage'),
+        (
+            "nadooit_api_executions_system",
+            "0009_rename_can_give_customerprogramexecutionmanager_role_customerprogramexecutionmanager_can_give_manage",
+        ),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='CustomerProgramExecutionManager',
+            name="CustomerProgramExecutionManager",
         ),
     ]

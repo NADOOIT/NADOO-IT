@@ -6,22 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_crm', '0001_initial'),
-        ('nadooit_api_key', '0003_nadooitapikeymanager'),
+        ("nadooit_crm", "0001_initial"),
+        ("nadooit_api_key", "0003_nadooitapikeymanager"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='nadooitapikeymanager',
-            name='can_edit_api_key',
+            model_name="nadooitapikeymanager",
+            name="can_edit_api_key",
         ),
         migrations.RemoveField(
-            model_name='nadooitapikeymanager',
-            name='can_view_api_key',
+            model_name="nadooitapikeymanager",
+            name="can_view_api_key",
         ),
         migrations.AddField(
-            model_name='nadooitapikeymanager',
-            name='customers_the_manager_is_responsible_for',
-            field=models.ManyToManyField(blank=True, to='nadooit_crm.customer'),
+            model_name="nadooitapikeymanager",
+            name="customers_the_manager_is_responsible_for",
+            field=models.ManyToManyField(blank=True, to="nadooit_crm.customer"),
         ),
     ]

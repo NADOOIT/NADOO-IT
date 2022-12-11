@@ -6,13 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_time_account', '0012_rename_customers_the_manager_is_responsible_for_timeaccountmanager_list_of_customers_the_manager_is_'),
+        (
+            "nadooit_time_account",
+            "0012_rename_customers_the_manager_is_responsible_for_timeaccountmanager_list_of_customers_the_manager_is_",
+        ),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='timeaccountmanager',
-            old_name='can_give_TimeAccountManager_role',
-            new_name='can_give_manager_role',
+            model_name="timeaccountmanager",
+            old_name="can_give_TimeAccountManager_role",
+            new_name="can_give_manager_role",
         ),
     ]

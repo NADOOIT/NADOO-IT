@@ -6,21 +6,33 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_executions_system', '0006_rename_customers_the_manager_is_responsible_for_customerprogramexecutionmanager_list_of_customers_th'),
-        ('nadooit_program', '0001_initial'),
-        ('nadooit_time_account', '0012_rename_customers_the_manager_is_responsible_for_timeaccountmanager_list_of_customers_the_manager_is_'),
-        ('nadooit_crm', '0001_initial'),
-        ('nadooit_hr', '0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res'),
-        ('nadooit_program_ownership_system', '0004_rename_customers_the_manager_is_responsible_for_nadooitcustomerprogrammanager_list_of_customers_the_'),
+        (
+            "nadooit_api_executions_system",
+            "0006_rename_customers_the_manager_is_responsible_for_customerprogramexecutionmanager_list_of_customers_th",
+        ),
+        ("nadooit_program", "0001_initial"),
+        (
+            "nadooit_time_account",
+            "0012_rename_customers_the_manager_is_responsible_for_timeaccountmanager_list_of_customers_the_manager_is_",
+        ),
+        ("nadooit_crm", "0001_initial"),
+        (
+            "nadooit_hr",
+            "0004_rename_customers_the_manager_is_responsible_for_employeemanager_list_of_customers_the_manager_is_res",
+        ),
+        (
+            "nadooit_program_ownership_system",
+            "0004_rename_customers_the_manager_is_responsible_for_nadooitcustomerprogrammanager_list_of_customers_the_",
+        ),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='NadooitCustomerProgram',
-            new_name='CustomerProgram',
+            old_name="NadooitCustomerProgram",
+            new_name="CustomerProgram",
         ),
         migrations.RenameModel(
-            old_name='NadooitCustomerProgramManager',
-            new_name='CustomerProgramManager',
+            old_name="NadooitCustomerProgramManager",
+            new_name="CustomerProgramManager",
         ),
     ]

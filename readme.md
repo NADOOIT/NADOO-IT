@@ -35,6 +35,8 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 #### Running tests
 
+##### Testing the API
+
 To test the api go to <https://127.0.0.1:8000/api/executions>
 
 give as Content:
@@ -44,8 +46,40 @@ give as Content:
         "program_id" : "07c3a406-bd1b-43c2-b6a1-7fceb4389323"
 }
 
+##### Prefered way to run tests using tox
+
+To run the tests, use the following command:
+
+The following command will can be run either in a virtual environment.
+
+    tox
+
+    add -s to show print statements
+
+##### Running tests with pytest
+
+To run the tests, use the following command:
+
+First activate the virtual environment:
+
+    venv\Scripts\activate
+
+change into the directory:
+
+    cd app
+
+then you can use the following commands to run pytest:
+
+All tests:
+removing the -s will hide the print statements
+    pytest -s
+
 Tests with a specific name:
-pytest -s -k  "test_get__employee_roles_and_rights__for__employee__with__"
+    pytest -s -k  "test_get__employee_roles_and_rights__for__employee__with__"
+
+##### Coverage
+
+The coverage report does ignore apps.py
 
 ### Adding a new User Role to the system
 

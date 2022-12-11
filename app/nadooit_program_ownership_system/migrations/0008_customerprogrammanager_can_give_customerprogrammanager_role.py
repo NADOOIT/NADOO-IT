@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_program_ownership_system', '0007_alter_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to'),
+        (
+            "nadooit_program_ownership_system",
+            "0007_alter_customerprogrammanager_list_of_employees_the_manager_has_given_the_role_to",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customerprogrammanager',
-            name='can_give_CustomerProgramManager_role',
+            model_name="customerprogrammanager",
+            name="can_give_CustomerProgramManager_role",
             field=models.BooleanField(default=False),
         ),
     ]

@@ -1,8 +1,8 @@
-#Author: Christoph Backhaus
-#Date: 2022-10-30
-#Version: 1.0.0
-#Compatibility: Django 4
-#License: TBD
+# Author: Christoph Backhaus
+# Date: 2022-10-30
+# Version: 1.0.0
+# Compatibility: Django 4
+# License: TBD
 
 import django.contrib.auth.validators
 from django.shortcuts import render, redirect
@@ -36,7 +36,7 @@ def log_user_in(request, username):
 
     # loging in the user
     login(request, user)
-    
+
     # request.POST containing redirect might be wrong here and should be request.GET "next" instead. Test this.
     if "redirect" in request.POST:
         return redirect(request.POST["redirect"])
@@ -46,14 +46,14 @@ def log_user_in(request, username):
 
 def login_user(request):
     if request.method == "POST":
-        
+
         user_code = request.POST["user_code"]
 
         user = authenticate(request, user_code=user_code)
-        #print("user: ", user)
+        # print("user: ", user)
         err = ""
         if user is not None:
-            #print("found user")
+            # print("found user")
             if user.is_active:  # if the user object exist
                 if "mfa" in settings.INSTALLED_APPS and settings.DEBUG == False:
                     from mfa.helpers import has_mfa, recheck
@@ -62,12 +62,12 @@ def login_user(request):
                         username=user.username, request=request
                     )  # has_mfa returns false or HttpResponseRedirect
                     if res:
-                        #print("has_mfa")
-                        #print(res)
+                        # print("has_mfa")
+                        # print(res)
                         return res
-                    
-                    #print("has_no_mfa")
-                    #print(res)
+
+                    # print("has_no_mfa")
+                    # print(res)
                     log_user_in(request, user.username)
                     # login(request, user)
                     return redirect(request.GET.get("next") or "/nadooit-os")

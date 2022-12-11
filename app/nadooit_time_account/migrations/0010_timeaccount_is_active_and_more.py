@@ -6,28 +6,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_time_account', '0009_timeaccountmanager_customers_the_manager_is_responsible_for'),
+        (
+            "nadooit_time_account",
+            "0009_timeaccountmanager_customers_the_manager_is_responsible_for",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='timeaccount',
-            name='is_active',
+            model_name="timeaccount",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='timeaccountmanager',
-            name='can_create_time_accounts',
+            model_name="timeaccountmanager",
+            name="can_create_time_accounts",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='timeaccountmanager',
-            name='can_delete_api_key',
+            model_name="timeaccountmanager",
+            name="can_delete_api_key",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='timeaccountmanager',
-            name='can_give_ApiKeyManager_role',
+            model_name="timeaccountmanager",
+            name="can_give_ApiKeyManager_role",
             field=models.BooleanField(default=False),
         ),
     ]

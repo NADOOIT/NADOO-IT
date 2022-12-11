@@ -8,19 +8,27 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_auth', '0003_delete_keymanager'),
-        ('nadooit_api_key', '0002_initial'),
+        ("nadooit_auth", "0003_delete_keymanager"),
+        ("nadooit_api_key", "0002_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='NadooitApiKeyManager',
+            name="NadooitApiKeyManager",
             fields=[
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to=settings.AUTH_USER_MODEL)),
-                ('can_create_api_key', models.BooleanField(default=False)),
-                ('can_edit_api_key', models.BooleanField(default=False)),
-                ('can_delete_api_key', models.BooleanField(default=False)),
-                ('can_view_api_key', models.BooleanField(default=False)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        primary_key=True,
+                        serialize=False,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                ("can_create_api_key", models.BooleanField(default=False)),
+                ("can_edit_api_key", models.BooleanField(default=False)),
+                ("can_delete_api_key", models.BooleanField(default=False)),
+                ("can_view_api_key", models.BooleanField(default=False)),
             ],
         ),
     ]
