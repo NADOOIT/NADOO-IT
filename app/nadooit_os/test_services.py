@@ -1,3 +1,4 @@
+import datetime
 import model_bakery
 import pytest
 from nadooit_os.services import (
@@ -35,6 +36,42 @@ def customer_program():
             description="test",
         ),
     )
+
+
+@pytest.mark.django_db
+def test_get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+    customer_program,
+):
+    # Arrange
+    filter_type = "last20"
+    filter_type = "lastmonth"
+    filter_type = "today"
+    filter_type = "thismonth"
+    filter_type = "thisyear"
+
+    # Create customer program executions for the customer program
+    # Create 5 customer program executions for the customer program for today, this month and this year, and 1 for last month
+    for i in range(5):
+        model_bakery.baker.make(
+            "nadooit_os.CustomerProgramExecution",
+            customer_program=customer_program,
+            execution_date=datetime.now(),
+        )
+
+    # Create 5 customer program executions for the customer program for last month
+    for i in range(5):
+        model_bakery.baker.make(
+            "nadooit_os.CustomerProgramExecution",
+            customer_program=customer_program,
+            # Get the month of the current date and subtract 1 from it
+            execution_date=datetime.now().replace(month=datetime.now().month - 1),
+        )
+
+    # Create 5 customer program executions for the customer program for last 20 days
+
+    # Act
+    # Assert
+    assert True
 
 
 @pytest.mark.django_db
