@@ -42,7 +42,7 @@ six==1.16.0
 sqlparse==0.4.2
 tomli==2.0.1
 tzdata==2022.1
-ua-parser==0.15.0
+ua-parser==0.16.1
 urllib3==1.26.13
 user-agents==2.2.0
 Werkzeug==2.2.2
