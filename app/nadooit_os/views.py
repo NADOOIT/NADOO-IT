@@ -641,10 +641,13 @@ def customer_program_execution_overview(request: HttpRequest):
     # Get the executions depending on the filter type
     customer_program_executions = []
 
+    filter_type = "last20"
+
     # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
 
         # list of customer programms with of the customer
+        """
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
                 customer_program__customer=contract.contract.customer
@@ -652,13 +655,17 @@ def customer_program_execution_overview(request: HttpRequest):
             .order_by("created_at")
             .reverse()[:20]
         )
+        """
+        customer_program_executions = (
+            get__customer_program_executions__for__filter_type_and_cutomer_id(
+                filter_type, contract.contract.customer.id
+            )[:20]
+        )
 
         # add the customer and the customer programm execution to the list
         customers_the_employee_is_responsible_for_and_the_customer_program_executions.append(
             [contract.contract.customer, customer_program_executions]
         )
-
-    filter_type = "last20"
 
     return render(
         request,
@@ -694,6 +701,9 @@ def customer_program_execution_list_for_cutomer(
             filter_type, cutomer_id
         )
     )
+
+    if filter_type == "last20":
+        customer_program_executions = customer_program_executions[:20]
 
     total_time_saved_in_seconds = (
         get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(

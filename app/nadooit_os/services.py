@@ -28,7 +28,6 @@ def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
             filter_type, cutomer_id
         ).filter(payment_status="NOT_PAID")
     )
-
     return customer_program_executions
 
 
@@ -38,16 +37,12 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
     from datetime import date
 
     todays_date = date.today()
+    customer_program_executions = None
+    if filter_type == "lastmonth":
 
-    if filter_type == "last20":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id
-            )
-            .order_by("created_at")
-            .reverse()[:20]
-        )
-    elif filter_type == "lastmonth":
+        print(todays_date.month)
+        print(todays_date.month - 1)
+
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
                 customer_program__customer__id=cutomer_id,
@@ -60,6 +55,14 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
                 customer_program__customer__id=cutomer_id, created_at__date=todays_date
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "last20":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id
             )
             .order_by("created_at")
             .reverse()

@@ -1,6 +1,10 @@
-import datetime
+from datetime import datetime
 import model_bakery
 import pytest
+from nadooit_api_executions_system.models import CustomerProgramExecution
+from nadooit_os.services import (
+    get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
+)
 from nadooit_os.services import (
     check__customer_program__for__customer_program_id__exists,
 )
@@ -40,7 +44,7 @@ def customer_program():
 
 @pytest.mark.django_db
 def test_get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-    customer_program,
+    customer_program: CustomerProgram,
 ):
     # Arrange
     filter_type = "last20"
@@ -51,27 +55,103 @@ def test_get__not_paid_customer_program_executions__for__filter_type_and_cutomer
 
     # Create customer program executions for the customer program
     # Create 5 customer program executions for the customer program for today, this month and this year, and 1 for last month
-    for i in range(5):
-        model_bakery.baker.make(
-            "nadooit_os.CustomerProgramExecution",
-            customer_program=customer_program,
-            execution_date=datetime.now(),
-        )
 
+    list_of_executions_this_year = []
+    list_of_executions_this_month = []
+    list_of_executions_today = []
+    list_of_executions_last_month = []
+    list_of_the_last_20_executions = []
+
+    # Create a random datetime for the past month
+    import pytz
+
+    utc = pytz.utc
+    now_but_a_month_ago = utc.localize(
+        datetime.utcnow().replace(month=datetime.utcnow().month - 1)
+    )
+
+    # Create a couple lines of empty space for readability
+    print("	")
+    print("	")
+    print("	")
+
+    # Print the date for the past month
+    print("The date for the past month is: ")
+    print(now_but_a_month_ago)
     # Create 5 customer program executions for the customer program for last month
     for i in range(5):
-        model_bakery.baker.make(
-            "nadooit_os.CustomerProgramExecution",
+
+        new_exectuion: CustomerProgramExecution = baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
             customer_program=customer_program,
-            # Get the month of the current date and subtract 1 from it
-            execution_date=datetime.now().replace(month=datetime.now().month - 1),
+        )
+        new_exectuion.created_at = now_but_a_month_ago
+        new_exectuion.save()
+
+        list_of_executions_last_month.append(new_exectuion)
+        list_of_the_last_20_executions.append(new_exectuion)
+        if new_exectuion.created_at.year == datetime.now().year:
+            list_of_executions_this_year.append(new_exectuion)
+    print("	")
+    print(len(list_of_the_last_20_executions))
+    # customer program executions for today
+    for i in range(15):
+
+        new_exectuion = baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
         )
 
-    # Create 5 customer program executions for the customer program for last 20 days
+        list_of_executions_today.append(new_exectuion)
+        list_of_the_last_20_executions.append(new_exectuion)
+        list_of_executions_this_month.append(new_exectuion)
+        list_of_executions_this_year.append(new_exectuion)
 
+    print("    ")
+    print(len(list_of_the_last_20_executions))
+    print("	")
     # Act
     # Assert
-    assert True
+    filter_type = "lastmonth"
+    assert len(
+        list(
+            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+                filter_type, customer_program.customer.id
+            )
+        )
+    ) == len(list_of_executions_last_month)
+    filter_type = "today"
+    assert len(
+        list(
+            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+                filter_type, customer_program.customer.id
+            )
+        )
+    ) == len(list_of_executions_today)
+    filter_type = "thismonth"
+    assert len(
+        list(
+            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+                filter_type, customer_program.customer.id
+            )
+        )
+    ) == len(list_of_executions_this_month)
+    filter_type = "thisyear"
+    assert len(
+        list(
+            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+                filter_type, customer_program.customer.id
+            )
+        )
+    ) == len(list_of_executions_this_year)
+    filter_type = "last20"
+    assert len(
+        list(
+            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+                filter_type, customer_program.customer.id
+            )[:20]
+        )
+    ) == len(list_of_the_last_20_executions)
 
 
 @pytest.mark.django_db
