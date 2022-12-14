@@ -88,11 +88,20 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
     return customer_program_executions
 
 
-def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price):
-    # Round to the last three decimal places
+def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price) -> str:
+    """
+    Returns the price as a string in euro format
+    """
     if price is None:
         price = 0
-    return str(round(price, 3)) + " €"
+
+    price_as_string = f"{round(price, 3):.3f}"
+    price_as_string = price_as_string.replace(".", ",")
+
+    if price_as_string.endswith(",0"):
+        price_as_string = price_as_string[:-1]
+
+    return f"{price_as_string} €"
 
 
 def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):

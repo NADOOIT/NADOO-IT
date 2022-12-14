@@ -1,6 +1,9 @@
 from datetime import datetime
 import model_bakery
 import pytest
+from nadooit_os.services import (
+    get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
+)
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_os.services import (
     get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
@@ -152,6 +155,61 @@ def test_get__not_paid_customer_program_executions__for__filter_type_and_cutomer
             )[:20]
         )
     ) == len(list_of_the_last_20_executions)
+
+
+def test_get__price_as_string_in_euro_format__for__price_in_euro_as_decimal():
+    # Arrange
+    price_in_euro_as_decimal = 10.0
+    # Act
+    # Assert
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,000 €"
+    )
+    price_in_euro_as_decimal = 10
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,000 €"
+    )
+    price_in_euro_as_decimal = 10.000
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,000 €"
+    )
+    price_in_euro_as_decimal = 10.00
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,000 €"
+    )
+    price_in_euro_as_decimal = 10.00
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,000 €"
+    )
+    price_in_euro_as_decimal = 10.0006
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,001 €"
+    )
+    price_in_euro_as_decimal = 10.0003
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "10,000 €"
+    )
 
 
 @pytest.mark.django_db
