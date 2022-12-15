@@ -1,8 +1,8 @@
-#Author: Christoph Backhaus
-#Date: 2022-10-30
-#Version: 1.0.0
-#Compatibility: Django 4
-#License: TBD
+# Author: Christoph Backhaus
+# Date: 2022-10-30
+# Version: 1.0.0
+# Compatibility: Django 4
+# License: TBD
 
 import random
 import string
@@ -11,8 +11,8 @@ import string
 def get__new_username() -> str:
 
     """
-    
-    This function generates a new username for a new user.	
+
+    This function generates a new username for a new user.
 
     """
 

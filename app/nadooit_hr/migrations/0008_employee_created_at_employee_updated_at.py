@@ -7,19 +7,21 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0007_employeecontract'),
+        ("nadooit_hr", "0007_employeecontract"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='employee',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="employee",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='employee',
-            name='updated_at',
+            model_name="employee",
+            name="updated_at",
             field=models.DateTimeField(auto_now=True),
         ),
     ]

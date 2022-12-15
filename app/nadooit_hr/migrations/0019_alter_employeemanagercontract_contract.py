@@ -7,13 +7,16 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0018_employeemanagercontract'),
+        ("nadooit_hr", "0018_employeemanagercontract"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='employeemanagercontract',
-            name='contract',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employeecontract'),
+            model_name="employeemanagercontract",
+            name="contract",
+            field=models.OneToOneField(
+                on_delete=django.db.models.deletion.CASCADE,
+                to="nadooit_hr.employeecontract",
+            ),
         ),
     ]

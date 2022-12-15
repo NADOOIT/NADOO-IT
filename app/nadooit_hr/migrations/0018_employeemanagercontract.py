@@ -7,18 +7,32 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0017_alter_employeemanager_employee'),
+        ("nadooit_hr", "0017_alter_employeemanager_employee"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='EmployeeManagerContract',
+            name="EmployeeManagerContract",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('can_add_new_employee', models.BooleanField(default=False)),
-                ('can_delete_employee', models.BooleanField(default=False)),
-                ('can_give_manager_role', models.BooleanField(default=False)),
-                ('contract', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employeecontract')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("can_add_new_employee", models.BooleanField(default=False)),
+                ("can_delete_employee", models.BooleanField(default=False)),
+                ("can_give_manager_role", models.BooleanField(default=False)),
+                (
+                    "contract",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="nadooit_hr.employeecontract",
+                    ),
+                ),
             ],
         ),
     ]

@@ -6,18 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more'),
+        (
+            "nadooit_hr",
+            "0005_customermanager_list_of_employees_the_manager_has_given_the_role_to_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customermanager',
-            name='can_give_CustomerManager_role',
+            model_name="customermanager",
+            name="can_give_CustomerManager_role",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='employeemanager',
-            name='can_give_EmployeeManager_role',
+            model_name="employeemanager",
+            name="can_give_EmployeeManager_role",
             field=models.BooleanField(default=False),
         ),
     ]

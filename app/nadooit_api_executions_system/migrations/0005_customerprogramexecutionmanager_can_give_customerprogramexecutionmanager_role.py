@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_executions_system', '0004_rename_employee_customerprogramexecutionmanager_employee'),
+        (
+            "nadooit_api_executions_system",
+            "0004_rename_employee_customerprogramexecutionmanager_employee",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customerprogramexecutionmanager',
-            name='can_give_customerprogramexecutionmanager_role',
+            model_name="customerprogramexecutionmanager",
+            name="can_give_customerprogramexecutionmanager_role",
             field=models.BooleanField(default=False),
         ),
     ]

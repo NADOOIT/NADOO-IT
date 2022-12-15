@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_crm', '0001_initial'),
-        ('nadooit_time_account', '0008_alter_timeaccountmanager_employee'),
+        ("nadooit_crm", "0001_initial"),
+        ("nadooit_time_account", "0008_alter_timeaccountmanager_employee"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='timeaccountmanager',
-            name='customers_the_manager_is_responsible_for',
-            field=models.ManyToManyField(blank=True, to='nadooit_crm.customer'),
+            model_name="timeaccountmanager",
+            name="customers_the_manager_is_responsible_for",
+            field=models.ManyToManyField(blank=True, to="nadooit_crm.customer"),
         ),
     ]

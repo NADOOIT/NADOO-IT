@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_key', '0001_initial'),
+        ("nadooit_key", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='keymanager',
-            name='key_managers_assigened_by_this_key_manager',
-            field=models.ManyToManyField(blank=True, to='nadooit_key.keymanager'),
+            model_name="keymanager",
+            name="key_managers_assigened_by_this_key_manager",
+            field=models.ManyToManyField(blank=True, to="nadooit_key.keymanager"),
         ),
     ]

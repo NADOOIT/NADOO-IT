@@ -7,19 +7,30 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0003_employeemanager'),
-        ('nadooit_crm', '0001_initial'),
-        ('nadooit_api_key', '0007_delete_nadooitapikeymanager'),
+        ("nadooit_hr", "0003_employeemanager"),
+        ("nadooit_crm", "0001_initial"),
+        ("nadooit_api_key", "0007_delete_nadooitapikeymanager"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='NadooitApiKeyManager',
+            name="NadooitApiKeyManager",
             fields=[
-                ('employee', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='nadooit_hr.employee')),
-                ('can_create_api_key', models.BooleanField(default=False)),
-                ('can_delete_api_key', models.BooleanField(default=False)),
-                ('customers_the_manager_is_responsible_for', models.ManyToManyField(blank=True, to='nadooit_crm.customer')),
+                (
+                    "employee",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        primary_key=True,
+                        serialize=False,
+                        to="nadooit_hr.employee",
+                    ),
+                ),
+                ("can_create_api_key", models.BooleanField(default=False)),
+                ("can_delete_api_key", models.BooleanField(default=False)),
+                (
+                    "customers_the_manager_is_responsible_for",
+                    models.ManyToManyField(blank=True, to="nadooit_crm.customer"),
+                ),
             ],
         ),
     ]

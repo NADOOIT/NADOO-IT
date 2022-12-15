@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_key', '0005_nadooitapikeymanager_employee'),
+        ("nadooit_api_key", "0005_nadooitapikeymanager_employee"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='nadooitapikeymanager',
-            name='employee',
+            model_name="nadooitapikeymanager",
+            name="employee",
         ),
     ]

@@ -6,13 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_program_ownership_system', '0008_customerprogrammanager_can_give_customerprogrammanager_role'),
+        (
+            "nadooit_program_ownership_system",
+            "0008_customerprogrammanager_can_give_customerprogrammanager_role",
+        ),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='customerprogrammanager',
-            old_name='can_give_CustomerProgramManager_role',
-            new_name='can_give_customerprogrammanager_role',
+            model_name="customerprogrammanager",
+            old_name="can_give_CustomerProgramManager_role",
+            new_name="can_give_customerprogrammanager_role",
         ),
     ]

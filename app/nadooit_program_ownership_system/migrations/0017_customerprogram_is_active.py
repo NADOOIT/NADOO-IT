@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_program_ownership_system', '0016_customerprogram_price_per_second_currency_and_more'),
+        (
+            "nadooit_program_ownership_system",
+            "0016_customerprogram_price_per_second_currency_and_more",
+        ),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customerprogram',
-            name='is_active',
+            model_name="customerprogram",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
     ]

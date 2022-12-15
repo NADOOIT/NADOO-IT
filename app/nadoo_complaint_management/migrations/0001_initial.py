@@ -10,21 +10,58 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('nadooit_hr', '0023_timeaccountmanagercontract'),
-        ('nadooit_api_executions_system', '0010_delete_customerprogramexecutionmanager'),
+        ("nadooit_hr", "0023_timeaccountmanagercontract"),
+        (
+            "nadooit_api_executions_system",
+            "0010_delete_customerprogramexecutionmanager",
+        ),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Complaint',
+            name="Complaint",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('complaint', models.TextField()),
-                ('status', models.CharField(choices=[('OPEN', 'Open'), ('IN_PROGRESS', 'In Progress'), ('CLOSED', 'Closed'), ('REJECTED', 'Rejected')], default='OPEN', max_length=20)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('customer_program_execution', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_api_executions_system.customerprogramexecution')),
-                ('customer_program_execution_manager', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='nadooit_hr.employee')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("complaint", models.TextField()),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("OPEN", "Open"),
+                            ("IN_PROGRESS", "In Progress"),
+                            ("CLOSED", "Closed"),
+                            ("REJECTED", "Rejected"),
+                        ],
+                        default="OPEN",
+                        max_length=20,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "customer_program_execution",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="nadooit_api_executions_system.customerprogramexecution",
+                    ),
+                ),
+                (
+                    "customer_program_execution_manager",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to="nadooit_hr.employee",
+                    ),
+                ),
             ],
         ),
     ]

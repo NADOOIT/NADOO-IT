@@ -6,13 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_key', '0011_nadooitapikeymanager_list_of_employees_the_manager_has_given_the_role_to'),
+        (
+            "nadooit_api_key",
+            "0011_nadooitapikeymanager_list_of_employees_the_manager_has_given_the_role_to",
+        ),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='nadooitapikeymanager',
-            old_name='can_give_ApiKeyManager_role',
-            new_name='can_give_manager_role',
+            model_name="nadooitapikeymanager",
+            old_name="can_give_ApiKeyManager_role",
+            new_name="can_give_manager_role",
         ),
     ]

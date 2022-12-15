@@ -28,7 +28,6 @@ def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
             filter_type, cutomer_id
         ).filter(payment_status="NOT_PAID")
     )
-
     return customer_program_executions
 
 
@@ -38,16 +37,12 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
     from datetime import date
 
     todays_date = date.today()
+    customer_program_executions = None
+    if filter_type == "lastmonth":
 
-    if filter_type == "last20":
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id
-            )
-            .order_by("created_at")
-            .reverse()[:20]
-        )
-    elif filter_type == "lastmonth":
+        print(todays_date.month)
+        print(todays_date.month - 1)
+
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
                 customer_program__customer__id=cutomer_id,
@@ -60,6 +55,14 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
                 customer_program__customer__id=cutomer_id, created_at__date=todays_date
+            )
+            .order_by("created_at")
+            .reverse()
+        )
+    elif filter_type == "last20":
+        customer_program_executions = (
+            CustomerProgramExecution.objects.filter(
+                customer_program__customer__id=cutomer_id
             )
             .order_by("created_at")
             .reverse()
@@ -85,25 +88,28 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
     return customer_program_executions
 
 
-def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price):
-    # Round to the last three decimal places
+def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price) -> str:
+    """
+    Returns the price as a string in euro format
+    """
     if price is None:
         price = 0
-    return str(round(price, 3)) + " €"
+
+    price_as_string = f"{round(price, 3):.3f}"
+    price_as_string = price_as_string.replace(".", ",")
+
+    if price_as_string.endswith(",0"):
+        price_as_string = price_as_string[:-1]
+
+    return f"{price_as_string} €"
 
 
-def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):
-
-    return (
-        str(time // 3600)
-        + " std : "
-        + str((time % 3600) // 60)
-        + " min : "
-        + str(time % 60)
-        + " sek"
-    )
+def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time) -> str:
+    # The format of the final string should result in something like this "25 std : 03 min : 05 sek"
+    return f"{math.floor(time / 3600)} std : {math.floor((time % 3600) / 60)} min : {math.floor(time % 60)} sek"
 
 
+# Refactore this function because it requeres an employee and not a user. This is dangerous because it is not clear by the name of the function
 def check__user__is__customer_program_manager__for__customer_prgram(
     user, customer_program
 ):
@@ -687,7 +693,7 @@ def create__customer_program_execution__for__customer_program(
     print("changed time account according to time of exectution")
 
     print("customer", customer_program.customer)
-    
+
     set__new_price_per_second__for__customer_program(customer_program)
 
     return customer_program_execution
@@ -770,6 +776,7 @@ def get__hashed_api_key__for__request(request) -> str | None:
 
 
 def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:
+    print("check__nadooit_api_key__has__is_active")
     return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()
 
 

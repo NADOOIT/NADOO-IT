@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0010_employeecontract_is_active_and_more'),
+        ("nadooit_hr", "0010_employeecontract_is_active_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='employeecontract',
-            name='deactivation_date',
+            model_name="employeecontract",
+            name="deactivation_date",
             field=models.DateField(blank=True, null=True),
         ),
     ]

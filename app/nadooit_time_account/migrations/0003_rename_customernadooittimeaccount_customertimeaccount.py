@@ -6,13 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_crm', '0001_initial'),
-        ('nadooit_time_account', '0002_rename_timeaccountemployee_employeetimeaccount_and_more'),
+        ("nadooit_crm", "0001_initial"),
+        (
+            "nadooit_time_account",
+            "0002_rename_timeaccountemployee_employeetimeaccount_and_more",
+        ),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='CustomerNadooitTimeAccount',
-            new_name='CustomerTimeAccount',
+            old_name="CustomerNadooitTimeAccount",
+            new_name="CustomerTimeAccount",
         ),
     ]

@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0009_remove_employee_customers_the_employee_works_for'),
+        ("nadooit_hr", "0009_remove_employee_customers_the_employee_works_for"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='employeecontract',
-            name='is_active',
+            model_name="employeecontract",
+            name="is_active",
             field=models.BooleanField(default=True),
         ),
         migrations.AddField(
-            model_name='employeemanager',
-            name='can_add_new_employees',
+            model_name="employeemanager",
+            name="can_add_new_employees",
             field=models.BooleanField(default=False),
         ),
     ]

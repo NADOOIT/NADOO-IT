@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_time_account', '0006_customertimeaccount_name'),
+        ("nadooit_time_account", "0006_customertimeaccount_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customertimeaccount',
-            name='name',
-            field=models.CharField(default='FIXME', max_length=255),
+            model_name="customertimeaccount",
+            name="name",
+            field=models.CharField(default="FIXME", max_length=255),
             preserve_default=False,
         ),
     ]

@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_api_key', '0006_remove_nadooitapikeymanager_employee'),
+        ("nadooit_api_key", "0006_remove_nadooitapikeymanager_employee"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='NadooitApiKeyManager',
+            name="NadooitApiKeyManager",
         ),
     ]

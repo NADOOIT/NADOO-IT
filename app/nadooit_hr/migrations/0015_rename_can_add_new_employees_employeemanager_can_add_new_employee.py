@@ -6,13 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0014_rename_can_give_customermanager_role_customermanager_can_give_manager_role'),
+        (
+            "nadooit_hr",
+            "0014_rename_can_give_customermanager_role_customermanager_can_give_manager_role",
+        ),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='employeemanager',
-            old_name='can_add_new_employees',
-            new_name='can_add_new_employee',
+            model_name="employeemanager",
+            old_name="can_add_new_employees",
+            new_name="can_add_new_employee",
         ),
     ]

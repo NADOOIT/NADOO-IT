@@ -7,18 +7,32 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_hr', '0022_customerprogramexecutionmanagercontract'),
+        ("nadooit_hr", "0022_customerprogramexecutionmanagercontract"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TimeAccountManagerContract',
+            name="TimeAccountManagerContract",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('can_create_time_accounts', models.BooleanField(default=False)),
-                ('can_delete_time_accounts', models.BooleanField(default=False)),
-                ('can_give_manager_role', models.BooleanField(default=False)),
-                ('contract', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='nadooit_hr.employeecontract')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("can_create_time_accounts", models.BooleanField(default=False)),
+                ("can_delete_time_accounts", models.BooleanField(default=False)),
+                ("can_give_manager_role", models.BooleanField(default=False)),
+                (
+                    "contract",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="nadooit_hr.employeecontract",
+                    ),
+                ),
             ],
         ),
     ]

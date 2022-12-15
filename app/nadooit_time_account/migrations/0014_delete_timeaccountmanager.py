@@ -6,11 +6,14 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_time_account', '0013_rename_can_give_timeaccountmanager_role_timeaccountmanager_can_give_manager_role'),
+        (
+            "nadooit_time_account",
+            "0013_rename_can_give_timeaccountmanager_role_timeaccountmanager_can_give_manager_role",
+        ),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='TimeAccountManager',
+            name="TimeAccountManager",
         ),
     ]

@@ -6,13 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_program_ownership_system', '0011_customerprogram_price_per_hour_in_cent'),
+        (
+            "nadooit_program_ownership_system",
+            "0011_customerprogram_price_per_hour_in_cent",
+        ),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='customerprogram',
-            old_name='price_per_hour_in_cent',
-            new_name='price_per_second_in_cent',
+            model_name="customerprogram",
+            old_name="price_per_hour_in_cent",
+            new_name="price_per_second_in_cent",
         ),
     ]
