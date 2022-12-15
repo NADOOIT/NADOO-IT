@@ -104,16 +104,9 @@ def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price) ->
     return f"{price_as_string} €"
 
 
-def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):
-
-    return (
-        str(time // 3600)
-        + " std : "
-        + str((time % 3600) // 60)
-        + " min : "
-        + str(time % 60)
-        + " sek"
-    )
+def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time) -> str:
+    # The format of the final string should result in something like this "25 std : 03 min : 05 sek"
+    return f"{math.floor(time / 3600)} std : {math.floor((time % 3600) / 60)} min : {math.floor(time % 60)} sek"
 
 
 # Refactore this function because it requeres an employee and not a user. This is dangerous because it is not clear by the name of the function

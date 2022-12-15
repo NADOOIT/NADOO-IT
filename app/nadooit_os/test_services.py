@@ -2,15 +2,13 @@ from datetime import datetime
 import model_bakery
 import pytest
 from nadooit_os.services import (
+    get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
     get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
-)
-from nadooit_api_executions_system.models import CustomerProgramExecution
-from nadooit_os.services import (
     get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
-)
-from nadooit_os.services import (
     check__customer_program__for__customer_program_id__exists,
 )
+from nadooit_api_executions_system.models import CustomerProgramExecution
+
 
 from nadooit_crm.models import Customer
 from nadooit_program.models import Program
@@ -210,6 +208,19 @@ def test_get__price_as_string_in_euro_format__for__price_in_euro_as_decimal():
         )
         == "10,000 €"
     )
+
+
+def test_get__time_as_string_in_hour_format__for__time_in_seconds_as_integer():
+    # Arrange
+    time_in_seconds_as_integer = 90185
+    # Act
+    time_as_string_in_hour_format = (
+        get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(
+            time_in_seconds_as_integer
+        )
+    )
+    # Assert
+    assert time_as_string_in_hour_format == "25 std : 3 min : 5 sek"
 
 
 @pytest.mark.django_db
