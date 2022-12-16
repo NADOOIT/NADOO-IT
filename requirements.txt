@@ -9,7 +9,7 @@ colorama==0.4.5
 cryptography==38.0.4
 dj-database-url==0.5.0
 Django>=4.1
-django-cockroachdb==4.1
+django-cockroachdb==4.1.1
 django-extensions==3.2.1
 django-grappelli==3.0.4
 django-mfa2==2.6.1
