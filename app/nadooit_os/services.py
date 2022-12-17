@@ -21,6 +21,7 @@ from nadooit_auth.models import User
 from datetime import datetime
 from django.db.models import QuerySet
 
+
 def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
     filter_type, cutomer_id
 ):
@@ -596,13 +597,17 @@ def get__sum_of_price_for_execution__for__list_of_customer_program_exections(
 
 
 # Returns the currently active TimeAccountManagerContracts for the user or None if there is no active one
-def get__active_TimeAccoutnManagerContracts__for__employee(employee: Employee) -> QuerySet:
+def get__active_TimeAccoutnManagerContracts__for__employee(
+    employee: Employee,
+) -> QuerySet:
 
     # Get all the time account manager contracts of the user
     # This funcion retuns a QuerySet of all the TimeAccountManagerContracts of the user
     # The QuerySet is not evaluated until it is used
     # To now get the acive TimeAccountManagerContracts, apply the filter function to the QuerySet
-    time_account_manager_contracts = get__TimeAccountMangerContracts__for__employee(employee)
+    time_account_manager_contracts = get__TimeAccountMangerContracts__for__employee(
+        employee
+    )
 
     # Get all the active TimeAccountManagerContracts
     active_time_account_manager_contracts = time_account_manager_contracts.filter(

@@ -1,6 +1,7 @@
 from datetime import datetime
 import model_bakery
 import pytest
+from nadooit_os.services import get__active_TimeAccoutnManagerContracts__for__employee
 from nadooit_os.services import (
     get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
     get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
@@ -27,6 +28,27 @@ def user():
         username="test",
         display_name="test",
     )
+
+
+@pytest.fixture()
+def employee_with_acctive_TimeAccountManagerContract():
+    employee = baker.make("nadooit_hr.Employee")
+    employeecontract = baker.make("nadooit_hr.EmployeeContract", employee=employee)
+    baker.make(
+        "nadooit_hr.TimeAccountManagerContract",
+        contract=employeecontract,
+        can_give_manager_role=True,
+        can_delete_time_accounts=True,
+        can_create_time_accounts=True,
+    )
+    return employee
+
+
+@pytest.fixture()
+def employee_with_no_active_TImeAccountManagerContract():
+    employee = baker.make("nadooit_hr.Employee")
+
+    return employee
 
 
 # A pytest fixure that returns a customer program object
@@ -257,4 +279,42 @@ def test_check__customer_program__for__customer_program_id__exists(customer_prog
             customer_program_id=customer_program.id
         )
         == True
+    )
+
+
+@pytest.mark.django_db
+def test_get__active_TimeAccoutnManagerContracts__for__employee___with__acctive_TimeAccountManagerContract(
+    employee_with_acctive_TimeAccountManagerContract,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        len(
+            list(
+                get__active_TimeAccoutnManagerContracts__for__employee(
+                    employee_with_acctive_TimeAccountManagerContract
+                )
+            )
+        )
+        == 1
+    )
+
+
+@pytest.mark.django_db
+def test_get__active_TimeAccoutnManagerContracts__for__employee__with__no_active_contract(
+    employee_with_no_active_TImeAccountManagerContract,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        len(
+            list(
+                get__active_TimeAccoutnManagerContracts__for__employee(
+                    employee_with_no_active_TImeAccountManagerContract
+                )
+            )
+        )
+        == 0
     )
