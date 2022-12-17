@@ -9,6 +9,7 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
+from nadooit_os.services import get__active_TimeAccoutnManagerContracts__for__employee
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -260,8 +261,9 @@ def index_nadooit_os(request: HttpRequest):
 @user_passes_test(user_is_Time_Account_Manager, login_url="/auth/login-user")
 def customer_time_account_overview(request: HttpRequest):
 
-    contracts_of_logged_in_user = TimeAccountManagerContract.objects.filter(
-        contract__employee=request.user.employee, contract__is_active=True
+    # get all the customer time accounts the user has access to
+    contracts_of_logged_in_user = (
+        get__active_TimeAccoutnManagerContracts__for__employee(request.user.employee)
     )
 
     customers_the_user_works_for_as_timeaccountmanager = []
