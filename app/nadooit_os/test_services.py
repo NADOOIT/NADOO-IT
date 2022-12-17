@@ -31,7 +31,7 @@ def user():
 
 
 @pytest.fixture()
-def employee_with_acctive_TimeAccountManagerContract():
+def employee_with_active_TimeAccountManagerContract():
     employee = baker.make("nadooit_hr.Employee")
     employeecontract = baker.make("nadooit_hr.EmployeeContract", employee=employee)
     baker.make(
@@ -283,8 +283,8 @@ def test_check__customer_program__for__customer_program_id__exists(customer_prog
 
 
 @pytest.mark.django_db
-def test_get__active_TimeAccoutnManagerContracts__for__employee___with__acctive_TimeAccountManagerContract(
-    employee_with_acctive_TimeAccountManagerContract,
+def test_get__active_TimeAccoutnManagerContracts__for__employee___with__active_TimeAccountManagerContract(
+    employee_with_active_TimeAccountManagerContract,
 ):
     # Arrange
     # Act
@@ -293,7 +293,7 @@ def test_get__active_TimeAccoutnManagerContracts__for__employee___with__acctive_
         len(
             list(
                 get__active_TimeAccoutnManagerContracts__for__employee(
-                    employee_with_acctive_TimeAccountManagerContract
+                    employee_with_active_TimeAccountManagerContract
                 )
             )
         )

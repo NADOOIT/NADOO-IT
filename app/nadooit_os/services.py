@@ -611,7 +611,7 @@ def get__active_TimeAccoutnManagerContracts__for__employee(
 
     # Get all the active TimeAccountManagerContracts
     active_time_account_manager_contracts = time_account_manager_contracts.filter(
-        contract__active=True,
+        contract__is_active=True,
     )
 
     return active_time_account_manager_contracts
