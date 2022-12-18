@@ -9,7 +9,10 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
-from nadooit_os.services import get__active_TimeAccoutnManagerContracts__for__employee
+from nadooit_os.services import (
+    get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts,
+)
+from nadooit_os.services import get__active_TimeAccountManagerContracts__for__employee
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
@@ -262,19 +265,25 @@ def index_nadooit_os(request: HttpRequest):
 def customer_time_account_overview(request: HttpRequest):
 
     # get all the customer time accounts the user has access to
-    contracts_of_logged_in_user = (
-        get__active_TimeAccoutnManagerContracts__for__employee(request.user.employee)
+    list_of_TimeAccountMangerContracts = (
+        get__active_TimeAccountManagerContracts__for__employee(request.user.employee)
     )
 
+    
+    """ OLD CODE
     customers_the_user_works_for_as_timeaccountmanager = []
+        for contract in list_of_TimeAccountMangerContracts:
+            customers_the_user_works_for_as_timeaccountmanager.append(
+                contract.contract.customer
+            )
 
-    for contract in contracts_of_logged_in_user:
-        customers_the_user_works_for_as_timeaccountmanager.append(
-            contract.contract.customer
+        list_of_customer_time_accounts = CustomerTimeAccount.objects.filter(
+            customer__in=customers_the_user_works_for_as_timeaccountmanager
         )
-
-    list_of_customer_time_accounts = CustomerTimeAccount.objects.filter(
-        customer__in=customers_the_user_works_for_as_timeaccountmanager
+    """
+    
+    list_of_customer_time_accounts = (
+        get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(list_of_TimeAccountMangerContracts)
     )
 
     # group the customer time accounts by customer and sum up the time balances

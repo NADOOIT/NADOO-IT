@@ -1,7 +1,10 @@
 from datetime import datetime
 import model_bakery
 import pytest
-from nadooit_os.services import get__active_TimeAccoutnManagerContracts__for__employee
+from nadooit_os.services import (
+    get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts,
+)
+from nadooit_os.services import get__active_TimeAccountManagerContracts__for__employee
 from nadooit_os.services import (
     get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
     get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
@@ -42,6 +45,44 @@ def employee_with_active_TimeAccountManagerContract():
         can_create_time_accounts=True,
     )
     return employee
+
+
+@pytest.fixture()
+def list_of_TimeAccountMangerContracts__without_CustomerTimeAccounts():
+    list_of_TimeAccountMangerContracts = []
+    for i in range(5):
+        employee = baker.make("nadooit_hr.Employee")
+        employeecontract = baker.make("nadooit_hr.EmployeeContract", employee=employee)
+        TimeAccountMangerContract = baker.make(
+            "nadooit_hr.TimeAccountManagerContract",
+            contract=employeecontract,
+            can_give_manager_role=True,
+            can_delete_time_accounts=True,
+            can_create_time_accounts=True,
+        )
+        list_of_TimeAccountMangerContracts.append(TimeAccountMangerContract)
+    return list_of_TimeAccountMangerContracts
+
+
+@pytest.fixture()
+def list_of_TimeAccountMangerContracts__with_CustomerTimeAccounts():
+    list_of_TimeAccountMangerContracts = []
+    for i in range(5):
+        employee = baker.make("nadooit_hr.Employee")
+        employeecontract = baker.make("nadooit_hr.EmployeeContract", employee=employee)
+        TimeAccountMangerContract = baker.make(
+            "nadooit_hr.TimeAccountManagerContract",
+            contract=employeecontract,
+            can_give_manager_role=True,
+            can_delete_time_accounts=True,
+            can_create_time_accounts=True,
+        )
+        baker.make(
+            "nadooit_time_account.CustomerTimeAccount",
+            customer=TimeAccountMangerContract.contract.customer,
+        )
+        list_of_TimeAccountMangerContracts.append(TimeAccountMangerContract)
+    return list_of_TimeAccountMangerContracts
 
 
 @pytest.fixture()
@@ -283,7 +324,7 @@ def test_check__customer_program__for__customer_program_id__exists(customer_prog
 
 
 @pytest.mark.django_db
-def test_get__active_TimeAccoutnManagerContracts__for__employee___with__active_TimeAccountManagerContract(
+def test_get__active_TimeAccountManagerContracts__for__employee___with__active_TimeAccountManagerContract(
     employee_with_active_TimeAccountManagerContract,
 ):
     # Arrange
@@ -292,7 +333,7 @@ def test_get__active_TimeAccoutnManagerContracts__for__employee___with__active_T
     assert (
         len(
             list(
-                get__active_TimeAccoutnManagerContracts__for__employee(
+                get__active_TimeAccountManagerContracts__for__employee(
                     employee_with_active_TimeAccountManagerContract
                 )
             )
@@ -302,7 +343,7 @@ def test_get__active_TimeAccoutnManagerContracts__for__employee___with__active_T
 
 
 @pytest.mark.django_db
-def test_get__active_TimeAccoutnManagerContracts__for__employee__with__no_active_contract(
+def test_get__active_TimeAccountManagerContracts__for__employee__with__no_active_contract(
     employee_with_no_active_TImeAccountManagerContract,
 ):
     # Arrange
@@ -311,8 +352,46 @@ def test_get__active_TimeAccoutnManagerContracts__for__employee__with__no_active
     assert (
         len(
             list(
-                get__active_TimeAccoutnManagerContracts__for__employee(
+                get__active_TimeAccountManagerContracts__for__employee(
                     employee_with_no_active_TImeAccountManagerContract
+                )
+            )
+        )
+        == 0
+    )
+
+
+@pytest.mark.django_db
+def test_get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts__with_CustomerTimeAccounts(
+    list_of_TimeAccountMangerContracts__with_CustomerTimeAccounts,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        len(
+            list(
+                get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(
+                    list_of_TimeAccountMangerContracts__with_CustomerTimeAccounts
+                )
+            )
+        )
+        == 5
+    )
+
+
+@pytest.mark.django_db
+def test_get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts__with_no_CustomerTimeAccounts(
+    list_of_TimeAccountMangerContracts__without_CustomerTimeAccounts,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        len(
+            list(
+                get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(
+                    list_of_TimeAccountMangerContracts__without_CustomerTimeAccounts
                 )
             )
         )

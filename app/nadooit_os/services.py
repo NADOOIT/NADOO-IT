@@ -5,6 +5,7 @@ from typing import List, Union
 import hashlib
 
 from django.utils import timezone
+from nadooit_time_account.models import CustomerTimeAccount
 from nadooit_hr.models import TimeAccountManagerContract
 from nadooit_time_account.models import TimeAccount
 from nadooit_hr.models import CustomerProgramManagerContract
@@ -597,7 +598,7 @@ def get__sum_of_price_for_execution__for__list_of_customer_program_exections(
 
 
 # Returns the currently active TimeAccountManagerContracts for the user or None if there is no active one
-def get__active_TimeAccoutnManagerContracts__for__employee(
+def get__active_TimeAccountManagerContracts__for__employee(
     employee: Employee,
 ) -> QuerySet:
 
@@ -625,6 +626,23 @@ def get__TimeAccountMangerContracts__for__employee(employee: Employee) -> QueryS
     )
 
     return time_account_manager_contracts
+
+
+def get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(
+    list_of_TimeAccountMangerContracts: list,
+) -> QuerySet:
+    
+    customers_the_user_works_for_as_timeaccountmanager = []
+    for contract in list_of_TimeAccountMangerContracts:
+        customers_the_user_works_for_as_timeaccountmanager.append(
+            contract.contract.customer
+        )
+
+    list_of_customer_time_accounts = CustomerTimeAccount.objects.filter(
+        customer__in=customers_the_user_works_for_as_timeaccountmanager
+    )
+
+    return list_of_customer_time_accounts
 
 
 def set__customer_program__time_account__for__customer_program_execution(
