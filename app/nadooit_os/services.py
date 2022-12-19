@@ -5,6 +5,9 @@ from typing import List, Union
 import hashlib
 
 from django.utils import timezone
+from nadooit_time_account.models import (
+    get_time_as_string_in_hour_format_for_time_in_seconds_as_integer,
+)
 from nadooit_time_account.models import CustomerTimeAccount
 from nadooit_hr.models import TimeAccountManagerContract
 from nadooit_time_account.models import TimeAccount
@@ -628,10 +631,86 @@ def get__TimeAccountMangerContracts__for__employee(employee: Employee) -> QueryS
     return time_account_manager_contracts
 
 
+def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee(
+    employee: Employee,
+) -> dict:
+    # get all the customer time accounts the user has access to
+    list_of_TimeAccountMangerContracts = (
+        get__active_TimeAccountManagerContracts__for__employee(employee)
+    )
+
+    list_of_customer_time_accounts = (
+        get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(
+            list_of_TimeAccountMangerContracts
+        )
+    )
+
+    return get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__list_of_customer_time_accounts(
+        list_of_customer_time_accounts
+    )
+
+
+def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__list_of_customer_time_accounts(
+    list_of_customer_time_accounts: list,
+) -> dict:
+
+    customer_time_accounts_grouped_by_customer = {}
+
+    for customer_time_account in list_of_customer_time_accounts:
+        if customer_time_account.customer in customer_time_accounts_grouped_by_customer:
+            customer_time_accounts_grouped_by_customer[customer_time_account.customer][
+                "customer_time_accounts"
+            ].append(customer_time_account)
+            customer_time_accounts_grouped_by_customer[customer_time_account.customer][
+                "customer_time_account_total_time_balance"
+            ] += customer_time_account.time_account.time_balance_in_seconds
+        else:
+            customer_time_accounts_grouped_by_customer[
+                customer_time_account.customer
+            ] = {
+                "customer_time_accounts": [customer_time_account],
+                "customer_time_account_total_time_balance": customer_time_account.time_account.time_balance_in_seconds,
+            }
+
+    # format the time balances first to int then using the get_time_as_string_in_hour_format_for_time_in_seconds_as_integer function
+    for customer in customer_time_accounts_grouped_by_customer:
+
+        customer_time_accounts_grouped_by_customer[customer][
+            "customer_time_account_total_time_balance"
+        ] = get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
+            int(
+                customer_time_accounts_grouped_by_customer[customer][
+                    "customer_time_account_total_time_balance"
+                ]
+            )
+        )
+        """ 
+
+    # format the time balances for each customer time account
+    for customer in customer_time_accounts_grouped_by_customer:
+        for customer_time_account in customer_time_accounts_grouped_by_customer[
+            customer
+        ]["customer_time_accounts"]:
+
+            print("customer_time_account.time_account.time_balance_in_seconds")
+            print(customer_time_account.time_account.time_balance_in_seconds)
+
+            customer_time_account.time_account.time_balance_in_seconds = (
+                get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
+                    int(customer_time_account.time_account.time_balance_in_seconds)
+                )
+            )
+ """
+    print("customer_time_accounts_grouped_by_customer")
+    print(customer_time_accounts_grouped_by_customer)
+
+    return customer_time_accounts_grouped_by_customer
+
+
 def get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(
     list_of_TimeAccountMangerContracts: list,
 ) -> QuerySet:
-    
+
     customers_the_user_works_for_as_timeaccountmanager = []
     for contract in list_of_TimeAccountMangerContracts:
         customers_the_user_works_for_as_timeaccountmanager.append(

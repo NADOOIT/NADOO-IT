@@ -10,12 +10,12 @@ from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
 from nadooit_os.services import (
-    get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts,
+    get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
 )
-from nadooit_os.services import get__active_TimeAccountManagerContracts__for__employee
+
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
-from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
+from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer
 
@@ -61,12 +61,6 @@ from nadooit_os.services import (
 
 # model imports
 from nadooit_program_ownership_system.models import CustomerProgram
-from nadooit_time_account.models import (
-    CustomerTimeAccount,
-    get_time_as_string_in_hour_format_for_time_in_seconds_as_integer,
-)
-from requests import request
-
 from .forms import ApiKeyForm
 
 # imoport for userforms
@@ -264,90 +258,32 @@ def index_nadooit_os(request: HttpRequest):
 @user_passes_test(user_is_Time_Account_Manager, login_url="/auth/login-user")
 def customer_time_account_overview(request: HttpRequest):
 
-    # get all the customer time accounts the user has access to
-    list_of_TimeAccountMangerContracts = (
-        get__active_TimeAccountManagerContracts__for__employee(request.user.employee)
-    )
-
-    
-    """ OLD CODE
-    customers_the_user_works_for_as_timeaccountmanager = []
-        for contract in list_of_TimeAccountMangerContracts:
-            customers_the_user_works_for_as_timeaccountmanager.append(
-                contract.contract.customer
-            )
-
-        list_of_customer_time_accounts = CustomerTimeAccount.objects.filter(
-            customer__in=customers_the_user_works_for_as_timeaccountmanager
-        )
-    """
-    
-    list_of_customer_time_accounts = (
-        get__list_of_customer_time_accounts__for__list_of_TimeAccountMangerContracts(list_of_TimeAccountMangerContracts)
-    )
-
     # group the customer time accounts by customer and sum up the time balances
     # the dictionary will look like this:
-    """ 
-    {	
+    """
+    {
         customer1: {
             customer_time_accounts: [customer_time_account1, customer_time_account2],
             customer_time_account_total_time_balance: 123456
         },
-        customer2: {	
+        customer2: {
             customer_time_accounts: [customer_time_account3, customer_time_account4],
             customer_time_account_total_time_balance: 123456
-        }	
-    }	
+        }
+    }
     """
-    customer_time_accounts_grouped_by_customer = {}
-    for customer_time_account in list_of_customer_time_accounts:
-        if customer_time_account.customer in customer_time_accounts_grouped_by_customer:
-            customer_time_accounts_grouped_by_customer[customer_time_account.customer][
-                "customer_time_accounts"
-            ].append(customer_time_account)
-            customer_time_accounts_grouped_by_customer[customer_time_account.customer][
-                "customer_time_account_total_time_balance"
-            ] += customer_time_account.time_account.time_balance_in_seconds
-        else:
-            customer_time_accounts_grouped_by_customer[
-                customer_time_account.customer
-            ] = {
-                "customer_time_accounts": [customer_time_account],
-                "customer_time_account_total_time_balance": customer_time_account.time_account.time_balance_in_seconds,
-            }
+    customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts = {}
 
-    # print(customer_time_accounts_grouped_by_customer)
-
-    # format the time balances first to int then using the get_time_as_string_in_hour_format_for_time_in_seconds_as_integer function
-    for customer in customer_time_accounts_grouped_by_customer:
-        customer_time_accounts_grouped_by_customer[customer][
-            "customer_time_account_total_time_balance"
-        ] = get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
-            int(
-                customer_time_accounts_grouped_by_customer[customer][
-                    "customer_time_account_total_time_balance"
-                ]
-            )
-        )
-
-    # format the time balances for each customer time account
-    for customer in customer_time_accounts_grouped_by_customer:
-        for customer_time_account in customer_time_accounts_grouped_by_customer[
-            customer
-        ]["customer_time_accounts"]:
-            customer_time_account.time_account.time_balance_in_seconds = (
-                get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
-                    int(customer_time_account.time_account.time_balance_in_seconds)
-                )
-            )
+    customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts = get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee(
+        request.user.employee
+    )
 
     return render(
         request,
         "nadooit_os/time_account/customer_time_account_overview.html",
         {
             "page_title": "Übersicht der Zeitkonten",
-            "customer_time_accounts_grouped_by_customer": customer_time_accounts_grouped_by_customer,
+            "customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts": customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts,
             **get__user__roles_and_rights__for__http_request(request),
         },
     )
