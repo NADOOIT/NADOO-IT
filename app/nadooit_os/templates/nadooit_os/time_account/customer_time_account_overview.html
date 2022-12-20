@@ -35,7 +35,7 @@
                 <strong>Gesamt</strong>
               </td>
               <td>
-                {{customer_time_account_info.customer_time_account_total_time_balance}}
+                {{customer_time_account_info.customer_time_account_total_time_balance|get_time_as_string_in_hour_format_for_time_in_seconds_as_integer}}
               </td>
             </tr>
           </tfoot>

@@ -672,35 +672,6 @@ def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_
                 "customer_time_account_total_time_balance": customer_time_account.time_account.time_balance_in_seconds,
             }
 
-    # format the time balances first to int then using the get_time_as_string_in_hour_format_for_time_in_seconds_as_integer function
-    for customer in customer_time_accounts_grouped_by_customer:
-
-        customer_time_accounts_grouped_by_customer[customer][
-            "customer_time_account_total_time_balance"
-        ] = get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
-            int(
-                customer_time_accounts_grouped_by_customer[customer][
-                    "customer_time_account_total_time_balance"
-                ]
-            )
-        )
-        """ 
-
-    # format the time balances for each customer time account
-    for customer in customer_time_accounts_grouped_by_customer:
-        for customer_time_account in customer_time_accounts_grouped_by_customer[
-            customer
-        ]["customer_time_accounts"]:
-
-            print("customer_time_account.time_account.time_balance_in_seconds")
-            print(customer_time_account.time_account.time_balance_in_seconds)
-
-            customer_time_account.time_account.time_balance_in_seconds = (
-                get_time_as_string_in_hour_format_for_time_in_seconds_as_integer(
-                    int(customer_time_account.time_account.time_balance_in_seconds)
-                )
-            )
- """
     print("customer_time_accounts_grouped_by_customer")
     print(customer_time_accounts_grouped_by_customer)
 
