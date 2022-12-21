@@ -9,6 +9,7 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
+from nadooit_os.services import create__NadooitApiKey__for__user
 from nadooit_os.services import (
     get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
 )
@@ -297,14 +298,9 @@ def create_api_key(request: HttpRequest):
     if request.method == "POST":
         form = ApiKeyForm(request.POST)
         if form.is_valid():
-            new_api_key = NadooitApiKey(
-                api_key=form.cleaned_data["api_key"],
-                user=request.user,
-                is_active=True,
-            )
-            new_api_key.updated_at = timezone.now()
-            new_api_key.created_at = timezone.now()
-            new_api_key.save()
+
+            create__NadooitApiKey__for__user(request.user, form.cleaned_data["api_key"])
+
             return HttpResponseRedirect(
                 "/nadooit-os/api_key/create-api-key?submitted=True"
             )

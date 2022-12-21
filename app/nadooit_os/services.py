@@ -3,6 +3,7 @@ from decimal import Decimal
 import math
 from typing import List, Union
 import hashlib
+import uuid
 
 from django.utils import timezone
 from nadooit_time_account.models import (
@@ -648,6 +649,26 @@ def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_
     return get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__list_of_customer_time_accounts(
         list_of_customer_time_accounts
     )
+
+
+# Creates a new NADOO API key for the user and returns it. Optionally a uuid that is used as the api key can be passed
+def create__NadooitApiKey__for__user(
+    user: User, api_key_uuid: uuid = None
+) -> NadooitApiKey:
+
+    if api_key_uuid == None:
+        uuid.uuid4()
+
+    new_api_key = NadooitApiKey.objects.create(
+        api_key=api_key_uuid,
+        user=user,
+        is_active=True,
+    )
+    new_api_key.updated_at = timezone.now()
+    new_api_key.created_at = timezone.now()
+    new_api_key.save()
+
+    return new_api_key
 
 
 def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__list_of_customer_time_accounts(
