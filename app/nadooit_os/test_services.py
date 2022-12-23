@@ -1,6 +1,9 @@
 from datetime import datetime
 import model_bakery
 import pytest
+from app.nadooit_os.services import set__all_active_NadooitApiKey__for__user_to_inactive
+from nadooit_api_key.models import NadooitApiKey
+from nadooit_os.services import create__NadooitApiKey__for__user
 from nadooit_os.services import (
     get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
 )
@@ -26,6 +29,7 @@ from model_bakery import baker
 from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
+import uuid
 
 # A pytest fixure that returns a user object
 @pytest.fixture
@@ -452,3 +456,37 @@ def test_get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_
     """
     # Assert
     assert True
+
+
+@pytest.mark.django_db
+def test_create__NadooitApiKey__for__user(user):
+    # Arrange
+    # Act
+    nadooit_api_key = create__NadooitApiKey__for__user(user)
+
+    fake_api_key = uuid.uuid4()
+
+    nadooit_api_key_2 = create__NadooitApiKey__for__user(user, fake_api_key)
+
+    # Assert
+
+    assert type(nadooit_api_key) == NadooitApiKey
+    assert (
+        type(nadooit_api_key_2) == NadooitApiKey
+        and nadooit_api_key_2.api_key == fake_api_key
+    )
+
+
+@pytest.mark.django_db
+def test_set__all_active_NadooitApiKey__for__user_to_inactive(user):
+    # Arrange
+    baker.make(NadooitApiKey, user=user, is_active=True)
+    baker.make(NadooitApiKey, user=user, is_active=True)
+
+    # Act
+
+    set__all_active_NadooitApiKey__for__user_to_inactive(user)
+
+    # Assert
+
+    assert NadooitApiKey.objects.filter(user=user, is_active=True).count() == 0

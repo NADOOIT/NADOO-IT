@@ -650,6 +650,18 @@ def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_
         list_of_customer_time_accounts
     )
 
+def set__all_active_NadooitApiKey__for__user_to_inactive(user: User) -> None:
+    # Get all the active NadooitApiKey of the user
+    list_of_active_NadooitApiKey = get__list_of_all_NadooitApiKey__for__user(user, is_active= True)
+
+    # Set all the active NadooitApiKey to inactive
+    for active_NadooitApiKey in list_of_active_NadooitApiKey:
+        active_NadooitApiKey.is_active = False
+        active_NadooitApiKey.save()	
+
+def get__list_of_all_NadooitApiKey__for__user(user: User, is_active = True) -> QuerySet:
+    return NadooitApiKey.objects.filter(user=user, is_active=is_active)
+
 
 # Creates a new NADOO API key for the user and returns it. Optionally a uuid that is used as the api key can be passed
 def create__NadooitApiKey__for__user(
@@ -657,7 +669,7 @@ def create__NadooitApiKey__for__user(
 ) -> NadooitApiKey:
 
     if api_key_uuid == None:
-        uuid.uuid4()
+        api_key_uuid = uuid.uuid4()
 
     new_api_key = NadooitApiKey.objects.create(
         api_key=api_key_uuid,

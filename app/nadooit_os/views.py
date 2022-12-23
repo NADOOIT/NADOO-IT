@@ -9,6 +9,7 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
+from nadooit_os.services import set__all_active_NadooitApiKey__for__user_to_inactive
 from nadooit_os.services import create__NadooitApiKey__for__user
 from nadooit_os.services import (
     get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
@@ -328,10 +329,9 @@ def revoke_api_key(request: HttpRequest):
     submitted = False
     if request.method == "POST":
         # get list of all api keys that are active for the user and set them to inactive
-        api_keys = NadooitApiKey.objects.filter(user=request.user, is_active=True)
-        for api_key in api_keys:
-            api_key.is_active = False
-            api_key.save()
+
+        set__all_active_NadooitApiKey__for__user_to_inactive(request.user)
+
         return HttpResponseRedirect("/nadooit-os/api_key/revoke-api-key?submitted=True")
     else:
         if "submitted" in request.GET:
