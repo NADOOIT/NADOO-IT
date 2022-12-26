@@ -1,7 +1,17 @@
 from datetime import datetime
 import model_bakery
 import pytest
-from app.nadooit_os.services import set__all_active_NadooitApiKey__for__user_to_inactive
+from nadooit_os.services import (
+    get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
+)
+from nadooit_hr.models import TimeAccountManagerContract
+from nadooit_os.services import (
+    create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
+)
+from nadooit_os.services import (
+    check__user__exists__for__user_code,
+    set__all_active_NadooitApiKey__for__user_to_inactive,
+)
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_os.services import create__NadooitApiKey__for__user
 from nadooit_os.services import (
@@ -55,6 +65,11 @@ def employee_with_active_TimeAccountManagerContract():
 
 
 @pytest.fixture()
+def customer():
+    return baker.make("nadooit_crm.Customer", name="Customer 1")
+
+
+@pytest.fixture()
 def employee_with_active_TimeAccountManagerContract_and_also_managing_time_accounts_with_a_balance():
     employee = baker.make(
         "nadooit_hr.Employee",
@@ -102,6 +117,31 @@ def list_of_TimeAccountMangerContracts__without_CustomerTimeAccounts():
         )
         list_of_TimeAccountMangerContracts.append(TimeAccountMangerContract)
     return list_of_TimeAccountMangerContracts
+
+
+@pytest.fixture()
+def employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time_account_manager_contracts():
+    employee = baker.make(
+        "nadooit_hr.Employee",
+        user=baker.make(
+            "nadooit_auth.User",
+            is_active=True,
+            user_code="TEST01",
+            display_name="Test Employee",
+        ),
+    )
+    test_customer = baker.make("nadooit_crm.Customer", name="Test Customer")
+    employeecontract = baker.make(
+        "nadooit_hr.EmployeeContract", employee=employee, customer=test_customer
+    )
+    baker.make(
+        "nadooit_hr.TimeAccountManagerContract",
+        contract=employeecontract,
+        can_give_manager_role=True,
+        can_delete_time_accounts=True,
+        can_create_time_accounts=True,
+    )
+    return employee
 
 
 @pytest.fixture()
@@ -478,6 +518,58 @@ def test_create__NadooitApiKey__for__user(user):
 
 
 @pytest.mark.django_db
+def test_create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+    user,
+    employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time_account_manager_contracts,
+):
+
+    # Arrange
+
+    """
+    ability == "can_create_time_accounts",
+    "can_delete_time_accounts",
+    "can_give_manager_role"
+    """
+
+    list_of_abilities = [
+        "can_create_time_accounts",
+        "can_delete_time_accounts",
+        "can_give_manager_role",
+    ]
+
+    time_account_manager_contract = TimeAccountManagerContract.objects.get(
+        contract__employee=employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time_account_manager_contracts
+    )
+
+    customer = time_account_manager_contract.contract.customer
+
+    # Act
+    time_account_manager_contract = create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+        user_code=user.user_code,
+        customer=customer,
+        list_of_abilities=list_of_abilities,
+        employee_creating_contract=employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time_account_manager_contracts,
+    )
+    # Assert
+    assert type(time_account_manager_contract) == TimeAccountManagerContract
+    assert time_account_manager_contract.contract.employee == user.employee
+    assert time_account_manager_contract.contract.customer == customer
+    assert time_account_manager_contract.can_create_time_accounts == True
+    assert time_account_manager_contract.can_delete_time_accounts == True
+    assert time_account_manager_contract.can_give_manager_role == True
+
+
+@pytest.mark.django_db
+def test_check__user__exists__for__user_code(user):
+    # Arrange
+    fake_user_code = "NADOO01"
+    # Act
+    # Assert
+    assert check__user__exists__for__user_code(user_code=user.user_code) == True
+    assert check__user__exists__for__user_code(user_code=fake_user_code) == False
+
+
+@pytest.mark.django_db
 def test_set__all_active_NadooitApiKey__for__user_to_inactive(user):
     # Arrange
     baker.make(NadooitApiKey, user=user, is_active=True)
@@ -490,3 +582,20 @@ def test_set__all_active_NadooitApiKey__for__user_to_inactive(user):
     # Assert
 
     assert NadooitApiKey.objects.filter(user=user, is_active=True).count() == 0
+
+
+@pytest.mark.django_db
+def test_get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them(
+    employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time_account_manager_contracts,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        len(
+            get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them(
+                employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time_account_manager_contracts
+            )
+        )
+        == 1
+    )

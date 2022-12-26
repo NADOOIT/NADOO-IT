@@ -9,6 +9,11 @@ from django.http import (
 from django.shortcuts import render
 from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
+from nadooit_os.services import (
+    get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
+    get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts,
+)
+from nadooit_os.services import get__customer__for__customer_id
 from nadooit_os.services import set__all_active_NadooitApiKey__for__user_to_inactive
 from nadooit_os.services import create__NadooitApiKey__for__user
 from nadooit_os.services import (
@@ -63,6 +68,16 @@ from nadooit_os.services import (
 
 # model imports
 from nadooit_program_ownership_system.models import CustomerProgram
+from nadooit_os.services import (
+    check__time_account_manager_contract__exists__for__employee_and_customer,
+    check__employee__exists__for__user_code,
+    create__employee__for__user_code,
+)
+from nadooit_os.services import (
+    check__employee_contract__exists__for__employee__and__customer,
+    create__employee_contract__for__employee_and__customer,
+    create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
+)
 from .forms import ApiKeyForm
 
 # imoport for userforms
@@ -448,104 +463,34 @@ def give_api_key_manager_role(request: HttpRequest):
 def give_customer_time_account_manager_role(request: HttpRequest):
     submitted = False
     if request.method == "POST":
+
         user_code = request.POST.get("user_code")
+        customer = get__customer__for__customer_id(request.POST.get("customers"))
+        list_of_abilities = request.POST.getlist("role")
+        employee_creating_contract = request.user.employee
 
-        # check that user_code is not empty
-        if User.objects.filter(user_code=user_code).exists():
-
-            # check if there is an emplyee for that user code
-            if not Employee.objects.filter(user__user_code=user_code).exists():
-                # create new employee for the user_code
-                Employee.objects.create(user=User.objects.get(user_code=user_code))
-
-            # get the employee object for the user
-            employee = Employee.objects.get(user__user_code=user_code)
-
-            # check if the employee already has the role
-            if not TimeAccountManagerContract.objects.filter(
-                contract__employee=employee
-            ).exists():
-                # Check if the employee has a contract with the customer
-                if not EmployeeContract.objects.filter(employee=employee).exists():
-                    EmployeeContract.objects.create(
-                        employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
-                    )
-                # Check if there is more then one EmployeeContract for the employee
-                elif (
-                    EmployeeContract.objects.filter(
-                        employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
-                    ).count()
-                    > 1
-                ):
-                    # TODO add a way to select the correct contract if there is more then one contract for the employee
-                    # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
-                    return HttpResponseRedirect(
-                        "nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True&error=Der Mitarbeiter hat mehr als einen Vertrag mit diesem Kunden."
-                    )
-                # create the CustomerProgramExecutionManager
-                TimeAccountManagerContract.objects.create(
-                    contract=EmployeeContract.objects.get(employee=employee)
-                )
-            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
-            # get the "role"
-            list_of_abilities = request.POST.getlist("role")
-            for ability in list_of_abilities:
-                # check if the employee already has the ability
-                if ability == "can_create_time_accounts":
-                    if TimeAccountManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
-                        can_create_time_accounts=True,
-                    ).exists():
-                        # Set the ability for the TimeAccountManagerContract object to the value of the ability
-                        TimeAccountManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_create_time_accounts=True)
-                if ability == "can_delete_time_accounts":
-                    if TimeAccountManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
-                        can_delete_time_accounts=True,
-                    ).exists():
-                        # Set the ability for the TimeAccountManagerContract object to the value of the ability
-                        TimeAccountManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_delete_time_accounts=True)
-                if ability == "can_give_manager_role":
-                    if TimeAccountManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
-                        can_give_manager_role=True,
-                    ).exists():
-                        # Set the ability for the CustomerProgramExecutionManager object to the value of the ability
-                        TimeAccountManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_give_manager_role=True)
-
-            return HttpResponseRedirect(
-                "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True"
-            )
-
-        else:
+        if not check__user__exists__for__user_code(user_code):
             return HttpResponseRedirect(
                 "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
+            )
+
+        if (
+            create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+                user_code, customer, list_of_abilities, employee_creating_contract
+            )
+            is not None
+        ):
+            return HttpResponseRedirect(
+                "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True"
             )
 
     else:
         if "submitted" in request.GET:
             submitted = True
 
-    list_of_customer_program_execution_manager_contract = (
-        TimeAccountManagerContract.objects.filter(
-            contract__employee=request.user.employee, can_give_manager_role=True
-        ).distinct("contract__customer")
+    list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for = get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them(
+        request.user.employee
     )
-
-    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_execution_manager_contract
-    list_of_customers_the_manager_is_responsible_for = []
-    for contract in list_of_customer_program_execution_manager_contract:
-        list_of_customers_the_manager_is_responsible_for.append(
-            contract.contract.customer
-        )
 
     return render(
         request,
@@ -554,7 +499,7 @@ def give_customer_time_account_manager_role(request: HttpRequest):
             "page_title": "Zeitkonten Manager Rolle vergeben",
             "submitted": submitted,
             "error": request.GET.get("error"),
-            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
+            "list_of_customers_the_manager_is_responsible_for": list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for,
             **get__user__roles_and_rights__for__http_request(request),
         },
     )

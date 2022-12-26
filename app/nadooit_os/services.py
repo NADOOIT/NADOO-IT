@@ -4,6 +4,7 @@ import math
 from typing import List, Union
 import hashlib
 import uuid
+from django.http import HttpResponseRedirect
 
 from django.utils import timezone
 from nadooit_time_account.models import (
@@ -135,6 +136,107 @@ def get__customer_program__for__customer_program_id(customer_program_id):
     return CustomerProgram.objects.get(id=customer_program_id)
 
 
+def get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them(
+    employee,
+):
+    print("employee", employee)
+    list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts = get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(
+        employee=employee
+    )
+
+    print(
+        list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts
+    )
+
+    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_execution_manager_contract
+    list_of_customers_the_manager_is_responsible_for = []
+    for (
+        contract
+    ) in list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts:
+        list_of_customers_the_manager_is_responsible_for.append(
+            contract.contract.customer
+        )
+
+    return list_of_customers_the_manager_is_responsible_for
+
+
+def get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(
+    employee,
+):
+    return TimeAccountManagerContract.objects.filter(
+        contract__employee=employee, can_give_manager_role=True
+    ).distinct("contract__customer")
+
+
+def create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+    user_code, customer, list_of_abilities, employee_creating_contract
+) -> TimeAccountManagerContract | None:
+
+    # check if there is an emplyee for that user code
+    if not check__employee__exists__for__user_code(user_code):
+        # create new employee for the user_code
+        create__employee__for__user_code(user_code)
+
+    # get the employee object for the user
+    employee = get__employee__for__user_code(user_code)
+
+    # check if the employee already has the role for the customer
+    if not check__time_account_manager_contract__exists__for__employee_and_customer(
+        employee, customer
+    ):
+        # Check if the employee has a contract with the customer
+
+        if not check__employee_contract__exists__for__employee__and__customer(
+            employee, customer
+        ):
+            create__employee_contract__for__employee_and__customer(employee, customer)
+        # create the CustomerProgramExecutionManager
+        TimeAccountManagerContract.objects.create(
+            contract=EmployeeContract.objects.get(employee=employee)
+        )
+    # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
+    # get the "role"
+
+    for ability in list_of_abilities:
+        # check if the employee already has the ability
+        if ability == "can_create_time_accounts":
+            if TimeAccountManagerContract.objects.filter(
+                contract__employee=employee_creating_contract,
+                contract__customer=customer,
+                can_create_time_accounts=True,
+            ).exists():
+                # Set the ability for the TimeAccountManagerContract object to the value of the ability
+                TimeAccountManagerContract.objects.filter(
+                    contract__employee=employee,
+                    contract__customer=customer,
+                ).update(can_create_time_accounts=True)
+        if ability == "can_delete_time_accounts":
+            if TimeAccountManagerContract.objects.filter(
+                contract__employee=employee_creating_contract,
+                contract__customer=customer,
+                can_delete_time_accounts=True,
+            ).exists():
+                # Set the ability for the TimeAccountManagerContract object to the value of the ability
+                TimeAccountManagerContract.objects.filter(
+                    contract__employee=employee,
+                    contract__customer=customer,
+                ).update(can_delete_time_accounts=True)
+        if ability == "can_give_manager_role":
+            if TimeAccountManagerContract.objects.filter(
+                contract__employee=employee_creating_contract,
+                contract__customer=customer,
+                can_give_manager_role=True,
+            ).exists():
+                # Set the ability for the CustomerProgramExecutionManager object to the value of the ability
+                TimeAccountManagerContract.objects.filter(
+                    contract__employee=employee,
+                    contract__customer=customer,
+                ).update(can_give_manager_role=True)
+    return TimeAccountManagerContract.objects.get(
+        contract__employee=employee, contract__customer=customer
+    )
+
+
 # Checks if a user exists for the given user code
 def check__user__exists__for__user_code(user_code) -> bool:
     return User.objects.filter(user_code=user_code).exists()
@@ -209,21 +311,33 @@ def create__employee__for__user_code(user_code) -> Employee | None:
     return None
 
 
-def check__employee_contract__exists__for__employee__and__customer_id(
-    employee, cutomer_id
+def check__employee_contract__exists__for__employee__and__customer(
+    employee, cutomer
 ) -> bool:
-    return EmployeeContract.objects.filter(
-        employee=employee, customer__id=cutomer_id
-    ).exists()
+    return EmployeeContract.objects.filter(employee=employee, customer=cutomer).exists()
 
 
-def create__employee_contract__between__employee_and__customer_id(
-    employee, customer_id
+def create__employee_contract__for__employee_and__customer(
+    employee, customer
 ) -> EmployeeContract:
     return EmployeeContract.objects.create(
         employee=employee,
-        customer=Customer.objects.get(id=customer_id),
+        customer=customer,
     )
+
+
+# Returns the customer for the given customer id, the check if the customer exists is not done here and should be done before
+def get__customer__for__customer_id(customer_id) -> Customer:
+    return Customer.objects.get(id=customer_id)
+
+
+# checks if a TimeAccountManagerContract exists for the given employee
+def check__time_account_manager_contract__exists__for__employee_and_customer(
+    employee, customer
+) -> bool:
+    return TimeAccountManagerContract.objects.filter(
+        contract__employee=employee, contract__customer=customer
+    ).exists()
 
 
 # Returns the employee for the given user code
@@ -265,10 +379,10 @@ def get__employee_contract__for__employee__and__customer_id(
 ) -> EmployeeContract:
 
     # Check if the employee has a contract with the customer
-    if not check__employee_contract__exists__for__employee__and__customer_id(
+    if not check__employee_contract__exists__for__employee__and__customer(
         employee, customer_id
     ):
-        return create__employee_contract__between__employee_and__customer_id(
+        return create__employee_contract__for__employee_and__customer(
             employee, customer_id
         )
     else:
@@ -650,16 +764,20 @@ def get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_
         list_of_customer_time_accounts
     )
 
+
 def set__all_active_NadooitApiKey__for__user_to_inactive(user: User) -> None:
     # Get all the active NadooitApiKey of the user
-    list_of_active_NadooitApiKey = get__list_of_all_NadooitApiKey__for__user(user, is_active= True)
+    list_of_active_NadooitApiKey = get__list_of_all_NadooitApiKey__for__user(
+        user, is_active=True
+    )
 
     # Set all the active NadooitApiKey to inactive
     for active_NadooitApiKey in list_of_active_NadooitApiKey:
         active_NadooitApiKey.is_active = False
-        active_NadooitApiKey.save()	
+        active_NadooitApiKey.save()
 
-def get__list_of_all_NadooitApiKey__for__user(user: User, is_active = True) -> QuerySet:
+
+def get__list_of_all_NadooitApiKey__for__user(user: User, is_active=True) -> QuerySet:
     return NadooitApiKey.objects.filter(user=user, is_active=is_active)
 
 

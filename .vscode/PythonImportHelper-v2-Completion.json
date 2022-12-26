@@ -5509,7 +5509,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__employee__exists__for__user_code(user_code) -> bool:\n    return Employee.objects.filter(user__user_code=user_code).exists()\n# Creates and returns a new employee  for the given user code\ndef create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer_id(",
+        "peekOfCode": "def check__employee__exists__for__user_code(user_code) -> bool:\n    return Employee.objects.filter(user__user_code=user_code).exists()\n# Creates and returns a new employee  for the given user code\ndef create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5518,25 +5518,25 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer_id(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(",
+        "peekOfCode": "def create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "check__employee_contract__exists__for__employee__and__customer_id",
+        "label": "check__employee_contract__exists__for__employee__and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__employee_contract__exists__for__employee__and__customer_id(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(\n        employee=employee, customer__id=cutomer_id\n    ).exists()\ndef create__employee_contract__between__employee_and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(",
+        "peekOfCode": "def check__employee_contract__exists__for__employee__and__customer(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(\n        employee=employee, customer__id=cutomer_id\n    ).exists()\ndef create__employee_contract__for__employee_and__customer(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "create__employee_contract__between__employee_and__customer_id",
+        "label": "create__employee_contract__for__employee_and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def create__employee_contract__between__employee_and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(\n        employee=employee,\n        customer=Customer.objects.get(id=customer_id),\n    )\n# Returns the employee for the given user code\ndef get__employee__for__user_code(user_code) -> Employee:\n    employee = None",
+        "peekOfCode": "def create__employee_contract__for__employee_and__customer(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(\n        employee=employee,\n        customer=Customer.objects.get(id=customer_id),\n    )\n# Returns the employee for the given user code\ndef get__employee__for__user_code(user_code) -> Employee:\n    employee = None",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5572,7 +5572,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee_contract__for__employee__and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    # Check if the employee has a contract with the customer\n    if not check__employee_contract__exists__for__employee__and__customer_id(\n        employee, customer_id\n    ):\n        return create__employee_contract__between__employee_and__customer_id(\n            employee, customer_id\n        )",
+        "peekOfCode": "def get__employee_contract__for__employee__and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    # Check if the employee has a contract with the customer\n    if not check__employee_contract__exists__for__employee__and__customer(\n        employee, customer_id\n    ):\n        return create__employee_contract__for__employee_and__customer(\n            employee, customer_id\n        )",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
