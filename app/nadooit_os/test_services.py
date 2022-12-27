@@ -2,6 +2,10 @@ from datetime import datetime
 import model_bakery
 import pytest
 from nadooit_os.services import (
+    get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
+)
+from nadooit_hr.models import CustomerProgramExecutionManagerContract, Employee
+from nadooit_os.services import (
     get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
 )
 from nadooit_hr.models import TimeAccountManagerContract
@@ -678,8 +682,66 @@ def test_get__list_of_customers__for__employee_that_has_a_time_account_manager_c
     )
 
 
+@pytest.mark.django_db
 def test_get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer():
     # Arrange
+
+    # Create a customer, a program and 10 program executions for the customer
+    customer = baker.make(Customer)
+    program = baker.make(Program)
+    customer_program = baker.make(CustomerProgram, customer=customer, program=program)
+    for i in range(10):
+        baker.make(
+            CustomerProgramExecution,
+            customer_program=customer_program,
+        )
+
+    # Create a second customer, a program and 10 program executions for the customer
+
+    customer_2 = baker.make(Customer)
+    program_2 = baker.make(Program)
+    customer_program_2 = baker.make(
+        CustomerProgram, customer=customer_2, program=program_2
+    )
+    for i in range(10):
+        baker.make(
+            CustomerProgramExecution,
+            customer_program=customer_program_2,
+        )
+
+    # Create a user and an employee for the user, and a customer program execution mangager contract for the employee and the customer
+
+    user = baker.make(User)
+    employee = baker.make(Employee, user=user)
+    baker.make(
+        CustomerProgramExecutionManagerContract,
+        contract__employee=employee,
+        contract__customer=customer,
+    )
+    baker.make(
+        CustomerProgramExecutionManagerContract,
+        contract__employee=employee,
+        contract__customer=customer_2,
+        
+    )
+
     # Act
+
+    list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer = get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
+        employee
+    )
+
+    print(
+        "list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer"
+    )
+    print(
+        list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer
+    )
+
     # Assert
-    assert True
+    assert (
+        len(
+            list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer
+        )
+        == 2
+    )

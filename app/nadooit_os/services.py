@@ -7,9 +7,7 @@ import uuid
 from django.http import HttpResponseRedirect
 
 from django.utils import timezone
-from nadooit_time_account.models import (
-    get_time_as_string_in_hour_format_for_time_in_seconds_as_integer,
-)
+from nadooit_hr.models import CustomerProgramExecutionManagerContract
 from nadooit_time_account.models import CustomerTimeAccount
 from nadooit_hr.models import TimeAccountManagerContract
 from nadooit_time_account.models import TimeAccount
@@ -237,11 +235,11 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
     )
 
 
-def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager_and_can_create_customer_program_manager_contracts(
+def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
     employee,
 ):
-    return CustomerProgramManagerContract.objects.filter(
-        contract__employee=employee, can_give_manager_role=True
+    return CustomerProgramExecutionManagerContract.objects.filter(
+        contract__employee=employee
     ).distinct("contract__customer")
 
 
@@ -249,16 +247,24 @@ def get__list_of_customer_program_execution__for__employee_and_filter_type__grou
     employee: Employee, filter_type: str = "last20"
 ) -> list:
 
-    customers_the_employee_is_responsible_for_and_the_customer_program_executions = []
+    print("employee", employee)
+    print("filter_type", filter_type)
 
-    list_of_customer_program_manger_contract_for_logged_in_user = get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager_and_can_create_customer_program_manager_contracts(
+    list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer = (
+        []
+    )
+
+    list_of_customer_program_manger_contract_for_logged_in_user = get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
         employee
+    )
+
+    print(
+        "list_of_customer_program_manger_contract_for_logged_in_user",
+        list_of_customer_program_manger_contract_for_logged_in_user,
     )
 
     # Get the executions depending on the filter type
     customer_program_executions = []
-
-    filter_type = "last20"
 
     # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
@@ -273,19 +279,25 @@ def get__list_of_customer_program_execution__for__employee_and_filter_type__grou
             .reverse()[:20]
         )
         """
-        customer_program_executions = (
-            get__customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, contract.contract.customer.id
-            )[:20]
-        )
+
+        if filter_type == "last20":
+
+            customer_program_executions = (
+                get__customer_program_executions__for__filter_type_and_cutomer_id(
+                    filter_type, contract.contract.customer.id
+                )[:20]
+            )
+
+        else:
+            customer_program_executions = (
+                get__customer_program_executions__for__filter_type_and_cutomer_id(
+                    filter_type, contract.contract.customer.id
+                )
+            )
 
         # add the customer and the customer programm execution to the list
-        customers_the_employee_is_responsible_for_and_the_customer_program_executions.append(
+        list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer.append(
             [contract.contract.customer, customer_program_executions]
-        )
-
-        list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer = get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
-            employee, filter_type
         )
 
     return list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer

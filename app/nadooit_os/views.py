@@ -2,17 +2,17 @@ import csv
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
     HttpRequest,
+    HttpResponseForbidden,
     HttpResponseRedirect,
+    HttpResponse,
 )
+from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
 from nadooit_os.services import (
     get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
 )
 from nadooit_os.services import (
     get__customer_program_executions__for__filter_type_and_cutomer_id,
-)
-from nadooit_os.services import (
-    get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager_and_can_create_customer_program_manager_contracts,
 )
 from nadooit_os.services import (
     get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
