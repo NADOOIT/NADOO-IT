@@ -143,6 +143,83 @@ def employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time
     )
     return employee
 
+@pytest.fixture()
+def customer_program_executions():
+    
+    test_customer = baker.make(Customer, name="Test Customer")
+    
+    customer_program = CustomerProgram.objects.create(
+        customer = test_customer,
+        program=Program.objects.create(
+            name="test",
+            description="test",
+        ),
+    )
+        
+    list_of_executions_this_year = []
+    list_of_executions_this_month = []
+    list_of_executions_today = []
+    list_of_executions_last_month = []
+    list_of_the_last_20_executions = []
+
+    # Create a random datetime for the past month
+    import pytz
+
+    utc = pytz.utc
+    now_but_a_month_ago = utc.localize(
+        datetime.utcnow().replace(month=datetime.utcnow().month - 1)
+    )
+
+    # Create a couple lines of empty space for readability
+    print("	")
+    print("	")
+    print("	")
+
+    # Print the date for the past month
+    print("The date for the past month is: ")
+    print(now_but_a_month_ago)
+    # Create 5 customer program executions for the customer program for last month
+    for i in range(5):
+
+        new_exectuion: CustomerProgramExecution = baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
+        )
+        new_exectuion.created_at = now_but_a_month_ago
+        new_exectuion.save()
+
+        list_of_executions_last_month.append(new_exectuion)
+        list_of_the_last_20_executions.append(new_exectuion)
+        if new_exectuion.created_at.year == datetime.now().year:
+            list_of_executions_this_year.append(new_exectuion)
+    print("	")
+    print(len(list_of_the_last_20_executions))
+    # customer program executions for today
+    for i in range(15):
+
+        new_exectuion = baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
+        )
+
+        list_of_executions_today.append(new_exectuion)
+        list_of_the_last_20_executions.append(new_exectuion)
+        list_of_executions_this_month.append(new_exectuion)
+        list_of_executions_this_year.append(new_exectuion)
+
+    print("    ")
+    print(len(list_of_the_last_20_executions))
+    print("	")
+        
+    #return an dict with the above lists as attributes
+    return dict(
+        customer_id = test_customer.customer.id,	
+        list_of_executions_today=list_of_executions_today,	
+        list_of_the_last_20_executions=list_of_the_last_20_executions,		
+        list_of_executions_this_month=list_of_executions_this_month,			
+        list_of_executions_this_year=list_of_executions_this_year,		
+    )	
+        
 
 @pytest.fixture()
 def list_of_TimeAccountMangerContracts__with_CustomerTimeAccounts():
@@ -599,3 +676,11 @@ def test_get__list_of_customers__for__employee_that_has_a_time_account_manager_c
         )
         == 1
     )
+
+def test_get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer():
+    # Arrange
+    
+    
+    # Act
+    list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer = get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
+        employee_with_active_TimeAccountManager

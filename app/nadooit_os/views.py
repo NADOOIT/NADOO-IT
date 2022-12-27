@@ -2,16 +2,20 @@ import csv
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
     HttpRequest,
-    HttpResponse,
-    HttpResponseForbidden,
     HttpResponseRedirect,
 )
 from django.shortcuts import render
-from django.utils import timezone
-from django.views.decorators.http import require_POST, require_GET
+from nadooit_os.services import (
+    get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
+)
+from nadooit_os.services import (
+    get__customer_program_executions__for__filter_type_and_cutomer_id,
+)
+from nadooit_os.services import (
+    get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager_and_can_create_customer_program_manager_contracts,
+)
 from nadooit_os.services import (
     get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
-    get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts,
 )
 from nadooit_os.services import get__customer__for__customer_id
 from nadooit_os.services import set__all_active_NadooitApiKey__for__user_to_inactive
@@ -20,62 +24,20 @@ from nadooit_os.services import (
     get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
 )
 
-from nadoo_complaint_management.models import Complaint
-from nadooit_api_executions_system.models import CustomerProgramExecution
-from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
-from nadooit_crm.models import Customer
 
 # Manager Roles
 from nadooit_hr.models import (
     CustomerProgramExecutionManagerContract,
     CustomerProgramManagerContract,
     Employee,
-    EmployeeContract,
     EmployeeManagerContract,
     TimeAccountManagerContract,
 )
 from nadooit_os.services import (
-    get__employee_contract__for__employee__and__customer_id,
-    get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections,
-    get__employee_contract__for__employee_contract_id,
-    get__employee__for__user_code,
-    get__employee_manager_contract__for__employee_contract,
-    set__employee_contract__is_active_state__for__employee_contract_id,
-    set_employee_contract__as_inactive__for__employee_contract_id,
     check__user__exists__for__user_code,
-    check__employee_manager_contract__exists__for__employee_contract,
     check__employee_manager_contract__for__user__can_deactivate__employee_contracts,
     check__employee_manager_contract__for__user__can_give_manager_role,
-    check__more_then_one_contract_between__user_code__and__customer_id,
-    get__employee_manager_contract__for__user_code__and__customer_id,
-    check__customer__exists__for__customer_id,
-    get__employee_contract__for__user_code__and__customer_id,
-    get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
-    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
-    get__next_price_level__for__customer_program,
-    get__sum_of_price_for_execution__for__list_of_customer_program_exections,
-    get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
-    get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
-    get__customer_program_executions__for__filter_type_and_cutomer_id,
-    get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
-    get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
-    get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user,
-    get__customer_program__for__customer_program_id,
-    check__customer_program__for__customer_program_id__exists,
-    check__user__is__customer_program_manager__for__customer_prgram,
-)
-
-# model imports
-from nadooit_program_ownership_system.models import CustomerProgram
-from nadooit_os.services import (
-    check__time_account_manager_contract__exists__for__employee_and_customer,
-    check__employee__exists__for__user_code,
-    create__employee__for__user_code,
-)
-from nadooit_os.services import (
-    check__employee_contract__exists__for__employee__and__customer,
-    create__employee_contract__for__employee_and__customer,
     create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
 )
 from .forms import ApiKeyForm
@@ -518,42 +480,15 @@ def customer_program_execution_overview(request: HttpRequest):
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
-    customers_the_employee_is_responsible_for_and_the_customer_program_executions = []
-
-    list_of_customer_program_manger_contract_for_logged_in_user = (
-        CustomerProgramExecutionManagerContract.objects.filter(
-            contract__employee=request.user.employee, can_give_manager_role=True
-        ).distinct("contract__customer")
+    list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer = (
+        []
     )
-
-    # Get the executions depending on the filter type
-    customer_program_executions = []
 
     filter_type = "last20"
 
-    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
-    for contract in list_of_customer_program_manger_contract_for_logged_in_user:
-
-        # list of customer programms with of the customer
-        """
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer=contract.contract.customer
-            )
-            .order_by("created_at")
-            .reverse()[:20]
-        )
-        """
-        customer_program_executions = (
-            get__customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, contract.contract.customer.id
-            )[:20]
-        )
-
-        # add the customer and the customer programm execution to the list
-        customers_the_employee_is_responsible_for_and_the_customer_program_executions.append(
-            [contract.contract.customer, customer_program_executions]
-        )
+    list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer = get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
+        request.user.employee, filter_type=filter_type
+    )
 
     return render(
         request,
@@ -561,7 +496,7 @@ def customer_program_execution_overview(request: HttpRequest):
         {
             "page_title": "Übersicht der Buchungen",
             "filter_type": filter_type,
-            "customers_the_user_is_responsible_for_and_the_customer_programm_executions": customers_the_employee_is_responsible_for_and_the_customer_program_executions,
+            "customers_the_user_is_responsible_for_and_the_customer_programm_executions": list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
             **get__user__roles_and_rights__for__http_request(request),
         },
     )
