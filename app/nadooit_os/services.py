@@ -236,11 +236,22 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
 
 
 def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
-    employee,
+    employee, contract_state = "active"
 ):
-    return CustomerProgramExecutionManagerContract.objects.filter(
-        contract__employee=employee
-    ).distinct("contract__customer")
+    
+    if contract_state == "active":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee, contract__is_active = True
+        ).distinct("contract__customer")
+    elif contract_state == "inactive":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee, contract__is_active = False
+        ).distinct("contract__customer")	
+    elif contract_state == "all":	
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee
+        ).distinct("contract__customer")	
+
 
 
 def get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
