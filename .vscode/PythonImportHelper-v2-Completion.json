@@ -3170,7 +3170,7 @@
         "documentation": {}
     },
     {
-        "label": "get__customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__customer_program_executions__for__filter_type_and_customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3178,7 +3178,7 @@
         "documentation": {}
     },
     {
-        "label": "get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__not_paid_customer_program_executions__for__filter_type_and_customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5397,20 +5397,20 @@
         "documentation": {}
     },
     {
-        "label": "get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__not_paid_customer_program_executions__for__filter_type_and_customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):\n    customer_program_executions = (\n        get__customer_program_executions__for__filter_type_and_cutomer_id(\n            filter_type, cutomer_id\n        ).filter(payment_status=\"NOT_PAID\")\n    )\n    return customer_program_executions\ndef get__customer_program_executions__for__filter_type_and_cutomer_id(",
+        "peekOfCode": "def get__not_paid_customer_program_executions__for__filter_type_and_customer(\n    filter_type, cutomer_id\n):\n    customer_program_executions = (\n        get__customer_program_executions__for__filter_type_and_customer(\n            filter_type, cutomer_id\n        ).filter(payment_status=\"NOT_PAID\")\n    )\n    return customer_program_executions\ndef get__customer_program_executions__for__filter_type_and_customer(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__customer_program_executions__for__filter_type_and_customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):\n    from datetime import date\n    todays_date = date.today()\n    if filter_type == \"last20\":\n        customer_program_executions = (\n            CustomerProgramExecution.objects.filter(\n                customer_program__customer__id=cutomer_id\n            )",
+        "peekOfCode": "def get__customer_program_executions__for__filter_type_and_customer(\n    filter_type, cutomer_id\n):\n    from datetime import date\n    todays_date = date.today()\n    if filter_type == \"last20\":\n        customer_program_executions = (\n            CustomerProgramExecution.objects.filter(\n                customer_program__customer__id=cutomer_id\n            )",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -6202,7 +6202,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(\n            filter_type, cutomer_id\n        )\n    )\n    response = HttpResponse(content_type=\"text/csv\")\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    writer = csv.writer(response)\n    # write the header",
+        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_customer(\n            filter_type, cutomer_id\n        )\n    )\n    response = HttpResponse(content_type=\"text/csv\")\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    writer = csv.writer(response)\n    # write the header",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

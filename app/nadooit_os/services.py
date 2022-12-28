@@ -26,19 +26,19 @@ from datetime import datetime
 from django.db.models import QuerySet
 
 
-def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-    filter_type, cutomer_id
+def get__not_paid_customer_program_executions__for__filter_type_and_customer(
+    filter_type, customer
 ):
     customer_program_executions = (
-        get__customer_program_executions__for__filter_type_and_cutomer_id(
-            filter_type, cutomer_id
+        get__customer_program_executions__for__filter_type_and_customer(
+            filter_type, customer
         ).filter(payment_status="NOT_PAID")
     )
     return customer_program_executions
 
 
-def get__customer_program_executions__for__filter_type_and_cutomer_id(
-    filter_type, cutomer_id
+def get__customer_program_executions__for__filter_type_and_customer(
+    filter_type, customer
 ):
     from datetime import date
 
@@ -51,7 +51,7 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
 
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id,
+                customer_program__customer=customer,
                 created_at__month=todays_date.month - 1,
             )
             .order_by("created_at")
@@ -60,23 +60,21 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
     elif filter_type == "today":
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id, created_at__date=todays_date
+                customer_program__customer=customer, created_at__date=todays_date
             )
             .order_by("created_at")
             .reverse()
         )
     elif filter_type == "last20":
         customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id
-            )
+            CustomerProgramExecution.objects.filter(customer_program__customer=customer)
             .order_by("created_at")
             .reverse()
         )
     elif filter_type == "thismonth":
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id,
+                customer_program__customer=customer,
                 created_at__month=todays_date.month,
             )
             .order_by("created_at")
@@ -85,7 +83,7 @@ def get__customer_program_executions__for__filter_type_and_cutomer_id(
     elif filter_type == "thisyear":
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
-                customer_program__customer__id=cutomer_id,
+                customer_program__customer=customer,
                 created_at__year=todays_date.year,
             )
             .order_by("created_at")
@@ -156,6 +154,16 @@ def get__list_of_customers__for__employee_that_has_a_time_account_manager_contra
         )
 
     return list_of_customers_the_manager_is_responsible_for
+
+
+def check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+    employee, customer
+):
+    return CustomerProgramExecutionManagerContract.objects.filter(
+        contract__employee=employee,
+        contract__is_active=True,
+        contract__customer=customer,
+    ).exists()
 
 
 def get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(
@@ -236,22 +244,21 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
 
 
 def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
-    employee, contract_state = "active"
+    employee, contract_state="active"
 ):
-    
+
     if contract_state == "active":
         return CustomerProgramManagerContract.objects.filter(
-            contract__employee=employee, contract__is_active = True
+            contract__employee=employee, contract__is_active=True
         ).distinct("contract__customer")
     elif contract_state == "inactive":
         return CustomerProgramManagerContract.objects.filter(
-            contract__employee=employee, contract__is_active = False
-        ).distinct("contract__customer")	
-    elif contract_state == "all":	
+            contract__employee=employee, contract__is_active=False
+        ).distinct("contract__customer")
+    elif contract_state == "all":
         return CustomerProgramManagerContract.objects.filter(
             contract__employee=employee
-        ).distinct("contract__customer")	
-
+        ).distinct("contract__customer")
 
 
 def get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
@@ -294,14 +301,14 @@ def get__list_of_customer_program_execution__for__employee_and_filter_type__grou
         if filter_type == "last20":
 
             customer_program_executions = (
-                get__customer_program_executions__for__filter_type_and_cutomer_id(
+                get__customer_program_executions__for__filter_type_and_customer(
                     filter_type, contract.contract.customer.id
                 )[:20]
             )
 
         else:
             customer_program_executions = (
-                get__customer_program_executions__for__filter_type_and_cutomer_id(
+                get__customer_program_executions__for__filter_type_and_customer(
                     filter_type, contract.contract.customer.id
                 )
             )

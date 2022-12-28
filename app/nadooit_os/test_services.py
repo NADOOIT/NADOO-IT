@@ -28,7 +28,7 @@ from nadooit_os.services import get__active_TimeAccountManagerContracts__for__em
 from nadooit_os.services import (
     get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
     get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
-    get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id,
+    get__not_paid_customer_program_executions__for__filter_type_and_customer,
     check__customer_program__for__customer_program_id__exists,
 )
 from nadooit_api_executions_system.models import CustomerProgramExecution
@@ -268,7 +268,7 @@ def customer_program():
 
 
 @pytest.mark.django_db
-def test_get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
+def test_get__not_paid_customer_program_executions__for__filter_type_and_customer(
     customer_program: CustomerProgram,
 ):
     # Arrange
@@ -340,40 +340,40 @@ def test_get__not_paid_customer_program_executions__for__filter_type_and_cutomer
     filter_type = "lastmonth"
     assert len(
         list(
-            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, customer_program.customer.id
+            get__not_paid_customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
             )
         )
     ) == len(list_of_executions_last_month)
     filter_type = "today"
     assert len(
         list(
-            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, customer_program.customer.id
+            get__not_paid_customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
             )
         )
     ) == len(list_of_executions_today)
     filter_type = "thismonth"
     assert len(
         list(
-            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, customer_program.customer.id
+            get__not_paid_customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
             )
         )
     ) == len(list_of_executions_this_month)
     filter_type = "thisyear"
     assert len(
         list(
-            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, customer_program.customer.id
+            get__not_paid_customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
             )
         )
     ) == len(list_of_executions_this_year)
     filter_type = "last20"
     assert len(
         list(
-            get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(
-                filter_type, customer_program.customer.id
+            get__not_paid_customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
             )[:20]
         )
     ) == len(list_of_the_last_20_executions)
@@ -722,7 +722,6 @@ def test_get__list_of_customer_program_execution__for__employee_and_filter_type_
         CustomerProgramExecutionManagerContract,
         contract__employee=employee,
         contract__customer=customer_2,
-        
     )
 
     # Act
