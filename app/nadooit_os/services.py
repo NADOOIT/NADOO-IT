@@ -1,6 +1,7 @@
 import decimal
 from decimal import Decimal
 import math
+import re
 from typing import List, Union
 import hashlib
 import uuid
@@ -243,8 +244,25 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
     )
 
 
+def get__list_of_customer_program_execution_manager_contracts__for__employee__where__employee_is_customer_program_execution_manager(
+    employee: Employee, contract_state="active"
+):
+    if contract_state == "active":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee, contract__is_active=True
+        ).distinct("contract__customer")
+    elif contract_state == "inactive":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee, contract__is_active=False
+        ).distinct("contract__customer")
+    elif contract_state == "all":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee
+        ).distinct("contract__customer")
+
+
 def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
-    employee, contract_state="active"
+    employee: Employee, contract_state="active"
 ):
 
     if contract_state == "active":
@@ -272,20 +290,19 @@ def get__list_of_customer_program_execution__for__employee_and_filter_type__grou
         []
     )
 
-    list_of_customer_program_manger_contract_for_logged_in_user = get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
+    list_of_customer_program_execution_manager_contracts__for__employee = get__list_of_customer_program_execution_manager_contracts__for__employee__where__employee_is_customer_program_execution_manager(
         employee
     )
-
     print(
         "list_of_customer_program_manger_contract_for_logged_in_user",
-        list_of_customer_program_manger_contract_for_logged_in_user,
+        list_of_customer_program_execution_manager_contracts__for__employee,
     )
 
     # Get the executions depending on the filter type
     customer_program_executions = []
 
-    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
-    for contract in list_of_customer_program_manger_contract_for_logged_in_user:
+    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_execution_manager_contracts__for__employee
+    for contract in list_of_customer_program_execution_manager_contracts__for__employee:
 
         # list of customer programms with of the customer
         """
@@ -302,14 +319,14 @@ def get__list_of_customer_program_execution__for__employee_and_filter_type__grou
 
             customer_program_executions = (
                 get__customer_program_executions__for__filter_type_and_customer(
-                    filter_type, contract.contract.customer.id
+                    filter_type, contract.contract.customer
                 )[:20]
             )
 
         else:
             customer_program_executions = (
                 get__customer_program_executions__for__filter_type_and_customer(
-                    filter_type, contract.contract.customer.id
+                    filter_type, contract.contract.customer
                 )
             )
 
@@ -411,8 +428,12 @@ def create__employee_contract__for__employee_and__customer(
 
 
 # Returns the customer for the given customer id, the check if the customer exists is not done here and should be done before
-def get__customer__for__customer_id(customer_id) -> Customer:
-    return Customer.objects.get(id=customer_id)
+def get__customer__for__customer_id(customer_id) -> Customer | None:
+
+    try:
+        return Customer.objects.get(id=customer_id)
+    except:
+        return None
 
 
 # checks if a TimeAccountManagerContract exists for the given employee

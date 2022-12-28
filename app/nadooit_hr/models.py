@@ -95,6 +95,8 @@ class CustomerProgramManagerContract(models.Model):
 
 class CustomerProgramExecutionManagerContract(models.Model):
 
+    # TODO rename from single to plural
+
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # If true the customer can create customer program executions

@@ -2,6 +2,11 @@ from datetime import datetime
 import model_bakery
 import pytest
 from nadooit_os.services import (
+    check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer,
+)
+from nadooit_os.services import get__customer__for__customer_id
+from nadooit_os.services import check__customer__exists__for__customer_id
+from nadooit_os.services import (
     get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
 )
 from nadooit_hr.models import CustomerProgramExecutionManagerContract, Employee
@@ -64,6 +69,20 @@ def employee_with_active_TimeAccountManagerContract():
         can_give_manager_role=True,
         can_delete_time_accounts=True,
         can_create_time_accounts=True,
+    )
+    return employee
+
+
+@pytest.fixture()
+def employee_with_active_CustomerProgramExecutionManagerContract():
+    employee = baker.make("nadooit_hr.Employee")
+    employeecontract = baker.make("nadooit_hr.EmployeeContract", employee=employee)
+    baker.make(
+        "nadooit_hr.CustomerProgramExecutionManagerContract",
+        contract=employeecontract,
+        can_give_manager_role=True,
+        can_delete_customer_program_execution=True,
+        can_create_customer_program_execution=True,
     )
     return employee
 
@@ -743,4 +762,52 @@ def test_get__list_of_customer_program_execution__for__employee_and_filter_type_
             list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer
         )
         == 2
+    )
+
+
+@pytest.mark.django_db
+def test_check__customer__exists__for__customer_id(customer):
+    # Arrange
+    fake_customer_id = 999
+    # Act
+    # Assert
+    assert check__customer__exists__for__customer_id(customer_id=customer.id) == True
+    assert (
+        check__customer__exists__for__customer_id(customer_id=fake_customer_id) == False
+    )
+
+
+@pytest.mark.django_db
+def test_get__customer__for__customer_id(customer):
+    # Arrange
+    fake_customer_id = 999
+    # Act
+    # Assert
+    assert get__customer__for__customer_id(customer_id=customer.id) == customer
+    assert get__customer__for__customer_id(customer_id=fake_customer_id) == None
+
+
+@pytest.mark.django_db
+def test_check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+    employee_with_active_CustomerProgramExecutionManagerContract,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+            employee_with_active_CustomerProgramExecutionManagerContract,
+            CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee_with_active_CustomerProgramExecutionManagerContract
+            )
+            .first()
+            .contract.customer,
+        )
+    ) == True
+    assert (
+        check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+            employee_with_active_CustomerProgramExecutionManagerContract,
+            baker.make(Customer),
+        )
+        == False
     )

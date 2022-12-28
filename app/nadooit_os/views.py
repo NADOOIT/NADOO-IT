@@ -9,7 +9,10 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
-from nadooit_os.services import check__customer__exists__for__customer_id, get__not_paid_customer_program_executions__for__filter_type_and_customer
+from nadooit_os.services import (
+    check__customer__exists__for__customer_id,
+    get__not_paid_customer_program_executions__for__filter_type_and_customer,
+)
 from nadooit_os.services import (
     get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
 )
@@ -451,14 +454,14 @@ def give_customer_time_account_manager_role(request: HttpRequest):
                 "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True&error=Kein gültiger Kunde eingegeben"
             )
 
-        customer = get__customer__for__customer_id(request.POST.get("customers"))
-        list_of_abilities = request.POST.getlist("role")
-        employee_creating_contract = request.user.employee
-
         if not check__user__exists__for__user_code(user_code):
             return HttpResponseRedirect(
                 "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
             )
+
+        customer = get__customer__for__customer_id(request.POST.get("customers"))
+        list_of_abilities = request.POST.getlist("role")
+        employee_creating_contract = request.user.employee
 
         if (
             create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
@@ -1257,7 +1260,7 @@ def activate_contract(request: HttpRequest, employee_contract_id: str):
 @login_required(login_url="/auth/login-user")
 def export_transactions(request: HttpRequest, filter_type, cutomer_id):
 
-    if not check__customer__exists__for__customer_id(cutomer_id)
+    if not check__customer__exists__for__customer_id(cutomer_id):
         return HttpResponseNotFound("Customer not found")
 
     cutomer = get__customer__for__customer_id(cutomer_id)
