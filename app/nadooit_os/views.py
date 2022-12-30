@@ -10,6 +10,14 @@ from django.http import (
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
 from nadooit_os.services import (
+    get__customer_program_execution__for__customer_program_execution_id,
+)
+from nadooit_os.services import (
+    check__customer_program_execution__exists__for__customer_program_execution_id,
+)
+from nadooit_os.services import get__customer__for__customer_program_execution_id
+from nadooit_api_executions_system.models import CustomerProgramExecution
+from nadooit_os.services import (
     check__customer__exists__for__customer_id,
     get__not_paid_customer_program_executions__for__filter_type_and_customer,
 )
@@ -536,13 +544,17 @@ def customer_program_execution_overview(request: HttpRequest):
 def customer_program_execution_list_for_cutomer(
     request: HttpRequest, filter_type, cutomer_id
 ):
+    # covered by test
     if not check__customer__exists__for__customer_id(cutomer_id):
         return HttpResponseForbidden()
+
     # Get the customer
+    # covered by test
     customer = get__customer__for__customer_id(cutomer_id)
 
     # Check if the user is a customer program execution manager for the customer
     if (
+        # covered by test
         check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
             employee=request.user.employee, customer=customer
         )
@@ -552,6 +564,7 @@ def customer_program_execution_list_for_cutomer(
 
     # Get the executions depending on the filter type
     customer_program_executions = (
+        # covered by test
         get__customer_program_executions__for__filter_type_and_customer(
             filter_type, cutomer_id
         )
@@ -561,22 +574,26 @@ def customer_program_execution_list_for_cutomer(
         customer_program_executions = customer_program_executions[:20]
 
     total_time_saved_in_seconds = (
+        # covered by test
         get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
             customer_program_executions
         )
     )
     total_price_for_execution_decimal = (
+        # covered by test
         get__sum_of_price_for_execution__for__list_of_customer_program_exections(
             customer_program_executions
         )
     )
     total_time_saved = (
+        # covered by test
         get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(
             total_time_saved_in_seconds
         )
     )
     # print("total_price_for_execution_decimal", total_price_for_execution_decimal)
     total_price_for_execution = (
+        # covered by test
         get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
             total_price_for_execution_decimal
         )
@@ -603,19 +620,31 @@ def customer_program_execution_list_for_cutomer(
 def customer_program_execution_list_complaint_modal(
     request: HttpRequest, customer_program_execution_id
 ):
-    # Check that the user is a a customer program execution manager for the customer that the customer program execution belongs to
-    if not CustomerProgramExecutionManagerContract.objects.filter(
-        contract__employee=request.user.employee,
-        contract__is_active=True,
-        contract__customer=CustomerProgramExecution.objects.get(
-            id=customer_program_execution_id
-        ).customer_program.customer,
-    ).exists():
+
+    # check if the customer program execution exists
+    # covered by test
+    if not check__customer_program_execution__exists__for__customer_program_execution_id(
+        customer_program_execution_id
+    ):
         return HttpResponseForbidden()
 
-    # Get the executions depending on the filter type
-    customer_program_execution = CustomerProgramExecution.objects.get(
-        id=customer_program_execution_id
+    customer = get__customer__for__customer_program_execution_id(
+        customer_program_execution_id
+    )
+
+    # Check if the user is a customer program execution manager for the customer
+    # covered by test
+    if not check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+        employee=request.user.employee, customer=customer
+    ):
+        return HttpResponseForbidden()
+
+    # Get the customer program execution
+    # covered by test
+    customer_program_execution = (
+        get__customer_program_execution__for__customer_program_execution_id(
+            customer_program_execution_id
+        )
     )
 
     return render(

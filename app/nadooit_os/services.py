@@ -25,6 +25,7 @@ from nadooit_hr.models import EmployeeContract
 from nadooit_auth.models import User
 from datetime import datetime
 from django.db.models import QuerySet
+from app.nadooit_os.views import customer_program_execution_overview
 
 
 def get__not_paid_customer_program_executions__for__filter_type_and_customer(
@@ -40,7 +41,7 @@ def get__not_paid_customer_program_executions__for__filter_type_and_customer(
 
 def get__customer_program_executions__for__filter_type_and_customer(
     filter_type, customer
-):
+) -> QuerySet:
     from datetime import date
 
     todays_date = date.today()
@@ -105,6 +106,10 @@ def get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(price) ->
 
     if price_as_string.endswith(",0"):
         price_as_string = price_as_string[:-1]
+
+    # Also add a . so the format becomes 111.111,00 €
+
+    price_as_string = re.sub(r"(\d)(?=(\d{3})+(?!\d))", r"\1.", price_as_string)
 
     return f"{price_as_string} €"
 
@@ -795,7 +800,7 @@ def get__new_price_per_second__for__customer_program(
 
 
 def get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
-    list_of_customer_program_executions,
+    list_of_customer_program_executions: QuerySet,
 ) -> int:
     from django.db.models import Sum
 
@@ -1139,3 +1144,33 @@ def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:
 
 def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:
     return nadooit_api_key.user.user_code
+
+
+def get__customer__for__customer_program_execution_id(
+    customer_program_execution_id,
+) -> Customer | None:
+
+    customer_program_execution = CustomerProgramExecution.objects.filter(
+        id=customer_program_execution_id
+    ).first()
+
+    if customer_program_execution:
+        return customer_program_execution.customer_program.customer
+    else:
+        return None
+
+
+def check__customer_program_execution__exists__for__customer_program_execution_id(
+    customer_program_execution_id,
+) -> bool:
+    return CustomerProgramExecution.objects.filter(
+        id=customer_program_execution_id
+    ).exists()
+
+
+def get__customer_program_execution__for__customer_program_execution_id(
+    customer_program_execution_id,
+) -> CustomerProgramExecution:
+    return CustomerProgramExecution.objects.filter(
+        id=customer_program_execution_id
+    ).first()

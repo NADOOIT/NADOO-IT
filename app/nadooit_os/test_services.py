@@ -1,6 +1,17 @@
 from datetime import datetime
+from decimal import Decimal
 import model_bakery
 import pytest
+from nadooit_os.services import check__customer_program_execution__exists__for__customer_program_execution_id
+from nadooit_os.services import (
+    get__sum_of_price_for_execution__for__list_of_customer_program_exections,
+)
+from nadooit_os.services import (
+    get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections,
+)
+from nadooit_os.services import (
+    get__customer_program_executions__for__filter_type_and_customer,
+)
 from nadooit_os.services import (
     check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer,
 )
@@ -59,6 +70,11 @@ def user():
     )
 
 
+@pytest.fixture
+def customer_program_execution():
+    return baker.make("nadooit_api_executions_system.CustomerProgramExecution")
+
+
 @pytest.fixture()
 def employee_with_active_TimeAccountManagerContract():
     employee = baker.make("nadooit_hr.Employee")
@@ -71,6 +87,19 @@ def employee_with_active_TimeAccountManagerContract():
         can_create_time_accounts=True,
     )
     return employee
+
+
+@pytest.fixture()
+def customer_with_customer_program_execution():
+    customer = baker.make("nadooit_crm.Customer", name="Customer 1")
+    customerprogram = baker.make(
+        "nadooit_program_ownership_system.CustomerProgram", customer=customer
+    )
+    customerprogramexecution = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        customer_program=customerprogram,
+    )
+    return customer
 
 
 @pytest.fixture()
@@ -810,4 +839,236 @@ def test_check__active_customer_program_execution_manager_contract__exists__betw
             baker.make(Customer),
         )
         == False
+    )
+
+
+@pytest.mark.django_db
+def test_get__customer_program_executions__for__filter_type_and_customer(
+    customer_program,
+):
+
+    # Arrange
+    filter_type = "last20"
+    filter_type = "lastmonth"
+    filter_type = "today"
+    filter_type = "thismonth"
+    filter_type = "thisyear"
+
+    # Create customer program executions for the customer program
+    # Create 5 customer program executions for the customer program for today, this month and this year, and 1 for last month
+
+    list_of_executions_this_year = []
+    list_of_executions_this_month = []
+    list_of_executions_today = []
+    list_of_executions_last_month = []
+    list_of_the_last_20_executions = []
+
+    # Create a random datetime for the past month
+    import pytz
+
+    utc = pytz.utc
+    now_but_a_month_ago = utc.localize(
+        datetime.utcnow().replace(month=datetime.utcnow().month - 1)
+    )
+
+    # Create a couple lines of empty space for readability
+    print("	")
+    print("	")
+    print("	")
+
+    # Print the date for the past month
+    print("The date for the past month is: ")
+    print(now_but_a_month_ago)
+    # Create 5 customer program executions for the customer program for last month
+    for i in range(5):
+
+        new_exectuion: CustomerProgramExecution = baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
+        )
+        new_exectuion.created_at = now_but_a_month_ago
+        new_exectuion.save()
+
+        list_of_executions_last_month.append(new_exectuion)
+        list_of_the_last_20_executions.append(new_exectuion)
+        if new_exectuion.created_at.year == datetime.now().year:
+            list_of_executions_this_year.append(new_exectuion)
+    print("	")
+    print(len(list_of_the_last_20_executions))
+    # customer program executions for today
+    for i in range(15):
+
+        new_exectuion = baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
+        )
+
+        list_of_executions_today.append(new_exectuion)
+        list_of_the_last_20_executions.append(new_exectuion)
+        list_of_executions_this_month.append(new_exectuion)
+        list_of_executions_this_year.append(new_exectuion)
+
+    print("    ")
+    print(len(list_of_the_last_20_executions))
+    print("	")
+    # Act
+    # Assert
+    filter_type = "lastmonth"
+    assert len(
+        list(
+            get__customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
+            )
+        )
+    ) == len(list_of_executions_last_month)
+    filter_type = "today"
+    assert len(
+        list(
+            get__customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
+            )
+        )
+    ) == len(list_of_executions_today)
+    filter_type = "thismonth"
+    assert len(
+        list(
+            get__customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
+            )
+        )
+    ) == len(list_of_executions_this_month)
+    filter_type = "thisyear"
+    assert len(
+        list(
+            get__customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
+            )
+        )
+    ) == len(list_of_executions_this_year)
+    filter_type = "last20"
+    assert len(
+        list(
+            get__customer_program_executions__for__filter_type_and_customer(
+                filter_type, customer_program.customer
+            )[:20]
+        )
+    ) == len(list_of_the_last_20_executions)
+
+
+@pytest.mark.django_db
+def test_get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+    customer_program,
+):
+    # Arrange
+
+    program_time_saved_in_seconds = 666
+
+    for x in range(5):
+
+        baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
+            program_time_saved_in_seconds=program_time_saved_in_seconds,
+        )
+    # Act
+    # Assert
+    assert (
+        get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+            CustomerProgramExecution.objects.all()[:1]
+        )
+        == program_time_saved_in_seconds
+    )
+    assert (
+        get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+            CustomerProgramExecution.objects.all()[:2]
+        )
+        == program_time_saved_in_seconds * 2
+    )
+    assert (
+        get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections(
+            CustomerProgramExecution.objects.all()[:3]
+        )
+        == program_time_saved_in_seconds * 3
+    )
+
+
+@pytest.mark.django_db
+def test_get__sum_of_price_for_execution__for__list_of_customer_program_exections(
+    customer_program,
+):
+    # Arrange
+
+    price_for_execution = 666
+
+    for x in range(5):
+        baker.make(
+            "nadooit_api_executions_system.CustomerProgramExecution",
+            customer_program=customer_program,
+            price_for_execution=price_for_execution,
+        )
+    # Act
+    # Assert
+    assert (
+        get__sum_of_price_for_execution__for__list_of_customer_program_exections(
+            CustomerProgramExecution.objects.all()[:1]
+        )
+        == price_for_execution
+    )
+    assert (
+        get__sum_of_price_for_execution__for__list_of_customer_program_exections(
+            CustomerProgramExecution.objects.all()[:2]
+        )
+        == price_for_execution * 2
+    )
+    assert (
+        get__sum_of_price_for_execution__for__list_of_customer_program_exections(
+            CustomerProgramExecution.objects.all()[:3]
+        )
+        == price_for_execution * 3
+    )
+
+
+@pytest.mark.django_db
+def test_get__price_as_string_in_euro_format__for__price_in_euro_as_decimal():
+    # Arrange
+    price_in_euro_as_decimal = Decimal(666.66)
+    # Act
+    # Assert
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal
+        )
+        == "666,660 €"
+    )
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal * 2
+        )
+        == "1.333,320 €"
+    )
+    assert (
+        get__price_as_string_in_euro_format__for__price_in_euro_as_decimal(
+            price_in_euro_as_decimal * 3
+        )
+        == "1.999,980 €"
+    )
+
+
+def test_check__customer_program_execution__exists__for__customer_program_execution_id(
+    customer_program_execution,
+):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        check__customer_program_execution__exists__for__customer_program_execution_id(
+            customer_program_execution.id
+        )
+        is True
+    )
+    assert (
+        check__customer_program_execution__exists__for__customer_program_execution_id(
+            customer_program_execution.id + 1
+        )
+        is False
     )
