@@ -2,7 +2,10 @@ from datetime import datetime
 from decimal import Decimal
 import model_bakery
 import pytest
-from nadooit_os.services import check__customer_program_execution__exists__for__customer_program_execution_id
+from nadooit_os.services import get__customer__for__customer_program_execution_id
+from nadooit_os.services import (
+    check__customer_program_execution__exists__for__customer_program_execution_id,
+)
 from nadooit_os.services import (
     get__sum_of_price_for_execution__for__list_of_customer_program_exections,
 )
@@ -1071,4 +1074,20 @@ def test_check__customer_program_execution__exists__for__customer_program_execut
             customer_program_execution.id + 1
         )
         is False
+    )
+
+
+def test_get__customer__for__customer_program_execution_id(customer_program_execution):
+    # Arrange
+    # Act
+    # Assert
+    assert (
+        get__customer__for__customer_program_execution_id(customer_program_execution.id)
+        == customer_program_execution.customer_program.customer
+    )
+    assert (
+        get__customer__for__customer_program_execution_id(
+            customer_program_execution.id + 1
+        )
+        is None
     )
