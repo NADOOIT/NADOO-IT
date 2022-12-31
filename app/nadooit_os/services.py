@@ -8,6 +8,7 @@ import uuid
 from django.http import HttpResponseRedirect
 
 from django.utils import timezone
+from nadoo_complaint_management.models import Complaint
 from nadooit_hr.models import CustomerProgramExecutionManagerContract
 from nadooit_time_account.models import CustomerTimeAccount
 from nadooit_hr.models import TimeAccountManagerContract
@@ -25,7 +26,6 @@ from nadooit_hr.models import EmployeeContract
 from nadooit_auth.models import User
 from datetime import datetime
 from django.db.models import QuerySet
-from app.nadooit_os.views import customer_program_execution_overview
 
 
 def get__not_paid_customer_program_executions__for__filter_type_and_customer(
@@ -1150,11 +1150,12 @@ def get__customer__for__customer_program_execution_id(
     customer_program_execution_id,
 ) -> Customer | None:
 
-    customer_program_execution = CustomerProgramExecution.objects.filter(
-        id=customer_program_execution_id
-    ).first()
+    customer_program_execution = get__customer_program_execution__for__customer_program_execution_id(
+        customer_program_execution_id)
 
-    if customer_program_execution:
+    print("customer_program_execution", customer_program_execution)
+
+    if customer_program_execution is not None:
         return customer_program_execution.customer_program.customer
     else:
         return None
@@ -1170,7 +1171,38 @@ def check__customer_program_execution__exists__for__customer_program_execution_i
 
 def get__customer_program_execution__for__customer_program_execution_id(
     customer_program_execution_id,
-) -> CustomerProgramExecution:
+) -> CustomerProgramExecution | None:
     return CustomerProgramExecution.objects.filter(
         id=customer_program_execution_id
     ).first()
+
+
+def set__payment_status__for__customer_program_execution(
+    customer_program_execution: CustomerProgramExecution,
+    payment_status: str,
+):
+    customer_program_execution.payment_status = payment_status
+    customer_program_execution.save()
+
+
+def get__payment_status__for__customer_program_execution(
+    customer_program_execution: CustomerProgramExecution,
+) -> str:
+    return customer_program_execution.payment_status
+
+
+def create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee(
+    customer_program_execution: CustomerProgramExecution,
+    complaint: str,
+    employee: Employee,
+) -> Complaint | None:
+    try:
+        complaint = Complaint.objects.create(
+            customer_program_execution=customer_program_execution,
+            complaint=complaint,
+            customer_program_execution_manager=employee,
+        )
+        return complaint
+    except Exception as e:
+        print("error creating complaint", e)
+        return None

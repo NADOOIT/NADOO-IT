@@ -9,6 +9,8 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from nadooit_os.services import create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee
+from nadooit_os.services import set__payment_status__for__customer_program_execution
 from nadooit_os.services import (
     get__customer_program_execution__for__customer_program_execution_id,
 )
@@ -628,9 +630,14 @@ def customer_program_execution_list_complaint_modal(
     ):
         return HttpResponseForbidden()
 
+    # Get the customer
+    # covered by test
     customer = get__customer__for__customer_program_execution_id(
         customer_program_execution_id
     )
+
+    if customer is None:
+        return HttpResponseForbidden()
 
     # Check if the user is a customer program execution manager for the customer
     # covered by test
@@ -663,34 +670,58 @@ def customer_program_execution_list_complaint_modal(
 def customer_program_execution_send_complaint(
     request: HttpRequest, customer_program_execution_id
 ):
+    # check if the customer program execution exists
+    # covered by test
+    if not check__customer_program_execution__exists__for__customer_program_execution_id(
+        customer_program_execution_id
+    ):
+        return HttpResponseForbidden()
+
     # Check that the user is a a customer program execution manager for the customer that the customer program execution belongs to
-    if not CustomerProgramExecutionManagerContract.objects.filter(
-        contract__employee=request.user.employee,
-        contract__is_active=True,
-        contract__customer=CustomerProgramExecution.objects.get(
-            id=customer_program_execution_id
-        ).customer_program.customer,
-    ).exists():
+    # At this point we only know that the user is a customer program execution manager for a customer but we don't know if it is the customer that the customer program execution belongs to
+    # since we do not want a user to be able to send a complaint for a customer program execution that does not belong to the customer that the user is a customer program execution manager for
+    # we need to check that the user is a customer program execution manager for the customer that the customer program execution belongs to
+
+    # Get the customer
+    # covered by test
+    customer = get__customer__for__customer_program_execution_id(
+        customer_program_execution_id
+    )
+
+    if customer is None:
+        return HttpResponseForbidden()
+
+    # covered by test
+    if not check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+        employee=request.user.employee, customer=customer
+    ):
         return HttpResponseForbidden()
 
     # Get the executions depending on the filter type
-    customer_program_execution = CustomerProgramExecution.objects.get(
-        id=customer_program_execution_id
+    # covered by test
+    customer_program_execution = (
+        get__customer_program_execution__for__customer_program_execution_id(
+            customer_program_execution_id
+        )
     )
 
     # Set the PaymentStatus for the customer program execution to "REVOKED"
-    customer_program_execution.payment_status = "REVOKED"
-    customer_program_execution.save()
-
-    # Create a complaint
-    Complaint.objects.create(
+    
+    set__payment_status__for__customer_program_execution(
         customer_program_execution=customer_program_execution,
-        complaint=request.POST["complainttext"],
-        customer_program_execution_manager=request.user.employee,
+        payment_status="REVOKED",
     )
 
-    return HttpResponse("ok")
-
+    # Create a complaint
+    # covered by test
+    if create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee(
+        customer_program_execution=customer_program_execution,
+        complaint=request.POST["complainttext"],
+        employee=request.user.employee,
+    ):
+        return HttpResponse("ok")	
+    else:
+        return HttpResponse("error")	
 
 # login required and user must have the CustomerProgramExecutionManager role and can give the role
 # does not use a form

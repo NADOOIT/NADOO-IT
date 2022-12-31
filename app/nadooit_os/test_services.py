@@ -2,6 +2,15 @@ from datetime import datetime
 from decimal import Decimal
 import model_bakery
 import pytest
+from nadooit_os.services import (
+    create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee,
+)
+
+from nadooit_os.services import get__payment_status__for__customer_program_execution
+from nadooit_os.services import set__payment_status__for__customer_program_execution
+from nadooit_os.services import (
+    get__customer_program_execution__for__customer_program_execution_id,
+)
 from nadooit_os.services import get__customer__for__customer_program_execution_id
 from nadooit_os.services import (
     check__customer_program_execution__exists__for__customer_program_execution_id,
@@ -63,6 +72,7 @@ from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
 import uuid
+
 
 # A pytest fixure that returns a user object
 @pytest.fixture
@@ -343,7 +353,7 @@ def test_get__not_paid_customer_program_executions__for__filter_type_and_custome
 
     utc = pytz.utc
     now_but_a_month_ago = utc.localize(
-        datetime.utcnow().replace(month=datetime.utcnow().month - 1)
+        datetime.utcnow().replace(day=1, month=datetime.utcnow().month - 1)
     )
 
     # Create a couple lines of empty space for readability
@@ -871,7 +881,7 @@ def test_get__customer_program_executions__for__filter_type_and_customer(
 
     utc = pytz.utc
     now_but_a_month_ago = utc.localize(
-        datetime.utcnow().replace(month=datetime.utcnow().month - 1)
+        datetime.utcnow().replace(day=1, month=datetime.utcnow().month - 1)
     )
 
     # Create a couple lines of empty space for readability
@@ -1057,6 +1067,7 @@ def test_get__price_as_string_in_euro_format__for__price_in_euro_as_decimal():
     )
 
 
+@pytest.mark.django_db
 def test_check__customer_program_execution__exists__for__customer_program_execution_id(
     customer_program_execution,
 ):
@@ -1071,23 +1082,165 @@ def test_check__customer_program_execution__exists__for__customer_program_execut
     )
     assert (
         check__customer_program_execution__exists__for__customer_program_execution_id(
-            customer_program_execution.id + 1
+            uuid.uuid4()
         )
         is False
     )
 
 
-def test_get__customer__for__customer_program_execution_id(customer_program_execution):
+@pytest.mark.django_db
+def test_get__customer__for__customer_program_execution_id():
     # Arrange
+    customer_program_execution = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        customer_program=baker.make(
+            CustomerProgram, customer=baker.make(Customer), program=baker.make(Program)
+        ),
+    )
+
+    print(customer_program_execution)
     # Act
     # Assert
     assert (
         get__customer__for__customer_program_execution_id(customer_program_execution.id)
         == customer_program_execution.customer_program.customer
     )
+    assert get__customer__for__customer_program_execution_id(uuid.uuid4()) is None
+
+
+@pytest.mark.django_db
+def test_get__customer_program_execution__for__customer_program_execution_id():
+    # Arrange
+    customer_program_execution = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        customer_program=baker.make(
+            CustomerProgram, customer=baker.make(Customer), program=baker.make(Program)
+        ),
+    )
+
+    print(customer_program_execution)
+
+    # Act
+    # Assert
     assert (
-        get__customer__for__customer_program_execution_id(
-            customer_program_execution.id + 1
+        get__customer_program_execution__for__customer_program_execution_id(
+            customer_program_execution.id
+        )
+        == customer_program_execution
+    )
+    assert (
+        get__customer_program_execution__for__customer_program_execution_id(
+            uuid.uuid4()
         )
         is None
+    )
+
+
+@pytest.mark.django_db
+def test_set__payment_status__for__customer_program_execution():
+
+    """
+    class PaymentStatus(models.TextChoices):
+    NOT_PAID = "NOT_PAID", _("Not Paid")
+    PAID = "PAID", _("Paid")
+    REFUNDED = "REFUNDED", _("Refunded")
+    REVOKED = "REVOKED", _("Revoked")
+    """
+
+    # Arrange
+
+    # create 3 customer_program_executions with different payment_status
+    customer_program_execution_1 = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        payment_status="NOT_PAID",
+    )
+
+    customer_program_execution_2 = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        payment_status="PAID",
+    )
+
+    customer_program_execution_3 = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        payment_status="REFUNDED",
+    )
+
+    customer_program_execution_4 = baker.make(
+        "nadooit_api_executions_system.CustomerProgramExecution",
+        payment_status="REVOKED",
+    )
+
+    # Act
+
+    # set payment_status to PAID
+    set__payment_status__for__customer_program_execution(
+        customer_program_execution_1, "PAID"
+    )
+
+    # set payment_status to REFUNDED
+    set__payment_status__for__customer_program_execution(
+        customer_program_execution_2, "REFUNDED"
+    )
+
+    # set payment_status to REVOKED
+    set__payment_status__for__customer_program_execution(
+        customer_program_execution_3, "REVOKED"
+    )
+
+    # set payment_status to NOT_PAID
+    set__payment_status__for__customer_program_execution(
+        customer_program_execution_4, "NOT_PAID"
+    )
+
+    # Assert
+
+    # check if payment_status is PAID
+    assert (
+        get__payment_status__for__customer_program_execution(
+            customer_program_execution_1
+        )
+        == "PAID"
+    )
+    assert (
+        get__payment_status__for__customer_program_execution(
+            customer_program_execution_2
+        )
+        == "REFUNDED"
+    )
+    assert (
+        get__payment_status__for__customer_program_execution(
+            customer_program_execution_3
+        )
+        == "REVOKED"
+    )
+    assert (
+        get__payment_status__for__customer_program_execution(
+            customer_program_execution_4
+        )
+        == "NOT_PAID"
+    )
+
+
+@pytest.mark.django_db
+def test_create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee(
+    customer_program_execution,
+):
+    # Arrange
+
+    complaint = "complaint text"
+    employee = baker.make("nadooit_hr.Employee")
+
+    # Act
+    customer_program_execution_complaint = create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee(
+        customer_program_execution, complaint, employee
+    )
+    # Assert
+    assert (
+        customer_program_execution_complaint.customer_program_execution
+        == customer_program_execution
+    )
+    assert customer_program_execution_complaint.complaint == complaint
+    assert (
+        customer_program_execution_complaint.customer_program_execution_manager
+        == employee
     )
