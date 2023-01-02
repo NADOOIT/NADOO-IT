@@ -9,7 +9,15 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
-from nadooit_os.services import create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee
+from nadooit_os.services import (
+    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
+    create__customer_program_execution_manager_contract__for__employee_contract,
+    get__active_employee_contract__for__employee__and__customer,
+    get__employee_contract__for__user_code__and__customer,
+)
+from nadooit_os.services import (
+    create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee,
+)
 from nadooit_os.services import set__payment_status__for__customer_program_execution
 from nadooit_os.services import (
     get__customer_program_execution__for__customer_program_execution_id,
@@ -69,6 +77,12 @@ from nadooit_os.services import (
     check__employee_manager_contract__for__user__can_deactivate__employee_contracts,
     check__employee_manager_contract__for__user__can_give_manager_role,
     create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
+)
+from nadooit_os.services import (
+    check__more_then_one_contract_between__user_code__and__customer,
+    get__employee__for__user_code,
+    get__employee_contract__for__employee__and__customer,
+    get__employee_manager_contract__for__user_code__and__customer,
 )
 from .forms import ApiKeyForm
 
@@ -706,7 +720,7 @@ def customer_program_execution_send_complaint(
     )
 
     # Set the PaymentStatus for the customer program execution to "REVOKED"
-    
+
     set__payment_status__for__customer_program_execution(
         customer_program_execution=customer_program_execution,
         payment_status="REVOKED",
@@ -719,9 +733,10 @@ def customer_program_execution_send_complaint(
         complaint=request.POST["complainttext"],
         employee=request.user.employee,
     ):
-        return HttpResponse("ok")	
+        return HttpResponse("ok")
     else:
-        return HttpResponse("error")	
+        return HttpResponse("error")
+
 
 # login required and user must have the CustomerProgramExecutionManager role and can give the role
 # does not use a form
@@ -734,86 +749,73 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
     submitted = False
     if request.method == "POST":
         user_code = request.POST.get("user_code")
-
+        customer = get__customer__for__customer_id(request.POST.get("customer_id"))
         # check that user_code is not empty
-        if User.objects.filter(user_code=user_code).exists():
 
-            # check if there is an emplyee for that user code
-            if not Employee.objects.filter(user__user_code=user_code).exists():
-                # create new employee for the user_code
-                Employee.objects.create(user=User.objects.get(user_code=user_code))
-
-            # get the employee object for the user
-            employee = Employee.objects.get(user__user_code=user_code)
-
-            # check if the employee already has the role
-            if not CustomerProgramExecutionManagerContract.objects.filter(
-                contract__employee=employee
-            ).exists():
-                # Check if the employee has a contract with the customer
-                if not EmployeeContract.objects.filter(employee=employee).exists():
-                    EmployeeContract.objects.create(
-                        employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
-                    )
-                # Check if there is more then one EmployeeContract for the employee
-                elif (
-                    EmployeeContract.objects.filter(
-                        employee=employee,
-                        customer=Customer.objects.get(id=request.POST.get("customers")),
-                    ).count()
-                    > 1
-                ):
-                    # TODO add a way to select the correct contract if there is more then one contract for the employee
-                    # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
-                    return HttpResponseRedirect(
-                        "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True&error=Der Mitarbeiter hat mehr als einen Vertrag mit diesem Kunden."
-                    )
-                # create the CustomerProgramExecutionManager
-                CustomerProgramExecutionManagerContract.objects.create(
-                    contract=EmployeeContract.objects.get(employee=employee)
-                )
-            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
-            # get the "role"
-            list_of_abilities = request.POST.getlist("role")
-            for ability in list_of_abilities:
-                # check if the employee already has the ability
-                if ability == "can_create_customer_program_execution":
-                    if CustomerProgramExecutionManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
-                        can_create_customer_program_execution=True,
-                    ).exists():
-                        # Set the ability for the CustomerProgramExecutionManagerContract object to the value of the ability
-                        CustomerProgramExecutionManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_create_customer_program_execution=True)
-                if ability == "can_delete_customer_program_execution":
-                    if CustomerProgramExecutionManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
-                        can_delete_customer_program_execution=True,
-                    ).exists():
-                        # Set the ability for the CustomerProgramExecutionManagerContract object to the value of the ability
-                        CustomerProgramExecutionManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_delete_customer_program_execution=True)
-                if ability == "can_give_manager_role":
-                    if CustomerProgramExecutionManagerContract.objects.filter(
-                        contract__employee=request.user.employee,
-                        can_give_manager_role=True,
-                    ).exists():
-                        # Set the ability for the CustomerProgramExecutionManager object to the value of the ability
-                        CustomerProgramExecutionManagerContract.objects.filter(
-                            contract__employee=employee
-                        ).update(can_give_manager_role=True)
-
-            return HttpResponseRedirect(
-                "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True"
-            )
-
-        else:
+        if not check__user__exists__for__user_code(user_code=user_code):
             return HttpResponseRedirect(
                 "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
             )
+
+        # get the employee object for the user_code, checks not creates it
+        employee = get__employee__for__user_code(user_code=user_code)
+
+        # check if the employee already has the role
+        if not check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+            employee, customer
+        ):
+
+            # TODO what if there is an old inactive contract?
+            # no new contract should be created if there is an old inactive contract and instead the old contract should be activated
+            # better yet the person that is trying to create a new contract should be notified that there is an old inactive contract and that the old contract should be activated instead of creating a new contract
+
+            # Check if the employee has a contract with the customer
+            employee_contract = (
+                get__active_employee_contract__for__employee__and__customer(
+                    employee, customer
+                )
+            )
+
+            create__customer_program_execution_manager_contract__for__employee_contract(
+                employee_contract=employee_contract
+            )
+
+        # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
+        # get the "role"
+        list_of_abilities = request.POST.getlist("role")
+        for ability in list_of_abilities:
+            # check if the employee already has the ability
+            if ability == "can_create_customer_program_execution":
+                if CustomerProgramExecutionManagerContract.objects.filter(
+                    contract__employee=request.user.employee,
+                    can_create_customer_program_execution=True,
+                ).exists():
+                    # Set the ability for the CustomerProgramExecutionManagerContract object to the value of the ability
+                    CustomerProgramExecutionManagerContract.objects.filter(
+                        contract__employee=employee
+                    ).update(can_create_customer_program_execution=True)
+            if ability == "can_delete_customer_program_execution":
+                if CustomerProgramExecutionManagerContract.objects.filter(
+                    contract__employee=request.user.employee,
+                    can_delete_customer_program_execution=True,
+                ).exists():
+                    # Set the ability for the CustomerProgramExecutionManagerContract object to the value of the ability
+                    CustomerProgramExecutionManagerContract.objects.filter(
+                        contract__employee=employee
+                    ).update(can_delete_customer_program_execution=True)
+            if ability == "can_give_manager_role":
+                if CustomerProgramExecutionManagerContract.objects.filter(
+                    contract__employee=request.user.employee,
+                    can_give_manager_role=True,
+                ).exists():
+                    # Set the ability for the CustomerProgramExecutionManager object to the value of the ability
+                    CustomerProgramExecutionManagerContract.objects.filter(
+                        contract__employee=employee
+                    ).update(can_give_manager_role=True)
+
+        return HttpResponseRedirect(
+            "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True"
+        )
 
     else:
         if "submitted" in request.GET:
@@ -1123,13 +1125,15 @@ def add_employee(request: HttpRequest):
 
             if check__customer__exists__for__customer_id(customer_id):
 
+                customer = get__customer__for__customer_id(customer_id)
+
                 if check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
-                    request.user.employee, customer_id
+                    request.user.employee, customer
                 ):
                     # makes sure that there is a employee contract between the employee the selected customer
 
-                    if get__employee_contract__for__user_code__and__customer_id(
-                        user_code, customer_id
+                    if get__employee_contract__for__user_code__and__customer(
+                        user_code, customer
                     ):
                         return HttpResponseRedirect(
                             "/nadooit-os/hr/add-employee?submitted=True"
@@ -1184,8 +1188,15 @@ def give_employee_manager_role(request: HttpRequest):
         list_of_abilities = request.POST.getlist("role")
         customer_id = request.POST.get("customers")
 
-        if check__more_then_one_contract_between__user_code__and__customer_id(
-            user_code, customer_id
+        if not check__customer__exists__for__customer_id(customer_id):
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Kein valider Kunde."
+            )
+
+        customer = get__customer__for__customer_id(customer_id)
+
+        if check__more_then_one_contract_between__user_code__and__customer(
+            user_code, customer
         ):
             # TODO add a way to select the correct contract if there is more then one contract for the employee
             # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
@@ -1199,8 +1210,8 @@ def give_employee_manager_role(request: HttpRequest):
         if check__user__exists__for__user_code(user_code):
 
             employee_manager_contract = (
-                get__employee_manager_contract__for__user_code__and__customer_id(
-                    user_code, customer_id
+                get__employee_manager_contract__for__user_code__and__customer(
+                    user_code, customer
                 )
             )
 

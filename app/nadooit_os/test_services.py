@@ -1,7 +1,12 @@
 from datetime import datetime
 from decimal import Decimal
+from typing import Type
 import model_bakery
 import pytest
+from app.nadooit_os.services import (
+    create__customer_program_execution_manager_contract__for__employee_contract,
+)
+from nadooit_os.services import get__employee__for__user_code
 from nadooit_os.services import (
     create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee,
 )
@@ -1243,4 +1248,35 @@ def test_create__customer_program_execution_complaint__for__customer_program_exe
     assert (
         customer_program_execution_complaint.customer_program_execution_manager
         == employee
+    )
+
+
+@pytest.mark.django_db
+def test_get__employee__for__user_code():
+    # Arrange
+    employee = baker.make(
+        "nadooit_hr.Employee", user=baker.make("nadooit_auth.User", user_code="12345")
+    )
+    baker.make("nadooit_auth.User", user_code="123456")
+    # Act
+    # Assert
+    assert get__employee__for__user_code("12345") == employee
+    assert get__employee__for__user_code("123	") is None
+    assert type(get__employee__for__user_code("123456")) == Employee
+
+
+@pytest.mark.django_db
+def test_create__customer_program_execution_manager_contract__for__employee_contract():
+    # Arrange
+    employee_contract = baker.make("nadooit_hr.EmployeeContract")
+    # Act
+    customer_program_execution_manager_contract = (
+        create__customer_program_execution_manager_contract__for__employee_contract(
+            employee_contract
+        )
+    )
+    # Assert
+    assert (
+        customer_program_execution_manager_contract.contract
+        == employee_contract
     )

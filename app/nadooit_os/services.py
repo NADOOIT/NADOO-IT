@@ -163,7 +163,7 @@ def get__list_of_customers__for__employee_that_has_a_time_account_manager_contra
 
 
 def check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
-    employee, customer
+    employee: Employee, customer: Customer
 ):
     return CustomerProgramExecutionManagerContract.objects.filter(
         contract__employee=employee,
@@ -411,14 +411,16 @@ def create__employee__for__user_code(user_code) -> Employee | None:
 
     if not check__employee__exists__for__user_code(user_code):
         # create new employee for the user_code
+        if not check__user__exists__for__user_code(user_code):
+            return None
         user = User.objects.get(user_code=user_code)
         return Employee.objects.create(user=user)
 
-    return None
+    return Employee.objects.get(user__user_code=user_code)
 
 
 def check__employee_contract__exists__for__employee__and__customer(
-    employee, cutomer
+    employee: Employee, cutomer: Customer
 ) -> bool:
     return EmployeeContract.objects.filter(employee=employee, customer=cutomer).exists()
 
@@ -451,7 +453,7 @@ def check__time_account_manager_contract__exists__for__employee_and_customer(
 
 
 # Returns the employee for the given user code
-def get__employee__for__user_code(user_code) -> Employee:
+def get__employee__for__user_code(user_code) -> Employee | None:
 
     employee = None
 
@@ -462,7 +464,7 @@ def get__employee__for__user_code(user_code) -> Employee:
 
     if employee == None:
         # get the employee object for the user
-        employee = Employee.objects.get(user__user_code=user_code)
+        employee = Employee.objects.filter(user__user_code=user_code).first()
 
     return employee
 
@@ -473,7 +475,7 @@ def check__employee_manager_contract__exists__for__employee_contract(
     return EmployeeManagerContract.objects.filter(contract=employee_contract).exists()
 
 
-def check__more_then_one_contract_between__user_code__and__customer_id(
+def check__more_then_one_contract_between__user_code__and__customer(
     user_code, customer_id
 ) -> bool:
     return (
@@ -483,20 +485,58 @@ def check__more_then_one_contract_between__user_code__and__customer_id(
         > 1
     )
 
+def create__customer_program_execution_manager_contract__for__employee_contract(
+    employee_contract: EmployeeContract,
+) -> CustomerProgramExecutionManagerContract:
+    
+    # Check if the employee contract is already a customer program execution manager contract
+    if check__customer_program_execution_manager_contract__exists__for__employee_contract(	
+        employee_contract	
+    ):	
+        return CustomerProgramExecutionManagerContract.objects.get(contract=employee_contract)
+    
+    return CustomerProgramExecutionManagerContract.objects.create(contract=employee_contract)
 
-def get__employee_contract__for__employee__and__customer_id(
-    employee, customer_id
+def check__customer_program_execution_manager_contract__exists__for__employee_contract(
+    employee_contract: EmployeeContract,	
+) -> bool:		
+    return CustomerProgramExecutionManagerContract.objects.filter(contract=employee_contract).exists()	
+
+def get__active_employee_contract__for__employee__and__customer(
+    employee: Employee, customer: Customer
 ) -> EmployeeContract:
 
     # Check if the employee has a contract with the customer
     if not check__employee_contract__exists__for__employee__and__customer(
-        employee, customer_id
+        employee, customer
     ):
         return create__employee_contract__for__employee_and__customer(
-            employee, customer_id
+            employee, customer
         )
     else:
-        return EmployeeContract.objects.get(employee=employee, customer__id=customer_id)
+        # Check if the employee has an active contract with the customer and return it
+        employee_contract = EmployeeContract.objects.filter(employee=employee, customer=customer).first()
+        
+        if not employee_contract.is_active:
+                # activate the contract
+                employee_contract.is_active = True
+                employee_contract.save()  
+            
+        return employee_contract
+
+def get__employee_contract__for__employee__and__customer(
+    employee: Employee, customer: Customer
+) -> EmployeeContract:
+
+    # Check if the employee has a contract with the customer
+    if not check__employee_contract__exists__for__employee__and__customer(
+        employee, customer
+    ):
+        return create__employee_contract__for__employee_and__customer(
+            employee, customer
+        )
+    else:
+        return EmployeeContract.objects.get(employee=employee, customer=customer)
 
 
 def get__employee_manager_contract__for__employee_contract(
@@ -512,12 +552,12 @@ def get__employee_manager_contract__for__employee_contract(
         return EmployeeManagerContract.objects.get(contract=employee_contract)
 
 
-def get__employee_manager_contract__for__user_code__and__customer_id(
+def get__employee_manager_contract__for__user_code__and__customer(
     user_code, customer_id
 ) -> EmployeeManagerContract:
 
     employee = get__employee__for__user_code(user_code)
-    employee_contract = get__employee_contract__for__employee__and__customer_id(
+    employee_contract = get__employee_contract__for__employee__and__customer(
         employee, customer_id
     )
 
@@ -548,13 +588,13 @@ def check__customer__exists__for__customer_id(customer_id) -> bool:
     return Customer.objects.filter(id=customer_id).exists()
 
 
-def get__employee_contract__for__user_code__and__customer_id(
-    user_code, customer_id
+def get__employee_contract__for__user_code__and__customer(
+    user_code, customer
 ) -> EmployeeContract:
 
     employee = get__employee__for__user_code(user_code)
-    employee_contract = get__employee_contract__for__employee__and__customer_id(
-        employee, customer_id
+    employee_contract = get__employee_contract__for__employee__and__customer(
+        employee, customer
     )
 
     return employee_contract
@@ -676,7 +716,7 @@ def get__list_of_employee_manager_contract__with__given_abitly__for__user(
 
 
 def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
-    employee_manager, customer
+    employee_manager : Employee, customer: Customer
 ) -> bool:
     return EmployeeManagerContract.objects.filter(
         contract__employee=employee_manager,
@@ -1150,8 +1190,11 @@ def get__customer__for__customer_program_execution_id(
     customer_program_execution_id,
 ) -> Customer | None:
 
-    customer_program_execution = get__customer_program_execution__for__customer_program_execution_id(
-        customer_program_execution_id)
+    customer_program_execution = (
+        get__customer_program_execution__for__customer_program_execution_id(
+            customer_program_execution_id
+        )
+    )
 
     print("customer_program_execution", customer_program_execution)
 
