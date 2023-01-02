@@ -3,7 +3,8 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
-from app.nadooit_os.services import (
+from nadooit_os.services import (
+    create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
     create__customer_program_execution_manager_contract__for__employee_contract,
 )
 from nadooit_os.services import get__employee__for__user_code
@@ -1276,7 +1277,46 @@ def test_create__customer_program_execution_manager_contract__for__employee_cont
         )
     )
     # Assert
-    assert (
-        customer_program_execution_manager_contract.contract
-        == employee_contract
+    assert customer_program_execution_manager_contract.contract == employee_contract
+
+
+@pytest.mark.django_db
+def test_create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer")
+    abilities = [
+        "can_give_manager_role",
+        "can_delete_customer_program_execution",
+        "can_create_customer_program_execution",
+    ]
+    employee_with_customer_program_manager_contract = baker.make(
+        "nadooit_hr.Employee",
+        user=baker.make("nadooit_auth.User", user_code="12345"),
     )
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramExecutionManagerContract",
+        contract=baker.make(
+            "nadooit_hr.EmployeeContract",
+            employee=employee_with_customer_program_manager_contract,
+        ),
+        can_create_customer_program_execution=True,
+        can_delete_customer_program_execution=True,
+        can_give_manager_role=True,
+    )
+    # Act
+    customer_program_execution_manager_contract = create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract(
+        employee, customer, abilities, employee_with_customer_program_manager_contract
+    )
+    # Assert
+    assert customer_program_execution_manager_contract.contract.employee == employee
+    assert customer_program_execution_manager_contract.contract.customer == customer
+    assert (
+        customer_program_execution_manager_contract.can_create_customer_program_execution
+        == True
+    )
+    assert (
+        customer_program_execution_manager_contract.can_delete_customer_program_execution
+        == True
+    )
+    assert customer_program_execution_manager_contract.can_give_manager_role == True

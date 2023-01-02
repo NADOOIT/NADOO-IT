@@ -452,6 +452,68 @@ def check__time_account_manager_contract__exists__for__employee_and_customer(
     ).exists()
 
 
+def create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract(
+    employee,
+    customer,
+    list_of_abilities,
+    employee_with_customer_program_manager_contract,
+) -> CustomerProgramExecutionManagerContract:
+
+    # check if the employee already has the role and if not create it
+    if not check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(
+        employee, customer
+    ):
+
+        # TODO what if there is an old inactive contract?
+        # no new contract should be created if there is an old inactive contract and instead the old contract should be activated
+        # better yet the person that is trying to create a new contract should be notified that there is an old inactive contract and that the old contract should be activated instead of creating a new contract
+
+        # Check if the employee has a contract with the customer
+        employee_contract = get__active_employee_contract__for__employee__and__customer(
+            employee, customer
+        )
+
+        create__customer_program_execution_manager_contract__for__employee_contract(
+            employee_contract=employee_contract
+        )
+
+    # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
+    for ability in list_of_abilities:
+        # check if the employee already has the ability
+        if ability == "can_create_customer_program_execution":
+            if CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee_with_customer_program_manager_contract,
+                can_create_customer_program_execution=True,
+            ).exists():
+                # Set the ability for the CustomerProgramExecutionManagerContract object to the value of the ability
+                CustomerProgramExecutionManagerContract.objects.filter(
+                    contract__employee=employee
+                ).update(can_create_customer_program_execution=True)
+        if ability == "can_delete_customer_program_execution":
+            if CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee_with_customer_program_manager_contract,
+                can_delete_customer_program_execution=True,
+            ).exists():
+                # Set the ability for the CustomerProgramExecutionManagerContract object to the value of the ability
+                CustomerProgramExecutionManagerContract.objects.filter(
+                    contract__employee=employee
+                ).update(can_delete_customer_program_execution=True)
+        if ability == "can_give_manager_role":
+            if CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee_with_customer_program_manager_contract,
+                can_give_manager_role=True,
+            ).exists():
+                # Set the ability for the CustomerProgramExecutionManager object to the value of the ability
+                CustomerProgramExecutionManagerContract.objects.filter(
+                    contract__employee=employee
+                ).update(can_give_manager_role=True)
+
+    return CustomerProgramExecutionManagerContract.objects.get(
+        contract__employee=employee,
+        contract__customer=customer
+    )
+
+
 # Returns the employee for the given user code
 def get__employee__for__user_code(user_code) -> Employee | None:
 
@@ -485,22 +547,31 @@ def check__more_then_one_contract_between__user_code__and__customer(
         > 1
     )
 
+
 def create__customer_program_execution_manager_contract__for__employee_contract(
     employee_contract: EmployeeContract,
 ) -> CustomerProgramExecutionManagerContract:
-    
+
     # Check if the employee contract is already a customer program execution manager contract
-    if check__customer_program_execution_manager_contract__exists__for__employee_contract(	
-        employee_contract	
-    ):	
-        return CustomerProgramExecutionManagerContract.objects.get(contract=employee_contract)
-    
-    return CustomerProgramExecutionManagerContract.objects.create(contract=employee_contract)
+    if check__customer_program_execution_manager_contract__exists__for__employee_contract(
+        employee_contract
+    ):
+        return CustomerProgramExecutionManagerContract.objects.get(
+            contract=employee_contract
+        )
+
+    return CustomerProgramExecutionManagerContract.objects.create(
+        contract=employee_contract
+    )
+
 
 def check__customer_program_execution_manager_contract__exists__for__employee_contract(
-    employee_contract: EmployeeContract,	
-) -> bool:		
-    return CustomerProgramExecutionManagerContract.objects.filter(contract=employee_contract).exists()	
+    employee_contract: EmployeeContract,
+) -> bool:
+    return CustomerProgramExecutionManagerContract.objects.filter(
+        contract=employee_contract
+    ).exists()
+
 
 def get__active_employee_contract__for__employee__and__customer(
     employee: Employee, customer: Customer
@@ -515,14 +586,17 @@ def get__active_employee_contract__for__employee__and__customer(
         )
     else:
         # Check if the employee has an active contract with the customer and return it
-        employee_contract = EmployeeContract.objects.filter(employee=employee, customer=customer).first()
-        
+        employee_contract = EmployeeContract.objects.filter(
+            employee=employee, customer=customer
+        ).first()
+
         if not employee_contract.is_active:
-                # activate the contract
-                employee_contract.is_active = True
-                employee_contract.save()  
-            
+            # activate the contract
+            employee_contract.is_active = True
+            employee_contract.save()
+
         return employee_contract
+
 
 def get__employee_contract__for__employee__and__customer(
     employee: Employee, customer: Customer
@@ -716,7 +790,7 @@ def get__list_of_employee_manager_contract__with__given_abitly__for__user(
 
 
 def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
-    employee_manager : Employee, customer: Customer
+    employee_manager: Employee, customer: Customer
 ) -> bool:
     return EmployeeManagerContract.objects.filter(
         contract__employee=employee_manager,
