@@ -1,8 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
+from app.nadooit_os.services import (
+    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+)
 from nadooit_os.services import (
     create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
     create__customer_program_execution_manager_contract__for__employee_contract,
@@ -215,6 +218,22 @@ def employee_with_active_TimeAccountManagerContract_and_the_right_to_create_time
     return employee
 
 
+def get__utc_datetime_for_first_of_last_month():
+    import pytz
+
+    utc = pytz.utc
+    now_but_a_month_ago = None
+    if datetime.utcnow().month == 1:
+        now_but_a_month_ago = utc.localize(
+            datetime.utcnow().replace(month=12, day=1, year=datetime.utcnow().year - 1)
+        )
+    else:
+        now_but_a_month_ago = utc.localize(
+            datetime.utcnow().replace(month=datetime.utcnow().month - 1, day=1)
+        )
+    return now_but_a_month_ago
+
+
 @pytest.fixture()
 def customer_program_executions():
 
@@ -238,9 +257,7 @@ def customer_program_executions():
     import pytz
 
     utc = pytz.utc
-    now_but_a_month_ago = utc.localize(
-        datetime.utcnow().replace(month=datetime.utcnow().month - 1)
-    )
+    now_but_a_month_ago = get__utc_datetime_for_first_of_last_month()
 
     # Create a couple lines of empty space for readability
     print("	")
@@ -355,12 +372,7 @@ def test_get__not_paid_customer_program_executions__for__filter_type_and_custome
     list_of_the_last_20_executions = []
 
     # Create a random datetime for the past month
-    import pytz
-
-    utc = pytz.utc
-    now_but_a_month_ago = utc.localize(
-        datetime.utcnow().replace(day=1, month=datetime.utcnow().month - 1)
-    )
+    now_but_a_month_ago = get__utc_datetime_for_first_of_last_month()
 
     # Create a couple lines of empty space for readability
     print("	")
@@ -382,7 +394,7 @@ def test_get__not_paid_customer_program_executions__for__filter_type_and_custome
 
         list_of_executions_last_month.append(new_exectuion)
         list_of_the_last_20_executions.append(new_exectuion)
-        if new_exectuion.created_at.year == datetime.now().year:
+        if new_exectuion.created_at.year == datetime.utcnow().year:
             list_of_executions_this_year.append(new_exectuion)
     print("	")
     print(len(list_of_the_last_20_executions))
@@ -885,10 +897,7 @@ def test_get__customer_program_executions__for__filter_type_and_customer(
     # Create a random datetime for the past month
     import pytz
 
-    utc = pytz.utc
-    now_but_a_month_ago = utc.localize(
-        datetime.utcnow().replace(day=1, month=datetime.utcnow().month - 1)
-    )
+    now_but_a_month_ago = get__utc_datetime_for_first_of_last_month()
 
     # Create a couple lines of empty space for readability
     print("	")
@@ -1320,3 +1329,35 @@ def test_create__customer_program_execution_manager_contract__for__employee_and_
         == True
     )
     assert customer_program_execution_manager_contract.can_give_manager_role == True
+
+
+@pytest.mark.django_db
+def test_get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer", name="customer1")
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramExecutionManagerContract",
+        contract=baker.make(
+            "nadooit_hr.EmployeeContract",
+            employee=employee,
+        ),
+        can_create_customer_program_execution=True,
+        can_delete_customer_program_execution=True,
+        can_give_manager_role=True,
+    )
+    # Act
+
+    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+        employee
+    )
+
+    print(
+        list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
+    )
+
+    # Assert
+    assert (
+        list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
+        == [customer]
+    )

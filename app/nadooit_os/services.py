@@ -51,14 +51,25 @@ def get__customer_program_executions__for__filter_type_and_customer(
         print(todays_date.month)
         print(todays_date.month - 1)
 
-        customer_program_executions = (
-            CustomerProgramExecution.objects.filter(
-                customer_program__customer=customer,
-                created_at__month=todays_date.month - 1,
+        if todays_date.month == 1:
+            customer_program_executions = (
+                CustomerProgramExecution.objects.filter(
+                    customer_program__customer=customer,
+                    created_at__month=12,
+                    created_at__year = todays_date.year - 1
+                )
+                .order_by("created_at")
+                .reverse()
             )
-            .order_by("created_at")
-            .reverse()
-        )
+        else:
+            customer_program_executions = (
+                CustomerProgramExecution.objects.filter(
+                    customer_program__customer=customer,
+                    created_at__month=todays_date.month - 1,
+                )
+                .order_by("created_at")
+                .reverse()
+            )
     elif filter_type == "today":
         customer_program_executions = (
             CustomerProgramExecution.objects.filter(
@@ -78,6 +89,7 @@ def get__customer_program_executions__for__filter_type_and_customer(
             CustomerProgramExecution.objects.filter(
                 customer_program__customer=customer,
                 created_at__month=todays_date.month,
+                created_at__year=todays_date.year,
             )
             .order_by("created_at")
             .reverse()
@@ -452,6 +464,37 @@ def check__time_account_manager_contract__exists__for__employee_and_customer(
     ).exists()
 
 
+def get__list_of_customer_program_execution_manager_contract__for__employee(
+    employee: Employee,
+) -> List[CustomerProgramExecutionManagerContract]:
+
+    return CustomerProgramExecutionManagerContract.objects.filter(
+        contract__employee=employee,
+        can_give_manager_role=True,
+    ).distinct("contract__customer")
+
+
+def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+    employee: Employee,
+) -> List[Customer]:
+
+    # get the list of customers the customer program manager is responsible for
+    list_of_customer_program_execution_manager_contract = (
+        get__list_of_customer_program_execution_manager_contract__for__employee(
+            employee=employee
+        )
+    )
+
+    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_execution_manager_contract
+    list_of_customers_the_manager_is_responsible_for = []
+    for contract in list_of_customer_program_execution_manager_contract:
+        list_of_customers_the_manager_is_responsible_for.append(
+            contract.contract.customer
+        )
+
+    return list_of_customers_the_manager_is_responsible_for
+
+
 def create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract(
     employee,
     customer,
@@ -509,8 +552,7 @@ def create__customer_program_execution_manager_contract__for__employee_and_custo
                 ).update(can_give_manager_role=True)
 
     return CustomerProgramExecutionManagerContract.objects.get(
-        contract__employee=employee,
-        contract__customer=customer
+        contract__employee=employee, contract__customer=customer
     )
 
 

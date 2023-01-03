@@ -10,6 +10,12 @@ from django.http import (
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
 from nadooit_os.services import (
+    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+)
+from nadooit_os.services import (
+    get__list_of_customer_program_execution_manager_contract__for__employee,
+)
+from nadooit_os.services import (
     create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
 )
 from nadooit_os.services import (
@@ -761,22 +767,27 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
         # guard clauses for the input data of the form (user_code, customer_id, list_of_abilities)
 
         # check that user_code is not empty
+        # covered by test
         if not check__user__exists__for__user_code(user_code=user_code):
             return HttpResponseRedirect(
                 "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
             )
 
         # check that customer_id is not empty
+        # covered by test
         if not check__customer__exists__for__customer_id(customer_id=customer_id):
             return HttpResponseRedirect(
                 "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True&error=Kein gültiger Kunde eingegeben"
             )
 
+        # covered by test
         customer = get__customer__for__customer_id(customer_id)
 
         # get the employee object for the user_code, checks not creates it
+        # covered by test
         employee = get__employee__for__user_code(user_code=user_code)
 
+        # covered by test
         if create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract(
             employee=employee,
             customer=customer,
@@ -791,19 +802,9 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
         if "submitted" in request.GET:
             submitted = True
 
-    list_of_customer_program_execution_manager_contract = (
-        CustomerProgramExecutionManagerContract.objects.filter(
-            contract__employee=employee_with_customer_program_manager_contract,
-            can_give_manager_role=True,
-        ).distinct("contract__customer")
+    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+        employee=employee_with_customer_program_manager_contract
     )
-
-    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_execution_manager_contract
-    list_of_customers_the_manager_is_responsible_for = []
-    for contract in list_of_customer_program_execution_manager_contract:
-        list_of_customers_the_manager_is_responsible_for.append(
-            contract.contract.customer
-        )
 
     return render(
         request,
@@ -812,7 +813,7 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
             "page_title": "Programmausführungs Manager Rolle vergeben",
             "submitted": submitted,
             "error": request.GET.get("error"),
-            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_manager_is_responsible_for,
+            "list_of_customers_the_manager_is_responsible_for": list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
             **get__user__roles_and_rights__for__http_request(request),
         },
     )
