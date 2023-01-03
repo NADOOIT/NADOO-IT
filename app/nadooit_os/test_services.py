@@ -1341,6 +1341,7 @@ def test_get__list_of_customers_the_employee_has_a_customer_program_manager_cont
         contract=baker.make(
             "nadooit_hr.EmployeeContract",
             employee=employee,
+            customer=customer,
         ),
         can_create_customer_program_execution=True,
         can_delete_customer_program_execution=True,
