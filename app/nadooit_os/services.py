@@ -56,7 +56,7 @@ def get__customer_program_executions__for__filter_type_and_customer(
                 CustomerProgramExecution.objects.filter(
                     customer_program__customer=customer,
                     created_at__month=12,
-                    created_at__year = todays_date.year - 1
+                    created_at__year=todays_date.year - 1,
                 )
                 .order_by("created_at")
                 .reverse()
@@ -133,7 +133,7 @@ def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time) ->
 
 # Refactore this function because it requeres an employee and not a user. This is dangerous because it is not clear by the name of the function
 def check__user__is__customer_program_manager__for__customer_prgram(
-    user, customer_program
+    user: User, customer_program: CustomerProgram
 ):
     return CustomerProgramManagerContract.objects.filter(
         contract__employee=user.employee,
@@ -172,6 +172,34 @@ def get__list_of_customers__for__employee_that_has_a_time_account_manager_contra
         )
 
     return list_of_customers_the_manager_is_responsible_for
+
+
+def get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
+    employee: Employee,
+):
+
+    customers_the_user_is_responsible_for_and_the_customer_programms = []
+
+    list_of_customer_program_manger_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee, can_give_manager_role=True
+        ).distinct("contract__customer")
+    )
+
+    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
+    for contract in list_of_customer_program_manger_contract_for_logged_in_user:
+
+        # list of customer programms with of the customer
+        customer_programms = CustomerProgram.objects.filter(
+            customer=contract.contract.customer
+        )
+
+        # add the customer and the customer programm execution to the list
+        customers_the_user_is_responsible_for_and_the_customer_programms.append(
+            [contract.contract.customer, list(customer_programms)]
+        )
+
+    return customers_the_user_is_responsible_for_and_the_customer_programms
 
 
 def check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer(

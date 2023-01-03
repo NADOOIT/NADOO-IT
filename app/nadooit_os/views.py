@@ -9,6 +9,10 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from app.nadooit_os.services import check__customer_program__for__customer_program_id__exists, check__user__is__customer_program_manager__for__customer_prgram, get__customer_program__for__customer_program_id
+from nadooit_os.services import (
+    get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee,
+)
 from nadooit_os.services import (
     get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
 )
@@ -802,6 +806,7 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
         if "submitted" in request.GET:
             submitted = True
 
+    # covered by test
     list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
         employee=employee_with_customer_program_manager_contract
     )
@@ -830,26 +835,11 @@ def customer_program_overview(request: HttpRequest):
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
-    customers_the_user_is_responsible_for_and_the_customer_programms = []
-
-    list_of_customer_program_manger_contract_for_logged_in_user = (
-        CustomerProgramManagerContract.objects.filter(
-            contract__employee=request.user.employee, can_give_manager_role=True
-        ).distinct("contract__customer")
+    
+    # covered by test
+    customers_the_user_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
+        employee=request.user.employee
     )
-
-    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
-    for contract in list_of_customer_program_manger_contract_for_logged_in_user:
-
-        # list of customer programms with of the customer
-        customer_programms = CustomerProgram.objects.filter(
-            customer=contract.contract.customer
-        )
-
-        # add the customer and the customer programm execution to the list
-        customers_the_user_is_responsible_for_and_the_customer_programms.append(
-            [contract.contract.customer, customer_programms]
-        )
 
     # Multiple lists for the different order states
     # List one shows all orders for the current month
@@ -876,15 +866,20 @@ def get__customer_program_profile(
 ) -> HttpResponse:
     # Check that the user is a a customer program  manager for the customer that the customer program belongs to
     # print("customer_program_id", customer_program_id)
-
-    if check__customer_program__for__customer_program_id__exists(customer_program_id):
-        if not check__user__is__customer_program_manager__for__customer_prgram(
-            request.user,
-            get__customer_program__for__customer_program_id(customer_program_id),
-        ):
-            return HttpResponseForbidden()
-    else:
+    # covered by test
+    if not check__customer_program__for__customer_program_id__exists(customer_program_id):
         return HttpResponse(status=404)
+
+    customer_program = get__customer_program__for__customer_program_id(
+        customer_program_id
+    )
+    
+    # covered by test
+    if not check__user__is__customer_program_manager__for__customer_prgram(
+        request.user,
+        customer_program,
+    ):
+        return HttpResponseForbidden()
 
     # Get the customer program
     customer_program = get__customer_program__for__customer_program_id(

@@ -3,8 +3,10 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
-from app.nadooit_os.services import (
+from nadooit_hr.models import CustomerProgramManagerContract
+from nadooit_os.services import (
     get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+    get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee,
 )
 from nadooit_os.services import (
     create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
@@ -1361,4 +1363,49 @@ def test_get__list_of_customers_the_employee_has_a_customer_program_manager_cont
     assert (
         list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
         == [customer]
+    )
+
+
+@pytest.mark.django_db
+def test_get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee():
+    # Arrange
+
+    """
+    This is what list of customers the employee is responsible for and the customer programms looks like:
+            [customer, customer_programms]
+
+            example:
+            [
+                customer1, [customer_program1, customer_program2],
+                customer2, [customer_program3, customer_program4],
+            ]
+        )
+    """
+
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer", name="customer1")
+    customer_program_manager_contract = baker.make(
+        CustomerProgramManagerContract,
+        contract=baker.make(
+            "nadooit_hr.EmployeeContract",
+            employee=employee,
+            customer=customer,
+        ),
+        can_create_customer_program=True,
+        can_delete_customer_program=True,
+        can_give_manager_role=True,
+    )
+
+    customer_program = baker.make(
+        CustomerProgram, customer=customer, program=baker.make(Program, name="program1")
+    )
+
+    # Act
+    list_of_customers_the_employee_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
+        employee
+    )
+    # Assert
+    assert (
+        list_of_customers_the_employee_is_responsible_for_and_the_customer_programms
+        == [[customer, [customer_program]]]
     )
