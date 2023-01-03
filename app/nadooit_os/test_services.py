@@ -3,6 +3,10 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
+from app.nadooit_os.services import (
+    get__customer_program__for__customer_program_id,
+    get__next_price_level__for__customer_program,
+)
 from nadooit_hr.models import CustomerProgramManagerContract
 from nadooit_os.services import (
     get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
@@ -1409,3 +1413,27 @@ def test_get__list_of_customers_the_employee_is_responsible_for_and_the_customer
         list_of_customers_the_employee_is_responsible_for_and_the_customer_programms
         == [[customer, [customer_program]]]
     )
+
+
+@pytest.mark.django_db
+def test_get__customer_program__for__customer_program_id():
+    # Arrange
+    customer_program = baker.make(CustomerProgram)
+    # Act
+    customer_program_from_db = get__customer_program__for__customer_program_id(
+        customer_program.id
+    )
+    # Assert
+    assert customer_program_from_db == customer_program
+
+
+# finish assertion
+@pytest.mark.django_db
+def test_get__next_price_level__for__customer_program():
+    # Arrange
+    customer_program = baker.make(CustomerProgram)
+    # Act
+    next_price_level = get__next_price_level__for__customer_program(customer_program)
+    # Assert
+    # test if the output is a string
+    assert True

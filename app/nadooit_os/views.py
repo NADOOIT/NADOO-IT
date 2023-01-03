@@ -9,7 +9,12 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
-from app.nadooit_os.services import check__customer_program__for__customer_program_id__exists, check__user__is__customer_program_manager__for__customer_prgram, get__customer_program__for__customer_program_id
+from app.nadooit_os.services import (
+    check__customer_program__for__customer_program_id__exists,
+    check__user__is__customer_program_manager__for__customer_prgram,
+    get__customer_program__for__customer_program_id,
+    get__next_price_level__for__customer_program,
+)
 from nadooit_os.services import (
     get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee,
 )
@@ -835,7 +840,7 @@ def customer_program_overview(request: HttpRequest):
     # the list of customers that the time accounts that the employee is responsible for belong to
     # the list has for its first element the customer that the employee is responsible for
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
-    
+
     # covered by test
     customers_the_user_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
         employee=request.user.employee
@@ -867,13 +872,17 @@ def get__customer_program_profile(
     # Check that the user is a a customer program  manager for the customer that the customer program belongs to
     # print("customer_program_id", customer_program_id)
     # covered by test
-    if not check__customer_program__for__customer_program_id__exists(customer_program_id):
+    if not check__customer_program__for__customer_program_id__exists(
+        customer_program_id
+    ):
         return HttpResponse(status=404)
 
+    # Get the customer program
+    # covered by test
     customer_program = get__customer_program__for__customer_program_id(
         customer_program_id
     )
-    
+
     # covered by test
     if not check__user__is__customer_program_manager__for__customer_prgram(
         request.user,
@@ -881,10 +890,6 @@ def get__customer_program_profile(
     ):
         return HttpResponseForbidden()
 
-    # Get the customer program
-    customer_program = get__customer_program__for__customer_program_id(
-        customer_program_id
-    )
     # print("customer_program", customer_program)
     next_price = get__next_price_level__for__customer_program(customer_program)
 
