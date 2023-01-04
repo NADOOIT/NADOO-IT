@@ -3,8 +3,9 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
-from app.nadooit_os.services import (
+from nadooit_os.services import (
     get__customer_program__for__customer_program_id,
+    get__customer_program_manager_contract__for__employee_and_customer,
     get__next_price_level__for__customer_program,
 )
 from nadooit_hr.models import CustomerProgramManagerContract
@@ -1437,3 +1438,76 @@ def test_get__next_price_level__for__customer_program():
     # Assert
     # test if the output is a string
     assert True
+
+
+@pytest.mark.django_db
+def test_get__customer_program_manager_contract__for__employee_and_customer():
+    # Arrange
+    # Test that returns a customer_program_manager_contract that already exists
+    employee = baker.make(
+        "nadooit_hr.Employee",
+        user=baker.make("nadooit_auth.User", display_name="employee1"),
+    )
+    customer = baker.make("nadooit_crm.Customer", name="customer1")
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        contract=baker.make(
+            "nadooit_hr.EmployeeContract",
+            employee=employee,
+            customer=customer,
+        ),
+        can_create_customer_program=True,
+        can_delete_customer_program=True,
+        can_give_manager_role=True,
+    )
+
+    # Test that creates a new customer_program_manager_contract if it does not exist
+    # There is a employee_contract between employee_2 and customer_2
+    employee_2 = baker.make(
+        "nadooit_hr.Employee",
+        user=baker.make("nadooit_auth.User", display_name="employee2"),
+    )
+    customer_2 = baker.make("nadooit_crm.Customer", name="customer2")
+    baker.make(
+        "nadooit_hr.EmployeeContract",
+        employee=employee_2,
+        customer=customer_2,
+    )
+
+    # Test 3 that tests that if there is no employee_contract between employee_3 and customer_3, then it creates a new employee_contract and a new customer_program_manager_contract
+
+    employee_3 = baker.make(
+        "nadooit_hr.Employee",
+        user=baker.make("nadooit_auth.User", display_name="employee3"),
+    )
+    customer_3 = baker.make("nadooit_crm.Customer", name="customer3")
+
+    # Act
+    customer_program_manager_contract_from_db = (
+        get__customer_program_manager_contract__for__employee_and_customer(
+            employee, customer
+        )
+    )
+
+    customer_program_manager_contract_from_db_2 = (
+        get__customer_program_manager_contract__for__employee_and_customer(
+            employee_2, customer_2
+        )
+    )
+
+    customer_program_manager_contract_from_db_3 = (
+        get__customer_program_manager_contract__for__employee_and_customer(
+            employee_3, customer_3
+        )
+    )
+
+    # Assert
+    assert (
+        customer_program_manager_contract_from_db == customer_program_manager_contract
+    )
+    assert customer_program_manager_contract_from_db_2 != None
+    assert customer_program_manager_contract_from_db_3 != None
+    assert customer_program_manager_contract_from_db_2.contract.employee == employee_2
+    assert customer_program_manager_contract_from_db_2.contract.customer == customer_2
+    assert customer_program_manager_contract_from_db_3.contract.employee == employee_3
+    assert customer_program_manager_contract_from_db_3.contract.customer == customer_3

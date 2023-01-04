@@ -465,6 +465,20 @@ def check__employee_contract__exists__for__employee__and__customer(
     return EmployeeContract.objects.filter(employee=employee, customer=cutomer).exists()
 
 
+def get__employee_contract__for__employee_and_customer(
+    employee: Employee, customer: Customer
+) -> EmployeeContract | None:
+    # Check if the employee contract exists
+    if not check__employee_contract__exists__for__employee__and__customer(
+        employee, customer
+    ):
+        return create__employee_contract__for__employee_and__customer(
+            employee, customer
+        )
+
+    return EmployeeContract.objects.get(employee=employee, customer=customer)
+
+
 def create__employee_contract__for__employee_and__customer(
     employee, customer
 ) -> EmployeeContract:
@@ -500,6 +514,101 @@ def get__list_of_customer_program_execution_manager_contract__for__employee(
         contract__employee=employee,
         can_give_manager_role=True,
     ).distinct("contract__customer")
+
+
+def get__customer_program_manager_contract__for__employee_and_customer(
+    employee: Employee, customer: Customer
+) -> CustomerProgramManagerContract:
+
+    # check if there is a customer program manager contract for the given employee and customer
+    # if there is no contract create one
+    if not check__customer_program_manager_contract__exists__for__employee_and_customer(
+        employee=employee, customer=customer
+    ):
+        return create__customer_program_manager_contract__for__employee_and__customer(
+            employee=employee, customer=customer
+        )
+
+    return CustomerProgramManagerContract.objects.get(
+        contract__employee=employee,
+        contract__customer=customer,
+    )
+
+
+# the list of abilities is a list of strings
+# the strings are the names of the abilities that the customer program manager contract has
+# meaning that the abilites in the customer program manager contract are the ones that are set to true
+def get__list_of_abilties__for__customer_program_manager_contract(
+    customer_program_manager_contract: CustomerProgramExecutionManagerContract,
+) -> List[str]:
+
+    # get the abilities of the customer program manager contract
+    # the returned abilities are a dictionary with the ability names as keys and the ability values as values
+    abilities = customer_program_manager_contract.get_abilities()
+
+    # create a list of the ability names that are set to true
+
+    list_of_abilities = []
+    for ability in abilities:
+        if abilities[ability]:
+            list_of_abilities.append(ability)
+
+    return list_of_abilities
+
+
+def get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give(
+    list_of_selected_abilities: List[str], list_of_possible_abilities: List[str]
+) -> List[str]:
+
+    # create a list of the abilities that the employee can give
+    # the abilities that the employee can give are the ones that are in the selected abilities
+    # and the ones that are in the possible abilities
+    list_of_abilities = []
+    for ability in list_of_selected_abilities:
+        if ability in list_of_possible_abilities:
+            list_of_abilities.append(ability)
+
+    return list_of_abilities
+
+
+def set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities(
+    customer_program_manager_contract: CustomerProgramManagerContract,
+    list_of_abilities: List[str],
+) -> None:
+    for ability in list_of_abilities:
+        # check if the employee already has the ability
+        if ability == "can_create_customer_program":
+            # Set the ability for the CustomerProgramManagerContract object to the value of the ability
+            customer_program_manager_contract.can_create_customer_program = True
+        if ability == "can_delete_customer_program":
+            customer_program_manager_contract.can_delete_customer_program = True
+        if ability == "can_give_manager_role":
+            customer_program_manager_contract.can_give_manager_role = True
+
+    # save the changes to the database
+    customer_program_manager_contract.save()
+
+
+def create__customer_program_manager_contract__for__employee_and__customer(
+    employee: Employee, customer: Customer
+) -> CustomerProgramManagerContract:
+
+    # create a new employee contract for the given employee and customer
+    employee_contract = get__employee_contract__for__employee_and_customer(
+        employee=employee, customer=customer
+    )
+
+    # create a new customer program manager contract for the given employee contract
+    return CustomerProgramManagerContract.objects.create(contract=employee_contract)
+
+
+def check__customer_program_manager_contract__exists__for__employee_and_customer(
+    employee: Employee, customer: Customer
+) -> bool:
+
+    return CustomerProgramManagerContract.objects.filter(
+        contract__employee=employee, contract__customer=customer
+    ).exists()
 
 
 def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
