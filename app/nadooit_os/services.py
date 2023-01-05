@@ -539,7 +539,7 @@ def get__customer_program_manager_contract__for__employee_and_customer(
 # the strings are the names of the abilities that the customer program manager contract has
 # meaning that the abilites in the customer program manager contract are the ones that are set to true
 def get__list_of_abilties__for__customer_program_manager_contract(
-    customer_program_manager_contract: CustomerProgramExecutionManagerContract,
+    customer_program_manager_contract: CustomerProgramManagerContract,
 ) -> List[str]:
 
     # get the abilities of the customer program manager contract

@@ -92,6 +92,13 @@ class CustomerProgramManagerContract(models.Model):
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
         )
 
+    def get_abilities(self):
+        return {
+            "can_create_customer_program": self.can_create_customer_program,
+            "can_delete_customer_program": self.can_delete_customer_program,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
+
 
 class CustomerProgramExecutionManagerContract(models.Model):
 

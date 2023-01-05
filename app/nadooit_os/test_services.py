@@ -4,6 +4,9 @@ from typing import Type
 import model_bakery
 import pytest
 from nadooit_os.services import (
+    get__list_of_abilties__for__customer_program_manager_contract,
+)
+from nadooit_os.services import (
     get__customer_program__for__customer_program_id,
     get__customer_program_manager_contract__for__employee_and_customer,
     get__next_price_level__for__customer_program,
@@ -1511,3 +1514,90 @@ def test_get__customer_program_manager_contract__for__employee_and_customer():
     assert customer_program_manager_contract_from_db_2.contract.customer == customer_2
     assert customer_program_manager_contract_from_db_3.contract.employee == employee_3
     assert customer_program_manager_contract_from_db_3.contract.customer == customer_3
+
+
+@pytest.mark.django_db
+def test_get__list_of_abilties__for__customer_program_manager_contract():
+    # Arrange
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        can_create_customer_program=True,
+        can_delete_customer_program=True,
+        can_give_manager_role=True,
+    )
+
+    customer_program_manager_contract_2 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        can_create_customer_program=False,
+        can_delete_customer_program=False,
+        can_give_manager_role=False,
+    )
+
+    customer_program_manager_contract_3 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        can_create_customer_program=True,
+        can_delete_customer_program=False,
+        can_give_manager_role=False,
+    )
+
+    customer_program_manager_contract_4 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        can_create_customer_program=False,
+        can_delete_customer_program=True,
+        can_give_manager_role=False,
+    )
+
+    customer_program_manager_contract_5 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        can_create_customer_program=False,
+        can_delete_customer_program=False,
+        can_give_manager_role=True,
+    )
+
+    # Act
+    list_of_abilties_customer_program_manager_contract = (
+        get__list_of_abilties__for__customer_program_manager_contract(
+            customer_program_manager_contract
+        )
+    )
+
+    list_of_abilties_customer_program_manager_contract_2 = (
+        get__list_of_abilties__for__customer_program_manager_contract(
+            customer_program_manager_contract_2
+        )
+    )
+
+    list_of_abilties_customer_program_manager_contract_3 = (
+        get__list_of_abilties__for__customer_program_manager_contract(
+            customer_program_manager_contract_3
+        )
+    )
+
+    list_of_abilties_customer_program_manager_contract_4 = (
+        get__list_of_abilties__for__customer_program_manager_contract(
+            customer_program_manager_contract_4
+        )
+    )
+
+    list_of_abilties_customer_program_manager_contract_5 = (
+        get__list_of_abilties__for__customer_program_manager_contract(
+            customer_program_manager_contract_5
+        )
+    )
+
+    # Assert
+    assert list_of_abilties_customer_program_manager_contract == [
+        "can_create_customer_program",
+        "can_delete_customer_program",
+        "can_give_manager_role",
+    ]
+    assert list_of_abilties_customer_program_manager_contract_2 == []
+    assert list_of_abilties_customer_program_manager_contract_3 == [
+        "can_create_customer_program",
+    ]
+    assert list_of_abilties_customer_program_manager_contract_4 == [
+        "can_delete_customer_program",
+    ]
+    assert list_of_abilties_customer_program_manager_contract_5 == [
+        "can_give_manager_role",
+    ]
