@@ -966,6 +966,7 @@ def give_customer_program_manager_role(request: HttpRequest):
             )
         )
 
+        # covered by test
         list_of_abilities__for__customer_program_manager_contract_that_is_creating_the_new_contract = get__list_of_abilties__for__customer_program_manager_contract(
             customer_program_manager_contract_of_employee_that_is_creating_the_contract
         )

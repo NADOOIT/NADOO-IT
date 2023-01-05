@@ -4,6 +4,9 @@ from typing import Type
 import model_bakery
 import pytest
 from nadooit_os.services import (
+    get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give,
+)
+from nadooit_os.services import (
     get__list_of_abilties__for__customer_program_manager_contract,
 )
 from nadooit_os.services import (
@@ -1600,4 +1603,59 @@ def test_get__list_of_abilties__for__customer_program_manager_contract():
     ]
     assert list_of_abilties_customer_program_manager_contract_5 == [
         "can_give_manager_role",
+    ]
+
+
+def test_get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give():
+    # Arrange
+    list_of_selected_abilities = ["can_create_customer_program"]
+    list_of_possible_abilities_the_employee_can_give = [
+        "can_create_customer_program",
+        "can_delete_customer_program",
+        "can_give_manager_role",
+    ]
+
+    list_of_selected_abilities_2 = ["can_create_customer_program"]
+    list_of_possible_abilities_the_employee_can_give_2 = [
+        "can_delete_customer_program",
+        "can_give_manager_role",
+    ]
+
+    list_of_selected_abilities_3 = ["can_create_customer_program"]
+    list_of_possible_abilities_the_employee_can_give_3 = []
+
+    list_of_selected_abilities_4 = [
+        "can_create_customer_program",
+        "can_delete_customer_program",
+    ]
+    list_of_possible_abilities_the_employee_can_give_4 = [
+        "can_create_customer_program",
+        "can_delete_customer_program",
+        "can_give_manager_role",
+    ]
+
+    # Act
+    list_of_abilities = get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give(
+        list_of_selected_abilities, list_of_possible_abilities_the_employee_can_give
+    )
+
+    list_of_abilities_2 = get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give(
+        list_of_selected_abilities_2, list_of_possible_abilities_the_employee_can_give_2
+    )
+
+    list_of_abilities_3 = get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give(
+        list_of_selected_abilities_3, list_of_possible_abilities_the_employee_can_give_3
+    )
+
+    list_of_abilities_4 = get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give(
+        list_of_selected_abilities_4, list_of_possible_abilities_the_employee_can_give_4
+    )
+
+    # Assert
+    assert list_of_abilities == ["can_create_customer_program"]
+    assert list_of_abilities_2 == []
+    assert list_of_abilities_3 == []
+    assert list_of_abilities_4 == [
+        "can_create_customer_program",
+        "can_delete_customer_program",
     ]
