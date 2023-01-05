@@ -948,6 +948,7 @@ def give_customer_program_manager_role(request: HttpRequest):
 
         customer_program_manager_that_is_creating_the_contract = request.user.employee
 
+        # covered by test
         customer_program_manager_contract = (
             get__customer_program_manager_contract__for__employee_and_customer(
                 employee, customer
@@ -958,6 +959,7 @@ def give_customer_program_manager_role(request: HttpRequest):
         # get the "role"
         list_of_selected_abilities = request.POST.getlist("role")
 
+        # covered by test
         customer_program_manager_contract_of_employee_that_is_creating_the_contract = (
             get__customer_program_manager_contract__for__employee_and_customer(
                 customer_program_manager_that_is_creating_the_contract, customer
