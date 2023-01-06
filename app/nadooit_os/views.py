@@ -1117,6 +1117,7 @@ def add_employee(request: HttpRequest):
             submitted = True
 
     # get the list of customers the employee has a employee manager contract with that can add employees
+    # covered by test
     list_of_customers_the_employee_has_a_employee_manager_contract_with_that_can_add_employees = get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
         request.user
     )
