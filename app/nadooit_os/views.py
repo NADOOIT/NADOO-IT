@@ -1,4 +1,5 @@
 import csv
+from uuid import uuid4
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import (
     HttpRequest,
@@ -1043,10 +1044,11 @@ def employee_overview(request: HttpRequest):
 
 @user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
 @login_required(login_url="/auth/login-user")
-def employee_profile(request: HttpRequest, employee_id: int):
+def employee_profile(request: HttpRequest, employee_id: uuid4):
     # TODO This is not doen yet and can and should not be used
 
     # get the employee object
+    employee = get__employee__for__employee_id(employee_id)
     employee = Employee.objects.get(id=employee_id)
 
     # A list of all the customers the user is responsible for so that in the profile the user only sees the infroation of the employee that is also part of the customers the user is responsible for
