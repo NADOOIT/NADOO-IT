@@ -1,8 +1,18 @@
+# confing for github copilot
+# all tests are in the same file
+# every test gets at least 2 asserts
+
 from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
+from nadooit_os.services import (
+    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+)
+from nadooit_os.services import (
+    set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
+)
 from nadooit_os.services import (
     get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give,
 )
@@ -16,8 +26,8 @@ from nadooit_os.services import (
 )
 from nadooit_hr.models import CustomerProgramManagerContract
 from nadooit_os.services import (
-    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
-    get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee,
+    get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract,
+    get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee,
 )
 from nadooit_os.services import (
     create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
@@ -1345,7 +1355,7 @@ def test_create__customer_program_execution_manager_contract__for__employee_and_
 
 
 @pytest.mark.django_db
-def test_get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract():
+def test_get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract():
     # Arrange
     employee = baker.make("nadooit_hr.Employee")
     customer = baker.make("nadooit_crm.Customer", name="customer1")
@@ -1362,7 +1372,7 @@ def test_get__list_of_customers_the_employee_has_a_customer_program_manager_cont
     )
     # Act
 
-    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract(
         employee
     )
 
@@ -1378,7 +1388,7 @@ def test_get__list_of_customers_the_employee_has_a_customer_program_manager_cont
 
 
 @pytest.mark.django_db
-def test_get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee():
+def test_get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee():
     # Arrange
 
     """
@@ -1412,7 +1422,7 @@ def test_get__list_of_customers_the_employee_is_responsible_for_and_the_customer
     )
 
     # Act
-    list_of_customers_the_employee_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
+    list_of_customers_the_employee_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee(
         employee
     )
     # Assert
@@ -1659,3 +1669,73 @@ def test_get__list_of_abilities__for__list_of_selected_abilities_and_list_of_pos
         "can_create_customer_program",
         "can_delete_customer_program",
     ]
+
+
+@pytest.mark.django_db
+def test_set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities():
+    # Arrange
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        can_create_customer_program=False,
+        can_delete_customer_program=False,
+        can_give_manager_role=False,
+    )
+
+    list_of_abilities = ["can_create_customer_program", "can_give_manager_role"]
+
+    # Act
+    set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities(
+        customer_program_manager_contract, list_of_abilities
+    )
+
+    # Assert
+    assert customer_program_manager_contract.can_create_customer_program == True
+    assert customer_program_manager_contract.can_delete_customer_program == False
+    assert customer_program_manager_contract.can_give_manager_role == True
+
+
+@pytest.mark.django_db
+def test_get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer")
+    customer_2 = baker.make("nadooit_crm.Customer")
+    customer_3 = baker.make("nadooit_crm.Customer")
+
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        employee=employee,
+        customer=customer,
+        can_create_customer_program=True,
+        can_delete_customer_program=False,
+        can_give_manager_role=False,
+    )
+
+    customer_program_manager_contract_2 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        employee=employee,
+        customer=customer_2,
+        can_create_customer_program=False,
+        can_delete_customer_program=False,
+        can_give_manager_role=False,
+    )
+
+    customer_program_manager_contract_3 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        employee=employee,
+        customer=customer_3,
+        can_create_customer_program=False,
+        can_delete_customer_program=True,
+        can_give_manager_role=False,
+    )
+
+    # Act
+    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+        employee
+    )
+
+    # Assert
+    assert (
+        list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
+        == [customer]
+    )

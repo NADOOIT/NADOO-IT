@@ -9,6 +9,7 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from nadooit_os.services import get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
 from nadooit_os.services import (
     set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
 )
@@ -26,10 +27,10 @@ from nadooit_os.services import (
     get__next_price_level__for__customer_program,
 )
 from nadooit_os.services import (
-    get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee,
+    get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee,
 )
 from nadooit_os.services import (
-    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+    get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract,
 )
 from nadooit_os.services import (
     get__list_of_customer_program_execution_manager_contract__for__employee,
@@ -822,7 +823,7 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
             submitted = True
 
     # covered by test
-    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+    list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract = get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract(
         employee=employee_with_customer_program_manager_contract
     )
 
@@ -852,7 +853,7 @@ def customer_program_overview(request: HttpRequest):
     # the list has for its second element the ccustomer programm execution for the customer that the employee is responsible for
 
     # covered by test
-    customers_the_user_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
+    customers_the_user_is_responsible_for_and_the_customer_programms = get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee(
         employee=request.user.employee
     )
 
@@ -920,6 +921,9 @@ def get__customer_program_profile(
 )
 def give_customer_program_manager_role(request: HttpRequest):
     submitted = False
+
+    customer_program_manager_that_is_creating_the_contract = request.user.employee
+
     if request.method == "POST":
 
         user_code = request.POST.get("user_code")
@@ -946,8 +950,6 @@ def give_customer_program_manager_role(request: HttpRequest):
         # covered by test
         employee = get__employee__for__user_code(user_code)
 
-        customer_program_manager_that_is_creating_the_contract = request.user.employee
-
         # covered by test
         customer_program_manager_contract = (
             get__customer_program_manager_contract__for__employee_and_customer(
@@ -971,11 +973,13 @@ def give_customer_program_manager_role(request: HttpRequest):
             customer_program_manager_contract_of_employee_that_is_creating_the_contract
         )
 
+        # covered by test
         list_of_abilities_for_new_contract__for__selected_abilities_and_possible_abilities_the_employee_can_give = get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give(
             list_of_possible_abilities=list_of_abilities__for__customer_program_manager_contract_that_is_creating_the_new_contract,
             list_of_selected_abilities=list_of_selected_abilities,
         )
 
+        # covered by test
         set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities(
             customer_program_manager_contract=customer_program_manager_contract,
             list_of_abilities=list_of_abilities_for_new_contract__for__selected_abilities_and_possible_abilities_the_employee_can_give,
@@ -989,20 +993,14 @@ def give_customer_program_manager_role(request: HttpRequest):
         if "submitted" in request.GET:
             submitted = True
 
-    list_of_employee_manager_contract_for_logged_in_user = (
-        CustomerProgramManagerContract.objects.filter(
-            contract__employee=customer_program_manager_that_is_creating_the_contract,
-            can_give_manager_role=True,
-        ).distinct("contract__customer")
+    # get the list of customers the customer program manager is responsible for
+
+    list_of_customers_the_manager_is_responsible_for = (
+        get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+            customer_program_manager_that_is_creating_the_contract	
     )
-
-    # get the list of customers the customer program manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
-    list_of_customers_the_manager_is_responsible_for = []
-    for contract in list_of_employee_manager_contract_for_logged_in_user:
-        list_of_customers_the_manager_is_responsible_for.append(
-            contract.contract.customer
-        )
-
+    )
+    
     return render(
         request,
         "nadooit_os/customer_program/give_customer_program_manager_role.html",

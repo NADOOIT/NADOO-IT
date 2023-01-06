@@ -27,6 +27,9 @@ from nadooit_auth.models import User
 from datetime import datetime
 from django.db.models import QuerySet
 
+# import Q for filtering
+from django.db.models import Q
+
 
 def get__not_paid_customer_program_executions__for__filter_type_and_customer(
     filter_type, customer
@@ -174,7 +177,7 @@ def get__list_of_customers__for__employee_that_has_a_time_account_manager_contra
     return list_of_customers_the_manager_is_responsible_for
 
 
-def get__list_of_customers_the_employee_is_responsible_for_and_the_customer_programms__for__employee(
+def get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee(
     employee: Employee,
 ):
 
@@ -611,7 +614,7 @@ def check__customer_program_manager_contract__exists__for__employee_and_customer
     ).exists()
 
 
-def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+def get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract(
     employee: Employee,
 ) -> List[Customer]:
 
@@ -1502,3 +1505,24 @@ def create__customer_program_execution_complaint__for__customer_program_executio
     except Exception as e:
         print("error creating complaint", e)
         return None
+
+
+def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+    employee: Employee,
+) -> list[Customer]:
+
+    list_of_customers_the_manager_is_responsible_for = []
+
+    list_of_employee_manager_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True,
+        ).distinct("contract__customer")
+    )
+
+    # get the list of customers the customer program manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
+    list_of_customers_the_manager_is_responsible_for = []
+    for contract in list_of_employee_manager_contract_for_logged_in_user:
+        list_of_customers_the_manager_is_responsible_for.append(
+            contract.contract.customer
+        )
