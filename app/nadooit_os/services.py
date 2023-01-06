@@ -1526,3 +1526,5 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
         list_of_customers_the_manager_is_responsible_for.append(
             contract.contract.customer
         )
+
+    return list_of_customers_the_manager_is_responsible_for

@@ -9,7 +9,9 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
-from nadooit_os.services import get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
+from nadooit_os.services import (
+    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+)
 from nadooit_os.services import (
     set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
 )
@@ -994,13 +996,11 @@ def give_customer_program_manager_role(request: HttpRequest):
             submitted = True
 
     # get the list of customers the customer program manager is responsible for
+    # covered by test
+    list_of_customers_the_manager_is_responsible_for = get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
+        customer_program_manager_that_is_creating_the_contract
+    )
 
-    list_of_customers_the_manager_is_responsible_for = (
-        get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(
-            customer_program_manager_that_is_creating_the_contract	
-    )
-    )
-    
     return render(
         request,
         "nadooit_os/customer_program/give_customer_program_manager_role.html",

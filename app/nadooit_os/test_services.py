@@ -1698,35 +1698,59 @@ def test_set__list_of_abilities__for__customer_program_manager_contract_accordin
 def test_get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract():
     # Arrange
     employee = baker.make("nadooit_hr.Employee")
+    employee_2 = baker.make("nadooit_hr.Employee")
+    
     customer = baker.make("nadooit_crm.Customer")
     customer_2 = baker.make("nadooit_crm.Customer")
     customer_3 = baker.make("nadooit_crm.Customer")
 
-    customer_program_manager_contract = baker.make(
+    # Contracts for employee
+
+    baker.make(
         "nadooit_hr.CustomerProgramManagerContract",
-        employee=employee,
-        customer=customer,
+        contract__employee=employee,
+        contract__customer=customer,
         can_create_customer_program=True,
         can_delete_customer_program=False,
-        can_give_manager_role=False,
+        can_give_manager_role=True,
     )
 
-    customer_program_manager_contract_2 = baker.make(
+    baker.make(
         "nadooit_hr.CustomerProgramManagerContract",
-        employee=employee,
-        customer=customer_2,
+        contract__employee=employee,
+        contract__customer=customer_2,
         can_create_customer_program=False,
         can_delete_customer_program=False,
-        can_give_manager_role=False,
+        can_give_manager_role=True,
     )
 
-    customer_program_manager_contract_3 = baker.make(
+    baker.make(
         "nadooit_hr.CustomerProgramManagerContract",
-        employee=employee,
-        customer=customer_3,
+        contract__employee=employee,
+        contract__customer=customer_3,
         can_create_customer_program=False,
         can_delete_customer_program=True,
         can_give_manager_role=False,
+    )
+
+    # Contracts for employee_2
+
+    baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        contract__employee=employee_2,
+        contract__customer=customer,
+        can_create_customer_program=True,
+        can_delete_customer_program=False,
+        can_give_manager_role=True,
+    )
+
+    baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        contract__employee=employee_2,
+        contract__customer=customer_2,
+        can_create_customer_program=False,
+        can_delete_customer_program=False,
+        can_give_manager_role=True,
     )
 
     # Act
@@ -1737,5 +1761,5 @@ def test_get__list_of_customers_the_employee_has_a_customer_program_manager_cont
     # Assert
     assert (
         list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract
-        == [customer]
+        == [customer, customer_2]
     )
