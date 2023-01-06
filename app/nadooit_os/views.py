@@ -10,6 +10,10 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from app.nadooit_os.services import (
+    get__employee__for__employee_id,
+    get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
+)
 from nadooit_os.services import (
     get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
 )
@@ -1049,7 +1053,6 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
 
     # get the employee object
     employee = get__employee__for__employee_id(employee_id)
-    employee = Employee.objects.get(id=employee_id)
 
     # A list of all the customers the user is responsible for so that in the profile the user only sees the infroation of the employee that is also part of the customers the user is responsible for
     customers_the_user_is_responsible_for = (
@@ -1086,42 +1089,37 @@ def add_employee(request: HttpRequest):
         customer_id = request.POST.get("customers")
 
         # check that user_code is not empty
-        if check__user__exists__for__user_code(user_code):
-
-            if check__customer__exists__for__customer_id(customer_id):
-
-                customer = get__customer__for__customer_id(customer_id)
-
-                if check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
-                    request.user.employee, customer
-                ):
-                    # makes sure that there is a employee contract between the employee the selected customer
-
-                    if get__employee_contract__for__user_code__and__customer(
-                        user_code, customer
-                    ):
-                        return HttpResponseRedirect(
-                            "/nadooit-os/hr/add-employee?submitted=True"
-                        )
-
-                else:
-                    return HttpResponseRedirect(
-                        "/nadooit-os/hr/add-employee?submitted=False&error=Sie haben nicht die notwendige Berechtigung um einen Mitarbeiter für diesen Kunden hinzuzufügen"
-                    )
-
-            else:
-                return HttpResponseRedirect(
-                    "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Kunde ausgewählt"
-                )
-
-        else:
+        if not check__user__exists__for__user_code(user_code):
             return HttpResponseRedirect(
                 "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Benutzercode eingegeben"
             )
 
+        if not check__customer__exists__for__customer_id(customer_id):
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Kunde ausgewählt"
+            )
+
+        customer = get__customer__for__customer_id(customer_id)
+
+        if not check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
+            request.user.employee, customer
+        ):
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/add-employee?submitted=False&error=Sie haben nicht die notwendige Berechtigung um einen Mitarbeiter für diesen Kunden hinzuzufügen"
+            )
+            # makes sure that there is a employee contract between the employee the selected customer
+
+        if get__employee_contract__for__user_code__and__customer(user_code, customer):
+            return HttpResponseRedirect("/nadooit-os/hr/add-employee?submitted=True")
+
     else:
         if "submitted" in request.GET:
             submitted = True
+
+    # get the list of customers the employee has a employee manager contract with that can add employees
+    list_of_customers_the_employee_has_a_employee_manager_contract_with_that_can_add_employees = get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
+        request.user
+    )
 
     return render(
         request,
@@ -1129,9 +1127,7 @@ def add_employee(request: HttpRequest):
         {
             "submitted": submitted,
             "page_title": "Mitarbeiter hinzufügen",
-            "list_of_customers__for__employee_manager_contract": get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
-                request.user
-            ),
+            "list_of_customers__for__employee_manager_contract": list_of_customers_the_employee_has_a_employee_manager_contract_with_that_can_add_employees,
             **get__user__roles_and_rights__for__http_request(request),
         },
     )

@@ -915,19 +915,27 @@ def get__customers__and__employees__for__employee_manager_contract__that_can_add
     return customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user
 
 
+def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(
+    user,
+) -> List[EmployeeManagerContract]:
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee, can_add_new_employee=True
+    ).distinct("contract__customer")
+
+
 def get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
     user,
 ) -> List[Customer]:
 
-    list_of_employee_manager_contract_for_logged_in_user = (
-        EmployeeManagerContract.objects.filter(
-            contract__employee=user.employee, can_add_new_employee=True
-        ).distinct("contract__customer")
+    list_of_employee_manager_contracts = (
+        get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(
+            user
+        )
     )
 
-    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
+    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contracts
     return get__list_of_customers__for__list_of_employee_manager_contracts(
-        list_of_employee_manager_contract_for_logged_in_user
+        list_of_employee_manager_contracts
     )
 
 
@@ -948,7 +956,7 @@ def get__list_of_customers__for__employee_manager_contract__that_can_give_the_ro
 
 
 def get__list_of_customers__for__list_of_employee_manager_contracts(
-    list_of_employee_manager_contracts,
+    list_of_employee_manager_contracts: List[EmployeeManagerContract],
 ) -> List[Customer]:
 
     # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
@@ -1528,3 +1536,7 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
         )
 
     return list_of_customers_the_manager_is_responsible_for
+
+
+def get__employee__for__employee_id(employee_id) -> Employee | None:
+    return Employee.objects.filter(id=employee_id).first()
