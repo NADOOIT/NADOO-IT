@@ -3194,7 +3194,7 @@
         "documentation": {}
     },
     {
-        "label": "get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user",
+        "label": "get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5626,16 +5626,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee_contract__for__user_code__and__customer(\n    user_code, customer_id\n) -> EmployeeContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer(\n        employee, customer_id\n    )\n    return employee_contract\ndef get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(\n    user,",
+        "peekOfCode": "def get__employee_contract__for__user_code__and__customer(\n    user_code, customer_id\n) -> EmployeeContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer(\n        employee, customer_id\n    )\n    return employee_contract\ndef get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(\n    user,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user",
+        "label": "get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(\n    user,\n) -> list[dict[str, Union[Customer, Employee]]]:\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = (\n        []\n    )\n    # get all the customers the employee has contracts with and is an employee manager for\n    # Do not use employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()!\n    # Instead look at the contracts the employee has and get the customers from the contracts\n    # This is because the employee manager will be deprecated in the future",
+        "peekOfCode": "def get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(\n    user,\n) -> list[dict[str, Union[Customer, Employee]]]:\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = (\n        []\n    )\n    # get all the customers the employee has contracts with and is an employee manager for\n    # Do not use employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()!\n    # Instead look at the contracts the employee has and get the customers from the contracts\n    # This is because the employee manager will be deprecated in the future",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -6148,7 +6148,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def employee_overview(request: HttpRequest):\n    # This page displays all the employees that the logged in user is responsible for\n    # The user can be the employee manager of multiple companies\n    # Each company has multiple employees\n    # The page displays all the employees of all the companies the user is responsible for as a lists\n    # Each list is a company and the employees are the employees of that company\n    # TODO missing the ability to deactiave the diactivate button if the user does not have the right to deactivate employees\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(\n        request.user\n    )",
+        "peekOfCode": "def employee_overview(request: HttpRequest):\n    # This page displays all the employees that the logged in user is responsible for\n    # The user can be the employee manager of multiple companies\n    # Each company has multiple employees\n    # The page displays all the employees of all the companies the user is responsible for as a lists\n    # Each list is a company and the employees are the employees of that company\n    # TODO missing the ability to deactiave the diactivate button if the user does not have the right to deactivate employees\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(\n        request.user\n    )",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

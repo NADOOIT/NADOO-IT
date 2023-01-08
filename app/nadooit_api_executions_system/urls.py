@@ -11,7 +11,7 @@ from nadooit_api_executions_system.views import create_execution, check_user
 
 urlpatterns = [
     # path for the api requests for program executions
-    path("executions", create_execution, name="create"),
+    path("executions", create_execution, name="create-execution"),
     # path for the api requests for checking if a user is valid or not
     path("users/check", check_user, name="check"),
 ]

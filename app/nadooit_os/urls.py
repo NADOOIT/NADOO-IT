@@ -81,13 +81,12 @@ urlpatterns = [
         name="employee-overview",
     ),
     # This is the url for the profile of an employee
-    """ TODO: This url is not done yet
-    path(
-        "hr/employee-profile/<employee_id>",
-        employee_profile,
-        name="employee-profile",
-    ),
-    """
+    # TODO: This url is not done yet
+    # path(
+    #    "hr/employee-profile/<employee_id>",
+    #    employee_profile,
+    #    name="employee-profile",
+    # ),
     path(
         "hr/add-employee",
         add_employee,

@@ -856,21 +856,19 @@ def get__employee_contract__for__user_code__and__customer(
     return employee_contract
 
 
-def get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(
+def get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(
     user,
 ) -> list[dict[str, Union[Customer, Employee]]]:
 
-    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = (
-        []
-    )
+    customers__and__employees__for__employee_manager_contract__for__user = []
 
     # get all the customers the employee has contracts with and is an employee manager for
     # Do not use employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()!
     # Instead look at the contracts the employee has and get the customers from the contracts
     # This is because the employee manager will be deprecated in the future
     # Only list a customer once
-    list_of_customers_the_employee_has_an_employee_manager_contract_with = get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
-        user
+    list_of_customers_the_employee_has_an_employee_manager_contract_with = (
+        get__list_of_customers__for__employee_manager_contract__for__user(user)
     )
 
     # get all the employees of the customers the user is responsible for
@@ -879,7 +877,7 @@ def get__customers__and__employees__for__employee_manager_contract__that_can_add
     ) in list_of_customers_the_employee_has_an_employee_manager_contract_with:
 
         if user.is_staff:
-            customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user.append(
+            customers__and__employees__for__employee_manager_contract__for__user.append(
                 [
                     customer,
                     EmployeeContract.objects.filter(customer=customer)
@@ -894,7 +892,7 @@ def get__customers__and__employees__for__employee_manager_contract__that_can_add
                 ]
             )
         else:
-            customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user.append(
+            customers__and__employees__for__employee_manager_contract__for__user.append(
                 [
                     customer,
                     EmployeeContract.objects.filter(
@@ -912,7 +910,7 @@ def get__customers__and__employees__for__employee_manager_contract__that_can_add
                 ]
             )
 
-    return customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user
+    return customers__and__employees__for__employee_manager_contract__for__user
 
 
 def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(
@@ -920,6 +918,14 @@ def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__use
 ) -> List[EmployeeManagerContract]:
     return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee, can_add_new_employee=True
+    ).distinct("contract__customer")
+
+
+def get__list_of_employee_manager_contracts__for__user(
+    user,
+) -> List[EmployeeManagerContract]:
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
     ).distinct("contract__customer")
 
 
@@ -931,6 +937,20 @@ def get__list_of_customers__for__employee_manager_contract__that_can_add_employe
         get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(
             user
         )
+    )
+
+    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contracts
+    return get__list_of_customers__for__list_of_employee_manager_contracts(
+        list_of_employee_manager_contracts
+    )
+
+
+def get__list_of_customers__for__employee_manager_contract__for__user(
+    user,
+) -> List[Customer]:
+
+    list_of_employee_manager_contracts = (
+        get__list_of_employee_manager_contracts__for__user(user)
     )
 
     # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contracts

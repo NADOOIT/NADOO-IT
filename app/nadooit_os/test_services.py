@@ -8,6 +8,9 @@ from typing import Type
 import model_bakery
 import pytest
 from nadooit_os.services import (
+    get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
+)
+from nadooit_os.services import (
     get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
 )
 from nadooit_os.services import (
@@ -107,6 +110,7 @@ from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
 import uuid
+from app.nadooit_os.views import employee_overview
 
 
 # A pytest fixure that returns a user object
@@ -1835,3 +1839,109 @@ def test_get__list_of_customers__for__employee_manager_contract__that_can_add_em
         list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user_2
         == [customer, customer_2]
     )
+
+
+@pytest.mark.django_db
+def test_get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    employee_2 = baker.make("nadooit_hr.Employee")
+    employee_3 = baker.make("nadooit_hr.Employee")
+
+    customer = baker.make("nadooit_crm.Customer", name="customer")
+    customer_2 = baker.make("nadooit_crm.Customer", name="customer_2")
+
+    # Contracts for employee
+
+    baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract__employee=employee,
+        contract__customer=customer,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract__employee=employee,
+        contract__customer=customer_2,
+        can_add_new_employee=False,
+        can_delete_employee=False,
+        can_give_manager_role=False,
+    )
+
+    # Contracts for employee_2
+
+    baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract__employee=employee_2,
+        contract__customer=customer,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract__employee=employee_2,
+        contract__customer=customer_2,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    # Contracts for employee_3
+
+    baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract__employee=employee_3,
+        contract__customer=customer,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    # Act
+    list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user = get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(
+        employee.user
+    )
+
+    list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user_2 = get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(
+        employee_2.user
+    )
+
+    list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user_3 = get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(
+        employee_3.user
+    )
+    
+    # Assert
+    
+    assert list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user == [	
+        {		
+            "customer": customer,			
+            "employees": [employee, employee_2],			
+        },		
+    ]	
+    assert list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user_2 == [		
+                                                                                                                          
+        {	
+            "customer": customer,				
+            "employees": [employee, employee_2],					
+        },			
+        
+        {
+            
+            "customer": customer_2,	
+            "employees": [employee, employee_2],		
+        },			
+        
+    ]		
+    assert list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user_3 == [			
+        {			
+            "customer": customer,				
+            "employees": [employee, employee_2, employee_3],						
+        },				
+    ]	
+    
+    

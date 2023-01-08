@@ -41,7 +41,7 @@ def test_create_execution():
     client = Client()
 
     respone = client.post(
-        reverse("create"),
+        reverse("create-execution"),
         data={
             "program_id": customer_program.id,
             "NADOOIT__USER_CODE": user.user_code,
@@ -78,7 +78,7 @@ def test_create_execution__with__invalid__user_code():
     client = Client()
 
     respone = client.post(
-        reverse("create"),
+        reverse("create-execution"),
         data={
             "program_id": customer_program.id,
             "NADOOIT__USER_CODE": "invalid user code",
@@ -113,7 +113,7 @@ def test_create_execution__with__invalid__api_key():
     client = Client()
 
     respone = client.post(
-        reverse("create"),
+        reverse("create-execution"),
         data={
             "program_id": customer_program.id,
             "NADOOIT__USER_CODE": user.user_code,
