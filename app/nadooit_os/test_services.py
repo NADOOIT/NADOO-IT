@@ -7,6 +7,9 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
+from nadooit_os.services import (
+    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
+)
 from nadooit_hr.models import EmployeeManagerContract
 from nadooit_os.services import (
     get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
@@ -1980,3 +1983,30 @@ def test_get__list_of_customers__and__their_employees__for__customers_that_have_
         ]
     )
  """
+
+
+@pytest.mark.django_db
+def test_check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer")
+
+    employee_contract = baker.make(
+        "nadooit_hr.EmployeeContract", employee=employee, customer=customer
+    )
+
+    baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract=employee_contract,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    # Act
+    result = check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
+        employee, customer
+    )
+
+    # Assert
+    assert result == True
