@@ -858,7 +858,7 @@ def get__employee_contract__for__user_code__and__customer(
 
 def get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(
     user,
-) -> list[dict[str, Union[Customer, Employee]]]:
+):
 
     customers__and__employees__for__employee_manager_contract__for__user = []
 
@@ -880,10 +880,12 @@ def get__list_of_customers__and__their_employees__for__customers_that_have_a_emp
             customers__and__employees__for__employee_manager_contract__for__user.append(
                 [
                     customer,
-                    EmployeeContract.objects.filter(customer=customer)
-                    .distinct()
-                    .order_by("-is_active"),
-                    # user_can_deactivate_contracts
+                    list(
+                        EmployeeContract.objects.filter(customer=customer)
+                        .distinct()
+                        .order_by("-is_active"),
+                        # user_can_deactivate_contracts
+                    ),
                     EmployeeManagerContract.objects.filter(
                         contract__employee=user.employee,
                         can_delete_employee=True,
@@ -895,12 +897,14 @@ def get__list_of_customers__and__their_employees__for__customers_that_have_a_emp
             customers__and__employees__for__employee_manager_contract__for__user.append(
                 [
                     customer,
-                    EmployeeContract.objects.filter(
-                        customer=customer,
-                        employee__user__is_staff=False,
-                    )
-                    .distinct()
-                    .order_by("-is_active"),
+                    list(
+                        EmployeeContract.objects.filter(
+                            customer=customer,
+                            employee__user__is_staff=False,
+                        )
+                        .distinct()
+                        .order_by("-is_active")
+                    ),
                     # user_can_deactivate_contracts
                     EmployeeManagerContract.objects.filter(
                         contract__employee=user.employee,
@@ -985,6 +989,12 @@ def get__list_of_customers__for__list_of_employee_manager_contracts(
         list_of_customers__for__employee_manager_contract.append(
             contract.contract.customer
         )
+
+    # order customers by created_at
+    # created is a datetime field
+    list_of_customers__for__employee_manager_contract.sort(
+        key=lambda x: x.created_at, reverse=False
+    )
 
     return list_of_customers__for__employee_manager_contract
 
@@ -1541,6 +1551,7 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
 
     list_of_customers_the_manager_is_responsible_for = []
 
+    # order by updated_at
     list_of_employee_manager_contract_for_logged_in_user = (
         CustomerProgramManagerContract.objects.filter(
             contract__employee=employee,

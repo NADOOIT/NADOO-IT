@@ -10,7 +10,7 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
-from app.nadooit_os.services import (
+from nadooit_os.services import (
     get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
     get__employee__for__employee_id,
     get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,

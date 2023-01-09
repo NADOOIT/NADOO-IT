@@ -71,6 +71,9 @@ class EmployeeManagerContract(models.Model):
     # TODO #103 rename to can_create_employee_manager_contract
     can_give_manager_role = models.BooleanField(default=False)
 
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
+
     def __str__(self) -> str:
         return (
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
@@ -90,6 +93,9 @@ class CustomerProgramManagerContract(models.Model):
     # if true, the employee manager can give the role of employee manager to other employees
     # TODO #105 rename to can_create_customer_program_manager_contract
     can_give_manager_role = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
         return (
