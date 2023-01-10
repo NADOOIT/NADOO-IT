@@ -25,6 +25,7 @@ class User(AbstractUser, PermissionsMixin):
     # The user code is generated automatically when the user is created.
     # The user can change the user code in the settings.
     # The user code is wirrten on the user's security key.
+    # TODO: #114 rename to code because it is already in the user model
     user_code = models.CharField(
         max_length=32,
         unique=True,
