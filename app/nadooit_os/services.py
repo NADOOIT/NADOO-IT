@@ -292,7 +292,7 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
     )
 
 def create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
-    user_code, customer, list_of_abilities, employee_creating_contract
+    user_code, customer: Customer, list_of_abilities, employee_creating_contract: Employee
 ) -> EmployeeManagerContract | None:
 
     # check if there is an emplyee for that user code
