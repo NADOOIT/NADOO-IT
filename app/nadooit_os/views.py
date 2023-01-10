@@ -1101,9 +1101,10 @@ def add_employee(request: HttpRequest):
                 "/nadooit-os/hr/add-employee?submitted=False&error=Kein gültiger Kunde ausgewählt"
             )
 
-        # covert bytes to test
+        # covert by test
         customer = get__customer__for__customer_id(customer_id)
 
+        # covert by test
         if not check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
             request.user.employee, customer
         ):
