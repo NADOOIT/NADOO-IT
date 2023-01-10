@@ -251,7 +251,7 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
         )
     # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
     # get the "role"
-
+    #TODO: #115 refactor so that the list of abilites is retrieved from the model and not hardcoded
     for ability in list_of_abilities:
         # check if the employee already has the ability
         if ability == "can_create_time_accounts":
@@ -288,6 +288,74 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
                     contract__customer=customer,
                 ).update(can_give_manager_role=True)
     return TimeAccountManagerContract.objects.get(
+        contract__employee=employee, contract__customer=customer
+    )
+
+def create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+    user_code, customer, list_of_abilities, employee_creating_contract
+) -> EmployeeManagerContract | None:
+
+    # check if there is an emplyee for that user code
+    if not check__employee__exists__for__user_code(user_code):
+        # create new employee for the user_code
+        create__employee__for__user_code(user_code)
+
+    # get the employee object for the user
+    employee = get__employee__for__user_code(user_code)
+
+    # check if the employee already has the role for the customer
+    if not check__time_account_manager_contract__exists__for__employee_and_customer(
+        employee, customer
+    ):
+        # Check if the employee has a contract with the customer
+
+        if not check__employee_contract__exists__for__employee__and__customer(
+            employee, customer
+        ):
+            create__employee_contract__for__employee_and__customer(employee, customer)
+        # create the CustomerProgramExecutionManager
+        EmployeeManagerContract.objects.create(
+            contract=EmployeeContract.objects.get(employee=employee)
+        )
+    # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
+    # get the "role"
+    #TODO: #116 refactor so that the list of abilites is retrieved from the model and not hardcoded
+    for ability in list_of_abilities:
+        # check if the employee already has the ability
+        if ability == "can_add_new_employee":
+            if EmployeeManagerContract.objects.filter(
+                contract__employee=employee_creating_contract,
+                contract__customer=customer,
+                can_add_new_employee=True,
+            ).exists():
+                # Set the ability for the TimeAccountManagerContract object to the value of the ability
+                EmployeeManagerContract.objects.filter(
+                    contract__employee=employee,
+                    contract__customer=customer,
+                ).update(can_add_new_employee=True)
+        if ability == "can_delete_employee":
+            if EmployeeManagerContract.objects.filter(
+                contract__employee=employee_creating_contract,
+                contract__customer=customer,
+                can_delete_employee=True,
+            ).exists():
+                # Set the ability for the TimeAccountManagerContract object to the value of the ability
+                EmployeeManagerContract.objects.filter(
+                    contract__employee=employee,
+                    contract__customer=customer,
+                ).update(can_delete_employee=True)
+        if ability == "can_give_manager_role":
+            if EmployeeManagerContract.objects.filter(
+                contract__employee=employee_creating_contract,
+                contract__customer=customer,
+                can_give_manager_role=True,
+            ).exists():
+                # Set the ability for the CustomerProgramExecutionManager object to the value of the ability
+                EmployeeManagerContract.objects.filter(
+                    contract__employee=employee,
+                    contract__customer=customer,
+                ).update(can_give_manager_role=True)
+    return EmployeeManagerContract.objects.get(
         contract__employee=employee, contract__customer=customer
     )
 
@@ -723,8 +791,10 @@ def check__more_then_one_contract_between__user_code__and__customer(
     user_code, customer_id
 ) -> bool:
     return (
-        EmployeeContract.objects.filter(
-            employee__user__user_code=user_code, customer__id=customer_id
+        list(
+            EmployeeContract.objects.filter(
+                employee__user__user_code=user_code, customer__id=customer_id
+            )
         ).count()
         > 1
     )

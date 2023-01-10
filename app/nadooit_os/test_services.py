@@ -7,6 +7,12 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
+from app.nadooit_os.services import (
+    get__employee_manager_contract__for__user_code__and__customer,
+)
+from nadooit_os.services import (
+    check__more_then_one_contract_between__user_code__and__customer,
+)
 from nadooit_os.services import get__employee_contract__for__user_code__and__customer
 from nadooit_os.services import (
     check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
@@ -2012,6 +2018,7 @@ def test_check__employee_manager_contract__exists__for__employee_manager_and_cus
     # Assert
     assert result == True
 
+
 @pytest.mark.django_db
 def test_get__employee_contract__for__user_code__and__customer():
     # Arrange
@@ -2029,3 +2036,65 @@ def test_get__employee_contract__for__user_code__and__customer():
 
     # Assert
     assert result == employee_contract
+
+
+@pytest.mark.django_db
+def test_get__employee_manager_contract__for__user_code__and__customer():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer")
+
+    employee_contract = baker.make(
+        "nadooit_hr.EmployeeContract", employee=employee, customer=customer
+    )
+
+    employee_manager_contract = baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract=employee_contract,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    # Act
+    result = get__employee_manager_contract__for__user_code__and__customer(
+        employee.user.user_code, customer
+    )
+
+    # Assert
+    assert result == employee_manager_contract
+
+
+@pytest.mark.django_db
+def test_create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract():
+    # Arrange
+    employee = baker.make("nadooit_hr.Employee")
+    customer = baker.make("nadooit_crm.Customer")
+
+    employee_contract = baker.make(
+        "nadooit_hr.EmployeeContract", employee=employee, customer=customer
+    )
+
+    employee_manager_contract = baker.make(
+        "nadooit_hr.EmployeeManagerContract",
+        contract=employee_contract,
+        can_add_new_employee=True,
+        can_delete_employee=False,
+        can_give_manager_role=True,
+    )
+
+    list_of_abilities_according_to_employee_creating_contract = [
+        "can_add_new_employee",
+        "can_delete_employee",
+        "can_give_manager_role",
+    ]
+
+    # Act
+    result = create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+        employee.user.user_code,
+        customer,
+        list_of_abilities_according_to_employee_creating_contract,
+    )
+
+    # Assert
+    assert result == employee_manager_contract

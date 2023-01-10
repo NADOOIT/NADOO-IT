@@ -11,6 +11,12 @@ from django.http import (
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
 from nadooit_os.services import (
+    get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
+)
+from nadooit_os.services import (
+    create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
+)
+from nadooit_os.services import (
     get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
     get__employee__for__employee_id,
     get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
@@ -1113,6 +1119,7 @@ def add_employee(request: HttpRequest):
             )
             # makes sure that there is a employee contract between the employee the selected customer
 
+        # covert by test
         if get__employee_contract__for__user_code__and__customer(user_code, customer):
             return HttpResponseRedirect("/nadooit-os/hr/add-employee?submitted=True")
 
@@ -1154,75 +1161,31 @@ def give_employee_manager_role(request: HttpRequest):
         list_of_abilities = request.POST.getlist("role")
         customer_id = request.POST.get("customers")
 
+        # covert by test
         if not check__customer__exists__for__customer_id(customer_id):
             return HttpResponseRedirect(
                 "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Kein valider Kunde."
             )
 
+        # covert by test
         customer = get__customer__for__customer_id(customer_id)
 
-        if check__more_then_one_contract_between__user_code__and__customer(
-            user_code, customer
-        ):
-            # TODO add a way to select the correct contract if there is more then one contract for the employee
-            # This is not needed yet because the employee manager can only create one contract for the employee. This should be changed in the future to allow the employee manager to create more then one contract for the employee
-            return HttpResponseRedirect(
-                "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Der Mitarbeiter hat mehr als einen Vertrag mit diesem Kunden."
-            )
-
-        employee_manager_contract = None
-
         # check that user_code is not empty
-        if check__user__exists__for__user_code(user_code):
-
-            employee_manager_contract = (
-                get__employee_manager_contract__for__user_code__and__customer(
-                    user_code, customer
-                )
-            )
-
-            # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
-            # get the "role"
-
-            # TODO split the form for asking for the abities so that it shows the abilites for the active employee manager contract so that the employee manager can only give the abilities that are allowed for the contract
-            # sets the abilities for the employee manager
-            for ability in list_of_abilities:
-                # check if the employee already has the ability
-                if ability == "can_add_new_employee":
-                    if EmployeeManagerContract.objects.filter(
-                        contract__employee=employee_manager_giving_the_role,
-                        contract__customer=employee_manager_contract.contract.customer,
-                        can_add_new_employee=True,
-                    ).exists():
-                        # Set the ability for the EmployeeManagerContract object to the value of the ability
-                        employee_manager_contract.can_add_new_employee = True
-                if ability == "can_delete_employee":
-                    if EmployeeManagerContract.objects.filter(
-                        contract__employee=employee_manager_giving_the_role,
-                        contract__customer=employee_manager_contract.contract.customer,
-                        can_delete_employee=True,
-                    ).exists():
-                        # Set the ability for the EmployeeManagerContract object to the value of the ability
-                        employee_manager_contract.can_delete_employee = True
-                if ability == "can_give_manager_role":
-                    if EmployeeManagerContract.objects.filter(
-                        contract__employee=employee_manager_giving_the_role,
-                        contract__customer=employee_manager_contract.contract.customer,
-                        can_give_manager_role=True,
-                    ).exists():
-                        # Set the ability for the EmployeeManagerContract object to the value of the ability
-                        employee_manager_contract.can_give_manager_role = True
-
-                employee_manager_contract.save()
-
-            return HttpResponseRedirect(
-                "/nadooit-os/hr/give-employee-manager-role?submitted=True"
-            )
-
-        else:
-
+        # covert by test
+        if not check__user__exists__for__user_code(user_code):
             return HttpResponseRedirect(
                 "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
+            )
+
+        if (
+            # covert by test
+            create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+                user_code, customer, list_of_abilities, employee_manager_giving_the_role
+            )
+            is not None
+        ):
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/give-employee-manager-role?submitted=True"
             )
 
     else:
