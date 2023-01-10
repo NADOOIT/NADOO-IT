@@ -7,6 +7,15 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
+from app.nadooit_os.services import get__csv__for__list_of_customer_program_executions
+from nadooit_os.services import get__employee_contract__for__employee_contract_id
+from nadooit_os.services import (
+    set__employee_contract__is_active_state__for__employee_contract_id,
+)
+from nadooit_hr.models import EmployeeContract
+from nadooit_os.services import (
+    set_employee_contract__as_inactive__for__employee_contract_id,
+)
 from nadooit_os.services import (
     get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
 )
@@ -2131,3 +2140,60 @@ def test_get__list_of_customers__for__employee_manager_contract__that_can_give_t
 
     # Assert
     assert result == [customer]
+
+
+@pytest.mark.django_db
+def test_set_employee_contract__as_inactive__for__employee_contract_id():
+    # Arrange
+    employee_contract = baker.make("nadooit_hr.EmployeeContract", is_active=True)
+
+    # Act
+    set_employee_contract__as_inactive__for__employee_contract_id(employee_contract.id)
+
+    # Assert
+    assert EmployeeContract.objects.get(id=employee_contract.id).is_active == False
+
+
+@pytest.mark.django_db
+def test_set__employee_contract__is_active_state__for__employee_contract_id():
+    # Arrange
+    employee_contract = baker.make("nadooit_hr.EmployeeContract", is_active=False)
+
+    # Act
+    set__employee_contract__is_active_state__for__employee_contract_id(
+        employee_contract.id, True
+    )
+
+    # Assert
+    assert EmployeeContract.objects.get(id=employee_contract.id).is_active == True
+
+@pytest.mark.django_db
+def test_get__employee_contract__for__employee_contract_id():
+    # Arrange
+    employee_contract = baker.make("nadooit_hr.EmployeeContract")
+
+    # Act
+    result = get__employee_contract__for__employee_contract_id(employee_contract.id)
+
+    # Assert
+    assert result == employee_contract
+    
+    
+@pytest.mark.django_db
+def test_get__csv__for__list_of_customer_program_executions():
+    
+    # get__csv__for__list_of_customer_program_executions returns a http response with a csv file as content
+    # this test checks if the content is a string
+    # the content is a string because the response is a http response with a csv file as content
+    
+    
+    # Arrange
+    customer_program_execution = baker.make("nadooit_crm.CustomerProgramExecution")
+
+    # Act
+    result = get__csv__for__list_of_customer_program_executions(
+        [customer_program_execution]
+    )
+
+    # Assert
+    assert type(result.content) == str	

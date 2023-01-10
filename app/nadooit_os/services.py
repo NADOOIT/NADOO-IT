@@ -1,3 +1,4 @@
+import csv
 import decimal
 from decimal import Decimal
 import math
@@ -5,7 +6,7 @@ import re
 from typing import List, Union
 import hashlib
 import uuid
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.utils import timezone
 from nadoo_complaint_management.models import Complaint
@@ -1641,3 +1642,27 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
 
 def get__employee__for__employee_id(employee_id) -> Employee | None:
     return Employee.objects.filter(id=employee_id).first()
+
+def get__csv__for__list_of_customer_program_executions(list_of_customer_program_executions: list[CustomerProgramExecution]) -> HttpResponse:
+    
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="transactions.csv"'
+
+    writer = csv.writer(response)
+
+    # write the header
+    writer.writerow(["id", "Programmname", "erspaarte Zeit", "Preis", "Erstellt"])
+
+    for transaction in list_of_customer_program_executions:
+
+        writer.writerow(
+            [
+                transaction.id,
+                transaction.customer_program.program.name,
+                transaction.program_time_saved_in_seconds,
+                transaction.price_for_execution,
+                transaction.created_at,
+            ]
+        )
+    # return the response object
+    return response

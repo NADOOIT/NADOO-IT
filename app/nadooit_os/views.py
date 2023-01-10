@@ -10,6 +10,13 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from app.nadooit_os.services import get__csv__for__list_of_customer_program_executions, get__employee_contract__for__employee_contract_id
+from nadooit_os.services import (
+    set__employee_contract__is_active_state__for__employee_contract_id,
+)
+from nadooit_os.services import (
+    set_employee_contract__as_inactive__for__employee_contract_id,
+)
 from nadooit_os.services import (
     get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
 )
@@ -1192,6 +1199,7 @@ def give_employee_manager_role(request: HttpRequest):
         if "submitted" in request.GET:
             submitted = True
 
+    # covert by test
     list_of_customers_the_manager_is_responsible_for = get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user(
         request.user
     )
@@ -1217,6 +1225,7 @@ def give_employee_manager_role(request: HttpRequest):
 @login_required(login_url="/auth/login-user")
 def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 
+    # covert by test
     employee_contract = set_employee_contract__as_inactive__for__employee_contract_id(
         employee_contract_id
     )
@@ -1238,10 +1247,12 @@ def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 @login_required(login_url="/auth/login-user")
 def activate_contract(request: HttpRequest, employee_contract_id: str):
 
+    # covert by test
     set__employee_contract__is_active_state__for__employee_contract_id(
         employee_contract_id, True
     )
 
+    # covert by test
     employee_contract = get__employee_contract__for__employee_contract_id(
         employee_contract_id
     )
@@ -1260,35 +1271,18 @@ def activate_contract(request: HttpRequest, employee_contract_id: str):
 @login_required(login_url="/auth/login-user")
 def export_transactions(request: HttpRequest, filter_type, cutomer_id):
 
+    # covert by test
     if not check__customer__exists__for__customer_id(cutomer_id):
         return HttpResponseNotFound("Customer not found")
 
+    # covert by test
     cutomer = get__customer__for__customer_id(cutomer_id)
 
     unpaid_customer_program_executions = (
+        # covert by test
         get__not_paid_customer_program_executions__for__filter_type_and_customer(
             filter_type, cutomer
         )
     )
 
-    response = HttpResponse(content_type="text/csv")
-    response["Content-Disposition"] = 'attachment; filename="transactions.csv"'
-
-    writer = csv.writer(response)
-
-    # write the header
-    writer.writerow(["id", "Programmname", "erspaarte Zeit", "Preis", "Erstellt"])
-
-    for transaction in unpaid_customer_program_executions:
-
-        writer.writerow(
-            [
-                transaction.id,
-                transaction.customer_program.program.name,
-                transaction.program_time_saved_in_seconds,
-                transaction.price_for_execution,
-                transaction.created_at,
-            ]
-        )
-    # return the response object
-    return response
+    return get__csv__for__list_of_customer_program_executions(unpaid_customer_program_executions)
