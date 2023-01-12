@@ -252,7 +252,7 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
         )
     # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
     # get the "role"
-    #TODO: #115 refactor so that the list of abilites is retrieved from the model and not hardcoded
+    # TODO: #115 refactor so that the list of abilites is retrieved from the model and not hardcoded
     for ability in list_of_abilities:
         # check if the employee already has the ability
         if ability == "can_create_time_accounts":
@@ -292,8 +292,12 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
         contract__employee=employee, contract__customer=customer
     )
 
+
 def create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
-    user_code, customer: Customer, list_of_abilities, employee_creating_contract: Employee
+    user_code,
+    customer: Customer,
+    list_of_abilities,
+    employee_creating_contract: Employee,
 ) -> EmployeeManagerContract | None:
 
     # check if there is an emplyee for that user code
@@ -320,7 +324,7 @@ def create__employee_manager_contract__for__user_code_customer_and_list_of_abili
         )
     # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
     # get the "role"
-    #TODO: #116 refactor so that the list of abilites is retrieved from the model and not hardcoded
+    # TODO: #116 refactor so that the list of abilites is retrieved from the model and not hardcoded
     for ability in list_of_abilities:
         # check if the employee already has the ability
         if ability == "can_add_new_employee":
@@ -1643,8 +1647,11 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
 def get__employee__for__employee_id(employee_id) -> Employee | None:
     return Employee.objects.filter(id=employee_id).first()
 
-def get__csv__for__list_of_customer_program_executions(list_of_customer_program_executions: list[CustomerProgramExecution]) -> HttpResponse:
-    
+
+def get__csv__for__list_of_customer_program_executions(
+    list_of_customer_program_executions: list[CustomerProgramExecution],
+) -> HttpResponse:
+
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = 'attachment; filename="transactions.csv"'
 

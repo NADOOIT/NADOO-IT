@@ -2167,6 +2167,7 @@ def test_set__employee_contract__is_active_state__for__employee_contract_id():
     # Assert
     assert EmployeeContract.objects.get(id=employee_contract.id).is_active == True
 
+
 @pytest.mark.django_db
 def test_get__employee_contract__for__employee_contract_id():
     # Arrange
@@ -2177,16 +2178,15 @@ def test_get__employee_contract__for__employee_contract_id():
 
     # Assert
     assert result == employee_contract
-    
-    
+
+
 @pytest.mark.django_db
 def test_get__csv__for__list_of_customer_program_executions():
-    
+
     # get__csv__for__list_of_customer_program_executions returns a http response with a csv file as content
     # this test checks if the content is a string
     # the content is a string because the response is a http response with a csv file as content
-    
-    
+
     # Arrange
     customer_program_execution = baker.make("nadooit_crm.CustomerProgramExecution")
 
@@ -2196,4 +2196,4 @@ def test_get__csv__for__list_of_customer_program_executions():
     )
 
     # Assert
-    assert type(result.content) == str	
+    assert type(result.content) == str

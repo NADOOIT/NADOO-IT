@@ -10,7 +10,10 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
-from app.nadooit_os.services import get__csv__for__list_of_customer_program_executions, get__employee_contract__for__employee_contract_id
+from nadooit_os.services import (
+    get__csv__for__list_of_customer_program_executions,
+    get__employee_contract__for__employee_contract_id,
+)
 from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
 )
@@ -1285,4 +1288,6 @@ def export_transactions(request: HttpRequest, filter_type, cutomer_id):
         )
     )
 
-    return get__csv__for__list_of_customer_program_executions(unpaid_customer_program_executions)
+    return get__csv__for__list_of_customer_program_executions(
+        unpaid_customer_program_executions
+    )
