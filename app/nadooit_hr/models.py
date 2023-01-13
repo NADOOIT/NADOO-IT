@@ -60,13 +60,19 @@ class EmployeeManagerContract(models.Model):
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # if true, the employee manager can assign employees to customers
+    # TODO #104 rename to can_add_employees
     can_add_new_employee = models.BooleanField(default=False)
 
     # if true, the employee manager can remove employees from customers
+    # TODO #108 rename to can_delete_employees
     can_delete_employee = models.BooleanField(default=False)
 
     # if true, the employee manager can give the role of employee manager to other employees
+    # TODO #103 rename to can_create_employee_manager_contract
     can_give_manager_role = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
         return (
@@ -85,15 +91,28 @@ class CustomerProgramManagerContract(models.Model):
     can_delete_customer_program = models.BooleanField(default=False)
 
     # if true, the employee manager can give the role of employee manager to other employees
+    # TODO #105 rename to can_create_customer_program_manager_contract
     can_give_manager_role = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
         return (
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
         )
 
+    def get_abilities(self):
+        return {
+            "can_create_customer_program": self.can_create_customer_program,
+            "can_delete_customer_program": self.can_delete_customer_program,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
+
 
 class CustomerProgramExecutionManagerContract(models.Model):
+
+    # TODO rename from single to plural
 
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
@@ -104,12 +123,20 @@ class CustomerProgramExecutionManagerContract(models.Model):
     can_delete_customer_program_execution = models.BooleanField(default=False)
 
     # If true the customer can give the rights to other users
+    # TODO #106 rename to can_create_customer_program_execution_manager_contract
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return (
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
         )
+
+    def get_abilities(self):
+        return {
+            "can_create_customer_program_execution": self.can_create_customer_program_execution,
+            "can_delete_customer_program_execution": self.can_delete_customer_program_execution,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
 
 
 class TimeAccountManagerContract(models.Model):
@@ -123,6 +150,7 @@ class TimeAccountManagerContract(models.Model):
     can_delete_time_accounts = models.BooleanField(default=False)
 
     # If true the customer can give the rights to other users
+    # TODO #107 rename to can_create_time_account_manager_contract
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:

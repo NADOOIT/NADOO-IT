@@ -14,8 +14,9 @@
         <div class="alert alert-danger">
             <strong>{{error}}</strong>
         </div>
+        {% endif %}
 
-        {% else %}    
+        {% if not submitted %}   
 
         <form action="" method="post">
         {% csrf_token %}

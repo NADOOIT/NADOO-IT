@@ -47,10 +47,11 @@ class NadooitApiKey(models.Model):
 @receiver(models.signals.post_save, sender=NadooitApiKey)
 def hash_api_key_when_created(sender, instance, created, *args, **kwargs):
     if created:
+        print("hashing api key")
         # hashes the api_key
         obj = NadooitApiKey.objects.get(id=instance.id)
-        obj.api_key = hashlib.sha256(str(obj.api_key).encode()).hexdigest()
-        obj.save()
+        hashed_apit_key = hashlib.sha256(str(obj.api_key).encode()).hexdigest()
+        NadooitApiKey.objects.filter(id=instance.id).update(api_key=hashed_apit_key)
 
 
 # A role class that gets added to the user model
