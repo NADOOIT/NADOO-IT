@@ -800,13 +800,16 @@ def customer_program_execution_send_complaint(
 )
 def give_customer_program_execution_manager_role(request: HttpRequest):
     submitted = False
+    
+    employee_with_customer_program_manager_contract = request.user.employee
+    
     if request.method == "POST":
 
         user_code = request.POST.get("user_code")
         customer_id = request.POST.get("customer_id")
         list_of_abilities = request.POST.getlist("role")
 
-        employee_with_customer_program_manager_contract = request.user.employee
+       
 
         # guard clauses for the input data of the form (user_code, customer_id, list_of_abilities)
 
@@ -1148,6 +1151,7 @@ def add_employee(request: HttpRequest):
         "nadooit_os/hr_department/add_employee.html",
         {
             "submitted": submitted,
+            "error": request.GET.get("error"),
             "page_title": "Mitarbeiter hinzufügen",
             "list_of_customers__for__employee_manager_contract": list_of_customers_the_employee_has_a_employee_manager_contract_with_that_can_add_employees,
             **get__user__roles_and_rights__for__http_request(request),
