@@ -3002,7 +3002,7 @@
         "documentation": {}
     },
     {
-        "label": "get__employee_contract__for__employee__and__customer_id",
+        "label": "get__employee_contract__for__employee__and__customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3090,7 +3090,7 @@
         "documentation": {}
     },
     {
-        "label": "check__more_then_one_contract_between__user_code__and__customer_id",
+        "label": "check__more_then_one_contract_between__user_code__and__customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3098,7 +3098,7 @@
         "documentation": {}
     },
     {
-        "label": "get__employee_manager_contract__for__user_code__and__customer_id",
+        "label": "get__employee_manager_contract__for__user_code__and__customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3114,7 +3114,7 @@
         "documentation": {}
     },
     {
-        "label": "get__employee_contract__for__user_code__and__customer_id",
+        "label": "get__employee_contract__for__user_code__and__customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3170,7 +3170,7 @@
         "documentation": {}
     },
     {
-        "label": "get__customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__customer_program_executions__for__filter_type_and_customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3178,7 +3178,7 @@
         "documentation": {}
     },
     {
-        "label": "get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__not_paid_customer_program_executions__for__filter_type_and_customer",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3194,7 +3194,7 @@
         "documentation": {}
     },
     {
-        "label": "get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user",
+        "label": "get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5397,20 +5397,20 @@
         "documentation": {}
     },
     {
-        "label": "get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__not_paid_customer_program_executions__for__filter_type_and_customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):\n    customer_program_executions = (\n        get__customer_program_executions__for__filter_type_and_cutomer_id(\n            filter_type, cutomer_id\n        ).filter(payment_status=\"NOT_PAID\")\n    )\n    return customer_program_executions\ndef get__customer_program_executions__for__filter_type_and_cutomer_id(",
+        "peekOfCode": "def get__not_paid_customer_program_executions__for__filter_type_and_customer(\n    filter_type, cutomer_id\n):\n    customer_program_executions = (\n        get__customer_program_executions__for__filter_type_and_customer(\n            filter_type, cutomer_id\n        ).filter(payment_status=\"NOT_PAID\")\n    )\n    return customer_program_executions\ndef get__customer_program_executions__for__filter_type_and_customer(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__customer_program_executions__for__filter_type_and_cutomer_id",
+        "label": "get__customer_program_executions__for__filter_type_and_customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__customer_program_executions__for__filter_type_and_cutomer_id(\n    filter_type, cutomer_id\n):\n    from datetime import date\n    todays_date = date.today()\n    if filter_type == \"last20\":\n        customer_program_executions = (\n            CustomerProgramExecution.objects.filter(\n                customer_program__customer__id=cutomer_id\n            )",
+        "peekOfCode": "def get__customer_program_executions__for__filter_type_and_customer(\n    filter_type, cutomer_id\n):\n    from datetime import date\n    todays_date = date.today()\n    if filter_type == \"last20\":\n        customer_program_executions = (\n            CustomerProgramExecution.objects.filter(\n                customer_program__customer__id=cutomer_id\n            )",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5509,7 +5509,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__employee__exists__for__user_code(user_code) -> bool:\n    return Employee.objects.filter(user__user_code=user_code).exists()\n# Creates and returns a new employee  for the given user code\ndef create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer_id(",
+        "peekOfCode": "def check__employee__exists__for__user_code(user_code) -> bool:\n    return Employee.objects.filter(user__user_code=user_code).exists()\n# Creates and returns a new employee  for the given user code\ndef create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5518,25 +5518,25 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer_id(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(",
+        "peekOfCode": "def create__employee__for__user_code(user_code) -> Employee | None:\n    if not check__employee__exists__for__user_code(user_code):\n        # create new employee for the user_code\n        user = User.objects.get(user_code=user_code)\n        return Employee.objects.create(user=user)\n    return None\ndef check__employee_contract__exists__for__employee__and__customer(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "check__employee_contract__exists__for__employee__and__customer_id",
+        "label": "check__employee_contract__exists__for__employee__and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__employee_contract__exists__for__employee__and__customer_id(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(\n        employee=employee, customer__id=cutomer_id\n    ).exists()\ndef create__employee_contract__between__employee_and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(",
+        "peekOfCode": "def check__employee_contract__exists__for__employee__and__customer(\n    employee, cutomer_id\n) -> bool:\n    return EmployeeContract.objects.filter(\n        employee=employee, customer__id=cutomer_id\n    ).exists()\ndef create__employee_contract__for__employee_and__customer(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "create__employee_contract__between__employee_and__customer_id",
+        "label": "create__employee_contract__for__employee_and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def create__employee_contract__between__employee_and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(\n        employee=employee,\n        customer=Customer.objects.get(id=customer_id),\n    )\n# Returns the employee for the given user code\ndef get__employee__for__user_code(user_code) -> Employee:\n    employee = None",
+        "peekOfCode": "def create__employee_contract__for__employee_and__customer(\n    employee, customer_id\n) -> EmployeeContract:\n    return EmployeeContract.objects.create(\n        employee=employee,\n        customer=Customer.objects.get(id=customer_id),\n    )\n# Returns the employee for the given user code\ndef get__employee__for__user_code(user_code) -> Employee:\n    employee = None",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5554,25 +5554,25 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__employee_manager_contract__exists__for__employee_contract(\n    employee_contract,\n) -> bool:\n    return EmployeeManagerContract.objects.filter(contract=employee_contract).exists()\ndef check__more_then_one_contract_between__user_code__and__customer_id(\n    user_code, customer_id\n) -> bool:\n    return (\n        EmployeeContract.objects.filter(\n            employee__user__user_code=user_code, customer__id=customer_id",
+        "peekOfCode": "def check__employee_manager_contract__exists__for__employee_contract(\n    employee_contract,\n) -> bool:\n    return EmployeeManagerContract.objects.filter(contract=employee_contract).exists()\ndef check__more_then_one_contract_between__user_code__and__customer(\n    user_code, customer_id\n) -> bool:\n    return (\n        EmployeeContract.objects.filter(\n            employee__user__user_code=user_code, customer__id=customer_id",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "check__more_then_one_contract_between__user_code__and__customer_id",
+        "label": "check__more_then_one_contract_between__user_code__and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__more_then_one_contract_between__user_code__and__customer_id(\n    user_code, customer_id\n) -> bool:\n    return (\n        EmployeeContract.objects.filter(\n            employee__user__user_code=user_code, customer__id=customer_id\n        ).count()\n        > 1\n    )\ndef get__employee_contract__for__employee__and__customer_id(",
+        "peekOfCode": "def check__more_then_one_contract_between__user_code__and__customer(\n    user_code, customer_id\n) -> bool:\n    return (\n        EmployeeContract.objects.filter(\n            employee__user__user_code=user_code, customer__id=customer_id\n        ).count()\n        > 1\n    )\ndef get__employee_contract__for__employee__and__customer(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__employee_contract__for__employee__and__customer_id",
+        "label": "get__employee_contract__for__employee__and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee_contract__for__employee__and__customer_id(\n    employee, customer_id\n) -> EmployeeContract:\n    # Check if the employee has a contract with the customer\n    if not check__employee_contract__exists__for__employee__and__customer_id(\n        employee, customer_id\n    ):\n        return create__employee_contract__between__employee_and__customer_id(\n            employee, customer_id\n        )",
+        "peekOfCode": "def get__employee_contract__for__employee__and__customer(\n    employee, customer_id\n) -> EmployeeContract:\n    # Check if the employee has a contract with the customer\n    if not check__employee_contract__exists__for__employee__and__customer(\n        employee, customer_id\n    ):\n        return create__employee_contract__for__employee_and__customer(\n            employee, customer_id\n        )",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5586,11 +5586,11 @@
         "documentation": {}
     },
     {
-        "label": "get__employee_manager_contract__for__user_code__and__customer_id",
+        "label": "get__employee_manager_contract__for__user_code__and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee_manager_contract__for__user_code__and__customer_id(\n    user_code, customer_id\n) -> EmployeeManagerContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer_id(\n        employee, customer_id\n    )\n    return get__employee_manager_contract__for__employee_contract(employee_contract)\ndef check__employee_manager_contract__for__user__can_deactivate__employee_contracts(\n    user,",
+        "peekOfCode": "def get__employee_manager_contract__for__user_code__and__customer_id(\n    user_code, customer_id\n) -> EmployeeManagerContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer(\n        employee, customer_id\n    )\n    return get__employee_manager_contract__for__employee_contract(employee_contract)\ndef check__employee_manager_contract__for__user__can_deactivate__employee_contracts(\n    user,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5617,25 +5617,25 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__customer__exists__for__customer_id(customer_id) -> bool:\n    return Customer.objects.filter(id=customer_id).exists()\ndef get__employee_contract__for__user_code__and__customer_id(\n    user_code, customer_id\n) -> EmployeeContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer_id(\n        employee, customer_id\n    )\n    return employee_contract",
+        "peekOfCode": "def check__customer__exists__for__customer_id(customer_id) -> bool:\n    return Customer.objects.filter(id=customer_id).exists()\ndef get__employee_contract__for__user_code__and__customer(\n    user_code, customer_id\n) -> EmployeeContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer(\n        employee, customer_id\n    )\n    return employee_contract",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__employee_contract__for__user_code__and__customer_id",
+        "label": "get__employee_contract__for__user_code__and__customer",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__employee_contract__for__user_code__and__customer_id(\n    user_code, customer_id\n) -> EmployeeContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer_id(\n        employee, customer_id\n    )\n    return employee_contract\ndef get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(\n    user,",
+        "peekOfCode": "def get__employee_contract__for__user_code__and__customer(\n    user_code, customer_id\n) -> EmployeeContract:\n    employee = get__employee__for__user_code(user_code)\n    employee_contract = get__employee_contract__for__employee__and__customer(\n        employee, customer_id\n    )\n    return employee_contract\ndef get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(\n    user,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user",
+        "label": "get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(\n    user,\n) -> list[dict[str, Union[Customer, Employee]]]:\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = (\n        []\n    )\n    # get all the customers the employee has contracts with and is an employee manager for\n    # Do not use employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()!\n    # Instead look at the contracts the employee has and get the customers from the contracts\n    # This is because the employee manager will be deprecated in the future",
+        "peekOfCode": "def get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(\n    user,\n) -> list[dict[str, Union[Customer, Employee]]]:\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = (\n        []\n    )\n    # get all the customers the employee has contracts with and is an employee manager for\n    # Do not use employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()!\n    # Instead look at the contracts the employee has and get the customers from the contracts\n    # This is because the employee manager will be deprecated in the future",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -6148,7 +6148,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def employee_overview(request: HttpRequest):\n    # This page displays all the employees that the logged in user is responsible for\n    # The user can be the employee manager of multiple companies\n    # Each company has multiple employees\n    # The page displays all the employees of all the companies the user is responsible for as a lists\n    # Each list is a company and the employees are the employees of that company\n    # TODO missing the ability to deactiave the diactivate button if the user does not have the right to deactivate employees\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = get__customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user(\n        request.user\n    )",
+        "peekOfCode": "def employee_overview(request: HttpRequest):\n    # This page displays all the employees that the logged in user is responsible for\n    # The user can be the employee manager of multiple companies\n    # Each company has multiple employees\n    # The page displays all the employees of all the companies the user is responsible for as a lists\n    # Each list is a company and the employees are the employees of that company\n    # TODO missing the ability to deactiave the diactivate button if the user does not have the right to deactivate employees\n    customers__and__employees__for__employee_manager_contract__that_can_add_employees__for__user = get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user(\n        request.user\n    )",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -6175,7 +6175,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def give_employee_manager_role(request: HttpRequest):\n    employee_manager_giving_the_role = request.user.employee\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        list_of_abilities = request.POST.getlist(\"role\")\n        customer_id = request.POST.get(\"customers\")\n        if check__more_then_one_contract_between__user_code__and__customer_id(\n            user_code, customer_id\n        ):",
+        "peekOfCode": "def give_employee_manager_role(request: HttpRequest):\n    employee_manager_giving_the_role = request.user.employee\n    submitted = False\n    if request.method == \"POST\":\n        user_code = request.POST.get(\"user_code\")\n        list_of_abilities = request.POST.getlist(\"role\")\n        customer_id = request.POST.get(\"customers\")\n        if check__more_then_one_contract_between__user_code__and__customer(\n            user_code, customer_id\n        ):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },
@@ -6202,7 +6202,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_cutomer_id(\n            filter_type, cutomer_id\n        )\n    )\n    response = HttpResponse(content_type=\"text/csv\")\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    writer = csv.writer(response)\n    # write the header",
+        "peekOfCode": "def export_transactions(request: HttpRequest, filter_type, cutomer_id):\n    unpaid_customer_program_executions = (\n        get__not_paid_customer_program_executions__for__filter_type_and_customer(\n            filter_type, cutomer_id\n        )\n    )\n    response = HttpResponse(content_type=\"text/csv\")\n    response[\"Content-Disposition\"] = 'attachment; filename=\"transactions.csv\"'\n    writer = csv.writer(response)\n    # write the header",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

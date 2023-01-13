@@ -1,11 +1,10 @@
 {% extends 'nadooit_os/base.html' %} {% block content %} {% csrf_token %}
-
+{% load get_time_as_string_in_hour_format_for_time_in_seconds_as_integer %} 
 <div class="container">
   <br />
   <div class="row">
     <div class="col">
-      {% for customer, customer_time_account_info in customer_time_accounts_grouped_by_customer.items %}
-
+      {% for customer, customer_time_account_info in customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts.items %}
       <div class="table-responsive">
         <table class="table caption-top">
           <caption>
@@ -24,7 +23,7 @@
               <td>{{customer_time_account.id}}</td>
               <td>{{customer_time_account.name}}</td>
               <td>
-                {{customer_time_account.time_account.time_balance_in_seconds}}
+                {{customer_time_account.time_account.time_balance_in_seconds|get_time_as_string_in_hour_format_for_time_in_seconds_as_integer}}
               </td>
             </tr>
             {% endfor %}
@@ -36,7 +35,7 @@
                 <strong>Gesamt</strong>
               </td>
               <td>
-                {{customer_time_account_info.customer_time_account_total_time_balance}}
+                {{customer_time_account_info.customer_time_account_total_time_balance|get_time_as_string_in_hour_format_for_time_in_seconds_as_integer}}
               </td>
             </tr>
           </tfoot>
