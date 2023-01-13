@@ -1725,7 +1725,7 @@ def test_set__list_of_abilities__for__customer_program_manager_contract_accordin
     assert customer_program_manager_contract.can_give_manager_role == True
 
 
-# TODO this test has a bug. For some reson the customers can be in the wrong order. That is why the test fails sometimes.
+# TODO #130 For some reson the customers can be in the wrong order. The order is not important, but it is annoying. Fix it.
 @pytest.mark.django_db
 def test_get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract():
     # Arrange
