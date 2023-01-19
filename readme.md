@@ -211,3 +211,40 @@ git pull
 docker compose -f docker-compose.deploy.yml build
 docker compose -f docker-compose.deploy.yml down
 docker compose -f docker-compose.deploy.yml up -d
+
+##### How to set spending limits for programs and total spending limits as a customer
+
+In this section we will explain how to set spending limits for programs and total spending limits as a customer.
+
+To be able to set spending limits for programs and total spending limits as a customer, you need to be logged in as a user that is a customer manager.
+
+1. Go to <https://nadooit.com/admin>
+2. In the resulting page, you can see a list of all the customers that you are a customer manager for.
+
+TODO: #134 Add ability to set spending limits for programs and total spending limits as a customer
+
+3. If you have the ability to set spending limits for programs and total spending limits as a customer, you will see a button that says "Set spending limits for programs and total spending limits as a customer" next to the customer that you want to set spending limits for programs and total spending limits as a customer for. The current spending limits for programs and total spending limits as a customer will be displayed next to the button.
+
+4. Click on the button that says "Set spending limits for programs and total spending limits as a customer" next to the customer that you want to set spending limits for programs and total spending limits as a customer for.
+
+5. A modal will appear that will allow you to set spending limits for programs and total spending limits as a customer.
+
+6. Enter the spending limits for programs and total spending limits as a customer that you want to set.
+
+7. Click on the button that says "Set spending limits for programs and total spending limits as a customer".
+
+8. The spending limits for programs and total spending limits as a customer will be set.
+
+When a new spending limit is set all other customers that are customer managers for the customer will be notified.
+This message will be shown in the notification center.
+
+TODO: #135 Add notification center
+
+When the total spending limit as a customer is reached, the customer will not be able to create new programs.
+
+When the spending limit for a program is reached, the customer will not be able to create new campaigns for the program executions.
+
+When the total spending limit is reached the user will get a message that says "You have reached your total spending limit as a customer. Please contact your customer manager to increase your total spending limit as a customer."
+
+When the spending limit for a program is reached the user will get a message that says "You have reached your spending limit for the program. Please contact your customer manager to increase your spending limit for the program."
+
