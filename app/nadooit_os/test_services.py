@@ -7,7 +7,7 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
-from app.nadooit_os.services import get__csv__for__list_of_customer_program_executions
+from nadooit_os.services import get__csv__for__list_of_customer_program_executions, get__customer_program_overview_data
 from nadooit_os.services import get__employee_contract__for__employee_contract_id
 from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
@@ -134,8 +134,6 @@ from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
 import uuid
-from app.nadooit_os.views import employee_overview
-
 
 # A pytest fixure that returns a user object
 @pytest.fixture
@@ -2209,3 +2207,31 @@ def test_get__csv__for__list_of_customer_program_executions():
 
     # Assert
     assert True
+
+def test_get__customer_program_overview_data():
+    # Arrange
+
+    # Act
+
+    # Assert
+    assert {
+            "customer": "customer_name", 
+            "customer_program_budged_usage": "600€ / 1000€",
+            "list_of_customer_programs": 
+                [
+                    {   
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
+                        "customer_program_name": "customer_program_name",
+                        "time_savings_per_execution_in_seconds": 5,	
+                        "price_per_execution": "100€",
+                        "budget_usage": "600€ / 1000€",
+                    },
+                    {
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",	
+                        "customer_program_name": "customer_program_name_2",	
+                        "time_savings_per_execution_in_seconds": 22,		
+                        "price_per_execution": "133€",		
+                        "budget_usage": "600€ / 1000€",			
+                    } 		
+                ]
+            } == get__customer_program_overview_data()

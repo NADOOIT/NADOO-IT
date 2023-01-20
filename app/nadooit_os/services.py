@@ -1673,3 +1673,26 @@ def get__csv__for__list_of_customer_program_executions(
         )
     # return the response object
     return response
+
+def get__customer_program_overview_data():
+    return {
+            "customer": "customer_name", 
+            "customer_program_budged_usage": "600€ / 1000€",
+            "list_of_customer_programs": 
+                [
+                    {   
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
+                        "customer_program_name": "customer_program_name",
+                        "time_savings_per_execution_in_seconds": 5,	
+                        "price_per_execution": "100€",
+                        "budget_usage": "600€ / 1000€",
+                    },
+                    {
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",	
+                        "customer_program_name": "customer_program_name_2",	
+                        "time_savings_per_execution_in_seconds": 22,		
+                        "price_per_execution": "133€",		
+                        "budget_usage": "600€ / 1000€",			
+                    } 		
+                ]
+            }
