@@ -7,7 +7,10 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
-from nadooit_os.services import get__csv__for__list_of_customer_program_executions, get__customer_program_overview_data
+from nadooit_os.services import (
+    get__csv__for__list_of_customer_program_executions,
+    get__customer_program_overview_data,
+)
 from nadooit_os.services import get__employee_contract__for__employee_contract_id
 from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
@@ -131,7 +134,7 @@ from nadooit_auth.models import User
 from model_bakery import baker
 
 from nadooit_os.services import (
-    check__user__is__customer_program_manager__for__customer_prgram,
+    check__user__is__customer_program_manager__for__customer_program,
 )
 import uuid
 
@@ -579,7 +582,7 @@ def test_get__time_as_string_in_hour_format__for__time_in_seconds_as_integer():
 
 
 @pytest.mark.django_db
-def test_check__user__is__customer_program_manager__for__customer_prgram(
+def test_check__user__is__customer_program_manager__for__customer_program(
     user: User, customer_program: CustomerProgram
 ):
     # Arrange
@@ -595,7 +598,7 @@ def test_check__user__is__customer_program_manager__for__customer_prgram(
     # Act
     # Assert
     assert (
-        check__user__is__customer_program_manager__for__customer_prgram(
+        check__user__is__customer_program_manager__for__customer_program(
             user, customer_program
         )
         == True
@@ -2208,30 +2211,68 @@ def test_get__csv__for__list_of_customer_program_executions():
     # Assert
     assert True
 
+
+@pytest.mark.django_db
 def test_get__customer_program_overview_data():
     # Arrange
+    # Create a customers
+    customer_1 = baker.make("nadooit_crm.Customer", name="customer_name")
+    customer_2 = baker.make("nadooit_crm.Customer", name="customer_name_2")
+
+    # Create a customer programs
+    customer_program_1 = baker.make(
+        "nadooit_crm.CustomerProgram",
+        customer=customer_1,
+        program=baker.make("nadooit_program.Program", name="customer_program_name"),
+        price_per_second=20,
+        time_savings_per_execution_in_seconds=5,
+        budget=1000,
+    )
 
     # Act
 
     # Assert
     assert {
-            "customer": "customer_name", 
-            "customer_program_budged_usage": "600€ / 1000€",
-            "list_of_customer_programs": 
-                [
-                    {   
+        "customers": [
+            {
+                "customer_name": "customer_name",
+                "customer_program_budged_usage": "600€ / 1000€",
+                "list_of_customer_programs": [
+                    {
                         "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
                         "customer_program_name": "customer_program_name",
-                        "time_savings_per_execution_in_seconds": 5,	
+                        "time_savings_per_execution_in_seconds": 5,
                         "price_per_execution": "100€",
                         "budget_usage": "600€ / 1000€",
                     },
                     {
-                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",	
-                        "customer_program_name": "customer_program_name_2",	
-                        "time_savings_per_execution_in_seconds": 22,		
-                        "price_per_execution": "133€",		
-                        "budget_usage": "600€ / 1000€",			
-                    } 		
-                ]
-            } == get__customer_program_overview_data()
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",
+                        "customer_program_name": "customer_program_name_2",
+                        "time_savings_per_execution_in_seconds": 22,
+                        "price_per_execution": "133€",
+                        "budget_usage": "600€ / 1000€",
+                    },
+                ],
+            },
+            {
+                "customer_name": "customer_name_2",
+                "customer_program_budged_usage": "600€ / 1000€",
+                "list_of_customer_programs": [
+                    {
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
+                        "customer_program_name": "customer_program_name_3",
+                        "time_savings_per_execution_in_seconds": 5,
+                        "price_per_execution": "100€",
+                        "budget_usage": "600€ / 1000€",
+                    },
+                    {
+                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",
+                        "customer_program_name": "customer_program_name_4",
+                        "time_savings_per_execution_in_seconds": 22,
+                        "price_per_execution": "133€",
+                        "budget_usage": "600€ / 1000€",
+                    },
+                ],
+            },
+        ]
+    } == get__customer_program_overview_data()

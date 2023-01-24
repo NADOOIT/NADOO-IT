@@ -8,10 +8,8 @@
 from nadooit_hr.models import EmployeeContract
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
-from nadooit_program_ownership_system.models import CustomerProgram
 from nadooit_os.services import (
     get__nadooit_api_key__for__hashed_api_key,
     get__hashed_api_key__for__request,

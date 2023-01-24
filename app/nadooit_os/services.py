@@ -136,7 +136,7 @@ def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time) ->
 
 
 # Refactore this function because it requeres an employee and not a user. This is dangerous because it is not clear by the name of the function
-def check__user__is__customer_program_manager__for__customer_prgram(
+def check__user__is__customer_program_manager__for__customer_program(
     user: User, customer_program: CustomerProgram
 ):
     return CustomerProgramManagerContract.objects.filter(
@@ -1674,25 +1674,100 @@ def get__csv__for__list_of_customer_program_executions(
     # return the response object
     return response
 
+
 def get__customer_program_overview_data():
-    return {
-            "customer": "customer_name", 
+
+    """
+    {
+        "customers":
+            [
+                {
+                    "customer_name": "customer_name",
+                    "customer_program_budged_usage": "600€ / 1000€",
+                    "list_of_customer_programs": [
+                        {
+                            "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
+                            "customer_program_name": "customer_program_name",
+                            "time_savings_per_execution_in_seconds": 5,
+                            "price_per_execution": "100€",
+                            "budget_usage": "600€ / 1000€",
+                        },
+                        {
+                            "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",
+                            "customer_program_name": "customer_program_name_2",
+                            "time_savings_per_execution_in_seconds": 22,
+                            "price_per_execution": "133€",
+                            "budget_usage": "600€ / 1000€",
+                        },
+                    ],
+                },
+                {
+                    "customer_name": "customer_name_2",
+                    "customer_program_budged_usage": "600€ / 1000€",
+                    "list_of_customer_programs": [
+                        {
+                            "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
+                            "customer_program_name": "customer_program_name",
+                            "time_savings_per_execution_in_seconds": 5,
+                            "price_per_execution": "100€",
+                            "budget_usage": "600€ / 1000€",
+                        },
+                        {
+                            "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",
+                            "customer_program_name": "customer_program_name_2",
+                            "time_savings_per_execution_in_seconds": 22,
+                            "price_per_execution": "133€",
+                            "budget_usage": "600€ / 1000€",
+                        },
+                    ],
+                },
+        ]
+    }
+    """
+
+    list_of_all_customers = get__list_of_all_customers()
+
+    # create the data structure for the customer_program_overview_data
+    # the data structure is a dictionary with a key "customers" and a value which is a list of dictionaries
+    # each dictionary in the list represents a customer
+    # each customer dictionary has the keys "customer_name", "customer_program_budged_usage" and "list_of_customer_programs"
+    # the value of the key "list_of_customer_programs" is a list of dictionaries
+    customer_program_overview_data = {"customers": []}
+
+    # iterate over all customers
+    for customer in list_of_all_customers:
+        # create a dictionary for the customer
+        customer_data = {
+            "customer_name": customer.name,
             "customer_program_budged_usage": "600€ / 1000€",
-            "list_of_customer_programs": 
-                [
-                    {   
-                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedd",
-                        "customer_program_name": "customer_program_name",
-                        "time_savings_per_execution_in_seconds": 5,	
-                        "price_per_execution": "100€",
-                        "budget_usage": "600€ / 1000€",
-                    },
-                    {
-                        "customer_program_id": "705b5a08-b5a1-4123-9943-c486965faedx",	
-                        "customer_program_name": "customer_program_name_2",	
-                        "time_savings_per_execution_in_seconds": 22,		
-                        "price_per_execution": "133€",		
-                        "budget_usage": "600€ / 1000€",			
-                    } 		
-                ]
+            "list_of_customer_programs": [],
+        }
+
+        # iterate over all customer programs of the customer
+        for customer_program in get__list_of_customer_programs__for__customer(customer):
+            # create a dictionary for the customer program
+            customer_program_data = {
+                "customer_program_id": customer_program.id,
+                "customer_program_name": customer_program.program.name,
+                "time_savings_per_execution_in_seconds": customer_program.program_time_saved_per_execution_in_seconds,
+                "price_per_execution": customer_program.price_per_execution,
+                "budget_usage": "600€ / 1000€",
             }
+
+            # append the customer program dictionary to the list of customer programs
+            customer_data["list_of_customer_programs"].append(customer_program_data)
+
+        # append the customer dictionary to the list of customers
+        customer_program_overview_data["customers"].append(customer_data)
+
+    return customer_program_overview_data
+
+
+def get__list_of_all_customers() -> list[Customer]:
+    return Customer.objects.all()
+
+
+def get__list_of_customer_programs__for__customer(
+    customer: Customer,
+) -> list[CustomerProgram]:
+    return CustomerProgram.objects.filter(customer=customer)

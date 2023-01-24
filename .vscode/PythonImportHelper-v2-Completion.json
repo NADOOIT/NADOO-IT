@@ -2994,7 +2994,7 @@
         "documentation": {}
     },
     {
-        "label": "check__user__is__customer_program_manager__for__customer_prgram",
+        "label": "check__user__is__customer_program_manager__for__customer_program",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -3218,7 +3218,7 @@
         "documentation": {}
     },
     {
-        "label": "check__user__is__customer_program_manager__for__customer_prgram",
+        "label": "check__user__is__customer_program_manager__for__customer_program",
         "importPath": "nadooit_os.services",
         "description": "nadooit_os.services",
         "isExtraImport": true,
@@ -5428,16 +5428,16 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)\n        + \" min : \"\n        + str(time % 60)\n        + \" sek\"\n    )\ndef check__user__is__customer_program_manager__for__customer_prgram(",
+        "peekOfCode": "def get__time_as_string_in_hour_format__for__time_in_seconds_as_integer(time):\n    return (\n        str(time // 3600)\n        + \" std : \"\n        + str((time % 3600) // 60)\n        + \" min : \"\n        + str(time % 60)\n        + \" sek\"\n    )\ndef check__user__is__customer_program_manager__for__customer_program(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
     {
-        "label": "check__user__is__customer_program_manager__for__customer_prgram",
+        "label": "check__user__is__customer_program_manager__for__customer_program",
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__user__is__customer_program_manager__for__customer_prgram(\n    user, customer_program\n):\n    return CustomerProgramManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        contract__customer=customer_program.customer,\n    ).exists()\ndef check__customer_program__for__customer_program_id__exists(customer_program_id):\n    return CustomerProgram.objects.filter(id=customer_program_id).exists()",
+        "peekOfCode": "def check__user__is__customer_program_manager__for__customer_program(\n    user, customer_program\n):\n    return CustomerProgramManagerContract.objects.filter(\n        contract__employee=user.employee,\n        contract__is_active=True,\n        contract__customer=customer_program.customer,\n    ).exists()\ndef check__customer_program__for__customer_program_id__exists(customer_program_id):\n    return CustomerProgram.objects.filter(id=customer_program_id).exists()",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -5865,11 +5865,11 @@
         "documentation": {}
     },
     {
-        "label": "test_check__user__is__customer_program_manager__for__customer_prgram",
+        "label": "test_check__user__is__customer_program_manager__for__customer_program",
         "kind": 2,
         "importPath": "app.nadooit_os.test_services",
         "description": "app.nadooit_os.test_services",
-        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_prgram():\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    CustomerProgramManagerContract.objects.create(\n        contract=EmployeeContract.objects.create(",
+        "peekOfCode": "def test_check__user__is__customer_program_manager__for__customer_program():\n    print(\"Is this run first?\")\n    # Arrange\n    # Act\n    # Assert\n    user = baker.make(User)\n    baker.make(Employee, user=user)\n    customer = baker.make(Customer)\n    CustomerProgramManagerContract.objects.create(\n        contract=EmployeeContract.objects.create(",
         "detail": "app.nadooit_os.test_services",
         "documentation": {}
     },
@@ -6130,7 +6130,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.views",
         "description": "app.nadooit_os.views",
-        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if check__customer_program__for__customer_program_id__exists(customer_program_id):\n        if not check__user__is__customer_program_manager__for__customer_prgram(\n            request.user,\n            get__customer_program__for__customer_program_id(customer_program_id),\n        ):",
+        "peekOfCode": "def get__customer_program_profile(\n    request: HttpRequest, customer_program_id: str\n) -> HttpResponse:\n    # Check that the user is a a customer program  manager for the customer that the customer program belongs to\n    # print(\"customer_program_id\", customer_program_id)\n    if check__customer_program__for__customer_program_id__exists(customer_program_id):\n        if not check__user__is__customer_program_manager__for__customer_program(\n            request.user,\n            get__customer_program__for__customer_program_id(customer_program_id),\n        ):",
         "detail": "app.nadooit_os.views",
         "documentation": {}
     },

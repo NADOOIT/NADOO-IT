@@ -15,8 +15,6 @@ from django.db import models
 from django.dispatch import receiver
 
 # model imports
-from nadooit_crm.models import Customer
-from nadooit_hr.models import Employee
 from nadooit_program_ownership_system.models import CustomerProgram
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField

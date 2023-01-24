@@ -45,7 +45,7 @@ from nadooit_os.services import (
 )
 from nadooit_os.services import (
     check__customer_program__for__customer_program_id__exists,
-    check__user__is__customer_program_manager__for__customer_prgram,
+    check__user__is__customer_program_manager__for__customer_program,
     get__customer_program__for__customer_program_id,
     get__customer_program_manager_contract__for__employee_and_customer,
     get__next_price_level__for__customer_program,
@@ -800,16 +800,14 @@ def customer_program_execution_send_complaint(
 )
 def give_customer_program_execution_manager_role(request: HttpRequest):
     submitted = False
-    
+
     employee_with_customer_program_manager_contract = request.user.employee
-    
+
     if request.method == "POST":
 
         user_code = request.POST.get("user_code")
         customer_id = request.POST.get("customer_id")
         list_of_abilities = request.POST.getlist("role")
-
-       
 
         # guard clauses for the input data of the form (user_code, customer_id, list_of_abilities)
 
@@ -922,7 +920,7 @@ def get__customer_program_profile(
     )
 
     # covered by test
-    if not check__user__is__customer_program_manager__for__customer_prgram(
+    if not check__user__is__customer_program_manager__for__customer_program(
         request.user,
         customer_program,
     ):
