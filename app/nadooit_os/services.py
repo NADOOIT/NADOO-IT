@@ -1673,3 +1673,13 @@ def get__csv__for__list_of_customer_program_executions(
         )
     # return the response object
     return response
+
+
+def check__user_is_allowed_to_add_new_key(user: User) -> bool:
+
+    # user is superuser
+    if user.is_superuser:
+        return True
+    # user is not superuser
+    else:
+        return False
