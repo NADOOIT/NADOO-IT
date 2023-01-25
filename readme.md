@@ -206,8 +206,42 @@ docker compose -f docker-compose.deploy.yml down
 
 #### Updating the server
 
-1. Run the following command to update the server
-git pull
-docker compose -f docker-compose.deploy.yml build
-docker compose -f docker-compose.deploy.yml down
-docker compose -f docker-compose.deploy.yml up -d
+Run the following command to update the server
+
+    git pull
+
+    docker compose -f docker-compose.deploy.yml build
+
+    docker compose -f docker-compose.deploy.yml down
+
+    docker compose -f docker-compose.deploy.yml up -d
+
+## How to Use
+
+### New Customer workflow
+
+#### Create a new customer
+
+go to https://nadooit.de/admin/nadooit_crm/customer/add/
+
+fill out the form
+
+#### Create a new employee contract, employee and user as the lead of the customer
+
+go to https://nadooit.de/admin/nadooit_hr/employeecontract/add/
+
+#### Create a new api key manager contract for the customer
+
+go to https://nadooit.de/admin/nadooit_api_key/nadooitapikeymanager/add/
+
+#### Create a customer manager contract for the customer with the master account
+
+go to https://nadooit.de/admin/nadooit_hr/customermanagercontract/add/
+
+#### Create a customer program execution manager contract for the customer with the master account
+
+go to https://nadooit.de/admin/nadooit_hr/customerprogramexecutionmanagercontract/add/
+
+#### Create a customer program manager contract for the customer with the master account
+
+go to https://nadooit.de/admin/nadooit_hr/customerprogrammanagercontract/add/
