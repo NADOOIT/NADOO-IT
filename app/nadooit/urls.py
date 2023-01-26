@@ -48,7 +48,7 @@ urlpatterns = [
     # These are the urls for multi factor authentication
     path(
         "mfa/",
-        login_required(include("mfa.urls"), login_url="/auth/login-user"),
+        include("mfa.urls"),
         name="mfa",
     ),
     # This short link to add new trusted device
