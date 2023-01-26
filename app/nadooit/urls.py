@@ -23,19 +23,15 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
-from django.contrib.auth.decorators import login_required, user_passes_test
 
 import mfa
-import mfa.TrustedDevice
+from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
-
-from nadooit_os.services import check__user_is_allowed_to_add_new_key
 
 admin.site.site_header = "NADOOIT Administration"  # default: "Django Administration"
 admin.site.index_title = "NADOOIT Administration Site"  # default: "Site administration"
 admin.site.site_title = "NADOOIT"
-
 
 # This is where the urls are placed
 urlpatterns = [
@@ -50,17 +46,13 @@ urlpatterns = [
     # These are the the urls for implementing the pwa for the django app
     path("", include("pwa.urls")),
     # These are the urls for multi factor authentication
-    path("mfa/", include("mfa.urls")),
-    # This short link to add new trusted device
     path(
-        "devices/add",
-        login_required(
-            user_passes_test(
-                check__user_is_allowed_to_add_new_key, mfa.TrustedDevice.add
-            )
-        ),
-        name="mfa_add_new_trusted_device",
+        "mfa/",
+        login_required(include("mfa.urls"), login_url="/auth/login-user"),
+        name="mfa",
     ),
+    # This short link to add new trusted device
+    # path("devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"),
     # Routes for the nadooit system
     # These are the urls for everything that has to do with user authentication. Including login, logout and registration
     path("auth/", include("nadooit_auth.urls", namespace="nadooit_auth")),
