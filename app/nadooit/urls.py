@@ -25,7 +25,7 @@ from django.conf.urls.static import static
 from django.urls import path, include
 
 import mfa
-import mfa.TrustedDevice
+from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
 
@@ -46,9 +46,13 @@ urlpatterns = [
     # These are the the urls for implementing the pwa for the django app
     path("", include("pwa.urls")),
     # These are the urls for multi factor authentication
-    path("mfa/", include("mfa.urls")),
+    path(
+        "mfa/",
+        login_required(include("mfa.urls"), login_url="/auth/login-user"),
+        name="mfa",
+    ),
     # This short link to add new trusted device
-    path("devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"),
+    # path("devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"),
     # Routes for the nadooit system
     # These are the urls for everything that has to do with user authentication. Including login, logout and registration
     path("auth/", include("nadooit_auth.urls", namespace="nadooit_auth")),
