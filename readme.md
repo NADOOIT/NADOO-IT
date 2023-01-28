@@ -245,3 +245,19 @@ go to https://nadooit.de/admin/nadooit_hr/customerprogramexecutionmanagercontrac
 #### Create a customer program manager contract for the customer with the master account
 
 go to https://nadooit.de/admin/nadooit_hr/customerprogrammanagercontract/add/
+
+#### Add a security key to the main customer user account
+
+first sighn in to the main customer user account. If there is currently no key associated with the account, you will be be able to just sign in without a password.
+
+after you have signed in, go to https://nadooit.de/mfa/fido2/
+
+if you have a PC with fido2 support it will ask you if you want to add it. Cancel the process and go to the next step.
+
+It will ask you to insert a security key. Insert the security key and click on the button.
+
+It will ask you to setup a password. Setup a password and click on the button. The default password is 123456.
+
+Follow the instructions on the screen to add the security key.
+
+Test the security key by signing out and signing in again.
