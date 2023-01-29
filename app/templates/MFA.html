@@ -82,6 +82,7 @@
                     {% else %}
                         <a href="javascript:void(0)" onclick="deleteKey({{ key.id }},'{{ key.key_type }}')"> <span class="fa fa-trash fa-solid fa-trash-can bi bi-trash-fill"></span></a></td>
                         {% endif %}
+                </td>
             </tr>
             {% endfor %}
             {% if "RECOVERY" not in UNALLOWED_AUTHEN_METHODS %}
