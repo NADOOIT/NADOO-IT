@@ -38,11 +38,9 @@ USER django
 
 RUN pip install --upgrade pip && \
        pip install -r /requirements.txt &&\
-       python manage.py collectstatic --noinput 
-       #TODO check if this should be done in migrations or how to migrate server in production
-       #&&\
-       #python manage.py makemigrations &&\
-       #python manage.py migrate
+       python manage.py collectstatic --noinput &&\
+       python manage.py makemigrations &&\
+       python manage.py migrate
 
 USER root
 
