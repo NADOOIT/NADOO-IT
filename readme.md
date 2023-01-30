@@ -1,6 +1,6 @@
 # Intro
 
-This is the nadooit execution manegment system.
+This is the nadooit manegment system.
 
 It forms the interface to the system, hosts the website, and provides the API.
 
@@ -36,6 +36,17 @@ It forms the interface to the system, hosts the website, and provides the API.
 #### Running tests
 
 ##### Testing the API
+
+First you need to create a new user and get the api key and user code.
+The superuser you created in the setup can be used for this.
+
+To get access to the api key page you need to go to the admin page and create a api manager for the user.
+
+To create a api manager go to <https://127.0.0.1:8000/admin/nadooit_api_key/nadooitapikeymanager/add/>
+
+After you created the api manager you can go to <https://127.0.0.1:8000/nadooit-os/api_key/create-api-key>
+
+There you can copy the api key and user code.
 
 To test the api go to <https://127.0.0.1:8000/api/executions>
 
