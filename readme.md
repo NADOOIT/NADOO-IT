@@ -37,7 +37,7 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ##### Testing the API
 
-First you need to create a new user and get the api key and user code.
+To test the API you first need to create a new user and get the api key and user code.
 The superuser you created in the setup can be used for this.
 
 To get access to the api key page you need to go to the admin page and create a api manager for the user.
@@ -46,7 +46,9 @@ To create a api manager go to <https://127.0.0.1:8000/admin/nadooit_api_key/nado
 
 After you created the api manager you can go to <https://127.0.0.1:8000/nadooit-os/api_key/create-api-key>
 
-There you can copy the api key and user code.
+There you can copy the api key.
+
+For the user_code you can go to <https://127.0.0.1:8000/admin/nadooit_auth/user/> select the user and scroll down to the user code.
 
 To test the api go to <https://127.0.0.1:8000/api/executions>
 
