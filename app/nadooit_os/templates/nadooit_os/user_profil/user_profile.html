@@ -1,0 +1,68 @@
+{% extends 'nadooit_os/base.html' %} {% block content %} {% csrf_token %}
+
+{% comment %} Show the users Displayname, User Code, a list of all contracttypes for each customer the user is connected with {% endcomment %}
+
+
+<div class="container">
+  <br />
+  <div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col">
+      {% for cutomer in customers_the_user_is_responsible_for_and_the_customer_programms %}
+
+      <div class="table-responsive">
+        <table class="table caption-top">
+          <caption>
+            {{cutomer.0}}
+          </caption>
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Contracttype</th>
+              <th scope="col">Programm</th>
+              <th scope="col">Zeitersparnis pro Ausführung</th>
+              <th scope="col">Preis pro Sekunde</th>
+              <th scope="col">Preis pro Ausführung</th>
+              <th scope="col">Erstellt am</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for customer_program in cutomer.1 %}
+            {% comment %}<tr hx-post="{% url 'nadooit_os:customer-program-profile' customer_program.id %}" hx-swap="outerHTML" hx-target="#profile_for_customer_program_{{customer_program.id}}"> {% endcomment %}
+            <tr>
+              <td>{{ customer_program.id }}</td>
+              <td>{{ customer_program.program.name }}</td>
+              <td>
+                {{customer_program.program_time_saved_per_execution_in_seconds}} sek
+              </td>
+              <td>
+                {{customer_program.price_per_second}}
+              </td>
+              <td>
+                {{customer_program.price_per_execution}}
+              </td>
+              <td>{{ customer_program.created_at}}</td>
+            </tr>
+            {% comment %} A hidden table row {% endcomment %}
+            <tr class="d-none" id="profile_for_customer_program_{{customer_program.id}}">
+             
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4">Keine Programme vorhanden</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <br />
+
+      {% empty %}
+      <div class="alert alert-info" role="alert">Keine Programme vorhanden</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
