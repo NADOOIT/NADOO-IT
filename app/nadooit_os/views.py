@@ -1087,12 +1087,14 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
         )
     )
 
+    user_info = get__user_info__for__user(employee.user)
+
     return render(
         request,
         "nadooit_os/hr_department/employee_profile.html",
         {
-            "page_title": "Mitarbeiter Profil",
-            "employee": employee,
+            "page_title": " Profil",
+            "user_info": user_info,
             "employee_contracts_of_customers_the_user_is_responsible_for": employee_contracts_of_customers_the_user_is_responsible_for,
             **get__user__roles_and_rights__for__http_request(request),
         },

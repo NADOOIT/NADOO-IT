@@ -1683,3 +1683,9 @@ def check__user_is_allowed_to_add_new_key(user: User) -> bool:
     # user is not superuser
     else:
         return False
+
+def get__user_info__for__user(user: User) -> dict:
+    return {
+        "user_code": user.user_code,
+        "display_name": user.display_name,
+    }

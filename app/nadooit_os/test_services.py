@@ -11,6 +11,7 @@ from app.nadooit_os.services import get__csv__for__list_of_customer_program_exec
 from nadooit_os.services import get__employee_contract__for__employee_contract_id
 from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
+    get__user_info__for__user
 )
 from nadooit_hr.models import EmployeeContract
 from nadooit_os.services import (
@@ -2209,3 +2210,17 @@ def test_get__csv__for__list_of_customer_program_executions():
 
     # Assert
     assert True
+
+@pytest.mark.django_db
+def test_get__user_info__for__user():
+    # Arrange
+    user = baker.make("nadooit_auth.User")
+
+    # Act
+    result = get__user_info__for__user(user)
+
+    # Assert
+    assert result == {
+        "user_code": user.user_code,
+        "display_name": user.display_name,
+    }	
