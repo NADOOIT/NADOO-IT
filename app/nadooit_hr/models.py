@@ -79,6 +79,13 @@ class EmployeeManagerContract(models.Model):
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
         )
 
+    def get_abilities(self):
+        return {
+            "can_add_new_employee": self.can_add_new_employee,
+            "can_delete_employee": self.can_delete_employee,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
+
 
 class CustomerProgramManagerContract(models.Model):
 
@@ -158,6 +165,13 @@ class TimeAccountManagerContract(models.Model):
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
         )
 
+    def get_abilities(self):
+        return {
+            "can_create_time_accounts": self.can_create_time_accounts,
+            "can_delete_time_accounts": self.can_delete_time_accounts,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
+
 
 class CustomerManagerContract(models.Model):
 
@@ -170,3 +184,8 @@ class CustomerManagerContract(models.Model):
         return (
             f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
         )
+
+    def get_abilities(self):
+        return {
+            "can_give_manager_role": self.can_give_manager_role,
+        }

@@ -10,6 +10,8 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from nadooit_os.services import get__user_info__for__user
+from nadooit_hr.models import EmployeeContract
 from nadooit_os.services import (
     get__csv__for__list_of_customer_program_executions,
     get__employee_contract__for__employee_contract_id,
@@ -800,16 +802,14 @@ def customer_program_execution_send_complaint(
 )
 def give_customer_program_execution_manager_role(request: HttpRequest):
     submitted = False
-    
+
     employee_with_customer_program_manager_contract = request.user.employee
-    
+
     if request.method == "POST":
 
         user_code = request.POST.get("user_code")
         customer_id = request.POST.get("customer_id")
         list_of_abilities = request.POST.getlist("role")
-
-       
 
         # guard clauses for the input data of the form (user_code, customer_id, list_of_abilities)
 
@@ -1079,6 +1079,15 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
     customers_the_user_is_responsible_for = (
         request.user.employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()
     )
+
+    # check if the employee is part of the customers the user is responsible for. If not the user is not allowed to see the profile.
+    if (
+        EmployeeContract.objects.filter(
+            employee=employee, customer__in=customers_the_user_is_responsible_for
+        ).exists()
+        == False
+    ):
+        return HttpResponseForbidden()
 
     # get the employee contracts of the employee that are part of the customers the user is responsible for
     employee_contracts_of_customers_the_user_is_responsible_for = (
