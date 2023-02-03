@@ -12,6 +12,32 @@ user_info = {
 
 }
 
+list_of_employee_contracts = [
+        {	
+            "employee_contract": employee_contract, # the employee contract object
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+            ],	
+        },
+        {
+            "employee_contract": employee_contract, # the employee contract object	
+            "list_of_manager_contracts": [	
+                employee_manager_contract,
+                customer_program_manager_contract,	
+            ],		
+        },                 
+    ]	
+
+    each *_contract has a get_abilities method which returns a list of abilities. Each ability has a name and a value (True or False)
+
+    jeder Kunde soll in einer eigenen Tabelle angezeigt werden. 
+
+    Also zunächst wird der Name des Kunden angezeigt der unter employee_contract.customer.name steht.
+
+    Darunter wird dann eine Tabelle angezeigt mit den verschiedenen Contracttypes und den dazugehörigen Werten (True oder False)
+
+    {% endcomment %}
 {% endcomment %}
 
 <div class="container">
@@ -43,62 +69,30 @@ user_info = {
 
 
     </div>
-    {% comment %} 
     <div class="col">
+        <div class="table-responsive">
+          {% for employee_contract_data in list_of_employee_contracts %}
+            <table class="table caption-top">
+            <caption>{{employee_contract_data.employee_contract.customer.name}}</caption>
+            <thead class="table-dark">
+                <tr>
+                <th scope="col">Vertrag</th>
 
-      {% for cutomer in customers_the_user_is_responsible_for_and_the_customer_programms %}
-
-      <div class="table-responsive">
-        <table class="table caption-top">
-          <caption>
-            {{cutomer.0}}
-          </caption>
-          <thead class="table-dark">
-            <tr>
-              <th scope="col">Contracttype</th>
-              <th scope="col">Programm</th>
-              <th scope="col">Zeitersparnis pro Ausführung</th>
-              <th scope="col">Preis pro Sekunde</th>
-              <th scope="col">Preis pro Ausführung</th>
-              <th scope="col">Erstellt am</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for customer_program in cutomer.1 %}
-            <tr>
-              <td>{{ customer_program.id }}</td>
-              <td>{{ customer_program.program.name }}</td>
-              <td>
-                {{customer_program.program_time_saved_per_execution_in_seconds}} sek
-              </td>
-              <td>
-                {{customer_program.price_per_second}}
-              </td>
-              <td>
-                {{customer_program.price_per_execution}}
-              </td>
-              <td>{{ customer_program.created_at}}</td>
-            </tr>
-            <tr class="d-none" id="profile_for_customer_program_{{customer_program.id}}">
-             
-            </tr>
-            {% empty %}
-            <tr>
-              <td colspan="4">Keine Programme vorhanden</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
-
-      <br />
-
-      {% empty %}
-      <div class="alert alert-info" role="alert">Keine Programme vorhanden</div>
-      {% endfor %}
-    </div>
-    </div>
-   {% endcomment %}
-
+                </tr>
+            </thead>
+            {% for manager_contract in employee_contract_data.list_of_manager_contracts %}
+            <tbody>
+                <tr>
+                <td>{{manager_contract}}</td>
+                <td>Rechte</td>
+                {{for ability in manager_contract.get_abilities}}
+                <td>{{ability.name}}</td>
+                <td>{{ability.value}}</td>
+                {{endfor}}
+                </tr>
+            </tbody>
+                {% endfor %}
+          {% endfor %}
+            </table>
+        </div>
 </div>

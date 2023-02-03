@@ -52,7 +52,7 @@ class EmployeeContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return f"{self.employee} - {self.customer}"
+        return f"Angestelltenvertrag zwischen: {self.employee} - {self.customer}"
 
 
 class EmployeeManagerContract(models.Model):
@@ -75,9 +75,7 @@ class EmployeeManagerContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Angestelltenverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
@@ -105,9 +103,7 @@ class CustomerProgramManagerContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Kundenverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
@@ -134,9 +130,7 @@ class CustomerProgramExecutionManagerContract(models.Model):
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Kundenprogrammausführungverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
@@ -161,9 +155,7 @@ class TimeAccountManagerContract(models.Model):
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Zeitkontoverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
@@ -181,9 +173,7 @@ class CustomerManagerContract(models.Model):
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Kundenverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {

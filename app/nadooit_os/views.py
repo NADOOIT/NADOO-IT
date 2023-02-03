@@ -1098,13 +1098,35 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
 
     user_info = get__user_info__for__user(employee.user)
 
+    # Take the employee contracts and then get for each the employee manager contracts
+    # Structure of the list:
+    """ 
+    
+    list_of_employee_contracts = [
+        {	
+            "employee_contract": employee_contract, # the employee contract object
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+            ],	
+        },
+        {
+            "employee_contract": employee_contract, # the employee contract object	
+            "list_of_manager_contracts": [	
+                employee_manager_contract,
+                customer_program_manager_contract,	
+            ],		
+        },                 
+    ]	
+    """
+
     return render(
         request,
         "nadooit_os/hr_department/employee_profile.html",
         {
             "page_title": " Profil",
             "user_info": user_info,
-            "employee_contracts_of_customers_the_user_is_responsible_for": employee_contracts_of_customers_the_user_is_responsible_for,
+            "list_of_employee_contracts": list_of_employee_contracts,
             **get__user__roles_and_rights__for__http_request(request),
         },
     )
