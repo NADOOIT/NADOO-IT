@@ -9,6 +9,7 @@ import uuid
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.utils import timezone
+from app.nadooit_hr.models import CustomerManagerContract
 from nadoo_complaint_management.models import Complaint
 from nadooit_hr.models import CustomerProgramExecutionManagerContract
 from nadooit_time_account.models import CustomerTimeAccount
@@ -1684,8 +1685,29 @@ def check__user_is_allowed_to_add_new_key(user: User) -> bool:
     else:
         return False
 
+
 def get__user_info__for__user(user: User) -> dict:
     return {
         "user_code": user.user_code,
         "display_name": user.display_name,
     }
+
+
+def get__list_of_manager_contracts__for__employee(employee: Employee):
+
+    # This function returns a list of all *_manager_contracts the employee has.add()
+    # This function needs to be updated if a new *_manager_contract is added.
+
+    list_of_manager_contracts = []
+
+    list_of_customer_program_manager_contracts = (
+        CustomerProgramManagerContract.objects.filter(contract__employee=employee)
+    )
+    list_of_customer_manager_contracts = CustomerManagerContract.objects.filter(
+        contract__employee=employee
+    )
+    list_of_employee_manager_contracts = EmployeeManagerContract.objects.filter(
+        contract__employee=employee
+    )
+
+    list_of_manager_contracts.extend(list_of_customer_program_manager_contracts)

@@ -1120,6 +1120,10 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
     ]	
     """
 
+    list_of_employee_contracts = []
+    
+    list_of_employee_contracts = get__list_of_manager_contracts__for__employee(employee)	
+
     return render(
         request,
         "nadooit_os/hr_department/employee_profile.html",
