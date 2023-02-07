@@ -10,6 +10,7 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from nadooit_os.services import get__list_of_manager_contracts__for__employee
 from nadooit_os.services import get__user_info__for__user
 from nadooit_hr.models import EmployeeContract
 from nadooit_os.services import (
@@ -1121,8 +1122,8 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
     """
 
     list_of_employee_contracts = []
-    
-    list_of_employee_contracts = get__list_of_manager_contracts__for__employee(employee)	
+
+    list_of_employee_contracts = get__list_of_manager_contracts__for__employee(employee)
 
     return render(
         request,

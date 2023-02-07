@@ -7,11 +7,12 @@ from decimal import Decimal
 from typing import Type
 import model_bakery
 import pytest
-from app.nadooit_os.services import get__csv__for__list_of_customer_program_executions
+from nadooit_os.services import get__list_of_manager_contracts__for__employee
+from nadooit_os.services import get__csv__for__list_of_customer_program_executions
 from nadooit_os.services import get__employee_contract__for__employee_contract_id
 from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
-    get__user_info__for__user
+    get__user_info__for__user,
 )
 from nadooit_hr.models import EmployeeContract
 from nadooit_os.services import (
@@ -135,7 +136,6 @@ from nadooit_os.services import (
     check__user__is__customer_program_manager__for__customer_prgram,
 )
 import uuid
-from app.nadooit_os.views import employee_overview
 
 
 # A pytest fixure that returns a user object
@@ -2211,6 +2211,7 @@ def test_get__csv__for__list_of_customer_program_executions():
     # Assert
     assert True
 
+
 @pytest.mark.django_db
 def test_get__user_info__for__user():
     # Arrange
@@ -2223,4 +2224,104 @@ def test_get__user_info__for__user():
     assert result == {
         "user_code": user.user_code,
         "display_name": user.display_name,
-    }	
+    }
+
+
+@pytest.mark.django_db
+def test_get__list_of_manager_contracts__for__employee():
+
+    """
+    list_of_employee_contracts = [
+        {
+            "employee_contract": employee_contract, # the employee contract object
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+                customer_manager_contract,
+            ],
+        },
+        {
+            "employee_contract": employee_contract, # the employee contract object
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+                customer_manager_contract,
+            ],
+        },
+    ]
+    """
+
+    # Arrange
+    employee = baker.make(
+        "nadooit_hr.Employee",
+        user=baker.make("nadooit_auth.User", display_name="employee_name"),
+    )
+
+    employee_contract_1 = baker.make(
+        "nadooit_hr.EmployeeContract",
+        employee=employee,
+        customer=baker.make("nadooit_crm.Customer", name="customer_1"),
+    )
+
+    employee_manager_contract = baker.make(
+        "nadooit_hr.EmployeeManagerContract", contract=employee_contract_1
+    )
+
+    customer_program_manager_contract = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        contract=employee_contract_1,
+    )
+
+    customer_manager_contract = baker.make(
+        "nadooit_hr.CustomerManagerContract", contract=employee_contract_1
+    )
+
+    employee_contract_2 = baker.make(
+        "nadooit_hr.EmployeeContract",
+        employee=employee,
+        customer=baker.make("nadooit_crm.Customer", name="customer_2"),
+    )
+
+    employee_manager_contract_2 = baker.make(
+        "nadooit_hr.EmployeeManagerContract", contract=employee_contract_2
+    )
+
+    customer_program_manager_contract_2 = baker.make(
+        "nadooit_hr.CustomerProgramManagerContract",
+        contract=employee_contract_2,
+    )
+
+    employee_contract_3 = baker.make(
+        "nadooit_hr.EmployeeContract",
+        employee=employee,
+        customer=baker.make("nadooit_crm.Customer", name="customer_3"),
+    )
+
+    # Act
+    result = get__list_of_manager_contracts__for__employee(employee)
+
+    print("result")
+    print(result)
+
+    # Assert
+    assert result == [
+        {
+            "employee_contract": employee_contract_1,
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+                customer_manager_contract,
+            ],
+        },
+        {
+            "employee_contract": employee_contract_2,
+            "list_of_manager_contracts": [
+                employee_manager_contract_2,
+                customer_program_manager_contract_2,
+            ],
+        },
+        {
+            "employee_contract": employee_contract_3,
+            "list_of_manager_contracts": [],
+        },
+    ]

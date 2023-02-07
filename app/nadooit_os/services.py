@@ -9,7 +9,7 @@ import uuid
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.utils import timezone
-from app.nadooit_hr.models import CustomerManagerContract
+from nadooit_hr.models import CustomerManagerContract
 from nadoo_complaint_management.models import Complaint
 from nadooit_hr.models import CustomerProgramExecutionManagerContract
 from nadooit_time_account.models import CustomerTimeAccount
@@ -1694,20 +1694,61 @@ def get__user_info__for__user(user: User) -> dict:
 
 
 def get__list_of_manager_contracts__for__employee(employee: Employee):
+    """
+    list_of_employee_contracts = [
+        {
+            "employee_contract": employee_contract, # the employee contract object
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+                customer_manager_contract,
+            ],
+        },
+        {
+            "employee_contract": employee_contract, # the employee contract object
+            "list_of_manager_contracts": [
+                employee_manager_contract,
+                customer_program_manager_contract,
+                customer_manager_contract,
+            ],
+        },
+    ]
+    """
 
-    # This function returns a list of all *_manager_contracts the employee has.add()
+    # This function returns a list of all *_manager_contracts the employee has.
     # This function needs to be updated if a new *_manager_contract is added.
 
     list_of_manager_contracts = []
 
-    list_of_customer_program_manager_contracts = (
-        CustomerProgramManagerContract.objects.filter(contract__employee=employee)
-    )
-    list_of_customer_manager_contracts = CustomerManagerContract.objects.filter(
-        contract__employee=employee
-    )
-    list_of_employee_manager_contracts = EmployeeManagerContract.objects.filter(
-        contract__employee=employee
-    )
+    # get all employee contracts for the employee
+    list_of_employee_contracts = EmployeeContract.objects.filter(
+        employee=employee
+    ).order_by("created_at")
 
-    list_of_manager_contracts.extend(list_of_customer_program_manager_contracts)
+    # for each employee contract get all the manager contracts
+    for employee_contract in list_of_employee_contracts:
+        list_of_manager_contracts.append(
+            {
+                "employee_contract": employee_contract,
+                "list_of_manager_contracts": [
+                    EmployeeManagerContract.objects.filter(
+                        contract=employee_contract
+                    ).first(),
+                    CustomerProgramManagerContract.objects.filter(
+                        contract=employee_contract
+                    ).first(),
+                    CustomerManagerContract.objects.filter(
+                        contract=employee_contract
+                    ).first(),
+                ],
+            }
+        )
+
+    # remove None values without changing the order of the list
+    for manager_contract in list_of_manager_contracts:
+        manager_contract["list_of_manager_contracts"] = list(
+            filter(None, manager_contract["list_of_manager_contracts"])
+        )
+
+    # return the list of manager contracts
+    return list_of_manager_contracts
