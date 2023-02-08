@@ -1,36 +1,29 @@
 import csv
 import decimal
-from decimal import Decimal
+import hashlib
 import math
 import re
-from typing import List, Union
-import hashlib
 import uuid
-from django.http import HttpResponse, HttpResponseRedirect
-
-from django.utils import timezone
-from nadooit_hr.models import CustomerManagerContract
-from nadoo_complaint_management.models import Complaint
-from nadooit_hr.models import CustomerProgramExecutionManagerContract
-from nadooit_time_account.models import CustomerTimeAccount
-from nadooit_hr.models import TimeAccountManagerContract
-from nadooit_time_account.models import TimeAccount
-from nadooit_hr.models import CustomerProgramManagerContract
-
-from nadooit_program_ownership_system.models import CustomerProgram
-
-from nadooit_api_key.models import NadooitApiKey
-from nadooit_api_executions_system.models import CustomerProgramExecution
-from nadooit_crm.models import Customer
-from nadooit_hr.models import EmployeeManagerContract
-from nadooit_hr.models import Employee
-from nadooit_hr.models import EmployeeContract
-from nadooit_auth.models import User
 from datetime import datetime
-from django.db.models import QuerySet
+from decimal import Decimal
+from typing import List, Union
 
 # import Q for filtering
-from django.db.models import Q
+from django.db.models import Q, QuerySet
+from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
+from nadoo_complaint_management.models import Complaint
+from nadooit_api_executions_system.models import CustomerProgramExecution
+from nadooit_api_key.models import NadooitApiKey
+from nadooit_auth.models import User
+from nadooit_crm.models import Customer
+from nadooit_hr.models import (CustomerManagerContract,
+                               CustomerProgramExecutionManagerContract,
+                               CustomerProgramManagerContract, Employee,
+                               EmployeeContract, EmployeeManagerContract,
+                               TimeAccountManagerContract)
+from nadooit_program_ownership_system.models import CustomerProgram
+from nadooit_time_account.models import CustomerTimeAccount, TimeAccount
 
 
 def get__not_paid_customer_program_executions__for__filter_type_and_customer(

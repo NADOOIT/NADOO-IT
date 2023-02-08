@@ -1,6 +1,7 @@
+import uuid
 from datetime import datetime
 from email.policy import default
-import uuid
+
 from django.db import models
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer

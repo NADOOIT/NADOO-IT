@@ -1,5 +1,4 @@
 from django.urls import path
-
 from nadooit_os.views import *
 
 app_name = "nadooit_os"

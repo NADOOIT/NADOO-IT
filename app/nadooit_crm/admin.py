@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from nadooit_crm.models import Address, BillingAdress, Customer, ShippingAdress
 
 

@@ -1,8 +1,7 @@
 import decimal
 import uuid
+
 from django.db import models
-
-
 from nadooit_crm.models import Customer
 from nadooit_hr.models import Employee
 

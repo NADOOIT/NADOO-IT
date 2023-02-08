@@ -1,145 +1,74 @@
 import csv
 from uuid import uuid4
+
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import (
-    HttpRequest,
-    HttpResponseForbidden,
-    HttpResponseNotFound,
-    HttpResponseRedirect,
-    HttpResponse,
-)
-from django.views.decorators.http import require_GET, require_POST
+from django.http import (HttpRequest, HttpResponse, HttpResponseForbidden,
+                         HttpResponseNotFound, HttpResponseRedirect)
 from django.shortcuts import render
-from nadooit_os.services import get__list_of_manager_contracts__for__employee
-from nadooit_os.services import get__user_info__for__user
-from nadooit_hr.models import EmployeeContract
-from nadooit_os.services import (
-    get__csv__for__list_of_customer_program_executions,
-    get__employee_contract__for__employee_contract_id,
-)
-from nadooit_os.services import (
-    set__employee_contract__is_active_state__for__employee_contract_id,
-)
-from nadooit_os.services import (
-    set_employee_contract__as_inactive__for__employee_contract_id,
-)
-from nadooit_os.services import (
-    get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
-)
-from nadooit_os.services import (
-    create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
-)
-from nadooit_os.services import (
-    get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
-    get__employee__for__employee_id,
-    get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
-)
-from nadooit_os.services import (
-    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
-)
-from nadooit_os.services import (
-    set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
-)
-from nadooit_os.services import (
-    get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give,
-)
-from nadooit_os.services import (
-    get__list_of_abilties__for__customer_program_manager_contract,
-)
-from nadooit_os.services import (
-    check__customer_program__for__customer_program_id__exists,
-    check__user__is__customer_program_manager__for__customer_prgram,
-    get__customer_program__for__customer_program_id,
-    get__customer_program_manager_contract__for__employee_and_customer,
-    get__next_price_level__for__customer_program,
-)
-from nadooit_os.services import (
-    get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee,
-)
-from nadooit_os.services import (
-    get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract,
-)
-from nadooit_os.services import (
-    get__list_of_customer_program_execution_manager_contract__for__employee,
-)
-from nadooit_os.services import (
-    create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
-)
-from nadooit_os.services import (
-    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
-    create__customer_program_execution_manager_contract__for__employee_contract,
-    get__active_employee_contract__for__employee__and__customer,
-    get__employee_contract__for__user_code__and__customer,
-)
-from nadooit_os.services import (
-    create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee,
-)
-from nadooit_os.services import set__payment_status__for__customer_program_execution
-from nadooit_os.services import (
-    get__customer_program_execution__for__customer_program_execution_id,
-)
-from nadooit_os.services import (
-    check__customer_program_execution__exists__for__customer_program_execution_id,
-)
-from nadooit_os.services import get__customer__for__customer_program_execution_id
+from django.views.decorators.http import require_GET, require_POST
 from nadooit_api_executions_system.models import CustomerProgramExecution
-from nadooit_os.services import (
-    check__customer__exists__for__customer_id,
-    get__not_paid_customer_program_executions__for__filter_type_and_customer,
-)
-from nadooit_os.services import (
-    get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
-)
-from nadooit_os.services import (
-    get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
-)
-from nadooit_os.services import (
-    get__sum_of_price_for_execution__for__list_of_customer_program_exections,
-)
-from nadooit_os.services import (
-    get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections,
-)
+from nadooit_auth.models import User
+# Manager Roles
+from nadooit_hr.models import (CustomerProgramExecutionManagerContract,
+                               CustomerProgramManagerContract, Employee,
+                               EmployeeContract, EmployeeManagerContract,
+                               TimeAccountManagerContract)
 from nadooit_os.services import (
     check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer,
-)
-from nadooit_os.services import (
-    get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
-)
-from nadooit_os.services import (
-    get__customer_program_executions__for__filter_type_and_customer,
-)
-from nadooit_os.services import (
-    get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
-)
-from nadooit_os.services import get__customer__for__customer_id
-from nadooit_os.services import set__all_active_NadooitApiKey__for__user_to_inactive
-from nadooit_os.services import create__NadooitApiKey__for__user
-from nadooit_os.services import (
-    get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
-)
-
-from nadooit_auth.models import User
-
-# Manager Roles
-from nadooit_hr.models import (
-    CustomerProgramExecutionManagerContract,
-    CustomerProgramManagerContract,
-    Employee,
-    EmployeeManagerContract,
-    TimeAccountManagerContract,
-)
-from nadooit_os.services import (
-    check__user__exists__for__user_code,
+    check__customer__exists__for__customer_id,
+    check__customer_program__for__customer_program_id__exists,
+    check__customer_program_execution__exists__for__customer_program_execution_id,
+    check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active,
     check__employee_manager_contract__for__user__can_deactivate__employee_contracts,
     check__employee_manager_contract__for__user__can_give_manager_role,
-    create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
-)
-from nadooit_os.services import (
     check__more_then_one_contract_between__user_code__and__customer,
-    get__employee__for__user_code,
+    check__user__exists__for__user_code,
+    check__user__is__customer_program_manager__for__customer_prgram,
+    create__customer_program_execution_complaint__for__customer_program_execution_and_complaint_and_employee,
+    create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract,
+    create__customer_program_execution_manager_contract__for__employee_contract,
+    create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
+    create__NadooitApiKey__for__user,
+    create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract,
+    get__active_employee_contract__for__employee__and__customer,
+    get__csv__for__list_of_customer_program_executions,
+    get__customer__for__customer_id,
+    get__customer__for__customer_program_execution_id,
+    get__customer_program__for__customer_program_id,
+    get__customer_program_execution__for__customer_program_execution_id,
+    get__customer_program_executions__for__filter_type_and_customer,
+    get__customer_program_manager_contract__for__employee_and_customer,
+    get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
+    get__employee__for__employee_id, get__employee__for__user_code,
     get__employee_contract__for__employee__and__customer,
+    get__employee_contract__for__employee_contract_id,
+    get__employee_contract__for__user_code__and__customer,
     get__employee_manager_contract__for__user_code__and__customer,
-)
+    get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give,
+    get__list_of_abilties__for__customer_program_manager_contract,
+    get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer,
+    get__list_of_customer_program_execution_manager_contract__for__employee,
+    get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
+    get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
+    get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
+    get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
+    get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract,
+    get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
+    get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee,
+    get__list_of_manager_contracts__for__employee,
+    get__next_price_level__for__customer_program,
+    get__not_paid_customer_program_executions__for__filter_type_and_customer,
+    get__price_as_string_in_euro_format__for__price_in_euro_as_decimal,
+    get__sum_of_price_for_execution__for__list_of_customer_program_exections,
+    get__sum_of_time_saved_in_seconds__for__list_of_customer_program_exections,
+    get__time_as_string_in_hour_format__for__time_in_seconds_as_integer,
+    get__user_info__for__user,
+    set__all_active_NadooitApiKey__for__user_to_inactive,
+    set__employee_contract__is_active_state__for__employee_contract_id,
+    set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
+    set__payment_status__for__customer_program_execution,
+    set_employee_contract__as_inactive__for__employee_contract_id)
+
 from .forms import ApiKeyForm
 
 # imoport for userforms

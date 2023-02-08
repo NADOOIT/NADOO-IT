@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 from nadooit_auth.models import User
 from nadooit_program_ownership_system.models import ProgramShare

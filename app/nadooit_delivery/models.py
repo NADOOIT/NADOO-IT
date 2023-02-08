@@ -1,7 +1,8 @@
 import uuid
-from django.db import models
 
+from django.db import models
 from nadooit_crm.models import Customer
+
 
 # Create your models here.
 class Order(models.Model):
