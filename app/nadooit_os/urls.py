@@ -87,6 +87,11 @@ urlpatterns = [
     #    name="employee-profile",
     # ),
     path(
+        "hr/my-profile",
+        employee_profile,
+        name="my-profile",
+    ),
+    path(
         "hr/add-employee",
         add_employee,
         name="add-employee",

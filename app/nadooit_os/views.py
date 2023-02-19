@@ -2,17 +2,27 @@ import csv
 from uuid import uuid4
 
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.http import (HttpRequest, HttpResponse, HttpResponseForbidden,
-                         HttpResponseNotFound, HttpResponseRedirect)
+from django.http import (
+    HttpRequest,
+    HttpResponse,
+    HttpResponseForbidden,
+    HttpResponseNotFound,
+    HttpResponseRedirect,
+)
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_auth.models import User
+
 # Manager Roles
-from nadooit_hr.models import (CustomerProgramExecutionManagerContract,
-                               CustomerProgramManagerContract, Employee,
-                               EmployeeContract, EmployeeManagerContract,
-                               TimeAccountManagerContract)
+from nadooit_hr.models import (
+    CustomerProgramExecutionManagerContract,
+    CustomerProgramManagerContract,
+    Employee,
+    EmployeeContract,
+    EmployeeManagerContract,
+    TimeAccountManagerContract,
+)
 from nadooit_os.services import (
     check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer,
     check__customer__exists__for__customer_id,
@@ -39,7 +49,8 @@ from nadooit_os.services import (
     get__customer_program_executions__for__filter_type_and_customer,
     get__customer_program_manager_contract__for__employee_and_customer,
     get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
-    get__employee__for__employee_id, get__employee__for__user_code,
+    get__employee__for__employee_id,
+    get__employee__for__user_code,
     get__employee_contract__for__employee__and__customer,
     get__employee_contract__for__employee_contract_id,
     get__employee_contract__for__user_code__and__customer,
@@ -67,8 +78,10 @@ from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
     set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
     set__payment_status__for__customer_program_execution,
-    set_employee_contract__as_inactive__for__employee_contract_id)
+    set_employee_contract__as_inactive__for__employee_contract_id,
+)
 
+from nadooit_hr.models import EmployeeManagerContract
 from .forms import ApiKeyForm
 
 # imoport for userforms
@@ -999,16 +1012,25 @@ def employee_overview(request: HttpRequest):
 
 @user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
 @login_required(login_url="/auth/login-user")
-def employee_profile(request: HttpRequest, employee_id: uuid4):
+def employee_profile(request: HttpRequest):
+
+    # def employee_profile(request: HttpRequest, employee_id: uuid4):
     # TODO This is not doen yet and can and should not be used
+
+    # get the employee id from the current user
+    employee_id = request.user.employee.id
 
     # get the employee object
     employee = get__employee__for__employee_id(employee_id)
 
     # A list of all the customers the user is responsible for so that in the profile the user only sees the infroation of the employee that is also part of the customers the user is responsible for
-    customers_the_user_is_responsible_for = (
-        request.user.employee.employeemanager.list_of_customers_the_manager_is_responsible_for.all()
+    list_of_all_employee_manager_contracts_of_the_user = (
+        EmployeeManagerContract.objects.filter(contract__employee=request.user.employee)
     )
+    customers_the_user_is_responsible_for = [
+        employee_manager_contract.contract.customer
+        for employee_manager_contract in list_of_all_employee_manager_contracts_of_the_user
+    ]
 
     # check if the employee is part of the customers the user is responsible for. If not the user is not allowed to see the profile.
     if (
@@ -1056,7 +1078,7 @@ def employee_profile(request: HttpRequest, employee_id: uuid4):
 
     return render(
         request,
-        "nadooit_os/hr_department/employee_profile.html",
+        "nadooit_os/user_profile/user_profile.html",
         {
             "page_title": " Profil",
             "user_info": user_info,
