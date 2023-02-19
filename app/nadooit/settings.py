@@ -282,3 +282,38 @@ MFA_REDIRECT_AFTER_REGISTRATION = (
 MFA_SUCCESS_REGISTRATION_MSG = (
     "Schlüssel erfolgreich registriert"  # The text of the link
 )
+
+LOGGING = {
+    
+    'version': 1,
+    
+    'disable_existing_loggers': False,
+    
+    'formatters': {
+        'Simple_Format': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+        
+    },
+
+    'handlers': {
+        'file': {
+            'level':'DEBUG',
+            'class':'logging.FileHandler',
+            'filename': '/logs/log_file1.log'
+            'formatter': 'Simple_Format',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level':'DEBUG',
+        },
+    },   
+}
