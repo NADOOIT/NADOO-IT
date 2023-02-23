@@ -10,6 +10,13 @@ from django.http import (
 )
 from django.views.decorators.http import require_GET, require_POST
 from django.shortcuts import render
+from nadooit_hr.models import EmployeeContract
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 from nadooit_os.services import (
     get__csv__for__list_of_customer_program_executions,
     get__employee_contract__for__employee_contract_id,
@@ -315,6 +322,8 @@ def get__user__roles_and_rights__for__http_request(request: HttpRequest):
 # Main page of the nadooit_os
 @login_required(login_url="/auth/login-user")
 def index_nadooit_os(request: HttpRequest):
+
+    logger.info("nadoo os accessed")
 
     return render(
         request,
@@ -800,16 +809,14 @@ def customer_program_execution_send_complaint(
 )
 def give_customer_program_execution_manager_role(request: HttpRequest):
     submitted = False
-    
+
     employee_with_customer_program_manager_contract = request.user.employee
-    
+
     if request.method == "POST":
 
         user_code = request.POST.get("user_code")
         customer_id = request.POST.get("customer_id")
         list_of_abilities = request.POST.getlist("role")
-
-       
 
         # guard clauses for the input data of the form (user_code, customer_id, list_of_abilities)
 
