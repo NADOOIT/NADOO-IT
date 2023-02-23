@@ -284,36 +284,39 @@ MFA_SUCCESS_REGISTRATION_MSG = (
 )
 
 LOGGING = {
-    
-    'version': 1,
-    
-    'disable_existing_loggers': False,
-    
-    'formatters': {
-        'Simple_Format': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
-        
-    },
-
-    'handlers': {
-        'file': {
-            'level':'DEBUG',
-            'class':'logging.FileHandler',
-            'filename': '/logs/log_file1.log'
-            'formatter': 'Simple_Format',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "Simple_Format": {
+            "format": "{levelname} {message}",
+            "style": "{",
         },
     },
-    
-    'loggers': {
-        'django': {
-            'handlers': ['file', 'console'],
-            'level':'DEBUG',
+    "handlers": {
+        "file_debug": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "./logs/log_DEBUG.log",
+            "formatter": "Simple_Format",
         },
-    },   
+        "file_info": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": "./logs/log_INFO.log",
+            "formatter": "Simple_Format",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
+        "root": {
+            "handlers": ["file_debug", "file_info"],
+        },
+    },
 }
