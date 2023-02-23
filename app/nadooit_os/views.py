@@ -10,6 +10,13 @@ from django.http import (
     HttpResponseRedirect,
 )
 from django.shortcuts import render
+from nadooit_hr.models import EmployeeContract
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 from django.views.decorators.http import require_GET, require_POST
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_auth.models import User
@@ -260,6 +267,8 @@ def get__user__roles_and_rights__for__http_request(request: HttpRequest):
 # Main page of the nadooit_os
 @login_required(login_url="/auth/login-user")
 def index_nadooit_os(request: HttpRequest):
+
+    logger.info("nadoo os accessed")
 
     return render(
         request,
