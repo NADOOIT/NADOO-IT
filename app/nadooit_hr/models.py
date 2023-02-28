@@ -1,6 +1,7 @@
+import uuid
 from datetime import datetime
 from email.policy import default
-import uuid
+
 from django.db import models
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer
@@ -52,7 +53,7 @@ class EmployeeContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return f"{self.employee} - {self.customer}"
+        return f"Angestelltenvertrag zwischen: {self.employee} - {self.customer}"
 
 
 class EmployeeManagerContract(models.Model):
@@ -75,9 +76,14 @@ class EmployeeManagerContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Angestelltenverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
+
+    def get_abilities(self):
+        return {
+            "can_add_new_employee": self.can_add_new_employee,
+            "can_delete_employee": self.can_delete_employee,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
 
 
 class CustomerProgramManagerContract(models.Model):
@@ -98,9 +104,7 @@ class CustomerProgramManagerContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Kundenprogrammeverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
@@ -127,9 +131,7 @@ class CustomerProgramExecutionManagerContract(models.Model):
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Kundenprogrammausführungverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
@@ -154,9 +156,14 @@ class TimeAccountManagerContract(models.Model):
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Zeitkontoverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
+
+    def get_abilities(self):
+        return {
+            "can_create_time_accounts": self.can_create_time_accounts,
+            "can_delete_time_accounts": self.can_delete_time_accounts,
+            "can_give_manager_role": self.can_give_manager_role,
+        }
 
 
 class CustomerManagerContract(models.Model):
@@ -167,6 +174,9 @@ class CustomerManagerContract(models.Model):
     can_give_manager_role = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return (
-            f"Angestellter: {self.contract.employee} - Kunde: {self.contract.customer}"
-        )
+        return f"Kundenverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
+
+    def get_abilities(self):
+        return {
+            "can_give_manager_role": self.can_give_manager_role,
+        }

@@ -306,7 +306,7 @@ LOGGING = {
             "formatter": "Simple_Format",
         },
         "console": {
-            "level": "DEBUG",
+            "level": "INFO",
             "class": "logging.StreamHandler",
         },
     },
@@ -317,6 +317,7 @@ LOGGING = {
         },
         "root": {
             "handlers": ["file_debug", "file_info"],
+            "level": "DEBUG",
         },
     },
 }

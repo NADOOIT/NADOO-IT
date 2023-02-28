@@ -7,9 +7,9 @@
 # Usage: {% load is_url_active_templatetag %}
 #       {% is_url_active request 'app_name:path_name' %}
 
+from django import template
 from django.http import HttpRequest
 from django.urls import reverse
-from django import template
 
 register = template.Library()
 

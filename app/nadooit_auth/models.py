@@ -5,10 +5,9 @@
 # License: TBD
 
 import uuid
-from django.db import models
+
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
-
-
+from django.db import models
 from nadooit_auth.user_code import get__new_user_code
 
 # Create your models here.

@@ -1,6 +1,7 @@
 from django.db import models
 from nadooit_hr.models import Employee
 
+
 # The KeyManager extends the User model
 # Managing keys means that the KeyManager can have some of the following abillitys create, delete and update keys for other users
 # The KeyManager can also can also give other users the ability it has and make them into KeyManagers themselves

@@ -1,9 +1,9 @@
 import uuid
-from django.db import models
-from nadooit_hr.models import Employee
-from django.utils.translation import gettext_lazy as _
 
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 from nadooit_api_executions_system.models import CustomerProgramExecution
+from nadooit_hr.models import Employee
 
 # Create your models here.
 

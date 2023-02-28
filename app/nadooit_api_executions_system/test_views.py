@@ -1,18 +1,16 @@
-from django.urls import reverse
 import pytest
-from model_bakery import baker
-from nadooit_time_account.models import TimeAccount
-from nadooit_program.models import Program
-from nadooit_api_key.models import NadooitApiKey
-from nadooit_crm.models import Customer
-from nadooit_hr.models import Employee
-from nadooit_hr.models import EmployeeContract
-from nadooit_hr.models import CustomerProgramManagerContract
-from nadooit_program_ownership_system.models import CustomerProgram
-
-from nadooit_auth.models import User
-from django.test import Client
 import rest_framework.response
+from django.test import Client
+from django.urls import reverse
+from model_bakery import baker
+from nadooit_api_key.models import NadooitApiKey
+from nadooit_auth.models import User
+from nadooit_crm.models import Customer
+from nadooit_hr.models import (CustomerProgramManagerContract, Employee,
+                               EmployeeContract)
+from nadooit_program.models import Program
+from nadooit_program_ownership_system.models import CustomerProgram
+from nadooit_time_account.models import TimeAccount
 
 
 @pytest.mark.django_db

@@ -1,9 +1,10 @@
-from cProfile import label
 import re
 import uuid
+from cProfile import label
+
 from django import forms
-from nadooit_auth.models import User
 from django.forms import ModelChoiceField
+from nadooit_auth.models import User
 
 
 class UserCodeModelChoiceField(ModelChoiceField):

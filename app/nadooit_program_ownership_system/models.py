@@ -1,10 +1,11 @@
 import uuid
+
 from django.db import models
+from djmoney.models.fields import MoneyField
 from nadooit_crm.models import Customer
+from nadooit_hr.models import Employee
 from nadooit_program.models import Program
 from nadooit_time_account.models import TimeAccount
-from nadooit_hr.models import Employee
-from djmoney.models.fields import MoneyField
 
 # Create your models here.
 

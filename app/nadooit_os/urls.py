@@ -1,5 +1,4 @@
 from django.urls import path
-
 from nadooit_os.views import *
 
 app_name = "nadooit_os"
@@ -87,6 +86,11 @@ urlpatterns = [
     #    employee_profile,
     #    name="employee-profile",
     # ),
+    path(
+        "hr/my-profile",
+        employee_profile,
+        name="my-profile",
+    ),
     path(
         "hr/add-employee",
         add_employee,

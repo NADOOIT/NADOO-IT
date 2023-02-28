@@ -7,7 +7,6 @@
 
 import pytest
 from model_bakery import baker
-
 from nadooit_os.views import get__employee_roles_and_rights__for__employee
 
 
