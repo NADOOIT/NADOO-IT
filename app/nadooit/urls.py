@@ -20,14 +20,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.conf.urls.static import static
-from django.urls import path, include
-
 import mfa
-from django.contrib.auth.decorators import login_required
-
 from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth.decorators import login_required
+from django.urls import include, path
 
 admin.site.site_header = "NADOOIT Administration"  # default: "Django Administration"
 admin.site.index_title = "NADOOIT Administration Site"  # default: "Site administration"

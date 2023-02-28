@@ -1,8 +1,9 @@
 import uuid
-from django.db import models
 
-from nadooit_program_ownership_system.models import Program
+from django.db import models
 from nadooit_crm.models import Customer
+from nadooit_program_ownership_system.models import Program
+
 
 # Create your models here.
 class Process(models.Model):

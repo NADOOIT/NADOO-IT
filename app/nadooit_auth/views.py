@@ -5,23 +5,20 @@
 # License: TBD
 
 import django.contrib.auth.validators
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.utils import timezone
 from django.conf import settings
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.decorators import user_passes_test
-
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import redirect, render
+from django.urls import reverse
+from django.utils import timezone
 from nadooit.settings import DEBUG
-from .user_code import get__new_user_code
-
-
 from nadooit_auth.models import User
 from nadooit_auth.user_code import check__valid_user_code
 from nadooit_auth.username import get__new_username
+
+from .user_code import get__new_user_code
+
 
 # Checks if the given user has the Keymanager role
 def user_is_KeyManager_that_can_create_new_keys(user):

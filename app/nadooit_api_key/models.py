@@ -1,11 +1,11 @@
 import hashlib
 import uuid
-from django.db import models
-from nadooit_hr.models import Employee
-from nadooit_crm.models import Customer
 
-from nadooit_auth.models import User
+from django.db import models
 from django.dispatch import receiver
+from nadooit_auth.models import User
+from nadooit_crm.models import Customer
+from nadooit_hr.models import Employee
 
 # Create your models here.
 

@@ -1,13 +1,9 @@
 from django.contrib import admin
-
-from nadooit_hr.models import Employee
-from nadooit_hr.models import EmployeeContract
-from nadooit_hr.models import EmployeeManagerContract
-from nadooit_hr.models import CustomerManagerContract
-from nadooit_hr.models import CustomerProgramManagerContract
-from nadooit_hr.models import CustomerProgramExecutionManagerContract
-from nadooit_hr.models import TimeAccountManagerContract
-
+from nadooit_hr.models import (CustomerManagerContract,
+                               CustomerProgramExecutionManagerContract,
+                               CustomerProgramManagerContract, Employee,
+                               EmployeeContract, EmployeeManagerContract,
+                               TimeAccountManagerContract)
 
 # Register your models here.
 admin.site.register(Employee)

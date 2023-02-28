@@ -5,22 +5,21 @@
 # Compatibility: Django 4
 # License: TBD
 
-from nadooit_hr.models import EmployeeContract
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
-from nadooit_program_ownership_system.models import CustomerProgram
+from nadooit_hr.models import EmployeeContract
 from nadooit_os.services import (
-    get__nadooit_api_key__for__hashed_api_key,
-    get__hashed_api_key__for__request,
-    check__nadooit_api_key__has__is_active,
-    get__user_code__for__nadooit_api_key,
-    create__customer_program_execution__for__customer_program,
     check__customer_program__for__customer_program_id__exists,
+    check__nadooit_api_key__has__is_active,
+    create__customer_program_execution__for__customer_program,
     get__customer_program__for__customer_program_id,
-)
+    get__hashed_api_key__for__request,
+    get__nadooit_api_key__for__hashed_api_key,
+    get__user_code__for__nadooit_api_key)
+from nadooit_program_ownership_system.models import CustomerProgram
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 def get__user_code__for__request(request) -> str:

@@ -6,20 +6,18 @@
 # License: TBD
 
 
-from django.utils.functional import cached_property
 import uuid
 
 from django.db import models
-
 # django imports
 from django.dispatch import receiver
-
+from django.utils.functional import cached_property
+from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 # model imports
 from nadooit_crm.models import Customer
 from nadooit_hr.models import Employee
 from nadooit_program_ownership_system.models import CustomerProgram
-from django.utils.translation import gettext_lazy as _
-from djmoney.models.fields import MoneyField
 
 # Create your models here.
 
