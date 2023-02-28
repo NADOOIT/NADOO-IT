@@ -17,13 +17,22 @@ from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer
-from nadooit_hr.models import (CustomerManagerContract,
-                               CustomerProgramExecutionManagerContract,
-                               CustomerProgramManagerContract, Employee,
-                               EmployeeContract, EmployeeManagerContract,
-                               TimeAccountManagerContract)
+from nadooit_hr.models import (
+    CustomerManagerContract,
+    CustomerProgramExecutionManagerContract,
+    CustomerProgramManagerContract,
+    Employee,
+    EmployeeContract,
+    EmployeeManagerContract,
+    TimeAccountManagerContract,
+)
 from nadooit_program_ownership_system.models import CustomerProgram
 from nadooit_time_account.models import CustomerTimeAccount, TimeAccount
+
+# logging
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def get__not_paid_customer_program_executions__for__filter_type_and_customer(
@@ -1686,27 +1695,8 @@ def get__user_info__for__user(user: User) -> dict:
     }
 
 
+""" 
 def get__list_of_manager_contracts__for__employee(employee: Employee):
-    """
-    list_of_employee_contracts = [
-        {
-            "employee_contract": employee_contract, # the employee contract object
-            "list_of_manager_contracts": [
-                employee_manager_contract,
-                customer_program_manager_contract,
-                customer_manager_contract,
-            ],
-        },
-        {
-            "employee_contract": employee_contract, # the employee contract object
-            "list_of_manager_contracts": [
-                employee_manager_contract,
-                customer_program_manager_contract,
-                customer_manager_contract,
-            ],
-        },
-    ]
-    """
 
     # This function returns a list of all *_manager_contracts the employee has.
     # This function needs to be updated if a new *_manager_contract is added.
@@ -1723,10 +1713,11 @@ def get__list_of_manager_contracts__for__employee(employee: Employee):
         list_of_manager_contracts.append(
             {
                 "employee_contract": employee_contract,
-                "list_of_manager_contracts": [
+                "list_of_manager_contracts_with_abilities": [
                     EmployeeManagerContract.objects.filter(
                         contract=employee_contract
                     ).first(),
+                    
                     CustomerProgramManagerContract.objects.filter(
                         contract=employee_contract
                     ).first(),
@@ -1737,11 +1728,120 @@ def get__list_of_manager_contracts__for__employee(employee: Employee):
             }
         )
 
+    logger.debug(list_of_manager_contracts)
+
     # remove None values without changing the order of the list
     for manager_contract in list_of_manager_contracts:
         manager_contract["list_of_manager_contracts"] = list(
             filter(None, manager_contract["list_of_manager_contracts"])
         )
+    logger.debug("THIS IS WHAT IT LOOKS LIKE BEFORE GETTING THE ABILITIES")
+    logger.debug(list_of_manager_contracts)
+
+    # next we need to get all the abilities the employee has per manager contract. Each contract has a get_abilities() function that returns a list of abilities.
+    # This list then gets added to the dict along with the contract
+    for manager_contract in list_of_manager_contracts:	
+        
+        # get the list of abilities for the contract
+        list_of_abilities = []
+        for contract in manager_contract["list_of_manager_contracts"]:
+            list_of_abilities.append(contract.get_abilities())
+
+        # add the list of abilities to the dict
+       
+            
+
+
+    logger.debug("THIS IS WHAT IT LOOKS LIKE AT THE END")
+    logger.debug(list_of_manager_contracts)
+
+    # return the list of manager contracts
+    return list_of_manager_contracts
+ """
+
+
+def get__list_of_manager_contracts__for__employee(employee: Employee):
+    """
+    results in the following structure:
+        [
+            {
+            'employee_contract': <EmployeeContract: Angestelltenvertrag zwischen: NADOOIT Christoph Backhaus - Christoph Backhaus IT>,
+            'list_of_manager_contracts_with_abilities':
+                [
+                    {
+                    'manager_contract': <EmployeeManagerContract: Angestelltenverwaltervertrag zwischen: NADOOIT Christoph Backhaus - Christoph Backhaus IT>,
+                    'abilities': {'can_add_new_employee': True, 'can_delete_employee': True, 'can_give_manager_role': True}
+                    },
+                    {
+                    'manager_contract': <CustomerProgramManagerContract: Kundenverwaltervertrag zwischen: NADOOIT Christoph Backhaus - Christoph Backhaus IT>,
+                    'abilities': {'can_create_customer_program': True, 'can_delete_customer_program': True, 'can_give_manager_role': True
+                    },
+                    {
+                    'manager_contract': <CustomerManagerContract: Kundenverwaltervertrag zwischen: NADOOIT Christoph Backhaus - Christoph Backhaus IT>,
+                    'abilities': {'can_give_manager_role': True}
+                    }
+                ]
+            }
+        ]
+    """
+
+    list_of_manager_contracts = []
+
+    # get all employee contracts for the employee
+    list_of_employee_contracts = EmployeeContract.objects.filter(
+        employee=employee
+    ).order_by("created_at")
+
+    # for each employee contract get all the manager contracts
+    for employee_contract in list_of_employee_contracts:
+
+        list_of_manager_contracts.append(
+            {
+                "employee_contract": employee_contract,
+                "list_of_manager_contracts_with_abilities": [
+                    {
+                        "manager_contract": EmployeeManagerContract.objects.filter(
+                            contract=employee_contract
+                        ).first(),
+                        "abilities": EmployeeManagerContract.objects.filter(
+                            contract=employee_contract
+                        )
+                        .first()
+                        .get_abilities(),
+                    },
+                    {
+                        "manager_contract": CustomerProgramManagerContract.objects.filter(
+                            contract=employee_contract
+                        ).first(),
+                        "abilities": CustomerProgramManagerContract.objects.filter(
+                            contract=employee_contract
+                        )
+                        .first()
+                        .get_abilities(),
+                    },
+                    {
+                        "manager_contract": CustomerManagerContract.objects.filter(
+                            contract=employee_contract
+                        ).first(),
+                        "abilities": CustomerManagerContract.objects.filter(
+                            contract=employee_contract
+                        )
+                        .first()
+                        .get_abilities(),
+                    },
+                ],
+            }
+        )
+
+    logger.debug(list_of_manager_contracts)
+
+    # remove None values without changing the order of the list
+    for manager_contract in list_of_manager_contracts:
+        manager_contract["list_of_manager_contracts_with_abilities"] = list(
+            filter(None, manager_contract["list_of_manager_contracts_with_abilities"])
+        )
+
+    logger.debug(list_of_manager_contracts)
 
     # return the list of manager contracts
     return list_of_manager_contracts

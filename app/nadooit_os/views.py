@@ -1023,6 +1023,9 @@ def employee_overview(request: HttpRequest):
 @login_required(login_url="/auth/login-user")
 def employee_profile(request: HttpRequest):
 
+    logger.info("employee_profile view accessed")
+
+
     # def employee_profile(request: HttpRequest, employee_id: uuid4):
     # TODO This is not doen yet and can and should not be used
 
@@ -1084,6 +1087,8 @@ def employee_profile(request: HttpRequest):
     list_of_employee_contracts = []
 
     list_of_employee_contracts = get__list_of_manager_contracts__for__employee(employee)
+
+    logger.info(list_of_employee_contracts)
 
     return render(
         request,

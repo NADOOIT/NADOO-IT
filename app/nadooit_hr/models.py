@@ -104,7 +104,7 @@ class CustomerProgramManagerContract(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self) -> str:
-        return f"Kundenverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
+        return f"Kundenprogrammeverwaltervertrag zwischen: {self.contract.employee} - {self.contract.customer}"
 
     def get_abilities(self):
         return {
