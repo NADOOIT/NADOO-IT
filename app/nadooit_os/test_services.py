@@ -14,10 +14,14 @@ from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer
-from nadooit_hr.models import (CustomerProgramExecutionManagerContract,
-                               CustomerProgramManagerContract, Employee,
-                               EmployeeContract, EmployeeManagerContract,
-                               TimeAccountManagerContract)
+from nadooit_hr.models import (
+    CustomerProgramExecutionManagerContract,
+    CustomerProgramManagerContract,
+    Employee,
+    EmployeeContract,
+    EmployeeManagerContract,
+    TimeAccountManagerContract,
+)
 from nadooit_os.services import (
     check__active_customer_program_execution_manager_contract__exists__between__employee_and_customer,
     check__customer__exists__for__customer_id,
@@ -70,7 +74,8 @@ from nadooit_os.services import (
     set__employee_contract__is_active_state__for__employee_contract_id,
     set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
     set__payment_status__for__customer_program_execution,
-    set_employee_contract__as_inactive__for__employee_contract_id)
+    set_employee_contract__as_inactive__for__employee_contract_id,
+)
 from nadooit_program.models import Program
 from nadooit_program_ownership_system.models import CustomerProgram
 
@@ -556,7 +561,7 @@ def test_check__customer_program__for__customer_program_id__exists(customer_prog
 
 
 @pytest.mark.django_db
-def test_get__active_TimeAccountManagerContracts__for__employee___with__active_TimeAccountManagerContract(
+def test_get__active_TimeAccountManagerContracts__for__employee__with__active_TimeAccountManagerContract(
     employee_with_active_TimeAccountManagerContract,
 ):
     # Arrange
@@ -2166,28 +2171,6 @@ def test_get__user_info__for__user():
 
 @pytest.mark.django_db
 def test_get__list_of_manager_contracts__for__employee():
-
-    """
-    list_of_employee_contracts = [
-        {
-            "employee_contract": employee_contract, # the employee contract object
-            "list_of_manager_contracts": [
-                employee_manager_contract,
-                customer_program_manager_contract,
-                customer_manager_contract,
-            ],
-        },
-        {
-            "employee_contract": employee_contract, # the employee contract object
-            "list_of_manager_contracts": [
-                employee_manager_contract,
-                customer_program_manager_contract,
-                customer_manager_contract,
-            ],
-        },
-    ]
-    """
-
     # Arrange
     employee = baker.make(
         "nadooit_hr.Employee",
@@ -2245,16 +2228,26 @@ def test_get__list_of_manager_contracts__for__employee():
         {
             "employee_contract": employee_contract_1,
             "list_of_manager_contracts": [
-                employee_manager_contract,
-                customer_program_manager_contract,
-                customer_manager_contract,
+                {
+                    "manager_contract": employee_manager_contract,
+                },
+                {
+                    "manager_contract": customer_program_manager_contract,
+                },
+                {
+                    "manager_contract": customer_manager_contract,
+                },
             ],
         },
         {
             "employee_contract": employee_contract_2,
             "list_of_manager_contracts": [
-                employee_manager_contract_2,
-                customer_program_manager_contract_2,
+                {
+                    "manager_contract": employee_manager_contract_2,
+                },
+                {
+                    "manager_contract": customer_program_manager_contract_2,
+                },
             ],
         },
         {
