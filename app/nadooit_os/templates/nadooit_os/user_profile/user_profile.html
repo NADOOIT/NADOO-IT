@@ -84,21 +84,14 @@
                             </tr>
                         </thead>
 
-                        {% for manager_contracts_with_abilities in employee_contract_data.list_of_manager_contracts_with_abilities %}
+                        {% for manager_contracts in employee_contract_data.list_of_manager_contracts %}
+                        {% if manager_contracts.manager_contract is not None %}
                         <tbody>
-
                             <tr>
-                            <td>{{manager_contracts_with_abilities.manager_contract}}</td>
-                            {% comment %} 
-                            {{% for key, value in manager_contracts_with_abilities.abilities.items %}}
-                            <td>{{key}}</td>
-                            <td>{{value}}</td>
-                            {{% endfor %}}
-                            </tr>
-                            {% endcomment %}
+                            <td>{{manager_contracts.manager_contract}}</td>
                         </tbody>
+                        {% endif %}
                         {% endfor %}
-
                     </table>
                 {% endfor %}
                 </div>
