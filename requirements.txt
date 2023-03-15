@@ -37,7 +37,7 @@ python-u2flib-server==5.0.1
 pytz==2022.6
 requests==2.28.1
 rsa==4.9
-simplejson==3.17.6
+simplejson==3.18.4
 six==1.16.0
 sqlparse==0.4.2
 tomli==2.0.1
