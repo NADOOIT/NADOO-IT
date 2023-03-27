@@ -48,7 +48,9 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
 ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
 
-CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
+CSRF_TRUSTED_ORIGINS = (
+    [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+)
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
