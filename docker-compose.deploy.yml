@@ -6,7 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    env_file: .env
     environment:
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
       - 'DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}'
