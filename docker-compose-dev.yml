@@ -13,6 +13,7 @@ services:
       - ./app:/app
       - ./data/web:/vol/web
       - ${USERPROFILE}\AppData\Roaming\postgresql\:/home/django/.postgresql/
+    env_file: .env
     environment:
       - 'DJANGO_DEBUG=${DJANGO_DEBUG}'
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
