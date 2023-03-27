@@ -45,7 +45,6 @@ RUN pip install --upgrade pip && \
        #yes | python manage.py migrate
 
 RUN yes | python manage.py makemigrations
-RUN yes | python manage.py migrate
 
 USER root
 
