@@ -38,10 +38,9 @@ USER django
 
 RUN pip install --upgrade pip && \
        pip install -r /requirements.txt &&\
-       python manage.py collectstatic --noinput &&\
-       yes | python manage.py makemigrations
-       
+       python manage.py collectstatic --noinput 
        #&&\
+       #yes | python manage.py makemigrations &&\
        #yes | python manage.py migrate
 
 USER root
