@@ -45,6 +45,9 @@ RUN pip install --upgrade pip && \
 
 USER root
 
+RUN yes | python manage.py makemigrations
+RUN yes | python manage.py migrate
+
 RUN pip install uwsgi
 RUN apk del .tmp
 
