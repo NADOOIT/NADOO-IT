@@ -39,12 +39,12 @@ USER django
 RUN pip install --upgrade pip && \
        pip install -r /requirements.txt &&\
        python manage.py collectstatic --noinput 
-       #TODO #183 #182 check if this should be done in migrations or how to migrate server in production
        #&&\
-       #python manage.py makemigrations &&\
-       #python manage.py migrate
+       #yes | python manage.py makemigrations &&\
+       #yes | python manage.py migrate
 
 USER root
+
 
 RUN pip install uwsgi
 RUN apk del .tmp

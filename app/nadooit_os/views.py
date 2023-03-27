@@ -1019,12 +1019,10 @@ def employee_overview(request: HttpRequest):
     )
 
 
-@user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
 @login_required(login_url="/auth/login-user")
 def employee_profile(request: HttpRequest):
 
     logger.info("employee_profile view accessed")
-
 
     # def employee_profile(request: HttpRequest, employee_id: uuid4):
     # TODO This is not doen yet and can and should not be used
@@ -1035,6 +1033,7 @@ def employee_profile(request: HttpRequest):
     # get the employee object
     employee = get__employee__for__employee_id(employee_id)
 
+    """ This is all not used
     # A list of all the customers the user is responsible for so that in the profile the user only sees the infroation of the employee that is also part of the customers the user is responsible for
     list_of_all_employee_manager_contracts_of_the_user = (
         EmployeeManagerContract.objects.filter(contract__employee=request.user.employee)
@@ -1059,7 +1058,7 @@ def employee_profile(request: HttpRequest):
             employee=employee, customer__in=customers_the_user_is_responsible_for
         )
     )
-
+    """
     user_info = get__user_info__for__user(employee.user)
 
     # Take the employee contracts and then get for each the employee manager contracts
