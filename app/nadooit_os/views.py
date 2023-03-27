@@ -1019,12 +1019,10 @@ def employee_overview(request: HttpRequest):
     )
 
 
-@user_passes_test(user_is_Employee_Manager, login_url="/auth/login-user")
 @login_required(login_url="/auth/login-user")
 def employee_profile(request: HttpRequest):
 
     logger.info("employee_profile view accessed")
-
 
     # def employee_profile(request: HttpRequest, employee_id: uuid4):
     # TODO This is not doen yet and can and should not be used
