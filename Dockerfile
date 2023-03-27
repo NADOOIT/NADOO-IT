@@ -3,7 +3,6 @@ FROM python:3.10-alpine3.16
 LABEL maintainer="nadooit.de"
 
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_CSRF_TRUSTED_ORIGINS https://nadooit.de
 
 COPY requirements.txt /requirements.txt
 
@@ -43,8 +42,6 @@ RUN pip install --upgrade pip && \
        #&&\
        #yes | python manage.py makemigrations &&\
        #yes | python manage.py migrate
-
-RUN yes | python manage.py makemigrations
 
 USER root
 
