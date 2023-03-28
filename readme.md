@@ -185,9 +185,15 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 #### Docker
 
-Build the docker images
+#### Build the docker images
+
     - docker compose -f docker-compose.deploy.yml build
     - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+
+#### Running migrations
+
+1. The database needs to be migrated before the server can be started. To do this, run the following command:
+    - docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
 
 #### Creating superuser
 
@@ -211,6 +217,8 @@ Run the following command to update the server
     git pull
 
     docker compose -f docker-compose.deploy.yml build
+    
+    docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
 
     docker compose -f docker-compose.deploy.yml down
 
