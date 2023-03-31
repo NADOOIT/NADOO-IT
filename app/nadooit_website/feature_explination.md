@@ -118,14 +118,12 @@ All of this is done automatically by the algorithem and not by a human.
         section_name
         section_html
         section_score
-        section_order
+        section_position
     
     SectionOrder
         section_order_id
-        section_order_section_id
-        section_order_session_id
         section_order_score
-        section_order_order
+        sections
 
 ### templates
 

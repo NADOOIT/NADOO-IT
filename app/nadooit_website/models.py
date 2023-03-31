@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 # Create your models here.
@@ -14,53 +15,96 @@ class Visit(models.Model):
         return self.visit_date.strftime("%Y-%m-%d %H:%M:%S") + " " + self.site
 
 
+# Session
+"""     session_id
+        session_start_time
+        session_end_time
+        session_score
+        session_duration
+        session_section_order 
+        session_made_appointment
+"""
+
+
+class Session(models.Model):
+    session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session_start_time = models.DateTimeField(auto_now_add=True)
+    session_end_time = models.DateTimeField(auto_now_add=True)
+    session_score = models.IntegerField()
+    session_duration = models.IntegerField()
+    session_section_order = models.CharField(max_length=200)
+    session_made_appointment = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (
+            self.session_id
+            + " "
+            + self.session_start_time.strftime("%Y-%m-%d %H:%M:%S")
+            + " "
+            + self.session_end_time.strftime("%Y-%m-%d %H:%M:%S")
+            + " "
+            + str(self.session_score)
+            + " "
+            + str(self.session_duration)
+            + " "
+            + self.session_section_order
+            + " "
+            + str(self.session_made_appointment)
+        )
+
+
+# Section
+"""     
+    Section
+    section_id a unique id for the section
+    section_name a name generated from the section to be displayed
+    section_html the html code of the section
+"""
+
+
 class Section(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    time_spend_reading = models.IntegerField(default=0)
+    section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    section_name = models.CharField(max_length=200)
+    section_html = models.CharField(max_length=200)
+
+
+# Section_Transition Test
+"""
+This model is used to store the test results for a section transition test
+Each section transition Test consists of 2 sections
+It stores the order of the ids of the the first section the visitor sees and the second section the visitor sees
+It is to keep track how likely the visitor will continue to the next section after seeing the first section
+
+    section_test_id
+    section_test_date
+    sectoin_test_time
+    section_1_id
+    section_2_id
+    transition_percentage
+"""
+
+
+class Section_Transition_Test(models.Model):
+    section_test_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    section_test_date = models.DateTimeField(auto_now_add=True)
+    section_test_time = models.DateTimeField(auto_now_add=True)
+    section_1_id = models.UUIDField()
+    section_2_id = models.UUIDField()
+    transition_percentage = models.IntegerField()
 
     def __str__(self):
-        return self.title
-
-
-# The page is build over time. To build the page a number of sections are needed.
-# The order of the sections is dynamic and is algorithmically determined.
-# Each order is saved in the database. The best order is the one with the highest score.
-# The score is calculated by the number of visits to the page and the number of visits to the sections.
-# The goal is to find the best order of the sections.
-# To do this, the sections are randomly ordered in experiments.
-# Groups of these orders then compete against each other.
-# Over time the best order is found.
-# The best order is then used to build the page.
-# The best order is the one with the highest score.
-# The goal of the page is to get the visitor to the end of the page or directly to the contact form.
-# The contact form is at the end of the page and in the middle of the navigation bar.
-# The navigation bar is at the top of the page.
-# Getting the visitor to click on either the contact form or the navigation bar is the goal and is rewarded with a higher score.
-
-
-class Order(models.Model):
-    id = models.AutoField(primary_key=True)
-    # the sections in the order
-    sections = models.ManyToManyField(Section)
-    # the score of the order
-    score = models.IntegerField(default=0)
-    # the number of visits to the order
-    visits = models.IntegerField(default=0)
-
-    def __str__(self):
-        return str(self.id)
-
-
-class Htmx_session(models.Model):
-    id = models.AutoField(primary_key=True)
-    # the sections in the order
-    sections = models.ManyToManyField(Section)
-    # the score of the order
-    score = models.IntegerField(default=0)
-    # the number of visits to the order
-    visits = models.IntegerField(default=0)
-
-    def __str__(self):
-        return str(self.id)
+        return (
+            self.section_test_id
+            + " "
+            + self.section_test_date.strftime("%Y-%m-%d %H:%M:%S")
+            + " "
+            + self.section_test_time.strftime("%Y-%m-%d %H:%M:%S")
+            + " "
+            + self.section_1_id
+            + " "
+            + self.section_2_id
+            + " "
+            + str(self.transition_percentage)
+        )

@@ -1,3 +1,4 @@
+import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -20,6 +21,7 @@ def index(request):
 
     return render(request, "nadooit_website/index.html", {"page_title": "Home"})
 
+
 def new_index(request):
 
     # create a visit object for the index page
@@ -28,10 +30,20 @@ def new_index(request):
     visit.save()
 
     # create a session id used to identify the user for the visit
-    
+
     return render(request, "nadooit_website/new_index.html", {"page_title": "Home"})
 
-def get_next_section(request, session_id)
+
+def get_next_section(request, session_id):
+    if request.htmx:
+        if check__session_id__is_valid(session_id):
+            return django.http.HttpResponse("next section")
+        else:
+            return django.http.HttpResponseForbidden()
+
+    else:
+        return django.http.HttpResponseForbidden()
+
 
 def impressum(request):
 
