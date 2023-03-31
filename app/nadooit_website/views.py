@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 
 from nadooit_auth.models import User
 from nadooit_website.models import Visit
+import requests
 
 
 def user_is_staf(user: User) -> bool:
@@ -19,6 +20,18 @@ def index(request):
 
     return render(request, "nadooit_website/index.html", {"page_title": "Home"})
 
+def new_index(request):
+
+    # create a visit object for the index page
+    visit = Visit(site="New_Index")
+    # save the visit
+    visit.save()
+
+    # create a session id used to identify the user for the visit
+    
+    return render(request, "nadooit_website/new_index.html", {"page_title": "Home"})
+
+def get_next_section(request, session_id)
 
 def impressum(request):
 
