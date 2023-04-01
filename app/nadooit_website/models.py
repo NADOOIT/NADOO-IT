@@ -30,7 +30,7 @@ class Session(models.Model):
     session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     session_start_time = models.DateTimeField(auto_now_add=True)
     session_score = models.IntegerField()
-    session_duration = models.IntegerField()
+    session_duration = models.IntegerField(default=0)
     session_section_order = models.CharField(max_length=200)
     session_made_appointment = models.BooleanField(default=False)
 

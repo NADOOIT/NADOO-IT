@@ -34,7 +34,12 @@ admin.site.site_title = "NADOOIT"
 # This is where the urls are placed
 urlpatterns = [
     # These are the urls for the webpage
-    path("", include("nadooit_website.urls")),
+    path(
+        "",
+        include(
+            ("nadooit_website.urls", "nadooit_website"), namespace="nadooit_website"
+        ),
+    ),
     # These are the urls for the adminbackend
     path("admin/", admin.site.urls),
     # These are the urls for the django debug toolbar
