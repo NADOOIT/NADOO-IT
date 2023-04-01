@@ -1,6 +1,12 @@
 import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from nadooit_website.services import (
+    received__session_still_active_signal__for__session_id,
+)
+from nadooit_website.services import create__session
+from nadooit_website.services import check__session_id__is_valid
+from nadooit_website.services import get__next_section
 
 from nadooit_auth.models import User
 from nadooit_website.models import Visit
@@ -30,14 +36,38 @@ def new_index(request):
     visit.save()
 
     # create a session id used to identify the user for the visit
+    session_id = create__session()
 
-    return render(request, "nadooit_website/new_index.html", {"page_title": "Home"})
+    # start_section = get_next_section(session_id)
+
+    return render(
+        request,
+        "nadooit_website/new_index.html",
+        {"page_title": "Home", "session_id": session_id},
+    )
 
 
 def get_next_section(request, session_id):
     if request.htmx:
         if check__session_id__is_valid(session_id):
-            return django.http.HttpResponse("next section")
+
+            return render(request, get__next_section(session_id))
+
+        else:
+            return django.http.HttpResponseForbidden()
+
+    else:
+        return django.http.HttpResponseForbidden()
+
+
+def session_is_active_signal(request, session_id):
+    if request.htmx:
+        if check__session_id__is_valid(session_id):
+            # all active sessions send a singlnal to this view
+            # the time is set to session_duration of the session for the given session_id in the database
+
+            received__session_still_active_signal__for__session_id(session_id)
+
         else:
             return django.http.HttpResponseForbidden()
 

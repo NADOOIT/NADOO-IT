@@ -314,3 +314,906 @@ DEBUG CREATE TABLE "nadooit_website_session" ("session_id" uuid NOT NULL PRIMARY
 WARNING Forbidden: /api/executions
 WARNING Forbidden: /api/executions
 DEBUG [{'employee_contract': <EmployeeContract: Angestelltenvertrag zwischen: employee_name - customer_1>, 'list_of_manager_contracts': [{'manager_contract': <EmployeeManagerContract: Angestelltenverwaltervertrag zwischen: employee_name - customer_1>}, {'manager_contract': <CustomerProgramManagerContract: Kundenprogrammeverwaltervertrag zwischen: employee_name - customer_1>}, {'manager_contract': <CustomerManagerContract: Kundenverwaltervertrag zwischen: employee_name - customer_1>}]}, {'employee_contract': <EmployeeContract: Angestelltenvertrag zwischen: employee_name - customer_2>, 'list_of_manager_contracts': [{'manager_contract': <EmployeeManagerContract: Angestelltenverwaltervertrag zwischen: employee_name - customer_2>}, {'manager_contract': <CustomerProgramManagerContract: Kundenprogrammeverwaltervertrag zwischen: employee_name - customer_2>}]}, {'employee_contract': <EmployeeContract: Angestelltenvertrag zwischen: employee_name - customer_3>, 'list_of_manager_contracts': []}]
+DEBUG (0.031) SELECT VERSION(); args=None; alias=default
+DEBUG (0.469) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.312) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.016) SELECT VERSION(); args=None; alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.078) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.063) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_1_id" CASCADE; (params ())
+DEBUG (0.422) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_1_id" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_2_id" CASCADE; (params ())
+DEBUG (0.360) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_2_id" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_test_time" CASCADE; (params ())
+DEBUG (0.390) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_test_time" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "transition_percentage" CASCADE; (params ())
+DEBUG (0.344) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "transition_percentage" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_session" DROP COLUMN "session_end_time" CASCADE; (params ())
+DEBUG (0.359) ALTER TABLE "nadooit_website_session" DROP COLUMN "session_end_time" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_was_pased" boolean DEFAULT %s NOT NULL; (params [False])
+DEBUG (0.375) ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_was_pased" boolean DEFAULT false NOT NULL; args=[False]; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_was_pased" DROP DEFAULT; (params [])
+DEBUG (0.110) ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_was_pased" DROP DEFAULT; args=[]; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_competition" ("section_competition_id" uuid NOT NULL PRIMARY KEY, "section_competition_date" timestamptz NOT NULL, "section_1_id_id" uuid NOT NULL); (params None)
+DEBUG (0.047) CREATE TABLE "nadooit_website_section_competition" ("section_competition_id" uuid NOT NULL PRIMARY KEY, "section_competition_date" timestamptz NOT NULL, "section_1_id_id" uuid NOT NULL); args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_competition_section_transition_tests" ("id" integer NOT NULL PRIMARY KEY DEFAULT unique_rowid(), "section_competition_id" uuid NOT NULL, "section_transition_test_id" uuid NOT NULL); (params None)
+DEBUG (0.047) CREATE TABLE "nadooit_website_section_competition_section_transition_tests" ("id" integer NOT NULL PRIMARY KEY DEFAULT unique_rowid(), "section_competition_id" uuid NOT NULL, "section_transition_test_id" uuid NOT NULL); args=None; alias=default
+DEBUG (0.015) SELECT VERSION(); args=None; alias=default
+DEBUG (0.062) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.031) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.032) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG (0.016) SELECT VERSION(); args=None; alias=default
+DEBUG (0.063) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.016) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'grappelli'; args=('grappelli',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'grappelli'; args=('grappelli',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765603512647681) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765603512647681,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765604276502529, 828765604276535297) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765604276502529, 828765604276535297); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765605130534913) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765605130534913,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765605906219009) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765605906219009,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_auth'; args=('nadooit_auth',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('nadooit_auth', 'user'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765606684065793) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765606684065793,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_auth'; args=('nadooit_auth',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_key'; args=('nadooit_api_key',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_key' AND "django_content_type"."model" = 'nadooitapikey') LIMIT 21; args=('nadooit_api_key', 'nadooitapikey'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_key' AND "django_content_type"."model" = 'nadooitapikeymanager') LIMIT 21; args=('nadooit_api_key', 'nadooitapikeymanager'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765607400865793, 828765607400931329) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765607400865793, 828765607400931329); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_key'; args=('nadooit_api_key',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_crm'; args=('nadooit_crm',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'address') LIMIT 21; args=('nadooit_crm', 'address'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'billingadress') LIMIT 21; args=('nadooit_crm', 'billingadress'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'shippingadress') LIMIT 21; args=('nadooit_crm', 'shippingadress'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'customer') LIMIT 21; args=('nadooit_crm', 'customer'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765608239398913, 828765608239529985, 828765608239464449, 828765608239497217) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765608239398913, 828765608239529985, 828765608239464449, 828765608239497217); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_crm'; args=('nadooit_crm',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_hr'; args=('nadooit_hr',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employee') LIMIT 21; args=('nadooit_hr', 'employee'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employeecontract') LIMIT 21; args=('nadooit_hr', 'employeecontract'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employeemanagercontract') LIMIT 21; args=('nadooit_hr', 'employeemanagercontract'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customermanagercontract') LIMIT 21; args=('nadooit_hr', 'customermanagercontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customerprogrammanagercontract') LIMIT 21; args=('nadooit_hr', 'customerprogrammanagercontract'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customerprogramexecutionmanagercontract') LIMIT 21; args=('nadooit_hr', 'customerprogramexecutionmanagercontract'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'timeaccountmanagercontract') LIMIT 21; args=('nadooit_hr', 'timeaccountmanagercontract'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765609193144321, 828765609193308161, 828765609193275393, 828765609193209857, 828765609193242625, 828765609193340929, 828765609193373697) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765609193144321, 828765609193308161, 828765609193275393, 828765609193209857, 828765609193242625, 828765609193340929, 828765609193373697); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_hr'; args=('nadooit_hr',); alias=default
+DEBUG (0.047) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_time_account'; args=('nadooit_time_account',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'timeaccount') LIMIT 21; args=('nadooit_time_account', 'timeaccount'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'worktimeaccountentry') LIMIT 21; args=('nadooit_time_account', 'worktimeaccountentry'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'employeetimeaccount') LIMIT 21; args=('nadooit_time_account', 'employeetimeaccount'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'customertimeaccount') LIMIT 21; args=('nadooit_time_account', 'customertimeaccount'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765610455498753, 828765610455629825, 828765610455564289, 828765610455597057) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765610455498753, 828765610455629825, 828765610455564289, 828765610455597057); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_time_account'; args=('nadooit_time_account',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_workflow'; args=('nadooit_workflow',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_workflow' AND "django_content_type"."model" = 'process') LIMIT 21; args=('nadooit_workflow', 'process'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765611504730113) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765611504730113,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_workflow'; args=('nadooit_workflow',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_network'; args=('nadooit_network',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitinventory') LIMIT 21; args=('nadooit_network', 'nadooitinventory'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkmember') LIMIT 21; args=('nadooit_network', 'nadooitnetworkmember'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkguildmember') LIMIT 21; args=('nadooit_network', 'nadooitnetworkguildmember'); alias=default
+DEBUG (0.047) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkgroup') LIMIT 21; args=('nadooit_network', 'nadooitnetworkgroup'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkfriendslist') LIMIT 21; args=('nadooit_network', 'nadooitnetworkfriendslist'); alias=default
+DEBUG (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitguildbank') LIMIT 21; args=('nadooit_network', 'nadooitguildbank'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitguild') LIMIT 21; args=('nadooit_network', 'nadooitguild'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765612273500161, 828765612273631233, 828765612273664001, 828765612273565697, 828765612273598465, 828765612273696769, 828765612273729537) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765612273500161, 828765612273631233, 828765612273664001, 828765612273565697, 828765612273598465, 828765612273696769, 828765612273729537); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_network'; args=('nadooit_network',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program'; args=('nadooit_program',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program' AND "django_content_type"."model" = 'program') LIMIT 21; args=('nadooit_program', 'program'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765613536051201) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765613536051201,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program'; args=('nadooit_program',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program_ownership_system'; args=('nadooit_program_ownership_system',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program_ownership_system' AND "django_content_type"."model" = 'customerprogram') LIMIT 21; args=('nadooit_program_ownership_system', 'customerprogram'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program_ownership_system' AND "django_content_type"."model" = 'programshare') LIMIT 21; args=('nadooit_program_ownership_system', 'programshare'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765614274412545, 828765614274478081) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765614274412545, 828765614274478081); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program_ownership_system'; args=('nadooit_program_ownership_system',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_executions_system'; args=('nadooit_api_executions_system',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_executions_system' AND "django_content_type"."model" = 'customerprogramexecution') LIMIT 21; args=('nadooit_api_executions_system', 'customerprogramexecution'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765615035940865) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765615035940865,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_executions_system'; args=('nadooit_api_executions_system',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_website'; args=('nadooit_website',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'visit') LIMIT 21; args=('nadooit_website', 'visit'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section') LIMIT 21; args=('nadooit_website', 'section'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section_transition_test') LIMIT 21; args=('nadooit_website', 'section_transition_test'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'session') LIMIT 21; args=('nadooit_website', 'session'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (851712261774606337, 852649568702300161, 852649568702201857, 852649568702267393) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(851712261774606337, 852649568702300161, 852649568702201857, 852649568702267393); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_website'; args=('nadooit_website',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_key'; args=('nadooit_key',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_key' AND "django_content_type"."model" = 'keymanager') LIMIT 21; args=('nadooit_key', 'keymanager'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765615759294465) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765615759294465,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_key'; args=('nadooit_key',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'django_extensions'; args=('django_extensions',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'django_extensions'; args=('django_extensions',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mfa'; args=('mfa',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'mfa' AND "django_content_type"."model" = 'user_keys') LIMIT 21; args=('mfa', 'user_keys'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765617430200321) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765617430200321,); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mfa'; args=('mfa',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadoo_complaint_management'; args=('nadoo_complaint_management',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadoo_complaint_management' AND "django_content_type"."model" = 'complaint') LIMIT 21; args=('nadoo_complaint_management', 'complaint'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765618297765889) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765618297765889,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadoo_complaint_management'; args=('nadoo_complaint_management',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'djmoney'; args=('djmoney',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'djmoney'; args=('djmoney',); alias=default
+DEBUG (0.031) SELECT VERSION(); args=None; alias=default
+DEBUG (0.078) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.079) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.031) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.031) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG (0.016) SELECT VERSION(); args=None; alias=default
+DEBUG (0.063) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.063) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.032) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.031) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'grappelli'; args=('grappelli',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'grappelli'; args=('grappelli',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765603512647681) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765603512647681,); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765604276502529, 828765604276535297) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765604276502529, 828765604276535297); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765605130534913) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765605130534913,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765605906219009) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765605906219009,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_auth'; args=('nadooit_auth',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('nadooit_auth', 'user'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765606684065793) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765606684065793,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_auth'; args=('nadooit_auth',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_key'; args=('nadooit_api_key',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_key' AND "django_content_type"."model" = 'nadooitapikey') LIMIT 21; args=('nadooit_api_key', 'nadooitapikey'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_key' AND "django_content_type"."model" = 'nadooitapikeymanager') LIMIT 21; args=('nadooit_api_key', 'nadooitapikeymanager'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765607400865793, 828765607400931329) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765607400865793, 828765607400931329); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_key'; args=('nadooit_api_key',); alias=default
+DEBUG (0.109) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_crm'; args=('nadooit_crm',); alias=default
+DEBUG (0.219) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'address') LIMIT 21; args=('nadooit_crm', 'address'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'billingadress') LIMIT 21; args=('nadooit_crm', 'billingadress'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'shippingadress') LIMIT 21; args=('nadooit_crm', 'shippingadress'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'customer') LIMIT 21; args=('nadooit_crm', 'customer'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765608239398913, 828765608239529985, 828765608239464449, 828765608239497217) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765608239398913, 828765608239529985, 828765608239464449, 828765608239497217); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_crm'; args=('nadooit_crm',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_hr'; args=('nadooit_hr',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employee') LIMIT 21; args=('nadooit_hr', 'employee'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employeecontract') LIMIT 21; args=('nadooit_hr', 'employeecontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employeemanagercontract') LIMIT 21; args=('nadooit_hr', 'employeemanagercontract'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customermanagercontract') LIMIT 21; args=('nadooit_hr', 'customermanagercontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customerprogrammanagercontract') LIMIT 21; args=('nadooit_hr', 'customerprogrammanagercontract'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customerprogramexecutionmanagercontract') LIMIT 21; args=('nadooit_hr', 'customerprogramexecutionmanagercontract'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'timeaccountmanagercontract') LIMIT 21; args=('nadooit_hr', 'timeaccountmanagercontract'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765609193144321, 828765609193308161, 828765609193275393, 828765609193209857, 828765609193242625, 828765609193340929, 828765609193373697) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765609193144321, 828765609193308161, 828765609193275393, 828765609193209857, 828765609193242625, 828765609193340929, 828765609193373697); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_hr'; args=('nadooit_hr',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_time_account'; args=('nadooit_time_account',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'timeaccount') LIMIT 21; args=('nadooit_time_account', 'timeaccount'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'worktimeaccountentry') LIMIT 21; args=('nadooit_time_account', 'worktimeaccountentry'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'employeetimeaccount') LIMIT 21; args=('nadooit_time_account', 'employeetimeaccount'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'customertimeaccount') LIMIT 21; args=('nadooit_time_account', 'customertimeaccount'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765610455498753, 828765610455629825, 828765610455564289, 828765610455597057) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765610455498753, 828765610455629825, 828765610455564289, 828765610455597057); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_time_account'; args=('nadooit_time_account',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_workflow'; args=('nadooit_workflow',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_workflow' AND "django_content_type"."model" = 'process') LIMIT 21; args=('nadooit_workflow', 'process'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765611504730113) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765611504730113,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_workflow'; args=('nadooit_workflow',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_network'; args=('nadooit_network',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitinventory') LIMIT 21; args=('nadooit_network', 'nadooitinventory'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkmember') LIMIT 21; args=('nadooit_network', 'nadooitnetworkmember'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkguildmember') LIMIT 21; args=('nadooit_network', 'nadooitnetworkguildmember'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkgroup') LIMIT 21; args=('nadooit_network', 'nadooitnetworkgroup'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkfriendslist') LIMIT 21; args=('nadooit_network', 'nadooitnetworkfriendslist'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitguildbank') LIMIT 21; args=('nadooit_network', 'nadooitguildbank'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitguild') LIMIT 21; args=('nadooit_network', 'nadooitguild'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765612273500161, 828765612273631233, 828765612273664001, 828765612273565697, 828765612273598465, 828765612273696769, 828765612273729537) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765612273500161, 828765612273631233, 828765612273664001, 828765612273565697, 828765612273598465, 828765612273696769, 828765612273729537); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_network'; args=('nadooit_network',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program'; args=('nadooit_program',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program' AND "django_content_type"."model" = 'program') LIMIT 21; args=('nadooit_program', 'program'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765613536051201) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765613536051201,); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program'; args=('nadooit_program',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program_ownership_system'; args=('nadooit_program_ownership_system',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program_ownership_system' AND "django_content_type"."model" = 'customerprogram') LIMIT 21; args=('nadooit_program_ownership_system', 'customerprogram'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program_ownership_system' AND "django_content_type"."model" = 'programshare') LIMIT 21; args=('nadooit_program_ownership_system', 'programshare'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765614274412545, 828765614274478081) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765614274412545, 828765614274478081); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program_ownership_system'; args=('nadooit_program_ownership_system',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_executions_system'; args=('nadooit_api_executions_system',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_executions_system' AND "django_content_type"."model" = 'customerprogramexecution') LIMIT 21; args=('nadooit_api_executions_system', 'customerprogramexecution'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765615035940865) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765615035940865,); alias=default
+DEBUG (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_executions_system'; args=('nadooit_api_executions_system',); alias=default
+DEBUG (0.047) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_website'; args=('nadooit_website',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'visit') LIMIT 21; args=('nadooit_website', 'visit'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section') LIMIT 21; args=('nadooit_website', 'section'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section_transition_test') LIMIT 21; args=('nadooit_website', 'section_transition_test'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'session') LIMIT 21; args=('nadooit_website', 'session'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (851712261774606337, 852649568702300161, 852649568702201857, 852649568702267393) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(851712261774606337, 852649568702300161, 852649568702201857, 852649568702267393); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_website'; args=('nadooit_website',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_key'; args=('nadooit_key',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_key' AND "django_content_type"."model" = 'keymanager') LIMIT 21; args=('nadooit_key', 'keymanager'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765615759294465) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765615759294465,); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_key'; args=('nadooit_key',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'django_extensions'; args=('django_extensions',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'django_extensions'; args=('django_extensions',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mfa'; args=('mfa',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'mfa' AND "django_content_type"."model" = 'user_keys') LIMIT 21; args=('mfa', 'user_keys'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765617430200321) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765617430200321,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mfa'; args=('mfa',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadoo_complaint_management'; args=('nadoo_complaint_management',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadoo_complaint_management' AND "django_content_type"."model" = 'complaint') LIMIT 21; args=('nadoo_complaint_management', 'complaint'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765618297765889) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765618297765889,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadoo_complaint_management'; args=('nadoo_complaint_management',); alias=default
+DEBUG (0.047) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'djmoney'; args=('djmoney',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'djmoney'; args=('djmoney',); alias=default
+DEBUG (0.016) SELECT VERSION(); args=None; alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.063) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.015) SELECT VERSION(); args=None; alias=default
+DEBUG (0.062) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.063) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.032) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.032) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.031) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG (0.031) SELECT VERSION(); args=None; alias=default
+DEBUG (0.343) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.063) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.062) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.047) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_1_id" CASCADE; (params ())
+DEBUG (0.422) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_1_id" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_2_id" CASCADE; (params ())
+DEBUG (0.359) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_2_id" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_test_time" CASCADE; (params ())
+DEBUG (0.344) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_test_time" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "transition_percentage" CASCADE; (params ())
+DEBUG (0.360) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "transition_percentage" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_session" DROP COLUMN "session_end_time" CASCADE; (params ())
+DEBUG (0.375) ALTER TABLE "nadooit_website_session" DROP COLUMN "session_end_time" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_was_pased" boolean DEFAULT %s NOT NULL; (params [False])
+DEBUG (0.406) ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_was_pased" boolean DEFAULT false NOT NULL; args=[False]; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_was_pased" DROP DEFAULT; (params [])
+DEBUG (0.094) ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_was_pased" DROP DEFAULT; args=[]; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_competition" ("section_competition_id" uuid NOT NULL PRIMARY KEY, "section_competition_date" timestamptz NOT NULL, "section_1_id_id" uuid NOT NULL); (params None)
+DEBUG (0.031) CREATE TABLE "nadooit_website_section_competition" ("section_competition_id" uuid NOT NULL PRIMARY KEY, "section_competition_date" timestamptz NOT NULL, "section_1_id_id" uuid NOT NULL); args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_competition_section_transition_tests" ("id" integer NOT NULL PRIMARY KEY DEFAULT unique_rowid(), "section_competition_id" uuid NOT NULL, "section_transition_test_id" uuid NOT NULL); (params None)
+DEBUG (0.047) CREATE TABLE "nadooit_website_section_competition_section_transition_tests" ("id" integer NOT NULL PRIMARY KEY DEFAULT unique_rowid(), "section_competition_id" uuid NOT NULL, "section_transition_test_id" uuid NOT NULL); args=None; alias=default
+DEBUG (0.047) SELECT VERSION(); args=None; alias=default
+DEBUG (0.078) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.031) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.047) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.031) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG (0.031) SELECT VERSION(); args=None; alias=default
+DEBUG (0.312) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.031) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) SELECT VERSION(); args=None; alias=default
+DEBUG (0.063) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.062) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.032) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); (params None)
+DEBUG (0.031) CREATE TABLE "nadooit_website_section_transition" ("section_transition_id" uuid NOT NULL PRIMARY KEY, "section_1_id" uuid NOT NULL, "section_2_id" uuid NOT NULL, "transition_percentage" integer NOT NULL); args=None; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_1_id" CASCADE; (params ())
+DEBUG (0.469) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_1_id" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_2_id" CASCADE; (params ())
+DEBUG (0.484) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_2_id" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_test_time" CASCADE; (params ())
+DEBUG (0.438) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "section_test_time" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "transition_percentage" CASCADE; (params ())
+DEBUG (0.453) ALTER TABLE "nadooit_website_section_transition_test" DROP COLUMN "transition_percentage" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_session" DROP COLUMN "session_end_time" CASCADE; (params ())
+DEBUG (0.468) ALTER TABLE "nadooit_website_session" DROP COLUMN "session_end_time" CASCADE; args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_was_pased" boolean DEFAULT %s NOT NULL; (params [False])
+DEBUG (0.438) ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_was_pased" boolean DEFAULT false NOT NULL; args=[False]; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_was_pased" DROP DEFAULT; (params [])
+DEBUG (0.093) ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_was_pased" DROP DEFAULT; args=[]; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_competition" ("section_competition_id" uuid NOT NULL PRIMARY KEY, "section_competition_date" timestamptz NOT NULL, "section_1_id_id" uuid NOT NULL); (params None)
+DEBUG (0.047) CREATE TABLE "nadooit_website_section_competition" ("section_competition_id" uuid NOT NULL PRIMARY KEY, "section_competition_date" timestamptz NOT NULL, "section_1_id_id" uuid NOT NULL); args=None; alias=default
+DEBUG CREATE TABLE "nadooit_website_section_competition_section_transition_tests" ("id" integer NOT NULL PRIMARY KEY DEFAULT unique_rowid(), "section_competition_id" uuid NOT NULL, "section_transition_test_id" uuid NOT NULL); (params None)
+DEBUG (0.047) CREATE TABLE "nadooit_website_section_competition_section_transition_tests" ("id" integer NOT NULL PRIMARY KEY DEFAULT unique_rowid(), "section_competition_id" uuid NOT NULL, "section_transition_test_id" uuid NOT NULL); args=None; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_transition_id_id" uuid DEFAULT %s NOT NULL CONSTRAINT "nadooit_website_sect_section_transition_i_f513dd2d_fk_nadooit_w" REFERENCES "nadooit_website_section_transition"("section_transition_id"); (params [UUID('00000000-0000-0000-0000-00000000007b')])
+DEBUG (0.297) ALTER TABLE "nadooit_website_section_transition_test" ADD COLUMN "section_transition_id_id" uuid DEFAULT '00000000-0000-0000-0000-00000000007b'::uuid NOT NULL CONSTRAINT "nadooit_website_sect_section_transition_i_f513dd2d_fk_nadooit_w" REFERENCES "nadooit_website_section_transition"("section_transition_id"); args=[UUID('00000000-0000-0000-0000-00000000007b')]; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_transition_id_id" DROP DEFAULT; (params [])
+DEBUG (0.094) ALTER TABLE "nadooit_website_section_transition_test" ALTER COLUMN "section_transition_id_id" DROP DEFAULT; args=[]; alias=default
+DEBUG ALTER TABLE "nadooit_website_section_competition" ADD CONSTRAINT "nadooit_website_sect_section_1_id_id_b392ef92_fk_nadooit_w" FOREIGN KEY ("section_1_id_id") REFERENCES "nadooit_website_section" ("section_id"); (params ())
+DEBUG (0.234) ALTER TABLE "nadooit_website_section_competition" ADD CONSTRAINT "nadooit_website_sect_section_1_id_id_b392ef92_fk_nadooit_w" FOREIGN KEY ("section_1_id_id") REFERENCES "nadooit_website_section" ("section_id"); args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_competition_section_transition_tests" ADD CONSTRAINT "nadooit_website_section__section_competition_id_s_5049d912_uniq" UNIQUE ("section_competition_id", "section_transition_test_id"); (params ())
+DEBUG (0.406) ALTER TABLE "nadooit_website_section_competition_section_transition_tests" ADD CONSTRAINT "nadooit_website_section__section_competition_id_s_5049d912_uniq" UNIQUE ("section_competition_id", "section_transition_test_id"); args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_competition_section_transition_tests" ADD CONSTRAINT "nadooit_website_sect_section_competition__5031c188_fk_nadooit_w" FOREIGN KEY ("section_competition_id") REFERENCES "nadooit_website_section_competition" ("section_competition_id"); (params ())
+DEBUG (0.266) ALTER TABLE "nadooit_website_section_competition_section_transition_tests" ADD CONSTRAINT "nadooit_website_sect_section_competition__5031c188_fk_nadooit_w" FOREIGN KEY ("section_competition_id") REFERENCES "nadooit_website_section_competition" ("section_competition_id"); args=(); alias=default
+DEBUG ALTER TABLE "nadooit_website_section_competition_section_transition_tests" ADD CONSTRAINT "nadooit_website_sect_section_transition_t_b84ddf01_fk_nadooit_w" FOREIGN KEY ("section_transition_test_id") REFERENCES "nadooit_website_section_transition_test" ("section_test_id"); (params ())
+DEBUG (0.266) ALTER TABLE "nadooit_website_section_competition_section_transition_tests" ADD CONSTRAINT "nadooit_website_sect_section_transition_t_b84ddf01_fk_nadooit_w" FOREIGN KEY ("section_transition_test_id") REFERENCES "nadooit_website_section_transition_test" ("section_test_id"); args=(); alias=default
+DEBUG (0.062) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.016) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('nadooit_website', '0003_section_transition_and_more', '2023-04-01T15:33:26.911995+00:00'::timestamptz) RETURNING "django_migrations"."id"; args=('nadooit_website', '0003_section_transition_and_more', datetime.datetime(2023, 4, 1, 15, 33, 26, 911995, tzinfo=datetime.timezone.utc)); alias=default
+DEBUG (0.062) 
+            SELECT
+                c.relname,
+                CASE
+                    WHEN c.relispartition THEN 'p'
+                    WHEN c.relkind IN ('m', 'v') THEN 'v'
+                    ELSE 't'
+                END
+            FROM pg_catalog.pg_class c
+            LEFT JOIN pg_catalog.pg_namespace n ON n.oid = c.relnamespace
+            WHERE c.relkind IN ('f', 'm', 'p', 'r', 'v')
+                AND n.nspname NOT IN ('pg_catalog', 'pg_toast')
+                AND pg_catalog.pg_table_is_visible(c.oid)
+        ; args=None; alias=default
+DEBUG (0.047) SELECT "django_migrations"."id", "django_migrations"."app", "django_migrations"."name", "django_migrations"."applied" FROM "django_migrations"; args=(); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'grappelli'; args=('grappelli',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'grappelli'; args=('grappelli',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'admin' AND "django_content_type"."model" = 'logentry') LIMIT 21; args=('admin', 'logentry'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765603512647681) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765603512647681,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'permission') LIMIT 21; args=('auth', 'permission'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'auth' AND "django_content_type"."model" = 'group') LIMIT 21; args=('auth', 'group'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765604276502529, 828765604276535297) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765604276502529, 828765604276535297); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'contenttypes' AND "django_content_type"."model" = 'contenttype') LIMIT 21; args=('contenttypes', 'contenttype'); alias=default
+DEBUG (0.062) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765605130534913) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765605130534913,); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',); alias=default
+DEBUG (0.265) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'sessions' AND "django_content_type"."model" = 'session') LIMIT 21; args=('sessions', 'session'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765605906219009) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765605906219009,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_auth'; args=('nadooit_auth',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_auth' AND "django_content_type"."model" = 'user') LIMIT 21; args=('nadooit_auth', 'user'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765606684065793) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765606684065793,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_auth'; args=('nadooit_auth',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_key'; args=('nadooit_api_key',); alias=default
+DEBUG (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_key' AND "django_content_type"."model" = 'nadooitapikey') LIMIT 21; args=('nadooit_api_key', 'nadooitapikey'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_key' AND "django_content_type"."model" = 'nadooitapikeymanager') LIMIT 21; args=('nadooit_api_key', 'nadooitapikeymanager'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765607400865793, 828765607400931329) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765607400865793, 828765607400931329); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_key'; args=('nadooit_api_key',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_crm'; args=('nadooit_crm',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'address') LIMIT 21; args=('nadooit_crm', 'address'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'billingadress') LIMIT 21; args=('nadooit_crm', 'billingadress'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'shippingadress') LIMIT 21; args=('nadooit_crm', 'shippingadress'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_crm' AND "django_content_type"."model" = 'customer') LIMIT 21; args=('nadooit_crm', 'customer'); alias=default
+DEBUG (0.047) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765608239398913, 828765608239529985, 828765608239464449, 828765608239497217) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765608239398913, 828765608239529985, 828765608239464449, 828765608239497217); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_crm'; args=('nadooit_crm',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_hr'; args=('nadooit_hr',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employee') LIMIT 21; args=('nadooit_hr', 'employee'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employeecontract') LIMIT 21; args=('nadooit_hr', 'employeecontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'employeemanagercontract') LIMIT 21; args=('nadooit_hr', 'employeemanagercontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customermanagercontract') LIMIT 21; args=('nadooit_hr', 'customermanagercontract'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customerprogrammanagercontract') LIMIT 21; args=('nadooit_hr', 'customerprogrammanagercontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'customerprogramexecutionmanagercontract') LIMIT 21; args=('nadooit_hr', 'customerprogramexecutionmanagercontract'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_hr' AND "django_content_type"."model" = 'timeaccountmanagercontract') LIMIT 21; args=('nadooit_hr', 'timeaccountmanagercontract'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765609193144321, 828765609193308161, 828765609193275393, 828765609193209857, 828765609193242625, 828765609193340929, 828765609193373697) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765609193144321, 828765609193308161, 828765609193275393, 828765609193209857, 828765609193242625, 828765609193340929, 828765609193373697); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_hr'; args=('nadooit_hr',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_time_account'; args=('nadooit_time_account',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'timeaccount') LIMIT 21; args=('nadooit_time_account', 'timeaccount'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'worktimeaccountentry') LIMIT 21; args=('nadooit_time_account', 'worktimeaccountentry'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'employeetimeaccount') LIMIT 21; args=('nadooit_time_account', 'employeetimeaccount'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_time_account' AND "django_content_type"."model" = 'customertimeaccount') LIMIT 21; args=('nadooit_time_account', 'customertimeaccount'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765610455498753, 828765610455629825, 828765610455564289, 828765610455597057) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765610455498753, 828765610455629825, 828765610455564289, 828765610455597057); alias=default
+DEBUG (0.110) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_time_account'; args=('nadooit_time_account',); alias=default
+DEBUG (0.109) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_workflow'; args=('nadooit_workflow',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_workflow' AND "django_content_type"."model" = 'process') LIMIT 21; args=('nadooit_workflow', 'process'); alias=default
+DEBUG (0.032) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765611504730113) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765611504730113,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_workflow'; args=('nadooit_workflow',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_network'; args=('nadooit_network',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitinventory') LIMIT 21; args=('nadooit_network', 'nadooitinventory'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkmember') LIMIT 21; args=('nadooit_network', 'nadooitnetworkmember'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkguildmember') LIMIT 21; args=('nadooit_network', 'nadooitnetworkguildmember'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkgroup') LIMIT 21; args=('nadooit_network', 'nadooitnetworkgroup'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitnetworkfriendslist') LIMIT 21; args=('nadooit_network', 'nadooitnetworkfriendslist'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitguildbank') LIMIT 21; args=('nadooit_network', 'nadooitguildbank'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_network' AND "django_content_type"."model" = 'nadooitguild') LIMIT 21; args=('nadooit_network', 'nadooitguild'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765612273500161, 828765612273631233, 828765612273664001, 828765612273565697, 828765612273598465, 828765612273696769, 828765612273729537) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765612273500161, 828765612273631233, 828765612273664001, 828765612273565697, 828765612273598465, 828765612273696769, 828765612273729537); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_network'; args=('nadooit_network',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program'; args=('nadooit_program',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program' AND "django_content_type"."model" = 'program') LIMIT 21; args=('nadooit_program', 'program'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765613536051201) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765613536051201,); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program'; args=('nadooit_program',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program_ownership_system'; args=('nadooit_program_ownership_system',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program_ownership_system' AND "django_content_type"."model" = 'customerprogram') LIMIT 21; args=('nadooit_program_ownership_system', 'customerprogram'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_program_ownership_system' AND "django_content_type"."model" = 'programshare') LIMIT 21; args=('nadooit_program_ownership_system', 'programshare'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765614274412545, 828765614274478081) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765614274412545, 828765614274478081); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_program_ownership_system'; args=('nadooit_program_ownership_system',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_executions_system'; args=('nadooit_api_executions_system',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_api_executions_system' AND "django_content_type"."model" = 'customerprogramexecution') LIMIT 21; args=('nadooit_api_executions_system', 'customerprogramexecution'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765615035940865) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765615035940865,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_api_executions_system'; args=('nadooit_api_executions_system',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_website'; args=('nadooit_website',); alias=default
+DEBUG (0.047) INSERT INTO "django_content_type" ("app_label", "model") VALUES ('nadooit_website', 'section_transition'), ('nadooit_website', 'section_competition') RETURNING "django_content_type"."id"; args=('nadooit_website', 'section_transition', 'nadooit_website', 'section_competition'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'visit') LIMIT 21; args=('nadooit_website', 'visit'); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section') LIMIT 21; args=('nadooit_website', 'section'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section_transition_test') LIMIT 21; args=('nadooit_website', 'section_transition_test'); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'session') LIMIT 21; args=('nadooit_website', 'session'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section_transition') LIMIT 21; args=('nadooit_website', 'section_transition'); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_website' AND "django_content_type"."model" = 'section_competition') LIMIT 21; args=('nadooit_website', 'section_competition'); alias=default
+DEBUG (0.016) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (852927477135835137, 851712261774606337, 852649568702300161, 852649568702201857, 852649568702267393, 852927477135933441) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(852927477135835137, 851712261774606337, 852649568702300161, 852649568702201857, 852649568702267393, 852927477135933441); alias=default
+DEBUG (0.047) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") VALUES ('Can add section_ transition', 852927477135835137, 'add_section_transition'), ('Can change section_ transition', 852927477135835137, 'change_section_transition'), ('Can delete section_ transition', 852927477135835137, 'delete_section_transition'), ('Can view section_ transition', 852927477135835137, 'view_section_transition'), ('Can add section_ competition', 852927477135933441, 'add_section_competition'), ('Can change section_ competition', 852927477135933441, 'change_section_competition'), ('Can delete section_ competition', 852927477135933441, 'delete_section_competition'), ('Can view section_ competition', 852927477135933441, 'view_section_competition') RETURNING "auth_permission"."id"; args=('Can add section_ transition', 852927477135835137, 'add_section_transition', 'Can change section_ transition', 852927477135835137, 'change_section_transition', 'Can delete section_ transition', 852927477135835137, 'delete_section_transition', 'Can view section_ transition', 852927477135835137, 'view_section_transition', 'Can add section_ competition', 852927477135933441, 'add_section_competition', 'Can change section_ competition', 852927477135933441, 'change_section_competition', 'Can delete section_ competition', 852927477135933441, 'delete_section_competition', 'Can view section_ competition', 852927477135933441, 'view_section_competition'); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_website'; args=('nadooit_website',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_key'; args=('nadooit_key',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadooit_key' AND "django_content_type"."model" = 'keymanager') LIMIT 21; args=('nadooit_key', 'keymanager'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765615759294465) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765615759294465,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadooit_key'; args=('nadooit_key',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'django_extensions'; args=('django_extensions',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'django_extensions'; args=('django_extensions',); alias=default
+DEBUG (0.015) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mfa'; args=('mfa',); alias=default
+DEBUG (0.032) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'mfa' AND "django_content_type"."model" = 'user_keys') LIMIT 21; args=('mfa', 'user_keys'); alias=default
+DEBUG (0.015) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765617430200321) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765617430200321,); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'mfa'; args=('mfa',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadoo_complaint_management'; args=('nadoo_complaint_management',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'nadoo_complaint_management' AND "django_content_type"."model" = 'complaint') LIMIT 21; args=('nadoo_complaint_management', 'complaint'); alias=default
+DEBUG (0.031) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (828765618297765889) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(828765618297765889,); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'nadoo_complaint_management'; args=('nadoo_complaint_management',); alias=default
+DEBUG (0.016) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'djmoney'; args=('djmoney',); alias=default
+DEBUG (0.031) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'djmoney'; args=('djmoney',); alias=default

@@ -29,11 +29,13 @@ class Visit(models.Model):
 class Session(models.Model):
     session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     session_start_time = models.DateTimeField(auto_now_add=True)
-    session_end_time = models.DateTimeField(auto_now_add=True)
     session_score = models.IntegerField()
     session_duration = models.IntegerField()
     session_section_order = models.CharField(max_length=200)
     session_made_appointment = models.BooleanField(default=False)
+
+    def session_end_time(self):
+        return self.session_start_time + self.session_duration
 
     def __str__(self):
         return (
@@ -84,15 +86,37 @@ It is to keep track how likely the visitor will continue to the next section aft
 """
 
 
+class Section_Transition(models.Model):
+    section_transition_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    section_1_id = models.UUIDField()
+    section_2_id = models.UUIDField()
+    transition_percentage = models.IntegerField()
+
+    def __str__(self):
+        return (
+            self.section_transition_id
+            + " "
+            + self.section_1_id
+            + " "
+            + self.section_2_id
+            + " "
+            + str(self.transition_percentage)
+        )
+
+
 class Section_Transition_Test(models.Model):
     section_test_id = models.UUIDField(
         primary_key=True, default=uuid.uuid4, editable=False
     )
     section_test_date = models.DateTimeField(auto_now_add=True)
-    section_test_time = models.DateTimeField(auto_now_add=True)
-    section_1_id = models.UUIDField()
-    section_2_id = models.UUIDField()
-    transition_percentage = models.IntegerField()
+    # section_transition_id is the id of the section transition that is being tested
+    section_transition_id = models.ForeignKey(
+        Section_Transition, on_delete=models.CASCADE
+    )
+
+    section_was_pased = models.BooleanField(default=False)
 
     def __str__(self):
         return (
@@ -100,11 +124,31 @@ class Section_Transition_Test(models.Model):
             + " "
             + self.section_test_date.strftime("%Y-%m-%d %H:%M:%S")
             + " "
-            + self.section_test_time.strftime("%Y-%m-%d %H:%M:%S")
-            + " "
             + self.section_1_id
             + " "
             + self.section_2_id
             + " "
-            + str(self.transition_percentage)
+            + str(self.section_was_pased)
+        )
+
+
+# Each Section_Competition is a competition between 5 Section_Transition_Test
+# It always sets section_1 as the same and section_2 as something diffrent.
+
+
+class Section_Competition(models.Model):
+    section_competition_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    section_competition_date = models.DateTimeField(auto_now_add=True)
+
+    section_1_id = models.ForeignKey(Section, on_delete=models.CASCADE)
+
+    section_transition_tests = models.ManyToManyField(Section_Transition_Test)
+
+    def __str__(self):
+        return (
+            self.section_competition_id
+            + " "
+            + self.section_competition_date.strftime("%Y-%m-%d %H:%M:%S")
         )

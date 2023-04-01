@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_htmx %}
 <!doctype html>
 <html lang="de" dir="ltr">
   {% load pwa %}
@@ -27,6 +28,7 @@
   <script src={% static 'static/nadooit_website/js/app.js' %}></script>
   <script src={% static 'static/nadooit_website/js/nadooit_logic.js' %}></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/htmx.org@1.8.4" integrity="sha384-wg5Y/JwF7VxGk4zLsJEcAojRtlVp1FKKdGy1qN+OMtdq72WRvX/EdRdqg/LOhYeV" crossorigin="anonymous"></script>
   <script>
   AOS.init({duration: 1000});
   </script>
