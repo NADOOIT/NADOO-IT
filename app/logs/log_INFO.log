@@ -1,3 +1,15 @@
 
 WARNING Forbidden: /api/executions
 WARNING Forbidden: /api/executions
+WARNING Forbidden (CSRF token missing.): /session_is_active_signal/e10c1b77-918e-4fa4-ade3-a599c819f1c6
+WARNING Not Found: /favicon.ico
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a

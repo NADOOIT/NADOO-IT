@@ -38,21 +38,7 @@ class Session(models.Model):
         return self.session_start_time + self.session_duration
 
     def __str__(self):
-        return (
-            self.session_id
-            + " "
-            + self.session_start_time.strftime("%Y-%m-%d %H:%M:%S")
-            + " "
-            + self.session_end_time.strftime("%Y-%m-%d %H:%M:%S")
-            + " "
-            + str(self.session_score)
-            + " "
-            + str(self.session_duration)
-            + " "
-            + self.session_section_order
-            + " "
-            + str(self.session_made_appointment)
-        )
+        return str(self.session_id)
 
 
 # Section

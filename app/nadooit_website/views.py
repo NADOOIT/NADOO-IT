@@ -1,6 +1,7 @@
 import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from nadooit_website.services import get__session_tick
 from nadooit_website.services import (
     received__session_still_active_signal__for__session_id,
 )
@@ -11,6 +12,8 @@ from nadooit_website.services import get__next_section
 from nadooit_auth.models import User
 from nadooit_website.models import Visit
 import requests
+
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
 
 def user_is_staf(user: User) -> bool:
@@ -43,7 +46,11 @@ def new_index(request):
     return render(
         request,
         "nadooit_website/new_index.html",
-        {"page_title": "Home", "session_id": session_id},
+        {
+            "page_title": "Home",
+            "session_id": session_id,
+            "session_tick": get__session_tick(),
+        },
     )
 
 
@@ -60,6 +67,7 @@ def get_next_section(request, session_id):
         return django.http.HttpResponseForbidden()
 
 
+@csrf_exempt
 def session_is_active_signal(request, session_id):
     if request.htmx:
         if check__session_id__is_valid(session_id):
@@ -67,6 +75,7 @@ def session_is_active_signal(request, session_id):
             # the time is set to session_duration of the session for the given session_id in the database
 
             received__session_still_active_signal__for__session_id(session_id)
+            return django.http.HttpResponse()
 
         else:
             return django.http.HttpResponseForbidden()

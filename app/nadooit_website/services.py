@@ -4,6 +4,10 @@ from .models import Session, Section
 session_tick = 5
 
 
+def get__session_tick():
+    return session_tick
+
+
 def create__session():
     session = Session.objects.create(
         session_score=0,
@@ -14,7 +18,7 @@ def create__session():
 
 def received__session_still_active_signal__for__session_id(session_id):
     session = Session.objects.get(session_id=session_id)
-    session.session_duration = session_tick
+    session.session_duration = session_tick + session.session_duration
     session.save()
     return session.session_id
 
