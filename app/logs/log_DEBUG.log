@@ -12595,3 +12595,7 @@ DEBUG (0.023) SELECT 1 AS "a" FROM "nadooit_website_session" WHERE "nadooit_webs
 WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
 DEBUG (0.021) SELECT 1 AS "a" FROM "nadooit_website_session" WHERE "nadooit_website_session"."session_id" = '8458611a-ab00-4fe4-934a-1c3c6046554a'::uuid LIMIT 1; args=(1, UUID('8458611a-ab00-4fe4-934a-1c3c6046554a')); alias=default
 WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+DEBUG (0.027) SELECT 1 AS "a" FROM "nadooit_website_session" WHERE "nadooit_website_session"."session_id" = '8458611a-ab00-4fe4-934a-1c3c6046554a'::uuid LIMIT 1; args=(1, UUID('8458611a-ab00-4fe4-934a-1c3c6046554a')); alias=default
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a
+DEBUG (0.024) SELECT 1 AS "a" FROM "nadooit_website_session" WHERE "nadooit_website_session"."session_id" = '8458611a-ab00-4fe4-934a-1c3c6046554a'::uuid LIMIT 1; args=(1, UUID('8458611a-ab00-4fe4-934a-1c3c6046554a')); alias=default
+WARNING Forbidden: /session_is_active_signal/8458611a-ab00-4fe4-934a-1c3c6046554a

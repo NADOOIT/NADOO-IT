@@ -15,6 +15,29 @@ class Visit(models.Model):
         return self.visit_date.strftime("%Y-%m-%d %H:%M:%S") + " " + self.site
 
 
+# Section is a class that stores the html code of a section
+class Section(models.Model):
+    section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    section_name = models.CharField(max_length=200)
+    section_html = models.CharField(max_length=200)
+
+
+# Section_Order is a class that stores the order in which the sections are displayed to the visitor
+# It contains a list of section ids in the order they are displayed to the visitor
+# Has the visitor seen all the sections in the order a new order is generated based on the order of the sections the visitor has seen
+# This means that at the beginning all Section_Order objects will have only one section in the order
+# As the visitor finishes the section a new Section_Order object is created with a new section added to the order
+# So over time the Section_Order objects will have more and more sections in the order
+class Section_Order(models.Model):
+    section_order_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    section_order_date = models.DateTimeField(auto_now_add=True)
+
+    # section_order is a list of section ids in the order they are displayed to the visitor
+    section_order = models.ManyToManyField(Section)
+
+
 # Session
 """     session_id
         session_start_time
@@ -31,7 +54,7 @@ class Session(models.Model):
     session_start_time = models.DateTimeField(auto_now_add=True)
     session_score = models.IntegerField()
     session_duration = models.IntegerField(default=0)
-    session_section_order = models.CharField(max_length=200)
+    session_section_order = models.ForeignKey(Section_Order, on_delete=models.CASCADE)
     session_made_appointment = models.BooleanField(default=False)
 
     def session_end_time(self):
@@ -48,12 +71,6 @@ class Session(models.Model):
     section_name a name generated from the section to be displayed
     section_html the html code of the section
 """
-
-
-class Section(models.Model):
-    section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    section_name = models.CharField(max_length=200)
-    section_html = models.CharField(max_length=200)
 
 
 # Section_Transition Test
