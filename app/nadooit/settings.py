@@ -54,6 +54,7 @@ ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").spli
 # See the documentation of the apps for more information.
 INSTALLED_APPS = [
     "sslserver",
+    "ordered_model",
     "django_is_url_active_templatetag",
     "grappelli",
     "django.contrib.admin",

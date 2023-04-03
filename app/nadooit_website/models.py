@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from ordered_model.models import OrderedModel
 
 # Create your models here.
 # create a model for someone visiting the site
@@ -19,7 +20,11 @@ class Visit(models.Model):
 class Section(models.Model):
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     section_name = models.CharField(max_length=200)
-    section_html = models.CharField(max_length=200)
+    section_html = models.TextField()
+    
+    def __str__(self):
+        return self.section_name
+    
 
 
 # Section_Order is a class that stores the order in which the sections are displayed to the visitor
@@ -35,7 +40,18 @@ class Section_Order(models.Model):
     section_order_date = models.DateTimeField(auto_now_add=True)
 
     # section_order is a list of section ids in the order they are displayed to the visitor
-    section_order = models.ManyToManyField(Section)
+    sections = models.ManyToManyField(
+        Section, through="Section_Order_Sections_Through_Model"
+    )
+
+
+class Section_Order_Sections_Through_Model(OrderedModel):
+    section_order = models.ForeignKey(Section_Order, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    order_with_respect_to = "section_order"
+
+    class Meta:
+        ordering = ("section_order", "order")
 
 
 # Session

@@ -4,11 +4,6 @@
 
 <div class="timer" hx-post="{% url 'nadooit_website:session_is_active_signal' session_id %}" hx-trigger="every {{session_tick}}s"></div>
 
-{% include 'nadooit_website/intro.html' %}
-{% include 'nadooit_website/process_steps.html' %}
-{% include 'nadooit_website/what_they_get.html' %}
-{% include 'nadooit_website/contact.html' %}
-{% include 'nadooit_website/portal.html' %}
-{% include 'nadooit_website/scrollup_button.html' %}
+{{ section_entry|safe }}
 
 {% endblock %}

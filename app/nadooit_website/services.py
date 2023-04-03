@@ -1,5 +1,5 @@
 import uuid
-from .models import Session, Section
+from .models import Section_Order, Session, Section
 
 session_tick = 5
 
@@ -9,8 +9,13 @@ def get__session_tick():
 
 
 def create__session():
+
+    session_section_order = Section_Order.objects.get(
+        section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+    )
+
     session = Session.objects.create(
-        session_score=0,
+        session_score=0, session_section_order=session_section_order
     )
     session.save()
     return session.session_id
