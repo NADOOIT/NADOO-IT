@@ -1,6 +1,7 @@
 import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from nadooit_website.services import get__section__for__session_id
 from nadooit_website.services import get__session_tick
 from nadooit_website.services import (
     received__session_still_active_signal__for__session_id,
@@ -14,6 +15,10 @@ from nadooit_website.models import Visit
 import requests
 
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def user_is_staf(user: User) -> bool:
@@ -43,12 +48,30 @@ def new_index(request):
 
     # start_section = get_next_section(session_id)
 
+    section_entry = get__section__for__session_id(session_id)
+
+    # section_entry is a list of Section_Order_Sections_Through_Model objects
+    # section_entry[0].section_html is the html of the first section
+
+    
+
+    logger.info(section_entry[0].section_html)
+
+    # combine all the html of the sections into one html string as section_entry_html
+    # use a for loop to iterate over all the sections
+    
+    section_entry_html = ""
+        
+    for section in section_entry:
+        section_entry_html += section.section_html
+    
     return render(
         request,
         "nadooit_website/new_index.html",
         {
             "page_title": "Home",
             "session_id": session_id,
+            "section_entry": section_entry_html,
             "session_tick": get__session_tick(),
         },
     )

@@ -8,6 +8,14 @@ def get__session_tick():
     return session_tick
 
 
+def get__section__for__session_id(session_id):
+    return (
+        Session.objects.get(session_id=session_id)
+        .session_section_order.sections.all()
+        .order_by("section_order_sections_through_model")
+    )
+
+
 def create__session():
 
     session_section_order = Section_Order.objects.get(
