@@ -1,6 +1,7 @@
 import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.template import Template
 from nadooit_website.services import get__section__for__session_id
 from nadooit_website.services import get__session_tick
 from nadooit_website.services import (
@@ -53,25 +54,24 @@ def new_index(request):
     # section_entry is a list of Section_Order_Sections_Through_Model objects
     # section_entry[0].section_html is the html of the first section
 
-    
-
     logger.info(section_entry[0].section_html)
 
     # combine all the html of the sections into one html string as section_entry_html
     # use a for loop to iterate over all the sections
-    
+
     section_entry_html = ""
-        
+
     for section in section_entry:
         section_entry_html += section.section_html
-    
+    section_entry_template = Template(section_entry_html)
     return render(
         request,
         "nadooit_website/new_index.html",
         {
             "page_title": "Home",
             "session_id": session_id,
-            "section_entry": section_entry_html,
+            # "section_entry": section_entry_html,
+            "section_entry": section_entry_template,
             "session_tick": get__session_tick(),
         },
     )
