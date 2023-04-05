@@ -15,6 +15,11 @@ urlpatterns = [
         name="get_next_section",
     ),
     path(
+        "signal/<str:session_id>/<str:section_id>/<str:signal_type>",
+        views.signal,
+        name="signal",
+    ),
+    path(
         "session_is_active_signal/<str:session_id>",
         views.session_is_active_signal,
         name="session_is_active_signal",

@@ -16,15 +16,44 @@ class Visit(models.Model):
         return self.visit_date.strftime("%Y-%m-%d %H:%M:%S") + " " + self.site
 
 
+class Signals_Option(models.Model):
+    signal_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    signal_date = models.DateTimeField(auto_now_add=True)
+    signal_type = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.signal_type
+
+
+class Session_Signals(models.Model):
+    session_signal_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    session_signal_date = models.DateTimeField(auto_now_add=True)
+
+    session = models.ForeignKey("Session", on_delete=models.CASCADE)
+    signal = models.ForeignKey("Signals_Option", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return (
+            self.session_signal_date.strftime("%Y-%m-%d %H:%M:%S")
+            + " "
+            + self.session.session_id
+            + " "
+            + self.signal.signal_type
+        )
+
+
 # Section is a class that stores the html code of a section
 class Section(models.Model):
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     section_name = models.CharField(max_length=200)
     section_html = models.TextField()
-    
+
+    signal_options = models.ManyToManyField(Signals_Option, blank=True)
+
     def __str__(self):
         return self.section_name
-    
 
 
 # Section_Order is a class that stores the order in which the sections are displayed to the visitor
@@ -71,13 +100,21 @@ class Session(models.Model):
     session_score = models.IntegerField()
     session_duration = models.IntegerField(default=0)
     session_section_order = models.ForeignKey(Section_Order, on_delete=models.CASCADE)
-    session_made_appointment = models.BooleanField(default=False)
+    session_clicked_on_appointment_form = models.BooleanField(default=False)
 
     def session_end_time(self):
         return self.session_start_time + self.session_duration
 
     def __str__(self):
-        return str(self.session_id)
+        return (
+            str(self.session_id)
+            + " "
+            + str(self.session_duration)
+            + " "
+            + str(self.session_score)
+            + " "
+            + str(self.session_clicked_on_appointment_form)
+        )
 
 
 # Section

@@ -1,4 +1,6 @@
 import uuid
+
+from django.template import Template
 from .models import Section_Order, Session, Section
 
 session_tick = 5
@@ -8,7 +10,64 @@ def get__session_tick():
     return session_tick
 
 
-def get__section__for__session_id(session_id):
+def add__signal(html_of_section, session_id, section_id, signal_type):
+    revealed_tracking = (
+        "<div hx-post=\"{% url 'nadooit_website:signal' "
+        + "'"
+        + str(session_id)
+        + "'"
+        + " "
+        + "'"
+        + str(section_id)
+        + "'"
+        + " '"
+        # replace spaces with underscores
+        + signal_type.replace(" ", "_")
+        + '\' %}" hx-swap="afterend" hx-trigger="'
+        + signal_type
+        + '">'
+    )
+    closing_div = "</div>"
+    return revealed_tracking + html_of_section + closing_div
+
+
+def get__template__for__section(section):
+    pass
+
+
+def get__template__for__session_id(session_id):
+    # start_section = get_next_section(session_id)
+
+    section_entry = get__sections__for__session_id(session_id)
+
+    # combine all the html of the sections into one html string as section_entry_html
+    # use a for loop to iterate over all the sections
+    # add all the tracking signals to the html
+
+    section_entry_html = ""
+
+    for section in section_entry:
+
+        html_of_section = section.section_html
+        section_id = section.section_id
+
+        signal_options = section.signal_options.all()
+
+        if signal_options is not None:
+            for signal_option in signal_options:
+                html_of_section = add__signal(
+                    html_of_section,
+                    session_id,
+                    section_id,
+                    signal_option.signal_type,
+                )
+
+        section_entry_html += html_of_section
+
+    return Template(section_entry_html)
+
+
+def get__sections__for__session_id(session_id):
     return (
         Session.objects.get(session_id=session_id)
         .session_section_order.sections.all()

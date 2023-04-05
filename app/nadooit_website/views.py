@@ -2,7 +2,7 @@ import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.template import Template
-from nadooit_website.services import get__section__for__session_id
+from nadooit_website.services import get__template__for__session_id
 from nadooit_website.services import get__session_tick
 from nadooit_website.services import (
     received__session_still_active_signal__for__session_id,
@@ -37,6 +37,44 @@ def index(request):
     return render(request, "nadooit_website/index.html", {"page_title": "Home"})
 
 
+@csrf_exempt
+def signal(request, session_id, section_id, signal_type):
+
+    if request.htmx:
+        if check__session_id__is_valid(session_id):
+
+            if signal_type == "mouse_entered":
+                logger.info(
+                    str(session_id)
+                    + " "
+                    + str(section_id)
+                    + " "
+                    + str(signal_type)
+                    + " "
+                    + "signal received"
+                )
+                # received__mouse_entered__signal__for__session_id(session_id, section_id)
+            if signal_type == "revealed":
+                logger.info(
+                    str(session_id)
+                    + " "
+                    + str(section_id)
+                    + " "
+                    + str(signal_type)
+                    + " "
+                    + "signal received"
+                )
+                # received__revealed__signal__for__session_id(session_id, section_id)
+
+            return django.http.HttpResponse()
+
+        else:
+            return django.http.HttpResponseForbidden()
+
+    else:
+        return django.http.HttpResponseForbidden()
+
+
 def new_index(request):
 
     # create a visit object for the index page
@@ -47,23 +85,8 @@ def new_index(request):
     # create a session id used to identify the user for the visit
     session_id = create__session()
 
-    # start_section = get_next_section(session_id)
+    section_entry_template = get__template__for__session_id(session_id)
 
-    section_entry = get__section__for__session_id(session_id)
-
-    # section_entry is a list of Section_Order_Sections_Through_Model objects
-    # section_entry[0].section_html is the html of the first section
-
-    logger.info(section_entry[0].section_html)
-
-    # combine all the html of the sections into one html string as section_entry_html
-    # use a for loop to iterate over all the sections
-
-    section_entry_html = ""
-
-    for section in section_entry:
-        section_entry_html += section.section_html
-    section_entry_template = Template(section_entry_html)
     return render(
         request,
         "nadooit_website/new_index.html",
