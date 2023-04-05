@@ -43,7 +43,7 @@ def signal(request, session_id, section_id, signal_type):
     if request.htmx:
         if check__session_id__is_valid(session_id):
 
-            if signal_type == "mouse_entered":
+            if signal_type == "mouseenter_once":
                 logger.info(
                     str(session_id)
                     + " "
