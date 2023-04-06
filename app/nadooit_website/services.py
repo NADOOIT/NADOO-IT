@@ -11,24 +11,45 @@ def get__session_tick():
 
 
 def add__signal(html_of_section, session_id, section_id, signal_type):
-    revealed_tracking = (
-        "<div hx-post=\"{% url 'nadooit_website:signal' "
-        + "'"
-        + str(session_id)
-        + "'"
-        + " "
-        + "'"
-        + str(section_id)
-        + "'"
-        + " '"
-        # replace spaces with underscores
-        + signal_type.replace(" ", "_")
-        + '\' %}" hx-swap="afterend" hx-trigger="'
-        + signal_type
-        + '">'
-    )
-    closing_div = "</div>"
-    return revealed_tracking + html_of_section + closing_div
+
+    if signal_type == "end_of_session_sections":
+        revealed_tracking = (
+            '<div class="banner" hx-post="{% url \'nadooit_website:signal\' '
+            + "'"
+            + str(session_id)
+            + "'"
+            + " "
+            + "'"
+            + str(section_id)
+            + "'"
+            + " '"
+            # replace spaces with underscores
+            + signal_type.replace(" ", "_")
+            + '\' %}" hx-swap="afterend" hx-trigger="'
+            + "revealed"
+            + '">'
+        )
+        closing_div = "<br></div>"
+        return html_of_section + revealed_tracking + closing_div
+    else:
+        revealed_tracking = (
+            "<div hx-post=\"{% url 'nadooit_website:signal' "
+            + "'"
+            + str(session_id)
+            + "'"
+            + " "
+            + "'"
+            + str(section_id)
+            + "'"
+            + " '"
+            # replace spaces with underscores
+            + signal_type.replace(" ", "_")
+            + '\' %}" hx-swap="afterend" hx-trigger="'
+            + signal_type
+            + '">'
+        )
+        closing_div = "</div>"
+        return revealed_tracking + html_of_section + closing_div
 
 
 def get__template__for__section(section):
@@ -45,6 +66,7 @@ def get__template__for__session_id(session_id):
     # add all the tracking signals to the html
 
     section_entry_html = ""
+    section_id = ""
 
     for section in section_entry:
 
@@ -63,6 +85,11 @@ def get__template__for__session_id(session_id):
                 )
 
         section_entry_html += html_of_section
+
+    # Add end of session signal
+    section_entry_html = add__signal(
+        section_entry_html, session_id, section_id, "end_of_session_sections"
+    )
 
     return Template(section_entry_html)
 

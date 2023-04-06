@@ -84,6 +84,7 @@ All of this is done automatically by the algorithem and not by a human.
 - A model that stores the session data
 - A model that stores the section data
 - A model that stores the section_order data
+- Create a way for visitors to ask questions. That way the website can be improved by the visitors.
 
 ## Current Todo
 

@@ -53,7 +53,7 @@ def signal(request, session_id, section_id, signal_type):
                     + " "
                     + "signal received"
                 )
-                # received__mouse_entered__signal__for__session_id(session_id, section_id)
+
             if signal_type == "revealed":
                 logger.info(
                     str(session_id)
@@ -64,7 +64,21 @@ def signal(request, session_id, section_id, signal_type):
                     + " "
                     + "signal received"
                 )
-                # received__revealed__signal__for__session_id(session_id, section_id)
+                # if the revealed section is the last section of the session then a new section order is created
+                # this order has all sections of the session belonging to the session_id and a new section is added
+                if True:
+                    pass
+
+            if signal_type == "end_of_session_sections":
+                logger.info(
+                    str(session_id)
+                    + " "
+                    + str(section_id)
+                    + " "
+                    + str(signal_type)
+                    + " "
+                    + "signal received"
+                )
 
             return django.http.HttpResponse()
 
