@@ -1,7 +1,7 @@
 import uuid
 
 from django.template import Template
-from .models import Section_Order, Session, Section
+from .models import Section_Order, Session, Section, Session_Signals
 
 session_tick = 5
 
@@ -92,6 +92,23 @@ def get__template__for__session_id(session_id):
     )
 
     return Template(section_entry_html)
+
+
+def create__session_signal__for__session_id(session_id, section_id, signal_type):
+
+    if check__session_id__is_valid(session_id):
+
+        signal = Session_Signals.objects.create(
+            section=Section.objects.get(section_id=section_id),
+            session_signal_type=signal_type,
+        )
+
+        Session.objects.get(session_id=session_id).session_signals.add(signal)
+
+        return True
+
+    else:
+        return False
 
 
 def get__sections__for__session_id(session_id):

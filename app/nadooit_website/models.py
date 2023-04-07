@@ -25,25 +25,6 @@ class Signals_Option(models.Model):
         return self.signal_type
 
 
-class Session_Signals(models.Model):
-    session_signal_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, editable=False
-    )
-    session_signal_date = models.DateTimeField(auto_now_add=True)
-
-    session = models.ForeignKey("Session", on_delete=models.CASCADE)
-    signal = models.ForeignKey("Signals_Option", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return (
-            self.session_signal_date.strftime("%Y-%m-%d %H:%M:%S")
-            + " "
-            + self.session.session_id
-            + " "
-            + self.signal.signal_type
-        )
-
-
 # Section is a class that stores the html code of a section
 class Section(models.Model):
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -94,6 +75,18 @@ class Section_Order_Sections_Through_Model(OrderedModel):
 """
 
 
+class Session_Signals(models.Model):
+    session_signal_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    session_signal_date = models.DateTimeField(auto_now_add=True)
+    session_signal_type = models.CharField(max_length=200)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.section) + " " + self.session_signal_type
+
+
 class Session(models.Model):
     session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     session_start_time = models.DateTimeField(auto_now_add=True)
@@ -101,6 +94,8 @@ class Session(models.Model):
     session_duration = models.IntegerField(default=0)
     session_section_order = models.ForeignKey(Section_Order, on_delete=models.CASCADE)
     session_clicked_on_appointment_form = models.BooleanField(default=False)
+
+    session_signals = models.ManyToManyField(Session_Signals, blank=True)
 
     def session_end_time(self):
         return self.session_start_time + self.session_duration

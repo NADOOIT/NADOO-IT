@@ -1,19 +1,18 @@
 import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.template import Template
-from nadooit_website.services import get__template__for__session_id
-from nadooit_website.services import get__session_tick
-from nadooit_website.services import (
+from .services import get__template__for__session_id
+from .services import get__session_tick
+from .services import (
     received__session_still_active_signal__for__session_id,
 )
-from nadooit_website.services import create__session
-from nadooit_website.services import check__session_id__is_valid
-from nadooit_website.services import get__next_section
+from .services import create__session
+from .services import check__session_id__is_valid
+from .services import get__next_section
 
 from nadooit_auth.models import User
-from nadooit_website.models import Visit
-import requests
+from .models import Visit
+
 
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 
@@ -43,6 +42,8 @@ def signal(request, session_id, section_id, signal_type):
     if request.htmx:
         if check__session_id__is_valid(session_id):
 
+            create__session_signal__for__session_id(session_id, section_id, signal_type)
+
             if signal_type == "mouseenter_once":
                 logger.info(
                     str(session_id)
@@ -64,10 +65,6 @@ def signal(request, session_id, section_id, signal_type):
                     + " "
                     + "signal received"
                 )
-                # if the revealed section is the last section of the session then a new section order is created
-                # this order has all sections of the session belonging to the session_id and a new section is added
-                if True:
-                    pass
 
             if signal_type == "end_of_session_sections":
                 logger.info(
