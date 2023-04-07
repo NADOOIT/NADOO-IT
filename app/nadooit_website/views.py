@@ -1,7 +1,12 @@
+import json
 import django.http
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .services import get__template__for__session_id
+from django.views.decorators.http import require_POST
+from .services import (
+    create__session_signal__for__session_id,
+    get__template__for__session_id,
+)
 from .services import get__session_tick
 from .services import (
     received__session_still_active_signal__for__session_id,
@@ -11,7 +16,7 @@ from .services import check__session_id__is_valid
 from .services import get__next_section
 
 from nadooit_auth.models import User
-from .models import Visit
+from .models import Question_Answer, Visit
 
 
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
@@ -34,6 +39,43 @@ def index(request):
     visit.save()
 
     return render(request, "nadooit_website/index.html", {"page_title": "Home"})
+
+
+@csrf_exempt
+@require_POST
+def submit_question(request, session_id):
+    data = json.loads(request.body)
+    question = data.get("question")
+
+    # Process the question and session_id here.
+    # You may want to save the question to the database or perform other actions.
+    if check__session_id__is_valid(session_id):
+
+        # create a question answer object
+        Question_Answer.objects.create(question_answer_question=question)
+        response_data = {
+            "message": "Frage eingereicht",
+            "question": question,
+            "session_id": session_id,
+        }
+        return django.http.JsonResponse(response_data)
+
+    else:
+        return django.http.HttpResponseForbidden()
+
+
+@csrf_exempt
+def your_question_we_answer(request, question: str, session_id):
+
+    if check__session_id__is_valid(session_id):
+
+        # create a question answer object
+        Question_Answer.objects.create(question_answer_question=question)
+
+        return django.http.HttpResponse()
+
+    else:
+        return django.http.HttpResponseForbidden()
 
 
 @csrf_exempt

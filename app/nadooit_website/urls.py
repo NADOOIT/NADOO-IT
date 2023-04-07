@@ -20,6 +20,11 @@ urlpatterns = [
         name="signal",
     ),
     path(
+        "your_question_we_answer/question/<str:session_id>",
+        views.submit_question,
+        name="submit_question",
+    ),
+    path(
         "session_is_active_signal/<str:session_id>",
         views.session_is_active_signal,
         name="session_is_active_signal",
