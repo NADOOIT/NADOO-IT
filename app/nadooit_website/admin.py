@@ -18,6 +18,7 @@ class WebsiteSectionsOrderTabularInline(OrderedTabularInline):
 class Section_OrderAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
     list_display = ("section_order_id",)
     inlines = (WebsiteSectionsOrderTabularInline,)
+    save_as = True
 
 
 # Register your models here.

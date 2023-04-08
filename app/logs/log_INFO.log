@@ -224,3 +224,8 @@ INFO a7efe49c-c861-4232-b0e1-1d7a50ddade3 9e1c35ae-2569-481c-bf5b-2c9e44fee9fe m
 INFO a7efe49c-c861-4232-b0e1-1d7a50ddade3 cc215ea1-4afe-42f8-bd3a-ddf07858a5f5 end_of_session_sections signal received
 INFO a7efe49c-c861-4232-b0e1-1d7a50ddade3 2e756847-87fd-4837-a14b-40d8de4af3c2 mouseenter_once signal received
 INFO a7efe49c-c861-4232-b0e1-1d7a50ddade3 2e756847-87fd-4837-a14b-40d8de4af3c2 revealed signal received
+INFO c5cfe21a-eec0-44d7-a616-57970c859501 77e5e4b7-2b86-4edc-80dc-9e0a0065fb23 revealed signal received
+INFO c5cfe21a-eec0-44d7-a616-57970c859501 2e756847-87fd-4837-a14b-40d8de4af3c2 revealed signal received
+INFO c5cfe21a-eec0-44d7-a616-57970c859501 9e1c35ae-2569-481c-bf5b-2c9e44fee9fe revealed signal received
+INFO c5cfe21a-eec0-44d7-a616-57970c859501 cc215ea1-4afe-42f8-bd3a-ddf07858a5f5 end_of_session_sections signal received
+INFO c5cfe21a-eec0-44d7-a616-57970c859501 9e1c35ae-2569-481c-bf5b-2c9e44fee9fe mouseenter_once signal received

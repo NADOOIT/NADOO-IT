@@ -33,6 +33,18 @@ class Section(models.Model):
 
     signal_options = models.ManyToManyField(Signals_Option, blank=True)
 
+    def is_valid_filename(self, filename):
+        return all(c.isalnum() or c in "._- " for c in filename)
+
+    def get_valid_filename(self, filename):
+        return "".join(c for c in filename if c.isalnum() or c in "._- ")
+
+    def save(self, *args, **kwargs):
+        if not self.is_valid_filename(self.section_name):
+            self.section_name = self.get_valid_filename(self.section_name)
+        super().save(*args, **kwargs)
+
+
     def __str__(self):
         return self.section_name
 
