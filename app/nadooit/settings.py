@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     "nadooit_website.apps.NadooitWebsiteConfig",
     "nadooit_os",
     "nadooit_key",
+    "nadooit_questions_and_answers",
     "rest_framework",
     "pwa",
     "django_extensions",
