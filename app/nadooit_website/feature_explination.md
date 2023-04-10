@@ -1,133 +1,73 @@
-# NADOOIT Website
+# Feature Explanation
 
-## Feature explination
+## Overview
 
-The nadooit website is a website that is used to show information about nadooit.
-Visitors learn about nadooit and how it works.
+This website is designed to test the effectiveness of different sections and user interactions in an experimental setting. It allows the website owner to create multiple sections, each with different content, and track user interaction with those sections. The website then presents the sections to users in an experimental setting, tracking their interactions and generating statistics to help the website owner determine which sections are most effective.
 
-They only need to scroll down the page to see all the features.
+## Models
 
-They can also contact us and ask questions or directly register for a free consultation / make an appointment.
+### Section
 
-What is special is that it is not a static website, but a dynamic website that is build for each visitor.
-Every time a visitor visits the website, the website is build for that visitor.
+This model represents a section of the website, which contains a unique identifier, a title, content, and a score. The score indicates the section's effectiveness based on user interaction.
 
-So even if the same visitor visits the website multiple times, the website will be different each time.
+### Session
 
-The goal of this mechanic is to make the website more personal and to make the visitor feel more welcome.
-Also it automatically shows the visitor the features that are most interesting for him.
-This is done by using machine learning to predict which features are most interesting for the visitor.
-The final goal is to make visitors make an appointment with us
-.
-Eventually this mechanic should lead to everyone that visits to make an appointement.
+This model represents a user session, which contains a unique identifier, a list of sections (in order), and a total interaction time. The total interaction time is the sum of interaction times for all sections in the session.
 
-## How it works
+### SessionSignal
 
-When a visitor visits nadooit.de a new session is started and the visitor is greeted with a landing page.
-At the same time a timer is started on the server to keep track of how long the visitor is on the website.
-This timer each second sends a signal to the server saying "I am still here".
-This way it is possible to track how long the visitor spend on the webpage.
-Longer time indecates that the visitor wanted to read more.
-The final goal is to make the visitor spend as much time as possible on the website
-but also as little time as possible until the visitor makes an appointment.
+This model represents a signal sent by the user when interacting with a section. It contains a unique identifier, the session it belongs to, the section it is related to, and the signal type (mouseenter_once, mouseleave, revealed, or end_of_session_sections).
 
-All landingpages start with an short expliantion of how the page works.
-After that a question about the visitor is shown with a row of buttons that have the answers as lables.
+## Views
 
-Possible questions are:
-Who the visitor might be: As options Copmany owner, a freelancer, developer, student, teacher, school kid.
-What they might be looking for: As options: A job, a new project, a new client, a new employee, a new partner, a new investor, a new mentor.
-...
+### index
 
-After the visitor has answered the question or questions, the first section of the website is loaded.
+Renders the starting page of the website.
 
-For each answer to a question there are 5 different versions of the section that will be loaded.
-There is a big list of possible sections.
-All versions compete with each other to be the best version.
+### new_index
 
-After the 5 visitors have left the website, which is detected by the timer, the 5 versions of the website are compared.
-The version that has the highest score wins.
-The next 5 versions of the website are build based on the winning version.
-Important is that there are always at least 2 new version of the website being tested as long as the website does not have a high score or the score is falling.
-This way new versions of the website are always tested and the website is always improving.
+Renders a new session for the user, with the first section of the session.
 
-The score of a version is calculated by the following factors:
+### impressum
 
-- How long the visitor spend on the website
-- How many times the visitor clicked on a button
-- How many times the visitor clicked on a link
-- How many times the visitor scrolled down the page
-- How many times the visitor scrolled up the page
-- How many times the visitor scrolled to the bottom of the page
-- How many times the visitor scrolled to the top of the page
+Renders the impressum page of the website.
 
-- If the visitor made an appointment or not. Getting the visitor to make the appointment gets the most points.
+### datenschutz
 
-Also the algorithem takes into account the time of day and the day of the week.
-During the specific times of the day and days of the week the website should be different.
-For example during the week the website should be more business oriented and during the weekend it should be more fun oriented.
-All of this is done automatically by the algorithem and not by a human.
+Renders the datenschutz page of the website.
 
-## Technology used
+### statistics
 
-- htmx
-- Bootstrap
+Renders the statistics page of the website, showing the effectiveness of each section based on user interaction.
 
-## TodoList
+### signal
 
-- Create a url for getting the next section for a session
-- Create a view that renders the next section for a session
-- A service function that returns the next section for a session
-- A service function that calculates the score of a section
-- A service function that returns the best section for a session
+Handles the signals sent by the client for different interaction types (mouseenter_once, mouseleave, revealed, and end_of_session_sections). It first checks if the session ID is valid. If it's valid, the function creates a session signal and updates the corresponding session.
 
-- A model that stores the session data
-- A model that stores the section data
-- A model that stores the section_order data
-- Create a way for visitors to ask questions. That way the website can be improved by the visitors.
+For the mouseleave signal, the function also updates the total_interaction_time field for the corresponding session based on the interaction time received in the request body.
 
-## Current Todo
+### end_of_session_sections
 
-### urls.py
+This view is triggered when the user reaches the end of the session sections. If the request is valid, it calls the get_next_best_section function to retrieve the next best section based on the user's category and the section scores. If a next section is found, it renders the section, otherwise, it returns an HTTP response indicating no more sections are available.
 
-    /get_next_section/<session_id>/
+### get_next_section
 
-### views.py
+This view retrieves the next section in the order specified by the session's section order. If the request is valid and a next section is found, it renders the section, otherwise, it returns an HTTP response indicating no more sections are available.
 
-    get_next_section(request, session_id)
+### session_is_active_signal
 
-### services.py
+This view is called when a user sends a signal to check if their session is still active. If the session is active, it returns an HTTP response with a status of 200; otherwise, it returns an HTTP response with a status of 404.
 
-    get_next_section(session_id)
+## Services
 
-    calculate_section_score(section_id, session_id)
+### categorize_user
 
-    get_best_section(session_id)
+This function takes a session ID and categorizes the user as "fast" or "slow" based on their average interaction time. The average interaction time is calculated by dividing the total_interaction_time by the number of sections in the session.
 
-### models.py
+### get_next_best_section
 
-    Session
-        session_id
-        session_start_time
-        session_end_time
-        session_score
-        session_duration
-        session_section_order
-    
-    Section
-        section_id
-        section_name
-        section_html
-        section_score
-        section_position
-    
-    SectionOrder
-        section_order_id
-        section_order_score
-        sections
+This function takes a session ID and the current section ID as input and returns the next best section based on the user category (fast or slow) and section scores. The implementation for the experimental group is missing and needs to be added.
 
-### templates
+### create_session_signal_for_session_id
 
-    base.html
-    landing_page.html
-    section.html
+This function creates a session signal for a given session ID, section ID, and signal type. It also updates the corresponding session and the section score based on the signal type.

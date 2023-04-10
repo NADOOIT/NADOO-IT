@@ -229,3 +229,265 @@ INFO c5cfe21a-eec0-44d7-a616-57970c859501 2e756847-87fd-4837-a14b-40d8de4af3c2 r
 INFO c5cfe21a-eec0-44d7-a616-57970c859501 9e1c35ae-2569-481c-bf5b-2c9e44fee9fe revealed signal received
 INFO c5cfe21a-eec0-44d7-a616-57970c859501 cc215ea1-4afe-42f8-bd3a-ddf07858a5f5 end_of_session_sections signal received
 INFO c5cfe21a-eec0-44d7-a616-57970c859501 9e1c35ae-2569-481c-bf5b-2c9e44fee9fe mouseenter_once signal received
+WARNING Not Found: /favicon.ico
+WARNING Not Found: /signal/cb851230-4116-41d0-b023-d509a0424d07//mouseleave/
+INFO cb851230-4116-41d0-b023-d509a0424d07 fbf0bdde-60d7-4bdd-8a6e-e69c55a5d825 end_of_session_sections signal received
+WARNING Not Found: /signal/f98c85d0-8784-41bb-ad94-aa955cfb763c//mouseleave/
+WARNING Not Found: /signal/f98c85d0-8784-41bb-ad94-aa955cfb763c//mouseleave/
+INFO f98c85d0-8784-41bb-ad94-aa955cfb763c fbf0bdde-60d7-4bdd-8a6e-e69c55a5d825 end_of_session_sections signal received
+WARNING Not Found: /signal/f98c85d0-8784-41bb-ad94-aa955cfb763c//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/d29b855e-3ca3-4467-b5aa-38fd30481cba//mouseleave/
+WARNING Not Found: /signal/5401678d-2116-4fb5-94a2-fe3385436ed0//mouseleave/
+WARNING Not Found: /signal/5401678d-2116-4fb5-94a2-fe3385436ed0//mouseleave/
+WARNING Not Found: /signal/5401678d-2116-4fb5-94a2-fe3385436ed0//mouseleave/
+WARNING Forbidden: /signal/79711cb2-9847-4a77-825a-9dd597ae46e5/9e0421d2-7224-4d0f-ae37-910d08b14fed/mouseleave/
+WARNING Forbidden: /signal/79711cb2-9847-4a77-825a-9dd597ae46e5/9e0421d2-7224-4d0f-ae37-910d08b14fed/mouseleave/
+WARNING Forbidden: /signal/79711cb2-9847-4a77-825a-9dd597ae46e5/9e0421d2-7224-4d0f-ae37-910d08b14fed/mouseleave/
+INFO 0
+INFO <QueryDict: {}>
+INFO <QueryDict: {}>
+INFO <QueryDict: {}>
+INFO <QueryDict: {}>
+INFO <QueryDict: {}>
+INFO <QueryDict: {}>
+WARNING Forbidden: /session_is_active_signal/5b91260f-756f-4022-87e6-c07526ab3fce
+INFO deeb10e6-f284-4c6c-8387-12576b785abe fbf0bdde-60d7-4bdd-8a6e-e69c55a5d825 end_of_session_sections signal received
+INFO aff47a36-63cb-4e9a-bb04-874b66d3fb93 1b4e0e78-c064-4334-9aaa-13c5ebc75455 end_of_session_sections signal received
+INFO c0e645d7-173b-4631-a301-d18d64791043 1b4e0e78-c064-4334-9aaa-13c5ebc75455 end_of_session_sections signal received
+WARNING Forbidden: /session_is_active_signal/c0e645d7-173b-4631-a301-d18d64791043
+WARNING Forbidden: /end_of_session_sections/4e70c90c-611d-4526-b1ac-c6a322b87656/1b4e0e78-c064-4334-9aaa-13c5ebc75455
+WARNING Forbidden: /session_is_active_signal/4e70c90c-611d-4526-b1ac-c6a322b87656
+WARNING Forbidden: /end_of_session_sections/1a2c4456-8d8a-43f9-826c-91bc05d71a3f/1b4e0e78-c064-4334-9aaa-13c5ebc75455
+WARNING Forbidden: /session_is_active_signal/1a2c4456-8d8a-43f9-826c-91bc05d71a3f
+WARNING Forbidden: /signal/1a2c4456-8d8a-43f9-826c-91bc05d71a3f/9e0421d2-7224-4d0f-ae37-910d08b14fed/mouseleave/
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+WARNING Forbidden: /session_is_active_signal/229118d2-e319-4e3d-bfc2-a458d1f029ab
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO b09a78e6-32d6-4a19-93ea-5331e301ba51 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO b09a78e6-32d6-4a19-93ea-5331e301ba51 c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO b09a78e6-32d6-4a19-93ea-5331e301ba51 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO 37f532e6-0e5b-4d98-867a-2cbc20da3e64 c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO 37f532e6-0e5b-4d98-867a-2cbc20da3e64 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO 37f532e6-0e5b-4d98-867a-2cbc20da3e64 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 4b0604a7-ec20-4e59-a673-bce3b005d6f8 revealed signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 c35b7b56-e22b-4e09-b116-56e6bf727c99 mouseenter_once signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 eaf22518-3273-4530-856b-35b13067caa5 revealed signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 4b0604a7-ec20-4e59-a673-bce3b005d6f8 mouseenter_once signal received
+INFO f2a56fe1-e96b-40b6-9e7e-304c9954a284 eaf22518-3273-4530-856b-35b13067caa5 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 c35b7b56-e22b-4e09-b116-56e6bf727c99 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 4b0604a7-ec20-4e59-a673-bce3b005d6f8 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 4b0604a7-ec20-4e59-a673-bce3b005d6f8 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 eaf22518-3273-4530-856b-35b13067caa5 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 eaf22518-3273-4530-856b-35b13067caa5 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 e881e881-fc44-4901-8241-eef7c0beb636 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 e881e881-fc44-4901-8241-eef7c0beb636 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 889bc2af-f212-41d7-8b2d-eff9f66cdadc revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 889bc2af-f212-41d7-8b2d-eff9f66cdadc mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 3e00a585-f4dc-4471-8caa-8c858fcdb091 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 3e00a585-f4dc-4471-8caa-8c858fcdb091 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 8ff2b81c-0955-428f-8138-d0a2ad493eb7 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 8ff2b81c-0955-428f-8138-d0a2ad493eb7 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 eadca5cb-83a8-4570-97e5-a92abf56eefa revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 eadca5cb-83a8-4570-97e5-a92abf56eefa mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 8f4f2c3c-e433-4a8f-992f-0a35bc3edc10 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 8f4f2c3c-e433-4a8f-992f-0a35bc3edc10 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 403e0f16-1742-4cd0-adf0-f5acdfc1d599 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 403e0f16-1742-4cd0-adf0-f5acdfc1d599 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 89d79374-1947-48df-bbdb-9d517feaf51c revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 89d79374-1947-48df-bbdb-9d517feaf51c mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 7a366538-3ac6-4d0c-a221-3f39c5fa204d mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 7a366538-3ac6-4d0c-a221-3f39c5fa204d revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 b8649e0c-4ec7-49a5-9d6e-c6f0fecc5fd8 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 b8649e0c-4ec7-49a5-9d6e-c6f0fecc5fd8 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 e9ca81aa-0a33-411d-88f1-4bbc84725a0b revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 e9ca81aa-0a33-411d-88f1-4bbc84725a0b mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 72058798-ad2a-4796-a215-385923ba5106 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 e16d9687-3997-482a-a647-8911a030903b revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 e16d9687-3997-482a-a647-8911a030903b mouseenter_once signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 5629431f-878e-4663-88d7-def927e197d3 revealed signal received
+INFO end_of_session_sections htmx
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 5629431f-878e-4663-88d7-def927e197d3 mouseenter_once signal received
+INFO end_of_session_sections valid session
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 1b4e0e78-c064-4334-9aaa-13c5ebc75455 revealed signal received
+INFO 5f01b7d9-b47c-45cc-88fb-fd618743c803 1b4e0e78-c064-4334-9aaa-13c5ebc75455 mouseenter_once signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e c35b7b56-e22b-4e09-b116-56e6bf727c99 mouseenter_once signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 4b0604a7-ec20-4e59-a673-bce3b005d6f8 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e eaf22518-3273-4530-856b-35b13067caa5 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 4b0604a7-ec20-4e59-a673-bce3b005d6f8 mouseenter_once signal received
+INFO end_of_session_sections htmx
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 3e00a585-f4dc-4471-8caa-8c858fcdb091 revealed signal received
+INFO end_of_session_sections valid session
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 72058798-ad2a-4796-a215-385923ba5106 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 1b4e0e78-c064-4334-9aaa-13c5ebc75455 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 5629431f-878e-4663-88d7-def927e197d3 revealed signal received
+INFO 0330c2d1-5b9c-4cf7-8365-286ed25cd57e 1b4e0e78-c064-4334-9aaa-13c5ebc75455 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 4b0604a7-ec20-4e59-a673-bce3b005d6f8 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a c35b7b56-e22b-4e09-b116-56e6bf727c99 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 4b0604a7-ec20-4e59-a673-bce3b005d6f8 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a eaf22518-3273-4530-856b-35b13067caa5 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a eaf22518-3273-4530-856b-35b13067caa5 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a e881e881-fc44-4901-8241-eef7c0beb636 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a e881e881-fc44-4901-8241-eef7c0beb636 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 889bc2af-f212-41d7-8b2d-eff9f66cdadc revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 889bc2af-f212-41d7-8b2d-eff9f66cdadc mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 3e00a585-f4dc-4471-8caa-8c858fcdb091 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 3e00a585-f4dc-4471-8caa-8c858fcdb091 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 8ff2b81c-0955-428f-8138-d0a2ad493eb7 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 8ff2b81c-0955-428f-8138-d0a2ad493eb7 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a eadca5cb-83a8-4570-97e5-a92abf56eefa revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a eadca5cb-83a8-4570-97e5-a92abf56eefa mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 8f4f2c3c-e433-4a8f-992f-0a35bc3edc10 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 403e0f16-1742-4cd0-adf0-f5acdfc1d599 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 89d79374-1947-48df-bbdb-9d517feaf51c revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 7a366538-3ac6-4d0c-a221-3f39c5fa204d revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 7a366538-3ac6-4d0c-a221-3f39c5fa204d mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a b8649e0c-4ec7-49a5-9d6e-c6f0fecc5fd8 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a b8649e0c-4ec7-49a5-9d6e-c6f0fecc5fd8 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a e9ca81aa-0a33-411d-88f1-4bbc84725a0b mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a e9ca81aa-0a33-411d-88f1-4bbc84725a0b revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 72058798-ad2a-4796-a215-385923ba5106 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 72058798-ad2a-4796-a215-385923ba5106 mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a e16d9687-3997-482a-a647-8911a030903b revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a e16d9687-3997-482a-a647-8911a030903b mouseenter_once signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 5629431f-878e-4663-88d7-def927e197d3 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 5629431f-878e-4663-88d7-def927e197d3 mouseenter_once signal received
+INFO end_of_session_sections htmx
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 1b4e0e78-c064-4334-9aaa-13c5ebc75455 revealed signal received
+INFO 0c71803b-2978-4f60-acb1-a9b35974690a 1b4e0e78-c064-4334-9aaa-13c5ebc75455 mouseenter_once signal received
+INFO end_of_session_sections valid session
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf c35b7b56-e22b-4e09-b116-56e6bf727c99 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 4b0604a7-ec20-4e59-a673-bce3b005d6f8 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 4b0604a7-ec20-4e59-a673-bce3b005d6f8 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf eaf22518-3273-4530-856b-35b13067caa5 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf eaf22518-3273-4530-856b-35b13067caa5 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf e881e881-fc44-4901-8241-eef7c0beb636 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf e881e881-fc44-4901-8241-eef7c0beb636 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 889bc2af-f212-41d7-8b2d-eff9f66cdadc revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 889bc2af-f212-41d7-8b2d-eff9f66cdadc mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 3e00a585-f4dc-4471-8caa-8c858fcdb091 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 3e00a585-f4dc-4471-8caa-8c858fcdb091 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 8ff2b81c-0955-428f-8138-d0a2ad493eb7 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 8ff2b81c-0955-428f-8138-d0a2ad493eb7 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf eadca5cb-83a8-4570-97e5-a92abf56eefa revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf eadca5cb-83a8-4570-97e5-a92abf56eefa mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 8f4f2c3c-e433-4a8f-992f-0a35bc3edc10 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 72058798-ad2a-4796-a215-385923ba5106 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf e16d9687-3997-482a-a647-8911a030903b mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 72058798-ad2a-4796-a215-385923ba5106 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf e16d9687-3997-482a-a647-8911a030903b revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 5629431f-878e-4663-88d7-def927e197d3 mouseenter_once signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 5629431f-878e-4663-88d7-def927e197d3 revealed signal received
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 1b4e0e78-c064-4334-9aaa-13c5ebc75455 revealed signal received
+INFO eb63eff3-68b3-43a7-94f0-398fb211ffcf 1b4e0e78-c064-4334-9aaa-13c5ebc75455 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 9e0421d2-7224-4d0f-ae37-910d08b14fed mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 9e0421d2-7224-4d0f-ae37-910d08b14fed revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a c35b7b56-e22b-4e09-b116-56e6bf727c99 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a c35b7b56-e22b-4e09-b116-56e6bf727c99 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 4b0604a7-ec20-4e59-a673-bce3b005d6f8 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 4b0604a7-ec20-4e59-a673-bce3b005d6f8 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a eaf22518-3273-4530-856b-35b13067caa5 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a eaf22518-3273-4530-856b-35b13067caa5 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a e881e881-fc44-4901-8241-eef7c0beb636 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a e881e881-fc44-4901-8241-eef7c0beb636 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 889bc2af-f212-41d7-8b2d-eff9f66cdadc revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 3e00a585-f4dc-4471-8caa-8c858fcdb091 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 8ff2b81c-0955-428f-8138-d0a2ad493eb7 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a e9ca81aa-0a33-411d-88f1-4bbc84725a0b revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 03dd80b9-7bed-4a3f-a08d-1b7ba521efc2 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 72058798-ad2a-4796-a215-385923ba5106 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 15ab8cff-c201-4ef3-9462-c5906e1ae6d6 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 72058798-ad2a-4796-a215-385923ba5106 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a e16d9687-3997-482a-a647-8911a030903b mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a e16d9687-3997-482a-a647-8911a030903b revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 5629431f-878e-4663-88d7-def927e197d3 mouseenter_once signal received
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 1b4e0e78-c064-4334-9aaa-13c5ebc75455 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 5629431f-878e-4663-88d7-def927e197d3 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 1b4e0e78-c064-4334-9aaa-13c5ebc75455 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a e9ca81aa-0a33-411d-88f1-4bbc84725a0b mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a b8649e0c-4ec7-49a5-9d6e-c6f0fecc5fd8 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a b8649e0c-4ec7-49a5-9d6e-c6f0fecc5fd8 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 89d79374-1947-48df-bbdb-9d517feaf51c revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 7a366538-3ac6-4d0c-a221-3f39c5fa204d mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 89d79374-1947-48df-bbdb-9d517feaf51c mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 403e0f16-1742-4cd0-adf0-f5acdfc1d599 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 7a366538-3ac6-4d0c-a221-3f39c5fa204d revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 403e0f16-1742-4cd0-adf0-f5acdfc1d599 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 9597b69b-e5d1-47fe-b1e4-e715dfa3d004 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 8f4f2c3c-e433-4a8f-992f-0a35bc3edc10 revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a eadca5cb-83a8-4570-97e5-a92abf56eefa revealed signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 8f4f2c3c-e433-4a8f-992f-0a35bc3edc10 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a eadca5cb-83a8-4570-97e5-a92abf56eefa mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 8ff2b81c-0955-428f-8138-d0a2ad493eb7 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 3e00a585-f4dc-4471-8caa-8c858fcdb091 mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a 889bc2af-f212-41d7-8b2d-eff9f66cdadc mouseenter_once signal received
+INFO 8b076e03-88e3-4ecc-8946-69978c0cd67a f353b9a1-3d3f-45dc-bcd8-e8c658b8fedb mouseenter_once signal received

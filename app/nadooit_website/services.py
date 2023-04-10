@@ -1,7 +1,17 @@
+import random
 import uuid
 
 from django.template import Template
-from .models import Section_Order, Session, Section, Session_Signals
+from .models import (
+    ExperimentGroup,
+    Section_Order,
+    Section_Order_Sections_Through_Model,
+    Section_Transition,
+    Session,
+    Section,
+    Session_Signals,
+    SectionScore,
+)
 
 session_tick = 5
 
@@ -14,7 +24,7 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
 
     if signal_type == "end_of_session_sections":
         revealed_tracking = (
-            '<div class="banner" hx-post="{% url \'nadooit_website:signal\' '
+            '<div class="banner" hx-post="{% url \'nadooit_website:end_of_session_sections\' '
             + "'"
             + str(session_id)
             + "'"
@@ -22,15 +32,47 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
             + "'"
             + str(section_id)
             + "'"
-            + " '"
             # replace spaces with underscores
-            + signal_type.replace(" ", "_")
-            + '\' %}" hx-swap="afterend" hx-trigger="'
+            + ' %}" hx-swap="afterend" hx-trigger="'
             + "revealed"
             + '">'
         )
         closing_div = "<br></div>"
         return html_of_section + revealed_tracking + closing_div
+
+    elif signal_type == "mouseleave":
+        script = """
+        <script>
+        let enterTime = 0;
+
+        function onMouseEnter() {
+            enterTime = new Date().getTime();
+        }
+
+        function onMouseLeave(sessionId, sectionId) {
+            const leaveTime = new Date().getTime();
+            const interactionTime = (leaveTime - enterTime) / 1000;
+
+            // Send the interactionTime along with the mouseleave signal
+            fetch(`/signal/${sessionId}/${sectionId}/mouseleave/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    interaction_time: interactionTime
+                })
+            });
+        }
+
+        </script>
+        """
+        revealed_tracking = f'<div class="section" onmouseenter="onMouseEnter()" onmouseleave="onMouseLeave(\'{session_id}\', \'{section_id}\')">'
+
+        closing_div = "</div>"
+        return revealed_tracking + html_of_section + closing_div + script
+
     else:
         revealed_tracking = (
             "<div hx-post=\"{% url 'nadooit_website:signal' "
@@ -54,6 +96,46 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
 
 def get__template__for__section(section):
     pass
+
+
+def get_seen_sections(session_id):
+    try:
+        session = Session.objects.get(session_id=session_id)
+        seen_sections = session.shown_sections.all()
+        return seen_sections
+    except Session.DoesNotExist:
+        # Handle the case when the session does not exist
+        return None
+
+
+def categorize_user(session_id):
+    SOME_THRESHOLD = 5
+
+    session = Session.objects.get(session_id=session_id)
+    total_interaction_time = session.total_interaction_time
+    total_score = session.session_score
+    shown_sections_count = session.shown_sections.count()
+
+    if shown_sections_count > 0:
+        avg_interaction_time = total_interaction_time / shown_sections_count
+    else:
+        avg_interaction_time = 0
+
+    if avg_interaction_time < SOME_THRESHOLD:
+        user_category = "fast"
+    else:
+        user_category = "slow"
+
+    if user_category == "fast":
+        if total_interaction_time >= 300 or total_score >= 50:
+            return "fast_and_engaged"
+        else:
+            return "fast_and_not_engaged"
+    elif user_category == "slow":
+        if total_interaction_time >= 300 or total_score >= 50:
+            return "slow_and_engaged"
+        else:
+            return "slow_and_not_engaged"
 
 
 def get__template__for__session_id(session_id):
@@ -94,21 +176,32 @@ def get__template__for__session_id(session_id):
     return Template(section_entry_html)
 
 
+# Update the create__session_signal__for__session_id function
 def create__session_signal__for__session_id(session_id, section_id, signal_type):
+    session = Session.objects.get(session_id=session_id)
+    section = Section.objects.get(section_id=section_id)
+    session_signal = Session_Signals(session_signal_type=signal_type, section=section)
+    session_signal.save()
+    session.session_signals.add(session_signal)
 
-    if check__session_id__is_valid(session_id):
+    # Update the section score based on the signal_type
+    section_score, created = SectionScore.objects.get_or_create(section=section)
+    if signal_type == "mouseenter_once":
+        section_score.score += 1
+        session.session_score += 1
+    elif signal_type == "revealed":
+        section_score.score += 5
+        session.session_score += 5
+    elif signal_type == "end_of_session_sections":
+        section_score.score += 10
+        session.session_score += 10
 
-        signal = Session_Signals.objects.create(
-            section=Section.objects.get(section_id=section_id),
-            session_signal_type=signal_type,
-        )
+    section_score.save()
 
-        Session.objects.get(session_id=session_id).session_signals.add(signal)
+    session.save()
 
-        return True
 
-    else:
-        return False
+from django.template.loader import render_to_string
 
 
 def get__sections__for__session_id(session_id):
@@ -121,14 +214,19 @@ def get__sections__for__session_id(session_id):
 
 def create__session():
 
-    session_section_order = Section_Order.objects.get(
-        section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+    session_variant = "control" if random.random() < 0.6 else "experimental"
+
+    session = Session(
+        session_section_order=Section_Order.objects.get(
+            section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+        )
     )
 
-    session = Session.objects.create(
-        session_score=0, session_section_order=session_section_order
-    )
+    session.variant = session_variant
+    if session_variant == "experimental":
+        assign_experiment_group(session.session_id)
     session.save()
+
     return session.session_id
 
 
@@ -139,16 +237,121 @@ def received__session_still_active_signal__for__session_id(session_id):
     return session.session_id
 
 
-def get__next_section(session_id):
-    # check if fist section
-    if Session.objects.filter(session_id=session_id).exists():
-        session = Session.objects.get(session_id=session_id)
-        if session.session_score == 0:
-            # get first section
-            pass
+def get__next_best_section(session_id, current_section_id):
+    current_section = Section.objects.get(id=current_section_id)
+    session = Session.objects.get(session_id=session_id)
+    experiment_group = session.experiment_group
+
+    if session.variant == "control":
+        section_scores = (
+            SectionScore.objects.filter(experiment_group=experiment_group)
+            .exclude(section=current_section)
+            .order_by("-score")
+        )
+
+        if section_scores.exists():
+            best_section = section_scores.first().section
+            return render_to_string(
+                "nadooit_website/section.html", {"section": best_section}
+            )
+    else:
+        # Implement the logic for selecting sections for the experimental group
+        # This can be randomized, or you can use some other strategy
+        # to explore different section orders
+        pass
+
+    return ""
+
+
+def get_next_best_section_for_experimental_group(user_category, seen_sections):
+    sections = (
+        Section.objects.filter(categories__name=user_category, plugin=False)
+        .exclude(section_id__in=seen_sections)
+        .order_by("-score")
+    )
+
+    if sections.exists():
+        return sections[0]
+    else:
+        # Try to get sections from other categories
+        other_sections = (
+            Section.objects.exclude(categories__name=user_category)
+            .exclude(id__in=seen_sections, plugin=False)
+            .order_by("-score")
+        )
+        if other_sections.exists():
+            return other_sections[0]
         else:
-            pass
-            # get next section
+            return None
+
+
+def get_next_best_section_with_transitions(
+    user_category, seen_sections, current_section_id, next_section_id
+):
+    # Get sections with the user_category and exclude plugin sections
+    sections = Section.objects.filter(category=user_category, plugin=False)
+
+    # Get transitions for the current section
+    transitions = Section_Transition.objects.filter(section_1_id=current_section_id)
+
+    # Exclude sections that have already been shown
+    valid_transitions = transitions.exclude(section_2_id__in=seen_sections)
+
+    # Filter transitions with sections that match the user_category
+    valid_transitions = valid_transitions.filter(
+        section_2_id__in=sections.values_list("section_id", flat=True)
+    )
+
+    # Order transitions by transition_percentage and get the best one
+    best_transition = valid_transitions.order_by("-transition_percentage").first()
+
+    if best_transition:
+        # If the best_transition's next section is equal to the next_section_id, prioritize it
+        if str(best_transition.section_2_id) == next_section_id:
+            next_section = Section.objects.get(section_id=next_section_id)
+        else:
+            # If not, choose the best_transition's next section
+            next_section = Section.objects.get(section_id=best_transition.section_2_id)
+    else:
+        # If there are no valid transitions, fall back to the next section in the ordered_sections
+        next_section = Section.objects.get(section_id=next_section_id)
+
+    return next_section
+
+
+from django.template.loader import render_to_string
+
+
+def get__next_section(session_id, current_section_id):
+    session = Session.objects.get(session_id=session_id)
+    current_section = Section.objects.get(section_id=current_section_id)
+
+    current_section_order = session.session_section_order
+    ordered_sections = current_section_order.sections.all().order_by(
+        "section_order_sections_through_model__order"
+    )
+
+    seen_sections = session.shown_sections.values_list("section_id", flat=True)
+
+    # Get user category
+    user_category = categorize_user(session_id)
+
+    if ordered_sections.filter(section_id=current_section_id).exists():
+        index = list(ordered_sections).index(current_section)
+        if index + 1 < len(ordered_sections):
+            next_section = ordered_sections[index + 1]
+
+            # Call the new function to get the next best section considering transitions
+            next_best_section = get_next_best_section_with_transitions(
+                user_category, seen_sections, current_section_id, next_section.id
+            )
+
+            if next_best_section:
+                return render_to_string(
+                    "nadooit_website/section.html", {"section": next_best_section}
+                )
+
+    return ""
 
 
 def check__session_id__is_valid(session_id: uuid):
@@ -162,3 +365,12 @@ def get__first_section():
     # If all first section tests are done, evalualte them.
     # If not create a new competition and get the first section.
     pass
+
+
+def assign_experiment_group(session_id):
+    experiment_groups = ExperimentGroup.objects.all()
+    if experiment_groups.exists():
+        experiment_group = random.choice(experiment_groups)
+    else:
+        experiment_group = ExperimentGroup.objects.create(name="Default")
+    return experiment_group

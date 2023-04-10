@@ -25,11 +25,31 @@ class Signals_Option(models.Model):
         return self.signal_type
 
 
+class Category(models.Model):
+    name = models.CharField(
+        max_length=255,
+        choices=(
+            ("fast_and_engaged", "Fast and Engaged"),
+            ("fast_and_not_engaged", "Fast and Not Engaged"),
+            ("slow_and_engaged", "Slow and Engaged"),
+            ("slow_and_not_engaged", "Slow and Not Engaged"),
+        ),
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.name
+
+
 # Section is a class that stores the html code of a section
 class Section(models.Model):
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     section_name = models.CharField(max_length=200)
     section_html = models.TextField()
+
+    categories = models.ManyToManyField(Category)
+
+    plugin = models.BooleanField(default=False)
 
     signal_options = models.ManyToManyField(Signals_Option, blank=True)
 
@@ -44,9 +64,26 @@ class Section(models.Model):
             self.section_name = self.get_valid_filename(self.section_name)
         super().save(*args, **kwargs)
 
-
     def __str__(self):
         return self.section_name
+
+
+class ExperimentGroup(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class SectionScore(models.Model):
+    section = models.OneToOneField(Section, on_delete=models.CASCADE)
+    score = models.FloatField(default=0)
+    experiment_group = models.IntegerField(
+        choices=((0, "Control"), (1, "Experimental")), default=0
+    )
+
+    def __str__(self):
+        return f"{self.section} - {self.experiment_group} - Score: {self.score}"
 
 
 # Section_Order is a class that stores the order in which the sections are displayed to the visitor
@@ -101,13 +138,27 @@ class Session_Signals(models.Model):
 
 class Session(models.Model):
     session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    session_start_time = models.DateTimeField(auto_now_add=True)
-    session_score = models.IntegerField()
-    session_duration = models.IntegerField(default=0)
+
     session_section_order = models.ForeignKey(Section_Order, on_delete=models.CASCADE)
+
+    session_start_time = models.DateTimeField(auto_now_add=True)
+    session_duration = models.IntegerField(default=0)
+    total_interaction_time = models.FloatField(default=0)
+    session_signals = models.ManyToManyField(Session_Signals, blank=True)
+    shown_sections = models.ManyToManyField(Section, blank=True)
     session_clicked_on_appointment_form = models.BooleanField(default=False)
 
-    session_signals = models.ManyToManyField(Session_Signals, blank=True)
+    session_score = models.IntegerField(default=0)
+
+    category = models.CharField(
+        max_length=255, choices=(("fast", "Fast"), ("slow", "Slow")), default="fast"
+    )
+
+    variant = models.CharField(
+        max_length=255,
+        choices=(("control", "Control"), ("experimental", "Experimental")),
+        default="control",
+    )
 
     def session_end_time(self):
         return self.session_start_time + self.session_duration

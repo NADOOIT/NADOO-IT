@@ -10,12 +10,17 @@ urlpatterns = [
     path("datenschutz", views.datenschutz, name="datenschutz"),
     path("statistics", views.statistics, name="statistics"),
     path(
-        "get_next_section/<str:session_id>",
+        "get_next_section/<str:session_id>/<str:current_section_id>",
         views.get_next_section,
         name="get_next_section",
     ),
     path(
-        "signal/<str:session_id>/<str:section_id>/<str:signal_type>",
+        "end_of_session_sections/<str:session_id>/<str:current_section_id>",
+        views.end_of_session_sections,
+        name="end_of_session_sections",
+    ),
+    path(
+        "signal/<uuid:session_id>/<slug:section_id>/<slug:signal_type>/",
         views.signal,
         name="signal",
     ),
