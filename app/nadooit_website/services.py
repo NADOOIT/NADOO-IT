@@ -1,5 +1,6 @@
 import random
 import uuid
+from typing import Optional
 
 from django.template import Template
 from .models import (
@@ -12,6 +13,11 @@ from .models import (
     Session_Signals,
     SectionScore,
 )
+
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 session_tick = 5
 
@@ -128,14 +134,18 @@ def categorize_user(session_id):
 
     if user_category == "fast":
         if total_interaction_time >= 300 or total_score >= 50:
-            return "fast_and_engaged"
+            user_category = "fast_and_engaged"
         else:
-            return "fast_and_not_engaged"
+            user_category = "fast_and_not_engaged"
     elif user_category == "slow":
         if total_interaction_time >= 300 or total_score >= 50:
-            return "slow_and_engaged"
+            user_category = "slow_and_engaged"
         else:
-            return "slow_and_not_engaged"
+            user_category = "slow_and_not_engaged"
+
+    logger.info(f"User category: {user_category}")
+
+    return user_category
 
 
 def get__template__for__session_id(session_id):
@@ -153,6 +163,9 @@ def get__template__for__session_id(session_id):
     for section in section_entry:
 
         html_of_section = section.section_html
+
+        logger.info(f"Section: {section.section_html}")
+
         section_id = section.section_id
 
         signal_options = section.signal_options.all()
@@ -165,6 +178,8 @@ def get__template__for__session_id(session_id):
                     section_id,
                     signal_option.signal_type,
                 )
+
+        logger.info(f"Section: {html_of_section}")
 
         section_entry_html += html_of_section
 
@@ -216,11 +231,19 @@ def create__session():
 
     session_variant = "control" if random.random() < 0.6 else "experimental"
 
+    # for testing purposes
+    session_variant = "experimental"
+
+    section_order = Section_Order.objects.get(section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b")
+    sections = section_order.sections.all()
+
     session = Session(
-        session_section_order=Section_Order.objects.get(
-            section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
-        )
+        session_section_order=section_order
     )
+    session.save()  # Save the session first to create a record in the database
+
+    session.shown_sections.set(sections)  # Set the shown_sections attribute
+    session.save()  # Save the session again to update the shown_sections attribute
 
     session.variant = session_variant
     if session_variant == "experimental":
@@ -235,6 +258,72 @@ def received__session_still_active_signal__for__session_id(session_id):
     session.session_duration = session_tick + session.session_duration
     session.save()
     return session.session_id
+
+
+def get_next_best_section_for_experimental_group(
+    user_category, seen_sections, last_shown_section_id=None
+):
+    sections = (
+        Section.objects.filter(categories__name=user_category, plugin=False)
+        .exclude(section_id__in=seen_sections)
+        .exclude(section_id=last_shown_section_id)
+        .order_by("-sectionscore__score")
+    )
+
+    if sections.exists():
+        return sections[0]
+    else:
+        # Try to get sections from other categories
+        other_sections = (
+            Section.objects.exclude(categories__name=user_category)
+            .exclude(section_id__in=seen_sections, plugin=False)
+            .exclude(section_id=last_shown_section_id)
+            .order_by("-sectionscore__score")
+        )
+        if other_sections.exists():
+            return other_sections[0]
+        else:
+            return None
+
+
+def get__next_section__for__session_id_and_current_section_id(
+    session_id, current_section_id
+) -> Optional[Section]:
+    session = Session.objects.get(session_id=session_id)
+    current_section = Section.objects.get(section_id=current_section_id)
+
+    current_section_order = session.session_section_order
+    ordered_sections = current_section_order.sections.all().order_by(
+        "section_order_sections_through_model__order"
+    )
+
+    seen_sections = session.shown_sections.values_list("section_id", flat=True)
+
+    # Get user category
+    user_category = categorize_user(session_id)
+
+    if ordered_sections.filter(section_id=current_section_id).exists():
+        index = list(ordered_sections).index(current_section)
+        if index + 1 < len(ordered_sections):
+            next_section = ordered_sections[index + 1]
+
+            # Call the new function to get the next best section considering transitions
+            next_best_section = get_next_best_section_with_transitions(
+                user_category,
+                seen_sections,
+                current_section_id,
+                next_section.section_id,
+            )
+
+            # Add the next best section to the session's shown_sections
+            session.shown_sections.add(next_best_section)
+
+            # Save the session
+            session.save()
+
+            return next_best_section
+
+    return None
 
 
 def get__next_best_section(session_id, current_section_id):
@@ -252,42 +341,20 @@ def get__next_best_section(session_id, current_section_id):
         if section_scores.exists():
             best_section = section_scores.first().section
             return render_to_string(
-                "nadooit_website/section.html", {"section": best_section}
+                "nadooit_website/section.html",
+                {"section": Template(best_section.section_html)},
             )
     else:
-        # Implement the logic for selecting sections for the experimental group
-        # This can be randomized, or you can use some other strategy
-        # to explore different section orders
-        pass
+        return get__next_section__for__session_id_and_current_section_id(
+            session_id, current_section_id
+        )
 
     return ""
 
 
-def get_next_best_section_for_experimental_group(user_category, seen_sections):
-    sections = (
-        Section.objects.filter(categories__name=user_category, plugin=False)
-        .exclude(section_id__in=seen_sections)
-        .order_by("-score")
-    )
-
-    if sections.exists():
-        return sections[0]
-    else:
-        # Try to get sections from other categories
-        other_sections = (
-            Section.objects.exclude(categories__name=user_category)
-            .exclude(id__in=seen_sections, plugin=False)
-            .order_by("-score")
-        )
-        if other_sections.exists():
-            return other_sections[0]
-        else:
-            return None
-
-
 def get_next_best_section_with_transitions(
     user_category, seen_sections, current_section_id, next_section_id
-):
+) -> Optional[Section]:
     # Get sections with the user_category and exclude plugin sections
     sections = Section.objects.filter(category=user_category, plugin=False)
 
@@ -322,7 +389,7 @@ def get_next_best_section_with_transitions(
 from django.template.loader import render_to_string
 
 
-def get__next_section(session_id, current_section_id):
+def get__next_section_html(session_id, current_section_id):
     session = Session.objects.get(session_id=session_id)
     current_section = Section.objects.get(section_id=current_section_id)
 
@@ -348,7 +415,8 @@ def get__next_section(session_id, current_section_id):
 
             if next_best_section:
                 return render_to_string(
-                    "nadooit_website/section.html", {"section": next_best_section}
+                    "nadooit_website/section.html",
+                    {"section": Template(next_best_section.section_html)},
                 )
 
     return ""
@@ -374,3 +442,25 @@ def assign_experiment_group(session_id):
     else:
         experiment_group = ExperimentGroup.objects.create(name="Default")
     return experiment_group
+
+
+def get_next_section_based_on_variant(
+    session_id, current_section_id, user_category, seen_sections, variant
+):
+    session = Session.objects.get(session_id=session_id)
+
+    if variant == "experimental":
+        next_section = get_next_best_section_for_experimental_group(
+            user_category, seen_sections, last_shown_section_id=current_section_id
+        )
+    else:
+        next_section = get__next_section__for__session_id_and_current_section_id(
+            session_id, current_section_id
+        )
+
+    # Update seen_sections
+    if next_section:
+        session.shown_sections.add(next_section)
+        session.save()
+
+    return next_section

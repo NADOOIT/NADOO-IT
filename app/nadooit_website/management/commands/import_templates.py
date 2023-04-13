@@ -1,6 +1,7 @@
 # nadooit_website/management/commands/import_templates.py
 import os
 import shutil
+import chardet
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
@@ -33,18 +34,7 @@ class Command(BaseCommand):
         for root, dirs, files in os.walk(input_dir):
             for filename in files:
                 if filename.endswith(".html"):
-                    if not self.is_valid_filename(filename):
-                        valid_filename = self.get_valid_filename(filename)
-
-                        old_path = os.path.join(root, filename)
-                        new_path = os.path.join(root, valid_filename)
-                        shutil.move(old_path, new_path)
-                        self.stdout.write(
-                            self.style.SUCCESS(
-                                f'Renamed file "{old_path}" to "{new_path}".'
-                            )
-                        )
-                        filename = valid_filename
+                    # ... (previous code)
 
                     file_path = os.path.join(root, filename)
                     section_name = os.path.relpath(file_path, input_dir)
@@ -52,8 +42,20 @@ class Command(BaseCommand):
                     # Remove the '.html' extension from the section_name
                     section_name = section_name[:-5]
 
-                    with open(file_path, "r") as f:
-                        content = f.read()
+                    content = None
+
+                    # Read the file with UTF-8 encoding
+                    try:
+                        with open(file_path, "r", encoding="utf-8") as f:
+                            content = f.read()
+                    except UnicodeDecodeError:
+                        # Fall back to using chardet if UTF-8 decoding fails
+                        with open(file_path, "rb") as f:
+                            raw_data = f.read()
+                            encoding = chardet.detect(raw_data)["encoding"]
+
+                        with open(file_path, "r", encoding=encoding) as f:
+                            content = f.read()
 
                     Section.objects.update_or_create(
                         section_name=section_name,

@@ -28,10 +28,14 @@ class Section_OrderAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
     save_as = True
 
 
+class SectionAdmin(admin.ModelAdmin):
+    list_filter = ("plugin",)  # Add a filter for the 'plugin' field
+
+
 # Register your models here.
 admin.site.register(Visit)
 admin.site.register(Session)
-admin.site.register(Section)
+admin.site.register(Section, SectionAdmin)
 admin.site.register(Section_Order, Section_OrderAdmin)
 admin.site.register(Signals_Option)
 admin.site.register(Category)

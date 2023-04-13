@@ -43,6 +43,7 @@ class Category(models.Model):
 
 # Section is a class that stores the html code of a section
 class Section(models.Model):
+
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     section_name = models.CharField(max_length=200)
     section_html = models.TextField()
