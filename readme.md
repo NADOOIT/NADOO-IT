@@ -30,6 +30,7 @@ It forms the interface to the system, hosts the website, and provides the API.
     docker compose -f docker-compose-dev.yml build
     docker-compose -f docker-compose-dev.yml run --rm app python manage.py makemigrations
     docker-compose -f docker-compose-dev.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
     docker-compose -f docker-compose-dev.yml run --rm app python manage.py createsuperuser
     docker-compose -f docker-compose-dev.yml up
 
@@ -219,6 +220,8 @@ Run the following command to update the server
     docker compose -f docker-compose.deploy.yml build
     
     docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+
+    docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
 
     docker compose -f docker-compose.deploy.yml down
 
