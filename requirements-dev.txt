@@ -57,3 +57,5 @@ pytest-factoryboy
 python-dotenv
 django-ordered-model
 chardet
+celery
+redis

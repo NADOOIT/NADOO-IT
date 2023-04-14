@@ -19,6 +19,9 @@ services:
       - 'COCKROACH_DB_OPTIONS=${COCKROACH_DB_OPTIONS}'
       - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
+      - 'CELERY_BROKER_URL=redis://redis:6379/0'
+    depends_on:
+      - redis
     volumes:
       #- /home/django/.postgresql/:/home/django/.postgresql/ 
       - /home/nadooserver/.postgresql/:/home/django/.postgresql/
@@ -51,6 +54,8 @@ services:
       - 'certbot-certs:/etc/letsencrypt'
     depends_on:
       - proxy
+  redis:
+    image: 'redis:latest'
 volumes:
   certbot-web: null
   proxy-dhparams: null

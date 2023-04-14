@@ -111,16 +111,26 @@ See the following link for instructions on installing docker on your system: <ht
 
 #### Server setup
 
-##### Create a new user
+##### Automatic
+
+    Download the setup.sh script from the repository or copy the contents into a new file named setup.sh on your server.
+    Make the script executable by running chmod +x setup.sh.
+    Run the script with ./setup.sh.
+    Follow the prompts to provide the required information for the .env file.
+    Note: The automatic setup will clone the repository, create the .env file, and perform the necessary steps for project setup, including building Docker images, running migrations, creating a superuser, and starting the server.
+    
+##### Manuel
+
+###### Create a new user
 
         adduser nadooit
         usermod -aG sudo nadooit
 
-##### Install docker
+###### Install docker
 
 TODO Fill this section
 
-#### Project setup
+##### Project setup
 
 1. Copy the repository to your servers home directory
 
@@ -139,19 +149,19 @@ To open the file in nano, type:
 
 sudo nano .env
 
-#### Django
+##### Django
 
 Replace your_secret_key with a new secret key. You can generate one here: <https://miniwebtool.com/django-secret-key-generator/>
 
 DJANGO_SECRET_KEY=your_secret_key
 
-#### Nginx
+##### Nginx
 
 ACME_DEFAUT_EMAIL=your_email
 
 DOMAIN=your_domain
 
-#### Database
+##### Database
 
 1. to find the following variables, go to <https://cockroachlabs.cloud/>
 2. login or create an account
@@ -184,34 +194,34 @@ COCKROACH_DB_PASSWORD=your_cockroach_db_password
 
 COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
-#### Docker
+##### Docker
 
-#### Build the docker images
+##### Build the docker images
 
     - docker compose -f docker-compose.deploy.yml build
     - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
 
-#### Running migrations
+##### Running migrations
 
 1. The database needs to be migrated before the server can be started. To do this, run the following command:
     - docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
 
-#### Creating superuser
+##### Creating superuser
 
 1. Run the following command to create a superuser
 docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
 
-#### Starting the server
+### Starting the server
 
 1. Run the following command to start the server
 docker compose -f docker-compose.deploy.yml up -d
 
-#### Stopping the server
+### Stopping the server
 
 1. Run the following command to stop the server
 docker compose -f docker-compose.deploy.yml down
 
-#### Updating the server
+### Updating the server
 
 Run the following command to update the server
 

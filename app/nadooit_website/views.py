@@ -12,6 +12,7 @@ from .services import (
     get_next_section_based_on_variant,
     get_seen_sections,
 )
+from .tasks import update_session_section_order
 from .services import get__session_tick
 from .services import (
     received__session_still_active_signal__for__session_id,
@@ -144,6 +145,15 @@ def end_of_session_sections(request, session_id, current_section_id):
             logger.info(next_section.section_html)
 
             if next_section:
+                # Check if the current Section_Order of the Session for the session_id including the new section(next_section) is an existent Section_Order.
+                # It is important that it is not just that there exists an Section_Order with all the same Sections but that also the Order in which the Sections in the Section_Order are the same.
+                # The order of the Section is tracked by Section_Order_Sections_Through_Model.
+                # If such an Section_Order exists the Section_Order in the Session is replaced by that Section_Order.
+                # If no such Section_Order exists create a new Section_Order with all the Sections from the old Section_Order and add the new Section to the end.
+                update_session_section_order.delay(
+                    session.session_id, next_section.section_id
+                )
+
                 next_section_html = (
                     get__section_html_including_signals__for__section_and_session_id(
                         next_section, session_id
@@ -162,12 +172,6 @@ def end_of_session_sections(request, session_id, current_section_id):
                     + str(next_section_html)
                 )
 
-                # Create a temporary template from the HTML string
-                # temp_template = Template(next_section_html)
-
-                # Create a context with any necessary variables (if needed)
-                # context = Context({})
-
                 rendered_html = render(
                     request,
                     "nadooit_website/section.html",
@@ -176,10 +180,6 @@ def end_of_session_sections(request, session_id, current_section_id):
 
                 logger.info(rendered_html)
 
-                # Render the template with the given context
-                # rendered_html = temp_template.render(context)
-
-                # Return the rendered HTML as an HttpResponse
                 return rendered_html
             else:
                 return django.http.HttpResponse("No more sections available.")

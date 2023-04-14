@@ -26,3 +26,11 @@ services:
       - 'COCKROACH_DB_OPTIONS=${COCKROACH_DB_OPTIONS}'
       - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
+      - 'CELERY_BROKER_URL=redis://redis:6379/0'
+    depends_on:
+      - redis
+      
+  redis:
+      image: 'redis:latest'
+      ports:
+        - '6379:6379'

@@ -215,11 +215,13 @@ def create__session_signal__for__session_id(session_id, section_id, signal_type)
     if signal_type == "mouseenter_once":
         section_score.score += 1
         session.session_score += 1
+        
     elif signal_type == "revealed":
         section_score.score += 5
         session.session_score += 5
+        
+        
     elif signal_type == "end_of_session_sections":
-        section_score.score += 10
         session.session_score += 10
 
     section_score.save()
