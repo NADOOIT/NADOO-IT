@@ -27,9 +27,8 @@ def get__session_tick():
 
 
 def add__signal(html_of_section, session_id, section_id, signal_type):
-
     if signal_type == "end_of_session_sections":
-        revealed_tracking = (
+        end_of_session_tracking = (
             '<div class="banner" hx-post="{% url \'nadooit_website:end_of_session_sections\' '
             + "'"
             + str(session_id)
@@ -39,12 +38,12 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
             + str(section_id)
             + "'"
             # replace spaces with underscores
-            + ' %}" hx-swap="afterend" hx-trigger="'
-            + "revealed"
-            + '">'
+            + ' %}" hx-swap="outerHTML" hx-trigger="revealed"'
+            + 'hx-target="#end_of_session"'
+            + ">"
         )
-        closing_div = "<br></div>"
-        return html_of_section + revealed_tracking + closing_div
+        closing_div = "</div><div id='end_of_session'>"
+        return end_of_session_tracking + html_of_section + closing_div
 
     elif signal_type == "mouseleave":
         script = """
@@ -161,7 +160,6 @@ def get__template__for__session_id(session_id):
     section_id = ""
 
     for section in section_entry:
-
         html_of_section = section.section_html
 
         logger.info(f"Section: {section.section_html}")
@@ -228,18 +226,17 @@ def get__sections__for__session_id(session_id):
 
 
 def create__session():
-
     session_variant = "control" if random.random() < 0.6 else "experimental"
 
     # for testing purposes
     session_variant = "experimental"
 
-    section_order = Section_Order.objects.get(section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b")
+    section_order = Section_Order.objects.get(
+        section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+    )
     sections = section_order.sections.all()
 
-    session = Session(
-        session_section_order=section_order
-    )
+    session = Session(session_section_order=section_order)
     session.save()  # Save the session first to create a record in the database
 
     session.shown_sections.set(sections)  # Set the shown_sections attribute

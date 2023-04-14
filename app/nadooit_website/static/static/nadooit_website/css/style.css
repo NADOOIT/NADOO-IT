@@ -416,8 +416,10 @@ footer {
 .our-grantee {
   text-transform: none;
   text-align: center;
-  padding: 10% 0 1% 0;
+  padding: 10% 0 0% 0;
   color: white;
+  padding-left: 2rem; /* Add space to the left */
+  padding-right: 2rem; /* Add space to the right */
 }
 
 .our-grantee h1{

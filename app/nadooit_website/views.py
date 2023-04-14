@@ -40,7 +40,6 @@ def user_is_staf(user: User) -> bool:
 
 # Create your views here.
 def index(request):
-
     # create a visit object for the index page
     visit = Visit(site="Index")
     # save the visit
@@ -51,9 +50,7 @@ def index(request):
 
 @csrf_exempt
 def signal(request, session_id, section_id, signal_type):
-
     if check__session_id__is_valid(session_id):
-
         create__session_signal__for__session_id(session_id, section_id, signal_type)
 
         if signal_type == "mouseenter_once":
@@ -67,7 +64,6 @@ def signal(request, session_id, section_id, signal_type):
                 + "signal received"
             )
         if signal_type == "mouseleave":
-
             body_unicode = request.body.decode("utf-8")
             body = json.loads(body_unicode)
             interaction_time = body.get("interaction_time", 0)
@@ -111,11 +107,9 @@ def signal(request, session_id, section_id, signal_type):
 @csrf_exempt
 def end_of_session_sections(request, session_id, current_section_id):
     if request.htmx:
-
         logger.info("end_of_session_sections htmx")
 
         if check__session_id__is_valid(session_id):
-
             logger.info("end_of_session_sections valid session")
 
             create__session_signal__for__session_id(
@@ -152,7 +146,6 @@ def end_of_session_sections(request, session_id, current_section_id):
             logger.info(next_section.section_html)
 
             if next_section:
-
                 next_section_html = add__signal(
                     next_section.section_html,
                     session_id,
@@ -187,19 +180,16 @@ def end_of_session_sections(request, session_id, current_section_id):
             else:
                 return django.http.HttpResponse("No more sections available.")
         else:
-
             logger.info("end_of_session_sections invalid session")
 
             return django.http.HttpResponseForbidden()
     else:
-
         logger.info("end_of_session_sections forbidden")
 
         return django.http.HttpResponseForbidden()
 
 
 def new_index(request):
-
     # create a visit object for the index page
     visit = Visit(site="New_Index")
     # save the visit
@@ -257,7 +247,6 @@ def session_is_active_signal(request, session_id):
 
 
 def impressum(request):
-
     # create a visit object
     visit = Visit(site="Impressum")
     # save the visit
@@ -269,7 +258,6 @@ def impressum(request):
 
 
 def datenschutz(request):
-
     # create a visit object
     visit = Visit(site="Datenschutz")
     # save the visit
