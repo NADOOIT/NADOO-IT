@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import Type
 
-import model_bakery
+
 import pytest
 from model_bakery import baker
 from nadooit_api_executions_system.models import CustomerProgramExecution

@@ -30,6 +30,7 @@ It forms the interface to the system, hosts the website, and provides the API.
     docker compose -f docker-compose-dev.yml build
     docker-compose -f docker-compose-dev.yml run --rm app python manage.py makemigrations
     docker-compose -f docker-compose-dev.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
     docker-compose -f docker-compose-dev.yml run --rm app python manage.py createsuperuser
     docker-compose -f docker-compose-dev.yml up
 
@@ -220,6 +221,8 @@ Run the following command to update the server
     
     docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
 
+    docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
+
     docker compose -f docker-compose.deploy.yml down
 
     docker compose -f docker-compose.deploy.yml up -d
@@ -269,3 +272,22 @@ It will ask you to setup a password. Setup a password and click on the button. T
 Follow the instructions on the screen to add the security key.
 
 Test the security key by signing out and signing in again.
+
+### Nadooit Website
+
+The Nadooit Website is the main website for the Nadooit project. It is a infinite scroll website that infoms visitors about the Nadooit project and the Nadooit products.
+
+#### Managment Commands
+
+Because the page is build from sections that are stored in the database, the page can be edited by the admin.
+Also all sections are available as templates in the sections_templates folder.
+
+Because the page is build from sections that are stored in the database, it is important to sync the database with the sections_templates folder.
+
+To retrieve all sections from the database and save them as templates in the sections_templates folder, run the following command:
+
+    python manage.py export_templates
+
+To then retrieve all sections from the sections_templates folder and save them in the database, run the following command:
+
+    python manage.py import_templates

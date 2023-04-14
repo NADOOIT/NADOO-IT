@@ -272,6 +272,29 @@ nav {
   line-height: 75px;
   text-transform: none;
 }
+
+.datenschutz li {
+  font-family: 'Roboto', sans-serif; /* Change the font-family to match your design */
+  font-size: 18px; /* Adjust the font size */
+  line-height: 1.5; /* Adjust the line height */
+  color: white; /* Adjust the text color */
+  list-style-type: none; /* Remove the default bullet points */
+  padding-left: 1rem; /* Add some padding to the left */
+  position: relative;
+  margin-bottom: 1rem; /* Add some space between list items */
+}
+
+.datenschutz li:before {
+  content: '•'; /* Add a custom bullet point */
+  color: #007BFF; /* Adjust the bullet point color to match your design */
+  font-size: 24px; /* Adjust the bullet point size */
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+
+
 /* Ende Datenschutz styling */
 
 .gap {
@@ -416,8 +439,10 @@ footer {
 .our-grantee {
   text-transform: none;
   text-align: center;
-  padding: 10% 0 1% 0;
+  padding: 10% 0 0% 0;
   color: white;
+  padding-left: 2rem; /* Add space to the left */
+  padding-right: 2rem; /* Add space to the right */
 }
 
 .our-grantee h1{

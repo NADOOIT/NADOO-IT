@@ -4,11 +4,11 @@
   <nav>
       <div class="container">
           <ul class="nav-bar">
-              <li class="logo"><a href="{% url 'index' %}"><img src={% static 'static\nadooit_website\png\logo\nadooit.png' %} alt=""></a></li>
+              <li class="logo"><a href="{% url 'nadooit_website:index' %}"><img src={% static 'static\nadooit_website\png\logo\nadooit.png' %} alt=""></a></li>
               <ul class="links">
-                  <li><a href="{% url 'index' %}" class="{% is_url_active request 'index' %}">Home</a></li>
-                  <li><a href="{% url 'impressum' %}" class="{% is_url_active request 'impressum' %}">Impressum</a></li>
-                  <li><a href="{% url 'datenschutz' %}" class="{% is_url_active request 'datenschutz' %}">Datenschutz</a></li>
+                  <li><a href="{% url 'nadooit_website:index' %}" class="{% is_url_active request 'nadooit_website:index' %}">Home</a></li>
+                  <li><a href="{% url 'nadooit_website:impressum' %}" class="{% is_url_active request 'nadooit_website:impressum' %}">Impressum</a></li>
+                  <li><a href="{% url 'nadooit_website:datenschutz' %}" class="{% is_url_active request 'nadooit_website:datenschutz' %}">Datenschutz</a></li>
               </ul>
           </ul>
       </div>
@@ -19,7 +19,7 @@
       <div class="nv">
           <div class="container">
               <ul class="nav-bar">
-                  <li class="logo"><a href="{% url 'index' %}"><img src={% static 'static\nadooit_website\png\logo\nadooit.png' %} alt=""></a></li>
+                  <li class="logo"><a href="{% url 'nadooit_website:index' %}"><img src={% static 'static\nadooit_website\png\logo\nadooit.png' %} alt=""></a></li>
                   <li class="toggle" onclick="my()"><i class="far fa-bars bar"></i></li>
                   <li class="close" onclick="my()"><i class="far fa-times cls"></i></li>
               </ul>
@@ -28,9 +28,9 @@
   </nav>
   <div class="mmm">
       <ul class="menu">
-        <li><a href="{% url 'index' %}" class="{% is_url_active request 'index' %}">Home</a></li>
-        <li><a href="{% url 'impressum' %}" class="{% is_url_active request 'impressum' %}">Impressum</a></li>
-        <li><a href="{% url 'datenschutz' %}" class="{% is_url_active request 'datenschutz' %}">Datenschutz</a></li>
+        <li><a href="{% url 'nadooit_website:index' %}" class="{% is_url_active request 'nadooit_website:index' %}">Home</a></li>
+        <li><a href="{% url 'nadooit_website:impressum' %}" class="{% is_url_active request 'nadooit_website:impressum' %}">Impressum</a></li>
+        <li><a href="{% url 'nadooit_website:datenschutz' %}" class="{% is_url_active request 'nadooit_website:datenschutz' %}">Datenschutz</a></li>
       </ul>
   </div>
 </header>

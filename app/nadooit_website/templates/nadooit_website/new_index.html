@@ -1,0 +1,11 @@
+{% extends 'nadooit_website/base.html' %}
+{% load static%}
+{% block content %}
+
+<div class="timer" hx-post="{% url 'nadooit_website:session_is_active_signal' session_id %}" hx-trigger="every {{session_tick}}s"></div>
+
+{% comment %} {{ section_entry|safe }} {% endcomment %}
+
+{% include section_entry %}
+
+{% endblock %}

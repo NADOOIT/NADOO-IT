@@ -1,0 +1,33 @@
+<body>
+    <div class="position-fixed bottom-0 end-0 m-3">
+        <div class="btn-group-vertical" role="group">
+            <button id="meetingBtn" title="Meeting vereinbaren" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meetingModal">Meeting</button>
+            <button onclick="topFunction()" id="myBtn" title="Go to top" class="btn btn-primary"><i class="fal fa-arrow-up"></i> Nach oben scrollen</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="meetingModal" tabindex="-1" aria-labelledby="meetingModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Meeting vereinbaren</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Hier können Sie ein Meeting vereinbaren.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                    <button type="button" class="btn btn-primary">Meeting anfragen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>

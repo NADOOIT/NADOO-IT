@@ -54,6 +54,7 @@ ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").spli
 # See the documentation of the apps for more information.
 INSTALLED_APPS = [
     "sslserver",
+    "ordered_model",
     "django_is_url_active_templatetag",
     "grappelli",
     "django.contrib.admin",
@@ -75,6 +76,7 @@ INSTALLED_APPS = [
     "nadooit_website.apps.NadooitWebsiteConfig",
     "nadooit_os",
     "nadooit_key",
+    "nadooit_questions_and_answers",
     "rest_framework",
     "pwa",
     "django_extensions",
@@ -296,14 +298,16 @@ LOGGING = {
         "file_debug": {
             "level": "DEBUG",
             "class": "logging.FileHandler",
-            "filename": "./logs/log_DEBUG.log",
+            "filename": os.path.join(BASE_DIR, "logs", "log_DEBUG.log"),
             "formatter": "Simple_Format",
+            "encoding": "utf-8",
         },
         "file_info": {
             "level": "INFO",
             "class": "logging.FileHandler",
-            "filename": "./logs/log_INFO.log",
+            "filename": os.path.join(BASE_DIR, "logs", "log_INFO.log"),
             "formatter": "Simple_Format",
+            "encoding": "utf-8",
         },
         "console": {
             "level": "INFO",
