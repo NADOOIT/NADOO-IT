@@ -7,6 +7,7 @@ from .services import (
     add__signal,
     categorize_user,
     create__session_signal__for__session_id,
+    get__section_html_including_signals__for__section_and_session_id,
     get__template__for__session_id,
     get_next_section_based_on_variant,
     get_seen_sections,
@@ -143,8 +144,14 @@ def end_of_session_sections(request, session_id, current_section_id):
             logger.info(next_section.section_html)
 
             if next_section:
+                next_section_html = (
+                    get__section_html_including_signals__for__section_and_session_id(
+                        next_section, session_id
+                    )
+                )
+
                 next_section_html = add__signal(
-                    next_section.section_html,
+                    next_section_html,
                     session_id,
                     next_section.section_id,
                     "end_of_session_sections",
