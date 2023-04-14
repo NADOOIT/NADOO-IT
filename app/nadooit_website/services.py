@@ -6,7 +6,6 @@ from django.template import Template
 from .models import (
     ExperimentGroup,
     Section_Order,
-    Section_Order_Sections_Through_Model,
     Section_Transition,
     Session,
     Section,

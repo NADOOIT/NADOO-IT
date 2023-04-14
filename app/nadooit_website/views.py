@@ -3,8 +3,6 @@ from pipes import Template
 import django.http
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.views.decorators.http import require_POST
-from django.template.loader import render_to_string
 from .services import (
     add__signal,
     categorize_user,
@@ -24,10 +22,9 @@ from .services import get__next_section_html
 from nadooit_auth.models import User
 from .models import Section, Session, Visit
 
-from django.template import Template, Context
-from django.http import HttpResponse
+from django.template import Template
 
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 import logging
 
