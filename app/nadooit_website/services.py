@@ -146,6 +146,31 @@ def categorize_user(session_id):
     return user_category
 
 
+def get__section_html_including_signals__for__section_and_session_id(
+    section: Section, session_id
+):
+    html_of_section = section.section_html
+
+    logger.info(f"Section: {section.section_html}")
+
+    section_id = section.section_id
+
+    signal_options = section.signal_options.all()
+
+    if signal_options is not None:
+        for signal_option in signal_options:
+            html_of_section = add__signal(
+                html_of_section,
+                session_id,
+                section_id,
+                signal_option.signal_type,
+            )
+
+    logger.info(f"Section: {html_of_section}")
+
+    return html_of_section
+
+
 def get__template__for__session_id(session_id):
     # start_section = get_next_section(session_id)
 
@@ -159,24 +184,13 @@ def get__template__for__session_id(session_id):
     section_id = ""
 
     for section in section_entry:
-        html_of_section = section.section_html
-
-        logger.info(f"Section: {section.section_html}")
-
         section_id = section.section_id
 
-        signal_options = section.signal_options.all()
-
-        if signal_options is not None:
-            for signal_option in signal_options:
-                html_of_section = add__signal(
-                    html_of_section,
-                    session_id,
-                    section_id,
-                    signal_option.signal_type,
-                )
-
-        logger.info(f"Section: {html_of_section}")
+        html_of_section = (
+            get__section_html_including_signals__for__section_and_session_id(
+                section, session_id
+            )
+        )
 
         section_entry_html += html_of_section
 
