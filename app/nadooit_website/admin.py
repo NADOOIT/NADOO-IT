@@ -4,6 +4,23 @@ from django.forms import ModelChoiceField
 
 from .models import *
 
+from django.forms import ModelForm
+
+
+class SessionAdmin(admin.ModelAdmin):
+    readonly_fields = ("session_signals", "shown_sections")
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "session_signals":
+            kwargs["queryset"] = Session_Signals.objects.filter(
+                session__session_signals__session_id=request.session_id
+            )
+        elif db_field.name == "shown_sections":
+            kwargs["queryset"] = Section.objects.filter(
+                session__shown_sections__session_id=request.session_id
+            )
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
+
 
 class WebsiteSectionsOrderTabularInline(OrderedTabularInline):
     model = Section_Order_Sections_Through_Model
@@ -33,9 +50,10 @@ class SectionAdmin(admin.ModelAdmin):
 
 
 # Register your models here.
+admin.site.register(Session, SessionAdmin)
 admin.site.register(Visit)
-admin.site.register(Session)
 admin.site.register(Section, SectionAdmin)
 admin.site.register(Section_Order, Section_OrderAdmin)
+admin.site.register(Session_Signals)
 admin.site.register(Signals_Option)
 admin.site.register(Category)

@@ -142,7 +142,6 @@ def end_of_session_sections(request, session_id, current_section_id):
             )
 
             logger.info("end_of_session_sections next_section: " + str(next_section))
-            logger.info(next_section.section_html)
 
             if next_section:
                 # Check if the current Section_Order of the Session for the session_id including the new section(next_section) is an existent Section_Order.

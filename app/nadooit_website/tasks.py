@@ -13,7 +13,7 @@ def update_session_section_order(session_id, next_section_id):
     next_section = Section.objects.get(section_id=next_section_id)
 
     # Get the current Section_Order of the Session
-    current_section_order = session.section_order
+    current_section_order = session.session_section_order
     new_section_list = list(current_section_order.sections.all()) + [next_section]
 
     # Check if there exists an equivalent Section_Order
@@ -30,7 +30,7 @@ def update_session_section_order(session_id, next_section_id):
 
     # If such an Section_Order exists, replace the Section_Order in the Session
     if equivalent_section_order:
-        session.section_order = equivalent_section_order
+        session.session_section_order = equivalent_section_order
         session.save()
     else:
         # If no such Section_Order exists, create a new Section_Order with all the Sections from the old Section_Order and add the new Section to the end.
@@ -41,5 +41,5 @@ def update_session_section_order(session_id, next_section_id):
             )
         new_section_order.save()
 
-        session.section_order = new_section_order
+        session.session_section_order = new_section_order
         session.save()

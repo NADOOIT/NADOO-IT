@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from ordered_model.models import OrderedModel
 
+
 # Create your models here.
 # create a model for someone visiting the site
 # the visit holds the date and time of the visit and the site the visitor visited
@@ -43,7 +44,6 @@ class Category(models.Model):
 
 # Section is a class that stores the html code of a section
 class Section(models.Model):
-
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     section_name = models.CharField(max_length=200)
     section_html = models.TextField()
@@ -112,17 +112,6 @@ class Section_Order_Sections_Through_Model(OrderedModel):
 
     class Meta:
         ordering = ("section_order", "order")
-
-
-# Session
-"""     session_id
-        session_start_time
-        session_end_time
-        session_score
-        session_duration
-        session_section_order 
-        session_made_appointment
-"""
 
 
 class Session_Signals(models.Model):

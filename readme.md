@@ -118,7 +118,7 @@ See the following link for instructions on installing docker on your system: <ht
     Run the script with ./setup.sh.
     Follow the prompts to provide the required information for the .env file.
     Note: The automatic setup will clone the repository, create the .env file, and perform the necessary steps for project setup, including building Docker images, running migrations, creating a superuser, and starting the server.
-    
+
 ##### Manuel
 
 ###### Create a new user
