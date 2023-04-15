@@ -27,6 +27,7 @@ def get__session_tick():
 
 def add__signal(html_of_section, session_id, section_id, signal_type):
     if signal_type == "end_of_session_sections":
+        logger.info(html_of_section)
         end_of_session_tracking = (
             '<div class="banner" hx-post="{% url \'nadooit_website:end_of_session_sections\' '
             + "'"
@@ -183,7 +184,7 @@ def get__template__for__session_id(session_id):
     section_entry_html = ""
     section_id = ""
 
-    for section in section_entry:
+    for i, section in enumerate(section_entry):
         section_id = section.section_id
 
         html_of_section = (
@@ -192,12 +193,14 @@ def get__template__for__session_id(session_id):
             )
         )
 
+        if i == len(section_entry) - 1:
+            html_of_section = add__signal(
+                html_of_section, session_id, section_id, "end_of_session_sections"
+            )
+
         section_entry_html += html_of_section
 
-    # Add end of session signal
-    section_entry_html = add__signal(
-        section_entry_html, session_id, section_id, "end_of_session_sections"
-    )
+    # Add end of session signal to the last section
 
     return Template(section_entry_html)
 
@@ -215,12 +218,11 @@ def create__session_signal__for__session_id(session_id, section_id, signal_type)
     if signal_type == "mouseenter_once":
         section_score.score += 1
         session.session_score += 1
-        
+
     elif signal_type == "revealed":
         section_score.score += 5
         session.session_score += 5
-        
-        
+
     elif signal_type == "end_of_session_sections":
         session.session_score += 10
 

@@ -149,16 +149,19 @@ def end_of_session_sections(request, session_id, current_section_id):
                 # The order of the Section is tracked by Section_Order_Sections_Through_Model.
                 # If such an Section_Order exists the Section_Order in the Session is replaced by that Section_Order.
                 # If no such Section_Order exists create a new Section_Order with all the Sections from the old Section_Order and add the new Section to the end.
+                logger.info("Creating task for updating Section_oder")
                 update_session_section_order.delay(
                     session.session_id, next_section.section_id
                 )
 
+                logger.info("getting html for the next section including signals")
                 next_section_html = (
                     get__section_html_including_signals__for__section_and_session_id(
                         next_section, session_id
                     )
                 )
 
+                logger.info("Adding end_of_session_sections signal to html")
                 next_section_html = add__signal(
                     next_section_html,
                     session_id,
