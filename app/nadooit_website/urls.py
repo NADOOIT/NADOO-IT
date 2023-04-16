@@ -29,4 +29,15 @@ urlpatterns = [
         views.session_is_active_signal,
         name="session_is_active_signal",
     ),
+    path("section_transitions/", views.section_transitions, name="section_transitions"),
+    path(
+        "section_transitions/<str:group_filter>/",
+        views.section_transitions,
+        name="section_transitions_filtered",
+    ),
+    path(
+        "visualize-session-data/",
+        views.visualize_session_data,
+        name="visualize_session_data",
+    ),
 ]

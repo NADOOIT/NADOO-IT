@@ -3,6 +3,8 @@ from pipes import Template
 import django.http
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required, user_passes_test
+
+from nadooit_website.visulize import analyze_and_visualize_session_data
 from .services import (
     add__signal,
     categorize_user,
@@ -29,6 +31,9 @@ from django.template import Template
 from django.views.decorators.csrf import csrf_exempt
 
 import logging
+from django.http import HttpResponse
+from django.conf import settings
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -278,3 +283,27 @@ def statistics(request):
         "nadooit_website/statistics.html",
         {"page_title": "Statistiken", "visits": Visit.objects.all()},
     )
+
+
+def section_transitions(request, group_filter=None):
+    filename = (
+        f"section_transitions_{group_filter}.html"
+        if group_filter
+        else "section_transitions.html"
+    )
+    file_path = os.path.join(
+        settings.BASE_DIR, "nadooit_website", "section_transition", filename
+    )
+
+    with open(file_path, "r") as file:
+        content = file.read()
+
+    return HttpResponse(content, content_type="text/html")
+
+
+def visualize_session_data(request):
+    # Call the function to generate the Plotly HTML file
+    analyze_and_visualize_session_data()
+
+    # Render the section_transitions.html template
+    return render(request, "section_transitions.html")

@@ -57,3 +57,5 @@ django-debug-toolbar==3.6.0
 chardet
 celery
 redis
+click
+plotly

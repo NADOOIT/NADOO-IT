@@ -15676,3 +15676,52 @@ INFO end_of_session_sections user_category: fast_and_engaged
 INFO end_of_session_sections seen_sections: <QuerySet [<Section: BahnbrechendesSystem>, <Section: Wir_erstellen_Künstliche_Intelligenzen_die_Sie_bei_der_Arbeit_entlasten>, <Section: Fokussieren_Sie_sich_auf_Ihr_Kerngeschäft>, <Section: Stellen_Sie_Ihre_Fragen._Wir_geben_Antwort>, <Section: Wir_erstellen_für_Sie_Webseiten_und_Apps>, <Section: Diese_vier_simplen_Schritte_durchlaufen_wir_gemeinsam_für_alle_Ihre_Prozesse>, <Section: TEst>, <Section: Wir_werden_Ihre_externe_IT-Abteilung>, <Section: NeueAnreize>, <Section: Portal_Animated_Logo>, <Section: Prozessoptimierung>, <Section: Kontaktieren_Sie_uns_für_ein_Erstgespräch_und_erfahren_Sie_mehr>, <Section: Für_alle_Schritte_von_Kundenaquise_bis_Geldeingang>, <Section: ZukunftIT>, <Section: Wir_schaffen_IT-Sicherheit>, <Section: EinzigartigesPreismodell>, <Section: Wir_erstellen_Prozessdiagramme>, <Section: MitarbeiterZufriedenheit>, <Section: Nur_dafür_zahlen_Sie>, <Section: Alles_ohne_Abos_und_Wartungsgebühren>, '...(remaining elements truncated)...']>
 INFO end_of_session_sections session.variant: experimental
 INFO end_of_session_sections next_section: None
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0x7f5b2c7fc280>> raised: ModuleNotFoundError("No module named 'app'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 121, in validate_models
+    run_checks()
+  File "/home/django/.local/lib/python3.10/site-packages/django/core/checks/registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/home/django/.local/lib/python3.10/site-packages/django/core/checks/urls.py", line 14, in check_url_config
+    return check_resolver(resolver)
+  File "/home/django/.local/lib/python3.10/site-packages/django/core/checks/urls.py", line 24, in check_resolver
+    return check_method()
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 494, in check
+    for pattern in self.url_patterns:
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 715, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 708, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit/urls.py", line 39, in <module>
+    include(
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/conf.py", line 38, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/urls.py", line 3, in <module>
+    from . import views
+  File "/app/nadooit_website/views.py", line 7, in <module>
+    from app.nadooit_website.visulize import analyze_and_visualize_session_data
+ModuleNotFoundError: No module named 'app'
