@@ -248,16 +248,16 @@ def create__session():
     # for testing purposes
     session_variant = "experimental"
 
-    section_order = Section_Order.objects.get(
-        section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
-    )
-    sections = section_order.sections.all()
+    # Get the most successful Section_Order for the control group
+    if session_variant == "control":
+        section_order = get_most_successful_section_order()
+
+    # For the experimental group, we don't assign any initial Section_Order
+    else:
+        section_order = None
 
     session = Session(session_section_order=section_order)
     session.save()  # Save the session first to create a record in the database
-
-    session.shown_sections.set(sections)  # Set the shown_sections attribute
-    session.save()  # Save the session again to update the shown_sections attribute
 
     session.variant = session_variant
     if session_variant == "experimental":
@@ -265,6 +265,13 @@ def create__session():
     session.save()
 
     return session.session_id
+
+
+def get_most_successful_section_order():
+    # Replace this with the actual logic for finding the most successful Section_Order
+    return Section_Order.objects.get(
+        section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+    )
 
 
 def received__session_still_active_signal__for__session_id(session_id):
@@ -450,12 +457,41 @@ def get__first_section():
 
 
 def assign_experiment_group(session_id):
+    # Retrieve the session object using the session_id
+    session = Session.objects.get(session_id=session_id)
+
+    # Get all available experimental groups
     experiment_groups = ExperimentGroup.objects.all()
+
+    # If there are existing experimental groups, randomly select one
+    # Otherwise, create a new experimental group with the name "Default"
     if experiment_groups.exists():
         experiment_group = random.choice(experiment_groups)
     else:
         experiment_group = ExperimentGroup.objects.create(name="Default")
-    return experiment_group
+
+    # If the selected experimental group has no sessions, create a new Section_Order and assign it to the session
+    if not experiment_group.session_set.exists():
+        section_order = create_new_section_order()
+        session.session_section_order = section_order
+
+    # If there are existing sessions in the group, assign the same Section_Order as the other sessions in the group
+    else:
+        section_order = experiment_group.session_set.first().session_section_order
+        session.session_section_order = section_order
+
+    # Set the shown_sections attribute of the session to include all sections from the section_order
+    session.shown_sections.set(section_order.sections.all())
+
+    # Save the changes made to the session object
+    session.save()
+
+
+def create_new_section_order():
+    # Replace this with the actual logic for creating a new Section_Order
+    section_order = Section_Order.objects.create()
+    section_order.save()
+    return section_order
 
 
 def get_next_section_based_on_variant(

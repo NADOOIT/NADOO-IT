@@ -144,12 +144,6 @@ def end_of_session_sections(request, session_id, current_section_id):
             logger.info("end_of_session_sections next_section: " + str(next_section))
 
             if next_section:
-                # Check if the current Section_Order of the Session for the session_id including the new section(next_section) is an existent Section_Order.
-                # It is important that it is not just that there exists an Section_Order with all the same Sections but that also the Order in which the Sections in the Section_Order are the same.
-                # The order of the Section is tracked by Section_Order_Sections_Through_Model.
-                # If such an Section_Order exists the Section_Order in the Session is replaced by that Section_Order.
-                # If no such Section_Order exists create a new Section_Order with all the Sections from the old Section_Order and add the new Section to the end.
-                logger.info("Creating task for updating Section_oder")
                 update_session_section_order.delay(
                     session.session_id, next_section.section_id
                 )

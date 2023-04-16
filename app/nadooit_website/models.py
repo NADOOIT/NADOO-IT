@@ -140,6 +140,10 @@ class Session(models.Model):
 
     session_score = models.IntegerField(default=0)
 
+    experiment_group = models.ForeignKey(
+        ExperimentGroup, on_delete=models.CASCADE, null=True, blank=True
+    )
+
     category = models.CharField(
         max_length=255, choices=(("fast", "Fast"), ("slow", "Slow")), default="fast"
     )
