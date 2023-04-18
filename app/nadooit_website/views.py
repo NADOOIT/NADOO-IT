@@ -69,11 +69,14 @@ def signal(request, session_id, section_id, signal_type):
             )
         if signal_type == "mouseleave":
             body_unicode = request.body.decode("utf-8")
-            body = json.loads(body_unicode)
-            interaction_time = body.get("interaction_time", 0)
-            session = Session.objects.get(session_id=session_id)
-            session.total_interaction_time += float(interaction_time)
-            session.save()
+            if (
+                body_unicode
+            ):  # Add this condition to check if the request body is not empty
+                body = json.loads(body_unicode)
+                interaction_time = body.get("interaction_time", 0)
+                session = Session.objects.get(session_id=session_id)
+                session.total_interaction_time += float(interaction_time)
+                session.save()
 
         if signal_type == "revealed":
             logger.info(
@@ -101,6 +104,29 @@ def signal(request, session_id, section_id, signal_type):
                 + " "
                 + "signal received"
             )
+        if signal_type == "upvote":
+            logger.info(
+                str(session_id)
+                + " "
+                + str(section_id)
+                + " "
+                + str(signal_type)
+                + " "
+                + "signal received"
+            )
+            # Add your logic for handling upvote signals here
+
+        if signal_type == "downvote":
+            logger.info(
+                str(session_id)
+                + " "
+                + str(section_id)
+                + " "
+                + str(signal_type)
+                + " "
+                + "signal received"
+            )
+            # Add your logic for handling downvote signals here
 
         return django.http.HttpResponse()
 

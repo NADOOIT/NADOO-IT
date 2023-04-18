@@ -1,5 +1,5 @@
 #TODO Check for new versions of the base image. If a new version is available, rebuild the image.
-FROM python:3.10-alpine3.16
+FROM python:3.10-slim-buster
 LABEL maintainer="nadooit.de"
 
 ENV PYTHONUNBUFFERED 1
@@ -9,7 +9,15 @@ COPY requirements.txt /requirements.txt
 RUN mkdir /app
 COPY app/ /app
 
-RUN apk add --upgrade --no-cache build-base --virtual .tmp gcc libc-dev linux-headers git curl
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    git \
+    gcc \
+    libc-dev \
+    linux-headers-amd64
+
 RUN unset https_proxy
 
 
@@ -35,14 +43,19 @@ RUN chmod 755 /home/django
 RUN chmod 755 /app
 USER django
 
+RUN pip install --upgrade pip
+RUN pip install --upgrade cython
+RUN pip install -r /requirements.txt 
+RUN python manage.py collectstatic --noinput 
 
-RUN pip install --upgrade pip && \
-       pip install -r /requirements.txt &&\
-       python manage.py collectstatic --noinput 
-       #&&\
-       #yes | python manage.py makemigrations &&\
-       #yes | python manage.py migrate
-
+RUN apt-get purge -y --auto-remove \
+    build-essential \
+    curl \
+    git \
+    gcc \
+    libc-dev \
+    linux-headers-amd64
+    
 USER root
 
 

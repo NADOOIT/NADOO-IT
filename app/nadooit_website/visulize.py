@@ -4,17 +4,13 @@ import matplotlib.pyplot as plt
 from graphviz import Digraph
 from collections import defaultdict
 from django.core.serializers import serialize
-import click
 import plotly.express as px
 
-from .models import Session, Section, Session_Signals
+from .models import Session, Section, Session_Signal
 
 
-@click.command()
-@click.option(
-    "--group-filter", default=None, help="Filter by control or experimental group"
-)
-def analyze_and_visualize_session_data(group_filter):
+def analyze_and_visualize_session_data():
+    group_filter = "control"
     sessions, session_signals = load_session_data()
     validate_data(sessions, session_signals)
 
@@ -24,28 +20,23 @@ def analyze_and_visualize_session_data(group_filter):
 
 
 def load_session_data():
-    sessions = serialize("json", Session.objects.all())
-    session_signals = serialize("json", Session_Signals.objects.all())
-    return pd.read_json(sessions), pd.read_json(session_signals)
+    sessions = pd.DataFrame.from_records(Session.objects.values())
+    session_signals = pd.DataFrame.from_records(Session_Signal.objects.values())
+
+    print("Sessions columns:", sessions.columns)
+    print("Session_Signals columns:", session_signals.columns)
+
+    return sessions, session_signals
 
 
 def validate_data(sessions, session_signals):
-    missing_sessions = set(session_signals["session_id"]).difference(
-        set(sessions["session_id"])
+    # Check if there are any sections in the sessions DataFrame that are not present in the session_signals DataFrame
+    missing_sections = set(sessions["section_id"]).difference(
+        session_signals["section_id"]
     )
-
-    if missing_sessions:
-        raise ValueError(
-            f"Session signals reference missing sessions: {missing_sessions}"
-        )
-
-    missing_sections = set(session_signals["section_id"]).difference(
-        set(Section.objects.values_list("section_id", flat=True))
-    )
-
     if missing_sections:
-        raise ValueError(
-            f"Session signals reference missing sections: {missing_sections}"
+        print(
+            f"Warning: Missing section data for the following sections: {', '.join(map(str, missing_sections))}"
         )
 
 

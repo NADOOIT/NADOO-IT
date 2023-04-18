@@ -57,7 +57,12 @@ pytest-factoryboy
 python-dotenv
 django-ordered-model
 chardet
+
 celery
 redis
-click
+
 plotly
+pandas
+seaborn
+matplotlib
+graphviz

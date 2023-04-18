@@ -1,0 +1,5 @@
+{
+    "id": "857450103216701441",
+    "name": "Scrollup_Button",
+    "html": "<div class=\"sikder\"></div>\r\n\r\n\r\n\r\n<button onclick=\"topFunction()\" id=\"myBtn\" title=\"Go to top\"><i class=\"fal fa-arrow-up\"></i></button>\r\n\r\n\r\n\r\n<script>\r\n\r\n//Get the button\r\n\r\nvar mybutton = document.getElementById(\"myBtn\");\r\n\r\n\r\n\r\n// When the user scrolls down 20px from the top of the document, show the button\r\n\r\nwindow.onscroll = function() {scrollFunction()};\r\n\r\n\r\n\r\nfunction scrollFunction() {\r\n\r\n  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {\r\n\r\n    mybutton.style.display = \"block\";\r\n\r\n  } else {\r\n\r\n    mybutton.style.display = \"none\";\r\n\r\n  }\r\n\r\n}\r\n\r\n\r\n\r\n// When the user clicks on the button, scroll to the top of the document\r\n\r\nfunction topFunction() {\r\n\r\n  document.body.scrollTop = 0;\r\n\r\n  document.documentElement.scrollTop = 0;\r\n\r\n}\r\n\r\n</script>"
+}

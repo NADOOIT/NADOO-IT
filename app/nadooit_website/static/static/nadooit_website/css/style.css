@@ -460,6 +460,32 @@ footer {
   -webkit-text-fill-color: transparent;
 }
 
+.section-container {
+    position: relative;
+}
+
+.vote-section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100; /* Add this line */
+}
+
+.vote-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+    fill: #212121;
+    outline: none;
+}
+
+.vote-button.highlighted {
+    background-color: #ff9800;
+    color: #ffffff;
+}
+
 /* From here on it is about mobile */
 @media (max-width: 991px) {
   .container {
@@ -730,4 +756,8 @@ footer {
     white-space: wrap;
     text-transform: none;
   }
+  .view-port {
+  padding-top: 90px;
+  }
+
 }

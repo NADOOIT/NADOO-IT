@@ -9,7 +9,7 @@ from .models import (
     Section_Transition,
     Session,
     Section,
-    Session_Signals,
+    Session_Signal,
     SectionScore,
 )
 
@@ -44,7 +44,6 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
         )
         closing_div = "</div><div id='end_of_session'>"
         return end_of_session_tracking + html_of_section + closing_div
-
     elif signal_type == "mouseleave":
         script = """
         <script>
@@ -70,13 +69,89 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
                 })
             });
         }
-
         </script>
         """
         revealed_tracking = f'<div class="section" onmouseenter="onMouseEnter()" onmouseleave="onMouseLeave(\'{session_id}\', \'{section_id}\')">'
-
         closing_div = "</div>"
         return revealed_tracking + html_of_section + closing_div + script
+
+    elif signal_type == "vote":
+        style_block = """
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        """
+
+        script = f"""
+        {style_block}
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {{
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {{
+                    buttonElement.classList.add('highlighted-upvote');
+                }} else if (voteType === 'downvote') {{
+                    buttonElement.classList.add('highlighted-downvote');
+                }}
+
+                fetch(`/signal/${{sessionId}}/${{sectionId}}/${{voteType}}/`, {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }},
+                }});
+            }}
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-{section_id}').addEventListener('click', function() {{
+                sendVoteSignal('{session_id}', '{section_id}', 'upvote', this);
+            }});
+
+            document.getElementById('downvote-button-{section_id}').addEventListener('click', function() {{
+                sendVoteSignal('{session_id}', '{section_id}', 'downvote', this);
+            }});
+        </script>
+        """
+
+        upvote_icon = """
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        """
+
+        downvote_icon = """
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        """
+
+        upvote_button = f'<button id="upvote-button-{section_id}" class="vote-button vote-button-{section_id} vote-svg-button" data-vote-type="upvote">{upvote_icon}</button>'
+        downvote_button = f'<button id="downvote-button-{section_id}" class="vote-button vote-button-{section_id} vote-svg-button" data-vote-type="downvote">{downvote_icon}</button>'
+
+        vote_section = (
+            f'<div class="vote-section">{upvote_button}{downvote_button}</div>'
+        )
+
+        # Wrap the section content and vote buttons in a container div
+        container_div = (
+            f'<div class="section-container">{vote_section}{html_of_section}</div>'
+        )
+        return container_div + script
 
     else:
         revealed_tracking = (
@@ -150,9 +225,9 @@ def categorize_user(session_id):
 def get__section_html_including_signals__for__section_and_session_id(
     section: Section, session_id
 ):
-    html_of_section = section.section_html
+    html_of_section = section.html
 
-    logger.info(f"Section: {section.section_html}")
+    logger.info(f"Section: {section.html}")
 
     section_id = section.section_id
 
@@ -200,21 +275,31 @@ def get__template__for__session_id(session_id):
 
         section_entry_html += html_of_section
 
-    # Add end of session signal to the last section
+    # Addin Plugins
+    plugins = Session.objects.get(
+        session_id=session_id
+    ).session_section_order.plugins.all()
+
+    for i, plugin in enumerate(plugins):
+        section_entry_html += plugin.html
 
     return Template(section_entry_html)
 
 
 # Update the create__session_signal__for__session_id function
 def create__session_signal__for__session_id(session_id, section_id, signal_type):
+    CHANGE_FOR_VOTE = 30
+
     session = Session.objects.get(session_id=session_id)
     section = Section.objects.get(section_id=section_id)
-    session_signal = Session_Signals(session_signal_type=signal_type, section=section)
+    session_signal = Session_Signal(
+        session_signal_type=signal_type, section=section, session=session
+    )
     session_signal.save()
-    session.session_signals.add(session_signal)
 
     # Update the section score based on the signal_type
     section_score, created = SectionScore.objects.get_or_create(section=section)
+
     if signal_type == "mouseenter_once":
         section_score.score += 1
         session.session_score += 1
@@ -226,8 +311,33 @@ def create__session_signal__for__session_id(session_id, section_id, signal_type)
     elif signal_type == "end_of_session_sections":
         session.session_score += 10
 
-    section_score.save()
+    elif signal_type == "upvote":
+        # Check if there's an existing downvote for this session and section
+        existing_downvote = Session_Signal.objects.filter(
+            session=session, section=section, session_signal_type="downvote"
+        ).first()
 
+        if existing_downvote:
+            existing_downvote.delete()
+            section_score.score += CHANGE_FOR_VOTE
+
+        section_score.score += CHANGE_FOR_VOTE
+        session.session_score += CHANGE_FOR_VOTE
+
+    elif signal_type == "downvote":
+        # Check if there's an existing upvote for this session and section
+        existing_upvote = Session_Signal.objects.filter(
+            session=session, section=section, session_signal_type="upvote"
+        ).first()
+
+        if existing_upvote:
+            existing_upvote.delete()
+            section_score.score -= CHANGE_FOR_VOTE
+
+        section_score.score -= CHANGE_FOR_VOTE
+        session.session_score -= CHANGE_FOR_VOTE
+
+    section_score.save()
     session.save()
 
 
@@ -248,15 +358,10 @@ def create__session():
     # for testing purposes
     session_variant = "experimental"
 
-    # Get the most successful Section_Order for the control group
-    if session_variant == "control":
-        section_order = get_most_successful_section_order()
-
-    # For the experimental group, we don't assign any initial Section_Order
-    else:
-        section_order = None
+    section_order = get_most_successful_section_order()
 
     session = Session(session_section_order=section_order)
+
     session.save()  # Save the session first to create a record in the database
 
     session.variant = session_variant
@@ -285,7 +390,7 @@ def get_next_best_section_for_experimental_group(
     user_category, seen_sections, last_shown_section_id=None
 ):
     sections = (
-        Section.objects.filter(categories__name=user_category, plugin=False)
+        Section.objects.filter(categories__name=user_category)
         .exclude(section_id__in=seen_sections)
         .exclude(section_id=last_shown_section_id)
         .order_by("-sectionscore__score")
@@ -297,7 +402,7 @@ def get_next_best_section_for_experimental_group(
         # Try to get sections from other categories
         other_sections = (
             Section.objects.exclude(categories__name=user_category)
-            .exclude(section_id__in=seen_sections, plugin=False)
+            .exclude(section_id__in=seen_sections)
             .exclude(section_id=last_shown_section_id)
             .order_by("-sectionscore__score")
         )
@@ -363,7 +468,7 @@ def get__next_best_section(session_id, current_section_id):
             best_section = section_scores.first().section
             return render_to_string(
                 "nadooit_website/section.html",
-                {"section": Template(best_section.section_html)},
+                {"section": Template(best_section.html)},
             )
     else:
         return get__next_section__for__session_id_and_current_section_id(
@@ -377,7 +482,7 @@ def get_next_best_section_with_transitions(
     user_category, seen_sections, current_section_id, next_section_id
 ) -> Optional[Section]:
     # Get sections with the user_category and exclude plugin sections
-    sections = Section.objects.filter(category=user_category, plugin=False)
+    sections = Section.objects.filter(category=user_category)
 
     # Get transitions for the current section
     transitions = Section_Transition.objects.filter(section_1_id=current_section_id)
@@ -437,7 +542,7 @@ def get__next_section_html(session_id, current_section_id):
             if next_best_section:
                 return render_to_string(
                     "nadooit_website/section.html",
-                    {"section": Template(next_best_section.section_html)},
+                    {"section": Template(next_best_section.html)},
                 )
 
     return ""
@@ -479,9 +584,6 @@ def assign_experiment_group(session_id):
     else:
         section_order = experiment_group.session_set.first().session_section_order
         session.session_section_order = section_order
-
-    # Set the shown_sections attribute of the session to include all sections from the section_order
-    session.shown_sections.set(section_order.sections.all())
 
     # Save the changes made to the session object
     session.save()
