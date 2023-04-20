@@ -1,6 +1,8 @@
 FROM python:3.10-slim-buster
 LABEL maintainer="nadooit.de"
 
+RUN apt-get update && apt-get install -y git
+
 ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt /requirements.txt
