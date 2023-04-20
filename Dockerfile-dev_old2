@@ -4,7 +4,7 @@ LABEL maintainer="nadooit.de"
 
 ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt /requirements.txt
+COPY requirements-dev.txt /requirements.txt
 
 RUN mkdir /app
 COPY app/ /app
@@ -19,7 +19,6 @@ RUN apt-get update && \
     linux-headers-amd64
 
 RUN unset https_proxy
-
 
 RUN mkdir -p /vol/web/static/media
 RUN mkdir -p /vol/web/static/static
@@ -46,7 +45,12 @@ USER django
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
-RUN python manage.py collectstatic --noinput 
+
+       #&&\python manage.py collectstatic --noinput 
+       #TODO check if this should be done in migrations or how to migrate server in production
+       #&&\
+       #python manage.py makemigrations &&\
+       #python manage.py migrate
 
 USER root
 
@@ -58,12 +62,4 @@ RUN apt-get purge -y --auto-remove \
     libc-dev \
     linux-headers-amd64
 
-
-RUN pip install uwsgi
-RUN apk del .tmp
-
-
 USER django
-
-
-CMD [ "uwsgi","--socket",":9090","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
