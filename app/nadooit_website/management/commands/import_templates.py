@@ -1,20 +1,17 @@
 # nadooit_website/management/commands/import_templates.py
 import os
-import shutil
 import chardet
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
 
-from nadooit_website.models import Section
+from nadooit_website.models import Section, Plugin
 
 
 class Command(BaseCommand):
     help = "Import templates from the filesystem into the database"
 
     def add_arguments(self, parser):
-        input_dir = os.path.join(
-            settings.BASE_DIR, "nadooit_website", "sections_templates"
-        )
+        input_dir = os.path.join(settings.BASE_DIR, "nadooit_website", "templates_sync")
         parser.add_argument(
             "--input-dir",
             type=str,
@@ -34,13 +31,10 @@ class Command(BaseCommand):
         for root, dirs, files in os.walk(input_dir):
             for filename in files:
                 if filename.endswith(".html"):
-                    # ... (previous code)
-
                     file_path = os.path.join(root, filename)
-                    section_name = os.path.relpath(file_path, input_dir)
-
-                    # Remove the '.html' extension from the section_name
-                    section_name = section_name[:-5]
+                    rel_path = os.path.relpath(file_path, input_dir)
+                    subdirectory, template_name = os.path.split(rel_path)
+                    template_name = template_name[:-5]  # Remove .html extension
 
                     content = None
 
@@ -49,7 +43,7 @@ class Command(BaseCommand):
                         with open(file_path, "r", encoding="utf-8") as f:
                             content = f.read()
                     except UnicodeDecodeError:
-                        # Fall back to using chardet if UTF-8 decoding fails
+                        # Fall back to using cchardet if UTF-8 decoding fails
                         with open(file_path, "rb") as f:
                             raw_data = f.read()
                             encoding = chardet.detect(raw_data)["encoding"]
@@ -57,13 +51,20 @@ class Command(BaseCommand):
                         with open(file_path, "r", encoding=encoding) as f:
                             content = f.read()
 
-                    Section.objects.update_or_create(
-                        section_name=section_name,
-                        defaults={"section_html": content},
+                    if subdirectory == "sections_templates":
+                        model_class = Section
+                    elif subdirectory == "plugins_templates":
+                        model_class = Plugin
+                    else:
+                        raise ValueError(f"Unknown subdirectory: {subdirectory}")
+
+                    model_class.objects.update_or_create(
+                        name=template_name,
+                        defaults={"html": content},
                     )
 
                     self.stdout.write(
                         self.style.SUCCESS(
-                            f'Successfully imported template "{section_name}"'
+                            f'Successfully imported template "{template_name}"'
                         )
                     )

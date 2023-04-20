@@ -1,6 +1,8 @@
+import datetime
 import uuid
 from django.db import models
 from ordered_model.models import OrderedModel
+
 
 # Create your models here.
 # create a model for someone visiting the site
@@ -43,14 +45,13 @@ class Category(models.Model):
 
 # Section is a class that stores the html code of a section
 class Section(models.Model):
-
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    section_name = models.CharField(max_length=200)
-    section_html = models.TextField()
+    name = models.CharField(max_length=200)
+    html = models.TextField()
 
     categories = models.ManyToManyField(Category)
 
-    plugin = models.BooleanField(default=False)
+    greeting_sction = models.BooleanField(default=False)
 
     signal_options = models.ManyToManyField(Signals_Option, blank=True)
 
@@ -61,19 +62,31 @@ class Section(models.Model):
         return "".join(c for c in filename if c.isalnum() or c in "._- ")
 
     def save(self, *args, **kwargs):
-        if not self.is_valid_filename(self.section_name):
-            self.section_name = self.get_valid_filename(self.section_name)
+        if not self.is_valid_filename(self.name):
+            self.name = self.get_valid_filename(self.name)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.section_name
+        return self.name
 
 
-class ExperimentGroup(models.Model):
-    name = models.CharField(max_length=255)
+class Plugin(models.Model):
+    name = models.CharField(max_length=200)
+    html = models.TextField()
 
     def __str__(self):
         return self.name
+
+    def is_valid_filename(self, filename):
+        return all(c.isalnum() or c in "._- " for c in filename)
+
+    def get_valid_filename(self, filename):
+        return "".join(c for c in filename if c.isalnum() or c in "._- ")
+
+    def save(self, *args, **kwargs):
+        if not self.is_valid_filename(self.name):
+            self.name = self.get_valid_filename(self.name)
+        super().save(*args, **kwargs)
 
 
 class SectionScore(models.Model):
@@ -104,6 +117,8 @@ class Section_Order(models.Model):
         Section, through="Section_Order_Sections_Through_Model"
     )
 
+    plugins = models.ManyToManyField(Plugin)
+
 
 class Section_Order_Sections_Through_Model(OrderedModel):
     section_order = models.ForeignKey(Section_Order, on_delete=models.CASCADE)
@@ -114,27 +129,21 @@ class Section_Order_Sections_Through_Model(OrderedModel):
         ordering = ("section_order", "order")
 
 
-# Session
-"""     session_id
-        session_start_time
-        session_end_time
-        session_score
-        session_duration
-        session_section_order 
-        session_made_appointment
-"""
-
-
-class Session_Signals(models.Model):
-    session_signal_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, editable=False
+class ExperimentGroup(models.Model):
+    name = models.CharField(max_length=255)
+    section_order = models.ForeignKey(
+        Section_Order, on_delete=models.CASCADE, null=True
     )
-    session_signal_date = models.DateTimeField(auto_now_add=True)
-    session_signal_type = models.CharField(max_length=200)
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    successful_sessions = models.IntegerField(default=0)
+    total_sessions = models.IntegerField(default=0)
+
+    def success_ratio(self):
+        if self.total_sessions == 0:
+            return 0
+        return self.successful_sessions / self.total_sessions
 
     def __str__(self):
-        return str(self.section) + " " + self.session_signal_type
+        return self.name
 
 
 class Session(models.Model):
@@ -145,11 +154,14 @@ class Session(models.Model):
     session_start_time = models.DateTimeField(auto_now_add=True)
     session_duration = models.IntegerField(default=0)
     total_interaction_time = models.FloatField(default=0)
-    session_signals = models.ManyToManyField(Session_Signals, blank=True)
     shown_sections = models.ManyToManyField(Section, blank=True)
     session_clicked_on_appointment_form = models.BooleanField(default=False)
 
     session_score = models.IntegerField(default=0)
+
+    experiment_group = models.ForeignKey(
+        ExperimentGroup, on_delete=models.CASCADE, null=True, blank=True
+    )
 
     category = models.CharField(
         max_length=255, choices=(("fast", "Fast"), ("slow", "Slow")), default="fast"
@@ -162,7 +174,9 @@ class Session(models.Model):
     )
 
     def session_end_time(self):
-        return self.session_start_time + self.session_duration
+        return self.session_start_time + datetime.timedelta(
+            seconds=self.session_duration
+        )
 
     def __str__(self):
         return (
@@ -176,12 +190,26 @@ class Session(models.Model):
         )
 
 
+class Session_Signal(models.Model):
+    session_signal_id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False
+    )
+    session_signal_date = models.DateTimeField(auto_now_add=True)
+    session_signal_type = models.CharField(max_length=200)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+
+    session = models.ForeignKey(Session, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return str(self.section) + " " + self.session_signal_type
+
+
 # Section
 """     
     Section
     section_id a unique id for the section
-    section_name a name generated from the section to be displayed
-    section_html the html code of the section
+    name a name generated from the section to be displayed
+    html the html code of the section
 """
 
 

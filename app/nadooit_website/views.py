@@ -3,6 +3,8 @@ from pipes import Template
 import django.http
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required, user_passes_test
+
+from nadooit_website.visulize import analyze_and_visualize_session_data
 from .services import (
     add__signal,
     categorize_user,
@@ -12,6 +14,7 @@ from .services import (
     get_next_section_based_on_variant,
     get_seen_sections,
 )
+from .tasks import update_session_section_order
 from .services import get__session_tick
 from .services import (
     received__session_still_active_signal__for__session_id,
@@ -28,6 +31,9 @@ from django.template import Template
 from django.views.decorators.csrf import csrf_exempt
 
 import logging
+from django.http import HttpResponse
+from django.conf import settings
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +50,30 @@ def index(request):
     visit.save()
 
     return render(request, "nadooit_website/index.html", {"page_title": "Home"})
+
+
+def new_index(request):
+    # create a visit object for the index page
+    visit = Visit(site="New_Index")
+    # save the visit
+    visit.save()
+
+    # create a session id used to identify the user for the visit
+    session_id = create__session()
+
+    section_entry_template = get__template__for__session_id(session_id)
+
+    return render(
+        request,
+        "nadooit_website/new_index.html",
+        {
+            "page_title": "Home",
+            "session_id": session_id,
+            # "section_entry": section_entry_html,
+            "section_entry": section_entry_template,
+            "session_tick": get__session_tick(),
+        },
+    )
 
 
 @csrf_exempt
@@ -63,11 +93,14 @@ def signal(request, session_id, section_id, signal_type):
             )
         if signal_type == "mouseleave":
             body_unicode = request.body.decode("utf-8")
-            body = json.loads(body_unicode)
-            interaction_time = body.get("interaction_time", 0)
-            session = Session.objects.get(session_id=session_id)
-            session.total_interaction_time += float(interaction_time)
-            session.save()
+            if (
+                body_unicode
+            ):  # Add this condition to check if the request body is not empty
+                body = json.loads(body_unicode)
+                interaction_time = body.get("interaction_time", 0)
+                session = Session.objects.get(session_id=session_id)
+                session.total_interaction_time += float(interaction_time)
+                session.save()
 
         if signal_type == "revealed":
             logger.info(
@@ -95,6 +128,29 @@ def signal(request, session_id, section_id, signal_type):
                 + " "
                 + "signal received"
             )
+        if signal_type == "upvote":
+            logger.info(
+                str(session_id)
+                + " "
+                + str(section_id)
+                + " "
+                + str(signal_type)
+                + " "
+                + "signal received"
+            )
+            # Add your logic for handling upvote signals here
+
+        if signal_type == "downvote":
+            logger.info(
+                str(session_id)
+                + " "
+                + str(section_id)
+                + " "
+                + str(signal_type)
+                + " "
+                + "signal received"
+            )
+            # Add your logic for handling downvote signals here
 
         return django.http.HttpResponse()
 
@@ -141,15 +197,20 @@ def end_of_session_sections(request, session_id, current_section_id):
             )
 
             logger.info("end_of_session_sections next_section: " + str(next_section))
-            logger.info(next_section.section_html)
 
             if next_section:
+                update_session_section_order.delay(
+                    session.session_id, next_section.section_id
+                )
+
+                logger.info("getting html for the next section including signals")
                 next_section_html = (
                     get__section_html_including_signals__for__section_and_session_id(
                         next_section, session_id
                     )
                 )
 
+                logger.info("Adding end_of_session_sections signal to html")
                 next_section_html = add__signal(
                     next_section_html,
                     session_id,
@@ -162,12 +223,6 @@ def end_of_session_sections(request, session_id, current_section_id):
                     + str(next_section_html)
                 )
 
-                # Create a temporary template from the HTML string
-                # temp_template = Template(next_section_html)
-
-                # Create a context with any necessary variables (if needed)
-                # context = Context({})
-
                 rendered_html = render(
                     request,
                     "nadooit_website/section.html",
@@ -176,10 +231,6 @@ def end_of_session_sections(request, session_id, current_section_id):
 
                 logger.info(rendered_html)
 
-                # Render the template with the given context
-                # rendered_html = temp_template.render(context)
-
-                # Return the rendered HTML as an HttpResponse
                 return rendered_html
             else:
                 return django.http.HttpResponse("No more sections available.")
@@ -191,30 +242,6 @@ def end_of_session_sections(request, session_id, current_section_id):
         logger.info("end_of_session_sections forbidden")
 
         return django.http.HttpResponseForbidden()
-
-
-def new_index(request):
-    # create a visit object for the index page
-    visit = Visit(site="New_Index")
-    # save the visit
-    visit.save()
-
-    # create a session id used to identify the user for the visit
-    session_id = create__session()
-
-    section_entry_template = get__template__for__session_id(session_id)
-
-    return render(
-        request,
-        "nadooit_website/new_index.html",
-        {
-            "page_title": "Home",
-            "session_id": session_id,
-            # "section_entry": section_entry_html,
-            "section_entry": section_entry_template,
-            "session_tick": get__session_tick(),
-        },
-    )
 
 
 def get_next_section(request, session_id, current_section_id):
@@ -282,3 +309,28 @@ def statistics(request):
         "nadooit_website/statistics.html",
         {"page_title": "Statistiken", "visits": Visit.objects.all()},
     )
+
+
+def section_transitions(request, group_filter=None):
+    filename = (
+        f"section_transitions_{group_filter}.html"
+        if group_filter
+        else "section_transitions.html"
+    )
+    file_path = os.path.join(
+        settings.BASE_DIR, "nadooit_website", "section_transition", filename
+    )
+
+    with open(file_path, "r") as file:
+        content = file.read()
+
+    return HttpResponse(content, content_type="text/html")
+
+""" TODO #213 Create a methode to visulize session data
+def visualize_session_data(request):
+    # Call the function to generate the Plotly HTML file
+    analyze_and_visualize_session_data()
+
+    # Render the section_transitions.html template
+    return render(request, "section_transitions.html")
+ """

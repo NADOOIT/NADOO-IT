@@ -44,7 +44,7 @@ tzdata==2022.1
 ua-parser==0.15.0
 urllib3==1.26.13
 user-agents==2.2.0
-Werkzeug==2.2.2
+Werkzeug==2.2.3
 model_bakery
 django-htmx
 django-money
@@ -57,3 +57,14 @@ pytest-factoryboy
 python-dotenv
 django-ordered-model
 chardet
+
+celery
+redis
+
+plotly
+pandas
+seaborn
+matplotlib
+graphviz
+#cikit-learn
+#torch

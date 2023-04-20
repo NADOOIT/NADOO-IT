@@ -23,8 +23,10 @@
   </head>
   <body data-session-id={{ session_id }}>
     {% include 'nadooit_website/navbar.html' %}
+    <div id ="view-port" class="view-port">
     {% block content %}
     {% endblock content%}
+    </div>
   </body>
   <script src={% static 'static/nadooit_website/js/app.js' %}></script>
   <script src={% static 'static/nadooit_website/js/nadooit_logic.js' %}></script>
