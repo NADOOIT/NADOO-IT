@@ -61,10 +61,10 @@ chardet
 celery
 redis
 
-#plotly
-#pandas
-#seaborn
-#matplotlib
-#graphviz
+plotly
+pandas
+seaborn
+matplotlib
+graphviz
 #cikit-learn
 #torch

@@ -468,7 +468,7 @@ footer {
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 100; /* Add this line */
+    z-index: 99; /* Add this line */
 }
 
 .vote-button {
@@ -585,6 +585,7 @@ footer {
   }
   .sikder {
     height: 0px;
+    z-index: 100;
   }
   footer {
     padding: 5% 0;

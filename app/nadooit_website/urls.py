@@ -35,9 +35,11 @@ urlpatterns = [
         views.section_transitions,
         name="section_transitions_filtered",
     ),
+]
+"""     
     path(
         "visualize-session-data/",
         views.visualize_session_data,
         name="visualize_session_data",
     ),
-]
+"""

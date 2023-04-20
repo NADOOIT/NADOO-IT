@@ -326,10 +326,11 @@ def section_transitions(request, group_filter=None):
 
     return HttpResponse(content, content_type="text/html")
 
-
+""" TODO #213 Create a methode to visulize session data
 def visualize_session_data(request):
     # Call the function to generate the Plotly HTML file
     analyze_and_visualize_session_data()
 
     # Render the section_transitions.html template
     return render(request, "section_transitions.html")
+ """
