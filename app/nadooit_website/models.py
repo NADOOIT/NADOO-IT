@@ -70,13 +70,6 @@ class Section(models.Model):
         return self.name
 
 
-class ExperimentGroup(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
-
 class Plugin(models.Model):
     name = models.CharField(max_length=200)
     html = models.TextField()
@@ -134,6 +127,23 @@ class Section_Order_Sections_Through_Model(OrderedModel):
 
     class Meta:
         ordering = ("section_order", "order")
+
+
+class ExperimentGroup(models.Model):
+    name = models.CharField(max_length=255)
+    section_order = models.ForeignKey(
+        Section_Order, on_delete=models.CASCADE, null=True
+    )
+    successful_sessions = models.IntegerField(default=0)
+    total_sessions = models.IntegerField(default=0)
+
+    def success_ratio(self):
+        if self.total_sessions == 0:
+            return 0
+        return self.successful_sessions / self.total_sessions
+
+    def __str__(self):
+        return self.name
 
 
 class Session(models.Model):

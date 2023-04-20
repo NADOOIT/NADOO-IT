@@ -2,6 +2,7 @@ import json
 import django.http
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
+from nadooit_website.models import Session
 from .models import Question_Answer
 
 from nadooit_website.services import check__session_id__is_valid
@@ -18,7 +19,6 @@ def submit_question(request, session_id):
     # Process the question and session_id here.
     # You may want to save the question to the database or perform other actions.
     if check__session_id__is_valid(session_id):
-
         # create a question answer object
         Question_Answer.objects.create(question_answer_question=question)
         response_data = {
@@ -26,6 +26,11 @@ def submit_question(request, session_id):
             "question": question,
             "session_id": session_id,
         }
+
+        session = Session.objects.get(session_id=session_id)
+        session.session_score += 100
+        session.save()
+
         return django.http.JsonResponse(response_data)
 
     else:

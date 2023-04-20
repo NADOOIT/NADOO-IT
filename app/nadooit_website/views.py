@@ -52,6 +52,30 @@ def index(request):
     return render(request, "nadooit_website/index.html", {"page_title": "Home"})
 
 
+def new_index(request):
+    # create a visit object for the index page
+    visit = Visit(site="New_Index")
+    # save the visit
+    visit.save()
+
+    # create a session id used to identify the user for the visit
+    session_id = create__session()
+
+    section_entry_template = get__template__for__session_id(session_id)
+
+    return render(
+        request,
+        "nadooit_website/new_index.html",
+        {
+            "page_title": "Home",
+            "session_id": session_id,
+            # "section_entry": section_entry_html,
+            "section_entry": section_entry_template,
+            "session_tick": get__session_tick(),
+        },
+    )
+
+
 @csrf_exempt
 def signal(request, session_id, section_id, signal_type):
     if check__session_id__is_valid(session_id):
@@ -218,30 +242,6 @@ def end_of_session_sections(request, session_id, current_section_id):
         logger.info("end_of_session_sections forbidden")
 
         return django.http.HttpResponseForbidden()
-
-
-def new_index(request):
-    # create a visit object for the index page
-    visit = Visit(site="New_Index")
-    # save the visit
-    visit.save()
-
-    # create a session id used to identify the user for the visit
-    session_id = create__session()
-
-    section_entry_template = get__template__for__session_id(session_id)
-
-    return render(
-        request,
-        "nadooit_website/new_index.html",
-        {
-            "page_title": "Home",
-            "session_id": session_id,
-            # "section_entry": section_entry_html,
-            "section_entry": section_entry_template,
-            "session_tick": get__session_tick(),
-        },
-    )
 
 
 def get_next_section(request, session_id, current_section_id):

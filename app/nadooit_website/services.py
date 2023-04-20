@@ -13,12 +13,36 @@ from .models import (
     SectionScore,
 )
 
+from django.template.loader import render_to_string
+
 
 import logging
 
 logger = logging.getLogger(__name__)
 
 session_tick = 5
+
+
+""" 
+# optimatzion
+from . import embeddings
+from sklearn.metrics.pairwise import cosine_similarity
+from . import load_embeddings
+
+
+def refresh_embeddings():
+    load_embeddings()
+
+
+def get_embedding_for_signal(signal_id):
+    return embeddings[signal_id]
+
+
+def get_similarity(signal_id1, signal_id2):
+    embedding1 = get_embedding_for_signal(signal_id1)
+    embedding2 = get_embedding_for_signal(signal_id2)
+    return cosine_similarity([embedding1], [embedding2])[0][0]
+ """
 
 
 def get__session_tick():
@@ -353,10 +377,10 @@ def get__sections__for__session_id(session_id):
 
 
 def create__session():
-    session_variant = "control" if random.random() < 0.6 else "experimental"
+    #session_variant = "control" if random.random() < 0.6 else "experimental"
 
     # for testing purposes
-    session_variant = "experimental"
+    session_variant = "control"
 
     section_order = get_most_successful_section_order()
 
@@ -511,8 +535,6 @@ def get_next_best_section_with_transitions(
 
     return next_section
 
-
-from django.template.loader import render_to_string
 
 
 def get__next_section_html(session_id, current_section_id):

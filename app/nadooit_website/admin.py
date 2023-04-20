@@ -11,7 +11,7 @@ from django.forms import ModelForm
 
 from django.contrib.admin import SimpleListFilter
 
-SESSION_ACTIVE_OFFSET = 20
+SESSION_ACTIVE_OFFSET = 100
 
 
 class SessionStatusFilter(SimpleListFilter):
@@ -109,9 +109,13 @@ class SessionAdmin(admin.ModelAdmin):
         if obj.session_end_time() > timezone.now() - datetime.timedelta(
             seconds=SESSION_ACTIVE_OFFSET
         ):
-            return format_html('<span style="color:green;">Active</span>')
+            return format_html(
+                '<span style="background-color: green; color: white; padding: 3px; border-radius: 3px;">Active</span>'
+            )
         else:
-            return format_html('<span style="color:red;">Inactive</span>')
+            return format_html(
+                '<span style="background-color: red; color: white; padding: 3px; border-radius: 3px;">Inactive</span>'
+            )
 
     session_status.short_description = "Session Status"
 
