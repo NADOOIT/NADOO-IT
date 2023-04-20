@@ -47,11 +47,7 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
 RUN python manage.py collectstatic --noinput 
-
-
 RUN pip install uwsgi
-RUN apk del .tmp
-
 
 USER django
 
