@@ -41,12 +41,15 @@ RUN chown -R django:django /app
 RUN chown -R django:django /home/django
 RUN chmod 755 /home/django
 RUN chmod 755 /app
+
 USER django
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
 RUN python manage.py collectstatic --noinput 
+
+USER root
 RUN pip install uwsgi
 
 USER django
