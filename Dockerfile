@@ -48,16 +48,6 @@ RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
 RUN python manage.py collectstatic --noinput 
 
-USER root
-
-RUN apt-get purge -y --auto-remove \
-    build-essential \
-    curl \
-    git \
-    gcc \
-    libc-dev \
-    linux-headers-amd64
-
 
 RUN pip install uwsgi
 RUN apk del .tmp
