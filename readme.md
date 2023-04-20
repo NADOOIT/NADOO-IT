@@ -231,6 +231,8 @@ Run the following command to update the server
     docker compose -f docker-compose.deploy.yml build
     
     docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+    
+    docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput 
 
     docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
 
