@@ -26,7 +26,8 @@ RUN mkdir -p /vol/web/static/static
 RUN mkdir -p /home/django/.postgresql/
 
 #OLD RUN adduser -D --disabled-password --no-create-home django
-RUN adduser -D --disabled-password django
+#RUN adduser -D --disabled-password django
+RUN adduser --disabled-password --gecos "" django
 
 RUN chown -R django:django app/
 RUN chown -R django:django /vol
