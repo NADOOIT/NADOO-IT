@@ -14,4 +14,13 @@ class Migration(migrations.Migration):
             model_name="session",
             name="session_signals",
         ),
+        migrations.AddField(
+            model_name="session_signals",
+            name="session",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="nadooit_website.session",
+            ),
+        ),
     ]
