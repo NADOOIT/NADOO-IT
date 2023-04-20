@@ -1,6 +1,7 @@
 import random
 import uuid
 from typing import Optional
+from django.conf import settings
 
 from django.template import Template
 from .models import (
@@ -377,7 +378,7 @@ def get__sections__for__session_id(session_id):
 
 
 def create__session():
-    #session_variant = "control" if random.random() < 0.6 else "experimental"
+    # session_variant = "control" if random.random() < 0.6 else "experimental"
 
     # for testing purposes
     session_variant = "control"
@@ -398,9 +399,15 @@ def create__session():
 
 def get_most_successful_section_order():
     # Replace this with the actual logic for finding the most successful Section_Order
-    return Section_Order.objects.get(
-        section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
-    )
+
+    if settings.DEBUG:
+        return Section_Order.objects.get(
+            section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+        )
+    else:
+        return Section_Order.objects.get(
+            section_order_id="23afce39-e88f-4c5b-a2a0-e197116d6113"
+        )
 
 
 def received__session_still_active_signal__for__session_id(session_id):
@@ -534,7 +541,6 @@ def get_next_best_section_with_transitions(
         next_section = Section.objects.get(section_id=next_section_id)
 
     return next_section
-
 
 
 def get__next_section_html(session_id, current_section_id):
