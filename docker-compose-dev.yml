@@ -48,6 +48,7 @@ services:
       command: sh -c "python -m celery -A nadooit worker --loglevel=info"
       volumes:
         - ./app:/app
+        - ./data/web:/vol/web
         - ${APPDATA}/postgresql/root.crt:/home/django/.postgresql/root.crt
       environment:
         - 'DJANGO_DEBUG=${DJANGO_DEBUG}'

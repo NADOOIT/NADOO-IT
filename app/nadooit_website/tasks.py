@@ -58,3 +58,30 @@ def update_session_section_order(session_id, next_section_id):
 
         session.session_section_order = new_section_order
         session.save()
+
+
+@shared_task
+def transcode_video_to_mp4_task(video_id):
+    from django.db import connections
+    from .models import (
+        Video,
+    )  # Import Video model inside the function to avoid circular import
+    import os
+    from django.core.files import File
+    from moviepy.editor import VideoFileClip
+
+    video = Video.objects.get(id=video_id)
+    connections.close_all()  # Close the database connection after fetching the video object
+    input_path = video.video_file.path
+    output_path = os.path.splitext(input_path)[0] + ".mp4"
+
+    clip = VideoFileClip(input_path)
+    clip.write_videofile(output_path, codec="libx264")
+
+    with open(output_path, "rb") as transcoded_file:
+        connections["default"].connect()  # Reopen the database connection before saving
+        video.video_file.save(
+            os.path.basename(output_path), File(transcoded_file), save=True
+        )
+
+    os.remove(input_path)

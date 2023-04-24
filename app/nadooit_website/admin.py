@@ -4,10 +4,15 @@ from django.forms import ModelChoiceField
 from django.db.models import Avg, Max, Min
 from django.utils.html import format_html
 from django.utils import timezone
+from django.contrib import messages
 
 from .models import *
 
 from django.forms import ModelForm
+
+import logging
+
+from .tasks import transcode_video_to_mp4_task
 
 from django.contrib.admin import SimpleListFilter
 
@@ -143,13 +148,56 @@ class Section_OrderAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
     save_as = True
 
 
+# Add VideoAdmin for managing videos in the admin panel
+class VideoAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.DEBUG)
+
+        logger.debug("Checking if the uploaded video is an MKV file")
+        if obj.video_file.name.lower().endswith(".mkv"):
+            logger.info("Starting transcoding task for video ID: %s", obj.id)
+            transcode_video_to_mp4_task.delay(obj.id)
+
+
+# Update SectionAdmin to include video field in the form
+class SectionAdmin(admin.ModelAdmin):
+    list_display = ("section_id", "name", "html", "video")
+
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+
+    def save_model(self, request, obj, form, change):
+        self.logger.info("Saving section with ID: %s", obj.section_id)
+
+        if obj.video and "{{ video }}" not in obj.html:
+            messages.warning(
+                request,
+                "A video is selected for this section, but the {{ video }} tag is missing in the HTML. Please add the tag where you want the video to appear.",
+            )
+        elif not obj.video and "{{ video }}" in obj.html:
+            messages.warning(
+                request,
+                "No video is selected for this section, but the {{ video }} tag is present in the HTML. Please either add a video or remove the tag.",
+            )
+
+        super().save_model(request, obj, form, change)
+
+
 # Register your models here.
 admin.site.register(Session, SessionAdmin)
 admin.site.register(Visit)
-admin.site.register(Section)
+
+admin.site.register(Section, SectionAdmin)
+
 admin.site.register(Section_Order, Section_OrderAdmin)
 admin.site.register(Session_Signal)
 admin.site.register(Signals_Option)
 admin.site.register(Category)
 admin.site.register(ExperimentGroup)
 admin.site.register(Plugin)
+
+# Register the new VideoAdmin
+admin.site.register(Video, VideoAdmin)

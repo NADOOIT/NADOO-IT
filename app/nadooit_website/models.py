@@ -2,6 +2,8 @@ import datetime
 import uuid
 from django.db import models
 from ordered_model.models import OrderedModel
+from django.core.files.storage import default_storage
+import logging
 
 
 # Create your models here.
@@ -16,6 +18,16 @@ class Visit(models.Model):
     # the string representation of the visit
     def __str__(self):
         return self.visit_date.strftime("%Y-%m-%d %H:%M:%S") + " " + self.site
+
+
+class Video(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=200)
+    video_file = models.FileField(upload_to="videos/")
+    preview_image = models.ImageField(upload_to="video_previews/")
+
+    def __str__(self):
+        return self.title
 
 
 class Signals_Option(models.Model):
@@ -47,10 +59,15 @@ class Category(models.Model):
 class Section(models.Model):
     section_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
+
+    # content for the section
     html = models.TextField()
+    # Add a ForeignKey to Video model with null and blank values set to True
+    video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True, blank=True)
 
     categories = models.ManyToManyField(Category)
 
+    # Classify the section as a greeting section or not
     greeting_sction = models.BooleanField(default=False)
 
     signal_options = models.ManyToManyField(Signals_Option, blank=True)

@@ -267,6 +267,33 @@ def get__section_html_including_signals__for__section_and_session_id(
                 signal_option.signal_type,
             )
 
+    # Check if there is a {{ video }} tag in the HTML
+    if "{{ video }}" in html_of_section:
+        if section.video:
+            # Generate the URL for the video file
+            video_url = section.video.video_file.url
+            # Create the HTML video embed code
+            # Create the HTML video embed code using Video.js
+            video_embed_code = f'''
+            <video id="my-video" class="video-js vjs-default-skin" width="100%" height="auto" controls>
+                <source src="{video_url}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            '''
+            # Replace the {{ video }} tag with the video embed code
+            html_of_section = html_of_section.replace("{{ video }}", video_embed_code)
+        else:
+            # Remove the {{ video }} tag and show a warning if there is no associated video
+            html_of_section = html_of_section.replace("{{ video }}", "")
+            logger.warning(
+                f"No video associated with the section, but {{ video }} tag is present in the HTML"
+            )
+    elif section.video:
+        # Show a warning if a video is associated with the section but the {{ video }} tag is missing
+        logger.warning(
+            f"A video is associated with the section, but the {{ video }} tag is missing in the HTML"
+        )
+
     logger.info(f"Section: {html_of_section}")
 
     return html_of_section
