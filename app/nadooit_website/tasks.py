@@ -6,6 +6,42 @@ from .models import (
     Section,
 )
 from django.db.models import Count
+import os
+
+
+from moviepy.editor import VideoFileClip
+import gzip
+import shutil
+
+
+def convert_to_mp4(input_path, output_path):
+    clip = VideoFileClip(input_path)
+    clip.write_videofile(output_path, codec="libx264")
+
+
+def reduce_bitrate(input_path, output_path, target_bitrate):
+    clip = VideoFileClip(input_path)
+    target_bitrate = target_bitrate / 1000  # Convert target bitrate to kbps
+    clip.write_videofile(output_path, codec="libx264", bitrate=f"{target_bitrate}k")
+
+
+def compress_video(input_path, output_path):
+    with open(input_path, "rb") as src_file:
+        with gzip.open(output_path, "wb") as dest_file:
+            shutil.copyfileobj(src_file, dest_file)
+
+
+def process_video(input_path, output_path, target_bitrate=None):
+    temp_path = os.path.splitext(input_path)[0] + "_temp.mp4"
+    convert_to_mp4(input_path, temp_path)
+
+    if target_bitrate:
+        reduce_bitrate(temp_path, output_path, target_bitrate)
+        os.remove(temp_path)
+    else:
+        os.rename(temp_path, output_path)
+
+    compress_video(output_path, output_path + ".gz")
 
 
 @shared_task
@@ -68,15 +104,14 @@ def transcode_video_to_mp4_task(video_id):
     )  # Import Video model inside the function to avoid circular import
     import os
     from django.core.files import File
-    from moviepy.editor import VideoFileClip
 
     video = Video.objects.get(id=video_id)
     connections.close_all()  # Close the database connection after fetching the video object
     input_path = video.video_file.path
     output_path = os.path.splitext(input_path)[0] + ".mp4"
 
-    clip = VideoFileClip(input_path)
-    clip.write_videofile(output_path, codec="libx264")
+    # Replace the moviepy conversion with the process_video function
+    process_video(input_path, output_path)
 
     with open(output_path, "rb") as transcoded_file:
         connections["default"].connect()  # Reopen the database connection before saving
