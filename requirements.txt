@@ -67,3 +67,5 @@ matplotlib
 graphviz
 #cikit-learn
 #torch
+
+moviepy
