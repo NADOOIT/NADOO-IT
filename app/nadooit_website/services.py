@@ -1,4 +1,6 @@
+import os
 import random
+import shutil
 import uuid
 from typing import Optional
 from django.conf import settings
@@ -270,16 +272,28 @@ def get__section_html_including_signals__for__section_and_session_id(
     # Check if there is a {{ video }} tag in the HTML
     if "{{ video }}" in html_of_section:
         if section.video:
-            # Generate the URL for the video file
-            video_url = section.video.video_file.url
-            # Create the HTML video embed code
-            # Create the HTML video embed code using Video.js
-            video_embed_code = f'''
+            # Generate the URL for the HLS playlist file
+            video_720p_resolution = section.video.resolutions.get(resolution=720)
+            playlist_url = video_720p_resolution.hls_playlist_file.url
+
+            # Create the HTML video embed code using Video.js and videojs-http-streaming
+            video_embed_code = f"""
             <video id="my-video" class="video-js vjs-default-skin" width="100%" height="auto" controls>
-                <source src="{video_url}" type="video/mp4">
+                <source src="{playlist_url}" type="application/vnd.apple.mpegurl">
                 Your browser does not support the video tag.
             </video>
-            '''
+            <script>
+                var player = videojs('my-video');
+                player.ready(function() {{
+                    player.qualityPickerPlugin();
+                    player.src({{
+                        src: '{playlist_url}',
+                        type: 'application/vnd.apple.mpegurl',
+                    }});
+                }});
+            </script>
+            """
+
             # Replace the {{ video }} tag with the video embed code
             html_of_section = html_of_section.replace("{{ video }}", video_embed_code)
         else:
@@ -671,3 +685,29 @@ def get_next_section_based_on_variant(
         session.save()
 
     return next_section
+
+
+def delete_video_files(video):
+    original_file_name = os.path.splitext(os.path.basename(video.original_file.name))[0]
+    resolutions = [480, 720, 1080]
+    for resolution in resolutions:
+        video_path = os.path.join(
+            settings.MEDIA_ROOT,
+            "original_videos",
+            f"{original_file_name}_{resolution}p.mp4",
+        )
+        hls_playlist_path = os.path.join(
+            settings.MEDIA_ROOT,
+            "hls_playlists",
+            f"{original_file_name}_{resolution}p",
+        )
+        transcoded_video_path = os.path.join(
+            settings.MEDIA_ROOT, "videos", f"{original_file_name}_{resolution}p.mp4"
+        )
+
+        if os.path.isfile(video_path):
+            os.remove(video_path)
+        if os.path.isdir(hls_playlist_path):
+            shutil.rmtree(hls_playlist_path)
+        if os.path.isfile(transcoded_video_path):
+            os.remove(transcoded_video_path)

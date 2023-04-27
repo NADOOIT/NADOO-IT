@@ -16,7 +16,8 @@ RUN apt-get update && \
     git \
     gcc \
     libc-dev \
-    linux-headers-amd64
+    linux-headers-amd64 \
+    ffmpeg
 
 RUN unset https_proxy
 

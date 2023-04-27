@@ -4,6 +4,8 @@ from .models import (
     Section_Order,
     Section_Order_Sections_Through_Model,
     Section,
+    Video,
+    VideoResolution,
 )
 from django.db.models import Count
 import os
@@ -12,6 +14,35 @@ import os
 from moviepy.editor import VideoFileClip
 import gzip
 import shutil
+
+from moviepy.editor import ffmpeg_tools
+
+
+def create_hls_files(input_path, output_path, resolution, segment_duration=4):
+    hls_output_path = os.path.splitext(output_path)[0] + f"_{resolution}p_hls"
+    os.makedirs(hls_output_path, exist_ok=True)
+    playlist_file = os.path.join(hls_output_path, f"playlist_{resolution}p.m3u8")
+
+    width = -1
+    height = resolution
+    bitrate = "1000k"
+    gop_size = segment_duration * 30
+
+    ffmpeg_tools.ffmpeg_extract_subclip(
+        input_path,
+        0,
+        -1,
+        targetname=playlist_file,
+        codec="libx264",
+        bitrate=bitrate,
+        vf=f"scale={width}:{height}",
+        gop_size=gop_size,
+        hls_time=segment_duration,
+        hls_playlist_type="vod",
+        format="hls",
+    )
+
+    return hls_output_path
 
 
 def convert_to_mp4(input_path, output_path):
@@ -31,17 +62,99 @@ def compress_video(input_path, output_path):
             shutil.copyfileobj(src_file, dest_file)
 
 
-def process_video(input_path, output_path, target_bitrate=None):
+def scale_video(input_path, output_path, resolution):
+    clip = VideoFileClip(input_path)
+    height = resolution
+    width = int(clip.w * (height / clip.h))
+    scaled_clip = clip.resize((width, height))
+    scaled_clip.write_videofile(output_path, codec="libx264")
+
+
+import os
+import subprocess
+
+
+def process_video(input_path, output_path, resolutions, target_bitrate=None):
     temp_path = os.path.splitext(input_path)[0] + "_temp.mp4"
-    convert_to_mp4(input_path, temp_path)
 
-    if target_bitrate:
-        reduce_bitrate(temp_path, output_path, target_bitrate)
-        os.remove(temp_path)
+    if not input_path.lower().endswith(".mp4"):
+        convert_to_mp4(input_path, temp_path)
     else:
-        os.rename(temp_path, output_path)
+        temp_path = input_path
 
-    compress_video(output_path, output_path + ".gz")
+    for resolution in resolutions:
+        scaled_output_path = os.path.splitext(output_path)[0] + f"_{resolution}p.mp4"
+        scale_video(temp_path, scaled_output_path, resolution)
+
+        if target_bitrate:
+            reduced_output_path = (
+                os.path.splitext(scaled_output_path)[0] + "_reduced.mp4"
+            )
+            reduce_bitrate(scaled_output_path, reduced_output_path, target_bitrate)
+            os.remove(scaled_output_path)
+            os.rename(reduced_output_path, scaled_output_path)
+
+        # Create HLS files and playlist for the current resolution
+        video_name = os.path.splitext(os.path.basename(input_path))[0]
+
+        hls_output_path = f"/vol/web/media/hls_playlists/{video_name}_{resolution}p"
+        os.makedirs(hls_output_path, exist_ok=True)
+        hls_playlist_path = os.path.join(hls_output_path, "index.m3u8")
+        ffmpeg_command = f"ffmpeg -i {scaled_output_path} -profile:v high444 -level 4.2 -s {resolution}x{resolution} -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {hls_playlist_path}"
+        print("HLS output path:", hls_output_path)
+        print("HLS playlist path:", hls_playlist_path)
+        subprocess.run(ffmpeg_command, shell=True, check=True)
+
+
+@shared_task
+def create_streaming_files_task(video_id):
+    from django.db import connections
+    from django.core.files import File
+
+    video = Video.objects.get(id=video_id)
+    connections.close_all()  # Close the database connection after fetching the video object
+    input_path = video.original_file.path  # Updated to use original_file
+
+    print("Input path:", input_path)
+    print("Video ID:", video_id)
+    output_path = os.path.splitext(input_path)[0] + ".mp4"
+    print("Output path:", output_path)
+
+    resolutions = [480, 720, 1080]
+    target_bitrate = 4000  # Adjust the target bitrate as needed
+    process_video(input_path, output_path, resolutions, target_bitrate)
+
+    video_name = os.path.splitext(os.path.basename(input_path))[0]
+
+    print("Video name:", video_name)
+
+    # Save the processed video files
+    for resolution in resolutions:
+        scaled_output_path = os.path.splitext(output_path)[0] + f"_{resolution}p.mp4"
+        with open(scaled_output_path, "rb") as transcoded_file:
+            connections[
+                "default"
+            ].connect()  # Reopen the database connection before saving
+            video_resolution = VideoResolution.objects.create(
+                video=video, resolution=resolution
+            )
+            video_resolution.video_file.save(
+                os.path.basename(scaled_output_path), File(transcoded_file), save=True
+            )
+
+        # Save the HLS playlist file
+        hls_playlist_path = (
+            f"/vol/web/media/hls_playlists/{video_name}_{resolution}p/index.m3u8"
+        )
+        with open(hls_playlist_path, "rb") as playlist_file:
+            connections["default"].connect()
+            video_resolution.hls_playlist_file.save(
+                f"{video_name}_{resolution}p/index.m3u8",
+                File(playlist_file),
+                save=True,
+            )
+
+    os.remove(input_path)
 
 
 @shared_task
@@ -94,29 +207,3 @@ def update_session_section_order(session_id, next_section_id):
 
         session.session_section_order = new_section_order
         session.save()
-
-
-@shared_task
-def transcode_video_to_mp4_task(video_id):
-    from django.db import connections
-    from .models import (
-        Video,
-    )  # Import Video model inside the function to avoid circular import
-    import os
-    from django.core.files import File
-
-    video = Video.objects.get(id=video_id)
-    connections.close_all()  # Close the database connection after fetching the video object
-    input_path = video.video_file.path
-    output_path = os.path.splitext(input_path)[0] + ".mp4"
-
-    # Replace the moviepy conversion with the process_video function
-    process_video(input_path, output_path)
-
-    with open(output_path, "rb") as transcoded_file:
-        connections["default"].connect()  # Reopen the database connection before saving
-        video.video_file.save(
-            os.path.basename(output_path), File(transcoded_file), save=True
-        )
-
-    os.remove(input_path)
