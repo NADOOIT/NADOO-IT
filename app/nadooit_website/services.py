@@ -775,12 +775,24 @@ def get_next_section_based_on_variant(
     return next_section
 
 
+import glob
+import json
+
+
 def delete_video_files(video):
     try:
+        # Load the JSON configuration file
+        try:
+            with open("video_config.json") as config_file:
+                config = json.load(config_file)
+        except Exception as e:
+            print(f"Error loading configuration file: {e}")
+            return
+
         original_file_name = os.path.splitext(
             os.path.basename(video.original_file.name)
         )[0]
-        resolutions = [480, 720, 1080]
+        resolutions = [res["resolution"] for res in config["resolutions"]]
         for resolution in resolutions:
             video_path = os.path.join(
                 settings.MEDIA_ROOT,
@@ -802,6 +814,17 @@ def delete_video_files(video):
                 shutil.rmtree(hls_playlist_path)
             if os.path.isfile(transcoded_video_path):
                 os.remove(transcoded_video_path)
+
+        # Deleting the original video file
+        original_video_paths = glob.glob(
+            os.path.join(
+                settings.MEDIA_ROOT, "original_videos", f"{original_file_name}.*"
+            )
+        )
+        for original_video_path in original_video_paths:
+            if os.path.isfile(original_video_path):
+                os.remove(original_video_path)
+
     except Exception as e:
         print(f"Error deleting video files: {e}")
         raise

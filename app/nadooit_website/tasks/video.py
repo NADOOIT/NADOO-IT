@@ -73,7 +73,10 @@ import subprocess
 from django.core.exceptions import ObjectDoesNotExist
 
 
-def process_video(input_path, output_path, resolution, bitrate, crf, preset):
+@shared_task
+def process_video_task(
+    input_path, output_path, resolution, bitrate, crf, preset, video_id
+):
     try:
         temp_path = input_path
 
@@ -93,6 +96,36 @@ def process_video(input_path, output_path, resolution, bitrate, crf, preset):
         hls_playlist_path = os.path.join(hls_output_path, "index.m3u8")
         ffmpeg_command = f"ffmpeg -i {scaled_output_path} -profile:v high444 -level 4.2 -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {hls_playlist_path}"
         subprocess.run(ffmpeg_command, shell=True, check=True)
+
+        # Save the processed video file and the HLS playlist file in the database
+        from django.db import connections
+        from django.core.files import File
+
+        with open(scaled_output_path, "rb") as transcoded_file:
+            connections["default"].connect()
+            video = Video.objects.get(id=video_id)
+            video_resolution = VideoResolution.objects.create(
+                video=video, resolution=resolution
+            )
+            video_resolution.video_file.save(
+                os.path.basename(scaled_output_path),
+                File(transcoded_file),
+                save=True,
+            )
+
+        with open(hls_playlist_path, "rb") as playlist_file:
+            connections["default"].connect()
+            video_resolution.hls_playlist_file.save(
+                f"{video_name}_{resolution}p/index.m3u8",
+                File(playlist_file),
+                save=True,
+            )
+
+        # Remove the temporary files
+        if os.path.exists(scaled_output_path):
+            os.remove(scaled_output_path)
+        if os.path.exists(reduced_output_path):
+            os.remove(reduced_output_path)
     except Exception as e:
         print(f"Error occurred during video processing: {e}")
         if os.path.exists(scaled_output_path):
@@ -105,7 +138,6 @@ def process_video(input_path, output_path, resolution, bitrate, crf, preset):
 @shared_task
 def create_streaming_files_task(video_id):
     from django.db import connections
-    from django.core.files import File
 
     try:
         video = Video.objects.get(id=video_id)
@@ -147,38 +179,9 @@ def create_streaming_files_task(video_id):
             crf = resolution_config["crf"]
             preset = resolution_config["preset"]
 
-            process_video(input_path, output_path, resolution, bitrate, crf, preset)
-
-            # Save the processed video file
-            scaled_output_path = (
-                os.path.splitext(output_path)[0] + f"_{resolution}p.mp4"
+            process_video_task.apply_async(
+                (input_path, output_path, resolution, bitrate, crf, preset, video_id)
             )
-            with open(scaled_output_path, "rb") as transcoded_file:
-                connections["default"].connect()
-                video_resolution = VideoResolution.objects.create(
-                    video=video, resolution=resolution
-                )
-                video_resolution.video_file.save(
-                    os.path.basename(scaled_output_path),
-                    File(transcoded_file),
-                    save=True,
-                )
-
-            # Save the HLS playlist file
-            hls_playlist_path = (
-                f"/vol/web/media/hls_playlists/{video_name}_{resolution}p/index.m3u8"
-            )
-            with open(hls_playlist_path, "rb") as playlist_file:
-                connections["default"].connect()
-                video_resolution.hls_playlist_file.save(
-                    f"{video_name}_{resolution}p/index.m3u8",
-                    File(playlist_file),
-                    save=True,
-                )
-
-            # Delete the processed video file
-            if os.path.exists(scaled_output_path):
-                os.remove(scaled_output_path)
     except Exception as e:
         print(f"Error occurred during file saving or processing: {e}")
         if os.path.exists(input_path):
