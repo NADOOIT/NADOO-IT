@@ -1,0 +1,22 @@
+{
+    "resolutions": [
+        {
+            "resolution": 480,
+            "bitrate": "1500k",
+            "crf": 23,
+            "preset": "medium"
+        },
+        {
+            "resolution": 720,
+            "bitrate": "2500k",
+            "crf": 23,
+            "preset": "medium"
+        },
+        {
+            "resolution": 1080,
+            "bitrate": "5500k",
+            "crf": 10,
+            "preset": "medium"
+        }
+    ]
+}

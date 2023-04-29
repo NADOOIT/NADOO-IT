@@ -35,11 +35,14 @@ class VideoForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        for field, errors in self.errors.items():
+            print(f"Field: {field}, Errors: {errors}")
 
-        # If the video instance already exists and a new file has been uploaded
         if self.instance.pk and "original_file" in self.changed_data:
-            # Delete the old video files
             self.delete_video_files(self.instance)
+
+            # Refresh the instance from the database
+            self.instance.refresh_from_db()
 
         return cleaned_data
 

@@ -249,6 +249,86 @@ def categorize_user(session_id):
     return user_category
 
 
+# TODO #217 Extract the javascript code into a separate file and load it from there
+def generate_video_embed_code(playlist_url_480p, playlist_url_720p, playlist_url_1080p):
+    video_embed_code = f"""
+    <style>
+        .video-js .vjs-menu-button {{
+            background-color: #f00;  /* Change the background color to red */
+            color: #fff;  /* Change the text color to white */
+            border: none;  /* Remove the border */
+            width: 70px;  /* Set the width of the selector */
+        }}
+
+        /* You can also style the individual options in the dropdown */
+        .video-js .vjs-menu-button option {{
+            background-color: #000;  /* Change the background color to black */
+            color: #fff;  /* Change the text color to white */
+        }}
+    </style>
+    <video id="my-video" class="video-js vjs-default-skin" width="100%" height="auto" controls preload="auto">
+        <source src="{playlist_url_480p}" type="application/vnd.apple.mpegurl" label="480p" res="480">
+        <source src="{playlist_url_720p}" type="application/vnd.apple.mpegurl" label="720p" res="720">
+        <source src="{playlist_url_1080p}" type="application/vnd.apple.mpegurl" label="1080p" res="1080">
+        Your browser does not support the video tag.
+    </video>
+    <script>
+        var player = videojs('my-video');
+
+        class QualitySelector extends videojs.getComponent('Component') {{
+            constructor(player, options) {{
+                super(player, options);
+                this.levels = options.levels;
+                this.selectedIndex = options.defaultIndex || 0;
+                this.update();
+            }}
+
+            createEl() {{
+                this.selectEl = videojs.dom.createEl('select');
+                this.selectEl.className = 'vjs-menu-button vjs-control';
+                this.selectEl.addEventListener('change', () => {{
+                    this.selectedIndex = this.selectEl.selectedIndex;
+                    this.update();
+                }});
+
+                return this.selectEl;
+            }}
+
+            update() {{
+                while (this.selectEl.firstChild) {{
+                    this.selectEl.removeChild(this.selectEl.firstChild);
+                }}
+
+                this.levels.forEach((level, i) => {{
+                    const optionEl = videojs.dom.createEl('option', {{
+                        innerHTML: level.label,
+                        selected: i === this.selectedIndex,
+                    }});
+
+                    this.selectEl.appendChild(optionEl);
+                }});
+
+                this.player().src(this.levels[this.selectedIndex].src);
+            }}
+        }}
+
+        videojs.registerComponent('QualitySelector', QualitySelector);
+
+        player.getChild('controlBar').addChild('QualitySelector', {{
+            levels: [
+                {{ label: '1080p', src: '{playlist_url_1080p}' }},
+                {{ label: '720p', src: '{playlist_url_720p}' }},
+                {{ label: '480p', src: '{playlist_url_480p}' }},
+            ],
+        }});
+
+        player.ready(function() {{
+        }});
+    </script>
+    """
+    return video_embed_code
+
+
 def get__section_html_including_signals__for__section_and_session_id(
     section: Section, session_id
 ):
@@ -263,39 +343,47 @@ def get__section_html_including_signals__for__section_and_session_id(
     if signal_options is not None:
         for signal_option in signal_options:
             html_of_section = add__signal(
-                html_of_section,
-                session_id,
-                section_id,
-                signal_option.signal_type,
+                html_of_section, session_id, section_id, signal_option.signal_type
             )
 
-    # Check if there is a {{ video }} tag in the HTML
+        # Check if there is a {{ video }} tag in the HTML
     if "{{ video }}" in html_of_section:
         if section.video:
-            # Generate the URL for the HLS playlist file
-            video_720p_resolution = section.video.resolutions.get(resolution=720)
-            playlist_url = video_720p_resolution.hls_playlist_file.url
+            # Check if all HLS playlist files exist for the associated video
+            playlist_files_exist = all(
+                section.video.resolutions.filter(resolution=res).first()
+                and section.video.resolutions.filter(resolution=res)
+                .first()
+                .hls_playlist_file
+                is not None
+                for res in [480, 720, 1080]
+            )
 
-            # Create the HTML video embed code using Video.js and videojs-http-streaming
-            video_embed_code = f"""
-            <video id="my-video" class="video-js vjs-default-skin" width="100%" height="auto" controls>
-                <source src="{playlist_url}" type="application/vnd.apple.mpegurl">
-                Your browser does not support the video tag.
-            </video>
-            <script>
-                var player = videojs('my-video');
-                player.ready(function() {{
-                    player.qualityPickerPlugin();
-                    player.src({{
-                        src: '{playlist_url}',
-                        type: 'application/vnd.apple.mpegurl',
-                    }});
-                }});
-            </script>
-            """
+            if playlist_files_exist:
+                # Generate the URL for the HLS playlist files
+                video_480p_resolution = section.video.resolutions.get(resolution=480)
+                playlist_url_480p = video_480p_resolution.hls_playlist_file.url
 
-            # Replace the {{ video }} tag with the video embed code
-            html_of_section = html_of_section.replace("{{ video }}", video_embed_code)
+                video_720p_resolution = section.video.resolutions.get(resolution=720)
+                playlist_url_720p = video_720p_resolution.hls_playlist_file.url
+
+                video_1080p_resolution = section.video.resolutions.get(resolution=1080)
+                playlist_url_1080p = video_1080p_resolution.hls_playlist_file.url
+
+                # Create the HTML video embed code using Video.js and videojs-http-streaming
+                video_embed_code = generate_video_embed_code(
+                    playlist_url_480p, playlist_url_720p, playlist_url_1080p
+                )
+
+                # Replace the {{ video }} tag with the video embed code
+                html_of_section = html_of_section.replace(
+                    "{{ video }}", video_embed_code
+                )
+            else:
+                logger.warning(
+                    f"Not all HLS playlist files exist for video {section.video.id}. Omitting video from section."
+                )
+                html_of_section = html_of_section.replace("{{ video }}", "")
         else:
             # Remove the {{ video }} tag and show a warning if there is no associated video
             html_of_section = html_of_section.replace("{{ video }}", "")
@@ -688,26 +776,32 @@ def get_next_section_based_on_variant(
 
 
 def delete_video_files(video):
-    original_file_name = os.path.splitext(os.path.basename(video.original_file.name))[0]
-    resolutions = [480, 720, 1080]
-    for resolution in resolutions:
-        video_path = os.path.join(
-            settings.MEDIA_ROOT,
-            "original_videos",
-            f"{original_file_name}_{resolution}p.mp4",
-        )
-        hls_playlist_path = os.path.join(
-            settings.MEDIA_ROOT,
-            "hls_playlists",
-            f"{original_file_name}_{resolution}p",
-        )
-        transcoded_video_path = os.path.join(
-            settings.MEDIA_ROOT, "videos", f"{original_file_name}_{resolution}p.mp4"
-        )
+    try:
+        original_file_name = os.path.splitext(
+            os.path.basename(video.original_file.name)
+        )[0]
+        resolutions = [480, 720, 1080]
+        for resolution in resolutions:
+            video_path = os.path.join(
+                settings.MEDIA_ROOT,
+                "original_videos",
+                f"{original_file_name}_{resolution}p.mp4",
+            )
+            hls_playlist_path = os.path.join(
+                settings.MEDIA_ROOT,
+                "hls_playlists",
+                f"{original_file_name}_{resolution}p",
+            )
+            transcoded_video_path = os.path.join(
+                settings.MEDIA_ROOT, "videos", f"{original_file_name}_{resolution}p.mp4"
+            )
 
-        if os.path.isfile(video_path):
-            os.remove(video_path)
-        if os.path.isdir(hls_playlist_path):
-            shutil.rmtree(hls_playlist_path)
-        if os.path.isfile(transcoded_video_path):
-            os.remove(transcoded_video_path)
+            if os.path.isfile(video_path):
+                os.remove(video_path)
+            if os.path.isdir(hls_playlist_path):
+                shutil.rmtree(hls_playlist_path)
+            if os.path.isfile(transcoded_video_path):
+                os.remove(transcoded_video_path)
+    except Exception as e:
+        print(f"Error deleting video files: {e}")
+        raise

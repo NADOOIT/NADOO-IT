@@ -1,3 +1,4 @@
+import json
 from celery import shared_task
 from .models import (
     Session,
@@ -50,10 +51,9 @@ def convert_to_mp4(input_path, output_path):
     clip.write_videofile(output_path, codec="libx264")
 
 
-def reduce_bitrate(input_path, output_path, target_bitrate):
-    clip = VideoFileClip(input_path)
-    target_bitrate = target_bitrate / 1000  # Convert target bitrate to kbps
-    clip.write_videofile(output_path, codec="libx264", bitrate=f"{target_bitrate}k")
+def reduce_bitrate(input_path, output_path, bitrate, crf, preset):
+    ffmpeg_command = f"ffmpeg -i {input_path} -b:v {bitrate} -crf {crf} -preset {preset} {output_path}"
+    subprocess.run(ffmpeg_command, shell=True, check=True)
 
 
 def compress_video(input_path, output_path):
@@ -65,8 +65,9 @@ def compress_video(input_path, output_path):
 def scale_video(input_path, output_path, resolution):
     clip = VideoFileClip(input_path)
     height = resolution
-    width = int(clip.w * (height / clip.h))
-    scaled_clip = clip.resize((width, height))
+    scaled_clip = clip.resize(
+        height=height
+    )  # This will maintain the original aspect ratio
     scaled_clip.write_videofile(output_path, codec="libx264")
 
 
@@ -74,7 +75,7 @@ import os
 import subprocess
 
 
-def process_video(input_path, output_path, resolutions, target_bitrate=None):
+def process_video(input_path, output_path, resolution, bitrate, crf, preset):
     temp_path = os.path.splitext(input_path)[0] + "_temp.mp4"
 
     if not input_path.lower().endswith(".mp4"):
@@ -82,28 +83,24 @@ def process_video(input_path, output_path, resolutions, target_bitrate=None):
     else:
         temp_path = input_path
 
-    for resolution in resolutions:
-        scaled_output_path = os.path.splitext(output_path)[0] + f"_{resolution}p.mp4"
-        scale_video(temp_path, scaled_output_path, resolution)
+    scaled_output_path = os.path.splitext(output_path)[0] + f"_{resolution}p.mp4"
+    scale_video(temp_path, scaled_output_path, resolution)
 
-        if target_bitrate:
-            reduced_output_path = (
-                os.path.splitext(scaled_output_path)[0] + "_reduced.mp4"
-            )
-            reduce_bitrate(scaled_output_path, reduced_output_path, target_bitrate)
-            os.remove(scaled_output_path)
-            os.rename(reduced_output_path, scaled_output_path)
+    reduced_output_path = os.path.splitext(scaled_output_path)[0] + "_reduced.mp4"
+    reduce_bitrate(scaled_output_path, reduced_output_path, bitrate, crf, preset)
+    os.remove(scaled_output_path)
+    os.rename(reduced_output_path, scaled_output_path)
 
-        # Create HLS files and playlist for the current resolution
-        video_name = os.path.splitext(os.path.basename(input_path))[0]
+    # Create HLS files and playlist for the current resolution
+    video_name = os.path.splitext(os.path.basename(input_path))[0]
 
-        hls_output_path = f"/vol/web/media/hls_playlists/{video_name}_{resolution}p"
-        os.makedirs(hls_output_path, exist_ok=True)
-        hls_playlist_path = os.path.join(hls_output_path, "index.m3u8")
-        ffmpeg_command = f"ffmpeg -i {scaled_output_path} -profile:v high444 -level 4.2 -s {resolution}x{resolution} -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {hls_playlist_path}"
-        print("HLS output path:", hls_output_path)
-        print("HLS playlist path:", hls_playlist_path)
-        subprocess.run(ffmpeg_command, shell=True, check=True)
+    hls_output_path = f"/vol/web/media/hls_playlists/{video_name}_{resolution}p"
+    os.makedirs(hls_output_path, exist_ok=True)
+    hls_playlist_path = os.path.join(hls_output_path, "index.m3u8")
+    ffmpeg_command = f"ffmpeg -i {scaled_output_path} -profile:v high444 -level 4.2 -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {hls_playlist_path}"
+    print("HLS output path:", hls_output_path)
+    print("HLS playlist path:", hls_playlist_path)
+    subprocess.run(ffmpeg_command, shell=True, check=True)
 
 
 @shared_task
@@ -120,16 +117,23 @@ def create_streaming_files_task(video_id):
     output_path = os.path.splitext(input_path)[0] + ".mp4"
     print("Output path:", output_path)
 
-    resolutions = [480, 720, 1080]
-    target_bitrate = 4000  # Adjust the target bitrate as needed
-    process_video(input_path, output_path, resolutions, target_bitrate)
+    # Load the JSON configuration file
+    with open("video_config.json") as config_file:
+        config = json.load(config_file)
 
     video_name = os.path.splitext(os.path.basename(input_path))[0]
-
     print("Video name:", video_name)
 
-    # Save the processed video files
-    for resolution in resolutions:
+    # Now use the configurations from the file
+    for resolution_config in config["resolutions"]:
+        resolution = resolution_config["resolution"]
+        bitrate = resolution_config["bitrate"]
+        crf = resolution_config["crf"]
+        preset = resolution_config["preset"]
+
+        process_video(input_path, output_path, resolution, bitrate, crf, preset)
+
+        # Save the processed video file
         scaled_output_path = os.path.splitext(output_path)[0] + f"_{resolution}p.mp4"
         with open(scaled_output_path, "rb") as transcoded_file:
             connections[
