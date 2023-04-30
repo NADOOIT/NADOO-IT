@@ -13,7 +13,7 @@
     }
 </style>
 
-<video id="{{ player_uuid }}" class="video-js vjs-default-skin" width="100%" height="auto" controls preload="auto">
+<video id="v{{ player_uuid }}" class="video-js vjs-default-skin" width="100%" height="auto" controls preload="auto">
     <source src="{{ playlist_url_480p }}" type="application/vnd.apple.mpegurl" label="480p" res="480">
     <source src="{{ playlist_url_720p }}" type="application/vnd.apple.mpegurl" label="720p" res="720">
     <source src="{{ playlist_url_1080p }}" type="application/vnd.apple.mpegurl" label="1080p" res="1080">
@@ -63,7 +63,7 @@
             videojs.registerComponent('QualitySelector', QualitySelector);
         }
 
-        var player = videojs('{{ player_uuid }}');
+        var player = videojs('v{{ player_uuid }}');
 
         player.getChild('controlBar').addChild('QualitySelector', {
             levels: [
