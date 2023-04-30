@@ -486,6 +486,31 @@ footer {
     color: #ffffff;
 }
 
+.video-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 525px; /* about 14cm */
+    margin: 0 auto; /* centers the video container */
+    overflow: hidden; /* in case of video overflow */
+}
+
+.video-container::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-container .video-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* From here on it is about mobile */
 @media (max-width: 991px) {
   .container {
