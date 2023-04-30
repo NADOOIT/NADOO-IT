@@ -248,90 +248,23 @@ def categorize_user(session_id):
 
     return user_category
 
+import uuid
+from django.template.loader import render_to_string
 
-# TODO #217 Extract the javascript code into a separate file and load it from there
 def generate_video_embed_code(playlist_url_480p, playlist_url_720p, playlist_url_1080p):
-    video_embed_code = f"""
-    <style>
-        .video-js .vjs-menu-button {{
-            background-color: #f00;  /* Change the background color to red */
-            color: #fff;  /* Change the text color to white */
-            border: none;  /* Remove the border */
-            width: 70px;  /* Set the width of the selector */
-        }}
+    player_uuid = str(uuid.uuid4())
+    context = {
+        'player_uuid': player_uuid,
+        'playlist_url_480p': playlist_url_480p,
+        'playlist_url_720p': playlist_url_720p,
+        'playlist_url_1080p': playlist_url_1080p,
+    }
 
-        /* You can also style the individual options in the dropdown */
-        .video-js .vjs-menu-button option {{
-            background-color: #000;  /* Change the background color to black */
-            color: #fff;  /* Change the text color to white */
-        }}
-    </style>
-    <video id="my-video" class="video-js vjs-default-skin" width="100%" height="auto" controls preload="auto">
-        <source src="{playlist_url_480p}" type="application/vnd.apple.mpegurl" label="480p" res="480">
-        <source src="{playlist_url_720p}" type="application/vnd.apple.mpegurl" label="720p" res="720">
-        <source src="{playlist_url_1080p}" type="application/vnd.apple.mpegurl" label="1080p" res="1080">
-        Your browser does not support the video tag.
-    </video>
-    <script>
-        var player = videojs('my-video');
+    video_embed_code = render_to_string('nadooit_website/video_embed.html', context)
 
-        class QualitySelector extends videojs.getComponent('Component') {{
-            constructor(player, options) {{
-                super(player, options);
-                this.levels = options.levels;
-                this.selectedIndex = options.defaultIndex || 0;
-                this.update();
-            }}
-
-            createEl() {{
-                this.selectEl = videojs.dom.createEl('select');
-                this.selectEl.className = 'vjs-menu-button vjs-control';
-                this.selectEl.addEventListener('change', () => {{
-                    this.selectedIndex = this.selectEl.selectedIndex;
-                    this.update();
-                }});
-
-                return this.selectEl;
-            }}
-
-            update() {{
-                while (this.selectEl.firstChild) {{
-                    this.selectEl.removeChild(this.selectEl.firstChild);
-                }}
-
-                this.levels.forEach((level, i) => {{
-                    const optionEl = videojs.dom.createEl('option', {{
-                        innerHTML: level.label,
-                        selected: i === this.selectedIndex,
-                    }});
-
-                    this.selectEl.appendChild(optionEl);
-                }});
-
-                this.player().src(this.levels[this.selectedIndex].src);
-            }}
-        }}
-
-        videojs.registerComponent('QualitySelector', QualitySelector);
-
-        player.getChild('controlBar').addChild('QualitySelector', {{
-            levels: [
-                {{ label: '1080p', src: '{playlist_url_1080p}' }},
-                {{ label: '720p', src: '{playlist_url_720p}' }},
-                {{ label: '480p', src: '{playlist_url_480p}' }},
-            ],
-        }});
-
-        player.ready(function() {{
-        }});
-    </script>
-    """
     return video_embed_code
 
-
-def get__section_html_including_signals__for__section_and_session_id(
-    section: Section, session_id
-):
+def get__section_html_including_signals__for__section_and_session_id(section: Section, session_id):
     html_of_section = section.html
 
     logger.info(f"Section: {section.html}")
@@ -346,10 +279,8 @@ def get__section_html_including_signals__for__section_and_session_id(
                 html_of_section, session_id, section_id, signal_option.signal_type
             )
 
-        # Check if there is a {{ video }} tag in the HTML
     if "{{ video }}" in html_of_section:
         if section.video:
-            # Check if all HLS playlist files exist for the associated video
             playlist_files_exist = all(
                 section.video.resolutions.filter(resolution=res).first()
                 and section.video.resolutions.filter(resolution=res)
@@ -360,7 +291,6 @@ def get__section_html_including_signals__for__section_and_session_id(
             )
 
             if playlist_files_exist:
-                # Generate the URL for the HLS playlist files
                 video_480p_resolution = section.video.resolutions.get(resolution=480)
                 playlist_url_480p = video_480p_resolution.hls_playlist_file.url
 
@@ -370,12 +300,10 @@ def get__section_html_including_signals__for__section_and_session_id(
                 video_1080p_resolution = section.video.resolutions.get(resolution=1080)
                 playlist_url_1080p = video_1080p_resolution.hls_playlist_file.url
 
-                # Create the HTML video embed code using Video.js and videojs-http-streaming
                 video_embed_code = generate_video_embed_code(
                     playlist_url_480p, playlist_url_720p, playlist_url_1080p
                 )
 
-                # Replace the {{ video }} tag with the video embed code
                 html_of_section = html_of_section.replace(
                     "{{ video }}", video_embed_code
                 )
@@ -385,13 +313,11 @@ def get__section_html_including_signals__for__section_and_session_id(
                 )
                 html_of_section = html_of_section.replace("{{ video }}", "")
         else:
-            # Remove the {{ video }} tag and show a warning if there is no associated video
             html_of_section = html_of_section.replace("{{ video }}", "")
             logger.warning(
                 f"No video associated with the section, but {{ video }} tag is present in the HTML"
             )
     elif section.video:
-        # Show a warning if a video is associated with the section but the {{ video }} tag is missing
         logger.warning(
             f"A video is associated with the section, but the {{ video }} tag is missing in the HTML"
         )
@@ -399,6 +325,7 @@ def get__section_html_including_signals__for__section_and_session_id(
     logger.info(f"Section: {html_of_section}")
 
     return html_of_section
+
 
 
 def get__template__for__session_id(session_id):
