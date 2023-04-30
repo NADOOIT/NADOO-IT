@@ -1,0 +1,73 @@
+<style>
+    .video-js .vjs-menu-button {
+        background-color: #f00;  /* Change the background color to red */
+        color: #fff;  /* Change the text color to white */
+        border: none;  /* Remove the border */
+        width: 70px;  /* Set the width of the selector */
+    }
+
+    /* You can also style the individual options in the dropdown */
+    .video-js .vjs-menu-button option {
+        background-color: #000;  /* Change the background color to black */
+        color: #fff;  /* Change the text color to white */
+    }
+</style>
+<video id="{{ player_uuid }}" class="video-js vjs-default-skin" width="100%" height="auto" controls preload="auto">
+    <source src="{{ playlist_url_480p }}" type="application/vnd.apple.mpegurl" label="480p" res="480">
+    <source src="{{ playlist_url_720p }}" type="application/vnd.apple.mpegurl" label="720p" res="720">
+    <source src="{{ playlist_url_1080p }}" type="application/vnd.apple.mpegurl" label="1080p" res="1080">
+    Your browser does not support the video tag.
+</video>
+<script>
+    var player = videojs('{{ player_uuid }}');
+
+    class QualitySelector extends videojs.getComponent('Component') {
+        constructor(player, options) {
+            super(player, options);
+            this.levels = options.levels;
+            this.selectedIndex = options.defaultIndex || 0;
+            this.update();
+        }
+
+        createEl() {
+            this.selectEl = videojs.dom.createEl('select');
+            this.selectEl.className = 'vjs-menu-button vjs-control';
+            this.selectEl.addEventListener('change', () => {
+                this.selectedIndex = this.selectEl.selectedIndex;
+                this.update();
+            });
+
+            return this.selectEl;
+        }
+
+        update() {
+            while (this.selectEl.firstChild) {
+                this.selectEl.removeChild(this.selectEl.firstChild);
+            }
+
+            this.levels.forEach((level, i) => {
+                const optionEl = videojs.dom.createEl('option', {
+                    innerHTML: level.label,
+                    selected: i === this.selectedIndex,
+                });
+
+                this.selectEl.appendChild(optionEl);
+            });
+
+            this.player().src(this.levels[this.selectedIndex].src);
+        }
+    }
+
+    videojs.registerComponent('QualitySelector', QualitySelector);
+
+    player.getChild('controlBar').addChild('QualitySelector', {
+        levels: [
+            { label: '1080p', src: '{{ playlist_url_1080p }}' },
+            { label: '720p', src: '{{ playlist_url_720p }}' },
+            { label: '480p', src: '{{ playlist_url_480p }}' },
+        ],
+    });
+
+    player.ready(function() {
+    });
+</script>

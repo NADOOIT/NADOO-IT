@@ -72,8 +72,10 @@ import subprocess
 
 from django.core.exceptions import ObjectDoesNotExist
 
+from celery.exceptions import MaxRetriesExceededError
 
-@shared_task
+
+@shared_task(autoretry_for=(Exception,), retry_backoff=True, max_retries=3)
 def process_video_task(
     input_path, output_path, resolution, bitrate, crf, preset, video_id
 ):
@@ -135,7 +137,7 @@ def process_video_task(
         raise e
 
 
-@shared_task
+@shared_task(autoretry_for=(Exception,), retry_backoff=True, max_retries=3)
 def create_streaming_files_task(video_id):
     from django.db import connections
 
