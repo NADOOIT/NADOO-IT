@@ -26,8 +26,12 @@ server {
 
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
-    location /static {
-            alias /vol/web;
+    location /static/static {
+            alias /vol/web/static;
+        }
+
+    location /static/media {
+            alias /vol/web/media;
         }
 
     location / {
@@ -53,8 +57,12 @@ server {
 
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
-    location /static {
-            alias /vol/web;
+    location /static/static {
+            alias /vol/web/static;
+        }
+
+    location /static/media {
+            alias /vol/web/media;
         }
 
     location / {
