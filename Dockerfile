@@ -16,7 +16,8 @@ RUN apt-get update && \
     git \
     gcc \
     libc-dev \
-    linux-headers-amd64
+    linux-headers-amd64 \
+    ffmpeg
 
 RUN unset https_proxy
 
@@ -48,6 +49,7 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
 RUN python manage.py collectstatic --noinput 
+
 
 USER root
 RUN pip install uwsgi

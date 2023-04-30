@@ -4,6 +4,17 @@ from django.db import models
 from ordered_model.models import OrderedModel
 from django.core.files.storage import default_storage
 import logging
+from uuid import uuid4
+from django.utils.deconstruct import deconstructible
+from django.core.files.storage import FileSystemStorage
+
+
+@deconstructible
+class RenameFileStorage(FileSystemStorage):
+    def get_valid_name(self, name):
+        ext = name.split(".")[-1]
+        name = f"{uuid4()}.{ext}"
+        return name
 
 
 # Create your models here.
@@ -23,11 +34,27 @@ class Visit(models.Model):
 class Video(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
-    video_file = models.FileField(upload_to="videos/")
     preview_image = models.ImageField(upload_to="video_previews/")
+    original_file = models.FileField(
+        upload_to="original_videos/", storage=RenameFileStorage()
+    )
 
     def __str__(self):
         return self.title
+
+
+class VideoResolution(models.Model):
+    video = models.ForeignKey(
+        Video, related_name="resolutions", on_delete=models.CASCADE
+    )
+    resolution = (
+        models.PositiveIntegerField()
+    )  # Resolution in height (e.g., 480, 720, 1080)
+    video_file = models.FileField(upload_to="videos/")
+    hls_playlist_file = models.FileField(upload_to="hls_playlists/")  # New field
+
+    def __str__(self):
+        return f"{self.video.title} ({self.resolution}p)"
 
 
 class Signals_Option(models.Model):

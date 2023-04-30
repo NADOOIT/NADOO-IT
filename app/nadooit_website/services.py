@@ -1,4 +1,6 @@
+import os
 import random
+import shutil
 import uuid
 from typing import Optional
 from django.conf import settings
@@ -246,10 +248,23 @@ def categorize_user(session_id):
 
     return user_category
 
+import uuid
+from django.template.loader import render_to_string
 
-def get__section_html_including_signals__for__section_and_session_id(
-    section: Section, session_id
-):
+def generate_video_embed_code(playlist_url_480p, playlist_url_720p, playlist_url_1080p):
+    player_uuid = str(uuid.uuid4())
+    context = {
+        'player_uuid': player_uuid,
+        'playlist_url_480p': playlist_url_480p,
+        'playlist_url_720p': playlist_url_720p,
+        'playlist_url_1080p': playlist_url_1080p,
+    }
+
+    video_embed_code = render_to_string('nadooit_website/video_embed.html', context)
+
+    return video_embed_code
+
+def get__section_html_including_signals__for__section_and_session_id(section: Section, session_id):
     html_of_section = section.html
 
     logger.info(f"Section: {section.html}")
@@ -261,35 +276,48 @@ def get__section_html_including_signals__for__section_and_session_id(
     if signal_options is not None:
         for signal_option in signal_options:
             html_of_section = add__signal(
-                html_of_section,
-                session_id,
-                section_id,
-                signal_option.signal_type,
+                html_of_section, session_id, section_id, signal_option.signal_type
             )
 
-    # Check if there is a {{ video }} tag in the HTML
     if "{{ video }}" in html_of_section:
         if section.video:
-            # Generate the URL for the video file
-            video_url = section.video.video_file.url
-            # Create the HTML video embed code
-            # Create the HTML video embed code using Video.js
-            video_embed_code = f'''
-            <video id="my-video" class="video-js vjs-default-skin" width="100%" height="auto" controls>
-                <source src="{video_url}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            '''
-            # Replace the {{ video }} tag with the video embed code
-            html_of_section = html_of_section.replace("{{ video }}", video_embed_code)
+            playlist_files_exist = all(
+                section.video.resolutions.filter(resolution=res).first()
+                and section.video.resolutions.filter(resolution=res)
+                .first()
+                .hls_playlist_file
+                is not None
+                for res in [480, 720, 1080]
+            )
+
+            if playlist_files_exist:
+                video_480p_resolution = section.video.resolutions.get(resolution=480)
+                playlist_url_480p = video_480p_resolution.hls_playlist_file.url
+
+                video_720p_resolution = section.video.resolutions.get(resolution=720)
+                playlist_url_720p = video_720p_resolution.hls_playlist_file.url
+
+                video_1080p_resolution = section.video.resolutions.get(resolution=1080)
+                playlist_url_1080p = video_1080p_resolution.hls_playlist_file.url
+
+                video_embed_code = generate_video_embed_code(
+                    playlist_url_480p, playlist_url_720p, playlist_url_1080p
+                )
+
+                html_of_section = html_of_section.replace(
+                    "{{ video }}", video_embed_code
+                )
+            else:
+                logger.warning(
+                    f"Not all HLS playlist files exist for video {section.video.id}. Omitting video from section."
+                )
+                html_of_section = html_of_section.replace("{{ video }}", "")
         else:
-            # Remove the {{ video }} tag and show a warning if there is no associated video
             html_of_section = html_of_section.replace("{{ video }}", "")
             logger.warning(
                 f"No video associated with the section, but {{ video }} tag is present in the HTML"
             )
     elif section.video:
-        # Show a warning if a video is associated with the section but the {{ video }} tag is missing
         logger.warning(
             f"A video is associated with the section, but the {{ video }} tag is missing in the HTML"
         )
@@ -297,6 +325,7 @@ def get__section_html_including_signals__for__section_and_session_id(
     logger.info(f"Section: {html_of_section}")
 
     return html_of_section
+
 
 
 def get__template__for__session_id(session_id):
@@ -671,3 +700,58 @@ def get_next_section_based_on_variant(
         session.save()
 
     return next_section
+
+
+import glob
+import json
+
+
+def delete_video_files(video):
+    try:
+        # Load the JSON configuration file
+        try:
+            with open("video_config.json") as config_file:
+                config = json.load(config_file)
+        except Exception as e:
+            print(f"Error loading configuration file: {e}")
+            return
+
+        original_file_name = os.path.splitext(
+            os.path.basename(video.original_file.name)
+        )[0]
+        resolutions = [res["resolution"] for res in config["resolutions"]]
+        for resolution in resolutions:
+            video_path = os.path.join(
+                settings.MEDIA_ROOT,
+                "original_videos",
+                f"{original_file_name}_{resolution}p.mp4",
+            )
+            hls_playlist_path = os.path.join(
+                settings.MEDIA_ROOT,
+                "hls_playlists",
+                f"{original_file_name}_{resolution}p",
+            )
+            transcoded_video_path = os.path.join(
+                settings.MEDIA_ROOT, "videos", f"{original_file_name}_{resolution}p.mp4"
+            )
+
+            if os.path.isfile(video_path):
+                os.remove(video_path)
+            if os.path.isdir(hls_playlist_path):
+                shutil.rmtree(hls_playlist_path)
+            if os.path.isfile(transcoded_video_path):
+                os.remove(transcoded_video_path)
+
+        # Deleting the original video file
+        original_video_paths = glob.glob(
+            os.path.join(
+                settings.MEDIA_ROOT, "original_videos", f"{original_file_name}.*"
+            )
+        )
+        for original_video_path in original_video_paths:
+            if os.path.isfile(original_video_path):
+                os.remove(original_video_path)
+
+    except Exception as e:
+        print(f"Error deleting video files: {e}")
+        raise
