@@ -264,6 +264,69 @@ def generate_video_embed_code(playlist_url_480p, playlist_url_720p, playlist_url
 
     return video_embed_code
 
+
+def process_video(section: Section, html_of_section: str):
+    """
+    This function replaces the video tag in the HTML with the appropriate video embed code.
+    """
+    if section.video:
+        playlist_files_exist = all(
+            section.video.resolutions.filter(resolution=res).first()
+            and section.video.resolutions.filter(resolution=res)
+            .first()
+            .hls_playlist_file
+            is not None
+            for res in [480, 720, 1080]
+        )
+
+        if playlist_files_exist:
+            video_480p_resolution = section.video.resolutions.get(resolution=480)
+            playlist_url_480p = video_480p_resolution.hls_playlist_file.url
+
+            video_720p_resolution = section.video.resolutions.get(resolution=720)
+            playlist_url_720p = video_720p_resolution.hls_playlist_file.url
+
+            video_1080p_resolution = section.video.resolutions.get(resolution=1080)
+            playlist_url_1080p = video_1080p_resolution.hls_playlist_file.url
+
+            video_embed_code = generate_video_embed_code(
+                playlist_url_480p, playlist_url_720p, playlist_url_1080p
+            )
+
+            html_of_section = html_of_section.replace(
+                "{{ video }}", video_embed_code
+            )
+        else:
+            logger.warning(
+                f"Not all HLS playlist files exist for video {section.video.id}. Omitting video from section."
+            )
+            html_of_section = html_of_section.replace("{{ video }}", "")
+    else:
+        html_of_section = html_of_section.replace("{{ video }}", "")
+        logger.warning(
+            f"No video associated with the section, but {{ video }} tag is present in the HTML"
+        )
+    return html_of_section
+
+def process_file(section: Section, html_of_section: str):
+    """
+    This function replaces the file tag in the HTML with the appropriate download button.
+    """
+    if section.file:
+        file_name = section.file.name
+        file_url = section.file.file.url
+
+        # Replace "{{ file }}" with a download button.
+        file_embed_code = f'<a href="{file_url}" class="btn btn-success">{file_name}</a>'
+        html_of_section = html_of_section.replace("{{ file }}", file_embed_code)
+
+    else:
+        html_of_section = html_of_section.replace("{{ file }}", "")
+        logger.warning(
+            f"No file associated with the section, but {{ file }} tag is present in the HTML"
+        )
+    return html_of_section
+
 def get__section_html_including_signals__for__section_and_session_id(section: Section, session_id):
     html_of_section = section.html
 
@@ -280,53 +343,14 @@ def get__section_html_including_signals__for__section_and_session_id(section: Se
             )
 
     if "{{ video }}" in html_of_section:
-        if section.video:
-            playlist_files_exist = all(
-                section.video.resolutions.filter(resolution=res).first()
-                and section.video.resolutions.filter(resolution=res)
-                .first()
-                .hls_playlist_file
-                is not None
-                for res in [480, 720, 1080]
-            )
+        html_of_section = process_video(section, html_of_section)
 
-            if playlist_files_exist:
-                video_480p_resolution = section.video.resolutions.get(resolution=480)
-                playlist_url_480p = video_480p_resolution.hls_playlist_file.url
-
-                video_720p_resolution = section.video.resolutions.get(resolution=720)
-                playlist_url_720p = video_720p_resolution.hls_playlist_file.url
-
-                video_1080p_resolution = section.video.resolutions.get(resolution=1080)
-                playlist_url_1080p = video_1080p_resolution.hls_playlist_file.url
-
-                video_embed_code = generate_video_embed_code(
-                    playlist_url_480p, playlist_url_720p, playlist_url_1080p
-                )
-
-                html_of_section = html_of_section.replace(
-                    "{{ video }}", video_embed_code
-                )
-            else:
-                logger.warning(
-                    f"Not all HLS playlist files exist for video {section.video.id}. Omitting video from section."
-                )
-                html_of_section = html_of_section.replace("{{ video }}", "")
-        else:
-            html_of_section = html_of_section.replace("{{ video }}", "")
-            logger.warning(
-                f"No video associated with the section, but {{ video }} tag is present in the HTML"
-            )
-    elif section.video:
-        logger.warning(
-            f"A video is associated with the section, but the {{ video }} tag is missing in the HTML"
-        )
+    if "{{ file }}" in html_of_section:
+        html_of_section = process_file(section, html_of_section)
 
     logger.info(f"Section: {html_of_section}")
 
     return html_of_section
-
-
 
 def get__template__for__session_id(session_id):
     # start_section = get_next_section(session_id)

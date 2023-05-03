@@ -8,6 +8,9 @@ from nadooit_website.models import *
 
 import logging
 
+@admin.register(File)
+class FileAdmin(admin.ModelAdmin):
+    list_display = ('name', 'file',)
 
 class WebsiteSectionsOrderTabularInline(OrderedTabularInline):
     model = Section_Order_Sections_Through_Model
@@ -34,7 +37,7 @@ class Section_OrderAdmin(OrderedInlineModelAdminMixin, admin.ModelAdmin):
 
 # Update SectionAdmin to include video field in the form
 class SectionAdmin(admin.ModelAdmin):
-    list_display = ("section_id", "name", "html", "video")
+    list_display = ("section_id", "name", "html", "video", "file")
 
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
@@ -52,7 +55,18 @@ class SectionAdmin(admin.ModelAdmin):
                 request,
                 "No video is selected for this section, but the {{ video }} tag is present in the HTML. Please either add a video or remove the tag.",
             )
-
+        
+        if obj.file and "{{ file }}" not in obj.html:
+            messages.warning(
+                request,
+                "A file is selected for this section, but the {{ file }} tag is missing in the HTML. Please add the tag where you want the file download link to appear.",
+            )
+        elif not obj.file and "{{ file }}" in obj.html:
+            messages.warning(
+                request,
+                "No file is selected for this section, but the {{ file }} tag is present in the HTML. Please either add a file or remove the tag.",
+            )
+            
         super().save_model(request, obj, form, change)
 
 

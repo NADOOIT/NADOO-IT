@@ -8,7 +8,6 @@ from uuid import uuid4
 from django.utils.deconstruct import deconstructible
 from django.core.files.storage import FileSystemStorage
 
-
 @deconstructible
 class RenameFileStorage(FileSystemStorage):
     def get_valid_name(self, name):
@@ -81,6 +80,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class File(models.Model):
+    """
+    This class represents a file that can be linked to a section.
+    """
+    file_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=200)
+    file = models.FileField(upload_to='uploads/')  # assuming files are stored in a directory named 'uploads' at the media root
+
+    def __str__(self):
+        return self.name
+
 
 # Section is a class that stores the html code of a section
 class Section(models.Model):
@@ -91,6 +101,8 @@ class Section(models.Model):
     html = models.TextField()
     # Add a ForeignKey to Video model with null and blank values set to True
     video = models.ForeignKey(Video, on_delete=models.SET_NULL, null=True, blank=True)
+
+    file = models.ForeignKey(File, on_delete=models.SET_NULL, null=True, blank=True)
 
     categories = models.ManyToManyField(Category)
 
