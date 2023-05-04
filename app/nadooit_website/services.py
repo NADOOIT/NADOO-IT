@@ -248,19 +248,21 @@ def categorize_user(session_id):
 
     return user_category
 
+
 import uuid
 from django.template.loader import render_to_string
+
 
 def generate_video_embed_code(playlist_url_480p, playlist_url_720p, playlist_url_1080p):
     player_uuid = str(uuid.uuid4())
     context = {
-        'player_uuid': player_uuid,
-        'playlist_url_480p': playlist_url_480p,
-        'playlist_url_720p': playlist_url_720p,
-        'playlist_url_1080p': playlist_url_1080p,
+        "player_uuid": player_uuid,
+        "playlist_url_480p": playlist_url_480p,
+        "playlist_url_720p": playlist_url_720p,
+        "playlist_url_1080p": playlist_url_1080p,
     }
 
-    video_embed_code = render_to_string('nadooit_website/video_embed.html', context)
+    video_embed_code = render_to_string("nadooit_website/video_embed.html", context)
 
     return video_embed_code
 
@@ -293,9 +295,7 @@ def process_video(section: Section, html_of_section: str):
                 playlist_url_480p, playlist_url_720p, playlist_url_1080p
             )
 
-            html_of_section = html_of_section.replace(
-                "{{ video }}", video_embed_code
-            )
+            html_of_section = html_of_section.replace("{{ video }}", video_embed_code)
         else:
             logger.warning(
                 f"Not all HLS playlist files exist for video {section.video.id}. Omitting video from section."
@@ -308,26 +308,36 @@ def process_video(section: Section, html_of_section: str):
         )
     return html_of_section
 
+
 def process_file(section: Section, html_of_section: str):
     """
     This function replaces the file tag in the HTML with the appropriate download button.
     """
-    if section.file:
-        file_name = section.file.name
-        file_url = section.file.file.url
+    if "{{ file }}" in html_of_section:
+        if section.file:
+            file_name = section.file.name
+            file_url = section.file.file.url
 
-        # Replace "{{ file }}" with a download button.
-        file_embed_code = f'<a href="{file_url}" class="btn btn-success">{file_name}</a>'
-        html_of_section = html_of_section.replace("{{ file }}", file_embed_code)
+            # Render the file download button
+            context = {"file_url": file_url, "file_name": file_name}
+            file_embed_code = render_to_string("nadooit_website/file_download_button.html", context)
 
-    else:
-        html_of_section = html_of_section.replace("{{ file }}", "")
+            html_of_section = html_of_section.replace("{{ file }}", file_embed_code)
+        else:
+            html_of_section = html_of_section.replace("{{ file }}", "")
+            logger.warning(
+                f"No file associated with the section, but {{ file }} tag is present in the HTML"
+            )
+    elif section.file:
         logger.warning(
-            f"No file associated with the section, but {{ file }} tag is present in the HTML"
+            f"A file is associated with the section, but the {{ file }} tag is missing in the HTML"
         )
     return html_of_section
 
-def get__section_html_including_signals__for__section_and_session_id(section: Section, session_id):
+
+def get__section_html_including_signals__for__section_and_session_id(
+    section: Section, session_id
+):
     html_of_section = section.html
 
     logger.info(f"Section: {section.html}")
@@ -351,6 +361,7 @@ def get__section_html_including_signals__for__section_and_session_id(section: Se
     logger.info(f"Section: {html_of_section}")
 
     return html_of_section
+
 
 def get__template__for__session_id(session_id):
     # start_section = get_next_section(session_id)
