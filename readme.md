@@ -304,3 +304,31 @@ To retrieve all sections from the database and save them as templates in the sec
 To then retrieve all sections from the sections_templates folder and save them in the database, run the following command:
 
     python manage.py import_templates
+
+#### Sections
+
+Sections contain the content of the website. They are stored in the database and can be edited by the admin.
+
+Sections can contain the following elements:
+
+- Text
+- Image
+- Video
+- File downloads
+
+For embedding a video first upload the video. Then in the sections admin page select the video from the dropdown menu.
+
+Then add the following html block to the html at the place where the video should be displayed:
+
+    <div class="video-container">
+        {{ video }}
+    </div>
+
+For embedding a file download first upload the file. Then in the sections admin page select the file from the dropdown menu.
+
+Then add the following html block to the html at the place where the file download should be displayed:
+
+    <div class="file-container">
+        {{ file }}
+    </div>
+
