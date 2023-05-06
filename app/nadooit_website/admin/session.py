@@ -6,8 +6,7 @@ from django.utils import timezone
 from nadooit_website.models import *
 
 from django.contrib.admin import SimpleListFilter
-
-SESSION_ACTIVE_OFFSET = 100
+from django.conf import settings
 
 
 class SessionStatusFilter(SimpleListFilter):
@@ -21,17 +20,10 @@ class SessionStatusFilter(SimpleListFilter):
         )
 
     def queryset(self, request, queryset):
-        now = timezone.now()
-        active_sessions = [
-            session
-            for session in queryset
-            if session.session_end_time()
-            > now - datetime.timedelta(seconds=SESSION_ACTIVE_OFFSET)
-        ]
         if self.value() == "active":
-            return queryset.filter(pk__in=[session.pk for session in active_sessions])
+            return queryset.filter(session_status="ACTIVE")
         elif self.value() == "inactive":
-            return queryset.exclude(pk__in=[session.pk for session in active_sessions])
+            return queryset.filter(session_status="EXPIRED")
 
 
 class SessionSignalsInline(admin.TabularInline):
@@ -102,18 +94,18 @@ class SessionAdmin(admin.ModelAdmin):
         return super().formfield_for_manytomany(db_field, request, **kwargs)
 
     def session_status(self, obj):
-        if obj.session_end_time() > timezone.now() - datetime.timedelta(
-            seconds=SESSION_ACTIVE_OFFSET
-        ):
+        status = obj.session_status()
+        if status == "ACTIVE":
             return format_html(
                 '<span style="background-color: green; color: white; padding: 3px; border-radius: 3px;">Active</span>'
             )
         else:
             return format_html(
-                '<span style="background-color: red; color: white; padding: 3px; border-radius: 3px;">Inactive</span>'
+                '<span style="background-color: red; color: white; padding: 3px; border-radius: 3px;">Expired</span>'
             )
 
     session_status.short_description = "Session Status"
+
 
 
 # Register your models here.

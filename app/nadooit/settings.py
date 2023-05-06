@@ -87,7 +87,7 @@ INSTALLED_APPS = [
     "django_htmx",
     "nadoo_complaint_management",
     "djmoney",
-    'callcenter',
+    "callcenter",
 ]
 
 # Middelware is a list of functions that are called for every request.
@@ -104,7 +104,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    'callcenter.middleware.MeetingRequestNotificationMiddleware',
+    "callcenter.middleware.MeetingRequestNotificationMiddleware",
 ]
 
 # The Authentication backends are used to authenticate users.
@@ -334,3 +334,6 @@ CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
+
+# NADOOIT APP SETTINGS
+SESSION_ACTIVE_OFFSET = 100  # in seconds

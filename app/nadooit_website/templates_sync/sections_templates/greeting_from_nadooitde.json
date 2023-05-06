@@ -1,0 +1,8 @@
+{
+    "section_id": "7b88f7f0-bbf3-44b6-afaf-85c5b7442ed6",
+    "name": "greeting_from_nadooitde",
+    "html": "<section>\r\n    <div class=\"banner\">\r\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">\r\n            <h1>Willkommen bei Nadooit.de!</h1>\r\n            <p>Entdecken Sie eine dynamische Webseite, die Ihnen eine personalisierte Erfahrung bietet. Durch Bewertungen und Fragen gestalten Sie die Seite aktiv mit und genie\u00dfen eine individuelle Erfahrung.</p>\r\n            <h2>NADOOIT - Individuelle Softwarel\u00f6sungen f\u00fcr Sie</h2>\r\n            <p>Unser neuartiges IT-Konzept entwickelt ma\u00dfgeschneiderte Softwarel\u00f6sungen, die auf Ihre spezifischen Bed\u00fcrfnisse zugeschnitten sind. Wir glauben an Individualit\u00e4t, sowohl bei der Software f\u00fcr unsere Kunden als auch bei der Gestaltung unserer Webseite.</p>\r\n            <h3>Machen Sie mit!</h3>\r\n            <p>Erleben Sie die Zukunft des personalisierten Web-Erlebnisses bei Nadooit.de!</p>\r\n<div class=\"video-container\">\r\n    {{ video }}\r\n</div>\r\n<div class=\"file-container\">\r\n    {{ file }}\r\n</div>\r\n        </div>\r\n    </div>\r\n</section>",
+    "video": "NADOOIT",
+    "file": "MAINIFESTO",
+    "greeting_sction": "True"
+}

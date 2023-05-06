@@ -1,5 +1,6 @@
 import datetime
 import uuid
+from django.conf import settings
 from django.db import models
 from ordered_model.models import OrderedModel
 from django.core.files.storage import default_storage
@@ -7,6 +8,7 @@ import logging
 from uuid import uuid4
 from django.utils.deconstruct import deconstructible
 from django.core.files.storage import FileSystemStorage
+
 
 @deconstructible
 class RenameFileStorage(FileSystemStorage):
@@ -80,13 +82,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class File(models.Model):
     """
     This class represents a file that can be linked to a section.
     """
+
     file_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    file = models.FileField(upload_to='uploads/')  # assuming files are stored in a directory named 'uploads' at the media root
+    file = models.FileField(
+        upload_to="uploads/"
+    )  # assuming files are stored in a directory named 'uploads' at the media root
 
     def __str__(self):
         return self.name
@@ -233,6 +239,14 @@ class Session(models.Model):
         return self.session_start_time + datetime.timedelta(
             seconds=self.session_duration
         )
+
+    def session_status(self):
+        if self.session_end_time() > datetime.timezone.now() - datetime.timedelta(
+            seconds=settings.SESSION_ACTIVE_OFFSET
+        ):
+            return "ACTIVE"
+        else:
+            return "ENDED"
 
     def __str__(self):
         return (

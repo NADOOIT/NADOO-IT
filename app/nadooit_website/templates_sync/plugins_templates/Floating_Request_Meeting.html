@@ -1,0 +1,48 @@
+{% load django_htmx %}
+
+<button
+  id="meeting-request-btn"
+  class="floating-btn"
+  hx-post="/create-meeting-request/"
+  hx-trigger="click"
+  hx-vals='{"session_id": "{{ session_id }}"}'
+  hx-swap="none"
+>
+  Request Meeting
+</button>
+
+<style>
+  .floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  document.body.addEventListener("htmx:afterOnLoad", function (event) {
+    const detail = event.detail;
+    if (detail.xhr.status === 200) {
+      const data = JSON.parse(detail.xhr.responseText);
+      if (data.status === "success") {
+        // Update the button color based on the meeting status
+        const meetingStatus = data.meeting_status;
+        const button = document.getElementById("meeting-request-btn");
+        if (meetingStatus === "pending") {
+          button.style.backgroundColor = "red";
+        } else if (meetingStatus === "accepted") {
+          button.style.backgroundColor = "green";
+        }
+      } else {
+        console.error("Error creating MeetingRequest:", data.error);
+      }
+    } else {
+      console.error("Error sending htmx request:", detail.xhr.statusText);
+    }
+  });
+</script>
