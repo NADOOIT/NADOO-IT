@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     "django_htmx",
     "nadoo_complaint_management",
     "djmoney",
+    'callcenter',
 ]
 
 # Middelware is a list of functions that are called for every request.
@@ -103,6 +104,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    'callcenter.middleware.MeetingRequestNotificationMiddleware',
 ]
 
 # The Authentication backends are used to authenticate users.
