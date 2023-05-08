@@ -53,6 +53,7 @@ ALLOWED_HOSTS = [] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").spli
 # The order of the apps is important. The apps are loaded in the order they are listed here.
 # See the documentation of the apps for more information.
 INSTALLED_APPS = [
+    "daphne",
     "sslserver",
     "ordered_model",
     "django_is_url_active_templatetag",
@@ -88,6 +89,7 @@ INSTALLED_APPS = [
     "nadoo_complaint_management",
     "djmoney",
     "callcenter",
+    "channels",
 ]
 
 # Middelware is a list of functions that are called for every request.
@@ -149,6 +151,20 @@ ROOT_URLCONF = "nadooit.urls"
 # The WSGI application is called by the webserver.
 # This is the entry point for the application.
 WSGI_APPLICATION = "nadooit.wsgi.application"
+
+# The ASGI application is used to serve the application.
+# The ASGI application is called by the webserver.
+ASGI_APPLICATION = "nadooit.asgi.application"
+
+# Configure the channel layer to use Redis
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

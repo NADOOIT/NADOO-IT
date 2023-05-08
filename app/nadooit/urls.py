@@ -42,6 +42,10 @@ urlpatterns = [
     ),
     path(
         "",
+        include(("callcenter.urls", "callcenter"), namespace="callcenter"),
+    ),
+    path(
+        "",
         include("nadooit_questions_and_answers.urls"),
         name="nadooit_questions_and_answers",
     ),

@@ -3,6 +3,7 @@ FROM python:3.10-slim-buster
 LABEL maintainer="nadooit.de"
 
 ENV PYTHONUNBUFFERED 1
+ENV PATH="/usr/local/bin:$PATH"
 
 COPY requirements-dev.txt /requirements.txt
 
@@ -53,7 +54,9 @@ RUN pip install -r /requirements.txt
        #python manage.py makemigrations &&\
        #python manage.py migrate
 
+
 USER root
+RUN ln -s /home/django/.local/bin/daphne /usr/local/bin/daphne
 
 RUN apt-get purge -y --auto-remove \
     build-essential \

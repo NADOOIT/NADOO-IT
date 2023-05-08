@@ -4,8 +4,38 @@ version: '3.3'
 networks:
   app_network:
     driver: bridge
+  meet.jitsi:
 
 services:
+  daphne:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 8001"
+    ports:
+      - 8001:8001
+    volumes:
+      - ./app:/app
+      - ./data/web:/vol/web
+      - ${USERPROFILE}\AppData\Roaming\postgresql\:/home/django/.postgresql/
+    environment:
+      - 'DJANGO_DEBUG=${DJANGO_DEBUG}'
+      - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
+      - 'DJANGO_ALLOWED_HOSTS=${DOMAIN}'
+      - 'DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}'
+      - 'COCKROACH_DB_HOST=${COCKROACH_DB_HOST}'
+      - 'COCKROACH_DB_NAME=${COCKROACH_DB_NAME}'
+      - 'COCKROACH_DB_PORT=${COCKROACH_DB_PORT}'
+      - 'COCKROACH_DB_USER=${COCKROACH_DB_USER}'
+      - 'COCKROACH_DB_PASSWORD=${COCKROACH_DB_PASSWORD}'
+      - 'COCKROACH_DB_OPTIONS=${COCKROACH_DB_OPTIONS}'
+      - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
+      - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
+      - 'CELERY_BROKER_URL=redis://redis:6379/0'
+    networks:
+      - app_network
+    depends_on:
+      - redis
   app:
     build:
       context: .
@@ -221,7 +251,7 @@ services:
         - WHITEBOARD_COLLAB_SERVER_PUBLIC_URL
     networks:
         meet.jitsi:
-
+      
   # XMPP server
   prosody:
       image: jitsi/prosody:${JITSI_IMAGE_VERSION:-stable-8615}
@@ -437,8 +467,3 @@ services:
           - prosody
       networks:
           meet.jitsi:
-
-# Custom network so all services can communicate using a FQDN
-networks:
-  meet.jitsi:
-  app_network:

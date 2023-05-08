@@ -70,3 +70,6 @@ graphviz
 #torch
 
 moviepy
+channels 
+channels-redis
+daphne
