@@ -35,6 +35,11 @@ urlpatterns = [
         views.section_transitions,
         name="section_transitions_filtered",
     ),
+    path(
+        "create-meeting-request/",
+        views.create_meeting_request,
+        name="create_meeting_request",
+    ),
 ]
 """     
     path(

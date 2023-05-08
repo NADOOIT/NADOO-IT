@@ -64911,3 +64911,56 @@ WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Prod
 WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
   from scipy.ndimage.filters import sobel
 
+<<<<<<< Updated upstream
+=======
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0x7fac1ed7b700>> raised: AttributeError("module 'nadooit_website.views' has no attribute 'create_meeting_request'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 121, in validate_models
+    run_checks()
+  File "/home/django/.local/lib/python3.10/site-packages/django/core/checks/registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "/home/django/.local/lib/python3.10/site-packages/django/core/checks/urls.py", line 14, in check_url_config
+    return check_resolver(resolver)
+  File "/home/django/.local/lib/python3.10/site-packages/django/core/checks/urls.py", line 24, in check_resolver
+    return check_method()
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 494, in check
+    for pattern in self.url_patterns:
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 715, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/resolvers.py", line 708, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit/urls.py", line 39, in <module>
+    include(
+  File "/home/django/.local/lib/python3.10/site-packages/django/urls/conf.py", line 38, in include
+    urlconf_module = import_module(urlconf_module)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/urls.py", line 40, in <module>
+    views.create_meeting_request,
+AttributeError: module 'nadooit_website.views' has no attribute 'create_meeting_request'
+>>>>>>> Stashed changes
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
