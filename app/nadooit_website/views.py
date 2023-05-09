@@ -1,5 +1,6 @@
 import json
 from pipes import Template
+from uuid import uuid4
 import django.http
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -326,6 +327,7 @@ def section_transitions(request, group_filter=None):
 
     return HttpResponse(content, content_type="text/html")
 
+
 """ TODO #213 Create a methode to visulize session data
 def visualize_session_data(request):
     # Call the function to generate the Plotly HTML file
@@ -334,14 +336,16 @@ def visualize_session_data(request):
     # Render the section_transitions.html template
     return render(request, "section_transitions.html")
  """
- 
+
+
 from django.core.exceptions import MultipleObjectsReturned
 from django.http import JsonResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from callcenter.models import MeetingRequest
+from .models import OnlineVideoMeetingRequest
 from nadooit_website.models import Session
 from django.core.exceptions import ObjectDoesNotExist
+
 
 @csrf_exempt
 def create_meeting_request(request):
@@ -357,7 +361,7 @@ def create_meeting_request(request):
 
             # Check if there is an active request for the session
             try:
-                active_request = MeetingRequest.objects.get(
+                active_request = OnlineVideoMeetingRequest.objects.get(
                     session=session, status="pending"
                 )
                 print("active_request", active_request)
@@ -368,7 +372,7 @@ def create_meeting_request(request):
                     },
                     content_type="application/json",
                 )
-            except MeetingRequest.DoesNotExist:
+            except OnlineVideoMeetingRequest.DoesNotExist:
                 print("no active_request")
                 pass  # No active request found, continue creating a new one
             except MultipleObjectsReturned:
@@ -383,14 +387,21 @@ def create_meeting_request(request):
 
             print("create_meeting_request")
             # Create a new MeetingRequest
-            meeting_request = MeetingRequest(session=session, user=user)
+            room_uuid = uuid4()
+            # Create a new MeetingRequest
+            meeting_request = OnlineVideoMeetingRequest(
+                session=session, user=user, room_name=str(room_uuid)
+            )
             meeting_request.save()
 
-            # Return a JSON response indicating success and the meeting status
+            print("meeting_request id", room_uuid)
+
+            # Return a JSON response indicating success, the meeting status, and the room UUID
             return JsonResponse(
                 {
                     "status": "success",
                     "meeting_status": meeting_request.status,
+                    "room_uuid": str(room_uuid),
                 },
                 content_type="application/json",
             )

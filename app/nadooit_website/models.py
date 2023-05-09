@@ -9,6 +9,8 @@ from uuid import uuid4
 from django.utils.deconstruct import deconstructible
 from django.core.files.storage import FileSystemStorage
 
+from nadooit_auth.models import User
+
 
 @deconstructible
 class RenameFileStorage(FileSystemStorage):
@@ -365,3 +367,34 @@ class Section_Competition(models.Model):
             + " "
             + self.section_competition_date.strftime("%Y-%m-%d %H:%M:%S")
         )
+
+
+class OnlineVideoMeetingRequest(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session = models.ForeignKey(
+        Session, on_delete=models.CASCADE, null=True, blank=True
+    )  # Make session optional
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True
+    )  # Make user optional
+    requested_at = models.DateTimeField(auto_now_add=True)
+
+    room_name = models.CharField(max_length=36, unique=True)
+
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ("pending", "Pending"),
+            ("accepted", "Accepted"),
+            ("denied", "Denied"),
+        ],
+        default="pending",
+    )
+
+    def __str__(self):
+        if self.session:
+            return f"{self.session} - {self.status}"
+        elif self.user:
+            return f"{self.user} - {self.status}"
+        else:
+            return f"{self.id} - {self.status}"

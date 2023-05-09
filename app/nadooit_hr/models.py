@@ -8,6 +8,7 @@ from nadooit_crm.models import Customer
 
 # Create your models here.
 
+
 # model for an employee
 # an employee can work for multiple customers
 # the relationship between an employee and a customer is defined by the EmployeeContract model
@@ -57,7 +58,6 @@ class EmployeeContract(models.Model):
 
 
 class EmployeeManagerContract(models.Model):
-
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # if true, the employee manager can assign employees to customers
@@ -87,7 +87,6 @@ class EmployeeManagerContract(models.Model):
 
 
 class CustomerProgramManagerContract(models.Model):
-
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # if true, the employee manager can assign employees to customers
@@ -115,7 +114,6 @@ class CustomerProgramManagerContract(models.Model):
 
 
 class CustomerProgramExecutionManagerContract(models.Model):
-
     # TODO rename from single to plural
 
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
@@ -142,7 +140,6 @@ class CustomerProgramExecutionManagerContract(models.Model):
 
 
 class TimeAccountManagerContract(models.Model):
-
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # If true the customer can create customer program executions
@@ -167,7 +164,6 @@ class TimeAccountManagerContract(models.Model):
 
 
 class CustomerManagerContract(models.Model):
-
     contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
 
     # if true, the employee manager can give the role of employee manager to other employees
@@ -179,4 +175,41 @@ class CustomerManagerContract(models.Model):
     def get_abilities(self):
         return {
             "can_give_manager_role": self.can_give_manager_role,
+        }
+
+
+class CallCenterWorkerContract(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    employee_contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+    is_active_worker = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"CallCenter Worker Contract: {self.employee_contract.employee} - {self.employee_contract.customer}"
+
+
+class CallCenterManagerContract(models.Model):
+    contract = models.OneToOneField(EmployeeContract, on_delete=models.CASCADE)
+
+    # If true, the call center manager can create CallCenterWorkerContracts
+    can_create_worker_contract = models.BooleanField(default=False)
+
+    # If true, the call center manager can deactivate CallCenterWorkerContracts
+    can_deactivate_worker_contract = models.BooleanField(default=False)
+
+    # If true, the call center manager can promote other employees to CallCenterManager
+    can_promote_to_manager = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True, editable=True)
+
+    def __str__(self) -> str:
+        return f"CallCenterManagerContract between: {self.contract.employee} - {self.contract.customer}"
+
+    def get_abilities(self):
+        return {
+            "can_create_worker_contract": self.can_create_worker_contract,
+            "can_deactivate_worker_contract": self.can_deactivate_worker_contract,
+            "can_promote_to_manager": self.can_promote_to_manager,
         }
