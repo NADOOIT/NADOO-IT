@@ -104,7 +104,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
-    "callcenter.middleware.MeetingRequestNotificationMiddleware",
 ]
 
 # The Authentication backends are used to authenticate users.
