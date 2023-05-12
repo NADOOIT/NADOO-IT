@@ -64,6 +64,7 @@ services:
     volumes:
       - ./app:/app
       - ${HOME}/.postgresql/root.crt:/home/django/.postgresql/root.crt
+      - static_data:/vol/web/static
     environment:
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
       - 'DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}'
