@@ -433,3 +433,12 @@ def create_meeting_request(request):
             },
             content_type="application/json",
         )
+
+
+@csrf_exempt
+def get_meeting_request_button(request):
+    try:
+        if request.method == "GET":
+            pass
+    except Exception as e:
+        pass
