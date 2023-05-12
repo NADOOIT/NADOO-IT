@@ -21,23 +21,29 @@ RUN apt-get update && \
 
 RUN unset https_proxy
 
-RUN mkdir -p /vol/web/media
-RUN mkdir -p /vol/web/static
+# Create the directories for static and media files
+RUN mkdir -p /vol/web/static/media
+RUN mkdir -p /vol/web/static/static
 RUN mkdir -p /home/django/.postgresql/
 
+#OLD RUN adduser -D --disabled-password --no-create-home django
 RUN adduser --disabled-password --gecos "" django
 
-RUN chown -R django:django /app
+RUN chown -R django:django app/
 RUN chown -R django:django /vol
-RUN chown -R django:django /home/django
 
-RUN chmod -R 755 /app
-RUN chmod -R 755 /vol
-RUN chmod 755 /home/django
-
+RUN chmod -R 755 app/
+RUN chmod -R 755 /vol/web
 WORKDIR /app
 
 EXPOSE 8000
+
+RUN chown -R django:django /app
+RUN chown -R django:django /home/django
+RUN chmod 755 /home/django
+RUN chmod 755 /app
+
+USER django
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
