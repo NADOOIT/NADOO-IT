@@ -9,6 +9,7 @@ from nadooit_website.tasks import create_streaming_files_task
 from django.conf import settings
 from nadooit_website.services import delete_video_files
 
+from django.core.exceptions import ObjectDoesNotExist
 
 class VideoResolutionInline(admin.TabularInline):
     model = VideoResolution
@@ -30,8 +31,11 @@ class VideoForm(forms.ModelForm):
         fields = "__all__"
 
     def delete_video_files(self, video):
-        delete_video_files(video)
-        VideoResolution.objects.filter(video=video).delete()
+        try:
+            delete_video_files(video)
+            VideoResolution.objects.filter(video=video).delete()
+        except ObjectDoesNotExist:
+            pass
 
     def clean(self):
         cleaned_data = super().clean()
@@ -42,7 +46,10 @@ class VideoForm(forms.ModelForm):
             self.delete_video_files(self.instance)
 
             # Refresh the instance from the database
-            self.instance.refresh_from_db()
+            try:
+                self.instance.refresh_from_db()
+            except ObjectDoesNotExist:
+                pass
 
         return cleaned_data
 
