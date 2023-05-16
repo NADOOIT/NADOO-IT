@@ -22,8 +22,8 @@ RUN apt-get update && \
 RUN unset https_proxy
 
 
-RUN mkdir -p /vol/web/static/media
-RUN mkdir -p /vol/web/static/static
+RUN mkdir -p /vol/web/media
+RUN mkdir -p /vol/web/static
 RUN mkdir -p /home/django/.postgresql/
 
 #OLD RUN adduser -D --disabled-password --no-create-home django
@@ -34,6 +34,11 @@ RUN chown -R django:django /vol
 
 RUN chmod -R 755 app/
 RUN chmod -R 755 /vol/web
+
+# Add these lines
+RUN chown -R django:django /vol/web/media
+RUN chmod -R 755 /vol/web/media
+
 WORKDIR /app
 
 EXPOSE 8000
@@ -50,11 +55,9 @@ RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
 RUN python manage.py collectstatic --noinput 
 
-
 USER root
 RUN pip install uwsgi
 
 USER django
-
 
 CMD [ "uwsgi","--socket",":9090","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
