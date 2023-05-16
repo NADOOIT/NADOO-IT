@@ -21,9 +21,6 @@ RUN apt-get update && \
 
 RUN unset https_proxy
 
-# Create the directories for static and media files
-RUN mkdir -p /vol/web/static/media
-RUN mkdir -p /vol/web/static/static
 
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
