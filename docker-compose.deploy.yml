@@ -26,6 +26,7 @@ services:
       #- /home/django/.postgresql/:/home/django/.postgresql/ 
       - /home/nadooserver/.postgresql/:/home/django/.postgresql/
       - static_data:/vol/web/static
+      - media_data:/vol/web/media
   proxy:
     build:
       context: ./docker/proxy
@@ -38,6 +39,7 @@ services:
       - 'proxy-dhparams:/vol/proxy'
       - 'certbot-certs:/etc/letsencrypt'
       - static_data:/vol/web/static
+      - media_data:/vol/web/media
     environment:
       - 'DOMAIN=${DOMAIN}'
     depends_on:
@@ -86,3 +88,4 @@ volumes:
   proxy-dhparams: null
   certbot-certs: null
   static_data: null
+  media_data: null
