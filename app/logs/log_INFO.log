@@ -57468,3 +57468,9 @@ WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Prod
 WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
   from scipy.ndimage.filters import sobel
 
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
