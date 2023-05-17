@@ -1,17 +1,19 @@
 server {
+
     listen 80;
     server_name ${DOMAIN} www.${DOMAIN};
 
     location /.well-known/acme-challenge/ {
-        root /vol/www/;
+            root /vol/www/;
     }
 
     location / {
-        return 301 https://${DOMAIN}$request_uri;
+            return 301 https://${DOMAIN}$request_uri;
     }
 }
 
 server {
+
     listen 443 ssl;
     server_name ${DOMAIN};
 
@@ -25,26 +27,24 @@ server {
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
     location /static/static {
-        alias /vol/web/static;
-    }
+            alias /vol/web/static;
+        }
 
     location /static/media {
-        alias /vol/web/media;
-        types {
-            application/vnd.apple.mpegurl m3u8;
-            video/mp2t ts;
+            alias /vol/web/media;
         }
-        add_header Cache-Control no-cache;
-    }
 
     location / {
-        uwsgi_pass ${APP_HOST}:${APP_PORT};
-        include /etc/nginx/uwsgi_params;
-        client_max_body_size 0;
+            uwsgi_pass ${APP_HOST}:${APP_PORT};
+            include /etc/nginx/uwsgi_params;
+            client_max_body_size 0;
+        }
+
     }
-}
+
 
 server {
+
     listen 443 ssl;
     server_name www.${DOMAIN};
 
@@ -58,19 +58,15 @@ server {
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
     location /static/static {
-        alias /vol/web/static;
-    }
+            alias /vol/web/static;
+        }
 
     location /static/media {
-        alias /vol/web/media;
-        types {
-            application/vnd.apple.mpegurl m3u8;
-            video/mp2t ts;
+            alias /vol/web/media;
         }
-        add_header Cache-Control no-cache;
-    }
 
     location / {
-        return 301 https://${DOMAIN}$request_uri;
+            return 301 https://${DOMAIN}$request_uri;
+        }
+
     }
-}
