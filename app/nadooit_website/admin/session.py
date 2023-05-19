@@ -6,6 +6,7 @@ from django.utils import timezone
 from nadooit_website.models import *
 
 from django.contrib.admin import SimpleListFilter
+from django.templatetags.static import static
 
 SESSION_ACTIVE_OFFSET = 100
 
@@ -115,6 +116,15 @@ class SessionAdmin(admin.ModelAdmin):
 
     session_status.short_description = "Session Status"
 
+    class Media:
+        js = (
+            static(
+                "static/js/session_d3_script.js"
+            ),
+            static(
+                "static/js/d3.min.js"
+            ),
+        )
 
 # Register your models here.
 admin.site.register(Visit)
