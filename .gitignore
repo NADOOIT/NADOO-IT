@@ -164,3 +164,4 @@ cert.cer
 key.pem
 .idea
 staticfiles
+node_modules
