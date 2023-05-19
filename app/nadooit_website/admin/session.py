@@ -54,6 +54,7 @@ class SessionAdmin(admin.ModelAdmin):
         "group_lowest_score",
         "group_highest_score",
         "session_status",
+        "session_start_time",
     )
     list_filter = (
         "session_section_order",
@@ -114,6 +115,41 @@ class SessionAdmin(admin.ModelAdmin):
             )
 
     session_status.short_description = "Session Status"
+
+    def mark_zero_duration_sessions_as_bot_visits(self, request):
+        """
+        This function marks all zero-duration sessions that are not already marked as bot visits.
+
+        Parameters:
+        - self: the standard self parameter for a class method.
+        - request: the HTTP request sent by the admin interface.
+        """
+        Session.objects.filter(session_duration=0, is_bot_visit=False).update(
+            is_bot_visit=True
+        )
+
+    def changelist_view(self, request, extra_context=None):
+        """
+        This function is called when the sessions admin page is loaded. It calls the
+        mark_zero_duration_sessions_as_bot_visits function before loading the page.
+
+        Parameters:
+        - self: the standard self parameter for a class method.
+        - request: the HTTP request sent by the admin interface.
+        - extra_context: additional context data that can be provided to the template.
+                         This parameter is optional and defaults to None if not provided.
+        """
+        self.mark_zero_duration_sessions_as_bot_visits(request)
+        return super().changelist_view(request, extra_context)
+
+    def get_queryset(self, request):
+        # original queryset
+        qs = super().get_queryset(request)
+
+        # updated queryset excluding bot visits
+        qs = qs.exclude(is_bot_visit=True)
+
+        return qs
 
 
 # Register your models here.

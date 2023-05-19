@@ -8,6 +8,7 @@ from uuid import uuid4
 from django.utils.deconstruct import deconstructible
 from django.core.files.storage import FileSystemStorage
 
+
 @deconstructible
 class RenameFileStorage(FileSystemStorage):
     def get_valid_name(self, name):
@@ -80,13 +81,17 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class File(models.Model):
     """
     This class represents a file that can be linked to a section.
     """
+
     file_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
-    file = models.FileField(upload_to='uploads/')  # assuming files are stored in a directory named 'uploads' at the media root
+    file = models.FileField(
+        upload_to="uploads/"
+    )  # assuming files are stored in a directory named 'uploads' at the media root
 
     def __str__(self):
         return self.name
@@ -215,6 +220,8 @@ class Session(models.Model):
 
     session_score = models.IntegerField(default=0)
 
+    is_bot_visit = models.BooleanField(default=False)
+
     experiment_group = models.ForeignKey(
         ExperimentGroup, on_delete=models.CASCADE, null=True, blank=True
     )
@@ -244,6 +251,9 @@ class Session(models.Model):
             + " "
             + str(self.session_clicked_on_appointment_form)
         )
+
+    class Meta:
+        ordering = ["-session_start_time"]
 
 
 class Session_Signal(models.Model):
