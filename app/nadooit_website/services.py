@@ -71,34 +71,55 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
         )
         closing_div = "</div><div id='end_of_session'>"
         return end_of_session_tracking + html_of_section + closing_div
+    elif signal_type == "click":
+        # Add the click tracking script
+        click_tracking = (
+            "<div hx-post=\"{% url 'nadooit_website:signal' "
+            + "'"
+            + str(session_id)
+            + "'"
+            + " "
+            + "'"
+            + str(section_id)
+            + "'"
+            + " '"
+            # replace spaces with underscores
+            + signal_type.replace(" ", "_")
+            + '\' %}" hx-swap="none" hx-trigger="'
+            + signal_type
+            + '">'
+        )
+        return click_tracking + html_of_section + "</div>"
     elif signal_type == "mouseleave":
-        script = """
+        script = f"""
         <script>
-        let enterTime = 0;
+        (function(sessionId, sectionId) {{
+            let enterTime = 0;
 
-        function onMouseEnter() {
-            enterTime = new Date().getTime();
-        }
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {{
+                enterTime = new Date().getTime();
+            }});
 
-        function onMouseLeave(sessionId, sectionId) {
-            const leaveTime = new Date().getTime();
-            const interactionTime = (leaveTime - enterTime) / 1000;
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {{
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
 
-            // Send the interactionTime along with the mouseleave signal
-            fetch(`/signal/${sessionId}/${sectionId}/mouseleave/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify({
-                    interaction_time: interactionTime
-                })
-            });
-        }
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }},
+                    body: JSON.stringify({{
+                        interaction_time: interactionTime
+                    }})
+                }});
+            }});
+        }})('{session_id}', '{section_id}');
         </script>
         """
-        revealed_tracking = f'<div class="section" onmouseenter="onMouseEnter()" onmouseleave="onMouseLeave(\'{session_id}\', \'{section_id}\')">'
+        revealed_tracking = f'<div class="section" data-session-id="{session_id}" data-section-id="{section_id}"'
         closing_div = "</div>"
         return revealed_tracking + html_of_section + closing_div + script
 
@@ -320,7 +341,9 @@ def process_file(section: Section, html_of_section: str):
 
             # Render the file download button
             context = {"file_url": file_url, "file_name": file_name}
-            file_embed_code = render_to_string("nadooit_website/file_download_button.html", context)
+            file_embed_code = render_to_string(
+                "nadooit_website/file_download_button.html", context
+            )
 
             html_of_section = html_of_section.replace("{{ file }}", file_embed_code)
         else:
