@@ -71,25 +71,6 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
         )
         closing_div = "</div><div id='end_of_session'>"
         return end_of_session_tracking + html_of_section + closing_div
-    elif signal_type == "click":
-        # Add the click tracking script
-        click_tracking = (
-            "<div hx-post=\"{% url 'nadooit_website:signal' "
-            + "'"
-            + str(session_id)
-            + "'"
-            + " "
-            + "'"
-            + str(section_id)
-            + "'"
-            + " '"
-            # replace spaces with underscores
-            + signal_type.replace(" ", "_")
-            + '\' %}" hx-swap="none" hx-trigger="'
-            + signal_type
-            + '">'
-        )
-        return click_tracking + html_of_section + "</div>"
     elif signal_type == "mouseleave":
         script = f"""
         <script>
@@ -446,6 +427,10 @@ def create__session_signal__for__session_id(session_id, section_id, signal_type)
     elif signal_type == "revealed":
         section_score.score += 5
         session.session_score += 5
+
+    elif signal_type == "click":
+        section_score.score += 20
+        session.session_score += 20
 
     elif signal_type == "end_of_session_sections":
         session.session_score += 10
