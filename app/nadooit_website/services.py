@@ -71,6 +71,30 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
         )
         closing_div = "</div><div id='end_of_session'>"
         return end_of_session_tracking + html_of_section + closing_div
+    elif signal_type == "click":
+        script = f"""
+        <script>
+        (function(sessionId, sectionId) {{
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('click', function() {{
+
+                // Send the click signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/click/', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }},
+                    body: JSON.stringify({{}})
+                }});
+            }});
+        }})('{session_id}', '{section_id}');
+        </script>
+        """
+        revealed_tracking = f'<div class="section" data-session-id="{session_id}" data-section-id="{section_id}"'
+        closing_div = "</div>"
+        return revealed_tracking + html_of_section + closing_div + script
+
     elif signal_type == "mouseleave":
         script = f"""
         <script>
