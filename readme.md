@@ -226,6 +226,8 @@ docker compose -f docker-compose.deploy.yml down
 
 Run the following command to update the server
 
+    git stash
+
     git pull
 
     docker compose -f docker-compose.deploy.yml build
@@ -299,11 +301,11 @@ Because the page is build from sections that are stored in the database, it is i
 
 To retrieve all sections from the database and save them as templates in the sections_templates folder, run the following command:
 
-    python manage.py export_templates
+    docker compose -f docker-compose-dev.yml run --rm app python manage.py export_templates
 
 To then retrieve all sections from the sections_templates folder and save them in the database, run the following command:
 
-    python manage.py import_templates
+    docker compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
 
 #### Sections
 
