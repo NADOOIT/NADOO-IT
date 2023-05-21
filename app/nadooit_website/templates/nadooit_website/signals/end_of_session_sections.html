@@ -1,0 +1,6 @@
+{% load static %}
+<div class="banner" data-session-id="{{ session_id }}" data-section-id="{{ section_id }}">
+    {{ html_of_section }}
+</div>
+<div id="end_of_session"></div>
+<script src="{% static 'static/nadooit_website/js/end_of_session_sections.js' %}"></script>

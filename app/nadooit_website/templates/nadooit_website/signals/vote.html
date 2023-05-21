@@ -1,0 +1,29 @@
+{% load static %}
+<style>
+    .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+        fill: #FFC107;
+    }
+    .highlighted-upvote svg path {
+        fill: #00b4dc;
+    }
+    .highlighted-downvote svg path {
+        fill: #FF4F4F;
+    }
+</style>
+
+<div class="section-container">
+    <div class="vote-section">
+        <button id="upvote-button-{{ section_id }}" class="vote-button vote-button-{{ section_id }} vote-svg-button" data-vote-type="upvote">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+            </svg>
+        </button>
+        <button id="downvote-button-{{ section_id }}" class="vote-button vote-button-{{ section_id }} vote-svg-button" data-vote-type="downvote">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+            </svg>
+        </button>
+    </div>
+    {{ html_of_section }}
+</div>
+<script src="{% static 'static/nadooit_website/js/vote.js' %}"></script>

@@ -1,0 +1,3 @@
+<div hx-post="{% url 'nadooit_website:signal' session_id section_id signal_type %}" hx-swap="afterend" hx-trigger="{{ signal_type }}">
+  {{ html_of_section }}
+</div>

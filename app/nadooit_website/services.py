@@ -52,6 +52,27 @@ def get__session_tick():
     return session_tick
 
 
+from django.template.loader import render_to_string
+from django.template import loader
+from django.template import Template, Context
+
+
+def add_signal(signal_type, context):
+    if signal_type in ["click", "mouseleave", "vote","end_of_session_sections"]:
+        # Render the HTML template
+        html = loader.render_to_string(
+            f"nadooit_website/signals/{signal_type}.html", context
+        )
+    else:
+        # Replace spaces with underscores for filename
+        signal_type = signal_type.replace(" ", "_")
+        # Render the HTML template
+        html = loader.render_to_string(
+            f"nadooit_website/signals/default_signal.html", context
+        )
+    return html
+
+
 def add__signal(html_of_section, session_id, section_id, signal_type):
     if signal_type == "end_of_session_sections":
         logger.info(html_of_section)
@@ -376,17 +397,21 @@ def get__section_html_including_signals__for__section_and_session_id(
 
     if signal_options is not None:
         for signal_option in signal_options:
-            html_of_section = add__signal(
-                html_of_section, session_id, section_id, signal_option.signal_type
-            )
+            # Replace spaces with underscores in signal type
+            signal_type = signal_option.signal_type.replace(" ", "_")
+            context = {
+                "session_id": session_id,
+                "section_id": section_id,
+                "html_of_section": html_of_section,
+                "signal_type": signal_type,
+            }
+            html_of_section = add_signal(signal_type, context)
 
+    # Process templates
     if "{{ video }}" in html_of_section:
         html_of_section = process_video(section, html_of_section)
-
     if "{{ file }}" in html_of_section:
         html_of_section = process_file(section, html_of_section)
-
-    logger.info(f"Section: {html_of_section}")
 
     return html_of_section
 
@@ -413,9 +438,14 @@ def get__template__for__session_id(session_id):
         )
 
         if i == len(section_entry) - 1:
-            html_of_section = add__signal(
-                html_of_section, session_id, section_id, "end_of_session_sections"
-            )
+            context = {
+                "session_id": session_id,
+                "section_id": section_id,
+                "html_of_section": html_of_section,
+                "signal_type": "end_of_session_sections",
+            }
+
+            html_of_section = add_signal("end_of_session_sections", context)
 
         section_entry_html += html_of_section
 
