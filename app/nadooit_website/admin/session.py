@@ -117,17 +117,6 @@ class SessionAdmin(admin.ModelAdmin):
 
     session_status.short_description = "Session Status"
 
-<<<<<<< HEAD
-    class Media:
-        js = (
-            static(
-                "static/js/session_d3_script.js"
-            ),
-            static(
-                "static/js/d3.min.js"
-            ),
-        )
-=======
     def mark_zero_duration_sessions_as_bot_visits(self, request):
         """
         This function marks all zero-duration sessions that are not already marked as bot visits.
@@ -163,7 +152,6 @@ class SessionAdmin(admin.ModelAdmin):
 
         return qs
 
->>>>>>> main
 
 # Register your models here.
 admin.site.register(Visit)
