@@ -71,34 +71,60 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
         )
         closing_div = "</div><div id='end_of_session'>"
         return end_of_session_tracking + html_of_section + closing_div
-    elif signal_type == "mouseleave":
-        script = """
+    elif signal_type == "click":
+        script = f"""
         <script>
-        let enterTime = 0;
+        (function(sessionId, sectionId) {{
 
-        function onMouseEnter() {
-            enterTime = new Date().getTime();
-        }
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('click', function() {{
 
-        function onMouseLeave(sessionId, sectionId) {
-            const leaveTime = new Date().getTime();
-            const interactionTime = (leaveTime - enterTime) / 1000;
-
-            // Send the interactionTime along with the mouseleave signal
-            fetch(`/signal/${sessionId}/${sectionId}/mouseleave/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify({
-                    interaction_time: interactionTime
-                })
-            });
-        }
+                // Send the click signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/click/', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }},
+                    body: JSON.stringify({{}})
+                }});
+            }});
+        }})('{session_id}', '{section_id}');
         </script>
         """
-        revealed_tracking = f'<div class="section" onmouseenter="onMouseEnter()" onmouseleave="onMouseLeave(\'{session_id}\', \'{section_id}\')">'
+        revealed_tracking = f'<div class="section" data-session-id="{session_id}" data-section-id="{section_id}"'
+        closing_div = "</div>"
+        return revealed_tracking + html_of_section + closing_div + script
+
+    elif signal_type == "mouseleave":
+        script = f"""
+        <script>
+        (function(sessionId, sectionId) {{
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {{
+                enterTime = new Date().getTime();
+            }});
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {{
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {{
+                    method: 'POST',
+                    headers: {{
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }},
+                    body: JSON.stringify({{
+                        interaction_time: interactionTime
+                    }})
+                }});
+            }});
+        }})('{session_id}', '{section_id}');
+        </script>
+        """
+        revealed_tracking = f'<div class="section" data-session-id="{session_id}" data-section-id="{section_id}"'
         closing_div = "</div>"
         return revealed_tracking + html_of_section + closing_div + script
 
@@ -320,7 +346,9 @@ def process_file(section: Section, html_of_section: str):
 
             # Render the file download button
             context = {"file_url": file_url, "file_name": file_name}
-            file_embed_code = render_to_string("nadooit_website/file_download_button.html", context)
+            file_embed_code = render_to_string(
+                "nadooit_website/file_download_button.html", context
+            )
 
             html_of_section = html_of_section.replace("{{ file }}", file_embed_code)
         else:
@@ -423,6 +451,10 @@ def create__session_signal__for__session_id(session_id, section_id, signal_type)
     elif signal_type == "revealed":
         section_score.score += 5
         session.session_score += 5
+
+    elif signal_type == "click":
+        section_score.score += 20
+        session.session_score += 20
 
     elif signal_type == "end_of_session_sections":
         session.session_score += 10

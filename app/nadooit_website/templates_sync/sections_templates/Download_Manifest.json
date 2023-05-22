@@ -1,0 +1,8 @@
+{
+    "section_id": "476875fb-1f1f-41c7-bc22-59918e9aa073",
+    "name": "Download Manifest",
+    "html": "<section>\r\n    <div class=\"banner\">\r\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">\r\n\r\n<div class=\"file-container\">\r\n    {{ file }}\r\n</div>\r\n</div>\r\n</div>\r\n\r\n</section>",
+    "video": "None",
+    "file": "NADOO Manifesto",
+    "greeting_sction": "False"
+}
