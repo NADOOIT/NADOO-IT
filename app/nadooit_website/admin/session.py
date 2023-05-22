@@ -68,7 +68,7 @@ class SessionAdmin(admin.ModelAdmin):
     def group_average_score(self, obj):
         sessions = Session.objects.filter(
             session_section_order=obj.session_section_order
-        )
+        ).exclude(is_bot_visit=True)
         avg_score = sessions.aggregate(Avg("session_score"))["session_score__avg"]
         return round(avg_score, 2) if avg_score is not None else "N/A"
 
@@ -78,7 +78,7 @@ class SessionAdmin(admin.ModelAdmin):
     def group_lowest_score(self, obj):
         sessions = Session.objects.filter(
             session_section_order=obj.session_section_order
-        )
+        ).exclude(is_bot_visit=True)
         min_score = sessions.aggregate(Min("session_score"))["session_score__min"]
         return min_score if min_score is not None else "N/A"
 
