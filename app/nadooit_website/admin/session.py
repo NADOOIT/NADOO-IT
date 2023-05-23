@@ -47,14 +47,15 @@ class SessionSignalsInline(admin.TabularInline):
 
 class SessionAdmin(admin.ModelAdmin):
     list_display = (
-        "session_id",
-        "session_section_order",
+        "session_status",
+        "session_start_time",
         "session_score",
+        "weekly_average_score",
         "group_average_score",
         "group_lowest_score",
         "group_highest_score",
-        "session_status",
-        "session_start_time",
+        "session_id",
+        "session_section_order",
     )
     list_filter = (
         "session_section_order",
@@ -94,6 +95,24 @@ class SessionAdmin(admin.ModelAdmin):
 
     group_highest_score.short_description = "Group Highest Score"
     group_highest_score.admin_order_field = "session_section_order__session_score__max"
+
+    def weekly_average_score(self, obj):
+        week_number = obj.session_start_time.isocalendar()[1]
+        year_number = obj.session_start_time.year
+
+        sessions_same_week = Session.objects.filter(
+            session_start_time__week=week_number,
+            session_start_time__year=year_number,
+            is_bot_visit=False,  # Exclude bot visits
+        )
+
+        avg_score = sessions_same_week.aggregate(Avg("session_score"))[
+            "session_score__avg"
+        ]
+
+        return round(avg_score, 2) if avg_score is not None else "N/A"
+
+    weekly_average_score.short_description = "Weekly Average Score"
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == "shown_sections":
