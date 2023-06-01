@@ -1,7 +1,7 @@
 {
     "section_id": "9e0421d2-7224-4d0f-ae37-910d08b14fed",
     "name": "Sie_h\u00e4tten_gerne_Software_wie_ein_IT-Unternehmen",
-    "html": "<section>\r\n\r\n\r\n\r\n    <div class=\"banner\">\r\n\r\n\r\n\r\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">             \r\n\r\n\r\n\r\n            <h1>Sie h\u00e4tten gerne Software wie ein IT-Unternehmen?</h1>         \r\n\r\n\r\n<div class=\"video-container\">\r\n    {{ video }}\r\n</div>\r\n        </div>\r\n\r\n\r\n\r\n    </div>\r\n\r\n\r\n\r\n</section>",
+    "html": "<section>\n\n\n\n    <div class=\"banner\">\n\n\n\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">             \n\n\n\n            <h1>Sie h\u00e4tten gerne Software wie ein IT-Unternehmen?</h1>         \n\n\n<div class=\"video-container\">\n    {{ video }}\n</div>\n        </div>\n\n\n\n    </div>\n\n\n\n</section>",
     "video": "NADOOIT",
     "file": "None",
     "greeting_sction": "True"
