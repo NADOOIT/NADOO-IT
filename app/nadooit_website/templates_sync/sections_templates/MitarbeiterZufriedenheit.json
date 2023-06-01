@@ -1,7 +1,7 @@
 {
     "section_id": "8cbdac88-6a70-4d56-a158-9bdab4d3c9ff",
     "name": "MitarbeiterZufriedenheit",
-    "html": "<section>\r\n    <div class=\"banner\">\r\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">\r\n            <h1>Steigern Sie Ihre Mitarbeiterzufriedenheit und binden Sie Ihr Team langfristig mit dem NADOO Mitarbeiter 2.0 Verg\u00fctungssystem.</h1>\r\n        </div>\r\n    </div>\r\n</section>",
+    "html": "<section>\n    <div class=\"banner\">\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">\n            <h1>Steigern Sie Ihre Mitarbeiterzufriedenheit und binden Sie Ihr Team langfristig mit dem NADOO Mitarbeiter 2.0 Verg\u00fctungssystem.</h1>\n        </div>\n    </div>\n</section>",
     "video": "None",
     "file": "None",
     "greeting_sction": "False"

@@ -1,0 +1,8 @@
+{
+    "section_id": "7954d004-1190-4b19-bcaf-b9ea387345bc",
+    "name": "nadooitVsClassic",
+    "html": "<section>\r\n    <div class=\"banner\">\r\n        <div class=\"our-grantee aos-init aos-animate\" data-aos=\"fade-up\">\r\n            <h1>Gegen\u00fcberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>\r\n            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertsch\u00f6pfung?</h2>\r\n            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen f\u00fcr IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertsch\u00f6pfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>\r\n            <div class=\"video-container\">\r\n                {{ video }}\r\n            </div>\r\n        </div>\r\n    </div>\r\n</section>",
+    "video": "NADOOIT",
+    "file": "None",
+    "greeting_sction": "False"
+}
