@@ -1,4 +1,6 @@
 import datetime
+import random
+import string
 import uuid
 from django.db import models
 from ordered_model.models import OrderedModel
@@ -35,26 +37,141 @@ class Video(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=200)
     preview_image = models.ImageField(upload_to="video_previews/")
-    original_file = models.FileField(
-        upload_to="original_videos/", storage=RenameFileStorage()
-    )
+    reprocess_video = models.BooleanField(default=False)
+    original_file = models.FileField(upload_to="original_videos/")
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        try:
+            # is the object in the database yet?
+            obj = Video.objects.get(id=self.id)
+        except Video.DoesNotExist:
+            # Object is not in database
+            super().save(*args, **kwargs)
+        else:
+            # Object is in database
+            # if any field has changed, delete the old file
+            if (
+                obj.original_file
+                and obj.original_file != self.original_file
+                and os.path.isfile(obj.original_file.path)
+            ):
+                os.remove(obj.original_file.path)
+
+            # do the same for the preview image
+            if (
+                obj.preview_image
+                and obj.preview_image != self.preview_image
+                and os.path.isfile(obj.preview_image.path)
+            ):
+                os.remove(obj.preview_image.path)
+
+            super().save(*args, **kwargs)
+
+        if self.original_file:  # After save, the file exists
+            old_file_path = self.original_file.path
+            new_file_name = f"{self.id}.mp4"
+            new_file_dir = os.path.dirname(old_file_path)
+            new_file_path = os.path.join(new_file_dir, new_file_name)
+
+            if os.path.exists(old_file_path):
+                os.rename(old_file_path, new_file_path)
+                self.original_file.name = os.path.join(
+                    os.path.basename(new_file_dir), new_file_name
+                )
+
+        # do the same for the preview image
+        if self.preview_image:
+            old_image_path = self.preview_image.path
+            old_image_extension = os.path.splitext(old_image_path)[
+                1
+            ]  # Get the image extension
+            new_image_name = f"{self.id}{old_image_extension}"  # Use the old image extension for the new image name
+            new_image_dir = os.path.dirname(old_image_path)
+            new_image_path = os.path.join(new_image_dir, new_image_name)
+
+            if os.path.exists(old_image_path):
+                os.rename(old_image_path, new_image_path)
+                self.preview_image.name = os.path.join(
+                    os.path.basename(new_image_dir), new_image_name
+                )
+
+        super().save(
+            *args, **kwargs
+        )  # Save again to update the filenames in the database
+
+
+from django.core.files.base import ContentFile
+import os
+from django.core.exceptions import ValidationError
+import re
+
+import os
+import os
+import shutil
+from django.conf import settings
+
+def hls_upload_to(instance, filename):
+    path = f"hls_playlists/{instance.video.id}_{instance.resolution}p"
+    full_path = os.path.join(settings.MEDIA_ROOT, path)
+
+    # If the directory already exists, remove it and all its contents
+    if os.path.exists(full_path):
+        shutil.rmtree(full_path)
+
+    # Now create the directory (which might have been deleted in the previous step)
+    os.makedirs(full_path)
+
+    return os.path.join(path, filename)
 
 
 class VideoResolution(models.Model):
     video = models.ForeignKey(
         Video, related_name="resolutions", on_delete=models.CASCADE
     )
-    resolution = (
-        models.PositiveIntegerField()
-    )  # Resolution in height (e.g., 480, 720, 1080)
+    resolution = models.PositiveIntegerField()
     video_file = models.FileField(upload_to="videos/")
-    hls_playlist_file = models.FileField(upload_to="hls_playlists/")  # New field
+    hls_playlist_file = models.FileField(upload_to=hls_upload_to)
 
     def __str__(self):
         return f"{self.video.title} ({self.resolution}p)"
+
+    def save(self, *args, **kwargs):
+        try:
+            # is the object in the database yet?
+            obj = VideoResolution.objects.get(id=self.id)
+        except VideoResolution.DoesNotExist:
+            # Object is not in database
+            super().save(*args, **kwargs)
+        else:
+            # Object is in database
+            # if any field has changed, delete the old file
+            if (
+                obj.video_file
+                and obj.video_file != self.video_file
+                and os.path.isfile(obj.video_file.path)
+            ):
+                os.remove(obj.video_file.path)
+
+            super().save(*args, **kwargs)
+
+        if self.video_file:  # After save, the file exists
+            old_file_path = self.video_file.path
+            new_file_name = f"{self.video.id}_{self.resolution}p.mp4"
+            new_file_dir = os.path.dirname(old_file_path)
+            new_file_path = os.path.join(new_file_dir, new_file_name)
+
+            if os.path.exists(old_file_path):
+                os.rename(old_file_path, new_file_path)
+                self.video_file.name = os.path.join(
+                    os.path.basename(new_file_dir), new_file_name
+                )
+
+        super().save(
+            *args, **kwargs
+        )  # Save again to update the filename in the database
 
 
 class Signals_Option(models.Model):
