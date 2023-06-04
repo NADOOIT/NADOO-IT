@@ -1,5 +1,5 @@
 import json
-from celery import shared_task
+from celery import chord, shared_task
 from nadooit_website.models import (
     Video,
     VideoResolution,
@@ -137,6 +137,47 @@ def process_video_task(
         raise e
 
 
+from django.conf import settings
+from nadooit_website.models import Video, VideoResolution
+import os
+
+
+@shared_task
+def cleanup_video_files():
+    # List all video files currently referenced in the database
+    referenced_files = set()
+    for video in Video.objects.all():
+        if video.original_file:
+            referenced_files.add(
+                os.path.join(settings.MEDIA_ROOT, video.original_file.name)
+            )
+        if video.preview_image:
+            referenced_files.add(
+                os.path.join(settings.MEDIA_ROOT, video.preview_image.name)
+            )
+    for video_res in VideoResolution.objects.all():
+        if video_res.video_file:
+            referenced_files.add(
+                os.path.join(settings.MEDIA_ROOT, video_res.video_file.name)
+            )
+        if video_res.hls_playlist_file:
+            referenced_files.add(
+                os.path.join(settings.MEDIA_ROOT, video_res.hls_playlist_file.name)
+            )
+
+    # Walk through all files in your media directory
+    for dirpath, dirnames, filenames in os.walk(settings.MEDIA_ROOT):
+        for filename in filenames:
+            filepath = os.path.join(dirpath, filename)
+            # If a file is not referenced in the database, delete it
+            if filepath not in referenced_files:
+                os.remove(filepath)
+
+        # Remove empty directories
+        if not os.listdir(dirpath):
+            os.rmdir(dirpath)
+
+
 @shared_task(autoretry_for=(Exception,), retry_backoff=True, max_retries=3)
 def create_streaming_files_task(video_id):
     from django.db import connections
@@ -184,6 +225,7 @@ def create_streaming_files_task(video_id):
             process_video_task.apply_async(
                 (input_path, output_path, resolution, bitrate, crf, preset, video_id)
             )
+
     except Exception as e:
         print(f"Error occurred during file saving or processing: {e}")
         if os.path.exists(input_path):

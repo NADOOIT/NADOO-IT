@@ -822,3 +822,13 @@ def delete_video_files(video):
     except Exception as e:
         print(f"Error deleting video files: {e}")
         raise
+
+
+import zipfile
+
+
+def zip_files(file_paths, output_name):
+    with zipfile.ZipFile(output_name, "w") as zipf:
+        for file in file_paths:
+            zipf.write(file)
+    return output_name
