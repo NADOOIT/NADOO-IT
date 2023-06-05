@@ -832,3 +832,19 @@ def zip_files(file_paths, output_name):
         for file in file_paths:
             zipf.write(file)
     return output_name
+
+import zipfile
+import os
+
+def zip_directories_and_files(paths, output_name):
+    with zipfile.ZipFile(output_name, "w") as zipf:
+        for path in paths:
+            if os.path.isfile(path):
+                zipf.write(path, arcname=os.path.basename(path))
+            elif os.path.isdir(path):
+                for root, _, files in os.walk(path):
+                    for file in files:
+                        file_path = os.path.join(root, file)
+                        arcname = os.path.relpath(file_path, start=os.path.join(path, os.pardir))
+                        zipf.write(file_path, arcname=arcname)
+    return output_name

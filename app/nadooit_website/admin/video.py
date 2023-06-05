@@ -7,6 +7,7 @@ from django.core.files import File
 from django.contrib import messages
 
 from django.http import StreamingHttpResponse
+from nadooit_website.services import zip_directories_and_files
 from nadooit_website.tasks.video import cleanup_video_files
 from nadooit_website.models import *
 
@@ -66,11 +67,15 @@ class VideoForm(forms.ModelForm):
         return cleaned_data
 
 
+import os
+import json
+from django.http import StreamingHttpResponse
+from django.conf import settings
+
+
 class VideoAdmin(admin.ModelAdmin):
     inlines = [VideoResolutionInline]
     form = VideoForm  # use the custom form
-
-    import os
 
     actions = ["delete_associated_files", "export_files", "cleanup_files"]
 
@@ -89,15 +94,20 @@ class VideoAdmin(admin.ModelAdmin):
             os.remove(file_name)  # delete the file after serving
 
         for video in queryset:
-            # Get file paths for the video files and HLS files
+            # Get file paths for the video files
             video_files = [
                 os.path.join(settings.MEDIA_ROOT, f.video_file.name)
                 for f in video.resolutions.all()
             ]
-            hls_files = [
-                os.path.join(settings.MEDIA_ROOT, f.hls_playlist_file.name)
+
+            # Get HLS directories
+            hls_dirs = [
+                os.path.dirname(
+                    os.path.join(settings.MEDIA_ROOT, f.hls_playlist_file.name)
+                )
                 for f in video.resolutions.all()
             ]
+
             # Get file paths for the original video and the preview image
             original_video_file = os.path.join(
                 settings.MEDIA_ROOT, video.original_file.name
@@ -126,15 +136,13 @@ class VideoAdmin(admin.ModelAdmin):
             with open(json_path, "w") as json_file:
                 json.dump(video_data, json_file)
 
-            # Add JSON file, original video file, and preview image to the list of files to be zipped
-            files_to_zip = (
+            # Create a zip file with these files and directories
+            zip_path = zip_directories_and_files(
                 video_files
-                + hls_files
                 + [json_path, original_video_file, preview_image_file]
+                + hls_dirs,
+                f"{video.title}_files.zip",
             )
-
-            # Create a zip file with these files
-            zip_path = zip_files(files_to_zip, f"{video.title}_files.zip")
             os.remove(json_path)
 
             # Return a StreamingHttpResponse that reads the file and deletes it after serving
