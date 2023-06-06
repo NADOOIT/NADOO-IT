@@ -45,14 +45,10 @@ class Video(models.Model):
 
     def save(self, *args, **kwargs):
         try:
-            # is the object in the database yet?
             obj = Video.objects.get(id=self.id)
         except Video.DoesNotExist:
-            # Object is not in database
             super().save(*args, **kwargs)
         else:
-            # Object is in database
-            # if any field has changed, delete the old file
             if (
                 obj.original_file
                 and obj.original_file != self.original_file
@@ -60,7 +56,6 @@ class Video(models.Model):
             ):
                 os.remove(obj.original_file.path)
 
-            # do the same for the preview image
             if (
                 obj.preview_image
                 and obj.preview_image != self.preview_image
@@ -70,7 +65,7 @@ class Video(models.Model):
 
             super().save(*args, **kwargs)
 
-        if self.original_file:  # After save, the file exists
+        if self.original_file:
             old_file_path = self.original_file.path
             new_file_name = f"{self.id}.mp4"
             new_file_dir = os.path.dirname(old_file_path)
@@ -82,13 +77,10 @@ class Video(models.Model):
                     os.path.basename(new_file_dir), new_file_name
                 )
 
-        # do the same for the preview image
         if self.preview_image:
             old_image_path = self.preview_image.path
-            old_image_extension = os.path.splitext(old_image_path)[
-                1
-            ]  # Get the image extension
-            new_image_name = f"{self.id}{old_image_extension}"  # Use the old image extension for the new image name
+            old_image_extension = os.path.splitext(old_image_path)[1]
+            new_image_name = f"{self.id}{old_image_extension}"
             new_image_dir = os.path.dirname(old_image_path)
             new_image_path = os.path.join(new_image_dir, new_image_name)
 
@@ -98,9 +90,8 @@ class Video(models.Model):
                     os.path.basename(new_image_dir), new_image_name
                 )
 
-        super().save(
-            *args, **kwargs
-        )  # Save again to update the filenames in the database
+        super().save(update_fields=['original_file', 'preview_image'])
+
 
 
 from django.core.files.base import ContentFile
@@ -113,18 +104,21 @@ import os
 import shutil
 from django.conf import settings
 
+
 def hls_upload_to(instance, filename):
+    # Create a string representing the desired upload path
     path = f"hls_playlists/{instance.video.id}_{instance.resolution}p"
+
+    # Get the full system path
     full_path = os.path.join(settings.MEDIA_ROOT, path)
 
-    # If the directory already exists, remove it and all its contents
-    if os.path.exists(full_path):
-        shutil.rmtree(full_path)
+    # If the directory doesn't exist, create it
+    if not os.path.exists(full_path):
+        os.makedirs(full_path)
 
-    # Now create the directory (which might have been deleted in the previous step)
-    os.makedirs(full_path)
+    # Return the path, including the file's original name
+    return f"{path}/{filename}"
 
-    return os.path.join(path, filename)
 
 
 class VideoResolution(models.Model):
@@ -133,45 +127,66 @@ class VideoResolution(models.Model):
     )
     resolution = models.PositiveIntegerField()
     video_file = models.FileField(upload_to="videos/")
-    hls_playlist_file = models.FileField(upload_to=hls_upload_to)
+    hls_playlist_file = models.FileField(upload_to=hls_upload_to, blank=True, null=True, max_length=500)
 
     def __str__(self):
         return f"{self.video.title} ({self.resolution}p)"
 
+    from django.db import transaction
+
+    @transaction.atomic  # this will make sure the function runs in a single transaction
     def save(self, *args, **kwargs):
+        # Check if this instance exists in the DB.
+        # Use 'pk' as a more general form than 'id' (this will work with custom primary keys)
         try:
-            # is the object in the database yet?
-            obj = VideoResolution.objects.get(id=self.id)
+            obj = VideoResolution.objects.select_for_update().get(pk=self.pk)
         except VideoResolution.DoesNotExist:
-            # Object is not in database
-            super().save(*args, **kwargs)
-        else:
-            # Object is in database
-            # if any field has changed, delete the old file
+            obj = None
+
+        if obj:
+            # If the video file changed, delete the old file.
+            if obj.video_file and obj.video_file != self.video_file:
+                if os.path.isfile(obj.video_file.path):
+                    try:
+                        os.remove(obj.video_file.path)
+                    except Exception as e:
+                        print(f"Failed to delete file: {str(e)}")
+
+            # Similarly, delete the old HLS file if it's changed
             if (
-                obj.video_file
-                and obj.video_file != self.video_file
-                and os.path.isfile(obj.video_file.path)
+                obj.hls_playlist_file
+                and obj.hls_playlist_file != self.hls_playlist_file
             ):
-                os.remove(obj.video_file.path)
+                if os.path.isfile(obj.hls_playlist_file.path):
+                    try:
+                        os.remove(obj.hls_playlist_file.path)
+                    except Exception as e:
+                        print(f"Failed to delete file: {str(e)}")
 
-            super().save(*args, **kwargs)
+        # Save the model first to create or update the instance
+        super().save(*args, **kwargs)
 
-        if self.video_file:  # After save, the file exists
+        if self.video_file:
             old_file_path = self.video_file.path
             new_file_name = f"{self.video.id}_{self.resolution}p.mp4"
             new_file_dir = os.path.dirname(old_file_path)
             new_file_path = os.path.join(new_file_dir, new_file_name)
 
+            # Rename video file
             if os.path.exists(old_file_path):
-                os.rename(old_file_path, new_file_path)
-                self.video_file.name = os.path.join(
-                    os.path.basename(new_file_dir), new_file_name
-                )
+                try:
+                    os.rename(old_file_path, new_file_path)
+                    self.video_file.name = os.path.join(
+                        os.path.basename(new_file_dir), new_file_name
+                    )
+                except Exception as e:
+                    print(f"Failed to rename file: {str(e)}")
 
-        super().save(
-            *args, **kwargs
-        )  # Save again to update the filename in the database
+        # Similarly rename hls file if needed
+        # (Adjust this block according to your use case)
+
+        # Update the instance without running save() again to prevent infinite recursion
+        VideoResolution.objects.filter(pk=self.pk).update(video_file=self.video_file)
 
 
 class Signals_Option(models.Model):

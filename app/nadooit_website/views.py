@@ -1,7 +1,7 @@
 import json
 from pipes import Template
 import django.http
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from nadooit_website.visulize import analyze_and_visualize_session_data
@@ -13,6 +13,7 @@ from .services import (
     get__template__for__session_id,
     get_next_section_based_on_variant,
     get_seen_sections,
+    handle_uploaded_file,
 )
 from .tasks import update_session_section_order
 from .services import get__session_tick
@@ -31,7 +32,7 @@ from django.template import Template
 from django.views.decorators.csrf import csrf_exempt
 
 import logging
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 import os
 
@@ -326,6 +327,7 @@ def section_transitions(request, group_filter=None):
 
     return HttpResponse(content, content_type="text/html")
 
+
 """ TODO #213 Create a methode to visulize session data
 def visualize_session_data(request):
     # Call the function to generate the Plotly HTML file
@@ -334,3 +336,32 @@ def visualize_session_data(request):
     # Render the section_transitions.html template
     return render(request, "section_transitions.html")
  """
+
+from django.shortcuts import render
+from .forms import UploadZipForm
+
+
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+
+@login_required
+@staff_member_required
+def upload_video_zip(request):
+    if request.method == "POST":
+        form = UploadZipForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                handle_uploaded_file(request.FILES["file"])
+                messages.success(
+                    request, "The video zip file was successfully processed."
+                )
+            except Exception as e:
+                messages.error(
+                    request, f"Failed to process the video zip file: {str(e)}"
+                )
+            return redirect("admin:nadooit_website_video_changelist")
+    else:
+        form = UploadZipForm()
+    return render(request, "nadooit_website/upload.html", {"form": form})
