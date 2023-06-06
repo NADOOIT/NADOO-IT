@@ -92,9 +92,17 @@ def process_video_task(
 
         # Create HLS files and playlist for the current resolution
         video_name = os.path.splitext(os.path.basename(input_path))[0]
+        import shutil
 
         hls_output_path = f"/vol/web/media/hls_playlists/{video_name}_{resolution}p"
+
+        # Check if the directory exists, if it does, delete it
+        if os.path.isdir(hls_output_path):
+            shutil.rmtree(hls_output_path)
+
+        # Then create the directory
         os.makedirs(hls_output_path, exist_ok=True)
+
         hls_playlist_path = os.path.join(hls_output_path, "index.m3u8")
         ffmpeg_command = f"ffmpeg -i {scaled_output_path} -profile:v high444 -level 4.2 -start_number 0 -hls_time 10 -hls_list_size 0 -f hls {hls_playlist_path}"
         subprocess.run(ffmpeg_command, shell=True, check=True)
@@ -106,7 +114,7 @@ def process_video_task(
         with open(scaled_output_path, "rb") as transcoded_file:
             connections["default"].connect()
             video = Video.objects.get(id=video_id)
-            video_resolution = VideoResolution.objects.create(
+            video_resolution, created = VideoResolution.objects.get_or_create(
                 video=video, resolution=resolution
             )
             video_resolution.video_file.save(
@@ -118,7 +126,7 @@ def process_video_task(
         with open(hls_playlist_path, "rb") as playlist_file:
             connections["default"].connect()
             video_resolution.hls_playlist_file.save(
-                f"{video_name}_{resolution}p/index.m3u8",
+                "index.m3u8",
                 File(playlist_file),
                 save=True,
             )
@@ -144,8 +152,9 @@ import os
 
 @shared_task
 def cleanup_video_files():
-    # List all video files currently referenced in the database
+    # List all video files and HLS directories currently referenced in the database
     referenced_files = set()
+    referenced_dirs = set()
     for video in Video.objects.all():
         if video.original_file:
             referenced_files.add(
@@ -164,9 +173,17 @@ def cleanup_video_files():
             referenced_files.add(
                 os.path.join(settings.MEDIA_ROOT, video_res.hls_playlist_file.name)
             )
+            hls_dir = os.path.dirname(
+                os.path.join(settings.MEDIA_ROOT, video_res.hls_playlist_file.name)
+            )
+            referenced_dirs.add(hls_dir)
 
     # Walk through all files in your media directory
     for dirpath, dirnames, filenames in os.walk(settings.MEDIA_ROOT):
+        # Do not delete files inside a referenced directory
+        if dirpath in referenced_dirs:
+            continue
+
         for filename in filenames:
             filepath = os.path.join(dirpath, filename)
             # If a file is not referenced in the database, delete it
@@ -174,7 +191,7 @@ def cleanup_video_files():
                 os.remove(filepath)
 
         # Remove empty directories
-        if not os.listdir(dirpath):
+        if not os.listdir(dirpath) and dirpath not in referenced_dirs:
             os.rmdir(dirpath)
 
 
