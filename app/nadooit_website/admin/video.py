@@ -33,8 +33,6 @@ class VideoResolutionInline(admin.TabularInline):
 import os
 import shutil
 
-import os
-import shutil
 from django.conf import settings
 
 
@@ -93,6 +91,9 @@ class VideoAdmin(admin.ModelAdmin):
                         break
             os.remove(file_name)  # delete the file after serving
 
+        temp_dir = os.path.join(settings.MEDIA_ROOT, "temp")
+        os.makedirs(temp_dir, exist_ok=True)
+
         for video in queryset:
             # Get file paths for the video files
             video_files = [
@@ -116,23 +117,29 @@ class VideoAdmin(admin.ModelAdmin):
                 settings.MEDIA_ROOT, video.preview_image.name
             )
 
-            json_path = f"{video.title}_data.json"
+            json_path = os.path.join(temp_dir, "video_data.json")
             # Create a JSON file with video data
+
             video_data = {
                 "id": str(video.id),
                 "title": video.title,
-                "preview_image": video.preview_image.url,
-                "original_file": video.original_file.url,
+                "preview_image": os.path.basename(video.preview_image.name),
+                "original_file": os.path.basename(video.original_file.name),
                 "resolutions": [
                     {
                         "id": str(resolution.id),
                         "resolution": resolution.resolution,
-                        "video_file": resolution.video_file.url,
-                        "hls_playlist_file": resolution.hls_playlist_file.url,
+                        "video_file": os.path.basename(resolution.video_file.name),
+                        "hls_playlist_file": os.path.dirname(
+                            resolution.hls_playlist_file.name
+                        )
+                        if resolution.hls_playlist_file
+                        else None,
                     }
                     for resolution in video.resolutions.all()
                 ],
             }
+
             with open(json_path, "w") as json_file:
                 json.dump(video_data, json_file)
 
@@ -141,7 +148,7 @@ class VideoAdmin(admin.ModelAdmin):
                 video_files
                 + [json_path, original_video_file, preview_image_file]
                 + hls_dirs,
-                f"{video.title}_files.zip",
+                os.path.join(temp_dir, f"{video.title}_files.zip"),
             )
             os.remove(json_path)
 
@@ -180,3 +187,4 @@ class VideoAdmin(admin.ModelAdmin):
 
 # Register the new VideoAdmin
 admin.site.register(Video, VideoAdmin)
+admin.site.register(VideoResolution)

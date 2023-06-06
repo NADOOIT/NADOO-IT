@@ -1,5 +1,6 @@
 import os
 import random
+import re
 import shutil
 import uuid
 from typing import Optional
@@ -833,8 +834,10 @@ def zip_files(file_paths, output_name):
             zipf.write(file)
     return output_name
 
+
 import zipfile
 import os
+
 
 def zip_directories_and_files(paths, output_name):
     with zipfile.ZipFile(output_name, "w") as zipf:
@@ -845,6 +848,106 @@ def zip_directories_and_files(paths, output_name):
                 for root, _, files in os.walk(path):
                     for file in files:
                         file_path = os.path.join(root, file)
-                        arcname = os.path.relpath(file_path, start=os.path.join(path, os.pardir))
+                        arcname = os.path.relpath(
+                            file_path, start=os.path.join(path, os.pardir)
+                        )
                         zipf.write(file_path, arcname=arcname)
     return output_name
+
+
+import os
+import shutil
+from django.core.files import File
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from .models import Video, VideoResolution
+from .models import hls_upload_to
+import json
+import zipfile
+
+from django.conf import settings
+import os
+
+from django.db import transaction
+
+
+@transaction.atomic
+def handle_uploaded_file(file):
+    temp_dir = os.path.join(settings.MEDIA_ROOT, "temp")
+    os.makedirs(temp_dir, exist_ok=True)
+
+    try:
+        with zipfile.ZipFile(file, "r") as zip_ref:
+            zip_ref.extractall(temp_dir)
+
+        with open(os.path.join(temp_dir, "video_data.json"), "r") as json_file:
+            video_data = json.load(json_file)
+
+        # Fetch existing video object or create a new one
+        video, created = Video.objects.get_or_create(id=video_data["id"])
+
+        if not created:
+            # If the video object already exists, update its fields
+            video.title = video_data["title"]
+            video.preview_image = File(
+                open(os.path.join(temp_dir, video_data["preview_image"]), "rb"),
+                video_data["preview_image"],
+            )
+            video.original_file = File(
+                open(os.path.join(temp_dir, video_data["original_file"]), "rb"),
+                video_data["original_file"],
+            )
+            video.save()
+
+        for resolution_data in video_data["resolutions"]:
+            resolution, created = VideoResolution.objects.get_or_create(
+                id=resolution_data["id"],
+                defaults={"video": video, "resolution": resolution_data["resolution"]},
+            )
+
+            if not created:
+                resolution.video = video
+                resolution.resolution = resolution_data["resolution"]
+                resolution.video_file = File(
+                    open(
+                        os.path.join(temp_dir, resolution_data["video_file"]), "rb"
+                    ),
+                    resolution_data["video_file"],
+                )
+                resolution.save()
+
+            # Now move the HLS playlist files to the right place
+            old_hls_folder_path = os.path.join(
+                temp_dir, resolution_data["hls_playlist_file"]
+            )
+            new_hls_folder_path = os.path.join(
+                settings.MEDIA_ROOT,
+                "hls_playlists",
+                f"{video.id}_{resolution.resolution}p",
+            )
+            os.makedirs(new_hls_folder_path, exist_ok=True)
+
+            if os.path.isdir(old_hls_folder_path):
+                for file_name in os.listdir(old_hls_folder_path):
+                    shutil.move(
+                        os.path.join(old_hls_folder_path, file_name),
+                        new_hls_folder_path,
+                    )
+
+                # Find the .m3u8 file in the folder
+                m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))
+                if m3u8_files:
+                    # If found, assign its relative path to the hls_playlist_file field on the resolution
+                    relative_m3u8_path = os.path.relpath(
+                        m3u8_files[0], start=settings.MEDIA_ROOT
+                    )
+                    resolution.hls_playlist_file = relative_m3u8_path
+                    resolution.save()
+
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")
+        shutil.rmtree(temp_dir)
+        raise  # re-throw the last exception
+
+    else:
+        # Delete the 'temp' directory and its contents
+        shutil.rmtree(temp_dir)

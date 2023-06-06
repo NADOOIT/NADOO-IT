@@ -35,6 +35,7 @@ urlpatterns = [
         views.section_transitions,
         name="section_transitions_filtered",
     ),
+    path("upload/", views.upload_video_zip, name="video_upload"),
 ]
 """     
     path(
