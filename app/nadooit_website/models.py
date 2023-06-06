@@ -45,14 +45,10 @@ class Video(models.Model):
 
     def save(self, *args, **kwargs):
         try:
-            # is the object in the database yet?
             obj = Video.objects.get(id=self.id)
         except Video.DoesNotExist:
-            # Object is not in database
             super().save(*args, **kwargs)
         else:
-            # Object is in database
-            # if any field has changed, delete the old file
             if (
                 obj.original_file
                 and obj.original_file != self.original_file
@@ -60,7 +56,6 @@ class Video(models.Model):
             ):
                 os.remove(obj.original_file.path)
 
-            # do the same for the preview image
             if (
                 obj.preview_image
                 and obj.preview_image != self.preview_image
@@ -70,7 +65,7 @@ class Video(models.Model):
 
             super().save(*args, **kwargs)
 
-        if self.original_file:  # After save, the file exists
+        if self.original_file:
             old_file_path = self.original_file.path
             new_file_name = f"{self.id}.mp4"
             new_file_dir = os.path.dirname(old_file_path)
@@ -82,13 +77,10 @@ class Video(models.Model):
                     os.path.basename(new_file_dir), new_file_name
                 )
 
-        # do the same for the preview image
         if self.preview_image:
             old_image_path = self.preview_image.path
-            old_image_extension = os.path.splitext(old_image_path)[
-                1
-            ]  # Get the image extension
-            new_image_name = f"{self.id}{old_image_extension}"  # Use the old image extension for the new image name
+            old_image_extension = os.path.splitext(old_image_path)[1]
+            new_image_name = f"{self.id}{old_image_extension}"
             new_image_dir = os.path.dirname(old_image_path)
             new_image_path = os.path.join(new_image_dir, new_image_name)
 
@@ -98,9 +90,8 @@ class Video(models.Model):
                     os.path.basename(new_image_dir), new_image_name
                 )
 
-        super().save(
-            *args, **kwargs
-        )  # Save again to update the filenames in the database
+        super().save(update_fields=['original_file', 'preview_image'])
+
 
 
 from django.core.files.base import ContentFile

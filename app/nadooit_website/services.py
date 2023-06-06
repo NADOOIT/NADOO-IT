@@ -882,38 +882,35 @@ def handle_uploaded_file(file):
         with open(os.path.join(temp_dir, "video_data.json"), "r") as json_file:
             video_data = json.load(json_file)
 
-        # Fetch existing video object or create a new one
-        video, created = Video.objects.get_or_create(id=video_data["id"])
-
-        if not created:
-            # If the video object already exists, update its fields
-            video.title = video_data["title"]
-            video.preview_image = File(
-                open(os.path.join(temp_dir, video_data["preview_image"]), "rb"),
-                video_data["preview_image"],
-            )
-            video.original_file = File(
-                open(os.path.join(temp_dir, video_data["original_file"]), "rb"),
-                video_data["original_file"],
-            )
-            video.save()
+        video, _ = Video.objects.update_or_create(
+            id=video_data["id"],
+            defaults={
+                "title": video_data["title"],
+                "preview_image": File(
+                    open(os.path.join(temp_dir, video_data["preview_image"]), "rb"),
+                    video_data["preview_image"],
+                ),
+                "original_file": File(
+                    open(os.path.join(temp_dir, video_data["original_file"]), "rb"),
+                    video_data["original_file"],
+                ),
+            },
+        )
 
         for resolution_data in video_data["resolutions"]:
-            resolution, created = VideoResolution.objects.get_or_create(
+            resolution, _ = VideoResolution.objects.update_or_create(
                 id=resolution_data["id"],
-                defaults={"video": video, "resolution": resolution_data["resolution"]},
-            )
-
-            if not created:
-                resolution.video = video
-                resolution.resolution = resolution_data["resolution"]
-                resolution.video_file = File(
-                    open(
-                        os.path.join(temp_dir, resolution_data["video_file"]), "rb"
+                defaults={
+                    "video": video,
+                    "resolution": resolution_data["resolution"],
+                    "video_file": File(
+                        open(
+                            os.path.join(temp_dir, resolution_data["video_file"]), "rb"
+                        ),
+                        resolution_data["video_file"],
                     ),
-                    resolution_data["video_file"],
-                )
-                resolution.save()
+                },
+            )
 
             # Now move the HLS playlist files to the right place
             old_hls_folder_path = os.path.join(
@@ -927,11 +924,17 @@ def handle_uploaded_file(file):
             os.makedirs(new_hls_folder_path, exist_ok=True)
 
             if os.path.isdir(old_hls_folder_path):
+                if os.path.exists(new_hls_folder_path):
+                    shutil.rmtree(new_hls_folder_path)  # delete the existing directory and all of its contents
+
+                os.makedirs(new_hls_folder_path)  # recreate the directory
+
                 for file_name in os.listdir(old_hls_folder_path):
-                    shutil.move(
-                        os.path.join(old_hls_folder_path, file_name),
-                        new_hls_folder_path,
-                    )
+                    src_file = os.path.join(old_hls_folder_path, file_name)
+                    dest_file = os.path.join(new_hls_folder_path, file_name)
+                    
+                    shutil.move(src_file, dest_file)  # now move should succeed
+
 
                 # Find the .m3u8 file in the folder
                 m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))

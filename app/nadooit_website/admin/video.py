@@ -130,8 +130,8 @@ class VideoAdmin(admin.ModelAdmin):
                         "id": str(resolution.id),
                         "resolution": resolution.resolution,
                         "video_file": os.path.basename(resolution.video_file.name),
-                        "hls_playlist_file": os.path.dirname(
-                            resolution.hls_playlist_file.name
+                        "hls_playlist_file": os.path.basename(
+                            os.path.dirname(resolution.hls_playlist_file.name)
                         )
                         if resolution.hls_playlist_file
                         else None,
