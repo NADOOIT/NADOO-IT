@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     "django_htmx",
     "nadoo_complaint_management",
     "djmoney",
+    "bot_management",
 ]
 
 # Middelware is a list of functions that are called for every request.
