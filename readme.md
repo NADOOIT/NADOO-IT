@@ -334,3 +334,7 @@ Then add the following html block to the html at the place where the file downlo
         {{ file }}
     </div>
 
+
+### Bot Management
+
+For details on the bot management app, see [the bot management app README](app/bot_management/README.md).
