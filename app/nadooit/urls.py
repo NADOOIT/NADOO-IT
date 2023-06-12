@@ -72,6 +72,7 @@ urlpatterns = [
     # These are the routes for the ownership system for software in the nadoo network
     # TODO rename to include nadoo naming sceama
     path("program_ownership/", include("nadooit_program_ownership_system.urls")),
+    path("bot/", include("bot_management.urls")),
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
