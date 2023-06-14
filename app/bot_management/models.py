@@ -1,4 +1,5 @@
 from django.db import models
+from nadoo_erp.models import Item
 
 from nadooit_crm.models import Customer
 from uuid import uuid4
@@ -36,3 +37,27 @@ class APIKey(models.Model):
 
     def __str__(self):
         return self.name + " - " + str(self.api_key)
+
+
+class Message(models.Model):
+    message_id = models.BigIntegerField()
+    text = models.TextField(blank=True, null=True)
+    date = models.DateTimeField()
+    additional_info = models.JSONField(blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    platform = models.CharField(max_length=255)
+
+    class Meta:
+        unique_together = ["message_id", "date", "platform"]
+
+    def __str__(self):
+        return f"Message {self.message_id} on {self.platform}"
+
+
+# These are central models for diffrent kind of messages
+class Advertisement(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    messages = models.ManyToManyField("Message")
+
+    def __str__(self):
+        return f"Advertisement {self.pk}"

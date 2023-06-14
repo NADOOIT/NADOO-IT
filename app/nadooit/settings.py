@@ -46,7 +46,11 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
-ALLOWED_HOSTS = ["eb14-2a02-908-815-9ce0-00-9f10.ngrok-free.app"] if DEBUG else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = (
+    ["eb14-2a02-908-815-9ce0-00-9f10.ngrok-free.app"]
+    if DEBUG
+    else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+)
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
@@ -88,6 +92,7 @@ INSTALLED_APPS = [
     "nadoo_complaint_management",
     "djmoney",
     "bot_management",
+    "nadoo_erp",
 ]
 
 # Middelware is a list of functions that are called for every request.
