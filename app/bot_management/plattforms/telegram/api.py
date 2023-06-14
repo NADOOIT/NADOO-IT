@@ -46,6 +46,15 @@ def get_webhook_info(bot_token: str) -> Optional[WebhookInfo]:
         return None
 
     webhook_info_data = webhook_info_result.get("result")
+
+    # provide default values for fields that might be missing
+    webhook_info_data.setdefault("ip_address", None)
+    webhook_info_data.setdefault("last_error_date", None)
+    webhook_info_data.setdefault("last_error_message", None)
+    webhook_info_data.setdefault("last_synchronization_error_date", None)
+    webhook_info_data.setdefault("max_connections", None)
+    webhook_info_data.setdefault("allowed_updates", None)
+
     return WebhookInfo(**webhook_info_data)
 
 
@@ -105,3 +114,51 @@ def set_webhook(
         return False
 
     return True
+
+
+import requests
+import json
+
+
+def send_message(
+    token,
+    chat_id,
+    text,
+    message_thread_id=None,
+    parse_mode=None,
+    entities=None,
+    disable_web_page_preview=None,
+    disable_notification=None,
+    protect_content=None,
+    reply_to_message_id=None,
+    allow_sending_without_reply=None,
+    reply_markup=None,
+):
+    base_url = f"https://api.telegram.org/bot{token}/sendMessage"
+
+    # Construct the message payload
+    payload = {
+        "chat_id": chat_id,
+        "text": text,
+        "message_thread_id": message_thread_id,
+        "parse_mode": parse_mode,
+        "entities": entities,
+        "disable_web_page_preview": disable_web_page_preview,
+        "disable_notification": disable_notification,
+        "protect_content": protect_content,
+        "reply_to_message_id": reply_to_message_id,
+        "allow_sending_without_reply": allow_sending_without_reply,
+        "reply_markup": reply_markup,
+    }
+
+    # Remove None values from the payload
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    # Send the request
+    response = requests.post(base_url, json=payload)
+
+    # Handle the response
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return response.text

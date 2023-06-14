@@ -26,6 +26,7 @@ class BotPlatform(models.Model):
     platform = models.CharField(max_length=50, choices=PLATFORM_CHOICES)
     secret_url = models.UUIDField(default=uuid4, unique=True, editable=False)
     access_token = models.CharField(max_length=100)
+    secret_token = models.UUIDField(default=uuid4, unique=True, editable=False)
 
 
 class APIKey(models.Model):

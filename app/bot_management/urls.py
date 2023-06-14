@@ -1,6 +1,5 @@
 from django.urls import path
-from bot_management.views import *
-from plattforms.telegram.views import telegram_webhook
+from bot_management.plattforms.telegram.views import telegram_webhook
 
 
 app_name = "bot_management"
