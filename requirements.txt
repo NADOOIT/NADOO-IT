@@ -69,3 +69,7 @@ graphviz
 #torch
 
 moviepy
+
+
+#ai
+openai~=0.27

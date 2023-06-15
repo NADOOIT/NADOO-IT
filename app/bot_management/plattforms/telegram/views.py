@@ -18,7 +18,6 @@ from django.http import JsonResponse
 @api_view(["POST"])
 def telegram_webhook(request, secret_url):
     print("telegram_webhook")
-    print(bot_routes)
 
     if secret_url not in bot_routes:
         return JsonResponse({"error": "Unknown bot"}, status=404)

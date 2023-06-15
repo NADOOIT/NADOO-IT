@@ -162,3 +162,36 @@ def send_message(
         return response.json()
     else:
         return response.text
+
+
+def get_file_info(token, file_id):
+    base_url = f"https://api.telegram.org/bot{token}/getFile"
+
+    # Construct the message payload
+    payload = {
+        "file_id": file_id,
+    }
+
+    # Remove None values from the payload
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    # Send the request
+    response = requests.post(base_url, json=payload)
+
+    # Handle the response
+    if response.status_code == 200:
+        return response.json()
+
+    else:
+        return response.text
+
+
+def get_file(token, file_path):
+    file_url = f"https://api.telegram.org/file/bot{token}/{file_path}"
+
+    response = requests.get(file_url)
+
+    # Ensure the request was successful
+    response.raise_for_status()
+
+    return response.content
