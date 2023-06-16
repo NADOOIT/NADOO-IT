@@ -1,4 +1,5 @@
 from datetime import datetime
+from bot_management.plattforms.telegram.utils import get_message_for_request
 from bot_management.core.wisper import transcribe_audio_file
 from bot_management.plattforms.telegram.api import get_file
 from bot_management.models import BotPlatform, Message, Voice, VoiceFile, User, Chat
@@ -19,7 +20,41 @@ import os
 @register_bot_route("24a8ff21-ab91-4f53-b0c9-3a9b4fcb7b6a")
 @csrf_exempt
 def handle_message(request, *args, token=None, **kwargs):
+    print(request.data)
+
+    message = get_message_for_request(request, *args, token=token, **kwargs)
+
+    if message is not None:
+        if message.text.startswith("/update"):
+            send_message(
+                chat_id=message.chat.id,
+                text="Neuen Artikel anlegen. Antworten Sie bitte jeweils auf die folgenden Fragen. Nutzen Sie hierzu Text oder Sprachnachrichten.",
+                token=token,
+            )
+
+            send_message(
+                chat_id=message.chat.id,
+                text="Wie lautet der Titel?",
+                token=token,
+            )
+
+            send_message(
+                chat_id=message.chat.id,
+                text="Wie lautet die Beschreibung?",
+                token=token,
+            )
+
+        send_message(
+            chat_id=message.chat.id,
+            text=message.text,
+            token=token,
+        )
+
+    return HttpResponse("OK")
+
     data = request.data
+
+    print(data)
 
     if "message" in data:
         message_data = data["message"]
@@ -127,11 +162,13 @@ def handle_message(request, *args, token=None, **kwargs):
         # Now, all operations that might fail have succeeded. It's safe to create the message instance.
         with transaction.atomic():
             message, created = Message.objects.get_or_create(
+                update_id=data["update_id"],
                 message_id=message_data["message_id"],
                 date=date,
                 from_user=user,
                 chat=chat,
                 customer=customer,
+                bot_platform=bot_platform,
                 defaults={
                     "text": text,
                     "voice": voice,

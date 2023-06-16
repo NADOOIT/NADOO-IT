@@ -159,6 +159,8 @@ def send_message(
 
     # Handle the response
     if response.status_code == 200:
+        print(response.json())
+
         return response.json()
     else:
         return response.text
