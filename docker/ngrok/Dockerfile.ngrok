@@ -1,0 +1,28 @@
+# Dockerfile.ngrok
+FROM alpine:latest
+
+LABEL maintainer="nadooit.de"
+
+# Install necessary packages
+RUN apk add --no-cache \
+    curl \
+    unzip \
+    python3 \
+    py3-pip
+
+WORKDIR /app
+
+# Download and install ngrok
+RUN curl -O https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip && \
+    unzip ngrok-stable-linux-amd64.zip && \
+    chmod +x ngrok && \
+    rm ngrok-stable-linux-amd64.zip
+
+# Expose ngrok web interface port
+EXPOSE 4040
+
+# Add and run python script
+COPY ngrok_setup.py ./
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+CMD ./ngrok authtoken ${NGROK_AUTH_TOKEN} && python ./ngrok_setup.py

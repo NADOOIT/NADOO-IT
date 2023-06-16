@@ -43,14 +43,22 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme")
 # DEBUG = True
 DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 
+# Get ngrok URL from the environment variable
+NGROK_URL = os.environ.get("NGROK_URL", None)
+
 # The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
-ALLOWED_HOSTS = (
-    ["eb14-2a02-908-815-9ce0-00-9f10.ngrok-free.app"]
-    if DEBUG
-    else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-)
+
+if NGROK_URL:
+    ALLOWED_HOSTS = [NGROK_URL, "127.0.0.1"]
+else:
+    ALLOWED_HOSTS = (
+        ["localhost", "127.0.0.1"]
+        if DEBUG
+        else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+    )
+
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.

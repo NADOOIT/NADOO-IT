@@ -6,11 +6,23 @@ networks:
     driver: bridge
 
 services:
+  ngrok:
+    build:
+      context: ./docker/ngrok
+      dockerfile: Dockerfile.ngrok
+    environment:
+      - 'NGROK_AUTH_TOKEN=${NGROK_AUTH_TOKEN}'
+    volumes:
+      - ./docker/ngrok:/ngrok
+    networks:
+      - app_network
+    ports:
+      - 4040:4040
   app:
     build:
       context: .
       dockerfile: Dockerfile-dev
-    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver_plus 0.0.0.0:8000 --cert-file cert.cer --key-file key.pem --insecure" 
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver_plus 0.0.0.0:8000 --cert-file cert.cer --key-file key.pem --insecure"
     ports:
       - 8000:8000
     volumes:
@@ -32,16 +44,19 @@ services:
       - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
       - 'CELERY_BROKER_URL=redis://redis:6379/0'
+      - 'NGROK_URL=${NGROK_URL}'
     networks:
       - app_network
     depends_on:
       - redis
+      - ngrok
   redis:
     image: 'redis:latest'
     container_name: 'redis'
     hostname: 'redis'
     networks:
       - app_network
+
   celery_worker:
       build:
         context: .
@@ -69,4 +84,4 @@ services:
       networks:
         - app_network
       depends_on:
-        - redis     
+        - redis
