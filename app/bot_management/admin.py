@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.html import format_html
 from bot_management.plattforms.telegram.api import get_webhook_info, set_webhook
-from .models import Bot, BotPlatform, APIKey
+from .models import Bot, BotPlatform, APIKey, Message, Voice, VoiceFile, User, Chat
 
 
 class APIKeyInline(admin.TabularInline):
@@ -97,5 +97,10 @@ class BotAdmin(admin.ModelAdmin):
     search_fields = ["name", "customer__name"]
 
 
+admin.site.register(User)
+admin.site.register(Chat)
+admin.site.register(Voice)
+admin.site.register(VoiceFile)
+admin.site.register(Message)
 admin.site.register(Bot, BotAdmin)
 admin.site.register(BotPlatform, BotPlatformAdmin)

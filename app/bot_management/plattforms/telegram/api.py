@@ -1,9 +1,18 @@
+from datetime import datetime
+from django.http import HttpResponse
 import requests
 from typing import Optional, Dict, Any
 from requests.models import Response
 
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import Dict, Optional, Union, List
+
+from bot_management.models import Chat, Message
+from bot_management.plattforms.telegram.utils import (
+    get_bot_platform_by_token,
+    get_or_create_user_from_data,
+    get_or_create_and_update_message,
+)
 
 
 @dataclass
@@ -56,9 +65,6 @@ def get_webhook_info(bot_token: str) -> Optional[WebhookInfo]:
     webhook_info_data.setdefault("allowed_updates", None)
 
     return WebhookInfo(**webhook_info_data)
-
-
-from typing import Optional, List
 
 
 def set_webhook(
@@ -116,24 +122,20 @@ def set_webhook(
     return True
 
 
-import requests
-import json
-
-
 def send_message(
-    token,
-    chat_id,
-    text,
-    message_thread_id=None,
-    parse_mode=None,
-    entities=None,
-    disable_web_page_preview=None,
-    disable_notification=None,
-    protect_content=None,
-    reply_to_message_id=None,
-    allow_sending_without_reply=None,
-    reply_markup=None,
-):
+    token: str,
+    chat_id: int,
+    text: str,
+    message_thread_id: Optional[int] = None,
+    parse_mode: Optional[str] = None,
+    entities: Optional[str] = None,
+    disable_web_page_preview: Optional[bool] = None,
+    disable_notification: Optional[bool] = None,
+    protect_content: Optional[bool] = None,
+    reply_to_message_id: Optional[int] = None,
+    allow_sending_without_reply: Optional[bool] = None,
+    reply_markup: Optional[str] = None,
+) -> HttpResponse:
     base_url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     # Construct the message payload
@@ -159,6 +161,85 @@ def send_message(
 
     # Handle the response
     if response.status_code == 200:
+        response_json = response.json()
+        message_data = response_json["result"]
+
+        bot_platform = get_bot_platform_by_token(token)
+
+        if bot_platform is None:
+            return HttpResponse("Invalid token.", status=400)
+
+        if bot_platform.bot is None:
+            return HttpResponse(
+                "Bot associated with the platform does not exist.", status=400
+            )
+
+        if bot_platform.bot.customer is None:
+            return HttpResponse(
+                "Customer associated with the bot does not exist.", status=400
+            )
+
+        user_data = message_data["from"]
+        user = get_or_create_user_from_data(user_data)
+
+        chat_data = message_data["chat"]
+        chat, _ = Chat.objects.get_or_create(
+            id=chat_data["id"],
+            defaults={
+                "first_name": chat_data["first_name"],
+                "last_name": chat_data.get("last_name"),
+                "type": chat_data["type"],
+            },
+        )
+
+        # use an f sting to print response_json
+        print(f"response_json: {response_json}")
+
+        # Get, create or update the Message instance
+        message = get_or_create_and_update_message(
+            message_id=message_data["message_id"],
+            date=datetime.fromtimestamp(message_data["date"]),
+            bot_platform=bot_platform,
+            from_user=user,
+            chat=chat,
+            text=message_data.get("text", ""),
+            customer=bot_platform.bot.customer,
+        )
+
+        return message
+
+    else:
+        return HttpResponse(response.text, status=400)
+
+
+def get_file_info(token, file_id):
+    base_url = f"https://api.telegram.org/bot{token}/getFile"
+
+    # Construct the message payload
+    payload = {
+        "file_id": file_id,
+    }
+
+    # Remove None values from the payload
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    # Send the request
+    response = requests.post(base_url, json=payload)
+
+    # Handle the response
+    if response.status_code == 200:
         return response.json()
+
     else:
         return response.text
+
+
+def get_file(token, file_path):
+    file_url = f"https://api.telegram.org/file/bot{token}/{file_path}"
+
+    response = requests.get(file_url)
+
+    # Ensure the request was successful
+    response.raise_for_status()
+
+    return response.content

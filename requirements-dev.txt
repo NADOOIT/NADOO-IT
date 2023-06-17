@@ -61,6 +61,10 @@ chardet
 celery
 redis
 
+#ai
+openai~=0.27
+
+
 plotly
 pandas
 seaborn
