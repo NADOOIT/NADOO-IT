@@ -135,7 +135,7 @@ def send_message(
     reply_to_message_id: Optional[int] = None,
     allow_sending_without_reply: Optional[bool] = None,
     reply_markup: Optional[str] = None,
-) -> HttpResponse:
+) -> Union[HttpResponse, Message]:
     base_url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     # Construct the message payload
@@ -243,3 +243,83 @@ def get_file(token, file_path):
     response.raise_for_status()
 
     return response.content
+
+
+def edit_message(
+    token: str,
+    chat_id: int,
+    message_id: int,
+    text: str,
+    parse_mode: Optional[str] = None,
+    entities: Optional[str] = None,
+    disable_web_page_preview: Optional[bool] = None,
+    reply_markup: Optional[str] = None,
+) -> Union[HttpResponse, Message]:
+    base_url = f"https://api.telegram.org/bot{token}/editMessageText"
+
+    # Construct the message payload
+    payload = {
+        "chat_id": chat_id,
+        "message_id": message_id,
+        "text": text,
+        "parse_mode": parse_mode,
+        "entities": entities,
+        "disable_web_page_preview": disable_web_page_preview,
+        "reply_markup": reply_markup,
+    }
+
+    # Remove None values from the payload
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    # Send the request
+    response = requests.post(base_url, json=payload)
+
+    # Handle the response
+    if response.status_code == 200:
+        response_json = response.json()
+        message_data = response_json["result"]
+
+        bot_platform = get_bot_platform_by_token(token)
+
+        if bot_platform is None:
+            return HttpResponse("Invalid token.", status=400)
+
+        if bot_platform.bot is None:
+            return HttpResponse(
+                "Bot associated with the platform does not exist.", status=400
+            )
+
+        if bot_platform.bot.customer is None:
+            return HttpResponse(
+                "Customer associated with the bot does not exist.", status=400
+            )
+
+        user_data = message_data["from"]
+        user = get_or_create_user_from_data(user_data)
+
+        chat_data = message_data["chat"]
+        chat, _ = Chat.objects.get_or_create(
+            id=chat_data["id"],
+            defaults={
+                "first_name": chat_data["first_name"],
+                "last_name": chat_data.get("last_name"),
+                "type": chat_data["type"],
+            },
+        )
+
+        print(f"response_json: {response_json}")
+
+        message = get_or_create_and_update_message(
+            message_id=message_data["message_id"],
+            date=datetime.fromtimestamp(message_data["edit_date"]),
+            bot_platform=bot_platform,
+            from_user=user,
+            chat=chat,
+            text=message_data.get("text", ""),
+            customer=bot_platform.bot.customer,
+        )
+
+        return message
+
+    else:
+        return HttpResponse(response.text, status=400)
