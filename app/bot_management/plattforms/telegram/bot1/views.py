@@ -44,10 +44,19 @@ def handle_message(request, *args, token=None, **kwargs):
                 token=token,
             )
 
-            edit_message(
+            changed_message = edit_message(
                 chat_id=last_message.chat.id,
                 message_id=last_message.message_id,
                 text="Hab die nachricht geändert",
+                token=token,
+            )
+
+            time.sleep(2)
+
+            changed_message = edit_message(
+                chat_id=changed_message.chat.id,
+                message_id=changed_message.message_id,
+                text="Hab die nachricht nochmal geändert",
                 token=token,
             )
 
@@ -57,3 +66,5 @@ def handle_message(request, *args, token=None, **kwargs):
                 text=message.text,
                 token=token,
             )
+
+    return HttpResponse("OK")
