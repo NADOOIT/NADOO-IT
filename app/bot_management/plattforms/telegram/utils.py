@@ -1,9 +1,9 @@
-from bot_management.plattforms.telegram.api import get_file
-from bot_management.plattforms.telegram.api import get_file_info
 from bot_management.core.wisper import transcribe_audio_file
 from bot_management.models import User, Chat, Voice, VoiceFile, Message
 from bot_management.models import BotPlatform
 from functools import wraps
+
+from typing import Dict, Optional, Union
 
 bot_routes = {}
 
@@ -29,8 +29,101 @@ import time
 import os
 
 
+def get_bot_platform_by_token(token: str) -> Optional[BotPlatform]:
+    try:
+        bot_platform = BotPlatform.objects.get(access_token=token)
+        return bot_platform
+    except BotPlatform.DoesNotExist:
+        # Respond with an error or handle as needed
+        return None
+
+
+def get_or_create_user_from_data(user_data: Dict) -> User:
+    user, _ = User.objects.get_or_create(
+        id=user_data["id"],
+        defaults={
+            "is_bot": user_data["is_bot"],
+            "first_name": user_data["first_name"],
+            "last_name": user_data.get("last_name"),
+            "language_code": user_data.get("language_code"),
+        },
+    )
+    return user
+
+
+from typing import Any, Optional
+from datetime import datetime
+from bot_management.models import BotPlatform, Message
+
+
+def get_or_create_and_update_message(
+    message_id: int,
+    date: datetime,
+    bot_platform: BotPlatform,
+    update_id: Optional[int] = None,  # Make update_id optional
+    **kwargs: Any,
+) -> Message:
+    """
+    This function tries to get a message with the provided parameters from the database.
+    If the message does not exist, it creates a new one. If the message exists, it compares
+    the new parameters with the existing ones, and updates the record if any changes are found.
+
+    :param message_id: The id of the message.
+    :param date: The date of the message.
+    :param bot_platform: The BotPlatform object of the message.
+    :param update_id: The update id of the message. This parameter is now optional.
+    :param kwargs: Additional parameters to update in the message.
+    :return: The retrieved or updated Message object.
+    """
+    try:
+        print("Trying to get message")
+        print(message_id)
+        print(date)
+        print(bot_platform)
+
+        # Use update_id only if it's not None
+        query_params = {
+            "message_id": message_id,
+            "date": date,
+            "bot_platform": bot_platform,
+        }
+        if update_id is not None:
+            query_params["update_id"] = update_id
+
+        message = Message.objects.get(**query_params)
+
+        # The message exists, compare and update if needed
+        changed = False
+        for field, value in kwargs.items():
+            # Check if the values are different
+            if getattr(message, field) != value:
+                setattr(message, field, value)
+                changed = True
+
+        if changed:
+            message.save()
+
+    except Message.DoesNotExist:
+        # The message does not exist, create it
+        message = Message.objects.create(
+            update_id=update_id,  # This will be None if update_id was not provided
+            message_id=message_id,
+            date=date,
+            bot_platform=bot_platform,
+            **kwargs,
+        )
+
+    return message
+
+
 def get_message_for_request(request, *args, token=None, **kwargs):
+    from bot_management.plattforms.telegram.api import get_file
+    from bot_management.plattforms.telegram.api import get_file_info
+
     data = request.data
+
+    # use an f string to print the data to the console
+    print(f"Data in get_message_for_request: {data}")
 
     if "message" in data:
         message_data = data["message"]
@@ -113,8 +206,8 @@ def get_message_for_request(request, *args, token=None, **kwargs):
 
         additional_info = message_data.get("entities")
 
-        # Now, all operations that might fail have succeeded. It's safe to create the message
-        message, _ = Message.objects.get_or_create(
+        # Now, all operations that might fail have succeeded. It's safe to create or update the message
+        message = get_or_create_and_update_message(
             update_id=data.get("update_id"),
             message_id=message_data["message_id"],
             from_user=user,

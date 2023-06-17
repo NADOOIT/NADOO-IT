@@ -21,7 +21,6 @@ import os
 @csrf_exempt
 def handle_message(request, *args, token=None, **kwargs):
     print(request.data)
-
     message = get_message_for_request(request, *args, token=token, **kwargs)
 
     if message is not None:

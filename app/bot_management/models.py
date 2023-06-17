@@ -1,4 +1,6 @@
+from typing import Type
 from django.db import models
+from django.db.models.options import Options
 from nadoo_erp.models import Item
 from nadooit_crm.models import Customer
 from uuid import uuid4
@@ -21,6 +23,16 @@ class User(models.Model):
     last_name = models.CharField(max_length=255, blank=True, null=True)
     language_code = models.CharField(max_length=255, blank=True, null=True)
 
+    def __str__(self):
+        if self.last_name:
+            return self.first_name + " " + self.last_name
+        else:
+            return self.first_name
+
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+
 
 class Chat(models.Model):
     id = models.BigIntegerField(primary_key=True)
@@ -40,6 +52,9 @@ class BotPlatform(models.Model):
     secret_url = models.UUIDField(default=uuid4, unique=True, editable=False)
     access_token = models.CharField(max_length=100)
     secret_token = models.UUIDField(default=uuid4, unique=True, editable=False)
+
+    def __str__(self):
+        return self.bot.name + " - " + self.platform
 
 
 class APIKey(models.Model):

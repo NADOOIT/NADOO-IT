@@ -135,7 +135,7 @@ TODO Fill this section
 
 1. Copy the repository to your servers home directory
 
-    git clone git@github.com:NADOOITChristophBa/nadooit_managmentsystem.git
+    git clone <git@github.com>:NADOOITChristophBa/nadooit_managmentsystem.git
 
 2. Change into the directory
 
@@ -248,35 +248,35 @@ Run the following command to update the server
 
 #### Create a new customer
 
-go to https://nadooit.de/admin/nadooit_crm/customer/add/
+go to <https://nadooit.de/admin/nadooit_crm/customer/add/>
 
 fill out the form
 
 #### Create a new employee contract, employee and user as the lead of the customer
 
-go to https://nadooit.de/admin/nadooit_hr/employeecontract/add/
+go to <https://nadooit.de/admin/nadooit_hr/employeecontract/add/>
 
 #### Create a new api key manager contract for the customer
 
-go to https://nadooit.de/admin/nadooit_api_key/nadooitapikeymanager/add/
+go to <https://nadooit.de/admin/nadooit_api_key/nadooitapikeymanager/add/>
 
 #### Create a customer manager contract for the customer with the master account
 
-go to https://nadooit.de/admin/nadooit_hr/customermanagercontract/add/
+go to <https://nadooit.de/admin/nadooit_hr/customermanagercontract/add/>
 
 #### Create a customer program execution manager contract for the customer with the master account
 
-go to https://nadooit.de/admin/nadooit_hr/customerprogramexecutionmanagercontract/add/
+go to <https://nadooit.de/admin/nadooit_hr/customerprogramexecutionmanagercontract/add/>
 
 #### Create a customer program manager contract for the customer with the master account
 
-go to https://nadooit.de/admin/nadooit_hr/customerprogrammanagercontract/add/
+go to <https://nadooit.de/admin/nadooit_hr/customerprogrammanagercontract/add/>
 
 #### Add a security key to the main customer user account
 
 first sighn in to the main customer user account. If there is currently no key associated with the account, you will be be able to just sign in without a password.
 
-after you have signed in, go to https://nadooit.de/mfa/fido2/
+after you have signed in, go to <https://nadooit.de/mfa/fido2/>
 
 if you have a PC with fido2 support it will ask you if you want to add it. Cancel the process and go to the next step.
 
@@ -333,7 +333,6 @@ Then add the following html block to the html at the place where the file downlo
     <div class="file-container">
         {{ file }}
     </div>
-
 
 ### Bot Management
 
