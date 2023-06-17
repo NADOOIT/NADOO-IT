@@ -57,3 +57,5 @@ def handle_message(request, *args, token=None, **kwargs):
                 text=message.text,
                 token=token,
             )
+
+    return HttpResponse("OK")
