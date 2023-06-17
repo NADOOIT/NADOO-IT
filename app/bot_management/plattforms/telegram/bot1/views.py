@@ -6,7 +6,7 @@ from bot_management.models import BotPlatform, Message, Voice, VoiceFile, User, 
 from bot_management.plattforms.telegram.api import get_file_info
 from bot_management.plattforms.telegram.utils import register_bot_route
 from django.views.decorators.csrf import csrf_exempt
-from bot_management.plattforms.telegram.api import send_message
+from bot_management.plattforms.telegram.api import send_message, edit_message
 import re
 from django.http import HttpResponse, JsonResponse
 from django.db import transaction
@@ -37,17 +37,25 @@ def handle_message(request, *args, token=None, **kwargs):
                 token=token,
             )
 
-            send_message(
+            last_message = send_message(
                 chat_id=message.chat.id,
                 text="Wie lautet die Beschreibung?",
                 token=token,
             )
 
-        send_message(
-            chat_id=message.chat.id,
-            text=message.text,
-            token=token,
-        )
+            edit_message(
+                chat_id=last_message.chat.id,
+                message_id=last_message.message_id,
+                text="Hab die nachricht geändert",
+                token=token,
+            )
+
+        else:
+            send_message(
+                chat_id=message.chat.id,
+                text=message.text,
+                token=token,
+            )
 
     return HttpResponse("OK")
 
