@@ -28,8 +28,13 @@ def handle_message(request, *args, token=None, **kwargs):
         if message.text.startswith("/update"):
             send_message(
                 chat_id=message.chat.id,
-                text="Neuen Artikel anlegen. Antworten Sie bitte jeweils auf die folgenden Fragen. Nutzen Sie hierzu Text oder Sprachnachrichten.",
+                text=(
+                    "<b>Neuen Artikel anlegen.</b> "
+                    "Antworten Sie bitte <u>jeweils</u> auf die folgenden Fragen. "
+                    "Nutzen Sie hierzu <code>Text</code> oder <em>Sprachnachrichten</em>."
+                ),
                 token=token,
+                parse_mode="HTML",
             )
 
             send_message(
@@ -44,18 +49,16 @@ def handle_message(request, *args, token=None, **kwargs):
                 token=token,
             )
 
-            changed_message = edit_message(
+            edited_message = edit_message(
                 chat_id=last_message.chat.id,
                 message_id=last_message.message_id,
                 text="Hab die nachricht geändert",
                 token=token,
             )
 
-            time.sleep(2)
-
-            changed_message = edit_message(
-                chat_id=changed_message.chat.id,
-                message_id=changed_message.message_id,
+            edited_message = edit_message(
+                chat_id=edited_message.chat.id,
+                message_id=edited_message.message_id,
                 text="Hab die nachricht nochmal geändert",
                 token=token,
             )

@@ -439,7 +439,7 @@ footer {
 .our-grantee {
   text-transform: none;
   text-align: center;
-  padding: 10% 0 0% 0;
+  padding: 5% 0 0% 0;
   color: white;
   padding-left: 2rem; /* Add space to the left */
   padding-right: 2rem; /* Add space to the right */
@@ -448,13 +448,13 @@ footer {
 .our-grantee h1{
   text-transform: none;
   text-align: center;
-  padding: 20% 0 1% 0;
+  padding: 10% 0 1% 0;
   color: white;
 }
 .our-grantee-gold h1{
   text-transform: none;
   text-align: center;
-  padding: 20% 0 10% 0;
+  padding: 10% 0 5% 0;
   background: linear-gradient(225deg, #fa0000, gold);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

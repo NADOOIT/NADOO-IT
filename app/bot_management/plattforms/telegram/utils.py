@@ -1,9 +1,13 @@
 from bot_management.core.wisper import transcribe_audio_file
-from bot_management.models import User, Chat, Voice, VoiceFile, Message
-from bot_management.models import BotPlatform
+from bot_management.models import User, Chat, Voice, VoiceFile, Message, BotPlatform
 from functools import wraps
-
+from django.db.models import ObjectDoesNotExist
+from django.http import HttpResponse
+from datetime import datetime
+import time
+import os
 from typing import Dict, Optional, Union
+
 
 bot_routes = {}
 
@@ -20,13 +24,6 @@ def register_bot_route(secret_url):
         return _wrapped_view
 
     return decorator
-
-
-from django.db.models import ObjectDoesNotExist
-from django.http import HttpResponse
-from datetime import datetime
-import time
-import os
 
 
 def get_bot_platform_by_token(token: str) -> Optional[BotPlatform]:
