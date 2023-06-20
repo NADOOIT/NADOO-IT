@@ -7,7 +7,7 @@ from requests.models import Response
 from dataclasses import dataclass
 from typing import Dict, Optional, Union, List
 
-from bot_management.models import Chat, Message
+from bot_management.models import Chat, Message, BotPlatform
 from bot_management.plattforms.telegram.utils import (
     get_bot_platform_by_token,
     get_or_create_user_from_data,
@@ -158,6 +158,8 @@ def send_message(
 
     # Send the request
     response = requests.post(base_url, json=payload)
+
+    print(response.json())
 
     # Handle the response
     if response.status_code == 200:
@@ -323,3 +325,55 @@ def edit_message(
 
     else:
         return HttpResponse(response.text, status=400)
+
+
+def edit_message_reply_markup(
+    token: str,
+    chat_id: Optional[Union[int, str]] = None,
+    message_id: Optional[int] = None,
+    inline_message_id: Optional[str] = None,
+    reply_markup: Optional[str] = None,
+) -> Union[Message, bool]:
+    base_url = f"https://api.telegram.org/bot{token}/editMessageReplyMarkup"
+
+    # Construct the message payload
+    payload = {
+        "chat_id": chat_id,
+        "message_id": message_id,
+        "inline_message_id": inline_message_id,
+        "reply_markup": reply_markup,
+    }
+
+    # Remove None values from the payload
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    # Send the request
+    response = requests.post(base_url, json=payload)
+
+    # Handle the response
+    if response.status_code == 200:
+        response_json = response.json()
+        result = response_json["result"]
+
+        # Update the message in the database if the result is a Message object
+        if isinstance(result, dict):
+            # Assumes that the message_id in the response is the same as in the database
+            # You need to get the bot_platform object for the function get_or_create_and_update_message
+            bot_platform = BotPlatform.objects.get(token=token)
+
+            # call get_or_create_and_update_message function to update message object
+            message = get_or_create_and_update_message(
+                message_id=result["message_id"],
+                date=datetime.fromtimestamp(result["date"]),
+                bot_platform=bot_platform,
+                parse_mode=parse_mode,
+                reply_markup=reply_markup,
+                text=result.get("text", ""),
+            )
+            return message
+        else:
+            return result
+    else:
+        raise Exception(
+            f"Request failed with status code {response.status_code}. Response: {response.text}"
+        )

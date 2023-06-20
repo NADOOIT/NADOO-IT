@@ -106,6 +106,8 @@ class Message(models.Model):
     additional_info = models.JSONField(blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     bot_platform = models.ForeignKey(BotPlatform, on_delete=models.CASCADE, null=True)
+    reply_markup = models.JSONField(blank=True, null=True)
+    parse_mode = models.CharField(max_length=10, blank=True, null=True)  # New Field
 
     class Meta:
         unique_together = ["message_id", "date", "bot_platform"]
