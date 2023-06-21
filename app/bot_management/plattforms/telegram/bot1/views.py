@@ -20,54 +20,59 @@ import os
 @register_bot_route("24a8ff21-ab91-4f53-b0c9-3a9b4fcb7b6a")
 @csrf_exempt
 def handle_message(request, *args, token=None, **kwargs):
-    print(request.data)
+    print(request)
 
     message = get_message_for_request(request, *args, token=token, **kwargs)
 
-    if message is not None:
-        if message.text.startswith("/update"):
-            send_message(
-                chat_id=message.chat.id,
-                text=(
-                    "<b>Neuen Artikel anlegen.</b> "
-                    "Antworten Sie bitte <u>jeweils</u> auf die folgenden Fragen. "
-                    "Nutzen Sie hierzu <code>Text</code> oder <em>Sprachnachrichten</em>."
-                ),
-                token=token,
-                parse_mode="HTML",
-            )
+    print(message)
 
-            send_message(
-                chat_id=message.chat.id,
-                text="Wie lautet der Titel?",
-                token=token,
-            )
+    if message is not None and not HttpResponse:
+        # check if message has text
 
-            last_message = send_message(
-                chat_id=message.chat.id,
-                text="Wie lautet die Beschreibung?",
-                token=token,
-            )
+        if message.text is not None:
+            if message.text.startswith("/update"):
+                send_message(
+                    chat_id=message.chat.id,
+                    text=(
+                        "<b>Neuen Artikel anlegen.</b> "
+                        "Antworten Sie bitte <u>jeweils</u> auf die folgenden Fragen. "
+                        "Nutzen Sie hierzu <code>Text</code> oder <em>Sprachnachrichten</em>."
+                    ),
+                    token=token,
+                    parse_mode="HTML",
+                )
 
-            edited_message = edit_message(
-                chat_id=last_message.chat.id,
-                message_id=last_message.message_id,
-                text="Hab die nachricht geändert",
-                token=token,
-            )
+                send_message(
+                    chat_id=message.chat.id,
+                    text="Wie lautet der Titel?",
+                    token=token,
+                )
 
-            edited_message = edit_message(
-                chat_id=edited_message.chat.id,
-                message_id=edited_message.message_id,
-                text="Hab die nachricht nochmal geändert",
-                token=token,
-            )
+                last_message = send_message(
+                    chat_id=message.chat.id,
+                    text="Wie lautet die Beschreibung?",
+                    token=token,
+                )
 
-        else:
-            send_message(
-                chat_id=message.chat.id,
-                text=message.text,
-                token=token,
-            )
+                edited_message = edit_message(
+                    chat_id=last_message.chat.id,
+                    message_id=last_message.message_id,
+                    text="Hab die nachricht geändert",
+                    token=token,
+                )
+
+                edited_message = edit_message(
+                    chat_id=edited_message.chat.id,
+                    message_id=edited_message.message_id,
+                    text="Hab die nachricht nochmal geändert",
+                    token=token,
+                )
+
+            else:
+                send_message(
+                    chat_id=message.chat.id,
+                    text=message.text,
+                    token=token,
+                )
 
     return HttpResponse("OK")

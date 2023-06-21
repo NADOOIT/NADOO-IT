@@ -7,9 +7,12 @@ from datetime import datetime
 import time
 import os
 from typing import Dict, Optional, Union
+from typing import Any, Optional
+from datetime import datetime
+from bot_management.models import BotPlatform, Message
 
 
-bot_routes = {}
+bot_routes_telegram = {}
 
 
 def register_bot_route(secret_url):
@@ -20,7 +23,7 @@ def register_bot_route(secret_url):
             kwargs["token"] = token
             return view_func(request, *args, **kwargs)
 
-        bot_routes[secret_url] = _wrapped_view
+        bot_routes_telegram[secret_url] = _wrapped_view
         return _wrapped_view
 
     return decorator
@@ -46,11 +49,6 @@ def get_or_create_user_from_data(user_data: Dict) -> User:
         },
     )
     return user
-
-
-from typing import Any, Optional
-from datetime import datetime
-from bot_management.models import BotPlatform, Message
 
 
 def get_or_create_and_update_message(
@@ -139,14 +137,29 @@ def get_message_for_request(request, *args, token=None, **kwargs):
 
         # Get or create chat from message
         chat_data = message_data["chat"]
-        chat, _ = Chat.objects.get_or_create(
-            id=chat_data["id"],
-            defaults={
-                "first_name": chat_data["first_name"],
-                "last_name": chat_data.get("last_name"),
-                "type": chat_data["type"],
-            },
-        )
+
+        # check if group or private chat
+        # Group example 'chat': {'id': -909636733, 'title': 'WebChat1', 'type': 'group', 'all_members_are_administrators': True}
+        if chat_data["type"] == "group":
+            chat, _ = Chat.objects.get_or_create(
+                id=chat_data["id"],
+                defaults={
+                    "title": chat_data["title"],
+                    "type": chat_data["type"],
+                    "all_members_are_administrators": chat_data[
+                        "all_members_are_administrators"
+                    ],
+                },
+            )
+        else:
+            chat, _ = Chat.objects.get_or_create(
+                id=chat_data["id"],
+                defaults={
+                    "first_name": chat_data["first_name"],
+                    "last_name": chat_data.get("last_name"),
+                    "type": chat_data["type"],
+                },
+            )
 
         # If 'date' is a timestamp (seconds since epoch), convert to datetime
         if isinstance(message_data["date"], (int, float)):
@@ -163,7 +176,12 @@ def get_message_for_request(request, *args, token=None, **kwargs):
             return HttpResponse("Invalid token.", status=400)
 
         customer = bot_platform.bot.customer
-        text = message_data.get("text", "")
+
+        text = None
+
+        # check if there is text in the message
+        if "text" in message_data:
+            text = message_data.get("text", "")
         voice = None
 
         if "voice" in message_data:
