@@ -110,10 +110,14 @@ def get_or_create_and_update_message(
 
 
 def get_message_for_request(request, *args, token=None, **kwargs):
-    data = request.POST
+    # get all the info that was send in the request
+    data = request.POST.dict()
 
-    print("Data in get_message_for_request")
-    print(data)
+    # check if the data is empty
+    if not data:
+        # return None if the data is empty
+        pass
+
     return None
 
     # use an f string to print the data to the console
