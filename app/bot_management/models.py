@@ -36,9 +36,11 @@ class User(models.Model):
 
 class Chat(models.Model):
     id = models.BigIntegerField(primary_key=True)
-    first_name = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255, blank=True, null=True)
     last_name = models.CharField(max_length=255, blank=True, null=True)
     type = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    all_members_are_administrators = models.BooleanField(default=False)
 
 
 class Bot(models.Model):
@@ -52,6 +54,7 @@ class BotPlatform(models.Model):
     secret_url = models.UUIDField(default=uuid4, unique=True, editable=False)
     access_token = models.CharField(max_length=100)
     secret_token = models.UUIDField(default=uuid4, unique=True, editable=False)
+    phone_number = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.bot.name + " - " + self.platform
