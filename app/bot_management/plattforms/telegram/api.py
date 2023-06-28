@@ -1,5 +1,6 @@
 from datetime import datetime
 from django.http import HttpResponse
+import re
 import requests
 from typing import Optional, Dict, Any
 from requests.models import Response
@@ -434,8 +435,12 @@ def send_photo(
 
     # Send the request
     response = requests.post(base_url, json=payload)
+    print("Response from telegram: ")
     print(response)
-
+    print(response.json())
+    print("")
+    print("")
+    print("")
     # Handle the response
     if response.status_code == 200:
         response_json = response.json()
@@ -469,15 +474,19 @@ def send_photo(
             },
         )
 
-        message = get_or_create_and_update_message(
-            message_id=message_data["message_id"],
-            date=datetime.fromtimestamp(message_data["date"]),
-            bot_platform=bot_platform,
-            from_user=user,
-            chat=chat,
-            text=message_data.get("text", ""),
-            customer=bot_platform.bot.customer,
-        )
+        # if message contains photo
+        if message_data.get("photo"):
+            caption = message_data.get("caption")
+            message = get_or_create_and_update_message(
+                message_id=message_data["message_id"],
+                date=datetime.fromtimestamp(message_data["date"]),
+                bot_platform=bot_platform,
+                from_user=user,
+                chat=chat,
+                customer=bot_platform.bot.customer,
+                photo=message_data["photo"],
+                caption=caption,
+            )
 
         return message
 
