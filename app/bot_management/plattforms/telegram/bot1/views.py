@@ -4,18 +4,13 @@ from bot_management.plattforms.telegram.bot1.utils import (
     change_quantity_available,
     get_advert_post_for_data,
 )
-from bot_management.plattforms.telegram.utils import get_message_for_request
 from bot_management.core.wisper import transcribe_audio_file
-from bot_management.plattforms.telegram.api import get_file
-from bot_management.models import BotPlatform, Message, Voice, VoiceFile, User, Chat
+from bot_management.models import *
 from bot_management.plattforms.telegram.api import get_file_info
 from bot_management.plattforms.telegram.utils import register_bot_route
 from django.views.decorators.csrf import csrf_exempt
-from bot_management.plattforms.telegram.api import (
-    send_message,
-    edit_message,
-    send_photo,
-)
+from bot_management.plattforms.telegram.utils import *
+from bot_management.plattforms.telegram.api import *
 import re
 from django.http import HttpResponse, JsonResponse
 from django.db import transaction
@@ -37,7 +32,6 @@ def handle_message(request, *args, token=None, **kwargs):
     # Even though I get a message object and it is not a HttpResponse object the if statement is not executed
     if message is not None and not isinstance(message, HttpResponse):
         # check if message has text
-
         print("Message and not HttpResponse")
         if message.text is not None:
             if message.text.startswith("/update"):
@@ -64,16 +58,14 @@ def handle_message(request, *args, token=None, **kwargs):
                     token=token,
                 )
 
-                edited_message = edit_message(
-                    chat_id=last_message.chat.id,
-                    message_id=last_message.message_id,
+                edited_message = edit_message_text(
+                    message=last_message,
                     text="Hab die nachricht geändert",
                     token=token,
                 )
 
-                edited_message = edit_message(
-                    chat_id=edited_message.chat.id,
-                    message_id=edited_message.message_id,
+                edited_message = edit_message_text(
+                    message=last_message,
                     text="Hab die nachricht nochmal geändert",
                     token=token,
                 )
@@ -113,8 +105,11 @@ def handle_message(request, *args, token=None, **kwargs):
                     parse_mode="HTML",
                 )
 
-                print(message)
-                print(message.text)
+                print(new_message)
+
+                caption = (
+                    PhotoMessage.objects.filter(message=new_message).first().caption
+                )
 
                 # HTTPResponse 400
                 retrys = 3
@@ -129,22 +124,19 @@ def handle_message(request, *args, token=None, **kwargs):
                         )
                         retrys = retrys - 1
 
-                """ 
-                new_data = change_quantity_available(text, "2016")
+                new_data = change_quantity_available(caption, "2016")
 
-                send_message(
-                    chat_id=message.chat.id,
-                    text=new_data,
+                print("EDITING MESSAGE")
+
+                print(new_data)
+
+                edit_message_caption(
+                    message=new_message,
                     token=token,
+                    caption=new_data,
+                    parse_mode="HTML",
                 )
-                """
-                """ 
-                edit_message(
-                    chat_id=message.chat.id,
-                    token=token,
-                    message_id=new_message["message_id"],
-                )
-                 """
+
             else:
                 send_message(
                     chat_id=message.chat.id,

@@ -25,6 +25,66 @@ post_structure = """
     }	
 """
 
+use_html_formatting = """
+        Der Post soll mit Telegrams HTML Formatierung erstellt werden. 
+        Beachte die folgenden Inforamtionen dazu aus der Telegram Dokumentation. 
+        Nutze kein HTML das nicht in der Dokumentation steht! 
+        Nutze somit auf keinen Fall <br>! Ich wiederhole das nutzen des html <br> ist absolut verboten!
+        Verwende stattdessen " " um einen Zeilenumbruch zu erzeugen.
+        \n\n
+        
+        HTML style:
+                To use this mode, pass HTML in the parse_mode field. The following tags are currently supported:
+                <b>bold</b>, <strong>bold</strong>
+                <i>italic</i>, <em>italic</em>
+                <u>underline</u>, <ins>underline</ins>
+                <s>strikethrough</s>, <strike>strikethrough</strike>, <del>strikethrough</del>
+                <span class="tg-spoiler">spoiler</span>, <tg-spoiler>spoiler</tg-spoiler>
+                <b>bold <i>italic bold <s>italic bold strikethrough <span class="tg-spoiler">italic bold strikethrough spoiler</span></s> <u>underline italic bold</u></i> bold</b>
+                <a href="http://www.example.com/">inline URL</a>
+                <a href="tg://user?id=123456789">inline mention of a user</a>
+                <tg-emoji emoji-id="5368324170671202286">👍</tg-emoji>
+                <code>inline fixed-width code</code>
+                <pre>pre-formatted fixed-width code block</pre>
+                <pre><code class="language-python">pre-formatted fixed-width code block written in the Python programming language</code></pre>
+
+                Please note:
+                Only the tags mentioned above are currently supported.
+                All <, > and & symbols that are not a part of a tag or an HTML entity must be replaced with the corresponding HTML entities (< with &lt;, > with &gt; and & with &amp;).
+                All numerical HTML entities are supported.
+                The API currently supports only the following named HTML entities: &lt;, &gt;, &amp; and &quot;.
+                Use nested pre and code tags, to define programming language for pre entity.
+                Programming language can't be specified for standalone code tags.
+                A valid emoji must be used as the content of the tg-emoji tag. The emoji will be shown instead of the custom emoji in places where a custom emoji cannot be displayed (e.g., system notifications) or if the message is forwarded by a non-premium user. It is recommended to use the emoji from the emoji field of the custom emoji sticker.
+                Custom emoji entities can only be used by bots that purchased additional usernames on Fragment.
+        """
+
+
+def create_text(base_instruction, data=None, examples=None, extra_information=None):
+    """
+    Create a text for the user to complete
+    :param base_instruction: The base instruction for the user
+    :param data: The data to clean
+    :param examples: Examples of correct results
+    :param extra_information: Extra information for the user
+    :return: The text for the user to complete
+    """
+    extra_info_text = (
+        f"\n\nHier sind noch zusätzliche Informationen die unbedingt beachtet werden müssen: {extra_information}"
+        if extra_information
+        else ""
+    )
+    examples_text = (
+        f"\n\nHier sind einige Beispiele wie ein richtiges Ergebnis aussehen soll:\n{examples}"
+        if examples
+        else ""
+    )
+    data_text = f"\n\nNutze die folgenden Daten dafür:\n{data}" if data else ""
+
+    text = f"""{base_instruction}{data_text}{examples_text}{extra_info_text}\n\n"""
+
+    return text
+
 
 def extract_details_from_text(text, extra_instructions=""):
     """
@@ -53,6 +113,26 @@ def extract_details_from_text(text, extra_instructions=""):
     return response["choices"][0]["message"]["content"]
 
 
+def change_text_with_instructions(text, instructions):
+    import openai
+
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {
+                "role": "system",
+                "content": "Du bist ein Marketing Experte der bei ReUse and Sell arbeitet. In diesem Fall bekommst du einen Text mit Informationen für eine Anzeige, die in Telegram veröffentlich werden soll. Deine Aufgabe ist den Text so zu verändern, dass er den Anforderungen entspricht.",
+            },
+            {
+                "role": "user",
+                "content": f"Change the text with the following instructions:\n\n {instructions}\n\n + {text}",
+            },
+        ],
+    )
+
+    return response["choices"][0]["message"]["content"]
+
+
 def change_quantity_available(text, quantity_available):
     """
     Change the quantity available in the text
@@ -60,28 +140,19 @@ def change_quantity_available(text, quantity_available):
     :return: The changed text
     """
 
-    return extract_details_from_text(
-        text,
-        extra_instructions=f"Change the quantity available in the text to {quantity_available}",
+    base_instruction = (
+        f"Change the quantity available in the text to {quantity_available}"
     )
 
+    instruction = create_text(
+        base_instruction=base_instruction,
+        extra_information=use_html_formatting,
+    )
 
-# base_instruction
-# clean data as json
-# examples of correct results
-# extra information (documentation)
-
-
-def create_text(base_instruction, data, examples, extra_information):
-    """
-    Create a text for the user to complete
-    :param base_instruction: The base instruction for the user
-    :param data: The data to clean
-    :param examples: Examples of correct results
-    :param extra_information: Extra information for the user
-    :return: The text for the user to complete
-    """
-    return f"""{base_instruction}\n\ Nutze die folgenden Daten dafür:\n{data}\n\n Hier sind einige Beispiele wie ein richtiges Ergebnis aussehen soll:\n{examples}\n\n Hier sind noch zusätzliche Informationen die unbedingt beachtet werden müssen: {extra_information}"""
+    return change_text_with_instructions(
+        text,
+        instructions=instruction,
+    )
 
 
 def get_advert_post_for_data(data: dict):
@@ -153,58 +224,44 @@ def get_advert_post_for_data(data: dict):
     """
 
     # Now you can use the string html_documentation in your prompt
-    extra_information = """
-        Der Post soll mit Telegrams HTML Formatierung erstellt werden. 
-        Beachte die folgenden Inforamtionen dazu aus der Telegram Dokumentation. 
-        Nutze kein HTML das nicht in der Dokumentation steht! 
-        Nutze somit auf keinen Fall <br>! Ich wiederhole das nutzen des html <br> ist absolut verboten!
-        Verwende stattdessen " " um einen Zeilenumbruch zu erzeugen.
-        \n\n
-        
-        HTML style:
-                To use this mode, pass HTML in the parse_mode field. The following tags are currently supported:
-                <b>bold</b>, <strong>bold</strong>
-                <i>italic</i>, <em>italic</em>
-                <u>underline</u>, <ins>underline</ins>
-                <s>strikethrough</s>, <strike>strikethrough</strike>, <del>strikethrough</del>
-                <span class="tg-spoiler">spoiler</span>, <tg-spoiler>spoiler</tg-spoiler>
-                <b>bold <i>italic bold <s>italic bold strikethrough <span class="tg-spoiler">italic bold strikethrough spoiler</span></s> <u>underline italic bold</u></i> bold</b>
-                <a href="http://www.example.com/">inline URL</a>
-                <a href="tg://user?id=123456789">inline mention of a user</a>
-                <tg-emoji emoji-id="5368324170671202286">👍</tg-emoji>
-                <code>inline fixed-width code</code>
-                <pre>pre-formatted fixed-width code block</pre>
-                <pre><code class="language-python">pre-formatted fixed-width code block written in the Python programming language</code></pre>
-
-                Please note:
-                Only the tags mentioned above are currently supported.
-                All <, > and & symbols that are not a part of a tag or an HTML entity must be replaced with the corresponding HTML entities (< with &lt;, > with &gt; and & with &amp;).
-                All numerical HTML entities are supported.
-                The API currently supports only the following named HTML entities: &lt;, &gt;, &amp; and &quot;.
-                Use nested pre and code tags, to define programming language for pre entity.
-                Programming language can't be specified for standalone code tags.
-                A valid emoji must be used as the content of the tg-emoji tag. The emoji will be shown instead of the custom emoji in places where a custom emoji cannot be displayed (e.g., system notifications) or if the message is forwarded by a non-premium user. It is recommended to use the emoji from the emoji field of the custom emoji sticker.
-                Custom emoji entities can only be used by bots that purchased additional usernames on Fragment.
-        """
+    extra_information = use_html_formatting
 
     import openai
 
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {
-                "role": "system",
-                "content": "Du bist ein Marketing Experte der bei ReUse and Sell arbeitet. In diesem Fall erstellst du eine Anzeige für, die in Telegram veröffentlich wird. Der andere Teilnehmer wird dir die Informationen und Vorlange zum Format des Posts geben.",
-            },
-            {
-                "role": "user",
-                "content": create_text(
-                    base_instruction, data_for_text, examples, extra_information
-                ),
-            },
-        ],
+    instruction = create_text(
+        base_instruction=base_instruction,
+        data=data_for_text,
+        examples=examples,
+        extra_information=extra_information,
     )
 
-    advert_post = response["choices"][0]["message"]["content"]
+    retry_counter = 0
+    max_retry = 3
+    while retry_counter < max_retry:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "Du bist ein Marketing Experte der bei ReUse and Sell arbeitet. In diesem Fall erstellst du eine Anzeige für, die in Telegram veröffentlich wird. Der andere Teilnehmer wird dir die Informationen und Vorlange zum Format des Posts geben.",
+                },
+                {
+                    "role": "user",
+                    "content": instruction,
+                },
+            ],
+        )
 
-    return advert_post
+        advert_post = response["choices"][0]["message"]["content"]
+
+        # check the length of the post and if it is too long create it again
+        if len(advert_post) > 1024:
+            print("The advert post is too long. Try to generate it again")
+            retry_counter += 1
+            continue
+        else:
+            return advert_post
+
+    raise ValueError(
+        "Unable to generate the advert post within the character limit after 3 tries"
+    )

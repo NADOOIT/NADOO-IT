@@ -7,6 +7,7 @@ from requests.models import Response
 
 from dataclasses import dataclass
 from typing import Dict, Optional, Union, List
+from bot_management.models import *
 
 from bot_management.models import Chat, Message, BotPlatform
 from bot_management.plattforms.telegram.utils import (
@@ -248,10 +249,106 @@ def get_file(token, file_path):
     return response.content
 
 
-def edit_message(
+""" 
+editMessageCaption
+Use this method to edit captions of messages. On success, if the edited message is not an inline message, the edited Message is returned, otherwise True is returned.
+
+Parameter	Type	Required	Description
+chat_id	Integer or String	Optional	Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
+message_id	Integer	Optional	Required if inline_message_id is not specified. Identifier of the message to edit
+inline_message_id	String	Optional	Required if chat_id and message_id are not specified. Identifier of the inline message
+caption	String	Optional	New caption of the message, 0-1024 characters after entities parsing
+parse_mode	String	Optional	Mode for parsing entities in the message caption. See formatting options for more details.
+caption_entities	Array of MessageEntity	Optional	A JSON-serialized list of special entities that appear in the caption, which can be specified instead of parse_mode
+reply_markup	InlineKeyboardMarkup	Optional	A JSON-serialized object for an inline keyboard.
+"""
+
+
+def edit_message_caption(
     token: str,
-    chat_id: int,
-    message_id: int,
+    message: Message,
+    caption: Optional[str] = None,
+    parse_mode: Optional[str] = None,
+    caption_entities: Optional[str] = None,
+    reply_markup: Optional[str] = None,
+) -> Union[HttpResponse, Message]:
+    base_url = f"https://api.telegram.org/bot{token}/editMessageCaption"
+
+    chat_id = message.chat.id
+    message_id = message.message_id
+
+    print(f"chat_id: {chat_id}")
+    print(f"message_id: {message_id}")
+
+    payload = {
+        "chat_id": chat_id,
+        "message_id": message_id,
+        "caption": caption,
+        "parse_mode": parse_mode,
+        "caption_entities": caption_entities,
+        "reply_markup": reply_markup,
+    }
+
+    # Remove None values from the payload
+    payload = {k: v for k, v in payload.items() if v is not None}
+
+    # Send the request
+    response = requests.post(base_url, json=payload)
+
+    # Handle the response
+    if response.status_code == 200:
+        response_json = response.json()
+        message_data = response_json["result"]
+
+        bot_platform = get_bot_platform_by_token(token)
+
+        if bot_platform is None:
+            return HttpResponse("Invalid token.", status=400)
+
+        if bot_platform.bot is None:
+            return HttpResponse(
+                "Bot associated with the platform does not exist.", status=400
+            )
+
+        if bot_platform.bot.customer is None:
+            return HttpResponse(
+                "Customer associated with the bot does not exist.", status=400
+            )
+
+        user_data = message_data["from"]
+        user = get_or_create_user_from_data(user_data)
+
+        chat_data = message_data["chat"]
+        chat, _ = Chat.objects.get_or_create(
+            id=chat_data["id"],
+            defaults={
+                "first_name": chat_data["first_name"],
+                "last_name": chat_data.get("last_name"),
+                "type": chat_data["type"],
+            },
+        )
+
+        print(f"response_json: {response_json}")
+
+        message = get_or_create_and_update_message(
+            message_id=message_data["message_id"],
+            date=datetime.fromtimestamp(message_data["edit_date"]),
+            bot_platform=bot_platform,
+            from_user=user,
+            chat=chat,
+            caption=message_data.get("caption", ""),
+            customer=bot_platform.bot.customer,
+        )
+
+        return message
+
+    else:
+        return HttpResponse(response.text, status=400)
+
+
+def edit_message_text(
+    token: str,
+    message: Message,
     text: str,
     parse_mode: Optional[str] = None,
     entities: Optional[str] = None,
@@ -260,7 +357,12 @@ def edit_message(
 ) -> Union[HttpResponse, Message]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageText"
 
-    # Construct the message payload
+    chat_id = message.chat.id
+    message_id = message.message_id
+
+    print(f"chat_id: {chat_id}")
+    print(f"message_id: {message_id}")
+
     payload = {
         "chat_id": chat_id,
         "message_id": message_id,

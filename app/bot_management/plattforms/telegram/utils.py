@@ -143,9 +143,13 @@ def get_or_create_and_update_message(
         if "photo" in kwargs:
             # If the message has a photo remove it from the kwargs. Photo is handeled after the message is created.
             photo = kwargs.pop("photo")
-            caption = kwargs.pop("caption", None)
         else:
             photo = None
+            
+        if "caption" in kwargs:
+            caption = kwargs.pop("caption")	
+        else:	
+            caption = None	
 
         message = Message.objects.create(
             update_id=update_id,  # This will be None if update_id was not provided
