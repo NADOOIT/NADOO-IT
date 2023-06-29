@@ -1,5 +1,14 @@
 from bot_management.core.wisper import transcribe_audio_file
-from bot_management.models import User, Chat, Voice, VoiceFile, Message, BotPlatform
+from bot_management.models import (
+    User,
+    Chat,
+    Voice,
+    VoiceFile,
+    Message,
+    BotPlatform,
+    PhotoMessage,
+    TelegramPhoto,
+)
 from functools import wraps
 from django.db.models import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -90,16 +99,58 @@ def get_or_create_and_update_message(
         # The message exists, compare and update if needed
         changed = False
         for field, value in kwargs.items():
-            # Check if the values are different
-            if getattr(message, field) != value:
-                setattr(message, field, value)
-                changed = True
+            # Handle photo field
+            if field == "photo":
+                # First, get or create the PhotoMessage object
+                photo_message, created = PhotoMessage.objects.get_or_create(
+                    message=message,
+                    # Also set the caption if it exists
+                    defaults={"caption": kwargs.get("caption", None)},
+                )
+
+                # For each photo in the value list
+                for photo_dict in value:
+                    # Try to get the existing TelegramPhoto object
+                    telegram_photo, created = TelegramPhoto.objects.get_or_create(
+                        photo_message=photo_message,
+                        file_id=photo_dict.get("file_id"),
+                        file_unique_id=photo_dict.get("file_unique_id"),
+                        file_size=photo_dict.get("file_size"),
+                        width=photo_dict.get("width"),
+                        height=photo_dict.get("height"),
+                    )
+                    if not created:
+                        # If the TelegramPhoto already exists, update its fields
+                        telegram_photo.file_id = photo_dict.get("file_id")
+                        telegram_photo.file_unique_id = photo_dict.get("file_unique_id")
+                        telegram_photo.file_size = photo_dict.get("file_size")
+                        telegram_photo.width = photo_dict.get("width")
+                        telegram_photo.height = photo_dict.get("height")
+                        telegram_photo.save()
+
+            # Skip caption field for message attribute check
+            elif field != "caption":
+                # Check if the values are different
+                if getattr(message, field) != value:
+                    setattr(message, field, value)
+                    changed = True
 
         if changed:
             message.save()
 
     except Message.DoesNotExist:
         # The message does not exist, create it
+        if "photo" in kwargs:
+            # If the message has a photo remove it from the kwargs. Photo is handeled after the message is created.
+            photo = kwargs.pop("photo")
+        else:
+            photo = None
+            
+        if "caption" in kwargs:
+            caption = kwargs.pop("caption")	
+        else:	
+            caption = None	
+
         message = Message.objects.create(
             update_id=update_id,  # This will be None if update_id was not provided
             message_id=message_id,
@@ -107,6 +158,23 @@ def get_or_create_and_update_message(
             bot_platform=bot_platform,
             **kwargs,
         )
+
+        if photo is not None:
+            # Create a PhotoMessage object
+            photo_message = PhotoMessage.objects.create(
+                message=message, caption=caption
+            )
+
+            # Create TelegramPhoto objects for each photo in the photo list
+            for photo_dict in photo:
+                TelegramPhoto.objects.create(
+                    photo_message=photo_message,
+                    file_id=photo_dict.get("file_id"),
+                    file_unique_id=photo_dict.get("file_unique_id"),
+                    file_size=photo_dict.get("file_size"),
+                    width=photo_dict.get("width"),
+                    height=photo_dict.get("height"),
+                )
 
     return message
 

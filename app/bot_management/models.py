@@ -119,6 +119,21 @@ class Message(models.Model):
         return f"Message {self.message_id} on {self.bot_platform.platform}"
 
 
+#'photo': [{'file_id': 'AgACAgQAAxkDAAIB5mSZurrIcrYEOXALxkk0viVCyZwOAALzsDEbwzTNUFY-ASOyPRcbAQADAgADcwADLwQ', 'file_unique_id': 'AQAD87AxG8M0zVB4', 'file_size': 1590, 'width': 76, 'height': 90}, {'file_id': 'AgACAgQAAxkDAAIB5mSZurrIcrYEOXALxkk0viVCyZwOAALzsDEbwzTNUFY-ASOyPRcbAQADAgADbQADLwQ', 'file_unique_id': 'AQAD87AxG8M0zVBy', 'file_size': 23957, 'width': 271, 'height': 320}, {'file_id': 'AgACAgQAAxkDAAIB5mSZurrIcrYEOXALxkk0viVCyZwOAALzsDEbwzTNUFY-ASOyPRcbAQADAgADeAADLwQ', 'file_unique_id': 'AQAD87AxG8M0zVB9', 'file_size': 72396, 'width': 542, 'height': 640}]
+class PhotoMessage(models.Model):
+    message = models.ForeignKey(Message, on_delete=models.CASCADE)
+    caption = models.TextField(blank=True, null=True)
+
+
+class TelegramPhoto(models.Model):
+    photo_message = models.ForeignKey(PhotoMessage, on_delete=models.CASCADE)
+    file_id = models.CharField(max_length=100, null=True)
+    file_unique_id = models.CharField(max_length=100, null=True)
+    file_size = models.IntegerField(null=True)
+    width = models.IntegerField(null=True)
+    height = models.IntegerField(null=True)
+
+
 class Advertisement(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     messages = models.ManyToManyField(Message)
