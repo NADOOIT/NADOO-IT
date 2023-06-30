@@ -85,48 +85,44 @@ def get_or_create_and_update_message(
         print(date)
         print(bot_platform)
 
+        message = None
         # Use update_id only if it's not None
-        query_params = {
-            "message_id": message_id,
-            "date": date,
-            "bot_platform": bot_platform,
-        }
         if update_id is not None:
-            query_params["update_id"] = update_id
+            print("Update id is not none")
+            message = Message.objects.get(
+                update_id=update_id,
+                bot_platform=bot_platform,
+                date=date,
+                message_id=message_id,
+            )
+        else:
+            print("Update id is none")
+            message = Message.objects.get(
+                message_id=message_id, bot_platform=bot_platform
+            )
+            print("message found")
 
-        message = Message.objects.get(**query_params)
+        print("Message exists")
+
+        print("Kwargs")
+        print(kwargs)
 
         # The message exists, compare and update if needed
         changed = False
         for field, value in kwargs.items():
             # Handle photo field
-            if field == "photo":
+            print("Field")
+            print(field)
+            if field == "caption":
+                print("Caption field")
                 # First, get or create the PhotoMessage object
                 photo_message, created = PhotoMessage.objects.get_or_create(
                     message=message,
-                    # Also set the caption if it exists
-                    defaults={"caption": kwargs.get("caption", None)},
                 )
-
-                # For each photo in the value list
-                for photo_dict in value:
-                    # Try to get the existing TelegramPhoto object
-                    telegram_photo, created = TelegramPhoto.objects.get_or_create(
-                        photo_message=photo_message,
-                        file_id=photo_dict.get("file_id"),
-                        file_unique_id=photo_dict.get("file_unique_id"),
-                        file_size=photo_dict.get("file_size"),
-                        width=photo_dict.get("width"),
-                        height=photo_dict.get("height"),
-                    )
-                    if not created:
-                        # If the TelegramPhoto already exists, update its fields
-                        telegram_photo.file_id = photo_dict.get("file_id")
-                        telegram_photo.file_unique_id = photo_dict.get("file_unique_id")
-                        telegram_photo.file_size = photo_dict.get("file_size")
-                        telegram_photo.width = photo_dict.get("width")
-                        telegram_photo.height = photo_dict.get("height")
-                        telegram_photo.save()
+                print("Photo message created")
+                # If the PhotoMessage already exists, update its caption
+                photo_message.caption = value
+                photo_message.save()
 
             # Skip caption field for message attribute check
             elif field != "caption":
@@ -139,17 +135,19 @@ def get_or_create_and_update_message(
             message.save()
 
     except Message.DoesNotExist:
+        print("Message does not exist")
+
         # The message does not exist, create it
         if "photo" in kwargs:
             # If the message has a photo remove it from the kwargs. Photo is handeled after the message is created.
             photo = kwargs.pop("photo")
         else:
             photo = None
-            
+
         if "caption" in kwargs:
-            caption = kwargs.pop("caption")	
-        else:	
-            caption = None	
+            caption = kwargs.pop("caption")
+        else:
+            caption = None
 
         message = Message.objects.create(
             update_id=update_id,  # This will be None if update_id was not provided

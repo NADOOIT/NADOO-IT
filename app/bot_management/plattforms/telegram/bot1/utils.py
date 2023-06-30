@@ -24,6 +24,58 @@ post_structure = """
         "link": "",											
     }	
 """
+examples = """
+    Panasonic FP-7113 Drucker
+                
+                Preis: 60,- € pro Stück, inkl. MwSt.
+
+                Details: 
+                Zählerstand: 232776 
+                Gerät war zuletzt bei einer Anwaltskanzlei in Benutzung. 
+                
+                Verfügbare Gesamtmenge: 1St. 
+                Mindestabnahmemenge: 1St 
+                Zustand: gebraucht 
+                
+                
+                Standort: Paderborn 
+                Lieferoption: Nur Abholung
+                ♻️❀♻️ReUse and Trade♻️❀♻️
+                https://www.kleinanzeigen.de/s-anzeige/panasonic-fp-7113-drucker/2467410999-225-2164
+                
+                und weiteres Beispiel:
+                Beschreibung: Bedientheke, Tresen, Theke, Empfangstresen, inkl. Stühle, zzgl. Tresor 
+                
+                Preis: 9.500,00 €, zzgl. MwSt.  
+                Preisart: VHB 
+                
+                Zustand: gebraucht / Der Tresen ist bereits demontiert. 
+                
+                </div>Details: 
+                - hochwertige Individualanfertigung 
+                
+                - nur 2,5 Jahre alt 
+                
+                - Breite: ca. 5 m 
+                
+                - Material: Eiche hell (Nachbildung) und schwarz lackierte MDF 
+                
+                - minimale Gebrauchsspuren an zwei kleinen Stellen (weitere Bilder gerne auf Anfrage) 
+                
+                - inkl. 2 passende Stühle 
+                
+                - Neupreis: 16.000 € 
+                
+                Tresor "cashmaster TT" - auf Anfrage 
+                Verfügbare Menge: 1 
+                Zwischenverkauf vorbehalten.
+                
+                Standort: Münsterland 
+                Lieferoptionen: Abholung Der Tresen ist bereits demontiert.
+
+                ♻️❀♻️ReUse and Trade♻️❀♻️
+                https://www.reuseandtrade.de/artikeldetails/Tresen-Theke-Empfangstresen-inkl-Stuehle-zzgl-Tresor.aspx
+    """
 
 use_html_formatting = """
         Der Post soll mit Telegrams HTML Formatierung erstellt werden. 
@@ -140,9 +192,7 @@ def change_quantity_available(text, quantity_available):
     :return: The changed text
     """
 
-    base_instruction = (
-        f"Change the quantity available in the text to {quantity_available}"
-    )
+    base_instruction = f"'Ändere nur die verfügbare Menge zu folgendem Wert: {quantity_available}. Gebe nur den so angepassten Post zurück. Gebe keine zusätzlichen Informationen oder Meldungen zurück."
 
     instruction = create_text(
         base_instruction=base_instruction,
@@ -157,11 +207,23 @@ def change_quantity_available(text, quantity_available):
 
 def get_advert_post_for_data(data: dict):
     base_instruction = """
-    Erstelle einen Telegram Post. Der Post darf MAXIMAL 1024 Ziechen haben!!!!!!!!! 
-    Verwende keine Einleitung oder gebe sonsitgen Text an ausserhalb des Posts.
+    Erstelle einen Telegram Post. 
+    Regelen die immer eingehalten werden müssen für alle Posts:
+    Mache:
+    Der Post darf MAXIMAL 1024 Ziechen haben!,
+    Verwende keine Einleitungstext oder gebe sonsitgen Texte sondern halte dich weitgehend an eine auflistund der Produktdaten.
     Halte dich so nahe wie möglich an die Beispiele und vermeide unnötige Wörter.
-    Halte dich an das Ende der anderen Post und komme nicht auf sowas wie: Für weitere Informationen kontaktiere uns gerne über den Link oder direkt per Telegram @ReuseandSell.
-    Halte dich also an ♻️❀♻️ReUse and Trade♻️❀♻️ und dann den Link.
+    Halte dich an das Ende der anderen Post aus den Beispielen!
+    Der Post endet immer mit einem Link zu der Anzeige auf der Webseite. Zeige den Link vollständig an und nicht als href mit etwas wie Link.
+    Liste immer verfügbare Mengen auf, wenn sie in den Daten angegeben sind.
+    Das bedeutet sowohl wie viel verfügbar ist als auch was die Mindestabnahme ist.
+    Mach nicht:
+    Für weitere Informationen kontaktiere uns gerne über den Link oder direkt per Telegram @ReuseandSell.
+    Verändere nicht ♻️❀♻️ReUse and Trade♻️❀♻️ durch etwas anderes wie ⚡️✨⚡️ReUse and Sell⚡️✨⚡️.
+    Verändere **ReUse and Trade** nicht zu ReUse and Sell da ReUse and Trade der Firmenname ist.
+    Verwende keine Hashtags.
+    SCHREIBE DIE ANZEIGE IMMER IN DEUTSCH!!!!!
+    
     """
 
     data_for_text = ""
@@ -169,59 +231,6 @@ def get_advert_post_for_data(data: dict):
     for key, value in data.items():
         if key != "img_link":
             data_for_text += f"<b>{key}</b>: {value}\n"
-
-    examples = """
-    Panasonic FP-7113 Drucker
-                
-                Preis: 60,- € pro Stück, inkl. MwSt.
-
-                Details: 
-                Zählerstand: 232776 
-                Gerät war zuletzt bei einer Anwaltskanzlei in Benutzung. 
-                
-                Verfügbare Gesamtmenge: 1St. 
-                Mindestabnahmemenge: 1St 
-                Zustand: gebraucht 
-                
-                
-                Standort: Paderborn 
-                Lieferoption: Nur Abholung
-                ♻️❀♻️ReUse and Trade♻️❀♻️
-                https://www.kleinanzeigen.de/s-anzeige/panasonic-fp-7113-drucker/2467410999-225-2164
-                
-                und weiteres Beispiel:
-                Beschreibung: Bedientheke, Tresen, Theke, Empfangstresen, inkl. Stühle, zzgl. Tresor 
-                
-                Preis: 9.500,00 €, zzgl. MwSt.  
-                Preisart: VHB 
-                
-                Zustand: gebraucht / Der Tresen ist bereits demontiert. 
-                
-                </div>Details: 
-                - hochwertige Individualanfertigung 
-                
-                - nur 2,5 Jahre alt 
-                
-                - Breite: ca. 5 m 
-                
-                - Material: Eiche hell (Nachbildung) und schwarz lackierte MDF 
-                
-                - minimale Gebrauchsspuren an zwei kleinen Stellen (weitere Bilder gerne auf Anfrage) 
-                
-                - inkl. 2 passende Stühle 
-                
-                - Neupreis: 16.000 € 
-                
-                Tresor "cashmaster TT" - auf Anfrage 
-                Verfügbare Menge: 1 
-                Zwischenverkauf vorbehalten.
-                
-                Standort: Münsterland 
-                Lieferoptionen: Abholung Der Tresen ist bereits demontiert.
-
-                ♻️❀♻️ReUse and Trade♻️❀♻️
-                https://www.reuseandtrade.de/artikeldetails/Tresen-Theke-Empfangstresen-inkl-Stuehle-zzgl-Tresor.aspx
-    """
 
     # Now you can use the string html_documentation in your prompt
     extra_information = use_html_formatting
@@ -255,11 +264,37 @@ def get_advert_post_for_data(data: dict):
         advert_post = response["choices"][0]["message"]["content"]
 
         # check the length of the post and if it is too long create it again
-        if len(advert_post) > 1024:
-            print("The advert post is too long. Try to generate it again")
+        if len(advert_post) > 1024 or len(advert_post) < 120:
+            print("The advert post is too long or short. Try to generate it again")
             retry_counter += 1
             continue
         else:
+            # check if post conforms to the rules
+            instruction_for_check = """Überprüfe ob der generierte Post den Regeln entspricht. Wenn nein korrigiere die Fehler und gib den Post zurück. Wenn ja gib den Post unverändert zurück.Hier ist der Post:"""
+            instruction_for_check += advert_post
+            check_instruction = create_text(
+                base_instruction=instruction_for_check,
+                data=data_for_text,
+                examples=examples,
+                extra_information=extra_information,
+            )
+
+            check_response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Du bist ein Marketing Experte der bei ReUse and Sell arbeitet. In diesem Fall erstellst du eine Anzeige für, die in Telegram veröffentlich wird. Der andere Teilnehmer wird dir die Informationen und Vorlange zum Format des Posts geben.",
+                    },
+                    {
+                        "role": "user",
+                        "content": check_instruction,
+                    },
+                ],
+            )
+
+            advert_post = check_response["choices"][0]["message"]["content"]
+
             return advert_post
 
     raise ValueError(
