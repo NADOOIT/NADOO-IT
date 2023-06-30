@@ -336,7 +336,7 @@ def edit_message_caption(
             bot_platform=bot_platform,
             from_user=user,
             chat=chat,
-            caption=message_data.get("caption", ""),
+            caption=message_data.get("caption"),
             customer=bot_platform.bot.customer,
         )
 

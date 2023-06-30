@@ -124,6 +124,12 @@ class PhotoMessage(models.Model):
     message = models.ForeignKey(Message, on_delete=models.CASCADE)
     caption = models.TextField(blank=True, null=True)
 
+    class Meta:
+        ordering = ["-message__date"]
+
+    def __str__(self):
+        return f"Photo Message {self.message.message_id} on {self.message.bot_platform.platform}"
+
 
 class TelegramPhoto(models.Model):
     photo_message = models.ForeignKey(PhotoMessage, on_delete=models.CASCADE)
