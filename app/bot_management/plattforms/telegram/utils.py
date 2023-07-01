@@ -21,18 +21,20 @@ from datetime import datetime
 from bot_management.models import BotPlatform, Message
 
 
-bot_routes_telegram = {}
+telegram_bots = {}
 
 
-def register_bot_route(secret_url):
+def register_bot(bot_register_id):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
-            token = BotPlatform.objects.get(secret_url=secret_url).access_token
+            token = BotPlatform.objects.get(
+                bot_register_id=bot_register_id
+            ).access_token
             kwargs["token"] = token
             return view_func(request, *args, **kwargs)
 
-        bot_routes_telegram[secret_url] = _wrapped_view
+        telegram_bots[bot_register_id] = _wrapped_view
         return _wrapped_view
 
     return decorator
@@ -177,7 +179,7 @@ def get_or_create_and_update_message(
     return message
 
 
-def get_message_for_request(request, *args, token=None, **kwargs):
+def get_message_for_request(request, token=None, *args, **kwargs):
     from bot_management.plattforms.telegram.api import get_file
     from bot_management.plattforms.telegram.api import get_file_info
 
@@ -305,3 +307,8 @@ def get_message_for_request(request, *args, token=None, **kwargs):
     else:
         # Respond with an error or handle as needed
         return HttpResponse("Invalid data. No 'message' found.", status=400)
+
+
+def get_bot_info_from_id(bot_register_id):
+    bot_platform = BotPlatform.objects.get(bot_register_id=bot_register_id)
+    return bot_platform.bot.name, bot_platform.platform

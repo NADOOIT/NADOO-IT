@@ -24,7 +24,7 @@ class BotPlatformAdmin(admin.ModelAdmin):
         "customer_name",
         "platform",
         "webhook_status",
-        "secret_url",
+        "bot_register_id",
     )
     list_filter = ("bot__name", "bot__customer__name", "platform")
     search_fields = ["bot__name", "bot__customer__name", "platform"]

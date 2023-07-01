@@ -10,18 +10,21 @@ from typing import Any, Optional
 from datetime import datetime
 from bot_management.models import BotPlatform, Message
 
-bot_routes_whatsapp = {}
+# TODO: #280 rename to whatsapp_bot_ids
+whatsapp_bots = {}
 
 
-def register_bot_route(secret_url):
+def register_bot(bot_register_id):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
-            token = BotPlatform.objects.get(secret_url=secret_url).access_token
+            token = BotPlatform.objects.get(
+                bot_register_id=bot_register_id
+            ).access_token
             kwargs["token"] = token
             return view_func(request, *args, **kwargs)
 
-        bot_routes_whatsapp[secret_url] = _wrapped_view
+        whatsapp_bots[bot_register_id] = _wrapped_view
         return _wrapped_view
 
     return decorator

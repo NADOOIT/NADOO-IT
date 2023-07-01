@@ -8,10 +8,14 @@ app_name = "bot_management"
 urlpatterns = [
     # telegram
     path(
-        "telegram/webhook/<str:secret_url>", telegram_webhook, name="telegram-webhook"
+        "telegram/webhook/<str:bot_register_id>",
+        telegram_webhook,
+        name="telegram-webhook",
     ),
     path(
-        "whatsapp/webhook/<str:secret_url>", whatsapp_webhook, name="whatsapp-webhook"
+        "whatsapp/webhook/<str:bot_register_id>",
+        whatsapp_webhook,
+        name="whatsapp-webhook",
     ),
     # whatsapp
     # ebay
