@@ -65,6 +65,7 @@ def bot(request, bot_register_id, token=None, *args, **kwargs):
     return HttpResponse("OK")
 
 
+# This is an async function that processes the message
 @shared_task
 def process_message(message_id, token: str, bot_name):
     # Getting command_registry for bot_name

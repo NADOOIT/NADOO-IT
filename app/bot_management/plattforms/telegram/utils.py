@@ -20,7 +20,7 @@ from typing import Any, Optional
 from datetime import datetime
 from bot_management.models import BotPlatform, Message
 
-
+# TODO: #281 Investigate if this is the best way to store the bots in memory
 telegram_bots = {}
 
 

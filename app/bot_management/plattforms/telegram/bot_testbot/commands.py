@@ -9,11 +9,10 @@ The decorator takes the following arguments:
 command_message: The message that triggers the command. This can be a list of strings with "/" as the first character.
 """
 from functools import wraps
-
-from functools import wraps
 from bot_management.plattforms.telegram.bot_testbot.utils import *
 from bot_management.plattforms.telegram.api import *
 
+# TODO investigate how to cach the commands as they are loaded on every request to the webhook.
 command_registry = {}
 
 
