@@ -1,7 +1,10 @@
 from typing import Dict, Callable
 import os
 import importlib
-
+from bot_management.plattforms.telegram.exceptions import (
+    InvalidMessageDataError,
+    BotPlatformNotFoundError,
+)
 from django.http import HttpResponse
 from bot_management.plattforms.telegram.utils import (
     get_bot_info_from_id,
@@ -47,17 +50,23 @@ def bot(request, bot_register_id, token=None, *args, **kwargs):
         print(f"Data in get_message_for_request: {data}")
 
         if "message" in data:
-            message = get_message_for_request(request, token=token, *args, **kwargs)
+            try:
+                message = get_message_for_request(request, token, *args, **kwargs)
 
-            if message is not None and not isinstance(message, HttpResponse):
-                print("Message and not HttpResponse")
-                bot_name, platform = get_bot_info_from_id(bot_register_id)
+                if message is not None and not isinstance(message, HttpResponse):
+                    print("Message and not HttpResponse")
+                    bot_name, platform = get_bot_info_from_id(bot_register_id)
 
-                print(f"Bot name: {bot_name}")
-                print(f"Platform: {platform}")
-                print(all_bots)
+                    print(f"Bot name: {bot_name}")
+                    print(f"Platform: {platform}")
+                    print(all_bots)
 
-                process_message.delay(message.message_id, token, bot_name)
+                    process_message.delay(message.message_id, token, bot_name)
+
+            except BotPlatformNotFoundError:
+                return HttpResponse("Invalid token.", status=400)
+            except InvalidMessageDataError:
+                return HttpResponse("Invalid data. No 'message' found.", status=400)
 
     except Exception as e:
         print(e)

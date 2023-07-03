@@ -1,3 +1,7 @@
+from bot_management.plattforms.telegram.exceptions import (
+    InvalidMessageDataError,
+    BotPlatformNotFoundError,
+)
 from bot_management.core.wisper import transcribe_audio_file
 from bot_management.models import (
     User,
@@ -19,25 +23,6 @@ from typing import Dict, Optional, Union
 from typing import Any, Optional
 from datetime import datetime
 from bot_management.models import BotPlatform, Message
-
-# TODO: #281 Investigate if this is the best way to store the bots in memory
-telegram_bots = {}
-
-
-def register_bot(bot_register_id):
-    def decorator(view_func):
-        @wraps(view_func)
-        def _wrapped_view(request, *args, **kwargs):
-            token = BotPlatform.objects.get(
-                bot_register_id=bot_register_id
-            ).access_token
-            kwargs["token"] = token
-            return view_func(request, *args, **kwargs)
-
-        telegram_bots[bot_register_id] = _wrapped_view
-        return _wrapped_view
-
-    return decorator
 
 
 def get_bot_platform_by_token(token: str) -> Optional[BotPlatform]:
@@ -179,6 +164,7 @@ def get_or_create_and_update_message(
     return message
 
 
+""" 
 def get_message_for_request(request, token=None, *args, **kwargs):
     from bot_management.plattforms.telegram.api import get_file
     from bot_management.plattforms.telegram.api import get_file_info
@@ -307,6 +293,139 @@ def get_message_for_request(request, token=None, *args, **kwargs):
     else:
         # Respond with an error or handle as needed
         return HttpResponse("Invalid data. No 'message' found.", status=400)
+
+"""
+
+from bot_management.models import User, Chat, Voice, VoiceFile, BotPlatform
+from django.core.files.base import ContentFile
+from django.http import HttpResponse
+import os
+from datetime import datetime
+import time
+
+
+def get_or_create_user_from_data(user_data: dict) -> User:
+    user, _ = User.objects.get_or_create(
+        id=user_data["id"],
+        defaults={
+            "is_bot": user_data["is_bot"],
+            "first_name": user_data["first_name"],
+            "last_name": user_data.get("last_name"),
+            "language_code": user_data.get("language_code"),
+        },
+    )
+    return user
+
+
+def get_or_create_chat_from_data(chat_data: dict) -> Chat:
+    if chat_data["type"] == "group":
+        chat, _ = Chat.objects.get_or_create(
+            id=chat_data["id"],
+            defaults={
+                "title": chat_data["title"],
+                "type": chat_data["type"],
+                "all_members_are_administrators": chat_data[
+                    "all_members_are_administrators"
+                ],
+            },
+        )
+    else:
+        chat, _ = Chat.objects.get_or_create(
+            id=chat_data["id"],
+            defaults={
+                "first_name": chat_data["first_name"],
+                "last_name": chat_data.get("last_name"),
+                "type": chat_data["type"],
+            },
+        )
+    return chat
+
+
+def handle_voice_data(token: str, voice_info: dict) -> tuple:
+    from bot_management.plattforms.telegram.api import get_file, get_file_info
+
+    voice, _ = Voice.objects.get_or_create(
+        duration=voice_info["duration"],
+        mime_type=voice_info["mime_type"],
+        file_id=voice_info["file_id"],
+        file_unique_id=voice_info["file_unique_id"],
+        file_size=voice_info["file_size"],
+    )
+
+    voice_file_info = get_file_info(token, voice_info["file_id"])
+
+    if "file_path" in voice_file_info["result"]:
+        voice_file_content = get_file(token, voice_file_info["result"]["file_path"])
+
+        voice_file = ContentFile(voice_file_content, name="voice_file.oga")
+
+        new_VoiceFile = VoiceFile.objects.create(
+            voice=voice,
+            file=voice_file,
+        )
+
+        while not os.path.exists(new_VoiceFile.file.path):
+            time.sleep(1)
+
+        text = transcribe_audio_file(new_VoiceFile.file)
+
+        return text, voice
+    return None, None
+
+
+# Updated get_message_for_request function
+def get_message_for_request(request, token=None, *args, **kwargs):
+    data = request.data
+
+    if "message" not in data:
+        raise InvalidMessageDataError("Invalid data. No 'message' found.")
+
+    message_data = data["message"]
+
+    user = get_or_create_user_from_data(message_data["from"])
+    chat = get_or_create_chat_from_data(message_data["chat"])
+
+    # If 'date' is a timestamp (seconds since epoch), convert to datetime
+    if isinstance(message_data["date"], (int, float)):
+        date = datetime.fromtimestamp(message_data["date"])
+    else:
+        print(f"Unexpected date format: {message_data['date']}")
+        date = None  # or set to some default value
+
+    try:
+        bot_platform = BotPlatform.objects.get(access_token=token)
+    except BotPlatform.DoesNotExist:
+        raise BotPlatformNotFoundError("Invalid token.")
+
+    customer = bot_platform.bot.customer
+
+    text = None
+
+    # check if there is text in the message
+    if "text" in message_data:
+        text = message_data.get("text", "")
+
+    voice = None
+
+    if "voice" in message_data:
+        text, voice = handle_voice_data(token, message_data["voice"])
+
+    additional_info = message_data.get("entities")
+
+    message = get_or_create_and_update_message(
+        update_id=data.get("update_id"),
+        message_id=message_data["message_id"],
+        from_user=user,
+        chat=chat,
+        date=date,
+        text=text,
+        voice=voice,
+        bot_platform=bot_platform,
+        customer=customer,
+        additional_info=additional_info,
+    )
+
+    return message
 
 
 def get_bot_info_from_id(bot_register_id):
