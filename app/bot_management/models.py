@@ -51,7 +51,7 @@ class Bot(models.Model):
 class BotPlatform(models.Model):
     bot = models.ForeignKey(Bot, on_delete=models.CASCADE)
     platform = models.CharField(max_length=50, choices=PLATFORM_CHOICES)
-    secret_url = models.UUIDField(default=uuid4, unique=True, editable=False)
+    bot_register_id = models.UUIDField(default=uuid4, unique=True, editable=False)
     access_token = models.CharField(max_length=100)
     secret_token = models.UUIDField(default=uuid4, unique=True, editable=False)
     phone_number = models.CharField(max_length=100, blank=True, null=True)

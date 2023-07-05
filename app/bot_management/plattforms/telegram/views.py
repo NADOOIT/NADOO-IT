@@ -1,27 +1,16 @@
-from django.http import HttpResponse
-
-
-import re
+# bot_management/views.py
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
-
-
-from bot_management.plattforms.telegram.utils import bot_routes_telegram
-
-# register bot views by importing them
-from bot_management.plattforms.telegram.bot1.views import handle_message
-
-
-from django.http import JsonResponse
-
 from django.views.decorators.csrf import csrf_exempt
+from bot_management.models import BotPlatform
+
+# register telegram bots by importing them
+from bot_management.plattforms.telegram.bot import bot
 
 
 @api_view(["POST"])
 @csrf_exempt
-def telegram_webhook(request, secret_url):
-    print("telegram_webhook")
-
-    if secret_url not in bot_routes_telegram:
-        return JsonResponse({"error": "Unknown bot"}, status=404)
-    return bot_routes_telegram[secret_url](request)
+def telegram_webhook(request, bot_register_id):
+    bot_platform = get_object_or_404(BotPlatform, bot_register_id=bot_register_id)
+    access_token = bot_platform.access_token
+    return bot(request, bot_register_id, token=access_token)

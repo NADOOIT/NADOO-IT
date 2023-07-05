@@ -49,7 +49,7 @@ This app primarily functions through Django management commands. Here are some u
 
 Each bot has its own `controller.py`, `commands.py`, `message_handlers.py`, `middleware.py`, and `templates` directory for managing the behavior of the bot.
 
-When a message arrives from a platform, the system routes it to the appropriate bot based on the URL structure, which follows this pattern: `/<platform>/<bot_name>/secret_url`.
+When a message arrives from a platform, the system routes it to the appropriate bot based on the URL structure, which follows this pattern: `/<platform>/<bot_name>/bot_id`.
 
 ## Development
 
