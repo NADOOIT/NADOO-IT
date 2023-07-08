@@ -111,7 +111,8 @@ def create_command(message, token, *args, **kwargs):
 
     print(new_message)
 
-    caption = PhotoMessage.objects.filter(message=new_message).first().caption
+    # Change back caption = PhotoMessage.objects.filter(message=new_message).first().caption
+    caption = "PhotoMessage.objects.filter(message=new_message).first().caption"
 
     # HTTPResponse 400
     retrys = 3

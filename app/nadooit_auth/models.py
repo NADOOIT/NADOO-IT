@@ -8,15 +8,16 @@ import uuid
 
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
+# from bot_management.models.telegram import TelegramUser
 from nadooit_auth.user_code import get__new_user_code
 
 # Create your models here.
+
 
 # User model that extends the default Django user model. It has two additional fields:
 # - user_code: a unique code that is used to identify the user
 # - display_name: the name that is displayed in the UI
 class User(AbstractUser, PermissionsMixin):
-
     # id is a unique identifier for the user
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
@@ -42,3 +43,13 @@ class User(AbstractUser, PermissionsMixin):
             return self.display_name
         else:
             return self.username
+
+""" 
+class TelegramConnector(models.Model):
+ 
+    This model acts as a bridge between the Auth User model and the Telegram User model.
+
+
+    auth_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    telegram_user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE)
+ """

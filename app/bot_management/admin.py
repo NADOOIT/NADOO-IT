@@ -97,12 +97,12 @@ class BotAdmin(admin.ModelAdmin):
     search_fields = ["name", "customer__name"]
 
 
-admin.site.register(TelegramPhoto)
-admin.site.register(PhotoMessage)
-admin.site.register(User)
+# admin.site.register(TelegramPhoto)
+# admin.site.register(PhotoMessage)
+admin.site.register(TelegramUser)
 admin.site.register(Chat)
 admin.site.register(Voice)
 admin.site.register(VoiceFile)
-admin.site.register(Message)
+# admin.site.register(Message)
 admin.site.register(Bot, BotAdmin)
 admin.site.register(BotPlatform, BotPlatformAdmin)

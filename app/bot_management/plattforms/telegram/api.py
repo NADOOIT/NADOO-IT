@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Dict, Optional, Union, List
 from bot_management.models import *
 
-from bot_management.models import Chat, Message, BotPlatform
+from bot_management.models import *
 from bot_management.plattforms.telegram.utils import (
     get_bot_platform_by_token,
     get_or_create_user_from_data,
@@ -137,7 +137,8 @@ def send_message(
     reply_to_message_id: Optional[int] = None,
     allow_sending_without_reply: Optional[bool] = None,
     reply_markup: Optional[str] = None,
-) -> Union[HttpResponse, Message]:
+):
+    # ) -> Union[HttpResponse, Message]:
     base_url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     # Construct the message payload
@@ -203,7 +204,6 @@ def send_message(
         message = get_or_create_and_update_message(
             message_id=message_data["message_id"],
             date=datetime.fromtimestamp(message_data["date"]),
-            bot_platform=bot_platform,
             from_user=user,
             chat=chat,
             text=message_data.get("text", ""),
@@ -266,12 +266,14 @@ reply_markup	InlineKeyboardMarkup	Optional	A JSON-serialized object for an inlin
 
 def edit_message_caption(
     token: str,
-    message: Message,
+    # message: Message,
+    message,
     caption: Optional[str] = None,
     parse_mode: Optional[str] = None,
     caption_entities: Optional[str] = None,
     reply_markup: Optional[str] = None,
-) -> Union[HttpResponse, Message]:
+):
+    # ) -> Union[HttpResponse, Message]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageCaption"
 
     chat_id = message.chat.id
@@ -348,13 +350,15 @@ def edit_message_caption(
 
 def edit_message_text(
     token: str,
-    message: Message,
+    # message: Message,
+    message,
     text: str,
     parse_mode: Optional[str] = None,
     entities: Optional[str] = None,
     disable_web_page_preview: Optional[bool] = None,
     reply_markup: Optional[str] = None,
-) -> Union[HttpResponse, Message]:
+):
+    # ) -> Union[HttpResponse, Message]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageText"
 
     chat_id = message.chat.id
@@ -436,7 +440,9 @@ def edit_message_reply_markup(
     message_id: Optional[int] = None,
     inline_message_id: Optional[str] = None,
     reply_markup: Optional[str] = None,
-) -> Union[Message, bool]:
+    parse_mode: Optional[str] = None,
+):
+    # ) -> Union[Message, bool]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageReplyMarkup"
 
     # Construct the message payload
@@ -514,7 +520,8 @@ def send_photo(
     reply_to_message_id: Optional[int] = None,
     allow_sending_without_reply: Optional[bool] = None,
     reply_markup: Optional[Union[str, Dict[str, Any]]] = None,
-) -> Union[HttpResponse, Message]:
+):
+    # ) -> Union[HttpResponse, Message]:
     base_url = f"https://api.telegram.org/bot{token}/sendPhoto"
 
     # Construct the message payload

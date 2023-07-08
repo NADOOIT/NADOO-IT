@@ -10,7 +10,7 @@ from bot_management.plattforms.telegram.utils import (
     get_bot_info_from_id,
     get_message_for_request,
 )
-from bot_management.models import Message
+from bot_management.models import *
 from bot_management.plattforms.telegram.api import send_message
 from celery import shared_task
 from django.db.models import Q
@@ -80,7 +80,9 @@ def process_message(message_id, token: str, bot_name):
     # Getting command_registry for bot_name
     command_registry = all_bots[bot_name]
 
-    message = Message.objects.get(message_id=message_id)
+    # Change Back message = Message.objects.get(message_id=message_id)
+
+    message = None
 
     # Check if message has text and if it's a command
     if message.text is not None and message.text.startswith("/"):

@@ -3,16 +3,7 @@ from bot_management.plattforms.telegram.exceptions import (
     BotPlatformNotFoundError,
 )
 from bot_management.core.wisper import transcribe_audio_file
-from bot_management.models import (
-    User,
-    Chat,
-    Voice,
-    VoiceFile,
-    Message,
-    BotPlatform,
-    PhotoMessage,
-    TelegramPhoto,
-)
+from bot_management.models import *
 from functools import wraps
 from django.db.models import ObjectDoesNotExist
 from django.http import HttpResponse
@@ -22,7 +13,6 @@ import os
 from typing import Dict, Optional, Union
 from typing import Any, Optional
 from datetime import datetime
-from bot_management.models import BotPlatform, Message
 
 
 def get_bot_platform_by_token(token: str) -> Optional[BotPlatform]:
@@ -34,8 +24,8 @@ def get_bot_platform_by_token(token: str) -> Optional[BotPlatform]:
         return None
 
 
-def get_or_create_user_from_data(user_data: Dict) -> User:
-    user, _ = User.objects.get_or_create(
+def get_or_create_user_from_data(user_data: Dict) -> TelegramUser:
+    user, _ = TelegramUser.objects.get_or_create(
         id=user_data["id"],
         defaults={
             "is_bot": user_data["is_bot"],
@@ -50,10 +40,10 @@ def get_or_create_user_from_data(user_data: Dict) -> User:
 def get_or_create_and_update_message(
     message_id: int,
     date: datetime,
-    bot_platform: BotPlatform,
     update_id: Optional[int] = None,  # Make update_id optional
     **kwargs: Any,
-) -> Message:
+):
+    # Change back ) -> Message:
     """
     This function tries to get a message with the provided parameters from the database.
     If the message does not exist, it creates a new one. If the message exists, it compares
@@ -70,25 +60,24 @@ def get_or_create_and_update_message(
         print("Trying to get message")
         print(message_id)
         print(date)
-        print(bot_platform)
 
         message = None
         # Use update_id only if it's not None
         if update_id is not None:
             print("Update id is not none")
+            """ Change back            
             message = Message.objects.get(
                 update_id=update_id,
-                bot_platform=bot_platform,
                 date=date,
                 message_id=message_id,
             )
+             """
         else:
-            print("Update id is none")
+            """Change back
             message = Message.objects.get(
-                message_id=message_id, bot_platform=bot_platform
+                message_id=message_id
             )
-            print("message found")
-
+            """
         print("Message exists")
 
         print("Kwargs")
@@ -103,9 +92,12 @@ def get_or_create_and_update_message(
             if field == "caption":
                 print("Caption field")
                 # First, get or create the PhotoMessage object
+                """ Change back
                 photo_message, created = PhotoMessage.objects.get_or_create(
                     message=message,
                 )
+                 """
+                photo_message, created = None, None
                 print("Photo message created")
                 # If the PhotoMessage already exists, update its caption
                 photo_message.caption = value
@@ -120,46 +112,49 @@ def get_or_create_and_update_message(
 
         if changed:
             message.save()
+        """ Change back
+        except Message.DoesNotExist:
+            print("Message does not exist")
 
-    except Message.DoesNotExist:
-        print("Message does not exist")
+            # The message does not exist, create it
+            if "photo" in kwargs:
+                # If the message has a photo remove it from the kwargs. Photo is handeled after the message is created.
+                photo = kwargs.pop("photo")
+            else:
+                photo = None
 
-        # The message does not exist, create it
-        if "photo" in kwargs:
-            # If the message has a photo remove it from the kwargs. Photo is handeled after the message is created.
-            photo = kwargs.pop("photo")
-        else:
-            photo = None
+            if "caption" in kwargs:
+                caption = kwargs.pop("caption")
+            else:
+                caption = None
 
-        if "caption" in kwargs:
-            caption = kwargs.pop("caption")
-        else:
-            caption = None
-
-        message = Message.objects.create(
-            update_id=update_id,  # This will be None if update_id was not provided
-            message_id=message_id,
-            date=date,
-            bot_platform=bot_platform,
-            **kwargs,
-        )
-
-        if photo is not None:
-            # Create a PhotoMessage object
-            photo_message = PhotoMessage.objects.create(
-                message=message, caption=caption
+            message = Message.objects.create(
+                update_id=update_id,  # This will be None if update_id was not provided
+                message_id=message_id,
+                date=date,
+                bot_platform=bot_platform,
+                **kwargs,
             )
 
-            # Create TelegramPhoto objects for each photo in the photo list
-            for photo_dict in photo:
-                TelegramPhoto.objects.create(
-                    photo_message=photo_message,
-                    file_id=photo_dict.get("file_id"),
-                    file_unique_id=photo_dict.get("file_unique_id"),
-                    file_size=photo_dict.get("file_size"),
-                    width=photo_dict.get("width"),
-                    height=photo_dict.get("height"),
+            if photo is not None:
+                # Create a PhotoMessage object
+                photo_message = PhotoMessage.objects.create(
+                    message=message, caption=caption
                 )
+
+                # Create TelegramPhoto objects for each photo in the photo list
+                for photo_dict in photo:
+                    TelegramPhoto.objects.create(
+                        photo_message=photo_message,
+                        file_id=photo_dict.get("file_id"),
+                        file_unique_id=photo_dict.get("file_unique_id"),
+                        file_size=photo_dict.get("file_size"),
+                        width=photo_dict.get("width"),
+                        height=photo_dict.get("height"),
+                    )
+        """
+    except Exception as e:
+        pass
 
     return message
 
@@ -296,7 +291,7 @@ def get_message_for_request(request, token=None, *args, **kwargs):
 
 """
 
-from bot_management.models import User, Chat, Voice, VoiceFile, BotPlatform
+from bot_management.models import TelegramUser, Chat, Voice, VoiceFile, BotPlatform
 from django.core.files.base import ContentFile
 from django.http import HttpResponse
 import os
@@ -304,8 +299,8 @@ from datetime import datetime
 import time
 
 
-def get_or_create_user_from_data(user_data: dict) -> User:
-    user, _ = User.objects.get_or_create(
+def get_or_create_user_from_data(user_data: dict) -> TelegramUser:
+    user, _ = TelegramUser.objects.get_or_create(
         id=user_data["id"],
         defaults={
             "is_bot": user_data["is_bot"],

@@ -1,5 +1,5 @@
 from bot_management.core.wisper import transcribe_audio_file
-from bot_management.models import User, Chat, Voice, VoiceFile, Message, BotPlatform
+from bot_management.models import *
 from functools import wraps
 from django.http import HttpResponse
 from datetime import datetime
@@ -8,7 +8,7 @@ import os
 from typing import Dict, Optional, Union
 from typing import Any, Optional
 from datetime import datetime
-from bot_management.models import BotPlatform, Message
+from bot_management.models import *
 
 # TODO: #280 rename to whatsapp_bot_ids
 whatsapp_bots = {}
@@ -39,8 +39,8 @@ def get_bot_platform_by_token(token: str) -> Optional[BotPlatform]:
         return None
 
 
-def get_or_create_user_from_data(user_data: Dict) -> User:
-    user, _ = User.objects.get_or_create(
+def get_or_create_user_from_data(user_data: Dict) -> TelegramUser:
+    user, _ = TelegramUser.objects.get_or_create(
         id=user_data["id"],
         defaults={
             "is_bot": user_data["is_bot"],
@@ -58,7 +58,8 @@ def get_or_create_and_update_message(
     bot_platform: BotPlatform,
     update_id: Optional[int] = None,  # Make update_id optional
     **kwargs: Any,
-) -> Message:
+):
+    # ) -> WhatsAppMessage:
     """
     This function tries to get a message with the provided parameters from the database.
     If the message does not exist, it creates a new one. If the message exists, it compares
@@ -86,8 +87,9 @@ def get_or_create_and_update_message(
         if update_id is not None:
             query_params["update_id"] = update_id
 
-        message = Message.objects.get(**query_params)
-
+        # message = Message.objects.get(**query_params)
+        # To message = WhatsAppMessage.objects.get(**query_params)
+        message = None  # remove this after migration
         # The message exists, compare and update if needed
         changed = False
         for field, value in kwargs.items():
@@ -99,16 +101,18 @@ def get_or_create_and_update_message(
         if changed:
             message.save()
 
-    except Message.DoesNotExist:
+    # except WhatsAppMessage.DoesNotExist:
+    except Exception as e:
         # The message does not exist, create it
-        message = Message.objects.create(
+        """Change this to WhatsAppMessage
+        message = WhatsAppMessage.objects.create(
             update_id=update_id,  # This will be None if update_id was not provided
             message_id=message_id,
             date=date,
             bot_platform=bot_platform,
             **kwargs,
         )
-
+        """
     return message
 
 
