@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from datetime import datetime
 import time
 import os
-from typing import Dict, Optional, Union
+from typing import Dict, Optional
 from typing import Any, Optional
 from datetime import datetime
 from bot_management.models import *
@@ -55,7 +55,6 @@ def get_or_create_user_from_data(user_data: Dict) -> TelegramUser:
 def get_or_create_and_update_message(
     message_id: int,
     date: datetime,
-    bot_platform: BotPlatform,
     update_id: Optional[int] = None,  # Make update_id optional
     **kwargs: Any,
 ):

@@ -60,7 +60,7 @@ class BotPlatformAdmin(admin.ModelAdmin):
         for bot_platform in queryset:
             if bot_platform.platform == "telegram":
                 base_url = settings.ALLOWED_HOSTS[0]
-                webhook_url = f"https://{base_url}/bot/{bot_platform.platform}/webhook/{str(bot_platform.secret_url)}"
+                webhook_url = f"https://{base_url}/bot/{bot_platform.platform}/webhook/{str(bot_platform.bot_register_id)}"
                 if set_webhook(
                     bot_token=bot_platform.access_token,
                     webhook_url=webhook_url,
@@ -97,12 +97,12 @@ class BotAdmin(admin.ModelAdmin):
     search_fields = ["name", "customer__name"]
 
 
-# admin.site.register(TelegramPhoto)
-# admin.site.register(PhotoMessage)
+admin.site.register(TelegramPhoto)
+admin.site.register(TelegramPhotoMessage)
 admin.site.register(TelegramUser)
-admin.site.register(Chat)
-admin.site.register(Voice)
-admin.site.register(VoiceFile)
-# admin.site.register(Message)
+admin.site.register(TelegramChat)
+admin.site.register(TelegramVoice)
+admin.site.register(TelegramVoiceFile)
+admin.site.register(TelegramMessage)
 admin.site.register(Bot, BotAdmin)
 admin.site.register(BotPlatform, BotPlatformAdmin)

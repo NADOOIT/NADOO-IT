@@ -62,6 +62,8 @@ During development it is nessary to use ngrok to expose the local server to the 
     ngrok http https://127.0.0.1:8000/
     ```
 
+3. Add the ngrok URL to the ALLOWED_HOSTS in the settings file.
+
 ## Documentation
 
 For further details, check out the documentation [here](link_to_documentation).

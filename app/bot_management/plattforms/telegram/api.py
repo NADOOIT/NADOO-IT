@@ -137,8 +137,7 @@ def send_message(
     reply_to_message_id: Optional[int] = None,
     allow_sending_without_reply: Optional[bool] = None,
     reply_markup: Optional[str] = None,
-):
-    # ) -> Union[HttpResponse, Message]:
+) -> Union[HttpResponse, TelegramMessage]:
     base_url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     # Construct the message payload
@@ -188,7 +187,7 @@ def send_message(
         user = get_or_create_user_from_data(user_data)
 
         chat_data = message_data["chat"]
-        chat, _ = Chat.objects.get_or_create(
+        chat, _ = TelegramChat.objects.get_or_create(
             id=chat_data["id"],
             defaults={
                 "first_name": chat_data["first_name"],
@@ -207,7 +206,6 @@ def send_message(
             from_user=user,
             chat=chat,
             text=message_data.get("text", ""),
-            customer=bot_platform.bot.customer,
         )
 
         return message
@@ -266,14 +264,12 @@ reply_markup	InlineKeyboardMarkup	Optional	A JSON-serialized object for an inlin
 
 def edit_message_caption(
     token: str,
-    # message: Message,
-    message,
+    message: TelegramMessage,
     caption: Optional[str] = None,
     parse_mode: Optional[str] = None,
     caption_entities: Optional[str] = None,
     reply_markup: Optional[str] = None,
-):
-    # ) -> Union[HttpResponse, Message]:
+) -> Union[HttpResponse, TelegramMessage]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageCaption"
 
     chat_id = message.chat.id
@@ -321,7 +317,7 @@ def edit_message_caption(
         user = get_or_create_user_from_data(user_data)
 
         chat_data = message_data["chat"]
-        chat, _ = Chat.objects.get_or_create(
+        chat, _ = TelegramChat.objects.get_or_create(
             id=chat_data["id"],
             defaults={
                 "first_name": chat_data["first_name"],
@@ -335,11 +331,9 @@ def edit_message_caption(
         message = get_or_create_and_update_message(
             message_id=message_data["message_id"],
             date=datetime.fromtimestamp(message_data["edit_date"]),
-            bot_platform=bot_platform,
             from_user=user,
             chat=chat,
             caption=message_data.get("caption"),
-            customer=bot_platform.bot.customer,
         )
 
         return message
@@ -350,15 +344,13 @@ def edit_message_caption(
 
 def edit_message_text(
     token: str,
-    # message: Message,
-    message,
+    message: TelegramMessage,
     text: str,
     parse_mode: Optional[str] = None,
     entities: Optional[str] = None,
     disable_web_page_preview: Optional[bool] = None,
     reply_markup: Optional[str] = None,
-):
-    # ) -> Union[HttpResponse, Message]:
+) -> Union[HttpResponse, TelegramMessage]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageText"
 
     chat_id = message.chat.id
@@ -407,7 +399,7 @@ def edit_message_text(
         user = get_or_create_user_from_data(user_data)
 
         chat_data = message_data["chat"]
-        chat, _ = Chat.objects.get_or_create(
+        chat, _ = TelegramChat.objects.get_or_create(
             id=chat_data["id"],
             defaults={
                 "first_name": chat_data["first_name"],
@@ -421,11 +413,9 @@ def edit_message_text(
         message = get_or_create_and_update_message(
             message_id=message_data["message_id"],
             date=datetime.fromtimestamp(message_data["edit_date"]),
-            bot_platform=bot_platform,
             from_user=user,
             chat=chat,
             text=message_data.get("text", ""),
-            customer=bot_platform.bot.customer,
         )
 
         return message
@@ -441,8 +431,7 @@ def edit_message_reply_markup(
     inline_message_id: Optional[str] = None,
     reply_markup: Optional[str] = None,
     parse_mode: Optional[str] = None,
-):
-    # ) -> Union[Message, bool]:
+) -> Union[TelegramMessage, bool]:
     base_url = f"https://api.telegram.org/bot{token}/editMessageReplyMarkup"
 
     # Construct the message payload
@@ -468,13 +457,12 @@ def edit_message_reply_markup(
         if isinstance(result, dict):
             # Assumes that the message_id in the response is the same as in the database
             # You need to get the bot_platform object for the function get_or_create_and_update_message
-            bot_platform = BotPlatform.objects.get(token=token)
+            # bot_platform = BotPlatform.objects.get(token=token)
 
             # call get_or_create_and_update_message function to update message object
             message = get_or_create_and_update_message(
                 message_id=result["message_id"],
                 date=datetime.fromtimestamp(result["date"]),
-                bot_platform=bot_platform,
                 parse_mode=parse_mode,
                 reply_markup=reply_markup,
                 text=result.get("text", ""),
@@ -520,8 +508,7 @@ def send_photo(
     reply_to_message_id: Optional[int] = None,
     allow_sending_without_reply: Optional[bool] = None,
     reply_markup: Optional[Union[str, Dict[str, Any]]] = None,
-):
-    # ) -> Union[HttpResponse, Message]:
+) -> Union[HttpResponse, TelegramMessage]:
     base_url = f"https://api.telegram.org/bot{token}/sendPhoto"
 
     # Construct the message payload
@@ -574,7 +561,7 @@ def send_photo(
         user = get_or_create_user_from_data(user_data)
 
         chat_data = message_data["chat"]
-        chat, _ = Chat.objects.get_or_create(
+        chat, _ = TelegramChat.objects.get_or_create(
             id=chat_data["id"],
             defaults={
                 "first_name": chat_data["first_name"],
@@ -589,10 +576,8 @@ def send_photo(
             message = get_or_create_and_update_message(
                 message_id=message_data["message_id"],
                 date=datetime.fromtimestamp(message_data["date"]),
-                bot_platform=bot_platform,
                 from_user=user,
                 chat=chat,
-                customer=bot_platform.bot.customer,
                 photo=message_data["photo"],
                 caption=caption,
             )

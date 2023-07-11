@@ -80,9 +80,7 @@ def process_message(message_id, token: str, bot_name):
     # Getting command_registry for bot_name
     command_registry = all_bots[bot_name]
 
-    # Change Back message = Message.objects.get(message_id=message_id)
-
-    message = None
+    message = TelegramMessage.objects.get(message_id=message_id)
 
     # Check if message has text and if it's a command
     if message.text is not None and message.text.startswith("/"):

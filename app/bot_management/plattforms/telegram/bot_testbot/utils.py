@@ -177,7 +177,7 @@ def change_text_with_instructions(text, instructions):
             },
             {
                 "role": "user",
-                "content": f"Change the text with the following instructions:\n\n {instructions}\n\n + {text}",
+                "content": f"Passe den Text entsprechend dieser Anweisung an:\n\n {instructions}\n\n + {text}",
             },
         ],
     )
@@ -192,7 +192,7 @@ def change_quantity_available(text, quantity_available):
     :return: The changed text
     """
 
-    base_instruction = f"'Ändere nur die verfügbare Menge zu folgendem Wert: {quantity_available}. Gebe nur den so angepassten Post zurück. Gebe keine zusätzlichen Informationen oder Meldungen zurück."
+    base_instruction = f"Behalte den gegebenen Text bei. Verändere nur die verfügbare Menge zu folgendem Wert: {quantity_available}. Gebe nur den so angepassten Post zurück. Gebe keine zusätzlichen Informationen oder Meldungen zurück. Vermeide also sowas wie: Der generierte Post entspricht den Regeln und kann so veröffentlicht werden. Hier ist der korrigierte Post:"
 
     instruction = create_text(
         base_instruction=base_instruction,
@@ -215,6 +215,7 @@ def get_advert_post_for_data(data: dict):
     Halte dich so nahe wie möglich an die Beispiele und vermeide unnötige Wörter.
     Halte dich an das Ende der anderen Post aus den Beispielen!
     Der Post endet immer mit einem Link zu der Anzeige auf der Webseite. Zeige den Link vollständig an und nicht als href mit etwas wie Link.
+    Tutst du dies wird der Link nicht als Link erkannt und kann nicht angeklickt werden.
     Liste immer verfügbare Mengen auf, wenn sie in den Daten angegeben sind.
     Das bedeutet sowohl wie viel verfügbar ist als auch was die Mindestabnahme ist.
     Mach nicht:

@@ -101,6 +101,9 @@ def create_command(message, token, *args, **kwargs):
 
     text = get_advert_post_for_data(data_for_item)
 
+    print("TEXT")
+    print(text)
+
     new_message = send_photo(
         chat_id=message.chat.id,
         photo=data_for_item["img_link"],
@@ -109,15 +112,11 @@ def create_command(message, token, *args, **kwargs):
         parse_mode="HTML",
     )
 
-    print(new_message)
-
-    # Change back caption = PhotoMessage.objects.filter(message=new_message).first().caption
-    caption = "PhotoMessage.objects.filter(message=new_message).first().caption"
-
     # HTTPResponse 400
     retrys = 3
     if new_message is HttpResponse:
         while retrys > 0 and new_message is HttpResponse:
+            print("RETRYING")
             new_message = send_photo(
                 chat_id=message.chat.id,
                 photo=data_for_item["img_link"],
@@ -126,6 +125,15 @@ def create_command(message, token, *args, **kwargs):
                 parse_mode="HTML",
             )
             retrys = retrys - 1
+
+    print("NEW MESSAGE")
+
+    print(new_message)
+
+    caption = TelegramPhotoMessage.objects.filter(message=new_message).first().caption
+
+    print("CAPTION")
+    print(caption)
 
     new_data = change_quantity_available(caption, "2016")
 
