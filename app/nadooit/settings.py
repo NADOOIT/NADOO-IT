@@ -47,7 +47,7 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
 ALLOWED_HOSTS = (
-    ["3611-2a02-908-815-9ce0-00-9f10.ngrok-free.app"]
+    [os.environ.get("NGROK_STATIC_DOMAIN"), "127.0.0.1"]
     if DEBUG
     else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
 )
