@@ -32,6 +32,7 @@ services:
       - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
       - 'CELERY_BROKER_URL=redis://redis:6379/0'
+      - 'NGROK_STATIC_DOMAIN=${NGROK_STATIC_DOMAIN}'
     networks:
       - app_network
     depends_on:

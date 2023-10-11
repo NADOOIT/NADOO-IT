@@ -1,0 +1,1150 @@
+INFO Section: <section>
+    <div class="banner">
+        <div class="size">
+            <div class="four-card-wrap">
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-1-</h1>
+                    <h2>Wir schauen uns an, was zu tun ist</h2>
+                </div>
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-2-</h1>
+                    <h2>Wir schreiben einen kurzen Bericht</h2>
+                </div>
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-3-</h1>
+                    <h2>Wir machen einige Dinge mit Software schneller</h2>
+                </div>
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-4-</h1>
+                    <h2>Wir prüfen, wie viel Zeit wir sparen</h2>
+                </div>
+            </div>
+        </div>
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Am Monatsende sehen wir, wie viel Zeit wir gespart haben. Für jede gesparte Stunde bekommen wir 30€.</h1>
+        </div>
+    </div>
+</section>
+INFO Section: <div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' 'ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c' 'revealed' %}" hx-swap="afterend" hx-trigger="revealed"><div class="section-container"><div class="vote-section"><button id="upvote-button-ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c" class="vote-button vote-button-ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c vote-svg-button" data-vote-type="upvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        </button><button id="downvote-button-ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c" class="vote-button vote-button-ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c vote-svg-button" data-vote-type="downvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        </button></div><div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' 'ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c' 'mouseenter_once' %}" hx-swap="afterend" hx-trigger="mouseenter once"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c"<section>
+    <div class="banner">
+        <div class="size">
+            <div class="four-card-wrap">
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-1-</h1>
+                    <h2>Wir schauen uns an, was zu tun ist</h2>
+                </div>
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-2-</h1>
+                    <h2>Wir schreiben einen kurzen Bericht</h2>
+                </div>
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-3-</h1>
+                    <h2>Wir machen einige Dinge mit Software schneller</h2>
+                </div>
+                <div class="step-card" data-aos="zoom-in">
+                    <h1>-4-</h1>
+                    <h2>Wir prüfen, wie viel Zeit wir sparen</h2>
+                </div>
+            </div>
+        </div>
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Am Monatsende sehen wir, wie viel Zeit wir gespart haben. Für jede gesparte Stunde bekommen wir 30€.</h1>
+        </div>
+    </div>
+</section></div>
+        <script>
+        (function(sessionId, sectionId) {
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {
+                enterTime = new Date().getTime();
+            });
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        interaction_time: interactionTime
+                    })
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c');
+        </script>
+        </div></div>
+        
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {
+                    buttonElement.classList.add('highlighted-upvote');
+                } else if (voteType === 'downvote') {
+                    buttonElement.classList.add('highlighted-downvote');
+                }
+
+                fetch(`/signal/${sessionId}/${sectionId}/${voteType}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                });
+            }
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c', 'upvote', this);
+            });
+
+            document.getElementById('downvote-button-ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c', 'downvote', this);
+            });
+        </script>
+        </div>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Kontaktieren Sie uns für ein Erstgespräch und erfahren Sie mehr</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '72058798-ad2a-4796-a215-385923ba5106' 'revealed' %}" hx-swap="afterend" hx-trigger="revealed"><div class="section-container"><div class="vote-section"><button id="upvote-button-72058798-ad2a-4796-a215-385923ba5106" class="vote-button vote-button-72058798-ad2a-4796-a215-385923ba5106 vote-svg-button" data-vote-type="upvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        </button><button id="downvote-button-72058798-ad2a-4796-a215-385923ba5106" class="vote-button vote-button-72058798-ad2a-4796-a215-385923ba5106 vote-svg-button" data-vote-type="downvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        </button></div><div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '72058798-ad2a-4796-a215-385923ba5106' 'mouseenter_once' %}" hx-swap="afterend" hx-trigger="mouseenter once"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="72058798-ad2a-4796-a215-385923ba5106"<section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Kontaktieren Sie uns für ein Erstgespräch und erfahren Sie mehr</h1>
+
+        </div>
+
+    </div>
+
+</section></div>
+        <script>
+        (function(sessionId, sectionId) {
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {
+                enterTime = new Date().getTime();
+            });
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        interaction_time: interactionTime
+                    })
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', '72058798-ad2a-4796-a215-385923ba5106');
+        </script>
+        </div></div>
+        
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {
+                    buttonElement.classList.add('highlighted-upvote');
+                } else if (voteType === 'downvote') {
+                    buttonElement.classList.add('highlighted-downvote');
+                }
+
+                fetch(`/signal/${sessionId}/${sectionId}/${voteType}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                });
+            }
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-72058798-ad2a-4796-a215-385923ba5106').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '72058798-ad2a-4796-a215-385923ba5106', 'upvote', this);
+            });
+
+            document.getElementById('downvote-button-72058798-ad2a-4796-a215-385923ba5106').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '72058798-ad2a-4796-a215-385923ba5106', 'downvote', this);
+            });
+        </script>
+        </div>
+INFO Section: <section class="mangsho" id="contactus">
+
+    <div class="banner">
+
+    <div class="size">
+
+        <div class="about" data-aos="fade-up">
+
+            <h2>Kontaktdaten</h2>
+
+            <div class="wraper">
+
+                <div class="hap">
+
+                    <!-- meetergo widget start -->
+
+                    <div style="min-width:330px;height:620px" class="meetergo-iframe" link="https://my.meetergo.com/christop.backhaus.it/erstgesprach"></div>
+
+                    <script src="https://cdn.jsdelivr.net/gh/meetergo/meetergo-integration/dist/esbuild/browser.js"></script>
+
+                    <!-- meetergo widget end -->
+
+                </div>
+
+                <div class="wrap-text">
+
+                    <h3>Christoph Backhaus IT</h3>
+
+                    <h3>Am Markt 1</h3>
+
+                    <h3>47229 Duisburg</h3>
+
+                    <h3>Festnetz: <a href="tel:+4920657098429">+49 2065 7098429</a></h3>
+
+                    <h3><a href="mailto:christoph.backhaus@NADOOIT.de">christoph.backhaus@NADOOIT.de</a></h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' 'e16d9687-3997-482a-a647-8911a030903b' 'revealed' %}" hx-swap="afterend" hx-trigger="revealed"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="e16d9687-3997-482a-a647-8911a030903b"<div class="section-container"><div class="vote-section"><button id="upvote-button-e16d9687-3997-482a-a647-8911a030903b" class="vote-button vote-button-e16d9687-3997-482a-a647-8911a030903b vote-svg-button" data-vote-type="upvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        </button><button id="downvote-button-e16d9687-3997-482a-a647-8911a030903b" class="vote-button vote-button-e16d9687-3997-482a-a647-8911a030903b vote-svg-button" data-vote-type="downvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        </button></div><div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' 'e16d9687-3997-482a-a647-8911a030903b' 'mouseenter_once' %}" hx-swap="afterend" hx-trigger="mouseenter once"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="e16d9687-3997-482a-a647-8911a030903b"<section class="mangsho" id="contactus">
+
+    <div class="banner">
+
+    <div class="size">
+
+        <div class="about" data-aos="fade-up">
+
+            <h2>Kontaktdaten</h2>
+
+            <div class="wraper">
+
+                <div class="hap">
+
+                    <!-- meetergo widget start -->
+
+                    <div style="min-width:330px;height:620px" class="meetergo-iframe" link="https://my.meetergo.com/christop.backhaus.it/erstgesprach"></div>
+
+                    <script src="https://cdn.jsdelivr.net/gh/meetergo/meetergo-integration/dist/esbuild/browser.js"></script>
+
+                    <!-- meetergo widget end -->
+
+                </div>
+
+                <div class="wrap-text">
+
+                    <h3>Christoph Backhaus IT</h3>
+
+                    <h3>Am Markt 1</h3>
+
+                    <h3>47229 Duisburg</h3>
+
+                    <h3>Festnetz: <a href="tel:+4920657098429">+49 2065 7098429</a></h3>
+
+                    <h3><a href="mailto:christoph.backhaus@NADOOIT.de">christoph.backhaus@NADOOIT.de</a></h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+    </div>
+
+</section></div>
+        <script>
+        (function(sessionId, sectionId) {
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {
+                enterTime = new Date().getTime();
+            });
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        interaction_time: interactionTime
+                    })
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'e16d9687-3997-482a-a647-8911a030903b');
+        </script>
+        </div></div>
+        
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {
+                    buttonElement.classList.add('highlighted-upvote');
+                } else if (voteType === 'downvote') {
+                    buttonElement.classList.add('highlighted-downvote');
+                }
+
+                fetch(`/signal/${sessionId}/${sectionId}/${voteType}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                });
+            }
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-e16d9687-3997-482a-a647-8911a030903b').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'e16d9687-3997-482a-a647-8911a030903b', 'upvote', this);
+            });
+
+            document.getElementById('downvote-button-e16d9687-3997-482a-a647-8911a030903b').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'e16d9687-3997-482a-a647-8911a030903b', 'downvote', this);
+            });
+        </script>
+        </div>
+        <script>
+        (function(sessionId, sectionId) {
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('click', function() {
+
+                // Send the click signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/click/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({})
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', 'e16d9687-3997-482a-a647-8911a030903b');
+        </script>
+        </div>
+INFO Section: <style>
+
+        .toast-header,
+
+        .toast-body {
+
+            background-color: #000000;
+
+            border: 1px solid #ffffff;
+
+        }
+
+</style>
+
+<section>
+
+    <div class="banner">
+
+       <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+       <div class="container">
+
+        <h1 class="mt-3">Stellen Sie Ihre Fragen hier und tragen Sie dazu bei, die Webseite um die Antworten zu erweitern. Nutzen Sie die Gelegenheit, gemeinsam Wissen aufzubauen und für alle zugänglich zu machen.</h1>
+
+        <div class="input-group mb-3">
+
+            <input type="text" id="question" class="form-control" placeholder="Ihre Frage hier eingeben...">
+
+            <button type="button" class="btn btn-primary" onclick="submitQuestion()">Senden</button>
+
+        </div>
+
+        <div class="toast-container position-fixed top-50 start-50 translate-middle" style="z-index: 1100;">
+
+            <div id="question-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+
+                <div class="toast-header">
+
+                    <strong class="me-auto">Vielen Dank!</strong>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
+                </div>
+
+                <div class="toast-body">
+
+                    Danke, dass Sie uns dabei weiterhelfen, uns zu verbessern.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</section>
+
+<script>
+
+async function submitQuestion() {
+
+    const questionInput = document.getElementById('question');
+
+    const question = questionInput.value.trim();
+
+
+
+    if (question) {
+
+        // Extract the session_id from the body element's data attribute.
+
+        const sessionId = document.body.dataset.sessionId;
+
+
+
+        // Send the question and session_id to the server.
+
+        try {
+
+            const response = await fetch(`/your_question_we_answer/question/${sessionId}`, {
+
+                method: 'POST',
+
+                headers: {
+
+                    'Content-Type': 'application/json',
+
+                },
+
+                body: JSON.stringify({ question }),
+
+            });
+
+
+
+            if (response.ok) {
+
+                console.log('Frage eingereicht:', question);
+
+                questionInput.value = '';
+
+                showToast(); // Show the toast
+
+            } else {
+
+                console.error('Fehler beim Senden der Frage:', response.statusText);
+
+            }
+
+        } catch (error) {
+
+            console.error('Fehler beim Senden der Frage:', error);
+
+        }
+
+    } else {
+
+        alert('Bitte geben Sie eine Frage ein.');
+
+    }
+
+}
+
+
+
+function showToast() {
+
+    const toastElement = document.getElementById('question-toast');
+
+    const toast = new bootstrap.Toast(toastElement, { delay: 2000 }); // Set the toast to vanish after 2 seconds
+
+    toast.show();
+
+}
+
+
+
+function addEnterKeyListener() {
+
+    const questionInput = document.getElementById('question');
+
+    questionInput.addEventListener('keydown', function (event) {
+
+        if (event.key === 'Enter') {
+
+            event.preventDefault(); // Prevent the default behavior (form submission, line break, etc.)
+
+            submitQuestion();
+
+        }
+
+    });
+
+}
+
+
+
+document.addEventListener('DOMContentLoaded', addEnterKeyListener);
+
+</script>
+INFO Section: <div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '1b4e0e78-c064-4334-9aaa-13c5ebc75455' 'revealed' %}" hx-swap="afterend" hx-trigger="revealed"><div class="section-container"><div class="vote-section"><button id="upvote-button-1b4e0e78-c064-4334-9aaa-13c5ebc75455" class="vote-button vote-button-1b4e0e78-c064-4334-9aaa-13c5ebc75455 vote-svg-button" data-vote-type="upvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        </button><button id="downvote-button-1b4e0e78-c064-4334-9aaa-13c5ebc75455" class="vote-button vote-button-1b4e0e78-c064-4334-9aaa-13c5ebc75455 vote-svg-button" data-vote-type="downvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        </button></div><div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '1b4e0e78-c064-4334-9aaa-13c5ebc75455' 'mouseenter_once' %}" hx-swap="afterend" hx-trigger="mouseenter once"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="1b4e0e78-c064-4334-9aaa-13c5ebc75455"<style>
+
+        .toast-header,
+
+        .toast-body {
+
+            background-color: #000000;
+
+            border: 1px solid #ffffff;
+
+        }
+
+</style>
+
+<section>
+
+    <div class="banner">
+
+       <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+       <div class="container">
+
+        <h1 class="mt-3">Stellen Sie Ihre Fragen hier und tragen Sie dazu bei, die Webseite um die Antworten zu erweitern. Nutzen Sie die Gelegenheit, gemeinsam Wissen aufzubauen und für alle zugänglich zu machen.</h1>
+
+        <div class="input-group mb-3">
+
+            <input type="text" id="question" class="form-control" placeholder="Ihre Frage hier eingeben...">
+
+            <button type="button" class="btn btn-primary" onclick="submitQuestion()">Senden</button>
+
+        </div>
+
+        <div class="toast-container position-fixed top-50 start-50 translate-middle" style="z-index: 1100;">
+
+            <div id="question-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+
+                <div class="toast-header">
+
+                    <strong class="me-auto">Vielen Dank!</strong>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
+                </div>
+
+                <div class="toast-body">
+
+                    Danke, dass Sie uns dabei weiterhelfen, uns zu verbessern.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    </div>
+
+</section>
+
+<script>
+
+async function submitQuestion() {
+
+    const questionInput = document.getElementById('question');
+
+    const question = questionInput.value.trim();
+
+
+
+    if (question) {
+
+        // Extract the session_id from the body element's data attribute.
+
+        const sessionId = document.body.dataset.sessionId;
+
+
+
+        // Send the question and session_id to the server.
+
+        try {
+
+            const response = await fetch(`/your_question_we_answer/question/${sessionId}`, {
+
+                method: 'POST',
+
+                headers: {
+
+                    'Content-Type': 'application/json',
+
+                },
+
+                body: JSON.stringify({ question }),
+
+            });
+
+
+
+            if (response.ok) {
+
+                console.log('Frage eingereicht:', question);
+
+                questionInput.value = '';
+
+                showToast(); // Show the toast
+
+            } else {
+
+                console.error('Fehler beim Senden der Frage:', response.statusText);
+
+            }
+
+        } catch (error) {
+
+            console.error('Fehler beim Senden der Frage:', error);
+
+        }
+
+    } else {
+
+        alert('Bitte geben Sie eine Frage ein.');
+
+    }
+
+}
+
+
+
+function showToast() {
+
+    const toastElement = document.getElementById('question-toast');
+
+    const toast = new bootstrap.Toast(toastElement, { delay: 2000 }); // Set the toast to vanish after 2 seconds
+
+    toast.show();
+
+}
+
+
+
+function addEnterKeyListener() {
+
+    const questionInput = document.getElementById('question');
+
+    questionInput.addEventListener('keydown', function (event) {
+
+        if (event.key === 'Enter') {
+
+            event.preventDefault(); // Prevent the default behavior (form submission, line break, etc.)
+
+            submitQuestion();
+
+        }
+
+    });
+
+}
+
+
+
+document.addEventListener('DOMContentLoaded', addEnterKeyListener);
+
+</script></div>
+        <script>
+        (function(sessionId, sectionId) {
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {
+                enterTime = new Date().getTime();
+            });
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        interaction_time: interactionTime
+                    })
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', '1b4e0e78-c064-4334-9aaa-13c5ebc75455');
+        </script>
+        </div></div>
+        
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {
+                    buttonElement.classList.add('highlighted-upvote');
+                } else if (voteType === 'downvote') {
+                    buttonElement.classList.add('highlighted-downvote');
+                }
+
+                fetch(`/signal/${sessionId}/${sectionId}/${voteType}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                });
+            }
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-1b4e0e78-c064-4334-9aaa-13c5ebc75455').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '1b4e0e78-c064-4334-9aaa-13c5ebc75455', 'upvote', this);
+            });
+
+            document.getElementById('downvote-button-1b4e0e78-c064-4334-9aaa-13c5ebc75455').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '1b4e0e78-c064-4334-9aaa-13c5ebc75455', 'downvote', this);
+            });
+        </script>
+        </div>
+INFO Section: <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+<div class="file-container">
+    {{ file }}
+</div>
+</div>
+</div>
+
+</section>
+INFO Section: <div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '476875fb-1f1f-41c7-bc22-59918e9aa073' 'revealed' %}" hx-swap="afterend" hx-trigger="revealed"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="476875fb-1f1f-41c7-bc22-59918e9aa073"<div class="section-container"><div class="vote-section"><button id="upvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073" class="vote-button vote-button-476875fb-1f1f-41c7-bc22-59918e9aa073 vote-svg-button" data-vote-type="upvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        </button><button id="downvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073" class="vote-button vote-button-476875fb-1f1f-41c7-bc22-59918e9aa073 vote-svg-button" data-vote-type="downvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        </button></div><div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '476875fb-1f1f-41c7-bc22-59918e9aa073' 'mouseenter_once' %}" hx-swap="afterend" hx-trigger="mouseenter once"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="476875fb-1f1f-41c7-bc22-59918e9aa073"<section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+<div class="file-container">
+    <div class="file-card">
+    <div class="file-name">NADOO Manifesto</div>
+    <a href="/static/media/uploads/2023_01_14__Das_NADOO_Manifest.pdf" class="download-button" download>Download</a>
+</div>
+
+</div>
+</div>
+</div>
+
+</section></div>
+        <script>
+        (function(sessionId, sectionId) {
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {
+                enterTime = new Date().getTime();
+            });
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        interaction_time: interactionTime
+                    })
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073');
+        </script>
+        </div></div>
+        
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {
+                    buttonElement.classList.add('highlighted-upvote');
+                } else if (voteType === 'downvote') {
+                    buttonElement.classList.add('highlighted-downvote');
+                }
+
+                fetch(`/signal/${sessionId}/${sectionId}/${voteType}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                });
+            }
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073', 'upvote', this);
+            });
+
+            document.getElementById('downvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073', 'downvote', this);
+            });
+        </script>
+        </div>
+        <script>
+        (function(sessionId, sectionId) {
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('click', function() {
+
+                // Send the click signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/click/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({})
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073');
+        </script>
+        </div>
+INFO <div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '476875fb-1f1f-41c7-bc22-59918e9aa073' 'revealed' %}" hx-swap="afterend" hx-trigger="revealed"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="476875fb-1f1f-41c7-bc22-59918e9aa073"<div class="section-container"><div class="vote-section"><button id="upvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073" class="vote-button vote-button-476875fb-1f1f-41c7-bc22-59918e9aa073 vote-svg-button" data-vote-type="upvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L10.59 3.41L2 12H9V22H15V12H22L12 2Z" fill="#212121"/>
+        </svg>
+        </button><button id="downvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073" class="vote-button vote-button-476875fb-1f1f-41c7-bc22-59918e9aa073 vote-svg-button" data-vote-type="downvote">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 22L13.41 20.59L22 12H15V2H9V12H2L12 22Z" fill="#212121"/>
+        </svg>
+        </button></div><div hx-post="{% url 'nadooit_website:signal' 'eac7acd8-5797-4d50-ba41-d4c6d10df580' '476875fb-1f1f-41c7-bc22-59918e9aa073' 'mouseenter_once' %}" hx-swap="afterend" hx-trigger="mouseenter once"><div class="section" data-session-id="eac7acd8-5797-4d50-ba41-d4c6d10df580" data-section-id="476875fb-1f1f-41c7-bc22-59918e9aa073"<section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+<div class="file-container">
+    <div class="file-card">
+    <div class="file-name">NADOO Manifesto</div>
+    <a href="/static/media/uploads/2023_01_14__Das_NADOO_Manifest.pdf" class="download-button" download>Download</a>
+</div>
+
+</div>
+</div>
+</div>
+
+</section></div>
+        <script>
+        (function(sessionId, sectionId) {
+            let enterTime = 0;
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseenter', function() {
+                enterTime = new Date().getTime();
+            });
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('mouseleave', function() {
+                const leaveTime = new Date().getTime();
+                const interactionTime = (leaveTime - enterTime) / 1000;
+
+                // Send the interactionTime along with the mouseleave signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/mouseleave/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({
+                        interaction_time: interactionTime
+                    })
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073');
+        </script>
+        </div></div>
+        
+        <style>
+            .vote-svg-button:hover:not(.highlighted-upvote):not(.highlighted-downvote) svg path {
+                fill: #FFC107;
+            }
+            .highlighted-upvote svg path {
+                fill: #00b4dc;
+            }
+            .highlighted-downvote svg path {
+                fill: #FF4F4F;
+            }
+        </style>
+        
+        <script>
+            function sendVoteSignal(sessionId, sectionId, voteType, buttonElement) {
+                // Clear previous highlight
+                const upvoteButton = document.getElementById('upvote-button-' + sectionId);
+                const downvoteButton = document.getElementById('downvote-button-' + sectionId);
+                
+                upvoteButton.classList.remove('highlighted-upvote');
+                downvoteButton.classList.remove('highlighted-downvote');
+
+                // Highlight the selected button
+                if (voteType === 'upvote') {
+                    buttonElement.classList.add('highlighted-upvote');
+                } else if (voteType === 'downvote') {
+                    buttonElement.classList.add('highlighted-downvote');
+                }
+
+                fetch(`/signal/${sessionId}/${sectionId}/${voteType}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                });
+            }
+
+            // Add event listeners to the buttons
+            document.getElementById('upvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073', 'upvote', this);
+            });
+
+            document.getElementById('downvote-button-476875fb-1f1f-41c7-bc22-59918e9aa073').addEventListener('click', function() {
+                sendVoteSignal('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073', 'downvote', this);
+            });
+        </script>
+        </div>
+        <script>
+        (function(sessionId, sectionId) {
+
+            document.querySelector('.section[data-session-id="' + sessionId + '"][data-section-id="' + sectionId + '"]').addEventListener('click', function() {
+
+                // Send the click signal
+                fetch('/signal/' + sessionId + '/' + sectionId + '/click/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify({})
+                });
+            });
+        })('eac7acd8-5797-4d50-ba41-d4c6d10df580', '476875fb-1f1f-41c7-bc22-59918e9aa073');
+        </script>
+        </div>
+INFO eac7acd8-5797-4d50-ba41-d4c6d10df580 ed5d186a-cf8d-43a1-99fa-d16cc9f6b96c revealed signal received
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+INFO generated new fontManager
+INFO generated new fontManager
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 08:35:22) while time zone support is active.
+  warnings.warn(
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:32:21) while time zone support is active.
+  warnings.warn(
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:34:53) while time zone support is active.
+  warnings.warn(
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:36:40) while time zone support is active.
+  warnings.warn(
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:38:24) while time zone support is active.
+  warnings.warn(
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:38:54) while time zone support is active.
+  warnings.warn(
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:39:41) while time zone support is active.
+  warnings.warn(
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:41:39) while time zone support is active.
+  warnings.warn(
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:45:39) while time zone support is active.
+  warnings.warn(
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+
+WARNING /home/django/.local/lib/python3.10/site-packages/django/db/models/fields/__init__.py:1564: RuntimeWarning: DateTimeField TelegramMessage.date received a naive datetime (2023-10-11 09:50:51) while time zone support is active.
+  warnings.warn(
+
+WARNING c:\Users\ChristophBackhaus\OneDrive - Christoph Backhaus IT\NADOOIT\Produkt-Abteilung\nadooit\Software\Dev\Server\managmentsystem\venv\lib\site-packages\moviepy\video\fx\painting.py:7: DeprecationWarning: Please use `sobel` from the `scipy.ndimage` namespace, the `scipy.ndimage.filters` namespace is deprecated.
+  from scipy.ndimage.filters import sobel
+

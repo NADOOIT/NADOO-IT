@@ -61,6 +61,7 @@ class BotPlatformAdmin(admin.ModelAdmin):
             if bot_platform.platform == "telegram":
                 base_url = settings.ALLOWED_HOSTS[0]
                 webhook_url = f"https://{base_url}/bot/{bot_platform.platform}/webhook/{str(bot_platform.bot_register_id)}"
+                print(webhook_url)
                 if set_webhook(
                     bot_token=bot_platform.access_token,
                     webhook_url=webhook_url,

@@ -113,7 +113,6 @@ def process_message(message_id, token: str, bot_name):
     employee_contract = get_object_or_404(
         EmployeeContract, employee=employee, customer=customer, is_active=True
     )
-
     # Check if message has text and if it's a command
     if message.text is None or not message.text.startswith("/"):
         # If message is not a command, you can send a default message or do nothing
@@ -124,7 +123,7 @@ def process_message(message_id, token: str, bot_name):
         )
     else:
         # If the sender is an employee of the company, process the message using the command_registry
-        if employee_contract is not None and not HttpResponse:
+        if employee_contract is not None and employee_contract is not HttpResponse:
             # Split the command and the arguments
             command, args = (
                 message.text.split(" ", 1)

@@ -52,6 +52,7 @@ ALLOWED_HOSTS = (
     else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
 )
 
+
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
 # The order of the apps is important. The apps are loaded in the order they are listed here.
