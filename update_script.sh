@@ -1,7 +1,9 @@
 #!/bin/bash
 
+USER_HOME=$(eval echo ~$CURRENT_USER)
+
 # navigate to the project directory
-cd /home/nadooserver/nadooit_managmentsystem
+cd /home/$SUDO_USER/NADOO-IT
 
 # stash any changes
 git stash

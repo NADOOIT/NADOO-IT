@@ -135,11 +135,11 @@ TODO Fill this section
 
 1. Copy the repository to your servers home directory
 
-    git clone <git@github.com>:NADOOITChristophBa/nadooit_managmentsystem.git
+    git clone <git@github.com>:NADOOIT/NADOO-IT.git
 
 2. Change into the directory
 
-    cd nadooit_managmentsystem
+    cd NADOO-IT
 
 3. create .env file
 

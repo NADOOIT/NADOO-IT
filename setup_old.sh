@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Add new user
+sudo adduser nadooit
+sudo usermod -aG sudo nadooit
+
 # Install required packages
 sudo apt-get update
 sudo apt-get install -y git curl apt-transport-https ca-certificates gnupg-agent software-properties-common
@@ -39,22 +43,24 @@ if [ "$answer" = "y" ]; then
   read -p "DJANGO_SECRET_KEY: " django_secret_key
   read -p "DOMAIN (for DJANGO_CSRF_TRUSTED_ORIGINS): " domain
   read -p "ACME_DEFAUT_EMAIL: " acme_default_email
-  # Removed the CockroachDB setup as we're focusing on MySQL
-  read -p "MYSQL_ROOT_PASSWORD: " mysql_root_password
-  read -p "MYSQL_DATABASE: " mysql_database
-  read -p "MYSQL_USER: " mysql_user
-  read -p "MYSQL_PASSWORD: " mysql_password
+  read -p "COCKROACH_DB_HOST: " cockroach_db_host
+  read -p "COCKROACH_DB_NAME: " cockroach_db_name
+  read -p "COCKROACH_DB_PORT: " cockroach_db_port
+  read -p "COCKROACH_DB_USER: " cockroach_db_user
+  read -p "COCKROACH_DB_PASSWORD: " cockroach_db_password
+  read -p "COCKROACH_DB_OPTIONS: " cockroach_db_options
   read -p "NADOOIT__API_KEY: " nadooit_api_key
   read -p "NADOOIT__USER_CODE: " nadooit_user_code
 
-  # Update .env with MySQL and other environment variables
   sed -i "s/your_secret_key/$django_secret_key/" .env
   sed -i "s/your_domain/$domain/" .env
   sed -i "s/your_email/$acme_default_email/" .env
-  sed -i "s/MYSQL_ROOT_PASSWORD/$mysql_root_password/" .env
-  sed -i "s/MYSQL_DATABASE/$mysql_database/" .env
-  sed -i "s/MYSQL_USER/$mysql_user/" .env
-  sed -i "s/MYSQL_PASSWORD/$mysql_password/" .env
+  sed -i "s/your_cockroach_db_host/$cockroach_db_host/" .env
+  sed -i "s/your_cockroach_db_name/$cockroach_db_name/" .env
+  sed -i "s/your_cockroach_db_port/$cockroach_db_port/" .env
+  sed -i "s/your_cockroach_db_user/$cockroach_db_user/" .env
+  sed -i "s/your_cockroach_db_password/$cockroach_db_password/" .env
+  sed -i "s/your_cockroach_db_options/$cockroach_db_options/" .env
   sed -i "s/your_nadooit_api_key/$nadooit_api_key/" .env
   sed -i "s/your_nadooit_user_code/$nadooit_user_code/" .env
   sed -i "s/DJANGO_DEBUG=1/DJANGO_DEBUG=0/" .env
