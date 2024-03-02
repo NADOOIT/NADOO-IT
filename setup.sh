@@ -19,7 +19,7 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 
 # Clone the repository
-git clone git@github.com:NADOOITChristophBa/nadooit_managmentsystem.git
+git clone git@github.com:NADOOIT/NADOO-IT.git
 
 # Change to the project directory
 cd nadooit_managmentsystem
