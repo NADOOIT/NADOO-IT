@@ -69,15 +69,19 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   envsubst < init-db.template.sql > ./mysql/init-db.sql
 
   # Update .env with MySQL and other environment variables
-  sed -i "s/your_secret_key/$django_secret_key/" .env
-  sed -i "s/your_domain/$domain/" .env
-  sed -i "s/your_email/$acme_default_email/" .env
-  sed -i "s/MYSQL_ROOT_PASSWORD/$mysql_root_password/" .env
-  sed -i "s/MYSQL_DATABASE/$mysql_database/" .env
-  sed -i "s/MYSQL_USER/$mysql_user/" .env
-  sed -i "s/MYSQL_PASSWORD/$mysql_password/" .env
-  sed -i "s/your_nadooit_api_key/$nadooit_api_key/" .env
-  sed -i "s/your_nadooit_user_code/$nadooit_user_code/" .env
+  sed -i "s/DJANGO_SECRET_KEY=.*/DJANGO_SECRET_KEY=$django_secret_key/" .env
+  sed -i "s/DJANGO_CSRF_TRUSTED_ORIGINS=.*/DJANGO_CSRF_TRUSTED_ORIGINS=$domain/" .env
+  sed -i "s/ACME_DEFAUT_EMAIL=.*/ACME_DEFAUT_EMAIL=$acme_default_email/" .env
+  sed -i "s/MYSQL_ROOT_PASSWORD=.*/MYSQL_ROOT_PASSWORD=$mysql_root_password/" .env
+  sed -i "s/MYSQL_DATABASE=.*/MYSQL_DATABASE=$mysql_database/" .env
+  sed -i "s/MYSQL_USER=.*/MYSQL_USER=$mysql_user/" .env
+  sed -i "s/MYSQL_PASSWORD=.*/MYSQL_PASSWORD=$mysql_password/" .env
+  if [ -n "$nadooit_api_key" ]; then
+    sed -i "s/NADOOIT__API_KEY=.*/NADOOIT__API_KEY=$nadooit_api_key/" .env
+  fi
+  if [ -n "$nadooit_user_code" ]; then
+    sed -i "s/NADOOIT__USER_CODE=.*/NADOOIT__USER_CODE=$nadooit_user_code/" .env
+  fi
   sed -i "s/DJANGO_DEBUG=1/DJANGO_DEBUG=0/" .env
   
   echo "Building the Docker images..."
