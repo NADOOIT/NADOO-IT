@@ -171,7 +171,7 @@ DJANGO_SECRET_KEY=your_secret_key
 
 ##### Nginx
 
-ACME_DEFAUT_EMAIL=your_email
+ACME_DEFAULT_EMAIL=your_email
 
 DOMAIN=your_domain
 

@@ -14,12 +14,6 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Clone the repository
-git clone git@github.com:NADOOIT/NADOO-IT.git
-
-# Change to the project directory
-cd NADOO-IT
-
 # Copy the .env.example file to .env
 cp .env.example .env
 
@@ -43,7 +37,7 @@ read answer
 if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   read -p "DJANGO_SECRET_KEY: " django_secret_key
   read -p "DOMAIN (for DJANGO_CSRF_TRUSTED_ORIGINS): " domain
-  read -p "ACME_DEFAUT_EMAIL: " acme_default_email
+  read -p "ACME_DEFAULT_EMAIL: " acme_default_email
   read -p "MYSQL_ROOT_PASSWORD: " mysql_root_password
   read -p "MYSQL_DATABASE: " mysql_database
   read -p "MYSQL_USER: " mysql_user
@@ -71,7 +65,7 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   # Update .env with MySQL and other environment variables
   sed -i "s/DJANGO_SECRET_KEY=.*/DJANGO_SECRET_KEY=$django_secret_key/" .env
   sed -i "s/DJANGO_CSRF_TRUSTED_ORIGINS=.*/DJANGO_CSRF_TRUSTED_ORIGINS=$domain/" .env
-  sed -i "s/ACME_DEFAUT_EMAIL=.*/ACME_DEFAUT_EMAIL=$acme_default_email/" .env
+  sed -i "s/ACME_DEFAULT_EMAIL=.*/ACME_DEFAULT_EMAIL=$acme_default_email/" .env
   sed -i "s/MYSQL_ROOT_PASSWORD=.*/MYSQL_ROOT_PASSWORD=$mysql_root_password/" .env
   sed -i "s/MYSQL_DATABASE=.*/MYSQL_DATABASE=$mysql_database/" .env
   sed -i "s/MYSQL_USER=.*/MYSQL_USER=$mysql_user/" .env

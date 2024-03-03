@@ -42,7 +42,7 @@ read answer
 if [ "$answer" = "y" ]; then
   read -p "DJANGO_SECRET_KEY: " django_secret_key
   read -p "DOMAIN (for DJANGO_CSRF_TRUSTED_ORIGINS): " domain
-  read -p "ACME_DEFAUT_EMAIL: " acme_default_email
+  read -p "ACME_DEFAULT_EMAIL: " acme_default_email
   read -p "COCKROACH_DB_HOST: " cockroach_db_host
   read -p "COCKROACH_DB_NAME: " cockroach_db_name
   read -p "COCKROACH_DB_PORT: " cockroach_db_port
