@@ -87,19 +87,17 @@ services:
       - redis
 
   db:
-      image: mysql:8.0.36
-      command: --default-authentication-plugin=mysql_native_password
-      volumes:
-        - db_data:/var/lib/mysql
-        - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
-      restart: always
-      environment:
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-        - MYSQL_DATABASE=${MYSQL_DATABASE}
-        - MYSQL_USER=${MYSQL_USER}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      networks:
-        - app_network
+    image: mysql:8.0.36
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
   wordpress:
     depends_on:

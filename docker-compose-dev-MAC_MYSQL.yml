@@ -68,7 +68,6 @@ services:
       depends_on:
         - redis
         - db
-
   db:
     image: mysql:8.0.36
     command: --default-authentication-plugin=mysql_native_password

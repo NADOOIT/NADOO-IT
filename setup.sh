@@ -60,7 +60,7 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   export MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD
 
   # Generate init-db.sql from template
-  envsubst < init-db.template.sql > ./mysql/init-db.sql
+  envsubst < init-db.template.sql > ./init-db.sql
 
   # Update .env with MySQL and other environment variables
   sed -i "s/DJANGO_SECRET_KEY=.*/DJANGO_SECRET_KEY=$django_secret_key/" .env
@@ -87,7 +87,7 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   sleep 30 # Adjust the sleep time as necessary
 
   # Cleanup init-db.sql after MySQL has started and executed the file
-  rm -f ./mysql/init-db.sql
+  rm -f ./init-db.sql
   echo "init-db.sql has been removed for security."
 
   echo "Running migrations..."
