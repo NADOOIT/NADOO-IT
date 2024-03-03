@@ -33,6 +33,11 @@ sudo sysctl -p
 
 echo "Server setup complete."
 
+# Funktion zur Überprüfung und Bereinigung der Eingabe
+clean_input() {
+  echo "$1" | sed -e 's/[\/&|]/-/g' -e 's/!/\\!/g'
+}
+
 echo "Do you want to add the info for the .env file now? (Y/n)"
 read answer
 if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
@@ -45,6 +50,17 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   read -p "MYSQL_PASSWORD: " mysql_password
   read -p "NADOOIT__API_KEY: " nadooit_api_key
   read -p "NADOOIT__USER_CODE: " nadooit_user_code
+
+  # Bereinigen der Eingaben
+  django_secret_key=$(clean_input "$django_secret_key")
+  domain=$(clean_input "$domain")
+  acme_default_email=$(clean_input "$acme_default_email")
+  mysql_root_password=$(clean_input "$mysql_root_password")
+  mysql_database=$(clean_input "$mysql_database")
+  mysql_user=$(clean_input "$mysql_user")
+  mysql_password=$(clean_input "$mysql_password")
+  nadooit_api_key=$(clean_input "$nadooit_api_key")
+  nadooit_user_code=$(clean_input "$nadooit_user_code")
 
   # Prepare environment variables for init-db.sql generation
   export MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD
