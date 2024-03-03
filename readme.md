@@ -27,12 +27,25 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 7. use the following command to install the requirements
 
-    docker compose -f docker-compose-dev.yml build
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py makemigrations
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py migrate
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py createsuperuser
-    docker-compose -f docker-compose-dev.yml up
+    Mac:
+
+    docker compose -f docker-compose-dev-MAC_MYSQL.yml build
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml up
+
+    Windows:
+
+    docker compose -f docker-compose-dev-WIN_MYSQL.yml build
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py import_templates
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml up
 
 #### Running tests
 
@@ -301,11 +314,11 @@ Because the page is build from sections that are stored in the database, it is i
 
 To retrieve all sections from the database and save them as templates in the sections_templates folder, run the following command:
 
-    docker compose -f docker-compose-dev.yml run --rm app python manage.py export_templates
+    docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py export_templates
 
 To then retrieve all sections from the sections_templates folder and save them in the database, run the following command:
 
-    docker compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
+    docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
 
 #### Sections
 

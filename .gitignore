@@ -165,3 +165,6 @@ key.pem
 .idea
 staticfiles
 node_modules
+app/logs/log_DEBUG.log
+app/logs/log_DEBUG.log
+app/logs/log_INFO.log
