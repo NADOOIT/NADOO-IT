@@ -9,6 +9,7 @@ COPY requirements.txt /requirements.txt
 RUN mkdir /app
 COPY app/ /app
 
+# Update the package lists and install dependencies required for mysqlclient
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
@@ -17,7 +18,13 @@ RUN apt-get update && \
     gcc \
     libc-dev \
     linux-headers-amd64 \
-    ffmpeg
+    ffmpeg \
+    default-libmysqlclient-dev \ 
+    pkg-config
+
+# Optional: Cleanup the apt cache to reduce image size
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN unset https_proxy
 
@@ -25,7 +32,7 @@ RUN mkdir -p /vol/web/media/original_videos
 RUN mkdir -p /vol/web/static
 RUN mkdir -p /home/django/.postgresql/
 
-#OLD RUN adduser -D --disabled-password --no-create-home django
+# Update to use adduser with correct options for Debian-based distributions
 RUN adduser --disabled-password --gecos "" django
 
 RUN chown -R django:django /app
@@ -36,7 +43,7 @@ RUN chmod -R 755 /app
 RUN chmod -R 755 /vol/web
 RUN chmod -R 755 /home/django
 
-# Add these lines
+# Add these lines for media volume permissions
 RUN chown -R django:django /vol/web/media
 RUN chmod -R 755 /vol/web/media
 
@@ -56,4 +63,4 @@ RUN pip install uwsgi
 
 USER django
 
-CMD [ "uwsgi","--socket",":9090","--workers","4","--master","--enable-threads","--module","nadooit.wsgi" ]
+CMD [ "uwsgi", "--socket", ":9090", "--workers", "4", "--master", "--enable-threads", "--module", "nadooit.wsgi" ]
