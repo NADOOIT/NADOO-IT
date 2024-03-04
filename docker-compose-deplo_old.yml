@@ -22,7 +22,7 @@ services:
       - db
       - redis
     volumes:
-      - ${HOME}/.postgresql/root.crt:/home/django/.postgresql/root.crt
+      - /home/nadooserver/.postgresql/:/home/django/.postgresql/
       - static_data:/vol/web/static
       - media_data:/vol/web/media
 
