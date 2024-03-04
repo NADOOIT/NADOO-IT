@@ -193,8 +193,10 @@ AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
 CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
-print(CSRF_TRUSTED_ORIGINS)
-print(ALLOWED_HOSTS)
+print("DEBUG-Modus ist:", DEBUG)
+print("CSRF_TRUSTED_ORIGINS gesetzt auf:", CSRF_TRUSTED_ORIGINS)
+print("ALLOWED_HOSTS gesetzt auf:", ALLOWED_HOSTS)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
