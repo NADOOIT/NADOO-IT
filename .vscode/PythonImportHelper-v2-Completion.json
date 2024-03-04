@@ -6723,7 +6723,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "SECRET_KEY = os.environ.get(\"DJANGO_SECRET_KEY\", \"changeme\")\n# SECURITY WARNING: don't run with debug turned on in production!\n# DEBUG = True\nDEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = (\n    [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",",
+        "peekOfCode": "SECRET_KEY = os.environ.get(\"DJANGO_SECRET_KEY\", \"changeme\")\n# SECURITY WARNING: don't run with debug turned on in production!\n# DEBUG = True\nDEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\nif DEBUG:\n    ALLOWED_HOSTS += [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -6732,7 +6732,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = (\n    [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",\n        \"0.0.0.0\",",
+        "peekOfCode": "DEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\nif DEBUG:\n    ALLOWED_HOSTS += [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -6741,7 +6741,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = (\n    [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",\n        \"0.0.0.0\",\n    ]\n    if DEBUG\n    else os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n)",
+        "peekOfCode": "ALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\nif DEBUG:\n    ALLOWED_HOSTS += [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",\n        \"0.0.0.0\",\n    ]\n# Application definition\n# This is the list of installed apps. If a new app is added, it must be added here.",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },

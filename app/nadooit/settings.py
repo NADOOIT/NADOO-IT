@@ -46,16 +46,15 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
-ALLOWED_HOSTS = (
-    [
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+
+if DEBUG:
+    ALLOWED_HOSTS += [
         "5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app",
         "localhost",
         "127.0.0.1",
         "0.0.0.0",
     ]
-    if DEBUG
-    else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-)
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
