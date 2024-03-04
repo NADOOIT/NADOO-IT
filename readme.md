@@ -212,28 +212,28 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ##### Build the docker images
 
-    - docker compose -f docker-compose.deploy.yml build
-    - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+    - docker compose -f docker-compose-deploy.yml build
+    - docker compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
 
 ##### Running migrations
 
 1. The database needs to be migrated before the server can be started. To do this, run the following command:
-    - docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+    - docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
 
 ##### Creating superuser
 
 1. Run the following command to create a superuser
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
+docker compose -f docker-compose-deploy.yml run --rm app python manage.py createsuperuser
 
 ### Starting the server
 
 1. Run the following command to start the server
-docker compose -f docker-compose.deploy.yml up -d
+docker compose -f docker-compose-deploy.yml up -d
 
 ### Stopping the server
 
 1. Run the following command to stop the server
-docker compose -f docker-compose.deploy.yml down
+docker compose -f docker-compose-deploy.yml down
 
 ### Updating the server
 
@@ -243,17 +243,17 @@ Run the following command to update the server
 
     git pull
 
-    docker compose -f docker-compose.deploy.yml build
+    docker compose -f docker-compose-deploy.yml build
     
-    docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+    docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
     
-    docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput 
+    docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput 
 
-    docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
+    docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
 
-    docker compose -f docker-compose.deploy.yml down
+    docker compose -f docker-compose-deploy.yml down
 
-    docker compose -f docker-compose.deploy.yml up -d
+    docker compose -f docker-compose-deploy.yml up -d
 
 ## How to Use
 

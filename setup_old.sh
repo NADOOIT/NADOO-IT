@@ -66,17 +66,17 @@ if [ "$answer" = "y" ]; then
   sed -i "s/DJANGO_DEBUG=1/DJANGO_DEBUG=0/" .env
   
   echo "Building the Docker images..."
-  docker-compose -f docker-compose.deploy.yml build
-  docker-compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+  docker-compose -f docker-compose-deploy.yml build
+  docker-compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
 
   echo "Running migrations..."
-  docker-compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+  docker-compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
 
   echo "Creating superuser..."
-  docker-compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
+  docker-compose -f docker-compose-deploy.yml run --rm app python manage.py createsuperuser
 
   echo "Starting the server..."
-  docker-compose -f docker-compose.deploy.yml up -d
+  docker-compose -f docker-compose-deploy.yml up -d
 fi
 
 echo "The .env file has been updated with the provided information."
