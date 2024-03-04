@@ -6867,7 +6867,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "AUTH_USER_MODEL = \"nadooit_auth.User\"\n# Password validation\nCSRF_TRUSTED_ORIGINS = [os.environ.get(\"DJANGO_CSRF_TRUSTED_ORIGINS\")]\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.UserAttributeSimilarityValidator\",\n    },\n    {",
+        "peekOfCode": "AUTH_USER_MODEL = \"nadooit_auth.User\"\n# Password validation\nCSRF_TRUSTED_ORIGINS = os.environ.get(\"DJANGO_CSRF_TRUSTED_ORIGINS\", \"\").split(\",\")\nprint(CSRF_TRUSTED_ORIGINS)\nprint(ALLOWED_HOSTS)\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.UserAttributeSimilarityValidator\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -6876,7 +6876,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "CSRF_TRUSTED_ORIGINS = [os.environ.get(\"DJANGO_CSRF_TRUSTED_ORIGINS\")]\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.UserAttributeSimilarityValidator\",\n    },\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.MinimumLengthValidator\",\n    },",
+        "peekOfCode": "CSRF_TRUSTED_ORIGINS = os.environ.get(\"DJANGO_CSRF_TRUSTED_ORIGINS\", \"\").split(\",\")\nprint(CSRF_TRUSTED_ORIGINS)\nprint(ALLOWED_HOSTS)\n# Password validation\n# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.UserAttributeSimilarityValidator\",\n    },\n    {",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },

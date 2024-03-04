@@ -193,7 +193,9 @@ DATABASES = {
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
-CSRF_TRUSTED_ORIGINS = [os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")]
+CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
+print(CSRF_TRUSTED_ORIGINS)
+print(ALLOWED_HOSTS)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
