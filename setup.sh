@@ -70,7 +70,7 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   sed -i "s/MYSQL_USER=.*/MYSQL_USER=$mysql_user/" .env
   sed -i "s/MYSQL_PASSWORD=.*/MYSQL_PASSWORD=$mysql_password/" .env
   sed -i "s/DJANGO_DEBUG=1/DJANGO_DEBUG=0/" .env
-fi
+
 
   echo "Building the Docker images..."
   docker-compose -f docker-compose-deploy.yml build
