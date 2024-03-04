@@ -6723,7 +6723,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "SECRET_KEY = os.environ.get(\"DJANGO_SECRET_KEY\", \"changeme\")\n# SECURITY WARNING: don't run with debug turned on in production!\n# DEBUG = True\nDEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n\"\"\" \nif DEBUG:",
+        "peekOfCode": "SECRET_KEY = os.environ.get(\"DJANGO_SECRET_KEY\", \"changeme\")\n# SECURITY WARNING: don't run with debug turned on in production!\n# DEBUG = True\nDEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\nif DEBUG:\n    ALLOWED_HOSTS += [",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -6732,7 +6732,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "DEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n\"\"\" \nif DEBUG:\n    ALLOWED_HOSTS += [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",",
+        "peekOfCode": "DEBUG = bool(int(os.environ.get(\"DJANGO_DEBUG\", 0)))\n# The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS\n# The value is a comma separated list of hosts\n# Example: DJANGO_ALLOWED_HOSTS= \"localhost, nadooit.de,\nALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\nif DEBUG:\n    ALLOWED_HOSTS += [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -6741,7 +6741,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "ALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\n\"\"\" \nif DEBUG:\n    ALLOWED_HOSTS += [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",\n        \"0.0.0.0\",\n    ]\n \"\"\"",
+        "peekOfCode": "ALLOWED_HOSTS = os.environ.get(\"DJANGO_ALLOWED_HOSTS\", \"\").split(\",\")\nif DEBUG:\n    ALLOWED_HOSTS += [\n        \"5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app\",\n        \"localhost\",\n        \"127.0.0.1\",\n        \"0.0.0.0\",\n    ]\n# Application definition\n# This is the list of installed apps. If a new app is added, it must be added here.",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -10701,7 +10701,7 @@
         "kind": 2,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"283b9e7b-f463-4d82-8e9e-838c618223be\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"23afce39-e88f-4c5b-a2a0-e197116d6113\"\n        )",
+        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"283b9e7b-f463-4d82-8e9e-838c618223be\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"70b7299d-e8cf-4e59-b36a-60c40b7fe8a0\"\n        )",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },

@@ -47,7 +47,6 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-""" 
 if DEBUG:
     ALLOWED_HOSTS += [
         "5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app",
@@ -55,7 +54,7 @@ if DEBUG:
         "127.0.0.1",
         "0.0.0.0",
     ]
- """
+
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
 # The order of the apps is important. The apps are loaded in the order they are listed here.
