@@ -31,21 +31,19 @@ echo "Server setup complete."
 clean_input() {
   echo "$1" | sed -e 's/[\/&|]/-/g' -e 's/!/\\!/g'
 }
-
 echo "Do you want to add the info for the .env file now? (Y/n)"
 read answer
 if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   read -p "DJANGO_SECRET_KEY: " django_secret_key
-  read -p "DOMAIN (for DJANGO_CSRF_TRUSTED_ORIGINS): " domain
+  echo "Enter your domain (e.g., nadooit.de) without HTTPS or WWW:"
+  read -p "DOMAIN: " domain
   read -p "ACME_DEFAULT_EMAIL: " acme_default_email
   read -p "MYSQL_ROOT_PASSWORD: " mysql_root_password
   read -p "MYSQL_DATABASE: " mysql_database
   read -p "MYSQL_USER: " mysql_user
   read -p "MYSQL_PASSWORD: " mysql_password
-  read -p "NADOOIT__API_KEY: " nadooit_api_key
-  read -p "NADOOIT__USER_CODE: " nadooit_user_code
 
-  # Bereinigen der Eingaben
+  # Clean inputs
   django_secret_key=$(clean_input "$django_secret_key")
   domain=$(clean_input "$domain")
   acme_default_email=$(clean_input "$acme_default_email")
@@ -53,8 +51,6 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   mysql_database=$(clean_input "$mysql_database")
   mysql_user=$(clean_input "$mysql_user")
   mysql_password=$(clean_input "$mysql_password")
-  nadooit_api_key=$(clean_input "$nadooit_api_key")
-  nadooit_user_code=$(clean_input "$nadooit_user_code")
 
   # Prepare environment variables for init-db.sql generation
   export MYSQL_ROOT_PASSWORD MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD
@@ -62,22 +58,20 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   # Generate init-db.sql from template
   envsubst < init-db.template.sql > ./init-db.sql
 
+  # Automatically add https:// to the domain for DJANGO_CSRF_TRUSTED_ORIGINS and include both root and www
+  DJANGO_CSRF_TRUSTED_ORIGINS="https://$domain,https://www.$domain"
+
   # Update .env with MySQL and other environment variables
   sed -i "s/DJANGO_SECRET_KEY=.*/DJANGO_SECRET_KEY=$django_secret_key/" .env
-  sed -i "s/DJANGO_CSRF_TRUSTED_ORIGINS=.*/DJANGO_CSRF_TRUSTED_ORIGINS=$domain/" .env
+  sed -i "s/DJANGO_CSRF_TRUSTED_ORIGINS=.*/DJANGO_CSRF_TRUSTED_ORIGINS=\"$DJANGO_CSRF_TRUSTED_ORIGINS\"/" .env
   sed -i "s/ACME_DEFAULT_EMAIL=.*/ACME_DEFAULT_EMAIL=$acme_default_email/" .env
   sed -i "s/MYSQL_ROOT_PASSWORD=.*/MYSQL_ROOT_PASSWORD=$mysql_root_password/" .env
   sed -i "s/MYSQL_DATABASE=.*/MYSQL_DATABASE=$mysql_database/" .env
   sed -i "s/MYSQL_USER=.*/MYSQL_USER=$mysql_user/" .env
   sed -i "s/MYSQL_PASSWORD=.*/MYSQL_PASSWORD=$mysql_password/" .env
-  if [ -n "$nadooit_api_key" ]; then
-    sed -i "s/NADOOIT__API_KEY=.*/NADOOIT__API_KEY=$nadooit_api_key/" .env
-  fi
-  if [ -n "$nadooit_user_code" ]; then
-    sed -i "s/NADOOIT__USER_CODE=.*/NADOOIT__USER_CODE=$nadooit_user_code/" .env
-  fi
   sed -i "s/DJANGO_DEBUG=1/DJANGO_DEBUG=0/" .env
-  
+fi
+
   echo "Building the Docker images..."
   docker-compose -f docker-compose-deploy.yml build
   docker-compose -f docker-compose-deploy.yml up -d
@@ -87,7 +81,7 @@ if [[ "$answer" =~ ^([yY][eE][sS]|[yY])*$ ]]; then
   sleep 30 # Adjust the sleep time as necessary
 
   # Cleanup init-db.sql after MySQL has started and executed the file
-  rm -f ./init-db.sql
+  #rm -f ./init-db.sql
   echo "init-db.sql has been removed for security."
 
   echo "Running migrations..."
