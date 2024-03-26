@@ -14,12 +14,12 @@ Django>=4.1
 django-cockroachdb==4.1.1
 django-extensions==3.2.1
 django-grappelli==3.0.4
-django-mfa2==2.8.0
+django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
 django-pwa @ git+https://github.com/silviolleite/django-pwa@4eb4ae616f8671f85bb05156500d0814c6c4a3fe
 django-sslserver==0.22
 djangorestframework==3.14.0
 ecdsa==0.18.0
-fido2==1.0.0
+fido2==1.1.3
 idna==3.4
 jsonfield==3.1.0
 jsonLookup==0.9.0
@@ -33,7 +33,7 @@ platformdirs==2.5.2
 mysqlclient==2.2.4
 pyasn1==0.4.8
 pycparser==2.21
-pyOpenSSL==22.1.0
+pyOpenSSL==24.1.0
 pyotp==2.9.0
 python-jose==3.3.0
 python-u2flib-server==5.0.1

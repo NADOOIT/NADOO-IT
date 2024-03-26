@@ -175,6 +175,7 @@ DATABASES = {
     }
 }
  """
+"""  
 # MySQL settings
 DATABASES = {
     'default': {
@@ -186,6 +187,14 @@ DATABASES = {
         'PORT': os.getenv('MYSQL_DB_PORT', '3306'),  # No change needed
     }
 }
+ """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
+    }
+}
+
 
 # Default user model
 AUTH_USER_MODEL = "nadooit_auth.User"

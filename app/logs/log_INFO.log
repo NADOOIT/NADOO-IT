@@ -1,0 +1,313 @@
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Gegenüberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>
+            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertschöpfung?</h2>
+            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen für IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertschöpfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>
+            <div class="video-container">
+                {{ video }}
+            </div>
+        </div>
+    </div>
+</section>
+WARNING No video associated with the section, but { video } tag is present in the HTML
+INFO Section: <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Gegenüberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>
+            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertschöpfung?</h2>
+            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen für IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertschöpfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>
+            <div class="video-container">
+                
+            </div>
+        </div>
+    </div>
+</section>
+INFO <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Gegenüberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>
+            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertschöpfung?</h2>
+            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen für IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertschöpfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>
+            <div class="video-container">
+                
+            </div>
+        </div>
+    </div>
+</section>
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO end_of_session_sections session: e45d7580-e9e7-4f6c-870e-ff87593d3060 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections next_section: None
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Gegenüberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>
+            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertschöpfung?</h2>
+            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen für IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertschöpfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>
+            <div class="video-container">
+                {{ video }}
+            </div>
+        </div>
+    </div>
+</section>
+WARNING No video associated with the section, but { video } tag is present in the HTML
+INFO Section: <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Gegenüberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>
+            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertschöpfung?</h2>
+            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen für IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertschöpfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>
+            <div class="video-container">
+                
+            </div>
+        </div>
+    </div>
+</section>
+INFO <section>
+    <div class="banner">
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+            <h1>Gegenüberstellung: NADOOIT vs. Klassische IT-Projektmodelle</h1>
+            <h2>Wie unterscheiden sich Ablauf, Kosten und Wertschöpfung?</h2>
+            <p>In diesem Video vergleichen wir NADOOIT mit klassischen Modellen für IT-Projekte. Wir beleuchten den Ablauf, die Kosten und die Wertschöpfungsentwicklung, um Ihnen einen Einblick zu geben, wie NADOOIT sich von traditionellen Modellen unterscheidet und welche Vorteile es bietet.</p>
+            <div class="video-container">
+                
+            </div>
+        </div>
+    </div>
+</section>
+WARNING Not Found: /favicon.ico
+WARNING Forbidden (CSRF token from POST incorrect.): /admin/login/
+WARNING Forbidden (CSRF token from POST incorrect.): /admin/login/
+WARNING Not Found: /admin/l
+WARNING Method Not Allowed (GET): /admin/logout/
+WARNING Method Not Allowed: /admin/logout/
+WARNING Method Not Allowed (GET): /admin/logout/
+WARNING Method Not Allowed: /admin/logout/
+WARNING Method Not Allowed (GET): /admin/logout/
+WARNING Method Not Allowed: /admin/logout/
+WARNING Method Not Allowed (GET): /admin/logout/
+WARNING Method Not Allowed: /admin/logout/
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+WARNING /home/django/.local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:160: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': unable to open database file
+  warnings.warn(
+
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO generated new fontManager
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO end_of_session_sections session: 28eb4272-ed96-4f49-873a-eda286be536f 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections next_section: None
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO end_of_session_sections session: 1eb36794-1397-46e2-8b5e-f718a104d0ab 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections next_section: None

@@ -12,13 +12,18 @@ services:
       - DJANGO_DEBUG=${DJANGO_DEBUG}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}
+      - MYSQL_DB_HOST=${MYSQL_DB_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DB_PORT=${MYSQL_DB_PORT}
       - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
+      - db
       - redis
     volumes:
       - static_data:/vol/web/static
       - media_data:/vol/web/media
-      - sqlite_db:/app/db
 
   proxy:
     build:
@@ -69,9 +74,28 @@ services:
       - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
       - DJANGO_DEBUG=${DJANGO_DEBUG}
       - DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}
+      - MYSQL_DB_HOST=${MYSQL_DB_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DB_PORT=${MYSQL_DB_PORT}
       - CELERY_BROKER_URL=redis://redis:6379/0
     depends_on:
+      - db
       - redis
+
+  db:
+    image: mysql:8.0.36
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
 volumes:
   certbot-web:
@@ -79,4 +103,4 @@ volumes:
   certbot-certs:
   static_data:
   media_data:
-  sqlite_db:
+  db_data:

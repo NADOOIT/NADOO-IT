@@ -6863,6 +6863,15 @@
         "documentation": {}
     },
     {
+        "label": "DATABASES",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),\n    }\n}\n# Default user model\nAUTH_USER_MODEL = \"nadooit_auth.User\"\n# Password validation\nCSRF_TRUSTED_ORIGINS = os.environ.get(\"DJANGO_CSRF_TRUSTED_ORIGINS\", \"\").split(\",\")",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
         "label": "AUTH_USER_MODEL",
         "kind": 5,
         "importPath": "app.nadooit.settings",
@@ -10701,7 +10710,7 @@
         "kind": 2,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"283b9e7b-f463-4d82-8e9e-838c618223be\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"70b7299d-e8cf-4e59-b36a-60c40b7fe8a0\"\n        )",
+        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"70b7299d-e8cf-4e59-b36a-60c40b7fe8a0\"\n        )",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
