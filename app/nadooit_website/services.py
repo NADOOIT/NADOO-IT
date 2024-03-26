@@ -526,11 +526,11 @@ def get_most_successful_section_order():
 
     if settings.DEBUG:
         return Section_Order.objects.get(
-            section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+            section_order_id="283b9e7b-f463-4d82-8e9e-838c618223be"
         )
     else:
         return Section_Order.objects.get(
-            section_order_id="23afce39-e88f-4c5b-a2a0-e197116d6113"
+            section_order_id="70b7299d-e8cf-4e59-b36a-60c40b7fe8a0"
         )
 
 

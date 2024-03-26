@@ -46,11 +46,14 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
-ALLOWED_HOSTS = (
-    ["5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app"]
-    if DEBUG
-    else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-)
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+if DEBUG:
+    ALLOWED_HOSTS += [
+        "5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app",
+        "localhost",
+        "127.0.0.1",
+        "0.0.0.0",
+    ]
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
@@ -156,6 +159,7 @@ WSGI_APPLICATION = "nadooit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+""" CockroachDB settings
 DATABASES = {
     "default": {
         "ENGINE": "django_cockroachdb",
@@ -170,13 +174,28 @@ DATABASES = {
         },
     }
 }
-
+ """
+# MySQL settings
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('MYSQL_DATABASE', 'your_mysql_database'),  # Default used if env var is not set
+        'USER': os.getenv('MYSQL_USER', 'your_mysql_user'),  # Default used if env var is not set
+        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'your_database_password'),  # Update this default as necessary
+        'HOST': os.getenv('MYSQL_DB_HOST', 'db'),  # No change needed
+        'PORT': os.getenv('MYSQL_DB_PORT', '3306'),  # No change needed
+    }
+}
 
 # Default user model
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
-CSRF_TRUSTED_ORIGINS = [os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")]
+CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
+print("DEBUG-Modus ist:", DEBUG)
+print("CSRF_TRUSTED_ORIGINS gesetzt auf:", CSRF_TRUSTED_ORIGINS)
+print("ALLOWED_HOSTS gesetzt auf:", ALLOWED_HOSTS)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

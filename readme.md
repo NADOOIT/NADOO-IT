@@ -27,12 +27,25 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 7. use the following command to install the requirements
 
-    docker compose -f docker-compose-dev.yml build
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py makemigrations
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py migrate
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
-    docker-compose -f docker-compose-dev.yml run --rm app python manage.py createsuperuser
-    docker-compose -f docker-compose-dev.yml up
+    Mac:
+
+    docker compose -f docker-compose-dev-MAC_MYSQL.yml build
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev-MAC_MYSQL.yml up
+
+    Windows:
+
+    docker compose -f docker-compose-dev-WIN_MYSQL.yml build
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py import_templates
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev-WIN_MYSQL.yml up
 
 #### Running tests
 
@@ -135,11 +148,11 @@ TODO Fill this section
 
 1. Copy the repository to your servers home directory
 
-    git clone <git@github.com>:NADOOITChristophBa/nadooit_managmentsystem.git
+    git clone <git@github.com>:NADOOIT/NADOO-IT.git
 
 2. Change into the directory
 
-    cd nadooit_managmentsystem
+    cd NADOO-IT
 
 3. create .env file
 
@@ -158,7 +171,7 @@ DJANGO_SECRET_KEY=your_secret_key
 
 ##### Nginx
 
-ACME_DEFAUT_EMAIL=your_email
+ACME_DEFAULT_EMAIL=your_email
 
 DOMAIN=your_domain
 
@@ -199,28 +212,28 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ##### Build the docker images
 
-    - docker compose -f docker-compose.deploy.yml build
-    - docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+    - docker compose -f docker-compose-deploy.yml build
+    - docker compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
 
 ##### Running migrations
 
 1. The database needs to be migrated before the server can be started. To do this, run the following command:
-    - docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+    - docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
 
 ##### Creating superuser
 
 1. Run the following command to create a superuser
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
+docker compose -f docker-compose-deploy.yml run --rm app python manage.py createsuperuser
 
 ### Starting the server
 
 1. Run the following command to start the server
-docker compose -f docker-compose.deploy.yml up -d
+docker compose -f docker-compose-deploy.yml up -d
 
 ### Stopping the server
 
 1. Run the following command to stop the server
-docker compose -f docker-compose.deploy.yml down
+docker compose -f docker-compose-deploy.yml down
 
 ### Updating the server
 
@@ -230,17 +243,17 @@ Run the following command to update the server
 
     git pull
 
-    docker compose -f docker-compose.deploy.yml build
+    docker compose -f docker-compose-deploy.yml build
     
-    docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+    docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
     
-    docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput 
+    docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput 
 
-    docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
+    docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
 
-    docker compose -f docker-compose.deploy.yml down
+    docker compose -f docker-compose-deploy.yml down
 
-    docker compose -f docker-compose.deploy.yml up -d
+    docker compose -f docker-compose-deploy.yml up -d
 
 ## How to Use
 
@@ -301,11 +314,11 @@ Because the page is build from sections that are stored in the database, it is i
 
 To retrieve all sections from the database and save them as templates in the sections_templates folder, run the following command:
 
-    docker compose -f docker-compose-dev.yml run --rm app python manage.py export_templates
+    docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py export_templates
 
 To then retrieve all sections from the sections_templates folder and save them in the database, run the following command:
 
-    docker compose -f docker-compose-dev.yml run --rm app python manage.py import_templates
+    docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
 
 #### Sections
 
