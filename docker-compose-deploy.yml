@@ -18,7 +18,7 @@ services:
     volumes:
       - static_data:/vol/web/static
       - media_data:/vol/web/media
-      - sqlite_db:/app/db
+      - ./app/db:/app/db
 
   proxy:
     build:
@@ -63,6 +63,7 @@ services:
       - ./app:/app
       - static_data:/vol/web/static
       - media_data:/vol/web/media
+      - ./app/db:/app/db
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
@@ -79,4 +80,3 @@ volumes:
   certbot-certs:
   static_data:
   media_data:
-  sqlite_db:
