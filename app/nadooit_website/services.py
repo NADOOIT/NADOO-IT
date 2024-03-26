@@ -530,7 +530,7 @@ def get_most_successful_section_order():
         )
     else:
         return Section_Order.objects.get(
-            section_order_id="70b7299d-e8cf-4e59-b36a-60c40b7fe8a0"
+            section_order_id="ad508b5e-cebe-43a8-b068-dc37a4574605"
         )
 
 

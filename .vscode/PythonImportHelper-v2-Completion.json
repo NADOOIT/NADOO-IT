@@ -10710,7 +10710,7 @@
         "kind": 2,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"70b7299d-e8cf-4e59-b36a-60c40b7fe8a0\"\n        )",
+        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n        )",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
