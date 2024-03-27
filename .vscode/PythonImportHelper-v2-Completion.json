@@ -139,6 +139,22 @@
         "documentation": {}
     },
     {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "connections",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -6713,7 +6729,25 @@
         "kind": 2,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "def patched_distinct(self, *field_names):\n    if 'sqlite' in self.db.connection.vendor and field_names:\n        # Emulation von DISTINCT ON für SQLite\n        unique_fields = []\n        for field_name in field_names:\n            if '__' in field_name:\n                unique_fields.extend(field_name.split('__'))\n            else:\n                unique_fields.append(field_name)\n        return self.order_by(*unique_fields).distinct()",
+        "peekOfCode": "def patched_distinct(self, *field_names):\n    # Zugriff auf den Datenbank-Connection-String über das connections-Dictionary\n    connection = connections[self.db]\n    if connection.vendor == 'sqlite' and field_names:\n        # Emulation von DISTINCT ON für SQLite\n        unique_fields = []\n        for field_name in field_names:\n            if '__' in field_name:\n                unique_fields.extend(field_name.split('__'))\n            else:",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "QuerySet._distinct_original",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "QuerySet._distinct_original = QuerySet.distinct\nQuerySet.distinct = patched_distinct\n# Build a path to the .env file\nenv_path = Path(__file__).resolve().parent.parent.parent / \".env\"\n# Load the .env file into the environment. This is done before the settings are loaded.\n# This is done to make sure that the environment variables are available when the settings are loaded.\n# Was required to make the environment variables available in the test_services.py file.\nload_dotenv(dotenv_path=env_path)\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\nBASE_DIR = Path(__file__).resolve().parent.parent",
+        "detail": "app.nadooit.settings",
+        "documentation": {}
+    },
+    {
+        "label": "QuerySet.distinct",
+        "kind": 5,
+        "importPath": "app.nadooit.settings",
+        "description": "app.nadooit.settings",
+        "peekOfCode": "QuerySet.distinct = patched_distinct\n# Build a path to the .env file\nenv_path = Path(__file__).resolve().parent.parent.parent / \".env\"\n# Load the .env file into the environment. This is done before the settings are loaded.\n# This is done to make sure that the environment variables are available when the settings are loaded.\n# Was required to make the environment variables available in the test_services.py file.\nload_dotenv(dotenv_path=env_path)\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\nBASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -7244,7 +7278,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "CELERY_BROKER_URL = \"redis://redis:6379/0\"\nCELERY_RESULT_BACKEND = \"redis://redis:6379/0\"\nCELERY_ACCEPT_CONTENT = [\"application/json\"]\nCELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"\n# Monky patching für kompatibilität mit SQlite\n# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden\nfrom django.db.models.query import QuerySet\ndef patched_distinct(self, *field_names):\n    if 'sqlite' in self.db.connection.vendor and field_names:",
+        "peekOfCode": "CELERY_BROKER_URL = \"redis://redis:6379/0\"\nCELERY_RESULT_BACKEND = \"redis://redis:6379/0\"\nCELERY_ACCEPT_CONTENT = [\"application/json\"]\nCELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -7253,7 +7287,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "CELERY_RESULT_BACKEND = \"redis://redis:6379/0\"\nCELERY_ACCEPT_CONTENT = [\"application/json\"]\nCELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"\n# Monky patching für kompatibilität mit SQlite\n# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden\nfrom django.db.models.query import QuerySet\ndef patched_distinct(self, *field_names):\n    if 'sqlite' in self.db.connection.vendor and field_names:\n        # Emulation von DISTINCT ON für SQLite",
+        "peekOfCode": "CELERY_RESULT_BACKEND = \"redis://redis:6379/0\"\nCELERY_ACCEPT_CONTENT = [\"application/json\"]\nCELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -7262,7 +7296,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "CELERY_ACCEPT_CONTENT = [\"application/json\"]\nCELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"\n# Monky patching für kompatibilität mit SQlite\n# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden\nfrom django.db.models.query import QuerySet\ndef patched_distinct(self, *field_names):\n    if 'sqlite' in self.db.connection.vendor and field_names:\n        # Emulation von DISTINCT ON für SQLite\n        unique_fields = []",
+        "peekOfCode": "CELERY_ACCEPT_CONTENT = [\"application/json\"]\nCELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -7271,7 +7305,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "CELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"\n# Monky patching für kompatibilität mit SQlite\n# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden\nfrom django.db.models.query import QuerySet\ndef patched_distinct(self, *field_names):\n    if 'sqlite' in self.db.connection.vendor and field_names:\n        # Emulation von DISTINCT ON für SQLite\n        unique_fields = []\n        for field_name in field_names:",
+        "peekOfCode": "CELERY_RESULT_SERIALIZER = \"json\"\nCELERY_TASK_SERIALIZER = \"json\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
@@ -7280,25 +7314,7 @@
         "kind": 5,
         "importPath": "app.nadooit.settings",
         "description": "app.nadooit.settings",
-        "peekOfCode": "CELERY_TASK_SERIALIZER = \"json\"\n# Monky patching für kompatibilität mit SQlite\n# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden\nfrom django.db.models.query import QuerySet\ndef patched_distinct(self, *field_names):\n    if 'sqlite' in self.db.connection.vendor and field_names:\n        # Emulation von DISTINCT ON für SQLite\n        unique_fields = []\n        for field_name in field_names:\n            if '__' in field_name:",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "QuerySet._distinct_original",
-        "kind": 5,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "QuerySet._distinct_original = QuerySet.distinct\nQuerySet.distinct = patched_distinct",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "QuerySet.distinct",
-        "kind": 5,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "QuerySet.distinct = patched_distinct",
+        "peekOfCode": "CELERY_TASK_SERIALIZER = \"json\"",
         "detail": "app.nadooit.settings",
         "documentation": {}
     },
