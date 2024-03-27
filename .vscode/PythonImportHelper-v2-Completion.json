@@ -139,22 +139,6 @@
         "documentation": {}
     },
     {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "connections",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -3492,14 +3476,6 @@
         "documentation": {}
     },
     {
-        "label": "QuerySet",
-        "importPath": "django.db.models.query",
-        "description": "django.db.models.query",
-        "isExtraImport": true,
-        "detail": "django.db.models.query",
-        "documentation": {}
-    },
-    {
         "label": "mfa",
         "kind": 6,
         "isExtraImport": true,
@@ -6725,33 +6701,6 @@
         "documentation": {}
     },
     {
-        "label": "patched_distinct",
-        "kind": 2,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "def patched_distinct(self, *field_names):\n    # Zugriff auf den Datenbank-Connection-String über das connections-Dictionary\n    connection = connections[self.db]\n    if connection.vendor == 'sqlite' and field_names:\n        # Emulation von DISTINCT ON für SQLite\n        unique_fields = []\n        for field_name in field_names:\n            if '__' in field_name:\n                unique_fields.extend(field_name.split('__'))\n            else:",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "QuerySet._distinct_original",
-        "kind": 5,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "QuerySet._distinct_original = QuerySet.distinct\nQuerySet.distinct = patched_distinct\n# Build a path to the .env file\nenv_path = Path(__file__).resolve().parent.parent.parent / \".env\"\n# Load the .env file into the environment. This is done before the settings are loaded.\n# This is done to make sure that the environment variables are available when the settings are loaded.\n# Was required to make the environment variables available in the test_services.py file.\nload_dotenv(dotenv_path=env_path)\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\nBASE_DIR = Path(__file__).resolve().parent.parent",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
-        "label": "QuerySet.distinct",
-        "kind": 5,
-        "importPath": "app.nadooit.settings",
-        "description": "app.nadooit.settings",
-        "peekOfCode": "QuerySet.distinct = patched_distinct\n# Build a path to the .env file\nenv_path = Path(__file__).resolve().parent.parent.parent / \".env\"\n# Load the .env file into the environment. This is done before the settings are loaded.\n# This is done to make sure that the environment variables are available when the settings are loaded.\n# Was required to make the environment variables available in the test_services.py file.\nload_dotenv(dotenv_path=env_path)\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\nBASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production",
-        "detail": "app.nadooit.settings",
-        "documentation": {}
-    },
-    {
         "label": "env_path",
         "kind": 5,
         "importPath": "app.nadooit.settings",
@@ -8106,7 +8055,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee(\n    employee: Employee,\n):\n    customers_the_user_is_responsible_for_and_the_customer_programms = []\n    list_of_customer_program_manger_contract_for_logged_in_user = (\n        CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee, can_give_manager_role=True\n        ).distinct(\"contract__customer\")\n    )\n    # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user",
+        "peekOfCode": "def get__list_of_customers_the_employee_has_a_customer_programm_manager_contract_with_and_the_customer_programms__for__employee(\n    employee: Employee,\n):\n    customers_the_user_is_responsible_for_and_the_customer_programms = []\n    \"\"\" \n    list_of_customer_program_manger_contract_for_logged_in_user = (\n        CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee, can_give_manager_role=True\n        ).distinct(\"contract__customer\")\n    )",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8124,7 +8073,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(\n    employee,\n):\n    return TimeAccountManagerContract.objects.filter(\n        contract__employee=employee, can_give_manager_role=True\n    ).distinct(\"contract__customer\")\ndef create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(\n    user_code, customer, list_of_abilities, employee_creating_contract\n) -> TimeAccountManagerContract | None:\n    # check if there is an emplyee for that user code",
+        "peekOfCode": "def get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(\n    employee,\n):\n    \"\"\"     \n    return TimeAccountManagerContract.objects.filter(\n        contract__employee=employee, can_give_manager_role=True\n    ).distinct(\"contract__customer\")\n    \"\"\"\n    return TimeAccountManagerContract.objects.filter(\n        contract__employee=employee,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8151,7 +8100,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_customer_program_execution_manager_contracts__for__employee__where__employee_is_customer_program_execution_manager(\n    employee: Employee, contract_state=\"active\"\n):\n    if contract_state == \"active\":\n        return CustomerProgramExecutionManagerContract.objects.filter(\n            contract__employee=employee, contract__is_active=True\n        ).distinct(\"contract__customer\")\n    elif contract_state == \"inactive\":\n        return CustomerProgramExecutionManagerContract.objects.filter(\n            contract__employee=employee, contract__is_active=False",
+        "peekOfCode": "def get__list_of_customer_program_execution_manager_contracts__for__employee__where__employee_is_customer_program_execution_manager(\n    employee: Employee, contract_state=\"active\"\n):\n    \"\"\" \n    if contract_state == \"active\":\n        return CustomerProgramExecutionManagerContract.objects.filter(\n            contract__employee=employee, contract__is_active=True\n        ).distinct(\"contract__customer\")\n    elif contract_state == \"inactive\":\n        return CustomerProgramExecutionManagerContract.objects.filter(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8160,7 +8109,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(\n    employee: Employee, contract_state=\"active\"\n):\n    if contract_state == \"active\":\n        return CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee, contract__is_active=True\n        ).distinct(\"contract__customer\")\n    elif contract_state == \"inactive\":\n        return CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee, contract__is_active=False",
+        "peekOfCode": "def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(\n    employee: Employee, contract_state=\"active\"\n):\n    \"\"\" \n    if contract_state == \"active\":\n        return CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee, contract__is_active=True\n        ).distinct(\"contract__customer\")\n    elif contract_state == \"inactive\":\n        return CustomerProgramManagerContract.objects.filter(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8277,7 +8226,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def check__time_account_manager_contract__exists__for__employee_and_customer(\n    employee, customer\n) -> bool:\n    return TimeAccountManagerContract.objects.filter(\n        contract__employee=employee, contract__customer=customer\n    ).exists()\ndef get__list_of_customer_program_execution_manager_contract__for__employee(\n    employee: Employee,\n) -> List[CustomerProgramExecutionManagerContract]:\n    return CustomerProgramExecutionManagerContract.objects.filter(",
+        "peekOfCode": "def check__time_account_manager_contract__exists__for__employee_and_customer(\n    employee, customer\n) -> bool:\n    return TimeAccountManagerContract.objects.filter(\n        contract__employee=employee, contract__customer=customer\n    ).exists()\ndef get__list_of_customer_program_execution_manager_contract__for__employee(\n    employee: Employee,\n) -> List[CustomerProgramExecutionManagerContract]:\n    \"\"\" ",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8286,7 +8235,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_customer_program_execution_manager_contract__for__employee(\n    employee: Employee,\n) -> List[CustomerProgramExecutionManagerContract]:\n    return CustomerProgramExecutionManagerContract.objects.filter(\n        contract__employee=employee,\n        can_give_manager_role=True,\n    ).distinct(\"contract__customer\")\ndef get__customer_program_manager_contract__for__employee_and_customer(\n    employee: Employee, customer: Customer\n) -> CustomerProgramManagerContract:",
+        "peekOfCode": "def get__list_of_customer_program_execution_manager_contract__for__employee(\n    employee: Employee,\n) -> List[CustomerProgramExecutionManagerContract]:\n    \"\"\" \n    return CustomerProgramExecutionManagerContract.objects.filter(\n        contract__employee=employee,\n        can_give_manager_role=True,\n    ).distinct(\"contract__customer\")\n    \"\"\"\n    return CustomerProgramExecutionManagerContract.objects.filter(",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8493,7 +8442,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(\n    user,\n) -> List[EmployeeManagerContract]:\n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, can_add_new_employee=True\n    ).distinct(\"contract__customer\")\ndef get__list_of_employee_manager_contracts__for__user(\n    user,\n) -> List[EmployeeManagerContract]:\n    return EmployeeManagerContract.objects.filter(",
+        "peekOfCode": "def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(\n    user,\n) -> List[EmployeeManagerContract]:\n    \"\"\" \n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, can_add_new_employee=True\n    ).distinct(\"contract__customer\")\n    \"\"\"\n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8502,7 +8451,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_employee_manager_contracts__for__user(\n    user,\n) -> List[EmployeeManagerContract]:\n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,\n    ).distinct(\"contract__customer\")\ndef get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(\n    user,\n) -> List[Customer]:\n    list_of_employee_manager_contracts = (",
+        "peekOfCode": "def get__list_of_employee_manager_contracts__for__user(\n    user,\n) -> List[EmployeeManagerContract]:\n    \"\"\"     \n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,\n    ).distinct(\"contract__customer\")\n    \"\"\"\n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8529,7 +8478,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user(\n    user,\n) -> List[Customer]:\n    list_of_employee_manager_contract_for_logged_in_user = (\n        EmployeeManagerContract.objects.filter(\n            contract__employee=user.employee, can_give_manager_role=True\n        ).distinct(\"contract__customer\")\n    )\n    # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user\n    return get__list_of_customers__for__list_of_employee_manager_contracts(",
+        "peekOfCode": "def get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user(\n    user,\n) -> List[Customer]:\n    \"\"\" \n    list_of_employee_manager_contract_for_logged_in_user = (\n        EmployeeManagerContract.objects.filter(\n            contract__employee=user.employee, can_give_manager_role=True\n        ).distinct(\"contract__customer\")\n    )\n    \"\"\"",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8547,7 +8496,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_employee_manager_contract__with__given_abitly__for__user(\n    user, ability\n) -> List[EmployeeManagerContract]:\n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, **{ability: True}\n    ).distinct(\"contract__customer\")\ndef check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(\n    employee_manager: Employee, customer: Customer\n) -> bool:\n    return EmployeeManagerContract.objects.filter(",
+        "peekOfCode": "def get__list_of_employee_manager_contract__with__given_abitly__for__user(\n    user, ability\n) -> List[EmployeeManagerContract]:\n    \"\"\" \n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee, **{ability: True}\n    ).distinct(\"contract__customer\")\n    \"\"\"\n    return EmployeeManagerContract.objects.filter(\n        contract__employee=user.employee,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8853,7 +8802,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(\n    employee: Employee,\n) -> list[Customer]:\n    list_of_customers_the_manager_is_responsible_for = []\n    # order by updated_at\n    list_of_employee_manager_contract_for_logged_in_user = (\n        CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee,\n            can_give_manager_role=True,\n        ).distinct(\"contract__customer\")",
+        "peekOfCode": "def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract(\n    employee: Employee,\n) -> list[Customer]:\n    list_of_customers_the_manager_is_responsible_for = []\n    \"\"\" \n    # order by updated_at\n    list_of_employee_manager_contract_for_logged_in_user = (\n        CustomerProgramManagerContract.objects.filter(\n            contract__employee=employee,\n            can_give_manager_role=True,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
