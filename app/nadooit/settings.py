@@ -365,3 +365,27 @@ CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
+
+
+# Monky patching für kompatibilität mit SQlite
+
+# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden
+from django.db.models.query import QuerySet
+
+def patched_distinct(self, *field_names):
+    if 'sqlite' in self.db.connection.vendor and field_names:
+        # Emulation von DISTINCT ON für SQLite
+        unique_fields = []
+        for field_name in field_names:
+            if '__' in field_name:
+                unique_fields.extend(field_name.split('__'))
+            else:
+                unique_fields.append(field_name)
+        return self.order_by(*unique_fields).distinct()
+    else:
+        # Verwendung der Standardimplementierung für andere Datenbanken
+        return self._distinct_original(*field_names)
+
+# Monkey Patching der distinct-Methode des QuerySets
+QuerySet._distinct_original = QuerySet.distinct
+QuerySet.distinct = patched_distinct
