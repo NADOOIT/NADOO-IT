@@ -47,7 +47,7 @@ tzdata==2022.1
 ua-parser==0.18.0
 urllib3==1.26.18
 user-agents==2.2.0
-Werkzeug==2.3.8
+Werkzeug==3.0.1
 model_bakery
 django-htmx
 django-money
