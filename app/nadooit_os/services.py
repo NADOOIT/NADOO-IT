@@ -186,12 +186,26 @@ def get__list_of_customers_the_employee_has_a_customer_programm_manager_contract
 ):
 
     customers_the_user_is_responsible_for_and_the_customer_programms = []
-
+    
+    """ 
     list_of_customer_program_manger_contract_for_logged_in_user = (
         CustomerProgramManagerContract.objects.filter(
             contract__employee=employee, can_give_manager_role=True
         ).distinct("contract__customer")
     )
+    """
+    
+    list_of_customer_program_manger_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                can_give_manager_role=True
+            ).values_list('contract__customer', flat=True).distinct()
+        )
+    )
+
 
     # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
@@ -222,10 +236,21 @@ def check__active_customer_program_execution_manager_contract__exists__between__
 def get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(
     employee,
 ):
+    
+    """     
     return TimeAccountManagerContract.objects.filter(
         contract__employee=employee, can_give_manager_role=True
     ).distinct("contract__customer")
+    """
 
+    return TimeAccountManagerContract.objects.filter(
+        contract__employee=employee,
+        can_give_manager_role=True,
+        contract__customer__in=TimeAccountManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True
+        ).values_list('contract__customer', flat=True).distinct()
+    )
 
 def create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
     user_code, customer, list_of_abilities, employee_creating_contract
@@ -371,6 +396,8 @@ def create__employee_manager_contract__for__user_code_customer_and_list_of_abili
 def get__list_of_customer_program_execution_manager_contracts__for__employee__where__employee_is_customer_program_execution_manager(
     employee: Employee, contract_state="active"
 ):
+    
+    """ 
     if contract_state == "active":
         return CustomerProgramExecutionManagerContract.objects.filter(
             contract__employee=employee, contract__is_active=True
@@ -383,12 +410,38 @@ def get__list_of_customer_program_execution_manager_contracts__for__employee__wh
         return CustomerProgramExecutionManagerContract.objects.filter(
             contract__employee=employee
         ).distinct("contract__customer")
-
+    """
+    
+    if contract_state == "active":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=True,
+            contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=True
+            ).values_list('contract__customer', flat=True).distinct()
+        )
+    elif contract_state == "inactive":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=False,
+            contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=False
+            ).values_list('contract__customer', flat=True).distinct()
+        )
+    elif contract_state == "all":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee
+            ).values_list('contract__customer', flat=True).distinct()
+        )
 
 def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
     employee: Employee, contract_state="active"
 ):
-
+    """ 
     if contract_state == "active":
         return CustomerProgramManagerContract.objects.filter(
             contract__employee=employee, contract__is_active=True
@@ -401,6 +454,33 @@ def get__list_of_customer_program_manger_contracts__for__employee__where__employ
         return CustomerProgramManagerContract.objects.filter(
             contract__employee=employee
         ).distinct("contract__customer")
+    """
+     
+    if contract_state == "active":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=True,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=True
+            ).values_list('contract__customer', flat=True).distinct()
+        )
+    elif contract_state == "inactive":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=False,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=False
+            ).values_list('contract__customer', flat=True).distinct()
+        )
+    elif contract_state == "all":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee
+            ).values_list('contract__customer', flat=True).distinct()
+        )
 
 
 def get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
@@ -589,10 +669,21 @@ def get__list_of_customer_program_execution_manager_contract__for__employee(
     employee: Employee,
 ) -> List[CustomerProgramExecutionManagerContract]:
 
+    """ 
     return CustomerProgramExecutionManagerContract.objects.filter(
         contract__employee=employee,
         can_give_manager_role=True,
     ).distinct("contract__customer")
+    """
+
+    return CustomerProgramExecutionManagerContract.objects.filter(
+        contract__employee=employee,
+        can_give_manager_role=True,
+        contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True
+        ).values_list('contract__customer', flat=True).distinct()
+    )
 
 
 def get__customer_program_manager_contract__for__employee_and_customer(
@@ -998,17 +1089,39 @@ def get__list_of_customers__and__their_employees__for__customers_that_have_a_emp
 def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(
     user,
 ) -> List[EmployeeManagerContract]:
+    
+    """ 
     return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee, can_add_new_employee=True
     ).distinct("contract__customer")
+    """
+    
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
+        can_add_new_employee=True,
+        contract__customer__in=EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee,
+            can_add_new_employee=True
+        ).values_list('contract__customer', flat=True).distinct()
+    )
 
 
 def get__list_of_employee_manager_contracts__for__user(
     user,
 ) -> List[EmployeeManagerContract]:
+    
+    """     
     return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee,
     ).distinct("contract__customer")
+    """
+    
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
+        contract__customer__in=EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee
+        ).values_list('contract__customer', flat=True).distinct()
+    )
 
 
 def get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
@@ -1045,11 +1158,25 @@ def get__list_of_customers__for__employee_manager_contract__that_can_give_the_ro
     user,
 ) -> List[Customer]:
 
+    """ 
     list_of_employee_manager_contract_for_logged_in_user = (
         EmployeeManagerContract.objects.filter(
             contract__employee=user.employee, can_give_manager_role=True
         ).distinct("contract__customer")
     )
+    """
+
+    list_of_employee_manager_contract_for_logged_in_user = (
+        EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee,
+            can_give_manager_role=True,
+            contract__customer__in=EmployeeManagerContract.objects.filter(
+                contract__employee=user.employee,
+                can_give_manager_role=True
+            ).values_list('contract__customer', flat=True).distinct()
+        )
+    )
+
 
     # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
     return get__list_of_customers__for__list_of_employee_manager_contracts(
@@ -1082,9 +1209,20 @@ def get__list_of_employee_manager_contract__with__given_abitly__for__user(
     user, ability
 ) -> List[EmployeeManagerContract]:
 
+    """ 
     return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee, **{ability: True}
     ).distinct("contract__customer")
+    """
+
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
+        **{ability: True},
+        contract__customer__in=EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee,
+            **{ability: True}
+        ).values_list('contract__customer', flat=True).distinct()
+    )
 
 
 def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
@@ -1629,12 +1767,26 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
 
     list_of_customers_the_manager_is_responsible_for = []
 
+    """ 
     # order by updated_at
     list_of_employee_manager_contract_for_logged_in_user = (
         CustomerProgramManagerContract.objects.filter(
             contract__employee=employee,
             can_give_manager_role=True,
         ).distinct("contract__customer")
+    )
+    """
+    
+    # order by updated_at
+    list_of_employee_manager_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                can_give_manager_role=True
+            ).values_list('contract__customer', flat=True).distinct()
+        ).order_by('-contract__updated_at')
     )
 
     # get the list of customers the customer program manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
