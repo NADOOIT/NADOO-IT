@@ -22,6 +22,33 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+# Monky patching für kompatibilität mit SQlite
+
+from django.db import models, connections
+from django.db.models.query import QuerySet
+
+def patched_distinct(self, *field_names):
+    # Zugriff auf den Datenbank-Connection-String über das connections-Dictionary
+    connection = connections[self.db]
+    if connection.vendor == 'sqlite' and field_names:
+        # Emulation von DISTINCT ON für SQLite
+        unique_fields = []
+        for field_name in field_names:
+            if '__' in field_name:
+                unique_fields.extend(field_name.split('__'))
+            else:
+                unique_fields.append(field_name)
+        # Stellen Sie sicher, dass die Reihenfolge der Felder und die PK zur eindeutigen Identifizierung beibehalten werden
+        return self.order_by(*unique_fields, 'pk').distinct()
+    else:
+        # Verwendung der Standardimplementierung für andere Datenbanken
+        return self._distinct_original(*field_names)
+
+# Monkey Patching der distinct-Methode des QuerySets
+
+QuerySet._distinct_original = QuerySet.distinct
+QuerySet.distinct = patched_distinct
+
 # Build a path to the .env file
 env_path = Path(__file__).resolve().parent.parent.parent / ".env"
 
@@ -367,25 +394,4 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
 
 
-# Monky patching für kompatibilität mit SQlite
 
-# Stellen Sie sicher, dass Django vollständig geladen ist, um Importprobleme zu vermeiden
-from django.db.models.query import QuerySet
-
-def patched_distinct(self, *field_names):
-    if 'sqlite' in self.db.connection.vendor and field_names:
-        # Emulation von DISTINCT ON für SQLite
-        unique_fields = []
-        for field_name in field_names:
-            if '__' in field_name:
-                unique_fields.extend(field_name.split('__'))
-            else:
-                unique_fields.append(field_name)
-        return self.order_by(*unique_fields).distinct()
-    else:
-        # Verwendung der Standardimplementierung für andere Datenbanken
-        return self._distinct_original(*field_names)
-
-# Monkey Patching der distinct-Methode des QuerySets
-QuerySet._distinct_original = QuerySet.distinct
-QuerySet.distinct = patched_distinct
