@@ -53,6 +53,25 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 To test the api go to <https://127.0.0.1:8000/api/executions>
 
+def create__customer_program_execution__for__customer_program_id(customer_program_id):
+    data = {
+        "NADOOIT__API_KEY": nadooit_api_auth_data.get("NADOOIT__API_KEY"),
+        "NADOOIT__USER_CODE": nadooit_api_auth_data.get("NADOOIT__USER_CODE"),
+        "program_id": customer_program_id,
+    }
+    # production
+    res = requests.post("https://nadooit.de/api/executions", data=data)
+    
+    # development
+    """ 
+    res = requests.post(
+        "https://127.0.0.1:8000/api/executions",
+        data=data,
+        cert=("./certificate.crt", "./key.pem"),
+    )
+    """
+    return res.json()
+
 give as Content:
 {
         "NADOOIT__API_KEY" : "407de0db-1a05-4dbc-982c-7921318c1020",
