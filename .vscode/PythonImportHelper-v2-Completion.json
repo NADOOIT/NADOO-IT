@@ -7355,6 +7355,15 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgramExecutionAdmin",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.admin",
+        "description": "app.nadooit_api_executions_system.admin",
+        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    actions = ['delete_with_refund', 'delete_without_refund']\n    def delete_with_refund(self, request, queryset):\n        \"\"\"\n        Löscht die ausgewählten CustomerProgramExecution-Objekte und erstattet die Zeit dem zugehörigen Zeitkonto.\n        \"\"\"\n        for obj in queryset:\n            customer_program = obj.customer_program\n            customer_program.time_account.time_balance_in_seconds += obj.program_time_saved_in_seconds\n            customer_program.time_account.save()",
+        "detail": "app.nadooit_api_executions_system.admin",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiExecutionsSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.apps",
@@ -7369,24 +7378,6 @@
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
         "peekOfCode": "class CustomerProgramExecution(models.Model):\n    \"\"\"_summary_\n    model for a single execution of a nadooit program.\n    \"\"\"\n    class PaymentStatus(models.TextChoices):\n        NOT_PAID = \"NOT_PAID\", _(\"Not Paid\")\n        PAID = \"PAID\", _(\"Paid\")\n        REFUNDED = \"REFUNDED\", _(\"Refunded\")\n        REVOKED = \"REVOKED\", _(\"Revoked\")\n    # id of the execution",
-        "detail": "app.nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "cutomer_program_execution_was_created",
-        "kind": 2,
-        "importPath": "app.nadooit_api_executions_system.models",
-        "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        # gets the customer program of the execution\n        nadooit_customer_program = CustomerProgram.objects.get(\n            id=instance.customer_program.id\n        )\n        # gets the time account of the customer program and reduces it by the time saved by the program\n        nadooit_customer_program.time_account.time_balance_in_seconds = (\n            nadooit_customer_program.time_account.time_balance_in_seconds",
-        "detail": "app.nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "customer_program_execution_was_deleted",
-        "kind": 2,
-        "importPath": "app.nadooit_api_executions_system.models",
-        "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    \"\"\"\n        Whenever a customer program execution is deleted this signal is triggered.\n    Args:\n        sender (_type_): _description_\n        instance (_type_): _description_\n    \"\"\"\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = CustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
