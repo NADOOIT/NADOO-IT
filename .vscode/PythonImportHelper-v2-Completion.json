@@ -403,6 +403,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1154,6 +1170,14 @@
     },
     {
         "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -8658,7 +8682,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(\n    customer_program: CustomerProgram,\n):\n    print(\"get__price_for_new_customer_program_execution__for__cutomer_program\")\n    # The price for a program execution is calculated each time a new execution is added to the program\n    # First it is checked if there is currently time allocated to the program already\n    # If there is, the price for the exectution is 0 since the time is already paid for\n    # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated\n    # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution\n    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0",
+        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(\n    customer_program: CustomerProgram, time_saved_by_this_execution_in_seconds: Optional[int]=None\n):\n    print(\"get__price_for_new_customer_program_execution__for__cutomer_program\")\n    # The price for a program execution is calculated each time a new execution is added to the program\n    # First it is checked if there is currently time allocated to the program already\n    # If there is, the price for the exectution is 0 since the time is already paid for\n    # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated\n    # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution\n    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8667,7 +8691,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def create__customer_program_execution__for__customer_program(\n    customer_program: CustomerProgram,\n) -> CustomerProgramExecution:\n    print(\"create__customer_program_execution__for__customer_program\")\n    # Create a new customer program execution with the current price for an execution\n    customer_program_execution = CustomerProgramExecution.objects.create(\n        customer_program=customer_program,\n        program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,\n        price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(\n            customer_program",
+        "peekOfCode": "def create__customer_program_execution__for__customer_program(\n    customer_program: CustomerProgram, time_saved_by_this_exection: Optional[int] = None\n) -> CustomerProgramExecution:\n    print(\"create__customer_program_execution__for__customer_program\")\n    if not time_saved_by_this_exection:\n        print(f\"Using default time saved per execution of {customer_program.program_time_saved_per_execution_in_seconds} seconds\")\n        # Create a new customer program execution with the current price for an execution\n        customer_program_execution = CustomerProgramExecution.objects.create(\n            customer_program=customer_program,\n            price_per_second_at_the_time_of_execution = customer_program.price_per_second,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -9869,6 +9893,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0002_customerprogram_fixed_price_per_second",
+        "description": "app.nadooit_program_ownership_system.migrations.0002_customerprogram_fixed_price_per_second",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogram',\n            name='fixed_price_per_second',\n            field=models.BooleanField(default=True),\n        ),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0002_customerprogram_fixed_price_per_second",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramOwnershipSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.apps",
@@ -10710,7 +10743,7 @@
         "kind": 2,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n            #section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"",
+        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            #section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },

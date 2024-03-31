@@ -27,6 +27,29 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 7. use the following command to install the requirements
 
+
+    Mac:
+
+    docker compose -f docker-compose-dev-MAC_SQLite.yml build
+    docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py collectstatic --no-input
+    docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py import_templates
+    docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev-MAC_SQLite.yml up
+
+    Windows:
+
+    docker compose -f docker-compose-dev-WIN_SQLite.yml build
+    docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py makemigrations
+    docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py migrate
+    docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py collectstatic --no-input
+    docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py import_templates
+    docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py createsuperuser
+    docker-compose -f docker-compose-dev-WIN_SQLite.yml up
+
+    MySQL:
+
     Mac:
 
     docker compose -f docker-compose-dev-MAC_MYSQL.yml build

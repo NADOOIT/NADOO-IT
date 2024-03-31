@@ -31,6 +31,7 @@ from nadooit_time_account.models import CustomerTimeAccount, TimeAccount
 
 # logging
 import logging
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 
@@ -1535,7 +1536,7 @@ def reduce__time_account__by__time_in_seconds(
 
 
 def get__price_for_new_customer_program_execution__for__cutomer_program(
-    customer_program: CustomerProgram,
+    customer_program: CustomerProgram, time_saved_by_this_execution_in_seconds: Optional[int]=None
 ):
 
     print("get__price_for_new_customer_program_execution__for__cutomer_program")
@@ -1548,17 +1549,36 @@ def get__price_for_new_customer_program_execution__for__cutomer_program(
 
     time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0
 
+    if time_saved_by_this_execution_in_seconds:
+        
+        time_charged = time_saved_by_this_execution_in_seconds
+        
+    else:
+        time_charged = customer_program.program_time_saved_per_execution_in_seconds
+
+    print(
+        f"time_charged: {time_charged}"
+    )
+
+
+    print(f"Time accounted for by time account balance: {customer_program.time_account.time_balance_in_seconds}")
+
+    test_value = customer_program.time_account.time_balance_in_seconds - time_charged
+    
+    print(f"Time not accounted for by balance: {test_value}")
+
     # First it is checked if there is currently time allocated to the program already
     if (
         customer_program.time_account.time_balance_in_seconds
-        - customer_program.program_time_saved_per_execution_in_seconds
+        - time_charged
         >= 0
     ):
         # If there is, the price for the exectution is 0 since the time is already paid for
+        print("The time is already paid for, so the price is 0")
         return 0
     elif (
         customer_program.time_account.time_balance_in_seconds
-        - customer_program.program_time_saved_per_execution_in_seconds
+        - time_charged
         < 0
     ):
         print("customer_program.time_account", customer_program.time_account)
@@ -1567,33 +1587,58 @@ def get__price_for_new_customer_program_execution__for__cutomer_program(
         # the time is alwasys positive
         time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = abs(
             customer_program.time_account.time_balance_in_seconds
-            - customer_program.program_time_saved_per_execution_in_seconds
+            - time_charged
         )
 
         print(
-            time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+            f"There is only partially enough time allocated to the program. The time not covered is: {time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program}"
         )
 
-        return (
-            get__new_price_per_second__for__customer_program(customer_program)
-            * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
-        )
+        # check if there is a fixed price per second for this customer program and use that to calcualte the price
+        if customer_program.fixed_price_per_second:
+            print(
+                f"Using fixed price per second of {customer_program.fixed_price_per_second} for this customer program"
+            )
+            return (
+                customer_program.price_per_second
+                * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+                )
+        else:    
+            #else use the dynamic pricing
+            print(f"Getting dynamic price per second for customer program {customer_program.program.name}")
+            return (
+                get__new_price_per_second__for__customer_program(customer_program)
+                * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+            )
 
 
 def create__customer_program_execution__for__customer_program(
-    customer_program: CustomerProgram,
+    customer_program: CustomerProgram, time_saved_by_this_exection: Optional[int] = None
 ) -> CustomerProgramExecution:
 
     print("create__customer_program_execution__for__customer_program")
 
-    # Create a new customer program execution with the current price for an execution
-    customer_program_execution = CustomerProgramExecution.objects.create(
-        customer_program=customer_program,
-        program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,
-        price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(
-            customer_program
-        ),
-    )
+    if not time_saved_by_this_exection:
+        print(f"Using default time saved per execution of {customer_program.program_time_saved_per_execution_in_seconds} seconds")
+        # Create a new customer program execution with the current price for an execution
+        customer_program_execution = CustomerProgramExecution.objects.create(
+            customer_program=customer_program,
+            price_per_second_at_the_time_of_execution = customer_program.price_per_second,
+            program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,
+            price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(
+                customer_program
+            ),
+        )
+
+    else:
+        print(f"Using time saved of {time_saved_by_this_exection} seconds provided")
+        customer_program_execution = CustomerProgramExecution.objects.create(
+            customer_program = customer_program,
+            price_per_second_at_the_time_of_execution = customer_program.price_per_second,
+            program_time_saved_in_seconds = time_saved_by_this_exection,
+            price_for_execution = get__price_for_new_customer_program_execution__for__cutomer_program(customer_program, time_saved_by_this_exection)
+        )
+        
 
     print("customer_program_execution", customer_program_execution)
 
@@ -1606,7 +1651,9 @@ def create__customer_program_execution__for__customer_program(
 
     print("customer", customer_program.customer)
 
-    set__new_price_per_second__for__customer_program(customer_program)
+    if not customer_program.fixed_price_per_second:
+        set__new_price_per_second__for__customer_program(customer_program)
+
 
     return customer_program_execution
 
