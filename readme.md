@@ -261,7 +261,18 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 Create a directory for the database file and set the appropriate permissions by running:
     
-    docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch /app/db/db.sqlite3 && chmod -R 777 /app/db"
+    docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch app/db/db.sqlite3 && chmod -R 777 /app/db"
+
+If you get the following error:
+
+touch: cannot touch '/app/db/db.sqlite3': Permission denied
+
+Follow these steps:
+      
+      sudo touch app/db/db.sqlite3
+      
+      sudo chmod -R 777 /app/db
+
 
 ##### Running migrations
 
