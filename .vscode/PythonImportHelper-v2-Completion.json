@@ -10734,7 +10734,7 @@
         "kind": 2,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            #section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"",
+        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            #section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        #TODO: Replace this with the actual logic for finding the most successful Section_Order/ any that exists\n        return Section_Order.objects.get(",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
@@ -10878,7 +10878,7 @@
         "kind": 5,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nsession_tick = 5\n\"\"\" \n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nsession_tick = 5\n\"\"\"\n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
@@ -10887,7 +10887,7 @@
         "kind": 5,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "session_tick = 5\n\"\"\" \n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):\n    return embeddings[signal_id]",
+        "peekOfCode": "session_tick = 5\n\"\"\"\n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):\n    return embeddings[signal_id]",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
