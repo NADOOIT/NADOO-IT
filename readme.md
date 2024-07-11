@@ -260,11 +260,13 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 #### Create the SQLite Database File (if it doesn't already exist)
 
 Create a directory for the database file and set the appropriate permissions by running:
-    - docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch /app/db/db.sqlite3 && chmod -R 777 /app/db"
+    
+    docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch /app/db/db.sqlite3 && chmod -R 777 /app/db"
 
 ##### Running migrations
 
 1. The database needs to be migrated before the server can be started. To do this, run the following command:
+   
       docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
       docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput
       docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
