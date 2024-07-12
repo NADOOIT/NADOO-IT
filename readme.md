@@ -278,9 +278,9 @@ Follow these steps:
 
 1. The database needs to be migrated before the server can be started. To do this, run the following command:
    
-      docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
-      docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput
-      docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
+         docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
+         docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput
+         docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
 
 ##### Creating superuser
 
