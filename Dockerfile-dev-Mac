@@ -1,59 +1,45 @@
-FROM python:3.10-slim-buster
-LABEL maintainer="nadooit.de"
+# Use Python Alpine image (much smaller)
+FROM python:3.9-alpine
 
-ENV PYTHONUNBUFFERED 1
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    IMAGEIO_FFMPEG_EXE=/usr/bin/ffmpeg
 
-COPY requirements-dev.txt /requirements.txt
-
-RUN mkdir /app
-COPY app/ /app
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    build-essential \
-    curl \
-    git \
-    gcc \
-    libc-dev \
-    ffmpeg \
-    default-libmysqlclient-dev \ 
-    pkg-config
-RUN unset https_proxy
-
-RUN mkdir -p /vol/web/static/media
-RUN mkdir -p /vol/web/static/static
-RUN mkdir -p /home/django/.postgresql/
-
-#OLD RUN adduser -D --disabled-password --no-create-home django
-RUN adduser --disabled-password --gecos "" django
-
-RUN chown -R django:django app/
-RUN chown -R django:django /vol
-
-RUN chmod -R 755 app/
-RUN chmod -R 755 /vol/web
+# Set work directory
 WORKDIR /app
 
+# Install git and build dependencies
+RUN apk add --no-cache git make gcc g++ musl-dev \
+    freetype-dev jpeg-dev zlib-dev \
+    linux-headers libffi-dev curl \
+    ffmpeg
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
+COPY . /app/
+
+# Set work directory to where manage.py is located
+WORKDIR /app/app
+
+# Create directories for static and media files
+RUN mkdir -p /vol/web/static && \
+    mkdir -p /vol/web/media && \
+    chmod -R 755 /vol/web
+
+# Fix line endings and make entrypoint script executable
+RUN sed -i 's/\r$//' /app/app/entrypoint.sh && \
+    chmod +x /app/app/entrypoint.sh
+
+# Expose port 8000
 EXPOSE 8000
 
-RUN chown -R django:django /app
-RUN chown -R django:django /home/django
-RUN chmod 755 /home/django
-RUN chmod 755 /app
-USER django
+# Add healthcheck
+HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8000/ || exit 1
 
-RUN pip install --upgrade pip
-RUN pip install --upgrade cython
-RUN pip install -r /requirements.txt 
-
-USER root
-
-RUN apt-get purge -y --auto-remove \
-    build-essential \
-    curl \
-    git \
-    gcc \
-    libc-dev \
-    linux-headers-amd64
-
-USER django
+# Set the default command
+ENTRYPOINT ["/app/app/entrypoint.sh"]
