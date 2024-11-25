@@ -1736,3 +1736,1809 @@ INFO end_of_session_sections seen_sections: <QuerySet []>
 INFO end_of_session_sections session.variant: control
 INFO User category: fast_and_not_engaged
 INFO end_of_session_sections next_section: None
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffbbdd37c0>> raised: ModuleNotFoundError("No module named 'moviepy.editor'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/home/django/.local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/django/.local/lib/python3.10/site-packages/django/apps/registry.py", line 124, in populate
+    app_config.ready()
+  File "/home/django/.local/lib/python3.10/site-packages/django/contrib/admin/apps.py", line 27, in ready
+    self.module.autodiscover()
+  File "/home/django/.local/lib/python3.10/site-packages/django/contrib/admin/__init__.py", line 52, in autodiscover
+    autodiscover_modules("admin", register_to=site)
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/module_loading.py", line 58, in autodiscover_modules
+    import_module("%s.%s" % (app_config.name, module_to_search))
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/admin/__init__.py", line 2, in <module>
+    from .video import *
+  File "/app/nadooit_website/admin/video.py", line 11, in <module>
+    from nadooit_website.tasks.video import cleanup_video_files
+  File "/app/nadooit_website/tasks/__init__.py", line 3, in <module>
+    from .video import *
+  File "/app/nadooit_website/tasks/video.py", line 11, in <module>
+    from moviepy.editor import VideoFileClip
+ModuleNotFoundError: No module named 'moviepy.editor'
+ERROR Signal handler <promise@0xffffbbd913a0 --> <bound method Celery._autodiscover_tasks of <Celery nadooit at 0xffffbbdd0100>>> raised: ModuleNotFoundError("No module named 'moviepy.editor'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/vine/promises.py", line 161, in __call__
+    return self.throw()
+  File "/home/django/.local/lib/python3.10/site-packages/vine/promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 693, in _autodiscover_tasks_from_names
+    return self.loader.autodiscover_tasks(
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 221, in autodiscover_tasks
+    mod.__name__ for mod in autodiscover_tasks(packages or (),
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 247, in autodiscover_tasks
+    return [find_related_module(pkg, related_name) for pkg in packages]
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 247, in <listcomp>
+    return [find_related_module(pkg, related_name) for pkg in packages]
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 272, in find_related_module
+    raise e
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 268, in find_related_module
+    return importlib.import_module(module_name)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/tasks/__init__.py", line 3, in <module>
+    from .video import *
+  File "/app/nadooit_website/tasks/video.py", line 11, in <module>
+    from moviepy.editor import VideoFileClip
+ModuleNotFoundError: No module named 'moviepy.editor'
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffffb31837c0>> raised: ModuleNotFoundError("No module named 'moviepy.editor'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/home/django/.local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/django/.local/lib/python3.10/site-packages/django/apps/registry.py", line 124, in populate
+    app_config.ready()
+  File "/home/django/.local/lib/python3.10/site-packages/django/contrib/admin/apps.py", line 27, in ready
+    self.module.autodiscover()
+  File "/home/django/.local/lib/python3.10/site-packages/django/contrib/admin/__init__.py", line 52, in autodiscover
+    autodiscover_modules("admin", register_to=site)
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/module_loading.py", line 58, in autodiscover_modules
+    import_module("%s.%s" % (app_config.name, module_to_search))
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/admin/__init__.py", line 2, in <module>
+    from .video import *
+  File "/app/nadooit_website/admin/video.py", line 11, in <module>
+    from nadooit_website.tasks.video import cleanup_video_files
+  File "/app/nadooit_website/tasks/__init__.py", line 3, in <module>
+    from .video import *
+  File "/app/nadooit_website/tasks/video.py", line 11, in <module>
+    from moviepy.editor import VideoFileClip
+ModuleNotFoundError: No module named 'moviepy.editor'
+ERROR Signal handler <promise@0xffffb31493a0 --> <bound method Celery._autodiscover_tasks of <Celery nadooit at 0xffffb3180100>>> raised: ModuleNotFoundError("No module named 'moviepy.editor'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/vine/promises.py", line 161, in __call__
+    return self.throw()
+  File "/home/django/.local/lib/python3.10/site-packages/vine/promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 693, in _autodiscover_tasks_from_names
+    return self.loader.autodiscover_tasks(
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 221, in autodiscover_tasks
+    mod.__name__ for mod in autodiscover_tasks(packages or (),
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 247, in autodiscover_tasks
+    return [find_related_module(pkg, related_name) for pkg in packages]
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 247, in <listcomp>
+    return [find_related_module(pkg, related_name) for pkg in packages]
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 272, in find_related_module
+    raise e
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 268, in find_related_module
+    return importlib.import_module(module_name)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/tasks/__init__.py", line 3, in <module>
+    from .video import *
+  File "/app/nadooit_website/tasks/video.py", line 11, in <module>
+    from moviepy.editor import VideoFileClip
+ModuleNotFoundError: No module named 'moviepy.editor'
+ERROR Signal handler <bound method DjangoFixup.on_import_modules of <celery.fixups.django.DjangoFixup object at 0xffff874aff40>> raised: ModuleNotFoundError("No module named 'moviepy.editor'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 82, in on_import_modules
+    self.worker_fixup.validate_models()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 120, in validate_models
+    self.django_setup()
+  File "/home/django/.local/lib/python3.10/site-packages/celery/fixups/django.py", line 116, in django_setup
+    django.setup()
+  File "/home/django/.local/lib/python3.10/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/django/.local/lib/python3.10/site-packages/django/apps/registry.py", line 124, in populate
+    app_config.ready()
+  File "/home/django/.local/lib/python3.10/site-packages/django/contrib/admin/apps.py", line 27, in ready
+    self.module.autodiscover()
+  File "/home/django/.local/lib/python3.10/site-packages/django/contrib/admin/__init__.py", line 52, in autodiscover
+    autodiscover_modules("admin", register_to=site)
+  File "/home/django/.local/lib/python3.10/site-packages/django/utils/module_loading.py", line 58, in autodiscover_modules
+    import_module("%s.%s" % (app_config.name, module_to_search))
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/admin/__init__.py", line 2, in <module>
+    from .video import *
+  File "/app/nadooit_website/admin/video.py", line 11, in <module>
+    from nadooit_website.tasks.video import cleanup_video_files
+  File "/app/nadooit_website/tasks/__init__.py", line 3, in <module>
+    from .video import *
+  File "/app/nadooit_website/tasks/video.py", line 11, in <module>
+    from moviepy.editor import VideoFileClip
+ModuleNotFoundError: No module named 'moviepy.editor'
+ERROR Signal handler <promise@0xffff874a54e0 --> <bound method Celery._autodiscover_tasks of <Celery nadooit at 0xffff874ac100>>> raised: ModuleNotFoundError("No module named 'moviepy.editor'")
+Traceback (most recent call last):
+  File "/home/django/.local/lib/python3.10/site-packages/celery/utils/dispatch/signal.py", line 276, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "/home/django/.local/lib/python3.10/site-packages/vine/promises.py", line 161, in __call__
+    return self.throw()
+  File "/home/django/.local/lib/python3.10/site-packages/vine/promises.py", line 158, in __call__
+    retval = fun(*final_args, **final_kwargs)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 689, in _autodiscover_tasks
+    return self._autodiscover_tasks_from_fixups(related_name)
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 698, in _autodiscover_tasks_from_fixups
+    return self._autodiscover_tasks_from_names([
+  File "/home/django/.local/lib/python3.10/site-packages/celery/app/base.py", line 693, in _autodiscover_tasks_from_names
+    return self.loader.autodiscover_tasks(
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 221, in autodiscover_tasks
+    mod.__name__ for mod in autodiscover_tasks(packages or (),
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 247, in autodiscover_tasks
+    return [find_related_module(pkg, related_name) for pkg in packages]
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 247, in <listcomp>
+    return [find_related_module(pkg, related_name) for pkg in packages]
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 272, in find_related_module
+    raise e
+  File "/home/django/.local/lib/python3.10/site-packages/celery/loaders/base.py", line 268, in find_related_module
+    return importlib.import_module(module_name)
+  File "/usr/local/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/app/nadooit_website/tasks/__init__.py", line 3, in <module>
+    from .video import *
+  File "/app/nadooit_website/tasks/video.py", line 11, in <module>
+    from moviepy.editor import VideoFileClip
+ModuleNotFoundError: No module named 'moviepy.editor'
+INFO Watching for file changes with StatReloader
+INFO Watching for file changes with StatReloader
+INFO /app/app/nadooit_time_account/models.py changed, reloading.
+INFO Watching for file changes with StatReloader
+INFO generated new fontManager
+INFO Watching for file changes with StatReloader
+INFO generated new fontManager
+INFO generated new fontManager
+INFO Watching for file changes with StatReloader
+INFO generated new fontManager
+INFO Watching for file changes with StatReloader
+ERROR Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/views.py", line 63, in new_index
+    session_id = create__session()
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/services.py", line 510, in create__session
+    section_order = get_most_successful_section_order()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/services.py", line 534, in get_most_successful_section_order
+    return Section_Order.objects.get(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+nadooit_website.models.Section_Order.DoesNotExist: Section_Order matching query does not exist.
+ERROR Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/views.py", line 63, in new_index
+    session_id = create__session()
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/services.py", line 510, in create__session
+    section_order = get_most_successful_section_order()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/services.py", line 534, in get_most_successful_section_order
+    return Section_Order.objects.get(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+nadooit_website.models.Section_Order.DoesNotExist: Section_Order matching query does not exist.
+WARNING No hostname was supplied. Reverting to default 'localhost'
+ERROR Internal Server Error: /
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/views.py", line 63, in new_index
+    session_id = create__session()
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/services.py", line 510, in create__session
+    section_order = get_most_successful_section_order()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/christophbackhaus/Documents/GitHub/NADOO-IT/app/nadooit_website/services.py", line 534, in get_most_successful_section_order
+    return Section_Order.objects.get(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/db/models/query.py", line 649, in get
+    raise self.model.DoesNotExist(
+nadooit_website.models.Section_Order.DoesNotExist: Section_Order matching query does not exist.
+WARNING Not Found: /robots.txt
+WARNING Not Found: /robots.txt
+WARNING Not Found: /robots.txt
+WARNING Not Found: /robots.txt
+ERROR Internal Server Error: /test/
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 875, in _resolve_lookup
+    current = current[bit]
+              ~~~~~~~^^^^^
+TypeError: 'SQLPanel' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/urls/base.py", line 71, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'djdt'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/debug_toolbar/middleware.py", line 74, in __call__
+    rendered = toolbar.render_toolbar()
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/debug_toolbar/toolbar.py", line 79, in render_toolbar
+    return render_to_string("debug_toolbar/base.html", context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/loader_tags.py", line 210, in render
+    return template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 173, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1059, in render
+    output = self.filter_expression.resolve(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 710, in resolve
+    obj = self.var.resolve(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 842, in resolve
+    value = self._resolve_lookup(context)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 885, in _resolve_lookup
+    current = getattr(current, bit)
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/debug_toolbar/panels/__init__.py", line 104, in content
+    return render_to_string(self.template, self.get_stats())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/test/utils.py", line 111, in instrumented_test_render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 242, in render
+    nodelist.append(node.render_annotated(context))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 326, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 1000, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/base.py", line 961, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/template/defaulttags.py", line 479, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/django/urls/base.py", line 82, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'djdt' is not a registered namespace
+WARNING Not Found: /robots.txt
+WARNING Not Found: /robots.txt
+WARNING Not Found: /robots.txt
+WARNING Not Found: /test/
+WARNING Not Found: /robots.txt
+WARNING Not Found: /robots.txt
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Not Found: /robots.txt
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+WARNING Forbidden (Referer checking failed - no Referer.): /csrf-test/
+INFO generated new fontManager
+INFO Watching for file changes with StatReloader
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /favicon.ico
+WARNING "GET /favicon.ico HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /favicon.ico
+WARNING "GET /favicon.ico HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+ERROR Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/usr/local/lib/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/usr/local/lib/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING Bad Request: /
+WARNING "GET / HTTP/1.1" 400 143
+INFO generated new fontManager
+INFO Watching for file changes with StatReloader
+INFO /app/app/nadooit/settings.py changed, reloading.
+INFO Watching for file changes with StatReloader
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16424
+INFO generated new fontManager
+INFO Watching for file changes with StatReloader
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 7033
+INFO "GET /static/static/nadooit_website/css/style.css HTTP/1.1" 200 15165
+INFO "GET /static/static/nadooit_website/png/logo/nadooit.png HTTP/1.1" 200 79599
+INFO "GET /static/static/videojs/video-js.min.css HTTP/1.1" 200 43856
+INFO "GET /static/static/nadooit_website/js/app.js HTTP/1.1" 200 2718
+INFO "GET /static/static/videojs/video.min.js HTTP/1.1" 200 558087
+INFO "GET /serviceworker.js HTTP/1.1" 200 1722
+INFO "GET /static/static/nadooit_website/js/nadooit_logic.js HTTP/1.1" 200 1610
+INFO end_of_session_sections htmx
+WARNING "GET /static/static/static/appicon/maskable_icon_x48.png HTTP/1.1" 404 1888
+WARNING "GET /static/static/static/nadooit_website/css/style.css HTTP/1.1" 404 1888
+INFO end_of_session_sections valid session
+INFO "GET /offline HTTP/1.1" 301 0
+INFO "GET /manifest.json HTTP/1.1" 200 402
+INFO "GET /static/static/nadooit_website/favicon/nadooit-fav-icon.ico HTTP/1.1" 200 811
+INFO end_of_session_sections session: 627ede32-9388-42c0-924a-3627ff8a206a 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections next_section: None
+INFO "POST /end_of_session_sections/627ede32-9388-42c0-924a-3627ff8a206a/60d24b49-2238-4cf0-a4fe-6637e40a2696 HTTP/1.1" 200 27
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 7033
+INFO "GET /serviceworker.js HTTP/1.1" 200 1722
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+WARNING "GET /static/static/static/appicon/maskable_icon_x48.png HTTP/1.1" 404 1888
+INFO "GET /manifest.json HTTP/1.1" 200 402
+WARNING "GET /static/static/static/nadooit_website/css/style.css HTTP/1.1" 404 1888
+INFO "GET /offline HTTP/1.1" 301 0
+INFO end_of_session_sections session: d5318148-1948-4ab3-84b2-9090d49afb25 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections next_section: None
+INFO "POST /end_of_session_sections/d5318148-1948-4ab3-84b2-9090d49afb25/60d24b49-2238-4cf0-a4fe-6637e40a2696 HTTP/1.1" 200 27
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO "GET /impressum HTTP/1.1" 200 7742
+INFO "GET /serviceworker.js HTTP/1.1" 200 1722
+INFO "GET /manifest.json HTTP/1.1" 200 402
+WARNING "GET /static/static/static/nadooit_website/css/style.css HTTP/1.1" 404 1888
+WARNING "GET /static/static/static/appicon/maskable_icon_x48.png HTTP/1.1" 404 1888
+INFO "GET /offline/ HTTP/1.1" 200 265
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO "GET /datenschutz HTTP/1.1" 200 27557
+INFO "GET /serviceworker.js HTTP/1.1" 200 1722
+WARNING "GET /static/static/static/nadooit_website/css/style.css HTTP/1.1" 404 1888
+INFO "GET /offline/ HTTP/1.1" 200 265
+WARNING "GET /static/static/static/appicon/maskable_icon_x48.png HTTP/1.1" 404 1888
+INFO "GET /manifest.json HTTP/1.1" 200 402
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 7033
+INFO "GET /serviceworker.js HTTP/1.1" 200 1722
+INFO end_of_session_sections htmx
+INFO end_of_session_sections valid session
+INFO "GET /offline/ HTTP/1.1" 200 265
+INFO "GET /manifest.json HTTP/1.1" 200 402
+WARNING "GET /static/static/static/nadooit_website/css/style.css HTTP/1.1" 404 1888
+WARNING "GET /static/static/static/appicon/maskable_icon_x48.png HTTP/1.1" 404 1888
+INFO end_of_session_sections session: c13c67b4-5bc6-4fc8-8042-ccd104da2643 0 10 False
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections next_section: None
+INFO "POST /end_of_session_sections/c13c67b4-5bc6-4fc8-8042-ccd104da2643/60d24b49-2238-4cf0-a4fe-6637e40a2696 HTTP/1.1" 200 27
+INFO "POST /session_is_active_signal/c13c67b4-5bc6-4fc8-8042-ccd104da2643 HTTP/1.1" 200 0
+INFO "POST /session_is_active_signal/c13c67b4-5bc6-4fc8-8042-ccd104da2643 HTTP/1.1" 200 0
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16424
+INFO "GET /admin HTTP/1.1" 301 0
+INFO "POST /session_is_active_signal/c13c67b4-5bc6-4fc8-8042-ccd104da2643 HTTP/1.1" 200 0
+INFO "GET /admin/ HTTP/1.1" 302 0
+INFO "GET /admin/login/?next=/admin/ HTTP/1.1" 200 6177
+INFO "GET /static/grappelli/jquery/ui/jquery-ui.min.css HTTP/1.1" 200 29614
+INFO "GET /static/grappelli/jquery/jquery-migrate-3.0.1.min.js HTTP/1.1" 200 11421
+INFO "GET /static/grappelli/stylesheets/mueller/grid/output.css HTTP/1.1" 200 36537
+INFO "GET /static/grappelli/jquery/jquery.min.js HTTP/1.1" 200 89501
+INFO "GET /static/grappelli/js/grappelli.min.js HTTP/1.1" 200 27906
+INFO "GET /static/grappelli/stylesheets/screen.css HTTP/1.1" 200 127982
+INFO "GET /static/grappelli/jquery/ui/jquery-ui.min.js HTTP/1.1" 200 255084
+WARNING Not Found: /favicon.ico
+WARNING "GET /favicon.ico HTTP/1.1" 404 6125
+INFO "POST /admin/login/?next=/admin/ HTTP/1.1" 200 6444
+INFO "POST /admin/login/?next=/admin/ HTTP/1.1" 200 6444
+INFO "POST /admin/login/?next=/admin/ HTTP/1.1" 200 6517
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16423
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16423
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 7033
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 7033
+INFO "GET /serviceworker.js HTTP/1.1" 200 1722
+INFO "GET /offline/ HTTP/1.1" 200 265
+INFO end_of_session_sections htmx
+WARNING "GET /static/static/static/nadooit_website/css/style.css HTTP/1.1" 404 1888
+INFO end_of_session_sections htmx
+WARNING "GET /static/static/static/appicon/maskable_icon_x48.png HTTP/1.1" 404 1888
+INFO end_of_session_sections valid session
+INFO end_of_session_sections valid session
+INFO end_of_session_sections session: 7c018e05-3b8a-47df-bdb4-8ca5c29a96cb 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO "GET /manifest.json HTTP/1.1" 200 402
+INFO "GET /manifest.json HTTP/1.1" 200 402
+INFO end_of_session_sections session: a72ba138-3dae-4b2d-8c36-f0207d30d8d7 0 10 False
+INFO User category: fast_and_not_engaged
+INFO end_of_session_sections user_category: fast_and_not_engaged
+INFO end_of_session_sections seen_sections: <QuerySet []>
+INFO end_of_session_sections session.variant: control
+INFO User category: fast_and_not_engaged
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO end_of_session_sections next_section: None
+WARNING "GET /static/static/static/appicon/maskable_icon_x192.png HTTP/1.1" 404 1891
+INFO User category: fast_and_not_engaged
+INFO "POST /end_of_session_sections/7c018e05-3b8a-47df-bdb4-8ca5c29a96cb/60d24b49-2238-4cf0-a4fe-6637e40a2696 HTTP/1.1" 200 27
+INFO end_of_session_sections next_section: None
+INFO "POST /end_of_session_sections/a72ba138-3dae-4b2d-8c36-f0207d30d8d7/60d24b49-2238-4cf0-a4fe-6637e40a2696 HTTP/1.1" 200 27
+INFO "GET /admin/ HTTP/1.1" 302 0
+INFO "GET /admin/login/?next=/admin/ HTTP/1.1" 200 6177
+INFO "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO "GET /admin/ HTTP/1.1" 200 45404
+INFO "GET /static/grappelli/images/spritesheet-1694777276.png HTTP/1.1" 200 25228
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16424
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16423
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO Section: <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO <section>
+
+    <div class="banner">
+
+        <div class="our-grantee aos-init aos-animate" data-aos="fade-up">
+
+            <h1>Alles ohne Abos!</h1>
+
+            <h1>und</h1>
+
+            <h1>Wartungsgebühren</h1>
+
+        </div>
+
+    </div>
+
+</section>
+INFO "GET / HTTP/1.1" 200 16422

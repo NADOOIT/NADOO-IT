@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% if article %}Edit Article{% else %}Create Article{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">
+            {% if article %}Edit Article{% else %}Create New Article{% endif %}
+        </h1>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="space-y-2">
+                <label for="{{ field.id_for_label }}" 
+                       class="block text-sm font-medium text-gray-700">
+                    {{ field.label }}
+                </label>
+                
+                {% if field.name == 'content' %}
+                <div class="mt-1 relative">
+                    {{ field }}
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <span class="text-gray-500 text-sm" id="content-warning" style="display: none;">
+                            Contains potentially unsafe HTML
+                        </span>
+                    </div>
+                </div>
+                {% else %}
+                <div class="mt-1">
+                    {{ field }}
+                </div>
+                {% endif %}
+                
+                {% if field.help_text %}
+                <p class="mt-2 text-sm text-gray-500">{{ field.help_text }}</p>
+                {% endif %}
+                
+                {% if field.errors %}
+                <div class="mt-2 text-red-600 text-sm">
+                    {% for error in field.errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="flex justify-end space-x-4">
+                <a href="{% if article %}{{ article.get_absolute_url }}{% else %}{% url 'nadooit_articles:article_list' %}{% endif %}"
+                   class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                    Cancel
+                </a>
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                    {% if article %}Save Changes{% else %}Create Article{% endif %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Content safety check
+    const contentField = document.querySelector('#id_content');
+    const contentWarning = document.querySelector('#content-warning');
+    
+    contentField.addEventListener('input', function() {
+        const unsafePatterns = [
+            /<script/i,
+            /javascript:/i,
+            /onclick/i,
+            /onerror/i,
+            /onload/i,
+            /onmouseover/i
+        ];
+        
+        const hasUnsafeContent = unsafePatterns.some(pattern => 
+            pattern.test(this.value)
+        );
+        
+        contentWarning.style.display = hasUnsafeContent ? 'block' : 'none';
+    });
+</script>
+{% endblock %}

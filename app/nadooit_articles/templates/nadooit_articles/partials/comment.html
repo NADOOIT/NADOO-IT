@@ -1,0 +1,66 @@
+{% load static %}
+
+<div class="bg-gray-50 rounded-lg p-4 {% if not comment.parent %}border-l-4 border-blue-500{% endif %}">
+    <div class="flex justify-between items-start">
+        <div class="flex items-center space-x-2">
+            <span class="font-medium">{{ comment.author.username }}</span>
+            <span class="text-gray-500 text-sm">
+                {{ comment.created_at|timesince }} ago
+            </span>
+        </div>
+        {% if user.is_authenticated %}
+        <button class="text-gray-500 hover:text-blue-600 text-sm"
+                onclick="toggleReplyForm('{{ comment.id }}')">
+            Reply
+        </button>
+        {% endif %}
+    </div>
+
+    <div class="mt-2 text-gray-700">
+        {{ comment.content|linebreaks }}
+    </div>
+
+    {% if user.is_authenticated %}
+    <div id="reply-form-{{ comment.id }}" class="mt-4 hidden">
+        <form hx-post="{% url 'nadooit_articles:comment_create' article.id %}"
+              hx-target="#replies-{{ comment.id }}"
+              hx-swap="afterbegin"
+              class="space-y-3">
+            {% csrf_token %}
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <textarea name="content" rows="2"
+                      class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Write your reply..."></textarea>
+            <div class="flex justify-end space-x-2">
+                <button type="button" 
+                        onclick="toggleReplyForm('{{ comment.id }}')"
+                        class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                    Cancel
+                </button>
+                <button type="submit"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                    Reply
+                </button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+
+    <div id="replies-{{ comment.id }}" class="mt-4 space-y-4 pl-4">
+        {% for reply in comment.replies.all %}
+            {% include "nadooit_articles/partials/comment_reply.html" with comment=reply %}
+        {% endfor %}
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+    function toggleReplyForm(commentId) {
+        const form = document.getElementById(`reply-form-${commentId}`);
+        form.classList.toggle('hidden');
+        if (!form.classList.contains('hidden')) {
+            form.querySelector('textarea').focus();
+        }
+    }
+</script>
+{% endblock %}

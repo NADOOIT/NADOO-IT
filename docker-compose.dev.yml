@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev-Mac
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/app
+      - ./data/web:/vol/web
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_DEBUG=1
+      - DJANGO_SECRET_KEY=devsecretkey
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+      - DJANGO_SETTINGS_MODULE=nadooit.settings
+    depends_on:
+      - redis
+      - db
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_DATABASE=nadooit
+      - MYSQL_USER=nadooit
+      - MYSQL_PASSWORD=nadooit
+      - MYSQL_ROOT_PASSWORD=nadooit
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev-Mac
+    command: celery -A nadooit worker -l info
+    volumes:
+      - ./app:/app
+    environment:
+      - DJANGO_DEBUG=1
+      - DJANGO_SECRET_KEY=devsecretkey
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+      - DJANGO_SETTINGS_MODULE=nadooit.settings
+    depends_on:
+      - redis
+      - web
+      - db
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev-Mac
+    command: python manage.py test nadooit.tests nadooit_auth.tests --settings=nadooit.tests.test_settings
+    volumes:
+      - ./app:/app
+    environment:
+      - DJANGO_DEBUG=0
+      - DJANGO_SECRET_KEY=testsecretkey
+      - DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+      - DJANGO_SETTINGS_MODULE=nadooit.tests.test_settings
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

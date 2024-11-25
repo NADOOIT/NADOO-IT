@@ -6,7 +6,7 @@ import re
 import uuid
 from datetime import datetime
 from decimal import Decimal
-from typing import List, Union
+from typing import List, Optional, Union
 
 # import Q for filtering
 from django.db.models import Q, QuerySet
@@ -255,7 +255,7 @@ def get__list_of_time_account_manager_contracts__for__employee__where__employee_
 
 def create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
     user_code, customer, list_of_abilities, employee_creating_contract
-) -> TimeAccountManagerContract | None:
+) -> Optional[TimeAccountManagerContract]:
 
     # check if there is an emplyee for that user code
     if not check__employee__exists__for__user_code(user_code):
@@ -327,7 +327,7 @@ def create__employee_manager_contract__for__user_code_customer_and_list_of_abili
     customer: Customer,
     list_of_abilities,
     employee_creating_contract: Employee,
-) -> EmployeeManagerContract | None:
+) -> Optional[EmployeeManagerContract]:
 
     # check if there is an emplyee for that user code
     if not check__employee__exists__for__user_code(user_code):
@@ -607,7 +607,7 @@ def check__employee__exists__for__user_code(user_code) -> bool:
 
 
 # Creates and returns a new employee  for the given user code
-def create__employee__for__user_code(user_code) -> Employee | None:
+def create__employee__for__user_code(user_code) -> Optional[Employee]:
 
     if not check__employee__exists__for__user_code(user_code):
         # create new employee for the user_code
@@ -627,7 +627,7 @@ def check__employee_contract__exists__for__employee__and__customer(
 
 def get__employee_contract__for__employee_and_customer(
     employee: Employee, customer: Customer
-) -> EmployeeContract | None:
+) -> Optional[EmployeeContract]:
     # Check if the employee contract exists
     if not check__employee_contract__exists__for__employee__and__customer(
         employee, customer
@@ -649,7 +649,7 @@ def create__employee_contract__for__employee_and__customer(
 
 
 # Returns the customer for the given customer id, the check if the customer exists is not done here and should be done before
-def get__customer__for__customer_id(customer_id) -> Customer | None:
+def get__customer__for__customer_id(customer_id) -> Optional[Customer]:
 
     try:
         return Customer.objects.get(id=customer_id)
@@ -865,7 +865,7 @@ def create__customer_program_execution_manager_contract__for__employee_and_custo
 
 
 # Returns the employee for the given user code
-def get__employee__for__user_code(user_code) -> Employee | None:
+def get__employee__for__user_code(user_code) -> Optional[Employee]:
 
     employee = None
 
@@ -1720,7 +1720,7 @@ def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:
     return NadooitApiKey.objects.get(api_key=hashed_api_key)
 
 
-def get__hashed_api_key__for__request(request) -> str | None:
+def get__hashed_api_key__for__request(request) -> Union[str, None]:
     """
     gets the hashed api key from the request
     """
@@ -1745,7 +1745,7 @@ def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:
 
 def get__customer__for__customer_program_execution_id(
     customer_program_execution_id,
-) -> Customer | None:
+) -> Optional[Customer]:
 
     customer_program_execution = (
         get__customer_program_execution__for__customer_program_execution_id(
@@ -1771,7 +1771,7 @@ def check__customer_program_execution__exists__for__customer_program_execution_i
 
 def get__customer_program_execution__for__customer_program_execution_id(
     customer_program_execution_id,
-) -> CustomerProgramExecution | None:
+) -> Optional[CustomerProgramExecution]:
     return CustomerProgramExecution.objects.filter(
         id=customer_program_execution_id
     ).first()
@@ -1795,7 +1795,7 @@ def create__customer_program_execution_complaint__for__customer_program_executio
     customer_program_execution: CustomerProgramExecution,
     complaint: str,
     employee: Employee,
-) -> Complaint | None:
+) -> Optional[Complaint]:
     try:
         complaint = Complaint.objects.create(
             customer_program_execution=customer_program_execution,
@@ -1846,7 +1846,7 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
     return list_of_customers_the_manager_is_responsible_for
 
 
-def get__employee__for__employee_id(employee_id) -> Employee | None:
+def get__employee__for__employee_id(employee_id) -> Optional[Employee]:
     return Employee.objects.filter(id=employee_id).first()
 
 
@@ -2019,7 +2019,7 @@ def get__list_of_manager_contracts__for__employee(employee: Employee):
                 "manager_contract": CustomerManagerContract.objects.filter(
                     contract=employee_contract
                 ).first(),
-            },
+            }
         )
 
         # remove None values without changing the order of the list

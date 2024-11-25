@@ -73,6 +73,7 @@ urlpatterns = [
     # TODO rename to include nadoo naming sceama
     path("program_ownership/", include("nadooit_program_ownership_system.urls")),
     path("bot/", include("bot_management.urls")),
+    path('articles/', include('nadooit_articles.urls', namespace='nadooit_articles')),
 ]
 # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

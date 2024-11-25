@@ -98,6 +98,7 @@ INSTALLED_APPS = [
     "djmoney",
     "bot_management",
     "nadoo_erp",
+    "nadooit_articles.apps.NadooitArticlesConfig",  # Add this line
 ]
 
 # Middelware is a list of functions that are called for every request.
@@ -202,7 +203,7 @@ DATABASES = {
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'https://localhost:8000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']  # Add your domains here
 print("DEBUG-Modus ist:", DEBUG)
 print("CSRF_TRUSTED_ORIGINS gesetzt auf:", CSRF_TRUSTED_ORIGINS)
 print("ALLOWED_HOSTS gesetzt auf:", ALLOWED_HOSTS)
@@ -243,6 +244,22 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+# Security Settings
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+# Content Security Policy
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")  # Required for HTMX
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'")  # Required for HTMX
+CSP_IMG_SRC = ("'self'", "data:", "https:")
+CSP_CONNECT_SRC = ("'self'",)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -1,0 +1,29 @@
+{% if user.is_authenticated %}
+<div class="flex items-center space-x-2"
+     hx-target="this"
+     hx-swap="outerHTML">
+    <button hx-post="{% url 'nadooit_articles:article_vote' article.id %}"
+            hx-vals='{"vote_type": "up"}'
+            class="p-1 rounded-full {% if user in article.upvotes.all %}bg-green-100 text-green-600{% else %}hover:bg-gray-100{% endif %}"
+            title="Upvote">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+    <span class="font-medium">{{ article.get_vote_count }}</span>
+    <button hx-post="{% url 'nadooit_articles:article_vote' article.id %}"
+            hx-vals='{"vote_type": "down"}'
+            class="p-1 rounded-full {% if user in article.downvotes.all %}bg-red-100 text-red-600{% else %}hover:bg-gray-100{% endif %}"
+            title="Downvote">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </button>
+</div>
+{% else %}
+<div class="flex items-center space-x-2">
+    <a href="{% url 'login' %}?next={{ request.path }}" class="text-gray-500 hover:text-gray-700">
+        Login to vote
+    </a>
+</div>
+{% endif %}

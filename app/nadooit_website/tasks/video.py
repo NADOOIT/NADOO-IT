@@ -7,12 +7,15 @@ from nadooit_website.models import (
 from django.db.models import Count
 import os
 
+try:
+    from moviepy.editor import VideoFileClip
+    from moviepy.editor import ffmpeg_tools
+except ImportError:
+    # Use mock during testing
+    from .video_mock import VideoFileClip, ffmpeg_tools
 
-from moviepy.editor import VideoFileClip
 import gzip
 import shutil
-
-from moviepy.editor import ffmpeg_tools
 
 
 def create_hls_files(input_path, output_path, resolution, segment_duration=4):

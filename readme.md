@@ -15,6 +15,30 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ## Development
 
+### Quick Start with Docker
+
+For quick local development, you can use the development Docker container:
+
+```bash
+# Mac
+docker build -t nadooit-dev -f Dockerfile-dev-Mac .
+docker run -p 8000:8000 -v "$(pwd)/app:/app/app" -e DJANGO_DEBUG=1 -e DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1 --name nadooit-dev-container nadooit-dev
+```
+
+The development server will be available at http://localhost:8000
+
+#### Default Development Credentials
+
+For development and testing purposes, a default superuser is automatically created with the following credentials:
+
+- Username: `admin`
+- Password: `123456`
+- Email: `admin@example.com`
+
+You can access the admin interface at http://localhost:8000/admin with these credentials.
+
+**Note:** These are default development credentials and should never be used in a production environment.
+
 ### Local development setup
 
 1. Install github desktop (<https://desktop.github.com/>)

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold">Articles</h1>
+        {% if user.is_authenticated %}
+        <a href="{% url 'nadooit_articles:article_create' %}" 
+           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create Article
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for article in articles %}
+        <article class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold mb-2">
+                    <a href="{{ article.get_absolute_url }}" 
+                       class="text-gray-900 hover:text-blue-600">
+                        {{ article.title }}
+                    </a>
+                </h2>
+                <div class="text-gray-600 text-sm mb-4">
+                    <span>By {{ article.author.username }}</span>
+                    <span class="mx-2">•</span>
+                    <span>{{ article.published_at|date:"M d, Y" }}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        {% include "nadooit_articles/partials/vote_buttons.html" %}
+                    </div>
+                    <div class="text-gray-600 text-sm">
+                        {{ article.comments.count }} comments
+                    </div>
+                </div>
+            </div>
+        </article>
+        {% empty %}
+        <div class="col-span-full text-center py-8 text-gray-600">
+            No articles available yet.
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
