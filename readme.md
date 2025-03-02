@@ -36,12 +36,6 @@ It forms the interface to the system, hosts the website, and provides the API.
    pip install --upgrade pip
    ```
 
-   6.1. Open the terminal and type:
-
-   ```bash
-   pip install --upgrade pip
-   ```
-
 7. Use the following command to install the requirements:
 
    **Mac (SQLite)**:
