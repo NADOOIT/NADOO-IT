@@ -56,8 +56,6 @@ django-money
 python-dotenv
 django-ordered-model
 
-django-debug-toolbar==3.6.0
-
 chardet
 celery
 redis
