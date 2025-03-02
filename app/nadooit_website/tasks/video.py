@@ -8,11 +8,12 @@ from django.db.models import Count
 import os
 
 
-from moviepy.editor import VideoFileClip
+from moviepy.video.io.VideoFileClip import VideoFileClip
+
 import gzip
 import shutil
 
-from moviepy.editor import ffmpeg_tools
+from moviepy.video.io import ffmpeg_tools
 
 
 def create_hls_files(input_path, output_path, resolution, segment_duration=4):
