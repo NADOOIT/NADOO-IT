@@ -266,24 +266,16 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ##### Build the docker images
 
+First, create the SQLite database with proper permissions:
+
+    sudo mkdir -p app/db
+    sudo touch app/db/db.sqlite3
+    sudo chmod -R 777 app/db
+
+Then build and initialize the Docker environment:
+
     docker compose -f docker-compose-deploy.yml build
     docker compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
-
-#### Create the SQLite Database File (if it doesn't already exist)
-
-Create a directory for the database file and set the appropriate permissions by running:
-    
-    docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch app/db/db.sqlite3 && chmod -R 777 /app/db"
-
-If you get the following error:
-
-touch: cannot touch '/app/db/db.sqlite3': Permission denied
-
-Follow these steps:
-      
-      sudo touch app/db/db.sqlite3
-      
-      sudo chmod -R 777 /app/db
 
 
 ##### Running migrations
