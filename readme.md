@@ -41,34 +41,34 @@ It forms the interface to the system, hosts the website, and provides the API.
    **Mac (SQLite)**:
    ```bash
    docker compose -f docker-compose-dev-MAC_SQLite.yml build
-   docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py makemigrations
-   docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py migrate
-   docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py collectstatic --no-input
-   docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py import_templates
-   docker-compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py createsuperuser
-   docker-compose -f docker-compose-dev-MAC_SQLite.yml up
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py makemigrations
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py collectstatic --no-input
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-dev-MAC_SQLite.yml up
    ```
 
    **Windows (SQLite)**:
    ```bash
    docker compose -f docker-compose-dev-WIN_SQLite.yml build
-   docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py makemigrations
-   docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py migrate
-   docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py collectstatic --no-input
-   docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py import_templates
-   docker-compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py createsuperuser
-   docker-compose -f docker-compose-dev-WIN_SQLite.yml up
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py makemigrations
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py collectstatic --no-input
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-dev-WIN_SQLite.yml up
    ```
 
    **Mac (MySQL)**:
    ```bash
    docker compose -f docker-compose-dev-MAC_MYSQL.yml build
-   docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py makemigrations
-   docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py migrate
-   docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py collectstatic --no-input
-   docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
-   docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py createsuperuser
-   docker-compose -f docker-compose-dev-MAC_MYSQL.yml up
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py makemigrations
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml up
    ```
 
    **Windows (MySQL)**:
