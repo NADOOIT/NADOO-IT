@@ -289,37 +289,45 @@ Then build and initialize the Docker environment:
 ##### Creating superuser
 
 1. Run the following command to create a superuser
+```bash
 docker compose -f docker-compose-deploy.yml run --rm app python manage.py createsuperuser
+```
 
 ### Starting the server
 
 1. Run the following command to start the server
+```bash
 docker compose -f docker-compose-deploy.yml up -d
+```
 
 ### Stopping the server
 
 1. Run the following command to stop the server
+```bash
 docker compose -f docker-compose-deploy.yml down
+```
 
 ### Updating the server
 
 Run the following command to update the server
 
-    git stash
+```bash
+  git stash
 
-    git pull
+  git pull
 
-    docker compose -f docker-compose-deploy.yml build
-    
-    docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
-    
-    docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput 
+  docker compose -f docker-compose-deploy.yml build
+  
+  docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
+  
+  docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput 
 
-    docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
+  docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
 
-    docker compose -f docker-compose-deploy.yml down
+  docker compose -f docker-compose-deploy.yml down
 
-    docker compose -f docker-compose-deploy.yml up -d
+  docker compose -f docker-compose-deploy.yml up -d
+```
 
 ## How to Use
 
