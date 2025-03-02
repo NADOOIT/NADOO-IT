@@ -74,42 +74,42 @@ class CustomerProgramExecution(models.Model):
         )
 
     """ 
-@receiver(models.signals.post_save, sender=CustomerProgramExecution)
-def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):
+        @receiver(models.signals.post_save, sender=CustomerProgramExecution)
+        def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):
 
-    if created:
-        # reduce the customer_programs time_account by the program_time_saved_in_seconds
+            if created:
+                # reduce the customer_programs time_account by the program_time_saved_in_seconds
 
-        # gets the customer program of the execution
-        nadooit_customer_program = CustomerProgram.objects.get(
-            id=instance.customer_program.id
-        )
+                # gets the customer program of the execution
+                nadooit_customer_program = CustomerProgram.objects.get(
+                    id=instance.customer_program.id
+                )
 
-        # gets the time account of the customer program and reduces it by the time saved by the program
-        nadooit_customer_program.time_account.time_balance_in_seconds = (
-            nadooit_customer_program.time_account.time_balance_in_seconds
-            - instance.program_time_saved_in_seconds
-        )
-        # print(nadooit_customer_program.time_account.time_balance_in_seconds)
-        nadooit_customer_program.time_account.save()
+                # gets the time account of the customer program and reduces it by the time saved by the program
+                nadooit_customer_program.time_account.time_balance_in_seconds = (
+                    nadooit_customer_program.time_account.time_balance_in_seconds
+                    - instance.program_time_saved_in_seconds
+                )
+                # print(nadooit_customer_program.time_account.time_balance_in_seconds)
+                nadooit_customer_program.time_account.save()
     """
 
+    """ 
+        @receiver(models.signals.post_delete, sender=CustomerProgramExecution)
+        def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):
+            /"/"/"
+                Whenever a customer program execution is deleted this signal is triggered.
 
-# TODO remove this function and add a view that does this instead
-@receiver(models.signals.post_delete, sender=CustomerProgramExecution)
-def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):
+            Args:
+                sender (_type_): _description_
+                instance (_type_): _description_
+            /"/"/"
+
+            # increase the customer_programs time_account by the program_time_saved_in_seconds
+            obj = CustomerProgram.objects.get(id=instance.customer_program.id)
+            obj.time_account.time_balance_in_seconds = (
+                obj.time_account.time_balance_in_seconds
+                + instance.program_time_saved_in_seconds
+            )
+            obj.time_account.save()
     """
-        Whenever a customer program execution is deleted this signal is triggered.
-
-    Args:
-        sender (_type_): _description_
-        instance (_type_): _description_
-    """
-
-    # increase the customer_programs time_account by the program_time_saved_in_seconds
-    obj = CustomerProgram.objects.get(id=instance.customer_program.id)
-    obj.time_account.time_balance_in_seconds = (
-        obj.time_account.time_balance_in_seconds
-        + instance.program_time_saved_in_seconds
-    )
-    obj.time_account.save()

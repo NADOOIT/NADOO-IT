@@ -39,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-dev-Mac
-    command: sh -c "celery -A nadooit worker --loglevel=info"
+    command: sh -c "python -m celery -A nadooit worker --loglevel=info"
     volumes:
       - ./app:/app
       - ./data/web:/vol/web

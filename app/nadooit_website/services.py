@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 session_tick = 5
 
 
-""" 
+"""
 # optimatzion
 from . import embeddings
 from sklearn.metrics.pairwise import cosine_similarity
@@ -151,7 +151,7 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
                 // Clear previous highlight
                 const upvoteButton = document.getElementById('upvote-button-' + sectionId);
                 const downvoteButton = document.getElementById('downvote-button-' + sectionId);
-                
+
                 upvoteButton.classList.remove('highlighted-upvote');
                 downvoteButton.classList.remove('highlighted-downvote');
 
@@ -526,12 +526,13 @@ def get_most_successful_section_order():
 
     if settings.DEBUG:
         return Section_Order.objects.get(
-            section_order_id="ad508b5e-cebe-43a8-b068-dc37a4574605"
-            #section_order_id="4a0bd312-97c2-4336-850b-841381c0bcd8"
+            #section_order_id="ad508b5e-cebe-43a8-b068-dc37a4574605"
+            section_order_id="4a0bd312-97c2-4336-850b-841381c0bcd8"
         )
     else:
+        #TODO: Replace this with the actual logic for finding the most successful Section_Order/ any that exists
         return Section_Order.objects.get(
-            section_order_id="ad508b5e-cebe-43a8-b068-dc37a4574605"
+            section_order_id="2c31ad68-1df3-4a1b-bb64-2699c2650b15"
         )
 
 
@@ -933,7 +934,7 @@ def handle_uploaded_file(file):
                 for file_name in os.listdir(old_hls_folder_path):
                     src_file = os.path.join(old_hls_folder_path, file_name)
                     dest_file = os.path.join(new_hls_folder_path, file_name)
-                    
+
                     shutil.move(src_file, dest_file)  # now move should succeed
 
 

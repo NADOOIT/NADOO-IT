@@ -403,6 +403,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -1154,6 +1170,14 @@
     },
     {
         "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -7331,6 +7355,15 @@
         "documentation": {}
     },
     {
+        "label": "CustomerProgramExecutionAdmin",
+        "kind": 6,
+        "importPath": "app.nadooit_api_executions_system.admin",
+        "description": "app.nadooit_api_executions_system.admin",
+        "peekOfCode": "class CustomerProgramExecutionAdmin(admin.ModelAdmin):\n    actions = ['delete_with_refund', 'delete_without_refund']\n    def delete_with_refund(self, request, queryset):\n        \"\"\"\n        Löscht die ausgewählten CustomerProgramExecution-Objekte und erstattet die Zeit dem zugehörigen Zeitkonto.\n        \"\"\"\n        for obj in queryset:\n            customer_program = obj.customer_program\n            customer_program.time_account.time_balance_in_seconds += obj.program_time_saved_in_seconds\n            customer_program.time_account.save()",
+        "detail": "app.nadooit_api_executions_system.admin",
+        "documentation": {}
+    },
+    {
         "label": "NadooitApiExecutionsSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_api_executions_system.apps",
@@ -7345,24 +7378,6 @@
         "importPath": "app.nadooit_api_executions_system.models",
         "description": "app.nadooit_api_executions_system.models",
         "peekOfCode": "class CustomerProgramExecution(models.Model):\n    \"\"\"_summary_\n    model for a single execution of a nadooit program.\n    \"\"\"\n    class PaymentStatus(models.TextChoices):\n        NOT_PAID = \"NOT_PAID\", _(\"Not Paid\")\n        PAID = \"PAID\", _(\"Paid\")\n        REFUNDED = \"REFUNDED\", _(\"Refunded\")\n        REVOKED = \"REVOKED\", _(\"Revoked\")\n    # id of the execution",
-        "detail": "app.nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "cutomer_program_execution_was_created",
-        "kind": 2,
-        "importPath": "app.nadooit_api_executions_system.models",
-        "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def cutomer_program_execution_was_created(sender, instance, created, *args, **kwargs):\n    if created:\n        # reduce the customer_programs time_account by the program_time_saved_in_seconds\n        # gets the customer program of the execution\n        nadooit_customer_program = CustomerProgram.objects.get(\n            id=instance.customer_program.id\n        )\n        # gets the time account of the customer program and reduces it by the time saved by the program\n        nadooit_customer_program.time_account.time_balance_in_seconds = (\n            nadooit_customer_program.time_account.time_balance_in_seconds",
-        "detail": "app.nadooit_api_executions_system.models",
-        "documentation": {}
-    },
-    {
-        "label": "customer_program_execution_was_deleted",
-        "kind": 2,
-        "importPath": "app.nadooit_api_executions_system.models",
-        "description": "app.nadooit_api_executions_system.models",
-        "peekOfCode": "def customer_program_execution_was_deleted(sender, instance, *args, **kwargs):\n    \"\"\"\n        Whenever a customer program execution is deleted this signal is triggered.\n    Args:\n        sender (_type_): _description_\n        instance (_type_): _description_\n    \"\"\"\n    # increase the customer_programs time_account by the program_time_saved_in_seconds\n    obj = CustomerProgram.objects.get(id=instance.customer_program.id)\n    obj.time_account.time_balance_in_seconds = (",
         "detail": "app.nadooit_api_executions_system.models",
         "documentation": {}
     },
@@ -8658,7 +8673,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(\n    customer_program: CustomerProgram,\n):\n    print(\"get__price_for_new_customer_program_execution__for__cutomer_program\")\n    # The price for a program execution is calculated each time a new execution is added to the program\n    # First it is checked if there is currently time allocated to the program already\n    # If there is, the price for the exectution is 0 since the time is already paid for\n    # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated\n    # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution\n    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0",
+        "peekOfCode": "def get__price_for_new_customer_program_execution__for__cutomer_program(\n    customer_program: CustomerProgram, time_saved_by_this_execution_in_seconds: Optional[int]=None\n):\n    print(\"get__price_for_new_customer_program_execution__for__cutomer_program\")\n    # The price for a program execution is calculated each time a new execution is added to the program\n    # First it is checked if there is currently time allocated to the program already\n    # If there is, the price for the exectution is 0 since the time is already paid for\n    # If there is only partially enough time allocated to the program, the time not covered by the time allocated is calculated and the price for that time is calculated\n    # If there is no time allocated to the program, the price for the execution is calculated based on the total time saved by all execution\n    time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -8667,7 +8682,7 @@
         "kind": 2,
         "importPath": "app.nadooit_os.services",
         "description": "app.nadooit_os.services",
-        "peekOfCode": "def create__customer_program_execution__for__customer_program(\n    customer_program: CustomerProgram,\n) -> CustomerProgramExecution:\n    print(\"create__customer_program_execution__for__customer_program\")\n    # Create a new customer program execution with the current price for an execution\n    customer_program_execution = CustomerProgramExecution.objects.create(\n        customer_program=customer_program,\n        program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,\n        price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(\n            customer_program",
+        "peekOfCode": "def create__customer_program_execution__for__customer_program(\n    customer_program: CustomerProgram, time_saved_by_this_exection: Optional[int] = None\n) -> CustomerProgramExecution:\n    print(\"create__customer_program_execution__for__customer_program\")\n    if not time_saved_by_this_exection:\n        print(f\"Using default time saved per execution of {customer_program.program_time_saved_per_execution_in_seconds} seconds\")\n        # Create a new customer program execution with the current price for an execution\n        customer_program_execution = CustomerProgramExecution.objects.create(\n            customer_program=customer_program,\n            price_per_second_at_the_time_of_execution = customer_program.price_per_second,",
         "detail": "app.nadooit_os.services",
         "documentation": {}
     },
@@ -9869,6 +9884,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "app.nadooit_program_ownership_system.migrations.0002_customerprogram_fixed_price_per_second",
+        "description": "app.nadooit_program_ownership_system.migrations.0002_customerprogram_fixed_price_per_second",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('nadooit_program_ownership_system', '0001_initial'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customerprogram',\n            name='fixed_price_per_second',\n            field=models.BooleanField(default=True),\n        ),",
+        "detail": "app.nadooit_program_ownership_system.migrations.0002_customerprogram_fixed_price_per_second",
+        "documentation": {}
+    },
+    {
         "label": "NadooitProgramOwnershipSystemConfig",
         "kind": 6,
         "importPath": "app.nadooit_program_ownership_system.apps",
@@ -10710,7 +10734,7 @@
         "kind": 2,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n            #section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        return Section_Order.objects.get(\n            section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"",
+        "peekOfCode": "def get_most_successful_section_order():\n    # Replace this with the actual logic for finding the most successful Section_Order\n    if settings.DEBUG:\n        return Section_Order.objects.get(\n            #section_order_id=\"ad508b5e-cebe-43a8-b068-dc37a4574605\"\n            section_order_id=\"4a0bd312-97c2-4336-850b-841381c0bcd8\"\n        )\n    else:\n        #TODO: Replace this with the actual logic for finding the most successful Section_Order/ any that exists\n        return Section_Order.objects.get(",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
@@ -10854,7 +10878,7 @@
         "kind": 5,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nsession_tick = 5\n\"\"\" \n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nsession_tick = 5\n\"\"\"\n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },
@@ -10863,7 +10887,7 @@
         "kind": 5,
         "importPath": "app.nadooit_website.services",
         "description": "app.nadooit_website.services",
-        "peekOfCode": "session_tick = 5\n\"\"\" \n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):\n    return embeddings[signal_id]",
+        "peekOfCode": "session_tick = 5\n\"\"\"\n# optimatzion\nfrom . import embeddings\nfrom sklearn.metrics.pairwise import cosine_similarity\nfrom . import load_embeddings\ndef refresh_embeddings():\n    load_embeddings()\ndef get_embedding_for_signal(signal_id):\n    return embeddings[signal_id]",
         "detail": "app.nadooit_website.services",
         "documentation": {}
     },

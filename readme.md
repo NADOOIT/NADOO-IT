@@ -17,41 +17,95 @@ It forms the interface to the system, hosts the website, and provides the API.
 
 ### Local development setup
 
-1. Install github desktop (<https://desktop.github.com/>)
+1. Install GitHub Desktop ([Download here](https://desktop.github.com/))
 2. Clone the repository
-3. Install docker (<https://www.docker.com/>)
-4. Install docker-compose
-5. Install newst version of python (<https://www.python.org/downloads/>)
-6. Install update pip (pip install --upgrade pip)
-   6.1 open cmd and type pip install --upgrade pip
+3. Install Docker ([Download here](https://www.docker.com/))
 
-7. use the following command to install the requirements
+   **Note for Mac users**: Simply installing Docker is not enough. You need to add Docker to your `PATH` by executing the following commands:
 
-    Mac:
+   ```bash
+   echo 'export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"' >> ~/.zshrc
+   source ~/.zshrc
+   ```
 
-    docker compose -f docker-compose-dev-MAC_MYSQL.yml build
-    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py makemigrations
-    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py migrate
-    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py collectstatic --no-input
-    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
-    docker-compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py createsuperuser
-    docker-compose -f docker-compose-dev-MAC_MYSQL.yml up
+4. Install Docker Compose
+5. Install the latest version of Python ([Download here](https://www.python.org/downloads/))
+6. Update pip:
 
-    Windows:
+   ```bash
+   pip install --upgrade pip
+   ```
 
-    docker compose -f docker-compose-dev-WIN_MYSQL.yml build
-    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py makemigrations
-    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py migrate
-    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py collectstatic --no-input
-    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py import_templates
-    docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py createsuperuser
-    docker-compose -f docker-compose-dev-WIN_MYSQL.yml up
+7. Use the following command to install the requirements:
+
+   **Mac (SQLite)**:
+   ```bash
+   docker compose -f docker-compose-dev-MAC_SQLite.yml build
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py makemigrations
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py collectstatic --no-input
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-dev-MAC_SQLite.yml up
+   ```
+
+   **Windows (SQLite)**:
+   ```bash
+   docker compose -f docker-compose-dev-WIN_SQLite.yml build
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py makemigrations
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py collectstatic --no-input
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-dev-WIN_SQLite.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-dev-WIN_SQLite.yml up
+   ```
+
+   **Mac (MySQL)**:
+   ```bash
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml build
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py makemigrations
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-dev-MAC_MYSQL.yml up
+   ```
+
+   **Windows (MySQL)**:
+   ```bash
+   docker compose -f docker-compose-dev-WIN_MYSQL.yml build
+   docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py makemigrations
+   docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py migrate
+   docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py collectstatic --no-input
+   docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py import_templates
+   docker-compose -f docker-compose-dev-WIN_MYSQL.yml run --rm app python manage.py createsuperuser
+   docker-compose -f docker-compose-dev-WIN_MYSQL.yml up
+   ```
 
 #### Running tests
 
 ##### Testing the API
 
 To test the api go to <https://127.0.0.1:8000/api/executions>
+
+def create__customer_program_execution__for__customer_program_id(customer_program_id):
+    data = {
+        "NADOOIT__API_KEY": nadooit_api_auth_data.get("NADOOIT__API_KEY"),
+        "NADOOIT__USER_CODE": nadooit_api_auth_data.get("NADOOIT__USER_CODE"),
+        "program_id": customer_program_id,
+    }
+    # production
+    res = requests.post("https://nadooit.de/api/executions", data=data)
+    
+    # development
+    """ 
+    res = requests.post(
+        "https://127.0.0.1:8000/api/executions",
+        data=data,
+        cert=("./certificate.crt", "./key.pem"),
+    )
+    """
+    return res.json()
 
 give as Content:
 {
@@ -212,20 +266,33 @@ COCKROACH_DB_OPTIONS=your_cockroach_db_options
 
 ##### Build the docker images
 
-    - docker compose -f docker-compose-deploy.yml build
-    - docker compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
+    docker compose -f docker-compose-deploy.yml build
+    docker compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
 
 #### Create the SQLite Database File (if it doesn't already exist)
 
 Create a directory for the database file and set the appropriate permissions by running:
-    - docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch /app/db/db.sqlite3 && chmod -R 777 /app/db"
+    
+    docker compose -f docker-compose-deploy.yml run --rm app sh -c "mkdir -p /app/db && touch app/db/db.sqlite3 && chmod -R 777 /app/db"
+
+If you get the following error:
+
+touch: cannot touch '/app/db/db.sqlite3': Permission denied
+
+Follow these steps:
+      
+      sudo touch app/db/db.sqlite3
+      
+      sudo chmod -R 777 /app/db
+
 
 ##### Running migrations
 
 1. The database needs to be migrated before the server can be started. To do this, run the following command:
-    - docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
-    - docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput
-    - docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
+   
+         docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
+         docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput
+         docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
 
 ##### Creating superuser
 

@@ -38,6 +38,7 @@ class CustomerProgram(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     is_active = models.BooleanField(default=True)
+    fixed_price_per_second = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.id) + " " + self.program.name
