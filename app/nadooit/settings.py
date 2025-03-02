@@ -209,7 +209,7 @@ DATABASES = {
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
-CSRF_TRUSTED_ORIGINS = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
+CSRF_TRUSTED_ORIGINS = [f"https://{host.strip()}" for host in os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",") if host.strip()]
 print("DEBUG-Modus ist:", DEBUG)
 print("CSRF_TRUSTED_ORIGINS gesetzt auf:", CSRF_TRUSTED_ORIGINS)
 print("ALLOWED_HOSTS gesetzt auf:", ALLOWED_HOSTS)
