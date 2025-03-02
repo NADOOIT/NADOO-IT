@@ -60,6 +60,8 @@ if DEBUG:
 # This is the list of installed apps. If a new app is added, it must be added here.
 # The order of the apps is important. The apps are loaded in the order they are listed here.
 # See the documentation of the apps for more information.
+
+# Base INSTALLED_APPS
 INSTALLED_APPS = [
     "sslserver",
     "ordered_model",
@@ -91,7 +93,6 @@ INSTALLED_APPS = [
     "mfa",
     "crispy_forms",
     "crispy_bootstrap5",
-    "debug_toolbar",
     "django_htmx",
     "nadoo_complaint_management",
     "djmoney",
@@ -103,8 +104,9 @@ INSTALLED_APPS = [
 # The order of the middleware is important. The middleware is called in the order they are listed here.
 # A request is processed from top to bottom. A response is processed from bottom to top.
 # Add new middelware to process requests and responses.
+
+# Base MIDDLEWARE
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -114,6 +116,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
+
+# Add debug toolbar only in DEBUG mode
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
 
 # The Authentication backends are used to authenticate users.
 # Multiple backends can be used.
