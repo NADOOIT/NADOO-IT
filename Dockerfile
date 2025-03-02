@@ -1,5 +1,5 @@
 #TODO Check for new versions of the base image. If a new version is available, rebuild the image.
-FROM python:3.10-slim-buster
+FROM python:3.10-slim-bullseye
 LABEL maintainer="nadooit.de"
 
 ENV PYTHONUNBUFFERED 1
