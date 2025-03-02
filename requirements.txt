@@ -31,7 +31,7 @@ Pillow==10.2.0
 platformdirs==2.5.2
 #psycopg2-binary==2.9.5
 mysqlclient==2.2.4
-pyasn1==0.4.8
+pyasn1==0.6.1
 pycparser==2.21
 pyOpenSSL==24.1.0
 pyotp==2.9.0
@@ -46,7 +46,7 @@ sqlparse==0.4.4
 tomli==2.0.1
 tzdata==2022.1
 ua-parser==0.18.0
-urllib3==1.26.18
+urllib3==2.2.3
 user-agents==2.2.0
 Werkzeug==3.0.4
 uWSGI
