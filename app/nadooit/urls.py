@@ -47,8 +47,6 @@ urlpatterns = [
     ),
     # These are the urls for the adminbackend
     path("admin/", admin.site.urls),
-    # These are the urls for the django debug toolbar
-    path("__debug__/", include("debug_toolbar.urls")),
     # These are the urls for the grappelli skin for the admin page
     path("grappelli/", include("grappelli.urls")),
     # These are the the urls for implementing the pwa for the django app
@@ -59,8 +57,6 @@ urlpatterns = [
         include("mfa.urls"),
         name="mfa",
     ),
-    # This short link to add new trusted device
-    # path("devices/add", mfa.TrustedDevice.add, name="mfa_add_new_trusted_device"),
     # Routes for the nadooit system
     # These are the urls for everything that has to do with user authentication. Including login, logout and registration
     path("auth/", include("nadooit_auth.urls", namespace="nadooit_auth")),
@@ -74,8 +70,9 @@ urlpatterns = [
     path("program_ownership/", include("nadooit_program_ownership_system.urls")),
     path("bot/", include("bot_management.urls")),
 ]
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
-    # OLD urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += [
+        path("__debug__/", include("debug_toolbar.urls")),
+    ]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
