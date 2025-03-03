@@ -10,7 +10,7 @@ colorama==0.4.6
 #cryptography==37.0.4
 cryptography==44.0.2
 dj-database-url==2.1.0
-Django>=4.1
+Django>=4.2
 django-cockroachdb==4.1.1
 django-extensions==3.2.1
 django-grappelli==3.0.9
@@ -33,7 +33,7 @@ platformdirs==2.5.2
 mysqlclient==2.2.4
 pyasn1==0.6.1
 pycparser==2.22
-pyOpenSSL==24.1.0
+pyOpenSSL==25.0.0
 pyotp==2.9.0
 python-jose==3.3.0
 python-u2flib-server==5.0.1
