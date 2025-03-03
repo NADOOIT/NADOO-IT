@@ -32,7 +32,7 @@ platformdirs==2.5.2
 #psycopg2-binary==2.9.5
 mysqlclient==2.2.4
 pyasn1==0.6.1
-pycparser==2.21
+pycparser==2.22
 pyOpenSSL==24.1.0
 pyotp==2.9.0
 python-jose==3.3.0
