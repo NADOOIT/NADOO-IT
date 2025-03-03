@@ -13,7 +13,7 @@ dj-database-url==2.1.0
 Django>=4.1
 django-cockroachdb==4.1.1
 django-extensions==3.2.1
-django-grappelli==3.0.9
+django-grappelli==4.0.1
 django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
 django-pwa @ git+https://github.com/silviolleite/django-pwa@4eb4ae616f8671f85bb05156500d0814c6c4a3fe
 django-sslserver==0.22
