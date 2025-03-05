@@ -10,7 +10,7 @@ colorama==0.4.6
 cryptography==44.0.2
 dj-database-url==2.3.0
 Django>=4.2
-django-cockroachdb==4.1.1
+django-cockroachdb==5.1
 django-extensions==3.2.1
 django-grappelli==3.0.9
 django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
