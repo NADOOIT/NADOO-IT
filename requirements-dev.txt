@@ -10,7 +10,7 @@ colorama==0.4.6
 cryptography==44.0.2
 dj-database-url==2.3.0
 Django>=4.2
-django-cockroachdb==4.1.1
+django-cockroachdb==5.1
 django-extensions==3.2.1
 django-grappelli==3.0.9
 django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
@@ -27,14 +27,14 @@ mypy-extensions==0.4.3
 null==0.6.1
 pathspec==0.12.1
 Pillow==11.1.0
-platformdirs==2.5.2
+platformdirs==4.3.6
 #psycopg2-binary==2.9.5
 mysqlclient==2.2.7
-pyasn1==0.6.1
+pyasn1>=0.4
 pycparser==2.22
 pyOpenSSL==25.0.0
 pyotp==2.9.0
-python-jose==3.3.0
+python-jose==3.4.0
 python-u2flib-server==5.0.1
 pytz==2022.6
 requests==2.32.3
@@ -44,7 +44,7 @@ six==1.16.0
 sqlparse==0.5.3
 tomli==2.0.1
 tzdata==2022.1
-ua-parser==0.18.0
+ua-parser==1.0.1
 urllib3==2.2.3
 user-agents==2.2.0
 Werkzeug==3.0.4
