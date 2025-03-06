@@ -1,5 +1,5 @@
 asgiref==3.8.1
-black==24.3.0
+black==25.1.0
 
 certifi==2025.1.31
 
@@ -12,7 +12,7 @@ cryptography==44.0.2
 dj-database-url==2.3.0
 Django>=4.2
 django-cockroachdb==5.1
-django-extensions==3.2.1
+django-extensions==3.2.3
 django-grappelli==3.0.9
 django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
 django-pwa @ git+https://github.com/silviolleite/django-pwa@4eb4ae616f8671f85bb05156500d0814c6c4a3fe
@@ -48,7 +48,7 @@ tzdata==2025.1
 ua-parser==1.0.1
 urllib3==2.2.3
 user-agents==2.2.0
-Werkzeug==3.0.4
+Werkzeug==3.1.3
 uWSGI
 crispy-bootstrap5
 django-htmx
