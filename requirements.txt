@@ -5,7 +5,7 @@ certifi==2025.1.31
 
 cffi==1.17.1
 charset-normalizer
-click==8.1.3
+click==8.1.8
 colorama==0.4.6
 #cryptography==37.0.4
 cryptography==44.0.2
@@ -18,7 +18,7 @@ django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
 django-pwa @ git+https://github.com/silviolleite/django-pwa@4eb4ae616f8671f85bb05156500d0814c6c4a3fe
 django-sslserver==0.22
 djangorestframework==3.15.2
-ecdsa==0.18.0
+ecdsa==0.19.0
 fido2==1.1.3
 idna==3.10
 jsonfield==3.1.0
@@ -40,7 +40,7 @@ python-u2flib-server==5.0.1
 pytz==2022.6
 requests==2.32.3
 rsa==4.9
-simplejson==3.19.2
+simplejson==3.20.1
 six==1.16.0
 sqlparse==0.5.3
 tomli==2.2.1
