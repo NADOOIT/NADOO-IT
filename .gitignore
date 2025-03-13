@@ -170,3 +170,5 @@ app/logs/log_DEBUG.log
 app/logs/log_INFO.log
 *.pyc
 *.log
+app/logs/log_DEBUG.log
+app/logs/log_INFO.log
