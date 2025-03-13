@@ -73,4 +73,4 @@ moviepy
 
 
 #ai
-openai~=1.65
+openai~=1.66
