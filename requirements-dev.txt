@@ -55,7 +55,7 @@ django-money
 pytest
 pytest-django
 crispy-bootstrap5
-django-debug-toolbar==5.0.1
+django-debug-toolbar==5.1.0
 pytest-factoryboy
 python-dotenv
 django-ordered-model
