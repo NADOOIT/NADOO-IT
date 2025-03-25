@@ -37,7 +37,7 @@ pyOpenSSL==25.0.0
 pyotp==2.9.0
 python-jose==3.4.0
 python-u2flib-server==5.0.1
-pytz==2025.1
+pytz==2025.2
 requests==2.32.3
 rsa==4.9
 simplejson==3.20.1
