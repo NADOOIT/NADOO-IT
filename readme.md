@@ -145,9 +145,8 @@ removing the -s will hide the print statements
 Tests with a specific name:
     pytest -s -k  "test_get__employee_roles_and_rights__for__employee__with__"
 
-##### Coverage
+docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python -m pytest -v
 
-The coverage report does ignore apps.py
 
 ### Adding a new User Role to the system
 
