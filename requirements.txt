@@ -28,7 +28,7 @@ mypy-extensions==1.0.0
 null==0.6.1
 pathspec==0.12.1
 Pillow==11.1.0
-platformdirs==4.3.6
+platformdirs==4.3.7
 #psycopg2-binary==2.9.5
 mysqlclient==2.2.7
 pyasn1>=0.4
@@ -37,14 +37,14 @@ pyOpenSSL==25.0.0
 pyotp==2.9.0
 python-jose==3.4.0
 python-u2flib-server==5.0.1
-pytz==2025.1
+pytz==2025.2
 requests==2.32.3
 rsa==4.9
 simplejson==3.20.1
 six==1.17.0
 sqlparse==0.5.3
 tomli==2.2.1
-tzdata==2025.1
+tzdata==2025.2
 ua-parser==1.0.1
 urllib3==2.3.0
 user-agents==2.2.0
@@ -73,4 +73,4 @@ moviepy
 
 
 #ai
-openai~=1.66
+openai~=1.73
