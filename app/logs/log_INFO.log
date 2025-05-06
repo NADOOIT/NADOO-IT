@@ -1736,3 +1736,18 @@ INFO end_of_session_sections seen_sections: <QuerySet []>
 INFO end_of_session_sections session.variant: control
 INFO User category: fast_and_not_engaged
 INFO end_of_session_sections next_section: None
+INFO generated new fontManager
+WARNING Forbidden: /api/executions
+WARNING Forbidden: /api/executions
+INFO generated new fontManager
+WARNING Forbidden: /api/executions
+WARNING Forbidden: /api/executions
+INFO generated new fontManager
+WARNING Forbidden: /api/executions
+WARNING Forbidden: /api/executions
+INFO generated new fontManager
+WARNING Forbidden: /api/executions
+WARNING Forbidden: /api/executions
+INFO generated new fontManager
+WARNING Forbidden: /api/executions
+WARNING Forbidden: /api/executions
