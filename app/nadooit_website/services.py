@@ -532,7 +532,7 @@ def get_most_successful_section_order():
     else:
         #TODO: Replace this with the actual logic for finding the most successful Section_Order/ any that exists
         return Section_Order.objects.get(
-            section_order_id="b18429dd-8978-41cd-b286-8edd1100eb93"
+            section_order_id="a6edd155-a0f3-42e9-954a-a674dacf160f"
         )
 
 
