@@ -163,7 +163,8 @@ ROOT_URLCONF = "nadooit.urls"
 # The WSGI application is used to serve the application.
 # The WSGI application is called by the webserver.
 # This is the entry point for the application.
-WSGI_APPLICATION = "nadooit.wsgi.application"
+WSGI_APPLICATION = 'nadooit.wsgi.application'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

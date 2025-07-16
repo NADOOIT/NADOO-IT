@@ -1,4 +1,18 @@
-# Intro
+# NADOO-IT
+
+This repository contains the core backend services and infrastructure for the NADOO-IT platform.
+
+## Real-Time Peer-to-Peer (P2P) Communication
+
+NADOO-IT now includes a powerful, real-time Peer-to-Peer (P2P) communication system built on WebRTC. This enables clients to establish direct, low-latency, and secure data channels for a variety of use cases, from instant messaging to large-scale file transfers and live streaming.
+
+### Key Features:
+- **Decentralized Communication:** Data is exchanged directly between peers, reducing server load and improving performance.
+- **Secure by Default:** All P2P data channels are encrypted using DTLS, ensuring user privacy.
+- **Robust & Scalable:** The system is built with a dedicated signaling server and STUN/TURN support for reliable connections across different network environments.
+- **Simple High-Level API:** A clean, event-driven API abstracts away the complexities of WebRTC, making it easy to integrate P2P features into your applications.
+
+For a detailed explanation of the architecture, components, and a guide on how to use the API, please see the [**P2P Communication Architecture documentation**](./docs/p2p_architecture.md).
 
 This is the nadooit execution manegment system.
 
@@ -35,6 +49,25 @@ It forms the interface to the system, hosts the website, and provides the API.
    ```bash
    pip install --upgrade pip
    ```
+
+### P2P Communication Setup (STUN/TURN Server)
+
+To enable direct peer-to-peer (P2P) communication for features like file sharing and live messaging, this project includes a pre-configured `coturn` STUN/TURN server. This service is integrated directly into the `docker-compose` files.
+
+**Deployment Requirements:**
+
+For the P2P server to function correctly in a production environment, you must ensure the following prerequisites are met on your host server **before** running `docker-compose up`:
+
+1.  **DNS Configuration**: The domain `nadooit.de` must have an 'A' record pointing to the public IP address of your server (`87.106.152.81`). This is already configured in `turnserver.conf`.
+
+2.  **SSL Certificates**: A valid SSL certificate for `nadooit.de` must be available on the host machine. The `docker-compose` files expect to find them in the standard Let's Encrypt directory. The service will fail to start without them.
+    -   Certificate Path: `/etc/letsencrypt/live/nadooit.de/fullchain.pem`
+    -   Private Key Path: `/etc/letsencrypt/live/nadooit.de/privkey.pem`
+
+3.  **Firewall Ports**: You must open the following ports in your cloud provider's firewall settings to allow traffic to the `coturn` server:
+    -   **TCP/UDP `3478`**: For STUN and TURN.
+    -   **TCP/UDP `5349`**: For STUN and TURN over TLS (secure).
+    -   **UDP `49152-65535`**: The default port range for relaying media streams.
 
 7. Use the following command to install the requirements:
 

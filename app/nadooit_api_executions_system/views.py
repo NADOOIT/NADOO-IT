@@ -18,7 +18,8 @@ from nadooit_os.services import (
     get__nadooit_api_key__for__hashed_api_key,
     get__user_code__for__nadooit_api_key)
 from nadooit_program_ownership_system.models import CustomerProgram
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 
@@ -166,3 +167,44 @@ def check_user(request):
             return Response({"error": "User does not exist"}, status=400)
     except:
         return Response({"error": "Invalid request"}, status=400)
+
+
+@api_view(["POST"])
+@permission_classes([AllowAny]) # This endpoint is open but validates credentials passed in the body
+def validate_user_credentials(request):
+    """
+    Validates a user's API key and user code.
+    This is intended to be called by other internal microservices.
+    """
+    api_key_header = request.headers.get("NADOOIT-API-KEY")
+    user_code = request.data.get("NADOOIT_USER_CODE")
+
+    if not api_key_header or not user_code:
+        return Response({"error": "API key and user code are required"}, status=400)
+
+    try:
+        # The get__hashed_api_key__for__request function expects the key in a different place,
+        # so we perform the hashing and lookup manually here.
+        from nadooit_os.services import get__hashed_api_key
+        hashed_api_key = get__hashed_api_key(api_key_header)
+
+        nadooit_api_key = get__nadooit_api_key__for__hashed_api_key(hashed_api_key)
+
+        if not nadooit_api_key.is_active:
+            return Response({"error": "API key is not active"}, status=403)
+
+        if nadooit_api_key.user.user_code != user_code:
+            return Response({"error": "User code does not match API key"}, status=403)
+
+        if not nadooit_api_key.user.is_active:
+            return Response({"error": "User is not active"}, status=403)
+
+        # If all checks pass, the credentials are valid
+        return Response({"valid": True, "user_code": user_code}, status=200)
+
+    except NadooitApiKey.DoesNotExist:
+        return Response({"error": "Invalid API Key"}, status=403)
+    except Exception as e:
+        # Log the exception for debugging
+        print(f"Error during credential validation: {e}")
+        return Response({"error": "An internal error occurred"}, status=500)

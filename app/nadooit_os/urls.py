@@ -1,5 +1,6 @@
 from django.urls import path
 from nadooit_os.views import *
+from nadooit_api_executions_system.views import validate_user_credentials
 
 app_name = "nadooit_os"
 
@@ -110,5 +111,11 @@ urlpatterns = [
         "hr/activate-contract/<employee_contract_id>",
         activate_contract,
         name="activate-contract",
+    ),
+    # Internal endpoint for microservice authentication
+    path(
+        "auth/validate-user/",
+        validate_user_credentials,
+        name="validate-user-credentials",
     ),
 ]

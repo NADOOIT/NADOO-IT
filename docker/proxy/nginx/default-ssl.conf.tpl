@@ -37,6 +37,8 @@ server {
         add_header Cache-Control no-cache;
     }
 
+    include /etc/nginx/microservices.conf.tpl;
+
     location / {
         uwsgi_pass ${APP_HOST}:${APP_PORT};
         include /etc/nginx/uwsgi_params;

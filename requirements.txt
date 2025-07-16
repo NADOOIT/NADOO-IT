@@ -74,3 +74,11 @@ moviepy
 
 #ai
 openai~=1.73
+
+# P2P Communication
+aiortc
+pylibsrtp
+
+# P2P Communication
+websockets # For client-side connections
+

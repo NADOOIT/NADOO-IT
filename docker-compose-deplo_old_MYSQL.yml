@@ -1,6 +1,15 @@
 version: '3.3'
 
 services:
+  coturn:
+    image: coturn/coturn:4.6.2
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./turnserver.conf:/etc/coturn/turnserver.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    command: -c /etc/coturn/turnserver.conf
+
   app:
     build:
       context: .
