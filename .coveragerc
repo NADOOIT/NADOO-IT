@@ -1,12 +1,12 @@
 [run]
 branch = True
-source = app
+source = .
 omit =
     */migrations/*
     */tests/*
-    app/manage.py
-    app/nadooit/wsgi.py
-    app/nadooit/asgi.py
+    manage.py
+    nadooit/wsgi.py
+    nadooit/asgi.py
     .venv/*
     venv/*
 
