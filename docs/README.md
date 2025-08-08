@@ -24,6 +24,7 @@ Documentation index:
 - [Management Commands](management-commands.md)
 - [Diagrams](diagrams.md)
 - [API reference](api.md)
+- [Testing](testing.md)
 - [Installation on IONOS VPS](installation-ionos-vps.md)
 
 If anything is unclear or you run into issues, please open an issue or update these docs accordingly.
