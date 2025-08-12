@@ -7,18 +7,18 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0002_remove_botplatform_api_key_and_more'),
+        ("bot_management", "0002_remove_botplatform_api_key_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='botplatform',
-            name='api_key',
+            model_name="botplatform",
+            name="api_key",
             field=models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
         ),
         migrations.AddField(
-            model_name='botplatform',
-            name='secret_url',
+            model_name="botplatform",
+            name="secret_url",
             field=models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
         ),
     ]

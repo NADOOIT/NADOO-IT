@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_website', '0041_alter_session_options'),
+        ("nadooit_website", "0041_alter_session_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='video',
-            name='reprocess_video',
+            model_name="video",
+            name="reprocess_video",
             field=models.BooleanField(default=False),
         ),
     ]

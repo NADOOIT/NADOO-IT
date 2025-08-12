@@ -9,27 +9,65 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('nadooit_crm', '0001_initial'),
+        ("nadooit_crm", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Bot',
+            name="Bot",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_crm.customer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, unique=True)),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="nadooit_crm.customer",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='BotPlatform',
+            name="BotPlatform",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('platform', models.CharField(choices=[('telegram', 'Telegram'), ('facebook', 'Facebook Messenger'), ('whatsapp', 'WhatsApp')], max_length=50)),
-                ('access_token', models.CharField(max_length=100)),
-                ('api_key', models.CharField(max_length=100, unique=True)),
-                ('secret_url', models.CharField(max_length=200, unique=True)),
-                ('bot', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bot_management.bot')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "platform",
+                    models.CharField(
+                        choices=[
+                            ("telegram", "Telegram"),
+                            ("facebook", "Facebook Messenger"),
+                            ("whatsapp", "WhatsApp"),
+                        ],
+                        max_length=50,
+                    ),
+                ),
+                ("access_token", models.CharField(max_length=100)),
+                ("api_key", models.CharField(max_length=100, unique=True)),
+                ("secret_url", models.CharField(max_length=200, unique=True)),
+                (
+                    "bot",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="bot_management.bot",
+                    ),
+                ),
             ],
         ),
     ]

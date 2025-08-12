@@ -7,23 +7,30 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Item',
+            name="Item",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.TextField()),
-                ('price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('condition', models.CharField(max_length=100)),
-                ('quantity_available', models.BigIntegerField()),
-                ('minimum_quantity', models.BigIntegerField()),
-                ('location', models.CharField(max_length=100)),
-                ('delivery_options', models.TextField()),
-                ('link', models.URLField()),
-                ('img_link', models.URLField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("description", models.TextField()),
+                ("price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("condition", models.CharField(max_length=100)),
+                ("quantity_available", models.BigIntegerField()),
+                ("minimum_quantity", models.BigIntegerField()),
+                ("location", models.CharField(max_length=100)),
+                ("delivery_options", models.TextField()),
+                ("link", models.URLField()),
+                ("img_link", models.URLField()),
             ],
         ),
     ]

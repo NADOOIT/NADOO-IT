@@ -7,47 +7,67 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0009_voice_alter_message_unique_together_and_more'),
+        ("bot_management", "0009_voice_alter_message_unique_together_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Chat',
+            name="Chat",
             fields=[
-                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
-                ('first_name', models.CharField(max_length=255)),
-                ('last_name', models.CharField(blank=True, max_length=255, null=True)),
-                ('type', models.CharField(max_length=255)),
+                ("id", models.BigIntegerField(primary_key=True, serialize=False)),
+                ("first_name", models.CharField(max_length=255)),
+                ("last_name", models.CharField(blank=True, max_length=255, null=True)),
+                ("type", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='User',
+            name="User",
             fields=[
-                ('id', models.BigIntegerField(primary_key=True, serialize=False)),
-                ('is_bot', models.BooleanField()),
-                ('first_name', models.CharField(max_length=255)),
-                ('last_name', models.CharField(blank=True, max_length=255, null=True)),
-                ('language_code', models.CharField(blank=True, max_length=255, null=True)),
+                ("id", models.BigIntegerField(primary_key=True, serialize=False)),
+                ("is_bot", models.BooleanField()),
+                ("first_name", models.CharField(max_length=255)),
+                ("last_name", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "language_code",
+                    models.CharField(blank=True, max_length=255, null=True),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='message',
-            name='update_id',
+            model_name="message",
+            name="update_id",
             field=models.BigIntegerField(blank=True, null=True, unique=True),
         ),
         migrations.AlterField(
-            model_name='message',
-            name='voice',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='bot_management.voice'),
+            model_name="message",
+            name="voice",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="bot_management.voice",
+            ),
         ),
         migrations.AddField(
-            model_name='message',
-            name='chat',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='messages', to='bot_management.chat'),
+            model_name="message",
+            name="chat",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="messages",
+                to="bot_management.chat",
+            ),
         ),
         migrations.AddField(
-            model_name='message',
-            name='from_user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='messages', to='bot_management.user'),
+            model_name="message",
+            name="from_user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="messages",
+                to="bot_management.user",
+            ),
         ),
     ]

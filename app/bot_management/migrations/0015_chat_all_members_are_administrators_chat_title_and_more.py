@@ -6,23 +6,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0014_botplatform_phone_number'),
+        ("bot_management", "0014_botplatform_phone_number"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='chat',
-            name='all_members_are_administrators',
+            model_name="chat",
+            name="all_members_are_administrators",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='chat',
-            name='title',
+            model_name="chat",
+            name="title",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
         migrations.AlterField(
-            model_name='chat',
-            name='first_name',
+            model_name="chat",
+            name="first_name",
             field=models.CharField(blank=True, max_length=255, null=True),
         ),
     ]

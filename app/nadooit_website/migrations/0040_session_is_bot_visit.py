@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_website', '0039_file_section_file'),
+        ("nadooit_website", "0039_file_section_file"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='session',
-            name='is_bot_visit',
+            model_name="session",
+            name="is_bot_visit",
             field=models.BooleanField(default=False),
         ),
     ]

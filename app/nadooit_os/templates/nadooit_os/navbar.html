@@ -6,9 +6,9 @@
 
   <a class="navbar-brand" href="/nadooit-os">{{page_title}}</a>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <a class="navbar-toggler" role="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
-  </button>
+  </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -59,7 +59,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a href="{% url 'nadooit_os:customer-time-account-overview' %}" class="dropdown-item {% is_url_active request 'nadooit_os:customer-time-account-overview' %}">Übersicht</a></li>
-          {% if user_is_Time_Account_Manager_and_can_give_manager_role%}    
+          {% if user_is_Time_Account_Manager_and_can_give_manager_role|default:False %}    
               <li><hr class="dropdown-divider"></li>
               <li><a href="{% url 'nadooit_os:give-customer-time-account-manager-role' %}" class="dropdown-item {% is_url_active request 'nadooit_os:give-customer-time-account-manager-role' %}">Schlüssel freischalten</a></li>
           {% endif %}
@@ -67,7 +67,7 @@
         </li>
         {% endif %}
 
-        {% if is_customer_program_execution_manager%}
+        {% if is_customer_program_execution_manager|default:False %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Programmausführungen
@@ -80,7 +80,7 @@
         </li>
         {% endif %}
 
-        {% if is_customer_program_manager%}
+        {% if is_customer_program_manager|default:False %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Programme

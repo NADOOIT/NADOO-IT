@@ -6,8 +6,7 @@ from model_bakery import baker
 from nadooit_api_key.models import NadooitApiKey
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer
-from nadooit_hr.models import (CustomerProgramManagerContract, Employee,
-                               EmployeeContract)
+from nadooit_hr.models import CustomerProgramManagerContract, Employee, EmployeeContract
 from nadooit_program.models import Program
 from nadooit_program_ownership_system.models import CustomerProgram
 from nadooit_time_account.models import TimeAccount

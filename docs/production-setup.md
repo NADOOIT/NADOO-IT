@@ -5,6 +5,7 @@ This guide walks you through a full production setup of NADOO-IT on an Ubuntu VP
 ## Overview
 - OS: Ubuntu LTS (20.04/22.04/24.04)
 - Runtime: Docker Engine + Docker Compose v2
+- App stack: Django 4.2 LTS (aligns with django-cockroachdb 4.2 when CockroachDB is enabled)
 - DB: SQLite by default (simple, built-in). CockroachDB is optional for scaling later.
 - TLS: certbot/Let’s Encrypt
 - Backups: scripts/backup-*.sh

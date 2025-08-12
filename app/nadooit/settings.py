@@ -19,6 +19,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+import sys
 
 from dotenv import load_dotenv
 
@@ -32,6 +33,11 @@ load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Ensure the app/ directory is on sys.path so INSTALLED_APPS can be imported
+# when running pytest from the repository root without setting PYTHONPATH.
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -156,27 +162,58 @@ WSGI_APPLICATION = "nadooit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django_cockroachdb",
-        "NAME": os.getenv("COCKROACH_DB_NAME"),
-        "USER": os.getenv("COCKROACH_DB_USER"),
-        "PASSWORD": os.getenv("COCKROACH_DB_PASSWORD"),
-        "HOST": os.getenv("COCKROACH_DB_HOST"),
-        "PORT": os.getenv("COCKROACH_DB_PORT"),
-        "OPTIONS": {
-            "sslmode": "verify-full",
-            "options": os.getenv("COCKROACH_DB_OPTIONS"),
-        },
-    }
-}
+# Database backend selection logic
+# - If COCKROACH_DB_HOST is set (non-empty), use CockroachDB (recommended for production)
+# - Else if DB_BACKEND=mysql, use MySQL (requires mysqlclient or equivalent driver)
+# - Else use SQLite (default for local development)
+DB_BACKEND = os.getenv("DB_BACKEND", "").lower()
 
+if os.getenv("COCKROACH_DB_HOST"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django_cockroachdb",
+            "NAME": os.getenv("COCKROACH_DB_NAME"),
+            "USER": os.getenv("COCKROACH_DB_USER"),
+            "PASSWORD": os.getenv("COCKROACH_DB_PASSWORD"),
+            "HOST": os.getenv("COCKROACH_DB_HOST"),
+            "PORT": os.getenv("COCKROACH_DB_PORT"),
+            "OPTIONS": {
+                "sslmode": "verify-full",
+                "options": os.getenv("COCKROACH_DB_OPTIONS"),
+            },
+        }
+    }
+elif DB_BACKEND == "mysql":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.getenv("MYSQL_DATABASE", "nadooit"),
+            "USER": os.getenv("MYSQL_USER", "root"),
+            "PASSWORD": os.getenv("MYSQL_PASSWORD", ""),
+            "HOST": os.getenv("MYSQL_HOST", "db"),
+            "PORT": os.getenv("MYSQL_PORT", "3306"),
+            "OPTIONS": {
+                "charset": "utf8mb4",
+            },
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Default user model
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
 CSRF_TRUSTED_ORIGINS = [os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")]
+
+# Authentication redirects
+# Ensure all login_required redirects go to our custom login route
+LOGIN_URL = "/auth/login-user"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -218,6 +255,11 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Feature flags
+# WhatsApp integration is experimental and disabled by default.
+# Enable by setting environment variable WHATSAPP_ENABLED=1
+WHATSAPP_ENABLED = bool(int(os.environ.get("WHATSAPP_ENABLED", "0")))
 
 # Settings for additional apps
 

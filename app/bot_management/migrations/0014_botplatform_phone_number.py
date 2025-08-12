@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0013_message_parse_mode'),
+        ("bot_management", "0013_message_parse_mode"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='botplatform',
-            name='phone_number',
+            model_name="botplatform",
+            name="phone_number",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
     ]

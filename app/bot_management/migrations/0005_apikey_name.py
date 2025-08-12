@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0004_remove_botplatform_api_key_apikey'),
+        ("bot_management", "0004_remove_botplatform_api_key_apikey"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='apikey',
-            name='name',
-            field=models.CharField(default='Placeholder', max_length=100),
+            model_name="apikey",
+            name="name",
+            field=models.CharField(default="Placeholder", max_length=100),
             preserve_default=False,
         ),
     ]

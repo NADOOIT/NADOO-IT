@@ -36,6 +36,7 @@ Custom (NADOO‑IT)
 - nadooit_crm – CRM features (contacts, organizations, etc.)
 - nadooit_hr – Human Resources (employees, roles, policies)
   - See: `docs/contracts-and-access-control.md` for contracts, permissions, and manager roles.
+  - Security: Contract activation/deactivation is enforced with object-level authorization scoped to customer and manager abilities; see `docs/security-hardening.md`.
 - nadooit_time_account – Time balance and billing for digital workers: manages purchased (prepaid) time remaining and consumed time owed (postpaid)
 - nadooit_workflow – Generic workflow engine / state handling
 - nadooit_network – Networking / relationships across entities
@@ -44,10 +45,21 @@ Custom (NADOO‑IT)
 - nadooit_api_executions_system – Managing and tracking API executions
 - nadooit_website – Public website CMS (sections, video/file embeds)
 - nadooit_os – OS‑level utilities and integrations
+  - Hosts HR contract endpoints (activate/deactivate). Security-critical: object-level checks ensure only authorized employee managers for the same customer and with delete ability can toggle contracts. See `docs/security-hardening.md`.
+  - Role-giving endpoints (Time Account, Program Execution, Program, Employee Manager) enforce per-customer object-level authorization and use explicit get-only/create-only/ability-setter helpers to avoid implicit contract creation. See `docs/security-hardening.md` for details and tests.
+  - Idempotency: manager contract creation helpers return existing contracts when present; duplicate POSTs to role‑giving views do not create duplicate manager contracts.
+  - Authentication: all `nadooit_os` routes require authentication via `login_required`. Global `LOGIN_URL` is set to `/auth/login-user` so anonymous access is consistently redirected. Tests: `app/nadooit_os/tests/test_views_os_permissions.py` (GET/POST smoke tests).
+  - Deprecated (service helpers): legacy auto-creating getters (e.g., `get__employee_contract__for__employee__and__customer`, `get__employee_manager_contract__for__user_code__and__customer`) remain for backward compatibility and tests. Do not use these in views or authorization paths. Prefer the explicit pattern: `get_only__...` to check, `create__...` to create, and `set__list_of_abilities__...` to assign abilities.
+    - Tests: `app/nadooit_os/tests/test_manager_contract_helpers.py`, `app/nadooit_os/tests/test_role_giving_permissions.py::TestRoleGivingIdempotency`, `app/nadooit_os/tests/test_hr_permissions.py::test_give_employee_manager_role_idempotent`.
 - nadooit_key – Key / credential management utilities
 - nadooit_questions_and_answers – Q&A knowledge features
 - nadoo_complaint_management – Complaint / ticket management
 - bot_management – Managing automation/bots
+  Note on experimental integrations
+  - WhatsApp (under `bot_management/plattforms/whatsapp`) is experimental and disabled by default.
+    - Feature flag: set environment variable `WHATSAPP_ENABLED=1` to enable routes and tests.
+    - When disabled, the WhatsApp webhook URL is not registered and WhatsApp tests are skipped.
+    - If you plan to work on WhatsApp, enable the flag first and write/enable tests accordingly.
 - nadoo_erp – ERP features (finance, inventory, etc.)
 - djmoney – Money fields and currency handling (third‑party, used by ERP/finance modules)
 
@@ -124,3 +136,7 @@ Purpose
 Notes
 - MFA support is available via installed third-party apps.
 - API keys gate sensitive endpoints; rotate keys and use least privilege.
+ - Security:
+   - API keys are stored SHA-256 hashed; raw keys are never persisted. Incoming request keys are hashed before lookup.
+   - Create: restricted to Api Key Managers (decorated view); anonymous/non-managers are redirected to login.
+   - Revoke: login required and only affects the caller’s own active keys.

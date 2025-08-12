@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_website', '0040_session_is_bot_visit'),
+        ("nadooit_website", "0040_session_is_bot_visit"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='session',
-            options={'ordering': ['-session_start_time']},
+            name="session",
+            options={"ordering": ["-session_start_time"]},
         ),
     ]

@@ -530,7 +530,7 @@ def get_most_successful_section_order():
         )
     else:
         return Section_Order.objects.get(
-            section_order_id="23afce39-e88f-4c5b-a2a0-e197116d6113"
+            section_order_id="b18429dd-8978-41cd-b286-8edd1100eb93"
         )
 
 
@@ -701,7 +701,20 @@ def get__next_section_html(session_id, current_section_id):
 
 
 def check__session_id__is_valid(session_id: uuid):
-    return Session.objects.filter(session_id=session_id).exists()
+    # Accept both UUID objects and strings; return False for invalid inputs
+    try:
+        if isinstance(session_id, str):
+            # Coerce to UUID; raises ValueError on invalid input
+            session_uuid = uuid.UUID(session_id)
+        elif isinstance(session_id, uuid.UUID):
+            session_uuid = session_id
+        else:
+            # Unsupported type
+            return False
+    except (ValueError, AttributeError, TypeError):
+        return False
+
+    return Session.objects.filter(session_id=session_uuid).exists()
 
 
 def get__first_section():
@@ -876,46 +889,79 @@ def handle_uploaded_file(file):
     os.makedirs(temp_dir, exist_ok=True)
 
     try:
-        with zipfile.ZipFile(file, "r") as zip_ref:
-            zip_ref.extractall(temp_dir)
+        # Local imports to avoid relying on module-level imports
+        import shutil
+        import glob
 
-        with open(os.path.join(temp_dir, "video_data.json"), "r") as json_file:
+        # Helpers to ensure safe path handling
+        def _is_within_directory(base: str, target: str) -> bool:
+            return os.path.commonpath([os.path.abspath(base), os.path.abspath(target)]) == os.path.abspath(base)
+
+        def _safe_join(base: str, relpath: str) -> str:
+            candidate = os.path.abspath(os.path.join(base, relpath))
+            if not _is_within_directory(base, candidate):
+                raise ValueError("Unsafe path detected outside extraction directory")
+            return candidate
+
+        def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
+            for member in zf.infolist():
+                name = member.filename
+                # Normalize and validate
+                out_path = _safe_join(dest, name)
+                # Ensure directory exists
+                if name.endswith("/"):
+                    os.makedirs(out_path, exist_ok=True)
+                    continue
+                os.makedirs(os.path.dirname(out_path), exist_ok=True)
+                with zf.open(member, "r") as src, open(out_path, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
+
+        with zipfile.ZipFile(file, "r") as zip_ref:
+            _safe_extract(zip_ref, temp_dir)
+
+        with open(_safe_join(temp_dir, "video_data.json"), "r") as json_file:
             video_data = json.load(json_file)
+
+        # Validate referenced file paths from metadata
+        preview_image_path = _safe_join(temp_dir, video_data["preview_image"]) if "preview_image" in video_data else None
+        original_file_path = _safe_join(temp_dir, video_data["original_file"]) if "original_file" in video_data else None
 
         video, _ = Video.objects.update_or_create(
             id=video_data["id"],
             defaults={
                 "title": video_data["title"],
                 "preview_image": File(
-                    open(os.path.join(temp_dir, video_data["preview_image"]), "rb"),
-                    video_data["preview_image"],
-                ),
+                    open(preview_image_path, "rb"),
+                    os.path.basename(preview_image_path) if preview_image_path else "preview.jpg",
+                ) if preview_image_path else None,
                 "original_file": File(
-                    open(os.path.join(temp_dir, video_data["original_file"]), "rb"),
-                    video_data["original_file"],
-                ),
+                    open(original_file_path, "rb"),
+                    os.path.basename(original_file_path) if original_file_path else "original.bin",
+                ) if original_file_path else None,
             },
         )
 
         for resolution_data in video_data["resolutions"]:
+            video_file_path = _safe_join(temp_dir, resolution_data["video_file"]) if "video_file" in resolution_data else None
+
             resolution, _ = VideoResolution.objects.update_or_create(
                 id=resolution_data["id"],
                 defaults={
                     "video": video,
                     "resolution": resolution_data["resolution"],
                     "video_file": File(
-                        open(
-                            os.path.join(temp_dir, resolution_data["video_file"]), "rb"
-                        ),
-                        resolution_data["video_file"],
-                    ),
+                        open(video_file_path, "rb"),
+                        os.path.basename(video_file_path) if video_file_path else "video.bin",
+                    ) if video_file_path else None,
                 },
             )
 
             # Now move the HLS playlist files to the right place
-            old_hls_folder_path = os.path.join(
-                temp_dir, resolution_data["hls_playlist_file"]
-            )
+            if "hls_playlist_file" in resolution_data:
+                old_hls_folder_path = _safe_join(temp_dir, resolution_data["hls_playlist_file"])
+            else:
+                old_hls_folder_path = None
+
             new_hls_folder_path = os.path.join(
                 settings.MEDIA_ROOT,
                 "hls_playlists",
@@ -923,18 +969,16 @@ def handle_uploaded_file(file):
             )
             os.makedirs(new_hls_folder_path, exist_ok=True)
 
-            if os.path.isdir(old_hls_folder_path):
+            if old_hls_folder_path and os.path.isdir(old_hls_folder_path):
                 if os.path.exists(new_hls_folder_path):
-                    shutil.rmtree(new_hls_folder_path)  # delete the existing directory and all of its contents
+                    shutil.rmtree(new_hls_folder_path)
 
-                os.makedirs(new_hls_folder_path)  # recreate the directory
+                os.makedirs(new_hls_folder_path)
 
                 for file_name in os.listdir(old_hls_folder_path):
                     src_file = os.path.join(old_hls_folder_path, file_name)
                     dest_file = os.path.join(new_hls_folder_path, file_name)
-                    
-                    shutil.move(src_file, dest_file)  # now move should succeed
-
+                    shutil.move(src_file, dest_file)
 
                 # Find the .m3u8 file in the folder
                 m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))

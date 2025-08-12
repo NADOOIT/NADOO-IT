@@ -7,13 +7,18 @@ import nadooit_website.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadooit_website', '0044_alter_videoresolution_hls_playlist_file'),
+        ("nadooit_website", "0044_alter_videoresolution_hls_playlist_file"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='videoresolution',
-            name='hls_playlist_file',
-            field=models.FileField(blank=True, max_length=500, null=True, upload_to=nadooit_website.models.hls_upload_to),
+            model_name="videoresolution",
+            name="hls_playlist_file",
+            field=models.FileField(
+                blank=True,
+                max_length=500,
+                null=True,
+                upload_to=nadooit_website.models.hls_upload_to,
+            ),
         ),
     ]

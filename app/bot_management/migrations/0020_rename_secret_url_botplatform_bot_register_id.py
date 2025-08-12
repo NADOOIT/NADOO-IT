@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0019_alter_photomessage_options'),
+        ("bot_management", "0019_alter_photomessage_options"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='botplatform',
-            old_name='secret_url',
-            new_name='bot_register_id',
+            model_name="botplatform",
+            old_name="secret_url",
+            new_name="bot_register_id",
         ),
     ]

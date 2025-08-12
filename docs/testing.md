@@ -2,6 +2,15 @@
 
 This project uses pytest + pytest-django. Tests can be run locally, via tox, or inside Docker Compose.
 
+## Baseline and dependencies
+- Baseline framework: Django 4.2 LTS
+- Default DB: SQLite (no external services). CockroachDB is optional and aligns with `django-cockroachdb 4.2`.
+- Key pins for test stability:
+  - `asgiref==3.8.1` (DRF compatibility)
+  - `moviepy<2.0` (restores `moviepy.editor` import style)
+  - `django-debug-toolbar` compatible with Django 4.2
+- SQLite limitation: `DISTINCT ON` is not supported. Where queries previously used `.distinct("contract__customer")`, the code uses a Python-side dedup helper, making tests DB-agnostic (SQLite/Postgres/Cockroach).
+
 ## Quickstart (local)
 1. Create and activate a virtualenv (recommended):
    ```bash
@@ -25,6 +34,13 @@ This project uses pytest + pytest-django. Tests can be run locally, via tox, or 
 Notes:
 - `pytest.ini` sets `DJANGO_SETTINGS_MODULE=nadooit.settings` and `--reuse-db` so test DBs are reused across runs.
 - Default DB is SQLite; no external services are required.
+
+## Containerized tests (CI-like)
+For reproducible, host-agnostic runs, use the dedicated Compose file:
+```bash
+docker compose -f docker-compose-test.yml run --rm test
+```
+This mirrors the CI environment and avoids local toolchain inconsistencies. If you see a Compose warning about a top-level `version:` key, it is safe to remove that key from the YAML to silence the warning (Compose v2 no longer requires it).
 
 ## Using tox
 Tox isolates dependencies and runs tests in a clean venv.
@@ -51,9 +67,29 @@ docker compose -f docker-compose-dev.yml run --rm app sh -lc "pytest -q"
 # With coverage written into the mounted working directory
 docker compose -f docker-compose-dev.yml run --rm app sh -lc \
   "pytest --cov=app --cov-report term:skip-covered --cov-report html:cov_html"
-```
+
 Artifacts:
 - The `./app` directory is mounted into the container; `cov_html/` will appear under `app/` if run from that directory. You can also move or open it as needed.
+
+## CI and Coverage Gate
+Tests run automatically in GitHub Actions on every push/PR using Python 3.10. The workflows upload `coverage.xml` (and diff-cover reports) as artifacts.
+
+- Full test suite: `.github/workflows/tests.yml`
+- Changed-lines coverage (diff-cover): `.github/workflows/coverage.yml`
+- Coverage config: `app/.coveragerc` (repo-root local runs) and `.coveragerc` when the working directory is `app/` (e.g., `docker-compose-test.yml`).
+- Pytest gate: a minimum coverage threshold is enforced via `pytest.ini` (`--cov-fail-under=50`).
+  - Start at 50% to avoid blocking; raise the threshold as we add tests (ratchet strategy).
+- Diff-cover gate: PRs must maintain ≥80% coverage on changed lines. CI generates:
+  - `coverage.xml`
+  - `diff-cover.html`
+  - `diff-cover.md`
+
+PR Checklist expectations (see `.github/pull_request_template.md`):
+- Tests added/updated for all changes
+- All tests pass locally or via containerized runs
+- Global coverage does not decrease
+- Changed-lines coverage ≥ 80%
+- Docs updated where relevant
 
 ## Tips
 - Run a single test file:

@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0001_initial'),
+        ("bot_management", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='botplatform',
-            name='api_key',
+            model_name="botplatform",
+            name="api_key",
         ),
         migrations.RemoveField(
-            model_name='botplatform',
-            name='secret_url',
+            model_name="botplatform",
+            name="secret_url",
         ),
     ]

@@ -7,49 +7,80 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0008_message_voice'),
+        ("bot_management", "0008_message_voice"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Voice',
+            name="Voice",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('duration', models.IntegerField()),
-                ('mime_type', models.CharField(max_length=100)),
-                ('file_id', models.CharField(max_length=100)),
-                ('file_unique_id', models.CharField(max_length=100)),
-                ('file_size', models.IntegerField()),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("duration", models.IntegerField()),
+                ("mime_type", models.CharField(max_length=100)),
+                ("file_id", models.CharField(max_length=100)),
+                ("file_unique_id", models.CharField(max_length=100)),
+                ("file_size", models.IntegerField()),
             ],
         ),
         migrations.AlterUniqueTogether(
-            name='message',
+            name="message",
             unique_together=set(),
         ),
         migrations.AddField(
-            model_name='message',
-            name='bot_platform',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='bot_management.botplatform'),
+            model_name="message",
+            name="bot_platform",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="bot_management.botplatform",
+            ),
         ),
         migrations.AlterUniqueTogether(
-            name='message',
-            unique_together={('message_id', 'date', 'bot_platform')},
+            name="message",
+            unique_together={("message_id", "date", "bot_platform")},
         ),
         migrations.CreateModel(
-            name='VoiceFile',
+            name="VoiceFile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file', models.FileField(upload_to='voice_files/')),
-                ('voice', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='bot_management.voice')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file", models.FileField(upload_to="voice_files/")),
+                (
+                    "voice",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="bot_management.voice",
+                    ),
+                ),
             ],
         ),
         migrations.RemoveField(
-            model_name='message',
-            name='platform',
+            model_name="message",
+            name="platform",
         ),
         migrations.AlterField(
-            model_name='message',
-            name='voice',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='bot_management.voice'),
+            model_name="message",
+            name="voice",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="bot_management.voice",
+            ),
         ),
     ]

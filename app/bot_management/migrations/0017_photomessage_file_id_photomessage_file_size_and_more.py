@@ -6,33 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0016_photomessage'),
+        ("bot_management", "0016_photomessage"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='photomessage',
-            name='file_id',
+            model_name="photomessage",
+            name="file_id",
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='photomessage',
-            name='file_size',
+            model_name="photomessage",
+            name="file_size",
             field=models.IntegerField(null=True),
         ),
         migrations.AddField(
-            model_name='photomessage',
-            name='file_unique_id',
+            model_name="photomessage",
+            name="file_unique_id",
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='photomessage',
-            name='height',
+            model_name="photomessage",
+            name="height",
             field=models.IntegerField(null=True),
         ),
         migrations.AddField(
-            model_name='photomessage',
-            name='width',
+            model_name="photomessage",
+            name="width",
             field=models.IntegerField(null=True),
         ),
     ]

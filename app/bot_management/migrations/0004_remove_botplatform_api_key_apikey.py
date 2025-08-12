@@ -8,20 +8,37 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0003_botplatform_api_key_botplatform_secret_url'),
+        ("bot_management", "0003_botplatform_api_key_botplatform_secret_url"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='botplatform',
-            name='api_key',
+            model_name="botplatform",
+            name="api_key",
         ),
         migrations.CreateModel(
-            name='APIKey',
+            name="APIKey",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('api_key', models.UUIDField(default=uuid.uuid4, editable=False, unique=True)),
-                ('bot_platform', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bot_management.botplatform')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "api_key",
+                    models.UUIDField(default=uuid.uuid4, editable=False, unique=True),
+                ),
+                (
+                    "bot_platform",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="bot_management.botplatform",
+                    ),
+                ),
             ],
         ),
     ]

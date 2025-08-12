@@ -165,3 +165,9 @@ key.pem
 .idea
 staticfiles
 node_modules
+# Ignore logs
+app/logs/*.log
+
+# Python cache
+**/__pycache__
+*.pyc

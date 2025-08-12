@@ -7,33 +7,60 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('nadoo_erp', '0001_initial'),
-        ('nadooit_crm', '0001_initial'),
-        ('bot_management', '0006_botplatform_secret_token'),
+        ("nadoo_erp", "0001_initial"),
+        ("nadooit_crm", "0001_initial"),
+        ("bot_management", "0006_botplatform_secret_token"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Message',
+            name="Message",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('message_id', models.BigIntegerField()),
-                ('text', models.TextField(blank=True, null=True)),
-                ('date', models.DateTimeField()),
-                ('additional_info', models.JSONField(blank=True, null=True)),
-                ('platform', models.CharField(max_length=255)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadooit_crm.customer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("message_id", models.BigIntegerField()),
+                ("text", models.TextField(blank=True, null=True)),
+                ("date", models.DateTimeField()),
+                ("additional_info", models.JSONField(blank=True, null=True)),
+                ("platform", models.CharField(max_length=255)),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="nadooit_crm.customer",
+                    ),
+                ),
             ],
             options={
-                'unique_together': {('message_id', 'date', 'platform')},
+                "unique_together": {("message_id", "date", "platform")},
             },
         ),
         migrations.CreateModel(
-            name='Advertisement',
+            name="Advertisement",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='nadoo_erp.item')),
-                ('messages', models.ManyToManyField(to='bot_management.message')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "item",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="nadoo_erp.item"
+                    ),
+                ),
+                ("messages", models.ManyToManyField(to="bot_management.message")),
             ],
         ),
     ]

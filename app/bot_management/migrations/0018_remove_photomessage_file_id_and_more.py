@@ -7,40 +7,54 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0017_photomessage_file_id_photomessage_file_size_and_more'),
+        ("bot_management", "0017_photomessage_file_id_photomessage_file_size_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='photomessage',
-            name='file_id',
+            model_name="photomessage",
+            name="file_id",
         ),
         migrations.RemoveField(
-            model_name='photomessage',
-            name='file_size',
+            model_name="photomessage",
+            name="file_size",
         ),
         migrations.RemoveField(
-            model_name='photomessage',
-            name='file_unique_id',
+            model_name="photomessage",
+            name="file_unique_id",
         ),
         migrations.RemoveField(
-            model_name='photomessage',
-            name='height',
+            model_name="photomessage",
+            name="height",
         ),
         migrations.RemoveField(
-            model_name='photomessage',
-            name='width',
+            model_name="photomessage",
+            name="width",
         ),
         migrations.CreateModel(
-            name='TelegramPhoto',
+            name="TelegramPhoto",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('file_id', models.CharField(max_length=100, null=True)),
-                ('file_unique_id', models.CharField(max_length=100, null=True)),
-                ('file_size', models.IntegerField(null=True)),
-                ('width', models.IntegerField(null=True)),
-                ('height', models.IntegerField(null=True)),
-                ('photo_message', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bot_management.photomessage')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("file_id", models.CharField(max_length=100, null=True)),
+                ("file_unique_id", models.CharField(max_length=100, null=True)),
+                ("file_size", models.IntegerField(null=True)),
+                ("width", models.IntegerField(null=True)),
+                ("height", models.IntegerField(null=True)),
+                (
+                    "photo_message",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="bot_management.photomessage",
+                    ),
+                ),
             ],
         ),
     ]

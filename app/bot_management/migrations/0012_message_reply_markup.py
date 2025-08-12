@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bot_management', '0011_alter_user_options'),
+        ("bot_management", "0011_alter_user_options"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='message',
-            name='reply_markup',
+            model_name="message",
+            name="reply_markup",
             field=models.JSONField(blank=True, null=True),
         ),
     ]
