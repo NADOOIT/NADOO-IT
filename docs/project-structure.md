@@ -37,8 +37,8 @@ Related docs:
   - `docker/certbot/` – Scripts and files used by Certbot for certificate issuance/renewal.
 - `docker-compose-dev.yml`
   - Development stack (HTTPS dev server via `runserver_plus`, live code mounting, Redis, Celery worker).
-- `docker-compose.deploy.yml` and `docker-compose-deploy.yml`
-  - Production stack (uWSGI behind Nginx, Certbot, Redis, Celery worker, persisted static/media volumes).
+- `docker-compose-deploy-SQLite.yml`, `docker-compose-deploy-CockroachDB.yml`, `docker-compose-deploy-MySQL.yml`
+  - Production stack variants (uWSGI behind Nginx, Certbot, Redis, Celery worker, persisted static/media volumes). Use the SQLite variant by default; choose CockroachDB/MySQL if your infra requires it.
 - `Dockerfile` / `Dockerfile-dev`
   - Base images for production and development respectively.
   - Install system deps (e.g., ffmpeg), Python deps, create Django user, and set up directories and permissions.

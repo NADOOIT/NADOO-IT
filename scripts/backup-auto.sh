@@ -22,8 +22,9 @@ cd "$REPO_ROOT"
 MIN_FREE_GB=2
 KEEP_DAYS=14
 MAX_BACKUPS=0
-COMPOSE_FILE="docker-compose.deploy.yml"
+COMPOSE_FILE="docker-compose-deploy-SQLite.yml"
 [ ! -f "$COMPOSE_FILE" ] && [ -f "docker-compose-deploy.yml" ] && COMPOSE_FILE="docker-compose-deploy.yml"
+[ ! -f "$COMPOSE_FILE" ] && [ -f "docker-compose.deploy.yml" ] && COMPOSE_FILE="docker-compose.deploy.yml"
 PASS_ARGS=()
 
 while [ $# -gt 0 ]; do

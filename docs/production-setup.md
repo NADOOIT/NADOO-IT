@@ -75,32 +75,35 @@ EMAIL_PORT=587
 EOF
 ```
 
-Most commands below assume `docker-compose.deploy.yml` (fallback: `docker-compose-deploy.yml`). Adjust paths to match your repo.
+Choose your compose file (replace in commands below):
+ - `docker-compose-deploy-SQLite.yml` (default, simplest and fastest)
+ - `docker-compose-deploy-CockroachDB.yml` (horizontal scale, mostly works; ensure TLS root.crt)
+ - `docker-compose-deploy-MySQL.yml` (use if your infra prefers MySQL)
 
 ## First-time app setup
 Identify your Django service name from the compose file (commonly `web` or `app`). Replace `<web_service>` below accordingly.
 
 Build images and start stack:
 ```bash
-# Start in detached mode
-sudo docker compose -f docker-compose.deploy.yml --env-file .env.production up -d --build
+# Start in detached mode (replace file with your chosen variant)
+sudo docker compose -f docker-compose-deploy-SQLite.yml --env-file .env.production up -d --build
 ```
 
 Run database migrations and create a superuser:
 ```bash
-sudo docker compose -f docker-compose.deploy.yml exec -T <web_service> python manage.py migrate
-sudo docker compose -f docker-compose.deploy.yml exec -T <web_service> python manage.py createsuperuser
+sudo docker compose -f docker-compose-deploy-SQLite.yml exec -T <web_service> python manage.py migrate
+sudo docker compose -f docker-compose-deploy-SQLite.yml exec -T <web_service> python manage.py createsuperuser
 ```
 
 Collect static files (if not baked into your image):
 ```bash
-sudo docker compose -f docker-compose.deploy.yml exec -T <web_service> python manage.py collectstatic --noinput
+sudo docker compose -f docker-compose-deploy-SQLite.yml exec -T <web_service> python manage.py collectstatic --noinput
 ```
 
 Check health:
 ```bash
-sudo docker compose -f docker-compose.deploy.yml ps
-sudo docker compose -f docker-compose.deploy.yml logs --tail=100
+sudo docker compose -f docker-compose-deploy-SQLite.yml ps
+sudo docker compose -f docker-compose-deploy-SQLite.yml logs --tail=100
 ```
 
 ## HTTPS (Let’s Encrypt)
@@ -123,7 +126,7 @@ sudo bash scripts/setup-backups.sh \
   --setup-certbot \
   --certbot-schedule "17 4 * * *" \
   --certbot-cmd "certbot renew -q" \
-  --certbot-deploy-hook "docker compose -f docker-compose.deploy.yml exec -T nginx nginx -s reload"
+  --certbot-deploy-hook "docker compose -f docker-compose-deploy-SQLite.yml exec -T nginx nginx -s reload"
 ```
 
 If this is the first issuance, run certbot once interactively to obtain the initial cert (host nginx scenario):
@@ -135,7 +138,7 @@ sudo certbot certonly --nginx -d yourdomain.com -m you@example.com --agree-tos -
 ## Backups (SQLite + Media)
 Manual one-shot backup:
 ```bash
-bash scripts/backup-all.sh --compose-file docker-compose.deploy.yml
+bash scripts/backup-all.sh --compose-file docker-compose-deploy-SQLite.yml
 ```
 
 Automatic backups with disk space checks and pruning (cron):
@@ -143,7 +146,7 @@ Automatic backups with disk space checks and pruning (cron):
 # Installs/updates a cron entry with sensible defaults
 sudo bash scripts/setup-backups.sh \
   --backup-schedule "2 3 * * *" \
-  --compose-file docker-compose.deploy.yml \
+  --compose-file docker-compose-deploy-SQLite.yml \
   --min-free-gb 2 \
   --keep-days 14
 ```
@@ -173,8 +176,8 @@ sudo bash scripts/setup-maintenance.sh \
 ## Monitoring & operations
 - Check running services:
   ```bash
-  sudo docker compose -f docker-compose.deploy.yml ps
-  sudo docker compose -f docker-compose.deploy.yml logs --tail=200
+  sudo docker compose -f docker-compose-deploy-SQLite.yml ps
+  sudo docker compose -f docker-compose-deploy-SQLite.yml logs --tail=200
   ```
 - Crontab entries:
   ```bash

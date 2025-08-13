@@ -15,7 +15,7 @@ Selection logic (from `app/nadooit/settings.py`)
 SQLite
 - Pros: zero config, fast for single-node deployments, file-based
 - Path: `BASE_DIR/db.sqlite3` (inside the `app` container this is `/app/db.sqlite3`)
-- Production persistence: add a bind mount in `docker-compose.deploy.yml` so the DB file survives container rebuilds, e.g.
+- Production persistence: add a bind mount in `docker-compose-deploy-SQLite.yml` so the DB file survives container rebuilds, e.g.
   ```yaml
   services:
     app:
@@ -47,6 +47,8 @@ MySQL (legacy)
 Notes
 - Regardless of backend, run `python manage.py migrate` after configuration changes
 - Verify DB connectivity in logs on startup; for Cockroach, TLS/hostname verification issues typically indicate a CA certificate path problem
+
+Dev or Prod: You can run any of the three backends in development or production. SQLite is our primary development option (fastest). CockroachDB mostly works and is recommended when you need scalability. MySQL should be fine if your infrastructure prefers it.
 
 See also
 - Running guide: `docs/running.md`

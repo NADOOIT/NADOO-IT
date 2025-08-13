@@ -34,13 +34,14 @@ ACME_DEFAULT_EMAIL=admin@example.com
 EOF
 
 # 4) First deploy (HTTPS)
-docker compose -f docker-compose.deploy.yml build && \
-docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh && \
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate && \
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput && \
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates && \
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser && \
-docker compose -f docker-compose.deploy.yml up -d
+# Choose a compose file: docker-compose-deploy-SQLite.yml (default) or -CockroachDB.yml or -MySQL.yml
+docker compose -f docker-compose-deploy-SQLite.yml build && \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm certbot /opt/certify-init.sh && \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate && \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py collectstatic --noinput && \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py import_templates && \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py createsuperuser && \
+docker compose -f docker-compose-deploy-SQLite.yml up -d
 
 # Open https://example.com and login at /admin
 ```
@@ -117,7 +118,7 @@ For CockroachDB (optional), add the variables in docs/database.md and ensure `ro
 
 4) Persist uploads (static/media) and optionally SQLite
 Static and media are already persisted using named volumes and shared with the proxy container.
-To persist the SQLite DB across rebuilds, bind-mount the DB file by adding one line to the `app` service in `docker-compose.deploy.yml`:
+To persist the SQLite DB across rebuilds, bind-mount the DB file by adding one line to the `app` service in `docker-compose-deploy-SQLite.yml`:
 ```yaml
 services:
   app:
@@ -142,23 +143,24 @@ mkdir -p ~/.postgresql
 The compose files map this into `/home/django/.postgresql/root.crt` for the app and worker containers.
 
 6) First-time production deployment (HTTPS)
+Note: replace `docker-compose-deploy-SQLite.yml` below with `docker-compose-deploy-CockroachDB.yml` or `docker-compose-deploy-MySQL.yml` if you choose those backends.
 ```bash
 # Build images
-docker compose -f docker-compose.deploy.yml build
+docker compose -f docker-compose-deploy-SQLite.yml build
 
 # Initialize certificates (Let’s Encrypt)
-docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+docker compose -f docker-compose-deploy-SQLite.yml run --rm certbot /opt/certify-init.sh
 
 # Run migrations and collect assets
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py collectstatic --noinput
 
 # Import website templates and create admin user
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py import_templates
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py createsuperuser
 
 # Start the stack
-docker compose -f docker-compose.deploy.yml up -d
+docker compose -f docker-compose-deploy-SQLite.yml up -d
 ```
 Access:
 - App: https://example.com
@@ -168,18 +170,18 @@ Access:
 ```bash
 git pull
 
-docker compose -f docker-compose.deploy.yml build
+docker compose -f docker-compose-deploy-SQLite.yml build
 
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py collectstatic --noinput
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py import_templates
 
-docker compose -f docker-compose.deploy.yml up -d
+docker compose -f docker-compose-deploy-SQLite.yml up -d
 ```
 
 8) Logs
 ```bash
-docker compose -f docker-compose.deploy.yml logs -f app
+docker compose -f docker-compose-deploy-SQLite.yml logs -f app
 # other services: proxy, certbot, celery_worker, redis
 ```
 

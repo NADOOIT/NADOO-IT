@@ -3,7 +3,8 @@
 # Usage:
 #   bash scripts/backup-all.sh [--skip-media] [--include-static] [--compose-file <path>]
 # Notes:
-# - Default compose file is docker-compose.deploy.yml (falls back to docker-compose-deploy.yml if present)
+# - Default compose file is docker-compose-deploy-SQLite.yml
+#   (override with --compose-file; choose -CockroachDB or -MySQL variants as needed)
 # - Outputs backups into backups/sqlite and backups/media with a timestamp
 
 set -euo pipefail
@@ -14,8 +15,7 @@ REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 cd "$REPO_ROOT"
 
 # Defaults
-COMPOSE_FILE="docker-compose.deploy.yml"
-[ ! -f "$COMPOSE_FILE" ] && [ -f "docker-compose-deploy.yml" ] && COMPOSE_FILE="docker-compose-deploy.yml"
+COMPOSE_FILE="docker-compose-deploy-SQLite.yml"
 BACKUP_MEDIA=1
 BACKUP_STATIC=0
 

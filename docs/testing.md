@@ -40,7 +40,15 @@ For reproducible, host-agnostic runs, use the dedicated Compose file:
 ```bash
 docker compose -f docker-compose-test.yml run --rm test
 ```
-This mirrors the CI environment and avoids local toolchain inconsistencies. If you see a Compose warning about a top-level `version:` key, it is safe to remove that key from the YAML to silence the warning (Compose v2 no longer requires it).
+This mirrors the CI environment and avoids local toolchain inconsistencies.
+
+Outputs:
+- Coverage summary printed to terminal
+- Coverage XML written to `coverage.xml` at repo root (configured via `--cov-config=app/.coveragerc`)
+
+Notes:
+- If you see a Compose warning about a top-level `version:` key, it is safe to remove that key from the YAML to silence the warning (Compose v2 no longer requires it).
+- The test container runs with working directory `app/` and uses `--cov=.` to collect coverage reliably inside the container.
 
 ## Using tox
 Tox isolates dependencies and runs tests in a clean venv.
@@ -70,6 +78,17 @@ docker compose -f docker-compose-dev.yml run --rm app sh -lc \
 
 Artifacts:
 - The `./app` directory is mounted into the container; `cov_html/` will appear under `app/` if run from that directory. You can also move or open it as needed.
+
+Variants (OS/DB-specific dev files exist when you need a particular backend):
+- macOS + SQLite: `docker-compose-dev-MAC_SQLite.yml`
+- macOS + MySQL: `docker-compose-dev-MAC_MYSQL.yml`
+- macOS + CockroachDB: `docker-compose-dev-MAC_COCKROACHDB.yml`
+- Windows variants: `docker-compose-dev-WIN_*.yml`
+
+Example (macOS + SQLite):
+```bash
+docker compose -f docker-compose-dev-MAC_SQLite.yml run --rm app python -m pytest -v
+```
 
 ## CI and Coverage Gate
 Tests run automatically in GitHub Actions on every push/PR using Python 3.10. The workflows upload `coverage.xml` (and diff-cover reports) as artifacts.

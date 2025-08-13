@@ -3,7 +3,8 @@
 This guide shows exactly how to back up and restore the default SQLite database and uploaded media on the production server.
 
 Assumptions
-- You deploy with Docker Compose using `docker-compose.deploy.yml`.
+- You deploy with Docker Compose using `docker-compose-deploy-SQLite.yml` by default.
+- If you use CockroachDB or MySQL in production, substitute `docker-compose-deploy-CockroachDB.yml` or `docker-compose-deploy-MySQL.yml` accordingly.
 - SQLite is the default DB (CockroachDB is optional and documented elsewhere).
 - App container stores the DB at `/app/db.sqlite3` (per `settings.py`).
 
@@ -21,16 +22,16 @@ mkdir -p backups/sqlite backups/media
 TS=$(date +%Y%m%d-%H%M%S)
 
 # 1) Stop the app briefly to quiesce SQLite (few seconds)
-docker compose -f docker-compose.deploy.yml stop app
+docker compose -f docker-compose-deploy-SQLite.yml stop app
 
 # 2) Copy the SQLite DB out of the container filesystem to the host
 #    This streams /app/db.sqlite3 into a timestamped backup on the server
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc 'test -f /app/db.sqlite3 && cat /app/db.sqlite3' \
   > backups/sqlite/db.${TS}.sqlite3
 
 # 3) Start the app again
-docker compose -f docker-compose.deploy.yml start app
+docker compose -f docker-compose-deploy-SQLite.yml start app
 
 # 4) (Optional) Compress and checksum
 gzip -9 backups/sqlite/db.${TS}.sqlite3
@@ -38,13 +39,13 @@ sha256sum backups/sqlite/db.${TS}.sqlite3.gz > backups/sqlite/db.${TS}.sqlite3.g
 
 # 5) Back up media (and static, if desired)
 # Media
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc 'tar czf - /vol/web/media' \
   > backups/media/media.${TS}.tgz
 sha256sum backups/media/media.${TS}.tgz > backups/media/media.${TS}.tgz.sha256
 
 # Static (optional — can be re-built, but backup is cheap)
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc 'tar czf - /vol/web/static' \
   > backups/media/static.${TS}.tgz
 sha256sum backups/media/static.${TS}.tgz > backups/media/static.${TS}.tgz.sha256
@@ -67,8 +68,8 @@ bash scripts/backup-all.sh
 # Options:
 #   --skip-media       Skip media backup
 #   --include-static   Include static files backup (optional)
-#   --compose-file     Use a specific compose file (default: docker-compose.deploy.yml,
-#                      falls back to docker-compose-deploy.yml if present)
+#   --compose-file     Use a specific compose file (default: docker-compose-deploy-SQLite.yml;
+#                      you may pass -CockroachDB or -MySQL variants; falls back to legacy names if present)
 
 # Examples
 bash scripts/backup-all.sh --include-static
@@ -139,7 +140,7 @@ bash scripts/setup-backups.sh \
   - `--min-free-gb` minimum free space required before backup (default `2` GiB)
   - `--keep-days` prune backups older than N days (default `14`)
   - `--max-backups` cap number of SQLite DB backups (default `0` = disabled)
-  - `--compose-file` choose compose file (defaults to `docker-compose.deploy.yml`, falls back to `docker-compose-deploy.yml`)
+  - `--compose-file` choose compose file (defaults to `docker-compose-deploy-SQLite.yml`; legacy names still supported as fallback)
   - `--skip-media` skip media backup
   - `--include-static` also back up static files
   - `--log-file` override log file path (default: `/var/log/nadooit-backups.log` as root, else `~/nadooit-backups.log`)
@@ -161,7 +162,7 @@ bash scripts/setup-backups.sh \
   ```
   - If your web server runs in Docker, use a deploy hook that reloads it via compose, e.g.:
     ```bash
-    --certbot-deploy-hook "docker compose -f docker-compose.deploy.yml exec -T nginx nginx -s reload"
+    --certbot-deploy-hook "docker compose -f docker-compose-deploy-SQLite.yml exec -T nginx nginx -s reload"
     ```
   - Logs default to `/var/log/letsencrypt/renew.log` (root) or `~/certbot-renew.log` (non-root); override with `--certbot-log-file`.
 
@@ -176,7 +177,7 @@ bash scripts/setup-backups.sh \
     --install-systemd-compose
   ```
   - This configures `unattended-upgrades` with automatic reboots at the specified time.
-  - It installs a systemd service (`nadooit-compose.service`) that runs `docker compose up -d` on boot for `docker-compose.deploy.yml` (or `docker-compose-deploy.yml`).
+  - It installs a systemd service (`nadooit-compose.service`) that runs `docker compose up -d` on boot for your selected compose file (default `docker-compose-deploy-SQLite.yml`).
   - Schedule backups earlier than the reboot window (e.g., backups at 03:02) so a fresh backup exists prior to any reboot.
 
   #### Pre‑reboot backup guard (fresh backup before auto‑reboot)
@@ -211,7 +212,7 @@ Notes
 If your container has the `sqlite3` CLI installed (it usually doesn’t), you can create a consistent online backup without stopping the app:
 
 ```bash
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc "sqlite3 /app/db.sqlite3 '.backup /tmp/db.backup.sqlite3' && cat /tmp/db.backup.sqlite3" \
   > backups/sqlite/db.${TS}.sqlite3
 ```
@@ -281,7 +282,7 @@ BACKUP=backups/sqlite/db.20250101-030205.sqlite3.gz   # example
 gunzip -c "$BACKUP" > /tmp/db.restore.sqlite3
 
 # Stream the file into /app/db.sqlite3 inside the image FS
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc 'cat > /app/db.sqlite3' < /tmp/db.restore.sqlite3
 rm -f /tmp/db.restore.sqlite3
 ```
@@ -289,17 +290,17 @@ rm -f /tmp/db.restore.sqlite3
 3) Restore media (and static, if desired):
 ```bash
 # Media
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc 'tar xzf - -C /' < backups/media/media.20250101-030205.tgz
 # Static (optional)
-docker compose -f docker-compose.deploy.yml run --rm app \
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app \
   sh -lc 'tar xzf - -C /' < backups/media/static.20250101-030205.tgz
 ```
 
 4) Start the app and run migrations (if you restored an older DB):
 ```bash
-docker compose -f docker-compose.deploy.yml start app
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+docker compose -f docker-compose-deploy-SQLite.yml start app
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate
 ```
 
 ---

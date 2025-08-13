@@ -10,9 +10,15 @@ NADOO-IT is a Django application with:
 - Database: SQLite by default; CockroachDB optional (enable via env), MySQL supported. See [Database backends](database.md) for details.
 - Nginx + Certbot for HTTPS in production
 
-Two docker-compose files are provided:
-- `docker-compose-dev.yml` – local development
-- `docker-compose.deploy.yml` – production
+Compose files are provided (choose per scenario):
+- `docker-compose-dev.yml` – local development (SQLite default)
+  - OS/DB variants: `docker-compose-dev-MAC_SQLite.yml`, `docker-compose-dev-WIN_SQLite.yml`, `docker-compose-dev-MAC_MYSQL.yml`, `docker-compose-dev-WIN_MYSQL.yml`, `docker-compose-dev-MAC_COCKROACHDB.yml`, `docker-compose-dev-WIN_COCKROACHDB.yml`
+- Production: `docker-compose-deploy-SQLite.yml` (default), `docker-compose-deploy-CockroachDB.yml`, or `docker-compose-deploy-MySQL.yml`
+
+DB options (dev and prod):
+- SQLite: primary for development; fastest and simplest to run.
+- CockroachDB: mostly works and is recommended when you need horizontal scalability; ensure TLS root.crt is mounted.
+- MySQL: should be fine; choose if your infra or integrations prefer MySQL.
 
 Quickstart (local development)
 ```bash
@@ -23,7 +29,7 @@ docker compose -f docker-compose-dev.yml run --rm app python manage.py createsup
 ```
 Visit https://localhost:8000 (accept the self-signed certificate). Admin at https://localhost:8000/admin.
 
-An alternative, legacy compose exists: `docker-compose-deploy.yml` (MySQL + WordPress). Prefer the CockroachDB stack unless you know you need the MySQL variant.
+Legacy note: `docker-compose-deploy.yml` (MySQL + WordPress) exists from earlier setups. Prefer `docker-compose-deploy-SQLite.yml` by default or `docker-compose-deploy-CockroachDB.yml` when scaling; use `docker-compose-deploy-MySQL.yml` only if you specifically need MySQL.
 
 ---
 
@@ -179,7 +185,10 @@ docker compose -f docker-compose-dev.yml down
 
 ## 4) Running in Production (default: SQLite; Cockroach optional)
 
-Compose file: `docker-compose.deploy.yml`
+Choose a compose file:
+- `docker-compose-deploy-SQLite.yml` (default)
+- `docker-compose-deploy-CockroachDB.yml`
+- `docker-compose-deploy-MySQL.yml`
 
 Services:
 - `app` – Django app
@@ -190,29 +199,29 @@ Services:
 
 Host file/volume expectations:
 - If using Cockroach: `/home/nadooserver/.postgresql/root.crt` should exist on the host (or adjust the mapping) so the `app` container can verify CockroachDB TLS.
-- If using SQLite: no DB certificate is required. Note: by default, the SQLite DB file (`/app/db.sqlite3`) lives inside the container. To persist it across container rebuilds, add a bind mount in `docker-compose.deploy.yml`, e.g. `- /opt/nadooit/sqlite/db.sqlite3:/app/db.sqlite3`.
+- If using SQLite: no DB certificate is required. Note: by default, the SQLite DB file (`/app/db.sqlite3`) lives inside the container. To persist it across container rebuilds, add a bind mount in `docker-compose-deploy-SQLite.yml`, e.g. `- /opt/nadooit/sqlite/db.sqlite3:/app/db.sqlite3`.
 
 Steps:
 1) Create `.env` at the repository root using the production example above.
 2) If enabling Cockroach, place `root.crt` at `/home/nadooserver/.postgresql/root.crt` on the host (or update the compose volume mapping to match your environment). For SQLite, skip this step.
 3) Build images:
    ```bash
-   docker compose -f docker-compose.deploy.yml build
+   docker compose -f docker-compose-deploy-SQLite.yml build
    ```
 4) Initialize/validate certificates (first run):
    ```bash
-   docker compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+   docker compose -f docker-compose-deploy-SQLite.yml run --rm certbot /opt/certify-init.sh
    ```
 5) Run database migrations and collect static files:
    ```bash
-   docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
-   docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput
-   docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
-   docker compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
+   docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate
+   docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py collectstatic --noinput
+   docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py import_templates
+   docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py createsuperuser
    ```
 6) Start the stack:
    ```bash
-   docker compose -f docker-compose.deploy.yml up -d
+   docker compose -f docker-compose-deploy-SQLite.yml up -d
    ```
 7) Access the site at:
    - https://<your-domain>
@@ -223,22 +232,22 @@ Update procedure:
 git stash
 git pull
 
-docker compose -f docker-compose.deploy.yml build
+docker compose -f docker-compose-deploy-SQLite.yml build
 
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate
 
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py collectstatic --noinput
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py collectstatic --noinput
 
-docker compose -f docker-compose.deploy.yml run --rm app python manage.py import_templates
+docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py import_templates
 
-docker compose -f docker-compose.deploy.yml down
+docker compose -f docker-compose-deploy-SQLite.yml down
 
-docker compose -f docker-compose.deploy.yml up -d
+docker compose -f docker-compose-deploy-SQLite.yml up -d
 ```
 
 Logs & troubleshooting:
 ```bash
-docker compose -f docker-compose.deploy.yml logs -f proxy
+docker compose -f docker-compose-deploy-SQLite.yml logs -f proxy
 ```
 - Ensure `DJANGO_ALLOWED_HOSTS` is a comma-separated list (no spaces) and that `DJANGO_CSRF_TRUSTED_ORIGINS` includes scheme (e.g. `https://example.com`).
 - If CockroachDB TLS verification fails, verify `root.crt` is present in the mapped host path and the hostname in your DB host matches the certificate.
