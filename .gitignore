@@ -171,3 +171,14 @@ app/logs/*.log
 # Python cache
 **/__pycache__
 *.pyc
+
+# Ignore Python virtualenvs
+.venv*/
+venv*/
+
+# Ignore logs
+app/logs/*.log
+
+# Python cache
+**/__pycache__/
+*.pyc
