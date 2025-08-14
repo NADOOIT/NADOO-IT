@@ -164,6 +164,9 @@ Date: current
   - Removed an unused import of `get__employee_contract__for__user_code__and__customer` from `app/nadooit_os/views.py` (no functional change).
   - Full suite re-run to verify no regressions: 196 passed, 3 skipped, 1 xfailed; coverage 71.79%.
 
+ - CI/GitHub Actions
+   - Set least-privilege GITHUB_TOKEN: add `permissions: contents: read` to `.github/workflows/tests.yml` and `.github/workflows/coverage.yml`. No repository write permissions are granted to workflow jobs unless explicitly needed.
+
 ## How to run tests locally
 
 - Full suite with coverage:
