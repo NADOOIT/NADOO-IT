@@ -42,7 +42,7 @@ read answer
 if [ "$answer" = "y" ]; then
   read -p "DJANGO_SECRET_KEY: " django_secret_key
   read -p "DOMAIN (for DJANGO_CSRF_TRUSTED_ORIGINS): " domain
-  read -p "ACME_DEFAUT_EMAIL: " acme_default_email
+  read -p "ACME_DEFAULT_EMAIL: " acme_default_email
   read -p "COCKROACH_DB_HOST: " cockroach_db_host
   read -p "COCKROACH_DB_NAME: " cockroach_db_name
   read -p "COCKROACH_DB_PORT: " cockroach_db_port
@@ -66,17 +66,17 @@ if [ "$answer" = "y" ]; then
   sed -i "s/DJANGO_DEBUG=1/DJANGO_DEBUG=0/" .env
   
   echo "Building the Docker images..."
-  docker-compose -f docker-compose.deploy.yml build
-  docker-compose -f docker-compose.deploy.yml run --rm certbot /opt/certify-init.sh
+  docker-compose -f docker-compose-deploy.yml build
+  docker-compose -f docker-compose-deploy.yml run --rm certbot /opt/certify-init.sh
 
   echo "Running migrations..."
-  docker-compose -f docker-compose.deploy.yml run --rm app python manage.py migrate
+  docker-compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
 
   echo "Creating superuser..."
-  docker-compose -f docker-compose.deploy.yml run --rm app python manage.py createsuperuser
+  docker-compose -f docker-compose-deploy.yml run --rm app python manage.py createsuperuser
 
   echo "Starting the server..."
-  docker-compose -f docker-compose.deploy.yml up -d
+  docker-compose -f docker-compose-deploy.yml up -d
 fi
 
 echo "The .env file has been updated with the provided information."

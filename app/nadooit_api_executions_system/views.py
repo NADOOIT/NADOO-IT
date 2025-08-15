@@ -103,11 +103,23 @@ def create_execution(request):
 
                     print("user is an employee of the company")
 
-                    nadooit_customer_program_execution = (
-                        create__customer_program_execution__for__customer_program(
-                            nadooit_customer_program
+                    time_saved_by_this_exection = request.data.get("time_saved", None)
+
+
+                    if time_saved_by_this_exection:
+                        
+                        nadooit_customer_program_execution = (
+                            create__customer_program_execution__for__customer_program(
+                                nadooit_customer_program, int(time_saved_by_this_exection)
+                            )
+                            
                         )
-                    )
+                    else:
+                        nadooit_customer_program_execution = (
+                            create__customer_program_execution__for__customer_program(
+                                nadooit_customer_program)
+                            )
+                        
                     return Response({"success": "Execution created"}, status=200)
             else:
                 return Response({"error": "Invalid API Key"}, status=403)
