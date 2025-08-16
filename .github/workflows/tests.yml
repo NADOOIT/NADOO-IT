@@ -36,6 +36,8 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Run tests with coverage
+        env:
+          PYTHONPATH: ${{ github.workspace }}/app
         run: |
           pytest --cov=app \
                  --cov-config=.coveragerc \
