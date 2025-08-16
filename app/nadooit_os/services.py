@@ -1,6 +1,5 @@
 import csv
 import decimal
-import hashlib
 import math
 import re
 import uuid
@@ -1601,7 +1600,8 @@ def create__NadooitApiKey__for__user(
         user=user,
         is_active=True,
     )
-
+    # Ensure we return the hashed value after post_save signal updated it
+    new_api_key.refresh_from_db()
     return new_api_key
 
 
@@ -1814,31 +1814,54 @@ def get__next_price_level__for__customer_program(
 
 
 def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:
-    return NadooitApiKey.objects.get(api_key=hashed_api_key)
+    # For backward compatibility with callers, this function name remains the same,
+    # but it now expects the RAW API key string and verifies it against stored Argon2 hashes.
+    from argon2 import PasswordHasher
+
+    ph = PasswordHasher()
+    raw_api_key = hashed_api_key  # name kept for compatibility with callers
+
+    for obj in NadooitApiKey.objects.all():
+        try:
+            if ph.verify(obj.api_key, str(raw_api_key)):
+                return obj
+        except Exception:
+            # Verification failed for this object; continue searching
+            continue
+    # If no match, mimic .get() behavior with DoesNotExist
+    raise NadooitApiKey.DoesNotExist
 
 
 def get__hashed_api_key__for__request(request) -> Optional[str]:
     """
-    Gets the API key from the request and returns its SHA-256 hash.
-    The database stores the API key hashed (see NadooitApiKey post_save),
-    so we must hash the provided value to compare.
+    Gets the API key from the request and returns it as a raw string.
+    Storage uses Argon2 with a per-key salt; therefore, callers must use
+    Argon2 verification rather than direct equality on a derived hash.
     Returns None if missing.
     """
 
-    # gets the api key from the request
     api_key = request.data.get("NADOOIT__API_KEY")
-
-    # If missing or empty, return None
     if not api_key:
         return None
-
-    # Ensure string type (handles UUID instances), then hash
-    return hashlib.sha256(str(api_key).encode()).hexdigest()
+    return str(api_key)
 
 
 def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:
     print("check__nadooit_api_key__has__is_active")
-    return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()
+    from argon2 import PasswordHasher
+
+    raw_api_key = hashed_api_key  # name kept for compatibility with callers
+    if not raw_api_key:
+        return False
+
+    ph = PasswordHasher()
+    for obj in NadooitApiKey.objects.filter(is_active=True):
+        try:
+            if ph.verify(obj.api_key, str(raw_api_key)):
+                return True
+        except Exception:
+            continue
+    return False
 
 
 def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:

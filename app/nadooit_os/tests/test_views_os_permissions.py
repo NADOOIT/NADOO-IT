@@ -89,7 +89,7 @@ def test_create_api_key_post_non_manager_redirects(db, client, user, employee):
 
 def test_create_api_key_post_manager_creates_and_hashes(db, client, user, employee):
     import uuid
-    import hashlib
+    from argon2 import PasswordHasher
     from nadooit_api_key.models import NadooitApiKey, NadooitApiKeyManager
 
     # make user an ApiKeyManager (no per-flag check in view)
@@ -109,7 +109,8 @@ def test_create_api_key_post_manager_creates_and_hashes(db, client, user, employ
     assert keys.count() == 1
     stored = keys.first().api_key
     assert stored != str(raw_key)
-    assert stored == hashlib.sha256(str(raw_key).encode()).hexdigest()
+    ph = PasswordHasher()
+    assert ph.verify(stored, str(raw_key))
 
 
 def test_revoke_api_key_post_affects_only_request_user(db, client, user, employee):

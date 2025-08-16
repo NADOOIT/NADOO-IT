@@ -151,6 +151,16 @@ Date: current
     - Removed `@user_passes_test` from role-giving views so logged-in but unauthorized users receive 403 from explicit per-customer checks within the view logic (no 302 login redirects). Views still require authentication via `@login_required`.
 
 - API keys (nadooit_auth, nadooit_api_key, nadooit_os)
+  - Migrated storage from SHA-256 to Argon2 with per-key salt. Hashing now occurs in `app/nadooit_api_key/models.py` post_save using `argon2.PasswordHasher`.
+  - Request helpers updated in `app/nadooit_os/services.py`:
+    - `get__hashed_api_key__for__request()` now returns the raw API key string.
+    - `check__nadooit_api_key__has__is_active()` and `get__nadooit_api_key__for__hashed_api_key()` verify the raw key against stored Argon2 hashes.
+    - `create__NadooitApiKey__for__user()` refreshes from DB after creation to reflect hashed value.
+  - Tests updated:
+    - `app/nadooit_os/tests/test_views_os_permissions.py::test_create_api_key_post_manager_creates_and_hashes` now verifies Argon2 using `PasswordHasher.verify`.
+    - `app/nadooit_os/test_services.py::test_create__NadooitApiKey__for__user` asserts Argon2 verification for explicitly provided keys.
+    - `app/nadooit_api_executions_system/test_views.py` creates API keys via the service and posts the RAW key; views verify against Argon2 hashes.
+  - Dependency added: `argon2-cffi` in `requirements.txt`.
   - Storage: API keys are stored SHA-256 hashed via `NadooitApiKey` post_save receiver; raw keys are never persisted.
   - Request helper: `get__hashed_api_key__for__request` now hashes the provided key before lookup and safely returns `None` when missing.
   - Service fix: removed an extra `save()` that could overwrite the hashed key with the raw value immediately after creation.

@@ -1,4 +1,4 @@
-import hashlib
+from argon2 import PasswordHasher
 import uuid
 
 from django.db import models
@@ -50,8 +50,9 @@ def hash_api_key_when_created(sender, instance, created, *args, **kwargs):
         print("hashing api key")
         # hashes the api_key
         obj = NadooitApiKey.objects.get(id=instance.id)
-        hashed_apit_key = hashlib.sha256(str(obj.api_key).encode()).hexdigest()
-        NadooitApiKey.objects.filter(id=instance.id).update(api_key=hashed_apit_key)
+        ph = PasswordHasher()
+        hashed_api_key = ph.hash(str(obj.api_key))
+        NadooitApiKey.objects.filter(id=instance.id).update(api_key=hashed_api_key)
 
 
 # A role class that gets added to the user model

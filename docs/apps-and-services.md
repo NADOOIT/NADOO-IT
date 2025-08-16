@@ -137,6 +137,6 @@ Notes
 - MFA support is available via installed third-party apps.
 - API keys gate sensitive endpoints; rotate keys and use least privilege.
  - Security:
-   - API keys are stored SHA-256 hashed; raw keys are never persisted. Incoming request keys are hashed before lookup.
+   - API keys are stored using Argon2 (per-key salt). Raw keys are never persisted; clients send RAW keys and verification uses Argon2 `PasswordHasher.verify` against the stored hash.
    - Create: restricted to Api Key Managers (decorated view); anonymous/non-managers are redirected to login.
    - Revoke: login required and only affects the caller’s own active keys.
