@@ -415,11 +415,25 @@ def section_transitions(request, group_filter=None):
     filename = (
         f"section_transitions_{group}.html" if group else "section_transitions.html"
     )
-    base_dir = os.path.join(settings.BASE_DIR, "nadooit_website", "section_transition")
-    file_path = os.path.join(base_dir, filename)
+
+    # Safe file resolution to satisfy CodeQL and prevent traversal
+    from pathlib import Path
+
+    base_dir = Path(settings.BASE_DIR) / "nadooit_website" / "section_transition"
+    base_resolved = base_dir.resolve()
+    candidate = (base_resolved / filename).resolve()
+
+    # Ensure candidate is within base_dir
+    try:
+        candidate.relative_to(base_resolved)
+    except ValueError:
+        return HttpResponse(status=404)
+
+    if not candidate.is_file():
+        return HttpResponse(status=404)
 
     try:
-        with open(file_path, "r") as file:
+        with open(candidate, "r", encoding="utf-8") as file:
             content = file.read()
     except FileNotFoundError:
         return HttpResponse(status=404)

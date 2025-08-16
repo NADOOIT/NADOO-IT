@@ -904,12 +904,23 @@ def handle_uploaded_file(file):
             return candidate
 
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
+            import posixpath
+
             for member in zf.infolist():
-                name = member.filename
-                # Normalize and validate
+                # Normalize to POSIX style and strip any leading root
+                raw_name = member.filename.replace("\\", "/")
+                name = posixpath.normpath(raw_name).lstrip("/")
+
+                # Explicit traversal & absolute checks for CodeQL
+                # - skip entries that try to escape (.. segments or absolute)
+                if name == ".." or name.startswith("../") or "/../" in name:
+                    continue
+
+                # Compute destination with our directory containment guard
                 out_path = _safe_join(dest, name)
-                # Ensure directory exists
-                if name.endswith("/"):
+
+                # Ensure directory exists or extract file
+                if member.is_dir() or name.endswith("/"):
                     os.makedirs(out_path, exist_ok=True)
                     continue
                 os.makedirs(os.path.dirname(out_path), exist_ok=True)
