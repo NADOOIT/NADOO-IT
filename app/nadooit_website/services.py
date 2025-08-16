@@ -981,9 +981,32 @@ def handle_uploaded_file(file):
         with _safe_open_read(temp_dir, "video_data.json", mode="r") as json_file:
             video_data = json.load(json_file)
 
-        # Validate referenced file paths from metadata
-        preview_image_path = _safe_join(temp_dir, video_data["preview_image"]) if "preview_image" in video_data else None
-        original_file_path = _safe_join(temp_dir, video_data["original_file"]) if "original_file" in video_data else None
+        # Validate referenced file paths from metadata using strict allowlists
+        import re as _re
+        _IMG_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+        _VID_EXTS = {".mp4", ".webm", ".mkv", ".mov"}
+
+        def _is_simple_name(name: str) -> bool:
+            return bool(_re.fullmatch(r"[A-Za-z0-9._-]+", str(name)))
+
+        def _safe_if_allowed(base: str, name: str, allowed_exts: set[str]):
+            if not _is_simple_name(name):
+                return None
+            from pathlib import Path as _P
+            if _P(name).suffix.lower() not in allowed_exts:
+                return None
+            return _safe_join(base, name)
+
+        preview_image_path = (
+            _safe_if_allowed(temp_dir, video_data["preview_image"], _IMG_EXTS)
+            if "preview_image" in video_data
+            else None
+        )
+        original_file_path = (
+            _safe_if_allowed(temp_dir, video_data["original_file"], _VID_EXTS)
+            if "original_file" in video_data
+            else None
+        )
 
         video, _ = Video.objects.update_or_create(
             id=video_data["id"],
@@ -1001,7 +1024,11 @@ def handle_uploaded_file(file):
         )
 
         for resolution_data in video_data["resolutions"]:
-            video_file_path = _safe_join(temp_dir, resolution_data["video_file"]) if "video_file" in resolution_data else None
+            video_file_path = (
+                _safe_if_allowed(temp_dir, resolution_data["video_file"], _VID_EXTS)
+                if "video_file" in resolution_data
+                else None
+            )
 
             resolution, _ = VideoResolution.objects.update_or_create(
                 id=resolution_data["id"],
@@ -1016,7 +1043,7 @@ def handle_uploaded_file(file):
             )
 
             # Now move the HLS playlist files to the right place
-            if "hls_playlist_file" in resolution_data:
+            if "hls_playlist_file" in resolution_data and _is_simple_name(resolution_data["hls_playlist_file"]):
                 old_hls_folder_path = _safe_join(temp_dir, resolution_data["hls_playlist_file"])
             else:
                 old_hls_folder_path = None
@@ -1033,7 +1060,10 @@ def handle_uploaded_file(file):
 
                 old_hls_base = Path(old_hls_folder_path).resolve()
                 new_hls_base = new_hls_folder_path.resolve()
+                _HLS_EXTS = {".m3u8", ".ts", ".vtt"}
                 for file_name in os.listdir(old_hls_folder_path):
+                    if not _is_simple_name(file_name) or Path(file_name).suffix.lower() not in _HLS_EXTS:
+                        continue
                     src_file = (old_hls_base / file_name).resolve()
                     dest_file = (new_hls_base / file_name).resolve()
                     try:

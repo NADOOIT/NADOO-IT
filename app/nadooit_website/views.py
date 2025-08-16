@@ -412,16 +412,26 @@ def section_transitions(request, group_filter=None):
     raw_filter = request.GET.get("group_filter") or group_filter
     group = raw_filter if raw_filter and re.fullmatch(r"[A-Za-z0-9_-]+", str(raw_filter)) else None
 
-    filename = (
-        f"section_transitions_{group}.html" if group else "section_transitions.html"
-    )
-
     # Safe file resolution to satisfy CodeQL and prevent traversal
     from pathlib import Path
+    import os as _os
 
     base_dir = Path(settings.BASE_DIR) / "nadooit_website" / "section_transition"
     base_resolved = base_dir.resolve()
-    candidate = (base_resolved / filename).resolve()
+
+    # Build an allowlist of permissible template files
+    allowed_names = {"section_transitions.html"}
+    allowed_names.update({p.name for p in base_resolved.glob("section_transitions_*.html")})
+
+    if group:
+        requested = f"section_transitions_{group}.html"
+        if requested not in allowed_names:
+            return HttpResponse(status=404)
+        chosen_name = requested
+    else:
+        chosen_name = "section_transitions.html"
+
+    candidate = (base_resolved / chosen_name).resolve()
 
     # Ensure candidate is within base_dir
     try:
@@ -433,8 +443,16 @@ def section_transitions(request, group_filter=None):
         return HttpResponse(status=404)
 
     try:
-        with open(candidate, "r", encoding="utf-8") as file:
-            content = file.read()
+        flags = _os.O_RDONLY
+        if hasattr(_os, "O_NOFOLLOW"):
+            flags |= _os.O_NOFOLLOW
+        fd = _os.open(str(candidate), flags)
+        try:
+            with _os.fdopen(fd, "r", encoding="utf-8") as file:
+                content = file.read()
+        except Exception:
+            _os.close(fd)
+            raise
     except FileNotFoundError:
         return HttpResponse(status=404)
 

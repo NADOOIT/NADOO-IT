@@ -37,12 +37,11 @@ jobs:
         run: pip install -r requirements-dev.txt diff-cover
 
       - name: Run tests with coverage
-        working-directory: app
         run: |
           pytest --cov=app \
-                 --cov-config=../.coveragerc \
+                 --cov-config=.coveragerc \
                  --cov-report=term-missing:skip-covered \
-                 --cov-report=xml:../coverage.xml
+                 --cov-report=xml:coverage.xml
 
       - name: Enforce changed-lines coverage with diff-cover
         run: |
