@@ -39,7 +39,7 @@ jobs:
         working-directory: app
         run: |
           pytest --cov=app \
-                 --cov-config=./.coveragerc \
+                 --cov-config=../.coveragerc \
                  --cov-report=term-missing:skip-covered \
                  --cov-report=xml:../coverage.xml
 
