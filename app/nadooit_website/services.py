@@ -893,37 +893,40 @@ def handle_uploaded_file(file):
         import shutil
         import glob
 
-        # Helpers to ensure safe path handling
-        def _is_within_directory(base: str, target: str) -> bool:
-            return os.path.commonpath([os.path.abspath(base), os.path.abspath(target)]) == os.path.abspath(base)
+        # Helpers to ensure safe path handling (Path.resolve + relative_to)
+        from pathlib import Path
 
         def _safe_join(base: str, relpath: str) -> str:
-            candidate = os.path.abspath(os.path.join(base, relpath))
-            if not _is_within_directory(base, candidate):
+            base_path = Path(base).resolve()
+            candidate = (base_path / relpath).resolve()
+            try:
+                candidate.relative_to(base_path)
+            except ValueError:
                 raise ValueError("Unsafe path detected outside extraction directory")
-            return candidate
+            return str(candidate)
 
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
             import posixpath
+            from pathlib import Path
 
+            base_dest = Path(dest).resolve()
             for member in zf.infolist():
                 # Normalize to POSIX style and strip any leading root
                 raw_name = member.filename.replace("\\", "/")
                 name = posixpath.normpath(raw_name).lstrip("/")
 
-                # Explicit traversal & absolute checks for CodeQL
-                # - skip entries that try to escape (.. segments or absolute)
+                # Explicit traversal checks; skip escape attempts
                 if name == ".." or name.startswith("../") or "/../" in name:
                     continue
 
-                # Compute destination with our directory containment guard
-                out_path = _safe_join(dest, name)
+                # Compute destination with directory containment guard
+                out_path = Path(_safe_join(str(base_dest), name))
 
                 # Ensure directory exists or extract file
                 if member.is_dir() or name.endswith("/"):
-                    os.makedirs(out_path, exist_ok=True)
+                    out_path.mkdir(parents=True, exist_ok=True)
                     continue
-                os.makedirs(os.path.dirname(out_path), exist_ok=True)
+                out_path.parent.mkdir(parents=True, exist_ok=True)
                 with zf.open(member, "r") as src, open(out_path, "wb") as dst:
                     shutil.copyfileobj(src, dst)
 
@@ -973,31 +976,33 @@ def handle_uploaded_file(file):
             else:
                 old_hls_folder_path = None
 
-            new_hls_folder_path = os.path.join(
-                settings.MEDIA_ROOT,
-                "hls_playlists",
-                f"{video.id}_{resolution.resolution}p",
-            )
-            os.makedirs(new_hls_folder_path, exist_ok=True)
+            from pathlib import Path
+            new_hls_folder_path = Path(settings.MEDIA_ROOT) / "hls_playlists" / f"{video.id}_{resolution.resolution}p"
+            new_hls_folder_path.mkdir(parents=True, exist_ok=True)
 
             if old_hls_folder_path and os.path.isdir(old_hls_folder_path):
-                if os.path.exists(new_hls_folder_path):
+                if new_hls_folder_path.exists():
                     shutil.rmtree(new_hls_folder_path)
 
-                os.makedirs(new_hls_folder_path)
+                new_hls_folder_path.mkdir(parents=True, exist_ok=True)
 
+                old_hls_base = Path(old_hls_folder_path).resolve()
+                new_hls_base = new_hls_folder_path.resolve()
                 for file_name in os.listdir(old_hls_folder_path):
-                    src_file = os.path.join(old_hls_folder_path, file_name)
-                    dest_file = os.path.join(new_hls_folder_path, file_name)
-                    shutil.move(src_file, dest_file)
+                    src_file = (old_hls_base / file_name).resolve()
+                    dest_file = (new_hls_base / file_name).resolve()
+                    try:
+                        src_file.relative_to(old_hls_base)
+                        dest_file.relative_to(new_hls_base)
+                    except ValueError:
+                        continue
+                    shutil.move(str(src_file), str(dest_file))
 
                 # Find the .m3u8 file in the folder
-                m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))
+                m3u8_files = list(new_hls_base.glob("*.m3u8"))
                 if m3u8_files:
-                    # If found, assign its relative path to the hls_playlist_file field on the resolution
-                    relative_m3u8_path = os.path.relpath(
-                        m3u8_files[0], start=settings.MEDIA_ROOT
-                    )
+                    # Assign relative path to MEDIA_ROOT
+                    relative_m3u8_path = str(m3u8_files[0].resolve().relative_to(Path(settings.MEDIA_ROOT).resolve()))
                     resolution.hls_playlist_file = relative_m3u8_path
                     resolution.save()
 
