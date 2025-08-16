@@ -171,3 +171,7 @@ app/logs/*.log
 # Python cache
 **/__pycache__
 *.pyc
+/.venv311
+/.venv312
+
+/.worktrees/
