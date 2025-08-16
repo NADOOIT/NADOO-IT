@@ -165,10 +165,13 @@ key.pem
 .idea
 staticfiles
 node_modules
-app/logs/log_DEBUG.log
-app/logs/log_DEBUG.log
-app/logs/log_INFO.log
+# Ignore logs
+app/logs/*.log
+
+# Python cache
+**/__pycache__
 *.pyc
-*.log
-app/logs/log_DEBUG.log
-app/logs/log_INFO.log
+/.venv311
+/.venv312
+
+/.worktrees/

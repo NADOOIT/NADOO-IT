@@ -19,9 +19,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 import os
 from pathlib import Path
+import sys
 
 from dotenv import load_dotenv
-
 
 # Build a path to the .env file
 env_path = Path(__file__).resolve().parent.parent.parent / ".env"
@@ -33,6 +33,11 @@ load_dotenv(dotenv_path=env_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Ensure the app/ directory is on sys.path so INSTALLED_APPS can be imported
+# when running pytest from the repository root without setting PYTHONPATH.
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -47,21 +52,16 @@ DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
 # The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
 # The value is a comma separated list of hosts
 # Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-if DEBUG:
-    ALLOWED_HOSTS += [
-        "5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app",
-        "localhost",
-        "127.0.0.1",
-        "0.0.0.0",
-    ]
+ALLOWED_HOSTS = (
+    ["5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app"]
+    if DEBUG
+    else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+)
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
 # The order of the apps is important. The apps are loaded in the order they are listed here.
 # See the documentation of the apps for more information.
-
-# Base INSTALLED_APPS
 INSTALLED_APPS = [
     "sslserver",
     "ordered_model",
@@ -93,6 +93,7 @@ INSTALLED_APPS = [
     "mfa",
     "crispy_forms",
     "crispy_bootstrap5",
+    "debug_toolbar",
     "django_htmx",
     "nadoo_complaint_management",
     "djmoney",
@@ -104,9 +105,8 @@ INSTALLED_APPS = [
 # The order of the middleware is important. The middleware is called in the order they are listed here.
 # A request is processed from top to bottom. A response is processed from bottom to top.
 # Add new middelware to process requests and responses.
-
-# Base MIDDLEWARE
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -116,12 +116,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
-
-# Add debug toolbar only in DEBUG mode
-if DEBUG:
-    INSTALLED_APPS += ["debug_toolbar"]
-    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
-
 
 # The Authentication backends are used to authenticate users.
 # Multiple backends can be used.
@@ -168,52 +162,58 @@ WSGI_APPLICATION = "nadooit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-""" CockroachDB settings
-DATABASES = {
-    "default": {
-        "ENGINE": "django_cockroachdb",
-        "NAME": os.getenv("COCKROACH_DB_NAME"),
-        "USER": os.getenv("COCKROACH_DB_USER"),
-        "PASSWORD": os.getenv("COCKROACH_DB_PASSWORD"),
-        "HOST": os.getenv("COCKROACH_DB_HOST"),
-        "PORT": os.getenv("COCKROACH_DB_PORT"),
-        "OPTIONS": {
-            "sslmode": "verify-full",
-            "options": os.getenv("COCKROACH_DB_OPTIONS"),
-        },
-    }
-}
- """
-"""  
-# MySQL settings
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE', 'your_mysql_database'),  # Default used if env var is not set
-        'USER': os.getenv('MYSQL_USER', 'your_mysql_user'),  # Default used if env var is not set
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'your_database_password'),  # Update this default as necessary
-        'HOST': os.getenv('MYSQL_DB_HOST', 'db'),  # No change needed
-        'PORT': os.getenv('MYSQL_DB_PORT', '3306'),  # No change needed
-    }
-}
- """
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db', 'db.sqlite3'),
-    }
-}
+# Database backend selection logic
+# - If COCKROACH_DB_HOST is set (non-empty), use CockroachDB (recommended for production)
+# - Else if DB_BACKEND=mysql, use MySQL (requires mysqlclient or equivalent driver)
+# - Else use SQLite (default for local development)
+DB_BACKEND = os.getenv("DB_BACKEND", "").lower()
 
+if os.getenv("COCKROACH_DB_HOST"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django_cockroachdb",
+            "NAME": os.getenv("COCKROACH_DB_NAME"),
+            "USER": os.getenv("COCKROACH_DB_USER"),
+            "PASSWORD": os.getenv("COCKROACH_DB_PASSWORD"),
+            "HOST": os.getenv("COCKROACH_DB_HOST"),
+            "PORT": os.getenv("COCKROACH_DB_PORT"),
+            "OPTIONS": {
+                "sslmode": "verify-full",
+                "options": os.getenv("COCKROACH_DB_OPTIONS"),
+            },
+        }
+    }
+elif DB_BACKEND == "mysql":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.getenv("MYSQL_DATABASE", "nadooit"),
+            "USER": os.getenv("MYSQL_USER", "root"),
+            "PASSWORD": os.getenv("MYSQL_PASSWORD", ""),
+            "HOST": os.getenv("MYSQL_HOST", "db"),
+            "PORT": os.getenv("MYSQL_PORT", "3306"),
+            "OPTIONS": {
+                "charset": "utf8mb4",
+            },
+        }
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # Default user model
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
-CSRF_TRUSTED_ORIGINS = [f"https://{host.strip()}" for host in os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",") if host.strip()]
-print("DEBUG-Modus ist:", DEBUG)
-print("CSRF_TRUSTED_ORIGINS gesetzt auf:", CSRF_TRUSTED_ORIGINS)
-print("ALLOWED_HOSTS gesetzt auf:", ALLOWED_HOSTS)
+CSRF_TRUSTED_ORIGINS = [os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")]
 
+# Authentication redirects
+# Ensure all login_required redirects go to our custom login route
+LOGIN_URL = "/auth/login-user"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -255,6 +255,11 @@ INTERNAL_IPS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Feature flags
+# WhatsApp integration is experimental and disabled by default.
+# Enable by setting environment variable WHATSAPP_ENABLED=1
+WHATSAPP_ENABLED = bool(int(os.environ.get("WHATSAPP_ENABLED", "0")))
 
 # Settings for additional apps
 
@@ -327,6 +332,54 @@ MFA_SUCCESS_REGISTRATION_MSG = (
     "Schlüssel erfolgreich registriert"  # The text of the link
 )
 
+# Ensure log directory exists for file handlers (fixes CI pytest crash)
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# In CI (GitHub Actions) or when DISABLE_FILE_LOGGING=1, avoid file handlers
+DISABLE_FILE_LOGGING = (
+    os.environ.get("DISABLE_FILE_LOGGING", "") == "1"
+    or os.environ.get("GITHUB_ACTIONS", "").lower() == "true"
+    or os.environ.get("CI", "").lower() == "true"
+)
+
+if DISABLE_FILE_LOGGING:
+    LOG_HANDLERS = {
+        "file_debug": {
+            "class": "logging.NullHandler",
+            "level": "DEBUG",
+        },
+        "file_info": {
+            "class": "logging.NullHandler",
+            "level": "INFO",
+        },
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+        },
+    }
+else:
+    LOG_HANDLERS = {
+        "file_debug": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_DIR, "log_DEBUG.log"),
+            "formatter": "Simple_Format",
+            "encoding": "utf-8",
+        },
+        "file_info": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(LOG_DIR, "log_INFO.log"),
+            "formatter": "Simple_Format",
+            "encoding": "utf-8",
+        },
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+        },
+    }
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -336,33 +389,13 @@ LOGGING = {
             "style": "{",
         },
     },
-    "handlers": {
-        "file_debug": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "log_DEBUG.log"),
-            "formatter": "Simple_Format",
-            "encoding": "utf-8",
-        },
-        "file_info": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "log_INFO.log"),
-            "formatter": "Simple_Format",
-            "encoding": "utf-8",
-        },
-        "console": {
-            "level": "INFO",
-            "class": "logging.StreamHandler",
-        },
-    },
+    "handlers": LOG_HANDLERS,
     "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": "DEBUG",
-        },
+        "django": {"handlers": ["console"], "level": "DEBUG"},
         "root": {
-            "handlers": ["file_debug", "file_info"],
+            "handlers": [
+                "console"
+                ] if DISABLE_FILE_LOGGING else ["file_debug", "file_info"],
             "level": "DEBUG",
         },
     },
@@ -374,6 +407,3 @@ CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
-
-
-

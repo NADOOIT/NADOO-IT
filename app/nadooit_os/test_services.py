@@ -668,10 +668,12 @@ def test_create__NadooitApiKey__for__user(user):
     # Assert
 
     assert type(nadooit_api_key) == NadooitApiKey
-    assert (
-        type(nadooit_api_key_2) == NadooitApiKey
-        and nadooit_api_key_2.api_key == fake_api_key
-    )
+    assert type(nadooit_api_key_2) == NadooitApiKey
+    # Ensure stored API key is Argon2-hashed and verifies against the provided raw key
+    from argon2 import PasswordHasher
+    ph = PasswordHasher()
+    assert nadooit_api_key_2.api_key != str(fake_api_key)
+    assert ph.verify(nadooit_api_key_2.api_key, str(fake_api_key))
 
 
 @pytest.mark.django_db

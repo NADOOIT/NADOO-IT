@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 session_tick = 5
 
 
-"""
+""" 
 # optimatzion
 from . import embeddings
 from sklearn.metrics.pairwise import cosine_similarity
@@ -151,7 +151,7 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
                 // Clear previous highlight
                 const upvoteButton = document.getElementById('upvote-button-' + sectionId);
                 const downvoteButton = document.getElementById('downvote-button-' + sectionId);
-
+                
                 upvoteButton.classList.remove('highlighted-upvote');
                 downvoteButton.classList.remove('highlighted-downvote');
 
@@ -526,13 +526,11 @@ def get_most_successful_section_order():
 
     if settings.DEBUG:
         return Section_Order.objects.get(
-            #section_order_id="ad508b5e-cebe-43a8-b068-dc37a4574605"
-            section_order_id="4a0bd312-97c2-4336-850b-841381c0bcd8"
+            section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
         )
     else:
-        #TODO: Replace this with the actual logic for finding the most successful Section_Order/ any that exists
         return Section_Order.objects.get(
-            section_order_id="a6edd155-a0f3-42e9-954a-a674dacf160f"
+            section_order_id="b18429dd-8978-41cd-b286-8edd1100eb93"
         )
 
 
@@ -703,7 +701,20 @@ def get__next_section_html(session_id, current_section_id):
 
 
 def check__session_id__is_valid(session_id: uuid):
-    return Session.objects.filter(session_id=session_id).exists()
+    # Accept both UUID objects and strings; return False for invalid inputs
+    try:
+        if isinstance(session_id, str):
+            # Coerce to UUID; raises ValueError on invalid input
+            session_uuid = uuid.UUID(session_id)
+        elif isinstance(session_id, uuid.UUID):
+            session_uuid = session_id
+        else:
+            # Unsupported type
+            return False
+    except (ValueError, AttributeError, TypeError):
+        return False
+
+    return Session.objects.filter(session_id=session_uuid).exists()
 
 
 def get__first_section():
@@ -878,73 +889,195 @@ def handle_uploaded_file(file):
     os.makedirs(temp_dir, exist_ok=True)
 
     try:
-        with zipfile.ZipFile(file, "r") as zip_ref:
-            zip_ref.extractall(temp_dir)
+        # Local imports to avoid relying on module-level imports
+        import shutil
+        import glob
 
-        with open(os.path.join(temp_dir, "video_data.json"), "r") as json_file:
+        # Helpers to ensure safe path handling (Path.resolve + relative_to)
+        from pathlib import Path
+
+        def _safe_join(base: str, relpath: str) -> str:
+            base_path = Path(base).resolve()
+            candidate = (base_path / relpath).resolve()
+            try:
+                candidate.relative_to(base_path)
+            except ValueError:
+                raise ValueError("Unsafe path detected outside extraction directory")
+            return str(candidate)
+
+        def _safe_open_read(base: str, relpath: str, mode: str = "rb"):
+            """Open a file for reading without following symlinks and ensuring containment."""
+            import os as _os
+            target = Path(_safe_join(base, relpath))
+            if target.is_symlink():
+                raise ValueError("Refusing to open symlink")
+            flags = _os.O_RDONLY
+            if hasattr(_os, "O_NOFOLLOW"):
+                flags |= _os.O_NOFOLLOW
+            fd = _os.open(str(target), flags)
+            try:
+                return _os.fdopen(fd, mode)
+            except Exception:
+                _os.close(fd)
+                raise
+
+        def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
+            import posixpath
+            from pathlib import Path
+            import stat
+            import os as _os
+
+            base_dest = Path(dest).resolve()
+
+            def _has_symlink_parent(path: Path, stop: Path) -> bool:
+                cur = path
+                while True:
+                    if cur.is_symlink():
+                        return True
+                    if cur == stop or cur.parent == cur:
+                        return False
+                    cur = cur.parent
+
+            for member in zf.infolist():
+                # Normalize to POSIX style and strip any leading root
+                raw_name = member.filename.replace("\\", "/")
+                name = posixpath.normpath(raw_name).lstrip("/")
+
+                # Explicit traversal checks; skip escape attempts
+                if name == ".." or name.startswith("../") or "/../" in name:
+                    continue
+
+                # Skip symlink entries entirely
+                mode = (member.external_attr >> 16) & 0o177777
+                if stat.S_ISLNK(mode):
+                    continue
+
+                # Compute destination with directory containment guard
+                out_path = Path(_safe_join(str(base_dest), name))
+
+                # Ensure directory exists or extract file
+                if member.is_dir() or name.endswith("/"):
+                    out_path.mkdir(parents=True, exist_ok=True)
+                    continue
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+                # Avoid writing through symlinks
+                if _has_symlink_parent(out_path, base_dest) or out_path.is_symlink():
+                    continue
+                flags = _os.O_WRONLY | _os.O_CREAT | _os.O_TRUNC
+                if hasattr(_os, "O_NOFOLLOW"):
+                    flags |= _os.O_NOFOLLOW
+                with zf.open(member, "r") as src:
+                    fd = _os.open(str(out_path), flags, 0o644)
+                    try:
+                        with _os.fdopen(fd, "wb") as dst:
+                            shutil.copyfileobj(src, dst)
+                    except Exception:
+                        _os.close(fd)
+                        raise
+
+        with zipfile.ZipFile(file, "r") as zip_ref:
+            _safe_extract(zip_ref, temp_dir)
+
+        with _safe_open_read(temp_dir, "video_data.json", mode="r") as json_file:
             video_data = json.load(json_file)
+
+        # Validate referenced file paths from metadata using strict allowlists
+        import re as _re
+        _IMG_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+        _VID_EXTS = {".mp4", ".webm", ".mkv", ".mov"}
+
+        def _is_simple_name(name: str) -> bool:
+            return bool(_re.fullmatch(r"[A-Za-z0-9._-]+", str(name)))
+
+        def _safe_if_allowed(base: str, name: str, allowed_exts: set[str]):
+            if not _is_simple_name(name):
+                return None
+            from pathlib import Path as _P
+            if _P(name).suffix.lower() not in allowed_exts:
+                return None
+            return _safe_join(base, name)
+
+        preview_image_path = (
+            _safe_if_allowed(temp_dir, video_data["preview_image"], _IMG_EXTS)
+            if "preview_image" in video_data
+            else None
+        )
+        original_file_path = (
+            _safe_if_allowed(temp_dir, video_data["original_file"], _VID_EXTS)
+            if "original_file" in video_data
+            else None
+        )
 
         video, _ = Video.objects.update_or_create(
             id=video_data["id"],
             defaults={
                 "title": video_data["title"],
                 "preview_image": File(
-                    open(os.path.join(temp_dir, video_data["preview_image"]), "rb"),
-                    video_data["preview_image"],
-                ),
+                    _safe_open_read(temp_dir, video_data["preview_image"], mode="rb"),
+                    os.path.basename(preview_image_path) if preview_image_path else "preview.jpg",
+                ) if preview_image_path else None,
                 "original_file": File(
-                    open(os.path.join(temp_dir, video_data["original_file"]), "rb"),
-                    video_data["original_file"],
-                ),
+                    _safe_open_read(temp_dir, video_data["original_file"], mode="rb"),
+                    os.path.basename(original_file_path) if original_file_path else "original.bin",
+                ) if original_file_path else None,
             },
         )
 
         for resolution_data in video_data["resolutions"]:
+            video_file_path = (
+                _safe_if_allowed(temp_dir, resolution_data["video_file"], _VID_EXTS)
+                if "video_file" in resolution_data
+                else None
+            )
+
             resolution, _ = VideoResolution.objects.update_or_create(
                 id=resolution_data["id"],
                 defaults={
                     "video": video,
                     "resolution": resolution_data["resolution"],
                     "video_file": File(
-                        open(
-                            os.path.join(temp_dir, resolution_data["video_file"]), "rb"
-                        ),
-                        resolution_data["video_file"],
-                    ),
+                        _safe_open_read(temp_dir, resolution_data["video_file"], mode="rb"),
+                        os.path.basename(video_file_path) if video_file_path else "video.bin",
+                    ) if video_file_path else None,
                 },
             )
 
             # Now move the HLS playlist files to the right place
-            old_hls_folder_path = os.path.join(
-                temp_dir, resolution_data["hls_playlist_file"]
-            )
-            new_hls_folder_path = os.path.join(
-                settings.MEDIA_ROOT,
-                "hls_playlists",
-                f"{video.id}_{resolution.resolution}p",
-            )
-            os.makedirs(new_hls_folder_path, exist_ok=True)
+            if "hls_playlist_file" in resolution_data and _is_simple_name(resolution_data["hls_playlist_file"]):
+                old_hls_folder_path = _safe_join(temp_dir, resolution_data["hls_playlist_file"])
+            else:
+                old_hls_folder_path = None
 
-            if os.path.isdir(old_hls_folder_path):
-                if os.path.exists(new_hls_folder_path):
-                    shutil.rmtree(new_hls_folder_path)  # delete the existing directory and all of its contents
+            from pathlib import Path
+            new_hls_folder_path = Path(settings.MEDIA_ROOT) / "hls_playlists" / f"{video.id}_{resolution.resolution}p"
+            new_hls_folder_path.mkdir(parents=True, exist_ok=True)
 
-                os.makedirs(new_hls_folder_path)  # recreate the directory
+            if old_hls_folder_path and os.path.isdir(old_hls_folder_path):
+                if new_hls_folder_path.exists():
+                    shutil.rmtree(new_hls_folder_path)
 
+                new_hls_folder_path.mkdir(parents=True, exist_ok=True)
+
+                old_hls_base = Path(old_hls_folder_path).resolve()
+                new_hls_base = new_hls_folder_path.resolve()
+                _HLS_EXTS = {".m3u8", ".ts", ".vtt"}
                 for file_name in os.listdir(old_hls_folder_path):
-                    src_file = os.path.join(old_hls_folder_path, file_name)
-                    dest_file = os.path.join(new_hls_folder_path, file_name)
-
-                    shutil.move(src_file, dest_file)  # now move should succeed
-
+                    if not _is_simple_name(file_name) or Path(file_name).suffix.lower() not in _HLS_EXTS:
+                        continue
+                    src_file = (old_hls_base / file_name).resolve()
+                    dest_file = (new_hls_base / file_name).resolve()
+                    try:
+                        src_file.relative_to(old_hls_base)
+                        dest_file.relative_to(new_hls_base)
+                    except ValueError:
+                        continue
+                    shutil.move(str(src_file), str(dest_file))
 
                 # Find the .m3u8 file in the folder
-                m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))
+                m3u8_files = list(new_hls_base.glob("*.m3u8"))
                 if m3u8_files:
-                    # If found, assign its relative path to the hls_playlist_file field on the resolution
-                    relative_m3u8_path = os.path.relpath(
-                        m3u8_files[0], start=settings.MEDIA_ROOT
-                    )
+                    # Assign relative path to MEDIA_ROOT
+                    relative_m3u8_path = str(m3u8_files[0].resolve().relative_to(Path(settings.MEDIA_ROOT).resolve()))
                     resolution.hls_playlist_file = relative_m3u8_path
                     resolution.save()
 

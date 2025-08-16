@@ -1,5 +1,4 @@
 #TODO Check for new versions of the base image. If a new version is available, rebuild the image.
-version: '3.3'
 
 networks:
   app_network:
