@@ -905,11 +905,39 @@ def handle_uploaded_file(file):
                 raise ValueError("Unsafe path detected outside extraction directory")
             return str(candidate)
 
+        def _safe_open_read(base: str, relpath: str, mode: str = "rb"):
+            """Open a file for reading without following symlinks and ensuring containment."""
+            import os as _os
+            target = Path(_safe_join(base, relpath))
+            if target.is_symlink():
+                raise ValueError("Refusing to open symlink")
+            flags = _os.O_RDONLY
+            if hasattr(_os, "O_NOFOLLOW"):
+                flags |= _os.O_NOFOLLOW
+            fd = _os.open(str(target), flags)
+            try:
+                return _os.fdopen(fd, mode)
+            except Exception:
+                _os.close(fd)
+                raise
+
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
             import posixpath
             from pathlib import Path
+            import stat
+            import os as _os
 
             base_dest = Path(dest).resolve()
+
+            def _has_symlink_parent(path: Path, stop: Path) -> bool:
+                cur = path
+                while True:
+                    if cur.is_symlink():
+                        return True
+                    if cur == stop or cur.parent == cur:
+                        return False
+                    cur = cur.parent
+
             for member in zf.infolist():
                 # Normalize to POSIX style and strip any leading root
                 raw_name = member.filename.replace("\\", "/")
@@ -917,6 +945,11 @@ def handle_uploaded_file(file):
 
                 # Explicit traversal checks; skip escape attempts
                 if name == ".." or name.startswith("../") or "/../" in name:
+                    continue
+
+                # Skip symlink entries entirely
+                mode = (member.external_attr >> 16) & 0o177777
+                if stat.S_ISLNK(mode):
                     continue
 
                 # Compute destination with directory containment guard
@@ -927,13 +960,25 @@ def handle_uploaded_file(file):
                     out_path.mkdir(parents=True, exist_ok=True)
                     continue
                 out_path.parent.mkdir(parents=True, exist_ok=True)
-                with zf.open(member, "r") as src, open(out_path, "wb") as dst:
-                    shutil.copyfileobj(src, dst)
+                # Avoid writing through symlinks
+                if _has_symlink_parent(out_path, base_dest) or out_path.is_symlink():
+                    continue
+                flags = _os.O_WRONLY | _os.O_CREAT | _os.O_TRUNC
+                if hasattr(_os, "O_NOFOLLOW"):
+                    flags |= _os.O_NOFOLLOW
+                with zf.open(member, "r") as src:
+                    fd = _os.open(str(out_path), flags, 0o644)
+                    try:
+                        with _os.fdopen(fd, "wb") as dst:
+                            shutil.copyfileobj(src, dst)
+                    except Exception:
+                        _os.close(fd)
+                        raise
 
         with zipfile.ZipFile(file, "r") as zip_ref:
             _safe_extract(zip_ref, temp_dir)
 
-        with open(_safe_join(temp_dir, "video_data.json"), "r") as json_file:
+        with _safe_open_read(temp_dir, "video_data.json", mode="r") as json_file:
             video_data = json.load(json_file)
 
         # Validate referenced file paths from metadata
@@ -945,11 +990,11 @@ def handle_uploaded_file(file):
             defaults={
                 "title": video_data["title"],
                 "preview_image": File(
-                    open(preview_image_path, "rb"),
+                    _safe_open_read(temp_dir, video_data["preview_image"], mode="rb"),
                     os.path.basename(preview_image_path) if preview_image_path else "preview.jpg",
                 ) if preview_image_path else None,
                 "original_file": File(
-                    open(original_file_path, "rb"),
+                    _safe_open_read(temp_dir, video_data["original_file"], mode="rb"),
                     os.path.basename(original_file_path) if original_file_path else "original.bin",
                 ) if original_file_path else None,
             },
@@ -964,7 +1009,7 @@ def handle_uploaded_file(file):
                     "video": video,
                     "resolution": resolution_data["resolution"],
                     "video_file": File(
-                        open(video_file_path, "rb"),
+                        _safe_open_read(temp_dir, resolution_data["video_file"], mode="rb"),
                         os.path.basename(video_file_path) if video_file_path else "video.bin",
                     ) if video_file_path else None,
                 },
