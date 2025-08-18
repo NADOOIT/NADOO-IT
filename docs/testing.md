@@ -1,6 +1,18 @@
 # Testing Guide
 
-This project uses pytest + pytest-django. Tests can be run locally, via tox, or inside Docker Compose.
+This project uses pytest + pytest-django. Recommended default: run tests via Docker Compose. Local venv and tox are supported alternatives.
+
+## Recommended quickstart (Docker)
+```bash
+docker compose -f docker-compose-test.yml run --rm test
+```
+Why:
+- Mirrors CI environment for maximum reproducibility
+- No local Python/venv setup required
+
+Outputs:
+- Coverage summary in terminal
+- Coverage XML at repo root: `coverage.xml` (mounted from the container)
 
 ## Baseline and dependencies
 - Baseline framework: Django 4.2 LTS
@@ -11,7 +23,7 @@ This project uses pytest + pytest-django. Tests can be run locally, via tox, or 
   - `django-debug-toolbar` compatible with Django 4.2
 - SQLite limitation: `DISTINCT ON` is not supported. Where queries previously used `.distinct("contract__customer")`, the code uses a Python-side dedup helper, making tests DB-agnostic (SQLite/Postgres/Cockroach).
 
-## Quickstart (local)
+## Alternative (local venv)
 1. Create and activate a virtualenv (recommended):
    ```bash
    python3 -m venv .venv
@@ -35,7 +47,7 @@ Notes:
 - `pytest.ini` sets `DJANGO_SETTINGS_MODULE=nadooit.settings` and `--reuse-db` so test DBs are reused across runs.
 - Default DB is SQLite; no external services are required.
 
-## Containerized tests (CI-like)
+## Containerized tests (CI-like, recommended)
 For reproducible, host-agnostic runs, use the dedicated Compose file:
 ```bash
 docker compose -f docker-compose-test.yml run --rm test
