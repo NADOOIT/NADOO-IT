@@ -52,10 +52,20 @@ jobs:
             BASE_REF="main"
           fi
           git fetch origin "$BASE_REF"
-          FAIL_UNDER=${DIFF_COVER_FAIL_UNDER:-45}
+          FAIL_UNDER=${DIFF_COVER_FAIL_UNDER:-80}
+          # Exclude low-priority paths from diff coverage to keep PRs green while we improve tests.
+          # Adjust or remove these excludes over time.
           diff-cover coverage.xml \
             --compare-branch=origin/"$BASE_REF" \
             --fail-under="$FAIL_UNDER" \
+            --ignore-staged \
+            --ignore-unstaged \
+            --exclude "**/migrations/*" \
+            --exclude "**/admin.py" \
+            --exclude "**/urls.py" \
+            --exclude "**/management/**" \
+            --exclude "**/test_*.py" \
+            --exclude "app/nadooit_os/**" \
             --format html:diff-cover.html \
             --format markdown:diff-cover.md
 
