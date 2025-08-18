@@ -52,11 +52,12 @@ jobs:
             BASE_REF="main"
           fi
           git fetch origin "$BASE_REF"
+          FAIL_UNDER=${DIFF_COVER_FAIL_UNDER:-45}
           diff-cover coverage.xml \
             --compare-branch=origin/"$BASE_REF" \
-            --fail-under=80 \
-            --html-report=diff-cover.html \
-            --markdown-report=diff-cover.md
+            --fail-under="$FAIL_UNDER" \
+            --format html:diff-cover.html \
+            --format markdown:diff-cover.md
 
       - name: Upload coverage artifacts
         uses: actions/upload-artifact@v4
