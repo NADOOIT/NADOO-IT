@@ -1,5 +1,5 @@
-#TODO Check for new versions of the base image. If a new version is available, rebuild the image.
-FROM python:3.10-slim-buster
+# TODO: Keep base image current. Use non-EOL slim variant to avoid apt repo issues.
+FROM python:3.10-slim
 LABEL maintainer="nadooit.de"
 
 ENV PYTHONUNBUFFERED 1
@@ -9,8 +9,7 @@ COPY requirements-dev.txt /requirements.txt
 RUN mkdir /app
 COPY app/ /app
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
     git \
@@ -18,9 +17,10 @@ RUN apt-get update && \
     libc-dev \
     linux-headers-amd64 \
     ffmpeg \
-    default-libmysqlclient-dev \ 
-    pkg-config
-    
+    default-libmysqlclient-dev \
+    pkg-config \
+  && rm -rf /var/lib/apt/lists/*
+
 RUN unset https_proxy
 
 RUN mkdir -p /vol/web/static/media
@@ -43,20 +43,9 @@ RUN chown -R django:django /app
 RUN chown -R django:django /home/django
 RUN chmod 755 /home/django
 RUN chmod 755 /app
-USER django
+USER root
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
 RUN pip install -r /requirements.txt 
-
-USER root
-
-RUN apt-get purge -y --auto-remove \
-    build-essential \
-    curl \
-    git \
-    gcc \
-    libc-dev \
-    linux-headers-amd64
-
 USER django

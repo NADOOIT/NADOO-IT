@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: >-
+      sh -c "python manage.py migrate && python manage.py import_templates && python manage.py import_section_orders && uwsgi --socket :9090 --workers 4 --master --enable-threads --module nadooit.wsgi"
     restart: always
     environment:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
