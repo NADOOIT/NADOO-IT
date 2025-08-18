@@ -47,16 +47,25 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "changeme")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool(int(os.environ.get("DJANGO_DEBUG", 0)))
+# Make DEBUG robust if DJANGO_DEBUG is unset or empty
+_DEBUG_RAW = os.environ.get("DJANGO_DEBUG", "0")
+try:
+    DEBUG = bool(int(_DEBUG_RAW))
+except (TypeError, ValueError):
+    DEBUG = False
 
 # The list of allowed hosts is set in the environment variable DJANGO_ALLOWED_HOSTS
 # The value is a comma separated list of hosts
-# Example: DJANGO_ALLOWED_HOSTS= "localhost, nadooit.de,
-ALLOWED_HOSTS = (
-    ["5634-2a02-908-815-9ce0-00-9f10.ngrok-free.app"]
-    if DEBUG
-    else os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
-)
+# When DEBUG is true, also allow common local hosts
+if DEBUG:
+    ALLOWED_HOSTS = [
+        "localhost",
+        "127.0.0.1",
+        "0.0.0.0",
+        "[::1]",
+    ] + [h for h in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if h]
+else:
+    ALLOWED_HOSTS = [h for h in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if h]
 
 # Application definition
 # This is the list of installed apps. If a new app is added, it must be added here.
@@ -93,7 +102,6 @@ INSTALLED_APPS = [
     "mfa",
     "crispy_forms",
     "crispy_bootstrap5",
-    "debug_toolbar",
     "django_htmx",
     "nadoo_complaint_management",
     "djmoney",
@@ -106,7 +114,6 @@ INSTALLED_APPS = [
 # A request is processed from top to bottom. A response is processed from bottom to top.
 # Add new middelware to process requests and responses.
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -116,6 +123,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
 ]
+
+# Enable Debug Toolbar only in DEBUG
+if DEBUG:
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
 # The Authentication backends are used to authenticate users.
 # Multiple backends can be used.
@@ -143,7 +155,10 @@ TEMPLATES = [
 ]
 
 # Staic stettings
-STATICFILES_DIRS = [(os.path.join(BASE_DIR, "static")), "/var/www/static/"]
+# Always include project static directory and only add /var/www/static if it exists to avoid warnings
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+if os.path.isdir("/var/www/static/"):
+    STATICFILES_DIRS.append("/var/www/static/")
 
 STATIC_URL = "/static/static/"
 MEDIA_URL = "/static/media/"
@@ -162,13 +177,14 @@ WSGI_APPLICATION = "nadooit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# Database backend selection logic
-# - If COCKROACH_DB_HOST is set (non-empty), use CockroachDB (recommended for production)
-# - Else if DB_BACKEND=mysql, use MySQL (requires mysqlclient or equivalent driver)
-# - Else use SQLite (default for local development)
+# Database backend selection logic (unified)
+# - Controlled via DB_BACKEND: "cockroach", "mysql", or default "sqlite".
+# - Backwards compatibility: if DB_BACKEND is empty and COCKROACH_DB_HOST is set, assume "cockroach".
 DB_BACKEND = os.getenv("DB_BACKEND", "").lower()
+if not DB_BACKEND and os.getenv("COCKROACH_DB_HOST"):
+    DB_BACKEND = "cockroach"
 
-if os.getenv("COCKROACH_DB_HOST"):
+if DB_BACKEND == "cockroach":
     DATABASES = {
         "default": {
             "ENGINE": "django_cockroachdb",
@@ -201,7 +217,7 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": BASE_DIR / "db" / "db.sqlite3",
         }
     }
 
@@ -209,7 +225,8 @@ else:
 AUTH_USER_MODEL = "nadooit_auth.User"
 
 # Password validation
-CSRF_TRUSTED_ORIGINS = [os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS")]
+_csrf_env = os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "")
+CSRF_TRUSTED_ORIGINS = [o for o in _csrf_env.split(",") if o]
 
 # Authentication redirects
 # Ensure all login_required redirects go to our custom login route
@@ -332,6 +349,27 @@ MFA_SUCCESS_REGISTRATION_MSG = (
     "Schlüssel erfolgreich registriert"  # The text of the link
 )
 
+# Prefer a writable log directory inside containers; fall back safely in CI
+LOG_BASE = "/vol/web" if os.path.isdir("/vol/web") else str(BASE_DIR)
+LOG_DIR = os.path.join(LOG_BASE, "logs")
+ENABLE_FILE_LOGS = True
+try:
+    os.makedirs(LOG_DIR, exist_ok=True)
+    # Basic writability probe
+    _probe = os.path.join(LOG_DIR, ".probe")
+    with open(_probe, "a", encoding="utf-8"):
+        pass
+    try:
+        os.remove(_probe)
+    except Exception:
+        pass
+except Exception:
+    # If we cannot ensure the directory, disable file-based logging to avoid startup failures
+    ENABLE_FILE_LOGS = False
+    LOG_DIR = os.path.join(str(BASE_DIR), "logs")
+
+_ROOT_HANDLERS = ["file_debug", "file_info"] if ENABLE_FILE_LOGS else ["console"]
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -342,20 +380,26 @@ LOGGING = {
         },
     },
     "handlers": {
-        "file_debug": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "log_DEBUG.log"),
-            "formatter": "Simple_Format",
-            "encoding": "utf-8",
-        },
-        "file_info": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(BASE_DIR, "logs", "log_INFO.log"),
-            "formatter": "Simple_Format",
-            "encoding": "utf-8",
-        },
+        **(
+            {
+                "file_debug": {
+                    "level": "DEBUG",
+                    "class": "logging.FileHandler",
+                    "filename": os.path.join(LOG_DIR, "log_DEBUG.log"),
+                    "formatter": "Simple_Format",
+                    "encoding": "utf-8",
+                },
+                "file_info": {
+                    "level": "INFO",
+                    "class": "logging.FileHandler",
+                    "filename": os.path.join(LOG_DIR, "log_INFO.log"),
+                    "formatter": "Simple_Format",
+                    "encoding": "utf-8",
+                },
+            }
+            if ENABLE_FILE_LOGS
+            else {}
+        ),
         "console": {
             "level": "INFO",
             "class": "logging.StreamHandler",
@@ -367,7 +411,7 @@ LOGGING = {
             "level": "DEBUG",
         },
         "root": {
-            "handlers": ["file_debug", "file_info"],
+            "handlers": _ROOT_HANDLERS,
             "level": "DEBUG",
         },
     },
