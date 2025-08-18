@@ -4,7 +4,7 @@ import re
 import shutil
 import uuid
 from typing import Optional
-from pathlib import PurePosixPath
+from pathlib import Path, PurePosixPath
 from django.conf import settings
 
 from django.template import Template
@@ -938,13 +938,16 @@ def handle_uploaded_file(file):
 
         # Helpers to ensure safe path handling
         def _is_within_directory(base: str, target: str) -> bool:
-            return os.path.commonpath([os.path.abspath(base), os.path.abspath(target)]) == os.path.abspath(base)
+            base_path = Path(base).resolve()
+            target_path = Path(target).resolve()
+            return base_path == target_path or base_path in target_path.parents
 
         def _safe_join(base: str, relpath: str) -> str:
-            candidate = os.path.abspath(os.path.join(base, relpath))
-            if not _is_within_directory(base, candidate):
+            base_path = Path(base).resolve()
+            candidate_path = (base_path / relpath).resolve()
+            if not _is_within_directory(base_path, candidate_path):
                 raise ValueError("Unsafe path detected outside extraction directory")
-            return candidate
+            return str(candidate_path)
 
         def _reject_unsafe_name(name: str) -> None:
             # Zip member names are POSIX-style. Reject absolute paths and any traversal segments.
@@ -955,20 +958,36 @@ def handle_uploaded_file(file):
                 # Even if it would normalize inside, we consider '..' usage invalid
                 raise ValueError("Path traversal segments are not allowed in uploaded archives")
 
+        def _sanitize_member_name(name: str) -> str:
+            """Sanitize a zip member name by removing dangerous parts and characters.
+            This reconstructs a safe, relative POSIX-style path consisting only of allowed characters.
+            """
+            p = PurePosixPath(name)
+            parts = []
+            for part in p.parts:
+                if part in ("", ".", ".."):
+                    continue
+                # Replace anything not alnum, dash, underscore, dot with underscore
+                safe = re.sub(r"[^A-Za-z0-9._-]", "_", part)
+                parts.append(safe)
+            return "/".join(parts)
+
         def _safe_rel(base: str, relpath: Optional[str]) -> Optional[str]:
             if relpath is None:
                 return None
             _reject_unsafe_name(relpath)
-            return _safe_join(base, relpath)
+            sanitized = _sanitize_member_name(relpath)
+            return _safe_join(base, sanitized)
 
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
             for member in zf.infolist():
                 name = member.filename
                 # Normalize and validate
                 _reject_unsafe_name(name)
-                out_path = _safe_join(dest, name)
-                # Ensure directory exists
-                if name.endswith("/"):
+                sanitized = _sanitize_member_name(name)
+                out_path = _safe_join(dest, sanitized)
+                # Ensure directory exists (support both modern and legacy ZipInfo)
+                if (hasattr(member, "is_dir") and member.is_dir()) or name.endswith("/"):
                     os.makedirs(out_path, exist_ok=True)
                     continue
                 os.makedirs(os.path.dirname(out_path), exist_ok=True)

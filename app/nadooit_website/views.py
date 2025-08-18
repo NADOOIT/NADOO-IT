@@ -35,6 +35,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 import os
 import re
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -415,11 +416,16 @@ def section_transitions(request, group_filter=None):
     filename = (
         f"section_transitions_{group}.html" if group else "section_transitions.html"
     )
-    base_dir = os.path.join(settings.BASE_DIR, "nadooit_website", "section_transition")
-    file_path = os.path.join(base_dir, filename)
+    base_dir = Path(settings.BASE_DIR) / "nadooit_website" / "section_transition"
+    base_dir_resolved = base_dir.resolve()
+    candidate_path = (base_dir / filename).resolve()
+
+    # Ensure the candidate is within the intended base directory
+    if not (candidate_path == base_dir_resolved or base_dir_resolved in candidate_path.parents):
+        return HttpResponse(status=400)
 
     try:
-        with open(file_path, "r") as file:
+        with open(candidate_path, "r", encoding="utf-8") as file:
             content = file.read()
     except FileNotFoundError:
         return HttpResponse(status=404)
