@@ -4,6 +4,7 @@ import re
 import shutil
 import uuid
 from typing import Optional
+from pathlib import PurePosixPath
 from django.conf import settings
 
 from django.template import Template
@@ -15,12 +16,14 @@ from .models import (
     Section,
     Session_Signal,
     SectionScore,
+    Section_Order_Sections_Through_Model,
 )
 
 from django.template.loader import render_to_string
 
 
 import logging
+from django.core.management import call_command
 
 logger = logging.getLogger(__name__)
 
@@ -497,7 +500,7 @@ def get__sections__for__session_id(session_id):
     return (
         Session.objects.get(session_id=session_id)
         .session_section_order.sections.all()
-        .order_by("section_order_sections_through_model")
+        .order_by("section_order_sections_through_model__order")
     )
 
 
@@ -522,16 +525,56 @@ def create__session():
 
 
 def get_most_successful_section_order():
-    # Replace this with the actual logic for finding the most successful Section_Order
+    """
+    Resolve a Section_Order to use for a new Session.
 
-    if settings.DEBUG:
-        return Section_Order.objects.get(
-            section_order_id="7b3064b3-8b6c-4e3e-acca-f7750e45129b"
+    Strategy:
+    1) Return the most recent existing Section_Order (preferring ones with sections).
+    2) If none exist, attempt to import defaults from templates via `import_section_orders`.
+    3) If still none, create a fallback order from existing Sections (without creating new Sections). If no Sections exist, create an empty Section_Order.
+    """
+
+    # 1) Prefer an existing Section_Order (with sections first)
+    order = (
+        Section_Order.objects.filter(
+            section_order_sections_through_model__isnull=False
         )
-    else:
-        return Section_Order.objects.get(
-            section_order_id="b18429dd-8978-41cd-b286-8edd1100eb93"
-        )
+        .order_by("-section_order_date")
+        .first()
+    )
+    if order:
+        return order
+
+    order = Section_Order.objects.order_by("-section_order_date").first()
+    if order:
+        return order
+
+    # 2) Try importing defaults from templates if available
+    try:
+        call_command("import_section_orders")
+    except Exception as e:
+        logger.warning(f"import_section_orders failed or not present: {e}")
+
+    order = Section_Order.objects.order_by("-section_order_date").first()
+    if order:
+        return order
+
+    # 3) Build a minimal fallback order from existing Sections (no inline creation)
+    try:
+        sections = list(Section.objects.all()[:5])
+        if sections:
+            order = Section_Order.objects.create()
+            for idx, sec in enumerate(sections):
+                Section_Order_Sections_Through_Model.objects.create(
+                    section_order=order, section=sec, order=idx
+                )
+            return order
+        # If no sections exist at all, return an empty Section_Order
+        return Section_Order.objects.create()
+    except Exception:
+        # Last resort: create an empty order
+        logger.exception("Failed to create fallback Section_Order; creating empty order.")
+        return Section_Order.objects.create()
 
 
 def received__session_still_active_signal__for__session_id(session_id):
@@ -893,142 +936,72 @@ def handle_uploaded_file(file):
         import shutil
         import glob
 
-        # Helpers to ensure safe path handling (Path.resolve + relative_to)
-        from pathlib import Path
+        # Helpers to ensure safe path handling
+        def _is_within_directory(base: str, target: str) -> bool:
+            return os.path.commonpath([os.path.abspath(base), os.path.abspath(target)]) == os.path.abspath(base)
 
         def _safe_join(base: str, relpath: str) -> str:
-            base_path = Path(base).resolve()
-            candidate = (base_path / relpath).resolve()
-            try:
-                candidate.relative_to(base_path)
-            except ValueError:
+            candidate = os.path.abspath(os.path.join(base, relpath))
+            if not _is_within_directory(base, candidate):
                 raise ValueError("Unsafe path detected outside extraction directory")
-            return str(candidate)
+            return candidate
 
-        def _safe_open_read(base: str, relpath: str, mode: str = "rb"):
-            """Open a file for reading without following symlinks and ensuring containment."""
-            import os as _os
-            target = Path(_safe_join(base, relpath))
-            if target.is_symlink():
-                raise ValueError("Refusing to open symlink")
-            flags = _os.O_RDONLY
-            if hasattr(_os, "O_NOFOLLOW"):
-                flags |= _os.O_NOFOLLOW
-            fd = _os.open(str(target), flags)
-            try:
-                return _os.fdopen(fd, mode)
-            except Exception:
-                _os.close(fd)
-                raise
+        def _reject_unsafe_name(name: str) -> None:
+            # Zip member names are POSIX-style. Reject absolute paths and any traversal segments.
+            p = PurePosixPath(name)
+            if p.is_absolute():
+                raise ValueError("Absolute paths are not allowed in uploaded archives")
+            if any(part == ".." for part in p.parts):
+                # Even if it would normalize inside, we consider '..' usage invalid
+                raise ValueError("Path traversal segments are not allowed in uploaded archives")
+
+        def _safe_rel(base: str, relpath: Optional[str]) -> Optional[str]:
+            if relpath is None:
+                return None
+            _reject_unsafe_name(relpath)
+            return _safe_join(base, relpath)
 
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
-            import posixpath
-            from pathlib import Path
-            import stat
-            import os as _os
-
-            base_dest = Path(dest).resolve()
-
-            def _has_symlink_parent(path: Path, stop: Path) -> bool:
-                cur = path
-                while True:
-                    if cur.is_symlink():
-                        return True
-                    if cur == stop or cur.parent == cur:
-                        return False
-                    cur = cur.parent
-
             for member in zf.infolist():
-                # Normalize to POSIX style and strip any leading root
-                raw_name = member.filename.replace("\\", "/")
-                name = posixpath.normpath(raw_name).lstrip("/")
-
-                # Explicit traversal checks; skip escape attempts
-                if name == ".." or name.startswith("../") or "/../" in name:
+                name = member.filename
+                # Normalize and validate
+                _reject_unsafe_name(name)
+                out_path = _safe_join(dest, name)
+                # Ensure directory exists
+                if name.endswith("/"):
+                    os.makedirs(out_path, exist_ok=True)
                     continue
-
-                # Skip symlink entries entirely
-                mode = (member.external_attr >> 16) & 0o177777
-                if stat.S_ISLNK(mode):
-                    continue
-
-                # Compute destination with directory containment guard
-                out_path = Path(_safe_join(str(base_dest), name))
-
-                # Ensure directory exists or extract file
-                if member.is_dir() or name.endswith("/"):
-                    out_path.mkdir(parents=True, exist_ok=True)
-                    continue
-                out_path.parent.mkdir(parents=True, exist_ok=True)
-                # Avoid writing through symlinks
-                if _has_symlink_parent(out_path, base_dest) or out_path.is_symlink():
-                    continue
-                flags = _os.O_WRONLY | _os.O_CREAT | _os.O_TRUNC
-                if hasattr(_os, "O_NOFOLLOW"):
-                    flags |= _os.O_NOFOLLOW
-                with zf.open(member, "r") as src:
-                    fd = _os.open(str(out_path), flags, 0o644)
-                    try:
-                        with _os.fdopen(fd, "wb") as dst:
-                            shutil.copyfileobj(src, dst)
-                    except Exception:
-                        _os.close(fd)
-                        raise
+                os.makedirs(os.path.dirname(out_path), exist_ok=True)
+                with zf.open(member, "r") as src, open(out_path, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
 
         with zipfile.ZipFile(file, "r") as zip_ref:
             _safe_extract(zip_ref, temp_dir)
 
-        with _safe_open_read(temp_dir, "video_data.json", mode="r") as json_file:
+        with open(_safe_join(temp_dir, "video_data.json"), "r") as json_file:
             video_data = json.load(json_file)
 
-        # Validate referenced file paths from metadata using strict allowlists
-        import re as _re
-        _IMG_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
-        _VID_EXTS = {".mp4", ".webm", ".mkv", ".mov"}
-
-        def _is_simple_name(name: str) -> bool:
-            return bool(_re.fullmatch(r"[A-Za-z0-9._-]+", str(name)))
-
-        def _safe_if_allowed(base: str, name: str, allowed_exts: set[str]):
-            if not _is_simple_name(name):
-                return None
-            from pathlib import Path as _P
-            if _P(name).suffix.lower() not in allowed_exts:
-                return None
-            return _safe_join(base, name)
-
-        preview_image_path = (
-            _safe_if_allowed(temp_dir, video_data["preview_image"], _IMG_EXTS)
-            if "preview_image" in video_data
-            else None
-        )
-        original_file_path = (
-            _safe_if_allowed(temp_dir, video_data["original_file"], _VID_EXTS)
-            if "original_file" in video_data
-            else None
-        )
+        # Validate referenced file paths from metadata
+        preview_image_path = _safe_rel(temp_dir, video_data.get("preview_image"))
+        original_file_path = _safe_rel(temp_dir, video_data.get("original_file"))
 
         video, _ = Video.objects.update_or_create(
             id=video_data["id"],
             defaults={
                 "title": video_data["title"],
                 "preview_image": File(
-                    _safe_open_read(temp_dir, video_data["preview_image"], mode="rb"),
+                    open(preview_image_path, "rb"),
                     os.path.basename(preview_image_path) if preview_image_path else "preview.jpg",
                 ) if preview_image_path else None,
                 "original_file": File(
-                    _safe_open_read(temp_dir, video_data["original_file"], mode="rb"),
+                    open(original_file_path, "rb"),
                     os.path.basename(original_file_path) if original_file_path else "original.bin",
                 ) if original_file_path else None,
             },
         )
 
         for resolution_data in video_data["resolutions"]:
-            video_file_path = (
-                _safe_if_allowed(temp_dir, resolution_data["video_file"], _VID_EXTS)
-                if "video_file" in resolution_data
-                else None
-            )
+            video_file_path = _safe_rel(temp_dir, resolution_data.get("video_file"))
 
             resolution, _ = VideoResolution.objects.update_or_create(
                 id=resolution_data["id"],
@@ -1036,48 +1009,43 @@ def handle_uploaded_file(file):
                     "video": video,
                     "resolution": resolution_data["resolution"],
                     "video_file": File(
-                        _safe_open_read(temp_dir, resolution_data["video_file"], mode="rb"),
+                        open(video_file_path, "rb"),
                         os.path.basename(video_file_path) if video_file_path else "video.bin",
                     ) if video_file_path else None,
                 },
             )
 
             # Now move the HLS playlist files to the right place
-            if "hls_playlist_file" in resolution_data and _is_simple_name(resolution_data["hls_playlist_file"]):
-                old_hls_folder_path = _safe_join(temp_dir, resolution_data["hls_playlist_file"])
+            if "hls_playlist_file" in resolution_data:
+                old_hls_folder_path = _safe_rel(temp_dir, resolution_data["hls_playlist_file"])
             else:
                 old_hls_folder_path = None
 
-            from pathlib import Path
-            new_hls_folder_path = Path(settings.MEDIA_ROOT) / "hls_playlists" / f"{video.id}_{resolution.resolution}p"
-            new_hls_folder_path.mkdir(parents=True, exist_ok=True)
+            new_hls_folder_path = os.path.join(
+                settings.MEDIA_ROOT,
+                "hls_playlists",
+                f"{video.id}_{resolution.resolution}p",
+            )
+            os.makedirs(new_hls_folder_path, exist_ok=True)
 
             if old_hls_folder_path and os.path.isdir(old_hls_folder_path):
-                if new_hls_folder_path.exists():
+                if os.path.exists(new_hls_folder_path):
                     shutil.rmtree(new_hls_folder_path)
 
-                new_hls_folder_path.mkdir(parents=True, exist_ok=True)
+                os.makedirs(new_hls_folder_path)
 
-                old_hls_base = Path(old_hls_folder_path).resolve()
-                new_hls_base = new_hls_folder_path.resolve()
-                _HLS_EXTS = {".m3u8", ".ts", ".vtt"}
                 for file_name in os.listdir(old_hls_folder_path):
-                    if not _is_simple_name(file_name) or Path(file_name).suffix.lower() not in _HLS_EXTS:
-                        continue
-                    src_file = (old_hls_base / file_name).resolve()
-                    dest_file = (new_hls_base / file_name).resolve()
-                    try:
-                        src_file.relative_to(old_hls_base)
-                        dest_file.relative_to(new_hls_base)
-                    except ValueError:
-                        continue
-                    shutil.move(str(src_file), str(dest_file))
+                    src_file = os.path.join(old_hls_folder_path, file_name)
+                    dest_file = os.path.join(new_hls_folder_path, file_name)
+                    shutil.move(src_file, dest_file)
 
                 # Find the .m3u8 file in the folder
-                m3u8_files = list(new_hls_base.glob("*.m3u8"))
+                m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))
                 if m3u8_files:
-                    # Assign relative path to MEDIA_ROOT
-                    relative_m3u8_path = str(m3u8_files[0].resolve().relative_to(Path(settings.MEDIA_ROOT).resolve()))
+                    # If found, assign its relative path to the hls_playlist_file field on the resolution
+                    relative_m3u8_path = os.path.relpath(
+                        m3u8_files[0], start=settings.MEDIA_ROOT
+                    )
                     resolution.hls_playlist_file = relative_m3u8_path
                     resolution.save()
 

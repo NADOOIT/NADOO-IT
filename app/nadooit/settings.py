@@ -332,54 +332,6 @@ MFA_SUCCESS_REGISTRATION_MSG = (
     "Schlüssel erfolgreich registriert"  # The text of the link
 )
 
-# Ensure log directory exists for file handlers (fixes CI pytest crash)
-LOG_DIR = os.path.join(BASE_DIR, "logs")
-os.makedirs(LOG_DIR, exist_ok=True)
-
-# In CI (GitHub Actions) or when DISABLE_FILE_LOGGING=1, avoid file handlers
-DISABLE_FILE_LOGGING = (
-    os.environ.get("DISABLE_FILE_LOGGING", "") == "1"
-    or os.environ.get("GITHUB_ACTIONS", "").lower() == "true"
-    or os.environ.get("CI", "").lower() == "true"
-)
-
-if DISABLE_FILE_LOGGING:
-    LOG_HANDLERS = {
-        "file_debug": {
-            "class": "logging.NullHandler",
-            "level": "DEBUG",
-        },
-        "file_info": {
-            "class": "logging.NullHandler",
-            "level": "INFO",
-        },
-        "console": {
-            "level": "INFO",
-            "class": "logging.StreamHandler",
-        },
-    }
-else:
-    LOG_HANDLERS = {
-        "file_debug": {
-            "level": "DEBUG",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "log_DEBUG.log"),
-            "formatter": "Simple_Format",
-            "encoding": "utf-8",
-        },
-        "file_info": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": os.path.join(LOG_DIR, "log_INFO.log"),
-            "formatter": "Simple_Format",
-            "encoding": "utf-8",
-        },
-        "console": {
-            "level": "INFO",
-            "class": "logging.StreamHandler",
-        },
-    }
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -389,13 +341,33 @@ LOGGING = {
             "style": "{",
         },
     },
-    "handlers": LOG_HANDLERS,
+    "handlers": {
+        "file_debug": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "log_DEBUG.log"),
+            "formatter": "Simple_Format",
+            "encoding": "utf-8",
+        },
+        "file_info": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "log_INFO.log"),
+            "formatter": "Simple_Format",
+            "encoding": "utf-8",
+        },
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+        },
+    },
     "loggers": {
-        "django": {"handlers": ["console"], "level": "DEBUG"},
+        "django": {
+            "handlers": ["console"],
+            "level": "DEBUG",
+        },
         "root": {
-            "handlers": [
-                "console"
-                ] if DISABLE_FILE_LOGGING else ["file_debug", "file_info"],
+            "handlers": ["file_debug", "file_info"],
             "level": "DEBUG",
         },
     },

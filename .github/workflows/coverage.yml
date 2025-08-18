@@ -37,13 +37,12 @@ jobs:
         run: pip install -r requirements-dev.txt diff-cover
 
       - name: Run tests with coverage
-        env:
-          PYTHONPATH: ${{ github.workspace }}/app
+        working-directory: app
         run: |
           pytest --cov=app \
-                 --cov-config=.coveragerc \
+                 --cov-config=./.coveragerc \
                  --cov-report=term-missing:skip-covered \
-                 --cov-report=xml:coverage.xml
+                 --cov-report=xml:../coverage.xml
 
       - name: Enforce changed-lines coverage with diff-cover
         run: |
@@ -56,8 +55,8 @@ jobs:
           diff-cover coverage.xml \
             --compare-branch=origin/"$BASE_REF" \
             --fail-under=80 \
-            --format html:diff-cover.html \
-            --format markdown:diff-cover.md
+            --html-report=diff-cover.html \
+            --markdown-report=diff-cover.md
 
       - name: Upload coverage artifacts
         uses: actions/upload-artifact@v4

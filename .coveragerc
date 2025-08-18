@@ -4,11 +4,6 @@ source = .
 omit =
     */migrations/*
     */tests/*
-    */test_*.py
-    */*_test.py
-    */admin.py
-    */urls.py
-    */templatetags/*
     manage.py
     nadooit/wsgi.py
     nadooit/asgi.py
