@@ -115,6 +115,34 @@ Tests run automatically in GitHub Actions on every push/PR using Python 3.10. Th
   - `diff-cover.html`
   - `diff-cover.md`
 
+### Changed-lines vs. global coverage
+- Global coverage (e.g., 71%) describes the entire codebase and serves as a guideline.
+- The CI gate (diff-cover) checks only changed lines in the PR. Threshold: 80%.
+- Goal: New/updated lines should be well-tested without blocking old, untouched areas.
+
+Artifacts and evaluation in CI:
+- `diff-cover.html` (detailed report with file/line list)
+- `diff-cover.md` (compact overview)
+- Both are downloadable as artifacts in the "Coverage (diff-cover)" workflow.
+
+Local reproduction (optional):
+1. Generate `coverage.xml` (Docker-first):
+   ```bash
+   docker compose -f docker-compose-test.yml run --rm test
+   ```
+2. Install diff-cover locally (venv):
+   ```bash
+   python -m venv .venv && . .venv/bin/activate
+   pip install diff-cover
+   ```
+3. Compare against `origin/main` and generate reports:
+   ```bash
+   git fetch origin main
+   diff-cover coverage.xml --compare-branch=origin/main \
+     --fail-under=80 --format html:diff-cover.html --format markdown:diff-cover.md
+   ```
+4. Open `diff-cover.html` in your browser.
+
 PR Checklist expectations (see `.github/pull_request_template.md`):
 - Tests added/updated for all changes
 - All tests pass locally or via containerized runs
