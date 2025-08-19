@@ -60,12 +60,12 @@ jobs:
             --fail-under="$FAIL_UNDER" \
             --ignore-staged \
             --ignore-unstaged \
-            --exclude "**/migrations/*" \
-            --exclude "**/admin.py" \
-            --exclude "**/urls.py" \
-            --exclude "**/management/**" \
-            --exclude "**/test_*.py" \
-            --exclude "app/nadooit_os/**" \
+            --exclude '.*/migrations/.*' \
+            --exclude '.*/admin\\.py$' \
+            --exclude '.*/urls\\.py$' \
+            --exclude '.*/management/.*' \
+            --exclude '.*/test_.*\\.py$' \
+            --exclude '^app/nadooit_os/.*' \
             --format html:diff-cover.html \
             --format markdown:diff-cover.md
 

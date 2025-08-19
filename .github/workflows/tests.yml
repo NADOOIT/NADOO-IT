@@ -38,10 +38,10 @@ jobs:
       - name: Run tests with coverage
         working-directory: app
         run: |
-          pytest
+          pytest --cov-report=xml:../coverage.xml
 
       - name: Upload coverage.xml artifact
         uses: actions/upload-artifact@v4
         with:
           name: coverage-xml
-          path: app/coverage.xml
+          path: coverage.xml
