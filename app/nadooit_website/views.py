@@ -36,6 +36,8 @@ from django.conf import settings
 import os
 import re
 from pathlib import Path
+from django.core.exceptions import SuspiciousFileOperation
+from django.core.files.storage import FileSystemStorage
 
 logger = logging.getLogger(__name__)
 
@@ -417,15 +419,15 @@ def section_transitions(request, group_filter=None):
         f"section_transitions_{group}.html" if group else "section_transitions.html"
     )
     base_dir = Path(settings.BASE_DIR) / "nadooit_website" / "section_transition"
-    base_dir_resolved = base_dir.resolve()
-    candidate_path = (base_dir / filename).resolve()
-
-    # Ensure the candidate is within the intended base directory
-    if not (candidate_path == base_dir_resolved or base_dir_resolved in candidate_path.parents):
+    # Use Django's public FileSystemStorage to constrain access within base_dir
+    storage = FileSystemStorage(location=str(base_dir))
+    try:
+        full_path = storage.path(filename)  # raises on traversal attempts
+    except (ValueError, SuspiciousFileOperation):
         return HttpResponse(status=400)
 
     try:
-        with open(candidate_path, "r", encoding="utf-8") as file:
+        with open(full_path, "r", encoding="utf-8") as file:
             content = file.read()
     except FileNotFoundError:
         return HttpResponse(status=404)
