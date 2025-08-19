@@ -1,0 +1,19 @@
+{% extends 'nadooit_website/base.html' %}
+{% load static %}
+{% block content %}
+  {% if page.css %}
+  <style>
+    {{ page.css|safe }}
+  </style>
+  {% endif %}
+
+  <div class="content-page" data-slug="{{ page.slug }}">
+    {{ page.html|safe }}
+  </div>
+
+  {% if page.js %}
+  <script>
+    {{ page.js|safe }}
+  </script>
+  {% endif %}
+{% endblock %}

@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-        <br/>
+        <BR/>
         {% if submitted and not error%}
         <div class="alert alert-success" role="alert">
 
@@ -13,7 +13,7 @@
         {% elif error %}
 
             <div class="alert alert-danger">
-                <strong>{{error}}</strong>
+                <strong>{{ error|escape }}</strong>
             </div>
 
         {% else %}    
@@ -32,7 +32,7 @@
                 {% endfor %}
             </select>	
         </div>
-        <br/>
+        <BR/>
         {% comment %} User Code is required {% endcomment %}
         <div class="form-group">
             <label for="user_code">Schlüssel User code eingeben:</label>
@@ -59,7 +59,7 @@
  {% endcomment %}
             </select>
         </div>
-        <br/>
+        <BR/>
 
         <input type="submit" value="Mache User Code zum API Key Mangager" class="btn btn-secondary">
         </form>

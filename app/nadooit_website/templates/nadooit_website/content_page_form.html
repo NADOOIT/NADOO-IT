@@ -1,0 +1,18 @@
+{% extends 'nadooit_website/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 mb-3">{{ page_title|default:"Content page" }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">{{ form.title.label_tag }} {{ form.title }}</div>
+    <div class="mb-3">{{ form.slug.label_tag }} {{ form.slug }}</div>
+    <div class="mb-3">{{ form.is_published.label_tag }} {{ form.is_published }}</div>
+    <hr/>
+    <div class="mb-3">{{ form.html.label_tag }} {{ form.html }}</div>
+    <div class="mb-3">{{ form.css.label_tag }} {{ form.css }}</div>
+    <div class="mb-3">{{ form.js.label_tag }} {{ form.js }}</div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}

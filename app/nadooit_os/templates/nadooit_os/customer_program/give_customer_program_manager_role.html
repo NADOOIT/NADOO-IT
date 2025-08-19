@@ -13,7 +13,7 @@
         {% elif error %}
 
             <div class="alert alert-danger">
-                <strong>{{error}}</strong>
+                <strong>{{ error|escape }}</strong>
             </div>
 
         {% else %}    

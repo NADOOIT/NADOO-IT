@@ -1,0 +1,85 @@
+version: '3.3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >-
+      sh -c "python manage.py migrate && python manage.py import_templates && python manage.py import_section_orders && uwsgi --socket :9090 --workers 4 --master --enable-threads --module nadooit.wsgi"
+    restart: always
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+    volumes:
+      - static_data:/vol/web/static
+      - media_data:/vol/web/media
+      - app_db:/app/db
+
+  proxy:
+    build:
+      context: ./docker/proxy
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - certbot-web:/vol/www
+      - proxy-dhparams:/vol/proxy
+      - certbot-certs:/etc/letsencrypt
+      - static_data:/vol/web/static
+      - media_data:/vol/web/media
+    environment:
+      - DOMAIN=${DOMAIN}
+    depends_on:
+      - app
+
+  certbot:
+    build:
+      context: ./docker/certbot
+    command: echo "Skipping certbot"
+    environment:
+      - EMAIL=${ACME_DEFAULT_EMAIL}
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - certbot-web:/vol/www
+      - certbot-certs:/etc/letsencrypt
+    depends_on:
+      - proxy
+
+  redis:
+    image: 'redis:latest'
+
+  celery_worker:
+    build:
+      context: .
+    
+      dockerfile: Dockerfile
+    command: sh -c "python -m celery -A nadooit worker --loglevel=info"
+    volumes:
+      - ./app:/app
+      - static_data:/vol/web/static
+      - media_data:/vol/web/media
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+
+volumes:
+  certbot-web:
+  proxy-dhparams:
+  certbot-certs:
+  static_data:
+  media_data:
+  app_db:

@@ -63,13 +63,13 @@
             videojs.registerComponent('QualitySelector', QualitySelector);
         }
 
-        var player = videojs('v{{ player_uuid }}');
+        var player = videojs('v{{ player_uuid|escapejs }}');
 
         player.getChild('controlBar').addChild('QualitySelector', {
             levels: [
-                { label: '1080p', src: '{{ playlist_url_1080p }}' },
-                { label: '720p', src: '{{ playlist_url_720p }}' },
-                { label: '480p', src: '{{ playlist_url_480p }}' },
+                { label: '1080p', src: '{{ playlist_url_1080p|escapejs }}' },
+                { label: '720p', src: '{{ playlist_url_720p|escapejs }}' },
+                { label: '480p', src: '{{ playlist_url_480p|escapejs }}' },
             ],
         });
 

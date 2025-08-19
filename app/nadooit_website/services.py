@@ -4,6 +4,7 @@ import re
 import shutil
 import uuid
 from typing import Optional
+from pathlib import Path, PurePosixPath
 from django.conf import settings
 
 from django.template import Template
@@ -15,19 +16,21 @@ from .models import (
     Section,
     Session_Signal,
     SectionScore,
+    Section_Order_Sections_Through_Model,
 )
 
 from django.template.loader import render_to_string
 
 
 import logging
+from django.core.management import call_command
 
 logger = logging.getLogger(__name__)
 
 session_tick = 5
 
 
-"""
+""" 
 # optimatzion
 from . import embeddings
 from sklearn.metrics.pairwise import cosine_similarity
@@ -151,7 +154,7 @@ def add__signal(html_of_section, session_id, section_id, signal_type):
                 // Clear previous highlight
                 const upvoteButton = document.getElementById('upvote-button-' + sectionId);
                 const downvoteButton = document.getElementById('downvote-button-' + sectionId);
-
+                
                 upvoteButton.classList.remove('highlighted-upvote');
                 downvoteButton.classList.remove('highlighted-downvote');
 
@@ -497,7 +500,7 @@ def get__sections__for__session_id(session_id):
     return (
         Session.objects.get(session_id=session_id)
         .session_section_order.sections.all()
-        .order_by("section_order_sections_through_model")
+        .order_by("section_order_sections_through_model__order")
     )
 
 
@@ -522,18 +525,56 @@ def create__session():
 
 
 def get_most_successful_section_order():
-    # Replace this with the actual logic for finding the most successful Section_Order
+    """
+    Resolve a Section_Order to use for a new Session.
 
-    if settings.DEBUG:
-        return Section_Order.objects.get(
-            #section_order_id="ad508b5e-cebe-43a8-b068-dc37a4574605"
-            section_order_id="4a0bd312-97c2-4336-850b-841381c0bcd8"
+    Strategy:
+    1) Return the most recent existing Section_Order (preferring ones with sections).
+    2) If none exist, attempt to import defaults from templates via `import_section_orders`.
+    3) If still none, create a fallback order from existing Sections (without creating new Sections). If no Sections exist, create an empty Section_Order.
+    """
+
+    # 1) Prefer an existing Section_Order (with sections first)
+    order = (
+        Section_Order.objects.filter(
+            section_order_sections_through_model__isnull=False
         )
-    else:
-        #TODO: Replace this with the actual logic for finding the most successful Section_Order/ any that exists
-        return Section_Order.objects.get(
-            section_order_id="a6edd155-a0f3-42e9-954a-a674dacf160f"
-        )
+        .order_by("-section_order_date")
+        .first()
+    )
+    if order:
+        return order
+
+    order = Section_Order.objects.order_by("-section_order_date").first()
+    if order:
+        return order
+
+    # 2) Try importing defaults from templates if available
+    try:
+        call_command("import_section_orders")
+    except Exception as e:
+        logger.warning(f"import_section_orders failed or not present: {e}")
+
+    order = Section_Order.objects.order_by("-section_order_date").first()
+    if order:
+        return order
+
+    # 3) Build a minimal fallback order from existing Sections (no inline creation)
+    try:
+        sections = list(Section.objects.all()[:5])
+        if sections:
+            order = Section_Order.objects.create()
+            for idx, sec in enumerate(sections):
+                Section_Order_Sections_Through_Model.objects.create(
+                    section_order=order, section=sec, order=idx
+                )
+            return order
+        # If no sections exist at all, return an empty Section_Order
+        return Section_Order.objects.create()
+    except Exception:
+        # Last resort: create an empty order
+        logger.exception("Failed to create fallback Section_Order; creating empty order.")
+        return Section_Order.objects.create()
 
 
 def received__session_still_active_signal__for__session_id(session_id):
@@ -703,7 +744,20 @@ def get__next_section_html(session_id, current_section_id):
 
 
 def check__session_id__is_valid(session_id: uuid):
-    return Session.objects.filter(session_id=session_id).exists()
+    # Accept both UUID objects and strings; return False for invalid inputs
+    try:
+        if isinstance(session_id, str):
+            # Coerce to UUID; raises ValueError on invalid input
+            session_uuid = uuid.UUID(session_id)
+        elif isinstance(session_id, uuid.UUID):
+            session_uuid = session_id
+        else:
+            # Unsupported type
+            return False
+    except (ValueError, AttributeError, TypeError):
+        return False
+
+    return Session.objects.filter(session_id=session_uuid).exists()
 
 
 def get__first_section():
@@ -878,46 +932,114 @@ def handle_uploaded_file(file):
     os.makedirs(temp_dir, exist_ok=True)
 
     try:
-        with zipfile.ZipFile(file, "r") as zip_ref:
-            zip_ref.extractall(temp_dir)
+        # Local imports to avoid relying on module-level imports
+        import shutil
+        import glob
 
-        with open(os.path.join(temp_dir, "video_data.json"), "r") as json_file:
+        # Helpers to ensure safe path handling
+        def _is_within_directory(base: str, target: str) -> bool:
+            base_path = Path(base).resolve()
+            target_path = Path(target).resolve()
+            return base_path == target_path or base_path in target_path.parents
+
+        def _safe_join(base: str, relpath: str) -> str:
+            base_path = Path(base).resolve()
+            candidate_path = (base_path / relpath).resolve()
+            if not _is_within_directory(base_path, candidate_path):
+                raise ValueError("Unsafe path detected outside extraction directory")
+            return str(candidate_path)
+
+        def _reject_unsafe_name(name: str) -> None:
+            # Zip member names are POSIX-style. Reject absolute paths and any traversal segments.
+            p = PurePosixPath(name)
+            if p.is_absolute():
+                raise ValueError("Absolute paths are not allowed in uploaded archives")
+            if any(part == ".." for part in p.parts):
+                # Even if it would normalize inside, we consider '..' usage invalid
+                raise ValueError("Path traversal segments are not allowed in uploaded archives")
+
+        def _sanitize_member_name(name: str) -> str:
+            """Sanitize a zip member name by removing dangerous parts and characters.
+            This reconstructs a safe, relative POSIX-style path consisting only of allowed characters.
+            """
+            p = PurePosixPath(name)
+            parts = []
+            for part in p.parts:
+                if part in ("", ".", ".."):
+                    continue
+                # Replace anything not alnum, dash, underscore, dot with underscore
+                safe = re.sub(r"[^A-Za-z0-9._-]", "_", part)
+                parts.append(safe)
+            return "/".join(parts)
+
+        def _safe_rel(base: str, relpath: Optional[str]) -> Optional[str]:
+            if relpath is None:
+                return None
+            _reject_unsafe_name(relpath)
+            sanitized = _sanitize_member_name(relpath)
+            return _safe_join(base, sanitized)
+
+        def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
+            for member in zf.infolist():
+                name = member.filename
+                # Normalize and validate
+                _reject_unsafe_name(name)
+                sanitized = _sanitize_member_name(name)
+                out_path = _safe_join(dest, sanitized)
+                # Ensure directory exists (support both modern and legacy ZipInfo)
+                if (hasattr(member, "is_dir") and member.is_dir()) or name.endswith("/"):
+                    os.makedirs(out_path, exist_ok=True)
+                    continue
+                os.makedirs(os.path.dirname(out_path), exist_ok=True)
+                with zf.open(member, "r") as src, open(out_path, "wb") as dst:
+                    shutil.copyfileobj(src, dst)
+
+        with zipfile.ZipFile(file, "r") as zip_ref:
+            _safe_extract(zip_ref, temp_dir)
+
+        with open(_safe_join(temp_dir, "video_data.json"), "r") as json_file:
             video_data = json.load(json_file)
+
+        # Validate referenced file paths from metadata
+        preview_image_path = _safe_rel(temp_dir, video_data.get("preview_image"))
+        original_file_path = _safe_rel(temp_dir, video_data.get("original_file"))
 
         video, _ = Video.objects.update_or_create(
             id=video_data["id"],
             defaults={
                 "title": video_data["title"],
                 "preview_image": File(
-                    open(os.path.join(temp_dir, video_data["preview_image"]), "rb"),
-                    video_data["preview_image"],
-                ),
+                    open(preview_image_path, "rb"),
+                    os.path.basename(preview_image_path) if preview_image_path else "preview.jpg",
+                ) if preview_image_path else None,
                 "original_file": File(
-                    open(os.path.join(temp_dir, video_data["original_file"]), "rb"),
-                    video_data["original_file"],
-                ),
+                    open(original_file_path, "rb"),
+                    os.path.basename(original_file_path) if original_file_path else "original.bin",
+                ) if original_file_path else None,
             },
         )
 
         for resolution_data in video_data["resolutions"]:
+            video_file_path = _safe_rel(temp_dir, resolution_data.get("video_file"))
+
             resolution, _ = VideoResolution.objects.update_or_create(
                 id=resolution_data["id"],
                 defaults={
                     "video": video,
                     "resolution": resolution_data["resolution"],
                     "video_file": File(
-                        open(
-                            os.path.join(temp_dir, resolution_data["video_file"]), "rb"
-                        ),
-                        resolution_data["video_file"],
-                    ),
+                        open(video_file_path, "rb"),
+                        os.path.basename(video_file_path) if video_file_path else "video.bin",
+                    ) if video_file_path else None,
                 },
             )
 
             # Now move the HLS playlist files to the right place
-            old_hls_folder_path = os.path.join(
-                temp_dir, resolution_data["hls_playlist_file"]
-            )
+            if "hls_playlist_file" in resolution_data:
+                old_hls_folder_path = _safe_rel(temp_dir, resolution_data["hls_playlist_file"])
+            else:
+                old_hls_folder_path = None
+
             new_hls_folder_path = os.path.join(
                 settings.MEDIA_ROOT,
                 "hls_playlists",
@@ -925,18 +1047,16 @@ def handle_uploaded_file(file):
             )
             os.makedirs(new_hls_folder_path, exist_ok=True)
 
-            if os.path.isdir(old_hls_folder_path):
+            if old_hls_folder_path and os.path.isdir(old_hls_folder_path):
                 if os.path.exists(new_hls_folder_path):
-                    shutil.rmtree(new_hls_folder_path)  # delete the existing directory and all of its contents
+                    shutil.rmtree(new_hls_folder_path)
 
-                os.makedirs(new_hls_folder_path)  # recreate the directory
+                os.makedirs(new_hls_folder_path)
 
                 for file_name in os.listdir(old_hls_folder_path):
                     src_file = os.path.join(old_hls_folder_path, file_name)
                     dest_file = os.path.join(new_hls_folder_path, file_name)
-
-                    shutil.move(src_file, dest_file)  # now move should succeed
-
+                    shutil.move(src_file, dest_file)
 
                 # Find the .m3u8 file in the folder
                 m3u8_files = glob.glob(os.path.join(new_hls_folder_path, "*.m3u8"))
