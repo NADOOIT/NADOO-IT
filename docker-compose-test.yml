@@ -7,6 +7,7 @@ services:
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
+      - WHATSAPP_ENABLED=1
     command: >-
       sh -lc "
       apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/* &&
