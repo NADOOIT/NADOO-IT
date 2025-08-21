@@ -7,6 +7,10 @@ on:
     - cron: '15 8 * * 5'      # Fri
   workflow_dispatch: {}
 
+permissions:
+  issues: write
+  contents: read
+
 jobs:
   call:
     uses: NADOOIT/virtuelle_Visitenkarte/.github/workflows/reusable-auto-meeting-issues.yml@main
