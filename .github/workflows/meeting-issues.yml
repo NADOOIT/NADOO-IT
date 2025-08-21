@@ -1,0 +1,34 @@
+name: Auto Meeting Issues
+
+on:
+  schedule:
+    - cron: '15 8 * * 1,2,4'  # 08:15 UTC (10:15 CEST) Mon/Tue/Thu
+    - cron: '15 8 * * 3'      # Wed
+    - cron: '15 8 * * 5'      # Fri
+  workflow_dispatch: {}
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  call:
+    uses: NADOOIT/virtuelle_Visitenkarte/.github/workflows/reusable-auto-meeting-issues.yml@main
+    permissions:
+      issues: write
+      contents: read
+    with:
+      teams_json: '[{"key":"A","name":"Team A","label":"team:A"},{"key":"B","name":"Team B","label":"team:B"},{"key":"C","name":"Team C","label":"team:C"}]'
+      rotation_path: 'docs/projects/deliverable-rotation.json'
+      deliverable_labels_csv: 'deliverable,patch:nominated'
+      label_type_meeting: 'type:meeting'
+      label_meeting_11er: 'meeting:11er'
+      label_meeting_koord: 'meeting:koord'
+      label_meeting_33er: 'meeting:33er'
+      label_governance: 'governance'
+      enable_11er: 'true'
+      enable_koord: 'true'
+      enable_33er: 'true'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+# sync: aligned with Launchpad standard – seed commit for PR (2025-08-21)
