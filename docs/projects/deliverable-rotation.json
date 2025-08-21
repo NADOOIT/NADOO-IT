@@ -1,0 +1,12 @@
+{
+  "start_date": "2025-08-22",
+  "cadence_days": 7,
+  "max_per_week": 2,
+  "teams": [
+    { "key": "A", "name": "Team A", "min_gap_days": 14 },
+    { "key": "B", "name": "Team B", "min_gap_days": 14 },
+    { "key": "C", "name": "Team C", "min_gap_days": 14 }
+  ],
+  "overrides": [],
+  "pattern": [ ["A","B"], ["C"], ["A","C"], ["B"] ]
+}
