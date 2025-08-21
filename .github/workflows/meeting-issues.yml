@@ -27,3 +27,4 @@ jobs:
       enable_33er: 'true'
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
+# sync: aligned with Launchpad standard – seed commit for PR (2025-08-21)
