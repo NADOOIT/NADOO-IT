@@ -65,7 +65,7 @@ celery
 redis
 
 #ai
-openai~=1.73
+openai~=1.102
 
 
 plotly
