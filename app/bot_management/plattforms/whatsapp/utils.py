@@ -18,9 +18,21 @@ def register_bot(bot_register_id):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
-            token = BotPlatform.objects.get(
-                bot_register_id=bot_register_id
-            ).access_token
+            # For GET requests (e.g., webhook verification challenges), do not require
+            # any database lookups. Simply pass through to the view so it can handle
+            # the challenge echo securely without depending on BotPlatform entries.
+            if request.method == "GET":
+                return view_func(request, *args, **kwargs)
+
+            # For non-GET (e.g., POST message handling), fetch the token. If the
+            # BotPlatform is not registered, respond with a 400 to avoid crashing.
+            try:
+                token = BotPlatform.objects.get(
+                    bot_register_id=bot_register_id
+                ).access_token
+            except BotPlatform.DoesNotExist:
+                return HttpResponse("Unknown bot.", status=400)
+
             kwargs["token"] = token
             return view_func(request, *args, **kwargs)
 

@@ -44,7 +44,7 @@ USER django
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade cython
-RUN pip install -r /requirements-dev.txt 
+RUN pip install -r /requirements.txt 
 
 USER root
 

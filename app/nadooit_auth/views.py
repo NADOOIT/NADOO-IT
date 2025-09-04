@@ -16,8 +16,10 @@ from nadooit.settings import DEBUG
 from nadooit_auth.models import User
 from nadooit_auth.user_code import check__valid_user_code
 from nadooit_auth.username import get__new_username
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from .user_code import get__new_user_code
+from typing import Optional
 
 
 # Checks if the given user has the Keymanager role
@@ -34,11 +36,9 @@ def log_user_in(request, username):
     # loging in the user
     login(request, user)
 
-    # request.POST containing redirect might be wrong here and should be request.GET "next" instead. Test this.
-    if "redirect" in request.POST:
-        return redirect(request.POST["redirect"])
-    else:
-        return redirect(reverse("nadooit_os:nadooit-os"))
+    # Prefer GET ?next= over POST redirect, but validate target to prevent open redirects
+    target = request.GET.get("next") or request.POST.get("redirect") or "/nadooit-os"
+    return safe_redirect(request, target)
 
 
 def login_user(request):
@@ -67,11 +67,11 @@ def login_user(request):
                     # print(res)
                     log_user_in(request, user.username)
                     # login(request, user)
-                    return redirect(request.GET.get("next") or "/nadooit-os")
+                    return safe_redirect(request, request.GET.get("next") or "/nadooit-os")
                 else:
                     log_user_in(request, user.username)
                     # login(request, user)
-                    return redirect(request.GET.get("next") or "/nadooit-os")
+                    return safe_redirect(request, request.GET.get("next") or "/nadooit-os")
             else:
                 err = "This user is NOT activated yet."
         else:
@@ -144,3 +144,25 @@ def register_user(request):
             "nadooit_auth/register.html",
             context={"page_title": "Register", "user_code": get__new_user_code()},
         )
+
+
+def _is_safe_redirect(request, target: Optional[str]) -> bool:
+    if not target:
+        return False
+    # Allow relative paths and same-host absolute URLs only
+    return url_has_allowed_host_and_scheme(
+        url=target,
+        allowed_hosts={request.get_host()},
+        require_https=request.is_secure(),
+    )
+
+
+def safe_redirect(request, target: Optional[str]):
+    """Redirect to a safe target or fall back to the default OS home.
+
+    This prevents open redirects by validating the provided target against the current host.
+    """
+    if _is_safe_redirect(request, target):
+        return redirect(target)
+    # Default internal landing page
+    return redirect(reverse("nadooit_os:nadooit-os"))

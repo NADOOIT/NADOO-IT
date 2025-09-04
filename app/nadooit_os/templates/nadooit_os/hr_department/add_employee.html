@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-        <br/>
+        <BR/>
         {% if submitted and not error%}
         <div class="alert alert-success" role="alert">
             <strong>Schlüssel hinzugefügt!</strong>
@@ -12,7 +12,7 @@
         {% elif error %}
 
         <div class="alert alert-danger">
-            <strong>{{error}}</strong>
+            <strong>{{ error|escape }}</strong>
         </div>
         {% endif %}
 
@@ -32,13 +32,13 @@
                 {% endfor %}
             </select>	
         </div>
-        <br/>
+        <BR/>
         {% comment %} User Code is required {% endcomment %}
         <div class="form-group">
             <label for="user_code">Schlüssel User code eingeben:</label>
             <input type="text" class="form-control" id="user_code" name="user_code" required>
         </div>
-        <br/>
+        <BR/>
 
         <input type="submit" value=" User Code zum Kunden hinzufügen" class="btn btn-secondary">
         </form>
