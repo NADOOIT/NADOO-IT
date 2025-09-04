@@ -936,18 +936,31 @@ def handle_uploaded_file(file):
         import shutil
         import glob
 
-        # Helpers to ensure safe path handling
-        def _is_within_directory(base: str, target: str) -> bool:
-            base_path = Path(base).resolve()
-            target_path = Path(target).resolve()
-            return base_path == target_path or base_path in target_path.parents
+        # Helpers to ensure safe path handling (Path.resolve + relative_to)
+        import posixpath as _pp
+
+        def _ensure_safe_rel(relpath: str) -> str:
+            """Normalize a user-influenced relative path and reject absolute or traversal."""
+            name = str(relpath).replace("\\", "/")
+            norm = _pp.normpath(name)
+            # Absolute or traversal attempts are rejected
+            if norm.startswith("/") or norm == ".." or norm.startswith("../") or "/../" in norm:
+                raise ValueError("Unsafe path detected (absolute or traversal)")
+            # Avoid current-dir references that could mask traversal
+            if norm == ".":
+                return ""
+            return norm.lstrip("/")
 
         def _safe_join(base: str, relpath: str) -> str:
+            # Defensively validate relpath before joining so static analyzers see the guard
+            safe_rel = _ensure_safe_rel(relpath)
             base_path = Path(base).resolve()
-            candidate_path = (base_path / relpath).resolve()
-            if not _is_within_directory(base_path, candidate_path):
+            candidate = (base_path / safe_rel).resolve()
+            try:
+                candidate.relative_to(base_path)
+            except ValueError:
                 raise ValueError("Unsafe path detected outside extraction directory")
-            return str(candidate_path)
+            return str(candidate)
 
         def _reject_unsafe_name(name: str) -> None:
             # Zip member names are POSIX-style. Reject absolute paths and any traversal segments.
@@ -980,19 +993,57 @@ def handle_uploaded_file(file):
             return _safe_join(base, sanitized)
 
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
+            import posixpath
+            from pathlib import Path
+            import stat
+            import os as _os
+
+            base_dest = Path(dest).resolve()
+
+            def _has_symlink_parent(path: Path, stop: Path) -> bool:
+                cur = path
+                while True:
+                    if cur.is_symlink():
+                        return True
+                    if cur == stop or cur.parent == cur:
+                        return False
+                    cur = cur.parent
+
             for member in zf.infolist():
-                name = member.filename
-                # Normalize and validate
-                _reject_unsafe_name(name)
-                sanitized = _sanitize_member_name(name)
-                out_path = _safe_join(dest, sanitized)
-                # Ensure directory exists (support both modern and legacy ZipInfo)
+                # Normalize to POSIX style and check for absolute/traversal upfront
+                raw_name = member.filename.replace("\\", "/")
+                norm = posixpath.normpath(raw_name)
+                if norm.startswith("/") or norm == ".." or norm.startswith("../") or "/../" in norm:
+                    raise ValueError("Unsafe zip member path detected")
+
+                # For extra safety, reject symlink entries entirely
+                mode = (member.external_attr >> 16) & 0o177777
+                if stat.S_ISLNK(mode):
+                    raise ValueError("Symlink entries are not allowed in uploaded archives")
+
+                # Compute destination with directory containment guard
+                name = norm.lstrip("/")
+                out_path = Path(_safe_join(str(base_dest), name))
+
+                # Ensure directory exists or extract file
                 if (hasattr(member, "is_dir") and member.is_dir()) or name.endswith("/"):
-                    os.makedirs(out_path, exist_ok=True)
+                    out_path.mkdir(parents=True, exist_ok=True)
                     continue
-                os.makedirs(os.path.dirname(out_path), exist_ok=True)
-                with zf.open(member, "r") as src, open(out_path, "wb") as dst:
-                    shutil.copyfileobj(src, dst)
+                out_path.parent.mkdir(parents=True, exist_ok=True)
+                # Avoid writing through symlinks
+                if _has_symlink_parent(out_path, base_dest) or out_path.is_symlink():
+                    raise ValueError("Refusing to write through a symlink path")
+                flags = _os.O_WRONLY | _os.O_CREAT | _os.O_TRUNC
+                if hasattr(_os, "O_NOFOLLOW"):
+                    flags |= _os.O_NOFOLLOW
+                with zf.open(member, "r") as src:
+                    fd = _os.open(str(out_path), flags, 0o644)
+                    try:
+                        with _os.fdopen(fd, "wb") as dst:
+                            shutil.copyfileobj(src, dst)
+                    except Exception:
+                        _os.close(fd)
+                        raise
 
         with zipfile.ZipFile(file, "r") as zip_ref:
             _safe_extract(zip_ref, temp_dir)
@@ -1000,9 +1051,51 @@ def handle_uploaded_file(file):
         with open(_safe_join(temp_dir, "video_data.json"), "r") as json_file:
             video_data = json.load(json_file)
 
-        # Validate referenced file paths from metadata
-        preview_image_path = _safe_rel(temp_dir, video_data.get("preview_image"))
-        original_file_path = _safe_rel(temp_dir, video_data.get("original_file"))
+        # Validate referenced file/dir paths from metadata using strict checks
+        _IMG_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+        _VID_EXTS = {".mp4", ".webm", ".mkv", ".mov"}
+
+        def _safe_if_allowed(base: str, name: str, allowed_exts: set[str]):
+            """Return a safely joined path if the rel path is safe and has an allowed extension.
+            Raise ValueError on traversal/absolute. Return None if extension is not allowed.
+            """
+            norm = _ensure_safe_rel(name)  # may raise on traversal/absolute
+            from pathlib import Path as _P
+            if _P(norm).suffix.lower() not in allowed_exts:
+                return None
+            return _safe_join(base, norm)
+
+        def _safe_dir_or_raise(base: str, name: str) -> str:
+            """Validate that name is a safe relative directory path and return joined path.
+            Raises ValueError on traversal/absolute.
+            """
+            norm = _ensure_safe_rel(name)  # may raise
+            return _safe_join(base, norm)
+
+        def _is_simple_name(name: str) -> bool:
+            """Return True if 'name' is a simple filename without any path components.
+            Disallows path separators, absolute paths, and traversal tokens.
+            Restricts characters to alphanumerics, dot, underscore, and dash.
+            """
+            if not isinstance(name, str) or not name:
+                return False
+            if "/" in name or "\\" in name or name in (".", ".."):
+                return False
+            # Must already be a basename
+            if name != os.path.basename(name):
+                return False
+            return bool(re.fullmatch(r"[A-Za-z0-9._-]+", name))
+
+        preview_image_path = (
+            _safe_if_allowed(temp_dir, video_data["preview_image"], _IMG_EXTS)
+            if "preview_image" in video_data
+            else None
+        )
+        original_file_path = (
+            _safe_if_allowed(temp_dir, video_data["original_file"], _VID_EXTS)
+            if "original_file" in video_data
+            else None
+        )
 
         video, _ = Video.objects.update_or_create(
             id=video_data["id"],
@@ -1036,7 +1129,8 @@ def handle_uploaded_file(file):
 
             # Now move the HLS playlist files to the right place
             if "hls_playlist_file" in resolution_data:
-                old_hls_folder_path = _safe_rel(temp_dir, resolution_data["hls_playlist_file"])
+                # Must be a safe relative directory path; traversal/absolute will raise
+                old_hls_folder_path = _safe_dir_or_raise(temp_dir, resolution_data["hls_playlist_file"])            
             else:
                 old_hls_folder_path = None
 

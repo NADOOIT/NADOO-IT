@@ -415,19 +415,43 @@ def section_transitions(request, group_filter=None):
     raw_filter = request.GET.get("group_filter") or group_filter
     group = raw_filter if raw_filter and re.fullmatch(r"[A-Za-z0-9_-]+", str(raw_filter)) else None
 
-    filename = (
-        f"section_transitions_{group}.html" if group else "section_transitions.html"
-    )
     base_dir = Path(settings.BASE_DIR) / "nadooit_website" / "section_transition"
-    # Use Django's public FileSystemStorage to constrain access within base_dir
-    storage = FileSystemStorage(location=str(base_dir))
+    base_resolved = base_dir.resolve()
+
+    # Build an allowlist map of permissible template files: slug -> filename
+    allowed_map = {}
+    # Default template (no group)
+    default_file = base_resolved / "section_transitions.html"
+    if default_file.exists() and default_file.is_file():
+        allowed_map[None] = "section_transitions.html"
+    # Group-specific templates
+    for p in base_resolved.glob("section_transitions_*.html"):
+        name = p.name
+        # Extract slug between prefix and suffix safely
+        if name.startswith("section_transitions_") and name.endswith(".html"):
+            slug = name[len("section_transitions_"):-len(".html")]
+            # Only accept slugs that match our strict pattern
+            if re.fullmatch(r"[A-Za-z0-9_-]+", slug):
+                allowed_map[slug] = name
+
+    # Select from allowlist only; no string concatenation with user input
+    if group is None:
+        chosen_name = allowed_map.get(None)
+        if not chosen_name:
+            return HttpResponse(status=404)
+    else:
+        chosen_name = allowed_map.get(group)
+        if not chosen_name:
+            return HttpResponse(status=404)
+
+    candidate = (base_resolved / chosen_name).resolve()
     try:
-        full_path = storage.path(filename)  # raises on traversal attempts
-    except (ValueError, SuspiciousFileOperation):
+        candidate.relative_to(base_resolved)
+    except ValueError:
         return HttpResponse(status=400)
 
     try:
-        with open(full_path, "r", encoding="utf-8") as file:
+        with open(candidate, "r", encoding="utf-8") as file:
             content = file.read()
     except FileNotFoundError:
         return HttpResponse(status=404)

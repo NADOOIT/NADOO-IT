@@ -175,3 +175,4 @@ app/logs/*.log
 /.venv312
 
 /.worktrees/
+*.pyc
