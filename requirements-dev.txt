@@ -16,7 +16,7 @@ django-grappelli==3.0.9
 django-mfa2 @ git+https://github.com/NADOOIT/django-mfa2.git
 django-pwa @ git+https://github.com/silviolleite/django-pwa@4eb4ae616f8671f85bb05156500d0814c6c4a3fe
 django-sslserver==0.22
-djangorestframework==3.15.2
+djangorestframework==3.16.1
 ecdsa==0.19.1
 fido2==1.1.3
 idna==3.10
