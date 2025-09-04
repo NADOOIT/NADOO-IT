@@ -90,7 +90,8 @@ class Video(models.Model):
                     os.path.basename(new_image_dir), new_image_name
                 )
 
-        super().save(update_fields=["original_file", "preview_image"])
+        super().save(update_fields=['original_file', 'preview_image'])
+
 
 
 from django.core.files.base import ContentFile
@@ -119,15 +120,14 @@ def hls_upload_to(instance, filename):
     return f"{path}/{filename}"
 
 
+
 class VideoResolution(models.Model):
     video = models.ForeignKey(
         Video, related_name="resolutions", on_delete=models.CASCADE
     )
     resolution = models.PositiveIntegerField()
     video_file = models.FileField(upload_to="videos/")
-    hls_playlist_file = models.FileField(
-        upload_to=hls_upload_to, blank=True, null=True, max_length=500
-    )
+    hls_playlist_file = models.FileField(upload_to=hls_upload_to, blank=True, null=True, max_length=500)
 
     def __str__(self):
         return f"{self.video.title} ({self.resolution}p)"
@@ -280,24 +280,6 @@ class Plugin(models.Model):
         if not self.is_valid_filename(self.name):
             self.name = self.get_valid_filename(self.name)
         super().save(*args, **kwargs)
-
-
-class ContentPage(models.Model):
-    """
-    A simple content page that allows composing mini websites/blog pages by
-    providing raw HTML and optional CSS. Intended for trusted/admin authors.
-    """
-    slug = models.SlugField(max_length=150, unique=True)
-    title = models.CharField(max_length=255)
-    html = models.TextField(help_text="Raw HTML body. Rendered as-is for trusted content.")
-    css = models.TextField(blank=True, default="", help_text="Optional CSS to apply to this page.")
-    js = models.TextField(blank=True, default="", help_text="Optional JavaScript to run on this page.")
-    is_published = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return f"{self.title} ({self.slug})"
 
 
 class SectionScore(models.Model):

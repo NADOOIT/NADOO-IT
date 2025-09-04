@@ -1,5 +1,5 @@
 import json
-from django.template import Template
+from pipes import Template
 import django.http
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -25,8 +25,9 @@ from .services import check__session_id__is_valid
 from .services import get__next_section_html
 
 from nadooit_auth.models import User
-from .models import Section, Session, Visit, ContentPage
-from .forms import ContentPageForm
+from .models import Section, Session, Visit
+
+from django.template import Template
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -34,10 +35,6 @@ import logging
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 import os
-import re
-from pathlib import Path
-from django.core.exceptions import SuspiciousFileOperation
-from django.core.files.storage import FileSystemStorage
 
 logger = logging.getLogger(__name__)
 
@@ -79,82 +76,6 @@ def new_index(request):
         },
     )
 
-
-from django.contrib.auth.decorators import login_required
-
-
-@login_required
-def content_page_preview(request, slug: str):
-    """Staff-only preview for unpublished and published ContentPages.
-    Returns 403 for authenticated non-staff, redirects anonymous to login.
-    """
-    if not request.user.is_staff:
-        return django.http.HttpResponseForbidden()
-    page = get_object_or_404(ContentPage, slug=slug)
-    return render(
-        request,
-        "nadooit_website/content_page.html",
-        {
-            "page": page,
-            "page_title": page.title,
-        },
-    )
-
-
-@login_required
-def manage_content_pages(request):
-    """List ContentPages for users with view/change/add permission."""
-    if not (
-        request.user.has_perm("nadooit_website.view_contentpage")
-        or request.user.has_perm("nadooit_website.change_contentpage")
-        or request.user.has_perm("nadooit_website.add_contentpage")
-    ):
-        return django.http.HttpResponseForbidden()
-    pages = ContentPage.objects.all().order_by("-updated_at")
-    return render(
-        request,
-        "nadooit_website/content_page_list.html",
-        {"pages": pages, "page_title": "Manage pages"},
-    )
-
-
-@login_required
-def manage_content_page_new(request):
-    """Create a new ContentPage. Requires add_contentpage permission."""
-    if not request.user.has_perm("nadooit_website.add_contentpage"):
-        return django.http.HttpResponseForbidden()
-    if request.method == "POST":
-        form = ContentPageForm(request.POST)
-        if form.is_valid():
-            page = form.save()
-            return redirect("nadooit_website:content_page", page.slug)
-    else:
-        form = ContentPageForm()
-    return render(
-        request,
-        "nadooit_website/content_page_form.html",
-        {"form": form, "page_title": "New page"},
-    )
-
-
-@login_required
-def manage_content_page_edit(request, slug: str):
-    """Edit an existing ContentPage. Requires change_contentpage permission."""
-    if not request.user.has_perm("nadooit_website.change_contentpage"):
-        return django.http.HttpResponseForbidden()
-    page = get_object_or_404(ContentPage, slug=slug)
-    if request.method == "POST":
-        form = ContentPageForm(request.POST, instance=page)
-        if form.is_valid():
-            form.save()
-            return redirect("nadooit_website:content_page", page.slug)
-    else:
-        form = ContentPageForm(instance=page)
-    return render(
-        request,
-        "nadooit_website/content_page_form.html",
-        {"form": form, "page_title": f"Edit: {page.title}"},
-    )
 
 @csrf_exempt
 def signal(request, session_id, section_id, signal_type):
@@ -238,24 +159,9 @@ def signal(request, session_id, section_id, signal_type):
         return django.http.HttpResponseForbidden()
 
 
-def content_page(request, slug: str):
-    """Render a simple content page composed from stored HTML and optional CSS.
-    Only published content is accessible.
-    """
-    page = get_object_or_404(ContentPage, slug=slug, is_published=True)
-    return render(
-        request,
-        "nadooit_website/content_page.html",
-        {
-            "page": page,
-            "page_title": page.title,
-        },
-    )
-
-
 @csrf_exempt
 def end_of_session_sections(request, session_id, current_section_id):
-    if getattr(request, "htmx", False):
+    if request.htmx:
         logger.info("end_of_session_sections htmx")
 
         if check__session_id__is_valid(session_id):
@@ -340,17 +246,13 @@ def end_of_session_sections(request, session_id, current_section_id):
 
 
 def get_next_section(request, session_id, current_section_id):
-    if getattr(request, "htmx", False):
+    if request.htmx:
         if check__session_id__is_valid(session_id):
-            next_section_html = get__next_section_html(session_id, current_section_id)
-            if next_section_html:
-                # Render the standard wrapper and include the section HTML as a Template,
-                # mirroring the pattern used in end_of_session_sections
-                return render(
-                    request,
-                    "nadooit_website/section.html",
-                    {"section_entry": Template(next_section_html)},
-                )
+            next_section_template = get__next_section_html(
+                session_id, current_section_id
+            )
+            if next_section_template:
+                return render(request, next_section_template)
             else:
                 return django.http.HttpResponse("No more sections available.")
         else:
@@ -361,7 +263,7 @@ def get_next_section(request, session_id, current_section_id):
 
 @csrf_exempt
 def session_is_active_signal(request, session_id):
-    if getattr(request, "htmx", False):
+    if request.htmx:
         if check__session_id__is_valid(session_id):
             # all active sessions send a singlnal to this view
             # the time is set to session_duration of the session for the given session_id in the database
@@ -411,26 +313,17 @@ def statistics(request):
 
 
 def section_transitions(request, group_filter=None):
-    # Allow group_filter via query param or URL kwarg, sanitized to a slug
-    raw_filter = request.GET.get("group_filter") or group_filter
-    group = raw_filter if raw_filter and re.fullmatch(r"[A-Za-z0-9_-]+", str(raw_filter)) else None
-
     filename = (
-        f"section_transitions_{group}.html" if group else "section_transitions.html"
+        f"section_transitions_{group_filter}.html"
+        if group_filter
+        else "section_transitions.html"
     )
-    base_dir = Path(settings.BASE_DIR) / "nadooit_website" / "section_transition"
-    # Use Django's public FileSystemStorage to constrain access within base_dir
-    storage = FileSystemStorage(location=str(base_dir))
-    try:
-        full_path = storage.path(filename)  # raises on traversal attempts
-    except (ValueError, SuspiciousFileOperation):
-        return HttpResponse(status=400)
+    file_path = os.path.join(
+        settings.BASE_DIR, "nadooit_website", "section_transition", filename
+    )
 
-    try:
-        with open(full_path, "r", encoding="utf-8") as file:
-            content = file.read()
-    except FileNotFoundError:
-        return HttpResponse(status=404)
+    with open(file_path, "r") as file:
+        content = file.read()
 
     return HttpResponse(content, content_type="text/html")
 

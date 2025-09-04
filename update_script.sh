@@ -12,19 +12,19 @@ git stash
 git pull
 
 # build the docker images
-docker compose -f docker-compose-deploy-SQLite.yml build
+docker compose -f docker-compose-deploy.yml build
 
 # run migrations
-docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py migrate
+docker compose -f docker-compose-deploy.yml run --rm app python manage.py migrate
 
 # collect static files
-docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py collectstatic --noinput 
+docker compose -f docker-compose-deploy.yml run --rm app python manage.py collectstatic --noinput 
 
 # import templates
-docker compose -f docker-compose-deploy-SQLite.yml run --rm app python manage.py import_templates
+docker compose -f docker-compose-deploy.yml run --rm app python manage.py import_templates
 
 # take down the current docker containers
-docker compose -f docker-compose-deploy-SQLite.yml down
+docker compose -f docker-compose-deploy.yml down
 
 # bring up the new docker containers
-docker compose -f docker-compose-deploy-SQLite.yml up -d
+docker compose -f docker-compose-deploy.yml up -d

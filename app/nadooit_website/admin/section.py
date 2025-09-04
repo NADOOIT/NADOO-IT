@@ -8,14 +8,9 @@ from nadooit_website.models import *
 
 import logging
 
-
 @admin.register(File)
 class FileAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "file",
-    )
-
+    list_display = ('name', 'file',)
 
 class WebsiteSectionsOrderTabularInline(OrderedTabularInline):
     model = Section_Order_Sections_Through_Model
@@ -60,7 +55,7 @@ class SectionAdmin(admin.ModelAdmin):
                 request,
                 "No video is selected for this section, but the {{ video }} tag is present in the HTML. Please either add a video or remove the tag.",
             )
-
+        
         if obj.file and "{{ file }}" not in obj.html:
             messages.warning(
                 request,
@@ -71,7 +66,7 @@ class SectionAdmin(admin.ModelAdmin):
                 request,
                 "No file is selected for this section, but the {{ file }} tag is present in the HTML. Please either add a file or remove the tag.",
             )
-
+            
         super().save_model(request, obj, form, change)
 
 

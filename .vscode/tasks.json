@@ -29,18 +29,6 @@
 				],
 				"file": "manage.py"
 			}
-		},
-		{
-			"type": "shell",
-			"label": "tests: docker (full)",
-			"command": "${workspaceFolder}/runTester.ps1",
-			"problemMatcher": []
-		},
-		{
-			"type": "shell",
-			"label": "tests: docker (quick)",
-			"command": "${workspaceFolder}/runTester.ps1 -Quick",
-			"problemMatcher": []
 		}
 	]
 }

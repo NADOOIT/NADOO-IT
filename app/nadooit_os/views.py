@@ -55,18 +55,12 @@ from nadooit_os.services import (
     get__customer_program_execution__for__customer_program_execution_id,
     get__customer_program_executions__for__filter_type_and_customer,
     get__customer_program_manager_contract__for__employee_and_customer,
-    get_only__customer_program_manager_contract__for__employee_and_customer,
-    get_only__time_account_manager_contract__for__employee_and_customer,
-    create__time_account_manager_contract__for__employee_and_customer,
-    set__list_of_abilities__for__time_account_manager_contract_according_to_list_of_abilities,
-    get_only__customer_program_execution_manager_contract__for__employee_and_customer,
-    create__customer_program_execution_manager_contract__for__employee_and_customer,
-    set__list_of_abilities__for__customer_program_execution_manager_contract_according_to_list_of_abilities,
     get__customer_time_accounts_grouped_by_customer_with_total_time_of_all_time_accounts__for__employee,
     get__employee__for__employee_id,
     get__employee__for__user_code,
     get__employee_contract__for__employee__and__customer,
     get__employee_contract__for__employee_contract_id,
+    get__employee_contract__for__user_code__and__customer,
     get__employee_manager_contract__for__user_code__and__customer,
     get__list_of_abilities__for__list_of_selected_abilities_and_list_of_possible_abilities_the_employee_can_give,
     get__list_of_abilties__for__customer_program_manager_contract,
@@ -75,11 +69,6 @@ from nadooit_os.services import (
     get__list_of_customers__and__their_employees__for__customers_that_have_a_employee_manager_contract__for__user,
     get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user,
     get__list_of_customers__for__employee_manager_contract__that_can_give_the_role__for__user,
-    get_only__employee_contract__for__employee_and_customer,
-    create__employee_contract__for__employee_and__customer,
-    get_only__employee_manager_contract__for__employee_and_customer,
-    create__employee_manager_contract__for__employee_and_customer,
-    set__list_of_abilities__for__employee_manager_contract_according_to_list_of_abilities,
     get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them,
     get__list_of_customers_the_employee_has_a_customer_program_execution_manager_contract_with_and_can_create_such_a_contract,
     get__list_of_customers_the_employee_has_a_customer_program_manager_contract_with_and_can_create_such_a_contract,
@@ -95,7 +84,6 @@ from nadooit_os.services import (
     set__all_active_NadooitApiKey__for__user_to_inactive,
     set__employee_contract__is_active_state__for__employee_contract_id,
     set__list_of_abilities__for__customer_program_manager_contract_according_to_list_of_abilities,
-    create__customer_program_manager_contract__for__employee_and__customer,
     set__payment_status__for__customer_program_execution,
     set_employee_contract__as_inactive__for__employee_contract_id,
 )
@@ -333,11 +321,9 @@ def customer_time_account_overview(request: HttpRequest):
 
 # API KEYS Views
 @login_required(login_url="/auth/login-user")
+@user_passes_test(user_is_Api_Key_Manager, login_url="/auth/login-user")
 def create_api_key(request: HttpRequest):
     submitted = False
-    # Enforce authorization inline: only Api Key Managers may access
-    if not user_is_Api_Key_Manager(request.user):
-        return HttpResponseForbidden()
     if request.method == "POST":
         form = ApiKeyForm(request.POST)
         if form.is_valid():
@@ -483,6 +469,10 @@ def give_api_key_manager_role(request: HttpRequest):
 
 
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Time_Account_Manager_and_can_give_manager_role,
+    login_url="/auth/login-user",
+)
 def give_customer_time_account_manager_role(request: HttpRequest):
     submitted = False
     if request.method == "POST":
@@ -504,37 +494,15 @@ def give_customer_time_account_manager_role(request: HttpRequest):
         list_of_abilities = request.POST.getlist("role")
         employee_creating_contract = request.user.employee
 
-        # Enforce per-customer authorization: acting manager must have active
-        # TimeAccountManagerContract with can_give_manager_role for this customer
-        if not TimeAccountManagerContract.objects.filter(
-            contract__employee=employee_creating_contract,
-            contract__customer=customer,
-            contract__is_active=True,
-            can_give_manager_role=True,
-        ).exists():
-            return HttpResponseForbidden(
-                "Not allowed to give manager role for this customer"
+        if (
+            create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+                user_code, customer, list_of_abilities, employee_creating_contract
             )
-
-        # Resolve target employee and create contract only after auth check
-        employee = get__employee__for__user_code(user_code)
-        tacm_contract = get_only__time_account_manager_contract__for__employee_and_customer(
-            employee, customer
-        )
-        if tacm_contract is None:
-            tacm_contract = create__time_account_manager_contract__for__employee_and_customer(
-                employee, customer
+            is not None
+        ):
+            return HttpResponseRedirect(
+                "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True"
             )
-        # Set abilities gated by acting manager's abilities for this customer
-        set__list_of_abilities__for__time_account_manager_contract_according_to_list_of_abilities(
-            time_account_manager_contract=tacm_contract,
-            list_of_abilities=list_of_abilities,
-            employee_creating_contract=employee_creating_contract,
-        )
-
-        return HttpResponseRedirect(
-            "/nadooit-os/time-account/give-customer-time-account-manager-role?submitted=True"
-        )
 
     else:
         if "submitted" in request.GET:
@@ -592,12 +560,13 @@ def customer_program_execution_overview(request: HttpRequest):
     )
 
 
-@require_GET
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
+)
 def customer_program_execution_list_for_cutomer(
     request: HttpRequest, filter_type, cutomer_id
 ):
-    # Note: per-customer object-level checks follow; overview access is guarded elsewhere.
     # covered by test
     if not check__customer__exists__for__customer_id(cutomer_id):
         return HttpResponseForbidden()
@@ -667,12 +636,13 @@ def customer_program_execution_list_for_cutomer(
     )
 
 
-@require_GET
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
+)
 def customer_program_execution_list_complaint_modal(
     request: HttpRequest, customer_program_execution_id
 ):
-    # Note: per-customer object-level checks follow; overview access is guarded elsewhere.
 
     # check if the customer program execution exists
     # covered by test
@@ -714,12 +684,13 @@ def customer_program_execution_list_complaint_modal(
     )
 
 
-@require_POST
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager, login_url="/auth/login-user"
+)
 def customer_program_execution_send_complaint(
     request: HttpRequest, customer_program_execution_id
 ):
-    # Note: per-customer object-level checks follow; overview access is guarded elsewhere.
     # check if the customer program execution exists
     # covered by test
     if not check__customer_program_execution__exists__for__customer_program_execution_id(
@@ -777,6 +748,10 @@ def customer_program_execution_send_complaint(
 # login required and user must have the CustomerProgramExecutionManager role and can give the role
 # does not use a form
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role,
+    login_url="/auth/login-user",
+)
 def give_customer_program_execution_manager_role(request: HttpRequest):
     submitted = False
 
@@ -807,40 +782,20 @@ def give_customer_program_execution_manager_role(request: HttpRequest):
         # covered by test
         customer = get__customer__for__customer_id(customer_id)
 
-        # Enforce per-customer authorization: acting manager must have active
-        # CustomerProgramExecutionManagerContract with can_give_manager_role
-        # for the same customer
-        if not CustomerProgramExecutionManagerContract.objects.filter(
-            contract__employee=employee_with_customer_program_manager_contract,
-            contract__customer=customer,
-            contract__is_active=True,
-            can_give_manager_role=True,
-        ).exists():
-            return HttpResponseForbidden(
-                "Not allowed to give manager role for this customer"
-            )
-
         # get the employee object for the user_code, checks not creates it
         # covered by test
         employee = get__employee__for__user_code(user_code=user_code)
 
-        # Create only after per-customer auth; then set abilities gated by acting manager
-        cpem_contract = get_only__customer_program_execution_manager_contract__for__employee_and_customer(
-            employee, customer
-        )
-        if cpem_contract is None:
-            cpem_contract = create__customer_program_execution_manager_contract__for__employee_and_customer(
-                employee, customer
-            )
-        set__list_of_abilities__for__customer_program_execution_manager_contract_according_to_list_of_abilities(
-            cpe_manager_contract=cpem_contract,
+        # covered by test
+        if create__customer_program_execution_manager_contract__for__employee_and_customer_and_list_of_abilities_and_employee_with_customer_program_manager_contract(
+            employee=employee,
+            customer=customer,
             list_of_abilities=list_of_abilities,
             employee_with_customer_program_manager_contract=employee_with_customer_program_manager_contract,
-        )
-
-        return HttpResponseRedirect(
-            "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True"
-        )
+        ):
+            return HttpResponseRedirect(
+                "/nadooit-os/customer-program-execution/give-customer-program-execution-manager-role?submitted=True"
+            )
 
     else:
         if "submitted" in request.GET:
@@ -896,6 +851,10 @@ def customer_program_overview(request: HttpRequest):
 
 
 @require_POST
+@user_passes_test(
+    user_is_Customer_Program_Manager,
+    login_url="/auth/login-user",
+)
 @login_required(login_url="/auth/login-user")
 def get__customer_program_profile(
     request: HttpRequest, customer_program_id: str
@@ -935,6 +894,10 @@ def get__customer_program_profile(
 
 
 @login_required(login_url="/auth/login-user")
+@user_passes_test(
+    user_is_Customer_Program_Execution_Manager_and_can_give_Customer_Program_Execution_Manager_role,
+    login_url="/auth/login-user",
+)
 def give_customer_program_manager_role(request: HttpRequest):
     submitted = False
 
@@ -963,39 +926,26 @@ def give_customer_program_manager_role(request: HttpRequest):
         # covered by test
         customer = get__customer__for__customer_id(customer)
 
-        # Enforce per-customer authorization: acting manager must have active
-        # CustomerProgramManagerContract with can_give_manager_role for this customer
-        acting_cpm_contract = CustomerProgramManagerContract.objects.filter(
-            contract__employee=customer_program_manager_that_is_creating_the_contract,
-            contract__customer=customer,
-            contract__is_active=True,
-            can_give_manager_role=True,
-        ).first()
-        if acting_cpm_contract is None:
-            return HttpResponseForbidden(
-                "Not allowed to give manager role for this customer"
-            )
-
         # covered by test
         employee = get__employee__for__user_code(user_code)
 
         # covered by test
-        # Do not auto-create; fetch existing first, then explicitly create only after authorization
-        customer_program_manager_contract = get_only__customer_program_manager_contract__for__employee_and_customer(
-            employee, customer
-        )
-        if customer_program_manager_contract is None:
-            customer_program_manager_contract = create__customer_program_manager_contract__for__employee_and__customer(
+        customer_program_manager_contract = (
+            get__customer_program_manager_contract__for__employee_and_customer(
                 employee, customer
             )
+        )
 
         # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
         # get the "role"
         list_of_selected_abilities = request.POST.getlist("role")
 
         # covered by test
-        # Use the existing contract of the acting manager (do not auto-create)
-        customer_program_manager_contract_of_employee_that_is_creating_the_contract = acting_cpm_contract
+        customer_program_manager_contract_of_employee_that_is_creating_the_contract = (
+            get__customer_program_manager_contract__for__employee_and_customer(
+                customer_program_manager_that_is_creating_the_contract, customer
+            )
+        )
 
         # covered by test
         list_of_abilities__for__customer_program_manager_contract_that_is_creating_the_new_contract = get__list_of_abilties__for__customer_program_manager_contract(
@@ -1151,6 +1101,9 @@ def employee_profile(request: HttpRequest):
     )
 
 
+@user_passes_test(
+    user_is_Employee_Manager_and_can_add_new_employee, login_url="/auth/login-user"
+)
 @login_required(login_url="/auth/login-user")
 def add_employee(request: HttpRequest):
     submitted = False
@@ -1176,20 +1129,14 @@ def add_employee(request: HttpRequest):
         if not check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
             request.user.employee, customer
         ):
-            return HttpResponseForbidden(
-                "Not allowed to add employee for this customer"
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/add-employee?submitted=False&error=Sie haben nicht die notwendige Berechtigung um einen Mitarbeiter für diesen Kunden hinzuzufügen"
             )
             # makes sure that there is a employee contract between the employee the selected customer
 
         # covert by test
-        employee = get__employee__for__user_code(user_code)
-        existing_contract = get_only__employee_contract__for__employee_and_customer(
-            employee, customer
-        )
-        if existing_contract is None:
-            create__employee_contract__for__employee_and__customer(employee, customer)
-
-        return HttpResponseRedirect("/nadooit-os/hr/add-employee?submitted=True")
+        if get__employee_contract__for__user_code__and__customer(user_code, customer):
+            return HttpResponseRedirect("/nadooit-os/hr/add-employee?submitted=True")
 
     else:
         if "submitted" in request.GET:
@@ -1214,6 +1161,10 @@ def add_employee(request: HttpRequest):
     )
 
 
+@user_passes_test(
+    user_is_Employee_Manager_and_can_give_Employee_Manager_role,
+    login_url="/auth/login-user",
+)
 @login_required(login_url="/auth/login-user")
 def give_employee_manager_role(request: HttpRequest):
 
@@ -1235,19 +1186,6 @@ def give_employee_manager_role(request: HttpRequest):
         # covert by test
         customer = get__customer__for__customer_id(customer_id)
 
-        # Enforce per-customer object-level authorization: the acting manager must
-        # have can_give_manager_role for the SAME customer and an active contract.
-        # If not, block with 403 to avoid creating manager contracts across customers.
-        if not EmployeeManagerContract.objects.filter(
-            contract__employee=employee_manager_giving_the_role,
-            contract__customer=customer,
-            contract__is_active=True,
-            can_give_manager_role=True,
-        ).exists():
-            return HttpResponseForbidden(
-                "Not allowed to give manager role for this customer"
-            )
-
         # check that user_code is not empty
         # covert by test
         if not check__user__exists__for__user_code(user_code):
@@ -1255,25 +1193,16 @@ def give_employee_manager_role(request: HttpRequest):
                 "/nadooit-os/hr/give-employee-manager-role?submitted=True&error=Kein gültiger Benutzercode eingegeben"
             )
 
-        # Resolve target employee and explicitly create contract only after per-customer auth
-        employee = get__employee__for__user_code(user_code)
-        em_contract = get_only__employee_manager_contract__for__employee_and_customer(
-            employee, customer
-        )
-        if em_contract is None:
-            em_contract = create__employee_manager_contract__for__employee_and_customer(
-                employee, customer
+        if (
+            # covert by test
+            create__employee_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
+                user_code, customer, list_of_abilities, employee_manager_giving_the_role
             )
-        # Set abilities gated by acting manager's abilities for this customer
-        set__list_of_abilities__for__employee_manager_contract_according_to_list_of_abilities(
-            employee_manager_contract=em_contract,
-            list_of_abilities=list_of_abilities,
-            employee_creating_contract=employee_manager_giving_the_role,
-        )
-
-        return HttpResponseRedirect(
-            "/nadooit-os/hr/give-employee-manager-role?submitted=True"
-        )
+            is not None
+        ):
+            return HttpResponseRedirect(
+                "/nadooit-os/hr/give-employee-manager-role?submitted=True"
+            )
 
     else:
         if "submitted" in request.GET:
@@ -1298,27 +1227,14 @@ def give_employee_manager_role(request: HttpRequest):
 
 
 @require_POST
+@user_passes_test(
+    user_is_Employee_Manager_and_can_delete_employee,
+    login_url="/auth/login-user",
+)
 @login_required(login_url="/auth/login-user")
 def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 
-    # Fetch the target contract safely
-    employee_contract = get__employee_contract__for__employee_contract_id(
-        employee_contract_id
-    )
-    if not employee_contract:
-        return HttpResponseNotFound("Employee contract not found")
-
-    # Enforce object-level authorization: manager must be authorized for the same customer
-    has_permission = EmployeeManagerContract.objects.filter(
-        contract__employee=request.user.employee,
-        contract__customer=employee_contract.customer,
-        contract__is_active=True,
-        can_delete_employee=True,
-    ).exists()
-    if not has_permission:
-        return HttpResponseForbidden("Not allowed to modify this contract")
-
-    # Deactivate the contract via service
+    # covert by test
     employee_contract = set_employee_contract__as_inactive__for__employee_contract_id(
         employee_contract_id
     )
@@ -1333,32 +1249,19 @@ def deactivate_contract(request: HttpRequest, employee_contract_id: str):
 
 
 @require_POST
+@user_passes_test(
+    user_is_Employee_Manager_and_can_delete_employee,
+    login_url="/auth/login-user",
+)
 @login_required(login_url="/auth/login-user")
 def activate_contract(request: HttpRequest, employee_contract_id: str):
 
-    # Fetch the target contract safely
-    employee_contract = get__employee_contract__for__employee_contract_id(
-        employee_contract_id
-    )
-    if not employee_contract:
-        return HttpResponseNotFound("Employee contract not found")
-
-    # Enforce object-level authorization: manager must be authorized for the same customer
-    has_permission = EmployeeManagerContract.objects.filter(
-        contract__employee=request.user.employee,
-        contract__customer=employee_contract.customer,
-        contract__is_active=True,
-        can_delete_employee=True,
-    ).exists()
-    if not has_permission:
-        return HttpResponseForbidden("Not allowed to modify this contract")
-
-    # Activate the contract via service
+    # covert by test
     set__employee_contract__is_active_state__for__employee_contract_id(
         employee_contract_id, True
     )
 
-    # Re-fetch for rendering
+    # covert by test
     employee_contract = get__employee_contract__for__employee_contract_id(
         employee_contract_id
     )

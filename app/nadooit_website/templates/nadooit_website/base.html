@@ -22,9 +22,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <meta name="description" content="NADOOIT. Die Zukunft in Softwareentwicklung. Softwareentwicklung auf Erfolgsbasierterbezahlung. Zahlen Sie nur noch für ein funktionierendes und zeiterspaarendes Produkt. Zahlen Sie nur noch für die erspaarte Zeit druch Digitalisierung und nicht mehr für die Digitalisierung an sich.">
-    <title>{{ page_title|default:"NADOOIT" }}</title>
+    <title>NADOOIT</title>
   </head>
-  <body data-session-id="{{ session_id|default:'' }}">
+  <body data-session-id={{ session_id }}>
     {% include 'nadooit_website/navbar.html' %}
     <div id ="view-port" class="view-port">
     {% block content %}
