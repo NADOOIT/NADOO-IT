@@ -1,17 +1,17 @@
 import csv
 import decimal
+import hashlib
 import math
 import re
 import uuid
 from datetime import datetime
 from decimal import Decimal
-from typing import List, Union, Optional
+from typing import List, Union
 
 # import Q for filtering
 from django.db.models import Q, QuerySet
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
-from django.core.exceptions import ValidationError
 from nadoo_complaint_management.models import Complaint
 from nadooit_api_executions_system.models import CustomerProgramExecution
 from nadooit_api_key.models import NadooitApiKey
@@ -31,41 +31,19 @@ from nadooit_time_account.models import CustomerTimeAccount, TimeAccount
 
 # logging
 import logging
+from typing import Optional
 
 logger = logging.getLogger(__name__)
-
-
-def _distinct_by_contract_customer(qs):
-    """
-    Return a list of contract objects (e.g., *ManagerContract) with at most one
-    object per contract.customer, in a database-agnostic way (SQLite-safe).
-
-    The queryset must have a related 'contract__customer' and ideally be filtered
-    to the relevant employee and state. Order first by customer_id so the first
-    seen per customer is stable.
-    """
-    seen = set()
-    result = []
-    for obj in qs.select_related("contract__customer").order_by(
-        "contract__customer_id", "id"
-    ):
-        cid = obj.contract.customer_id
-        if cid not in seen:
-            seen.add(cid)
-            result.append(obj)
-    return result
 
 
 def get__not_paid_customer_program_executions__for__filter_type_and_customer(
     filter_type, customer
 ):
-    base_qs = get__customer_program_executions__for__filter_type_and_customer(
-        filter_type, customer
+    customer_program_executions = (
+        get__customer_program_executions__for__filter_type_and_customer(
+            filter_type, customer
+        ).filter(payment_status="NOT_PAID")
     )
-    # Default safe return: empty queryset if filter_type was unrecognized
-    if base_qs is None:
-        return CustomerProgramExecution.objects.none()
-    customer_program_executions = base_qs.filter(payment_status="NOT_PAID")
     return customer_program_executions
 
 
@@ -133,9 +111,6 @@ def get__customer_program_executions__for__filter_type_and_customer(
             .order_by("created_at")
             .reverse()
         )
-    # Default safe return: empty queryset if filter_type was unrecognized
-    if customer_program_executions is None:
-        return CustomerProgramExecution.objects.none()
     return customer_program_executions
 
 
@@ -180,10 +155,7 @@ def check__customer_program__for__customer_program_id__exists(customer_program_i
 
 
 def get__customer_program__for__customer_program_id(customer_program_id):
-    try:
-        return CustomerProgram.objects.get(id=customer_program_id)
-    except (ValueError, TypeError, ValidationError, CustomerProgram.DoesNotExist):
-        return None
+    return CustomerProgram.objects.get(id=customer_program_id)
 
 
 def get__list_of_customers__for__employee_that_has_a_time_account_manager_contract_with_and_can_create_time_account_manager_contracts_for_them(
@@ -215,12 +187,26 @@ def get__list_of_customers_the_employee_has_a_customer_programm_manager_contract
 ):
 
     customers_the_user_is_responsible_for_and_the_customer_programms = []
-
-    list_of_customer_program_manger_contract_for_logged_in_user = _distinct_by_contract_customer(
+    
+    """ 
+    list_of_customer_program_manger_contract_for_logged_in_user = (
         CustomerProgramManagerContract.objects.filter(
             contract__employee=employee, can_give_manager_role=True
+        ).distinct("contract__customer")
+    )
+    """
+    
+    list_of_customer_program_manger_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                can_give_manager_role=True
+            ).values_list('contract__customer', flat=True).distinct()
         )
     )
+
 
     # get the list of customers the customer program manager is responsible for using the list_of_customer_program_manger_contract_for_logged_in_user
     for contract in list_of_customer_program_manger_contract_for_logged_in_user:
@@ -251,15 +237,25 @@ def check__active_customer_program_execution_manager_contract__exists__between__
 def get__list_of_time_account_manager_contracts__for__employee__where__employee_is_time_account_manager_and_can_create_time_account_manager_contracts(
     employee,
 ):
-    qs = TimeAccountManagerContract.objects.filter(
+    
+    """     
+    return TimeAccountManagerContract.objects.filter(
         contract__employee=employee, can_give_manager_role=True
-    )
-    return _distinct_by_contract_customer(qs)
+    ).distinct("contract__customer")
+    """
 
+    return TimeAccountManagerContract.objects.filter(
+        contract__employee=employee,
+        can_give_manager_role=True,
+        contract__customer__in=TimeAccountManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True
+        ).values_list('contract__customer', flat=True).distinct()
+    )
 
 def create__time_account_manager_contract__for__user_code_customer_and_list_of_abilities_according_to_employee_creating_contract(
     user_code, customer, list_of_abilities, employee_creating_contract
-) -> Optional[TimeAccountManagerContract]:
+) -> TimeAccountManagerContract | None:
 
     # check if there is an emplyee for that user code
     if not check__employee__exists__for__user_code(user_code):
@@ -269,20 +265,19 @@ def create__time_account_manager_contract__for__user_code_customer_and_list_of_a
     # get the employee object for the user
     employee = get__employee__for__user_code(user_code)
 
-    # check if the employee already has the EmployeeManager role for the customer
-    if not EmployeeManagerContract.objects.filter(
-        contract__employee=employee,
-        contract__customer=customer,
-    ).exists():
+    # check if the employee already has the role for the customer
+    if not check__time_account_manager_contract__exists__for__employee_and_customer(
+        employee, customer
+    ):
         # Check if the employee has a contract with the customer
 
         if not check__employee_contract__exists__for__employee__and__customer(
             employee, customer
         ):
             create__employee_contract__for__employee_and__customer(employee, customer)
-        # create the TimeAccountManagerContract for the employee+customer contract
+        # create the CustomerProgramExecutionManager
         TimeAccountManagerContract.objects.create(
-            contract=EmployeeContract.objects.get(employee=employee, customer=customer)
+            contract=EmployeeContract.objects.get(employee=employee)
         )
     # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
     # get the "role"
@@ -332,7 +327,7 @@ def create__employee_manager_contract__for__user_code_customer_and_list_of_abili
     customer: Customer,
     list_of_abilities,
     employee_creating_contract: Employee,
-) -> Optional[EmployeeManagerContract]:
+) -> EmployeeManagerContract | None:
 
     # check if there is an emplyee for that user code
     if not check__employee__exists__for__user_code(user_code):
@@ -352,9 +347,9 @@ def create__employee_manager_contract__for__user_code_customer_and_list_of_abili
             employee, customer
         ):
             create__employee_contract__for__employee_and__customer(employee, customer)
-        # create the EmployeeManagerContract for the employee+customer contract
+        # create the CustomerProgramExecutionManager
         EmployeeManagerContract.objects.create(
-            contract=EmployeeContract.objects.get(employee=employee, customer=customer)
+            contract=EmployeeContract.objects.get(employee=employee)
         )
     # give the employee the roles that were selected and are stored in selected_abilities, the possible abilities are stored in the list of abilities
     # get the "role"
@@ -399,111 +394,94 @@ def create__employee_manager_contract__for__user_code_customer_and_list_of_abili
     )
 
 
-def get_only__employee_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> Optional[EmployeeManagerContract]:
-    """Return EmployeeManagerContract if it exists; do NOT create implicitly."""
-    try:
-        return EmployeeManagerContract.objects.get(
-            contract__employee=employee, contract__customer=customer
-        )
-    except EmployeeManagerContract.DoesNotExist:
-        return None
-
-
-def create__employee_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> EmployeeManagerContract:
-    """Explicitly create an EmployeeManagerContract for employee+customer.
-
-    Ensures an EmployeeContract exists; creates it if needed. No ability flags are set here.
-    """
-    employee_contract = get_only__employee_contract__for__employee_and_customer(
-        employee, customer
-    )
-    if employee_contract is None:
-        employee_contract = create__employee_contract__for__employee_and__customer(
-            employee, customer
-        )
-    return EmployeeManagerContract.objects.create(contract=employee_contract)
-
-
-def set__list_of_abilities__for__employee_manager_contract_according_to_list_of_abilities(
-    employee_manager_contract: EmployeeManagerContract,
-    list_of_abilities: List[str],
-    employee_creating_contract: Employee,
-) -> None:
-    """Set abilities on an EmployeeManagerContract gated by creator's abilities."""
-    customer = employee_manager_contract.contract.customer
-    for ability in list_of_abilities:
-        if ability == "can_add_new_employee":
-            if EmployeeManagerContract.objects.filter(
-                contract__employee=employee_creating_contract,
-                contract__customer=customer,
-                can_add_new_employee=True,
-            ).exists():
-                EmployeeManagerContract.objects.filter(
-                    pk=employee_manager_contract.pk
-                ).update(can_add_new_employee=True)
-        if ability == "can_delete_employee":
-            if EmployeeManagerContract.objects.filter(
-                contract__employee=employee_creating_contract,
-                contract__customer=customer,
-                can_delete_employee=True,
-            ).exists():
-                EmployeeManagerContract.objects.filter(
-                    pk=employee_manager_contract.pk
-                ).update(can_delete_employee=True)
-        if ability == "can_give_manager_role":
-            if EmployeeManagerContract.objects.filter(
-                contract__employee=employee_creating_contract,
-                contract__customer=customer,
-                can_give_manager_role=True,
-            ).exists():
-                EmployeeManagerContract.objects.filter(
-                    pk=employee_manager_contract.pk
-                ).update(can_give_manager_role=True)
-
-
 def get__list_of_customer_program_execution_manager_contracts__for__employee__where__employee_is_customer_program_execution_manager(
     employee: Employee, contract_state="active"
 ):
+    
+    """ 
     if contract_state == "active":
-        qs = CustomerProgramExecutionManagerContract.objects.filter(
+        return CustomerProgramExecutionManagerContract.objects.filter(
             contract__employee=employee, contract__is_active=True
+        ).distinct("contract__customer")
+    elif contract_state == "inactive":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee, contract__is_active=False
+        ).distinct("contract__customer")
+    elif contract_state == "all":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee
+        ).distinct("contract__customer")
+    """
+    
+    if contract_state == "active":
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=True,
+            contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=True
+            ).values_list('contract__customer', flat=True).distinct()
         )
     elif contract_state == "inactive":
-        qs = CustomerProgramExecutionManagerContract.objects.filter(
-            contract__employee=employee, contract__is_active=False
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=False,
+            contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=False
+            ).values_list('contract__customer', flat=True).distinct()
         )
     elif contract_state == "all":
-        qs = CustomerProgramExecutionManagerContract.objects.filter(
-            contract__employee=employee
+        return CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+                contract__employee=employee
+            ).values_list('contract__customer', flat=True).distinct()
         )
-    else:
-        qs = CustomerProgramExecutionManagerContract.objects.none()
-    return _distinct_by_contract_customer(qs)
-
 
 def get__list_of_customer_program_manger_contracts__for__employee__where__employee_is_customer_program_manager(
     employee: Employee, contract_state="active"
 ):
-
+    """ 
     if contract_state == "active":
-        qs = CustomerProgramManagerContract.objects.filter(
+        return CustomerProgramManagerContract.objects.filter(
             contract__employee=employee, contract__is_active=True
+        ).distinct("contract__customer")
+    elif contract_state == "inactive":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee, contract__is_active=False
+        ).distinct("contract__customer")
+    elif contract_state == "all":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee
+        ).distinct("contract__customer")
+    """
+     
+    if contract_state == "active":
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=True,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=True
+            ).values_list('contract__customer', flat=True).distinct()
         )
     elif contract_state == "inactive":
-        qs = CustomerProgramManagerContract.objects.filter(
-            contract__employee=employee, contract__is_active=False
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__is_active=False,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                contract__is_active=False
+            ).values_list('contract__customer', flat=True).distinct()
         )
     elif contract_state == "all":
-        qs = CustomerProgramManagerContract.objects.filter(
-            contract__employee=employee
+        return CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee
+            ).values_list('contract__customer', flat=True).distinct()
         )
-    else:
-        qs = CustomerProgramManagerContract.objects.none()
-    return _distinct_by_contract_customer(qs)
 
 
 def get__list_of_customer_program_execution__for__employee_and_filter_type__grouped_by_customer(
@@ -592,10 +570,8 @@ def set__employee_contract__is_active_state__for__employee_contract_id(
 def get__employee_contract__for__employee_contract_id(
     employee_contract_id,
 ) -> EmployeeContract:
-    try:
-        return EmployeeContract.objects.get(id=employee_contract_id)
-    except (ValueError, TypeError, ValidationError, EmployeeContract.DoesNotExist):
-        return None
+    employee_contract = EmployeeContract.objects.get(id=employee_contract_id)
+    return employee_contract
 
 
 # Sets the deactivation date of a employee contract for the given employee contract id
@@ -631,7 +607,7 @@ def check__employee__exists__for__user_code(user_code) -> bool:
 
 
 # Creates and returns a new employee  for the given user code
-def create__employee__for__user_code(user_code) -> Optional[Employee]:
+def create__employee__for__user_code(user_code) -> Employee | None:
 
     if not check__employee__exists__for__user_code(user_code):
         # create new employee for the user_code
@@ -651,7 +627,7 @@ def check__employee_contract__exists__for__employee__and__customer(
 
 def get__employee_contract__for__employee_and_customer(
     employee: Employee, customer: Customer
-) -> Optional[EmployeeContract]:
+) -> EmployeeContract | None:
     # Check if the employee contract exists
     if not check__employee_contract__exists__for__employee__and__customer(
         employee, customer
@@ -672,18 +648,9 @@ def create__employee_contract__for__employee_and__customer(
     )
 
 
-def get_only__employee_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> Optional[EmployeeContract]:
-    """Return EmployeeContract if it exists; do NOT create implicitly."""
-    try:
-        return EmployeeContract.objects.get(employee=employee, customer=customer)
-    except EmployeeContract.DoesNotExist:
-        return None
-
-
 # Returns the customer for the given customer id, the check if the customer exists is not done here and should be done before
-def get__customer__for__customer_id(customer_id) -> Optional[Customer]:
+def get__customer__for__customer_id(customer_id) -> Customer | None:
+
     try:
         return Customer.objects.get(id=customer_id)
     except:
@@ -699,86 +666,25 @@ def check__time_account_manager_contract__exists__for__employee_and_customer(
     ).exists()
 
 
-def get_only__time_account_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> Optional[TimeAccountManagerContract]:
-    """Return TimeAccountManagerContract if it exists; do NOT create implicitly."""
-    try:
-        return TimeAccountManagerContract.objects.get(
-            contract__employee=employee, contract__customer=customer
-        )
-    except TimeAccountManagerContract.DoesNotExist:
-        return None
-
-
-def create__time_account_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> TimeAccountManagerContract:
-    """Explicitly create a TimeAccountManagerContract for employee+customer.
-
-    Ensures an EmployeeContract exists; creates it if needed. No ability flags are set here.
-    """
-    employee_contract = get_only__employee_contract__for__employee_and_customer(
-        employee, customer
-    )
-    if employee_contract is None:
-        employee_contract = create__employee_contract__for__employee_and__customer(
-            employee, customer
-        )
-    # Idempotent: return existing TACM if it already exists for this contract
-    existing = TimeAccountManagerContract.objects.filter(
-        contract=employee_contract
-    ).first()
-    if existing:
-        return existing
-    return TimeAccountManagerContract.objects.create(contract=employee_contract)
-
-
-def set__list_of_abilities__for__time_account_manager_contract_according_to_list_of_abilities(
-    time_account_manager_contract: TimeAccountManagerContract,
-    list_of_abilities: List[str],
-    employee_creating_contract: Employee,
-) -> None:
-    """Set abilities on a TimeAccountManagerContract gated by creator's abilities."""
-    customer = time_account_manager_contract.contract.customer
-    for ability in list_of_abilities:
-        if ability == "can_create_time_accounts":
-            if TimeAccountManagerContract.objects.filter(
-                contract__employee=employee_creating_contract,
-                contract__customer=customer,
-                can_create_time_accounts=True,
-            ).exists():
-                TimeAccountManagerContract.objects.filter(
-                    pk=time_account_manager_contract.pk
-                ).update(can_create_time_accounts=True)
-        if ability == "can_delete_time_accounts":
-            if TimeAccountManagerContract.objects.filter(
-                contract__employee=employee_creating_contract,
-                contract__customer=customer,
-                can_delete_time_accounts=True,
-            ).exists():
-                TimeAccountManagerContract.objects.filter(
-                    pk=time_account_manager_contract.pk
-                ).update(can_delete_time_accounts=True)
-        if ability == "can_give_manager_role":
-            if TimeAccountManagerContract.objects.filter(
-                contract__employee=employee_creating_contract,
-                contract__customer=customer,
-                can_give_manager_role=True,
-            ).exists():
-                TimeAccountManagerContract.objects.filter(
-                    pk=time_account_manager_contract.pk
-                ).update(can_give_manager_role=True)
-
 def get__list_of_customer_program_execution_manager_contract__for__employee(
     employee: Employee,
 ) -> List[CustomerProgramExecutionManagerContract]:
 
-    qs = CustomerProgramExecutionManagerContract.objects.filter(
+    """ 
+    return CustomerProgramExecutionManagerContract.objects.filter(
         contract__employee=employee,
         can_give_manager_role=True,
+    ).distinct("contract__customer")
+    """
+
+    return CustomerProgramExecutionManagerContract.objects.filter(
+        contract__employee=employee,
+        can_give_manager_role=True,
+        contract__customer__in=CustomerProgramExecutionManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True
+        ).values_list('contract__customer', flat=True).distinct()
     )
-    return _distinct_by_contract_customer(qs)
 
 
 def get__customer_program_manager_contract__for__employee_and_customer(
@@ -798,18 +704,6 @@ def get__customer_program_manager_contract__for__employee_and_customer(
         contract__employee=employee,
         contract__customer=customer,
     )
-
-
-def get_only__customer_program_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> Optional[CustomerProgramManagerContract]:
-    """Return CustomerProgramManagerContract if it exists; do NOT create implicitly."""
-    try:
-        return CustomerProgramManagerContract.objects.get(
-            contract__employee=employee, contract__customer=customer
-        )
-    except CustomerProgramManagerContract.DoesNotExist:
-        return None
 
 
 # the list of abilities is a list of strings
@@ -875,12 +769,6 @@ def create__customer_program_manager_contract__for__employee_and__customer(
         employee=employee, customer=customer
     )
 
-    # Idempotent: return existing CPMC if it already exists for this contract
-    existing = CustomerProgramManagerContract.objects.filter(
-        contract=employee_contract
-    ).first()
-    if existing:
-        return existing
     # create a new customer program manager contract for the given employee contract
     return CustomerProgramManagerContract.objects.create(contract=employee_contract)
 
@@ -977,7 +865,7 @@ def create__customer_program_execution_manager_contract__for__employee_and_custo
 
 
 # Returns the employee for the given user code
-def get__employee__for__user_code(user_code) -> Optional[Employee]:
+def get__employee__for__user_code(user_code) -> Employee | None:
 
     employee = None
 
@@ -1035,80 +923,6 @@ def check__customer_program_execution_manager_contract__exists__for__employee_co
     return CustomerProgramExecutionManagerContract.objects.filter(
         contract=employee_contract
     ).exists()
-
-
-def get_only__customer_program_execution_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> Optional[CustomerProgramExecutionManagerContract]:
-    """Return CPE Manager contract if it exists; do NOT create implicitly."""
-    try:
-        return CustomerProgramExecutionManagerContract.objects.get(
-            contract__employee=employee, contract__customer=customer
-        )
-    except CustomerProgramExecutionManagerContract.DoesNotExist:
-        return None
-
-
-def create__customer_program_execution_manager_contract__for__employee_and_customer(
-    employee: Employee, customer: Customer
-) -> CustomerProgramExecutionManagerContract:
-    """Explicitly create CPE Manager contract for employee+customer.
-
-    Ensures an EmployeeContract exists; creates it if needed. No ability flags are set here.
-    """
-    employee_contract = get_only__employee_contract__for__employee_and_customer(
-        employee, customer
-    )
-    if employee_contract is None:
-        employee_contract = create__employee_contract__for__employee_and__customer(
-            employee, customer
-        )
-    # Idempotent: return existing CPEM if it already exists for this contract
-    existing = CustomerProgramExecutionManagerContract.objects.filter(
-        contract=employee_contract
-    ).first()
-    if existing:
-        return existing
-    return CustomerProgramExecutionManagerContract.objects.create(
-        contract=employee_contract
-    )
-
-
-def set__list_of_abilities__for__customer_program_execution_manager_contract_according_to_list_of_abilities(
-    cpe_manager_contract: CustomerProgramExecutionManagerContract,
-    list_of_abilities: List[str],
-    employee_with_customer_program_manager_contract: Employee,
-) -> None:
-    """Set abilities on a CPE Manager contract gated by creator's abilities (same customer)."""
-    customer = cpe_manager_contract.contract.customer
-    for ability in list_of_abilities:
-        if ability == "can_create_customer_program_execution":
-            if CustomerProgramExecutionManagerContract.objects.filter(
-                contract__employee=employee_with_customer_program_manager_contract,
-                contract__customer=customer,
-                can_create_customer_program_execution=True,
-            ).exists():
-                CustomerProgramExecutionManagerContract.objects.filter(
-                    pk=cpe_manager_contract.pk
-                ).update(can_create_customer_program_execution=True)
-        if ability == "can_delete_customer_program_execution":
-            if CustomerProgramExecutionManagerContract.objects.filter(
-                contract__employee=employee_with_customer_program_manager_contract,
-                contract__customer=customer,
-                can_delete_customer_program_execution=True,
-            ).exists():
-                CustomerProgramExecutionManagerContract.objects.filter(
-                    pk=cpe_manager_contract.pk
-                ).update(can_delete_customer_program_execution=True)
-        if ability == "can_give_manager_role":
-            if CustomerProgramExecutionManagerContract.objects.filter(
-                contract__employee=employee_with_customer_program_manager_contract,
-                contract__customer=customer,
-                can_give_manager_role=True,
-            ).exists():
-                CustomerProgramExecutionManagerContract.objects.filter(
-                    pk=cpe_manager_contract.pk
-                ).update(can_give_manager_role=True)
 
 
 def get__active_employee_contract__for__employee__and__customer(
@@ -1197,10 +1011,7 @@ def check__employee_manager_contract__for__user__can_give_manager_role(
 
 
 def check__customer__exists__for__customer_id(customer_id) -> bool:
-    try:
-        return Customer.objects.filter(id=customer_id).exists()
-    except Exception:
-        return False
+    return Customer.objects.filter(id=customer_id).exists()
 
 
 def get__employee_contract__for__user_code__and__customer(
@@ -1279,19 +1090,39 @@ def get__list_of_customers__and__their_employees__for__customers_that_have_a_emp
 def get__list_of_employee_manager_contracts_that_can_add_new_employees__for__user(
     user,
 ) -> List[EmployeeManagerContract]:
-    qs = EmployeeManagerContract.objects.filter(
+    
+    """ 
+    return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee, can_add_new_employee=True
+    ).distinct("contract__customer")
+    """
+    
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
+        can_add_new_employee=True,
+        contract__customer__in=EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee,
+            can_add_new_employee=True
+        ).values_list('contract__customer', flat=True).distinct()
     )
-    return _distinct_by_contract_customer(qs)
 
 
 def get__list_of_employee_manager_contracts__for__user(
     user,
 ) -> List[EmployeeManagerContract]:
-    qs = EmployeeManagerContract.objects.filter(
+    
+    """     
+    return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee,
+    ).distinct("contract__customer")
+    """
+    
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
+        contract__customer__in=EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee
+        ).values_list('contract__customer', flat=True).distinct()
     )
-    return _distinct_by_contract_customer(qs)
 
 
 def get__list_of_customers__for__employee_manager_contract__that_can_add_employees__for__user(
@@ -1328,11 +1159,25 @@ def get__list_of_customers__for__employee_manager_contract__that_can_give_the_ro
     user,
 ) -> List[Customer]:
 
-    list_of_employee_manager_contract_for_logged_in_user = _distinct_by_contract_customer(
+    """ 
+    list_of_employee_manager_contract_for_logged_in_user = (
         EmployeeManagerContract.objects.filter(
             contract__employee=user.employee, can_give_manager_role=True
+        ).distinct("contract__customer")
+    )
+    """
+
+    list_of_employee_manager_contract_for_logged_in_user = (
+        EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee,
+            can_give_manager_role=True,
+            contract__customer__in=EmployeeManagerContract.objects.filter(
+                contract__employee=user.employee,
+                can_give_manager_role=True
+            ).values_list('contract__customer', flat=True).distinct()
         )
     )
+
 
     # get the list of customers the employee manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
     return get__list_of_customers__for__list_of_employee_manager_contracts(
@@ -1365,10 +1210,20 @@ def get__list_of_employee_manager_contract__with__given_abitly__for__user(
     user, ability
 ) -> List[EmployeeManagerContract]:
 
-    qs = EmployeeManagerContract.objects.filter(
+    """ 
+    return EmployeeManagerContract.objects.filter(
         contract__employee=user.employee, **{ability: True}
+    ).distinct("contract__customer")
+    """
+
+    return EmployeeManagerContract.objects.filter(
+        contract__employee=user.employee,
+        **{ability: True},
+        contract__customer__in=EmployeeManagerContract.objects.filter(
+            contract__employee=user.employee,
+            **{ability: True}
+        ).values_list('contract__customer', flat=True).distinct()
     )
-    return _distinct_by_contract_customer(qs)
 
 
 def check__employee_manager_contract__exists__for__employee_manager_and_customer__and__can_add_users__and__is_active(
@@ -1600,8 +1455,10 @@ def create__NadooitApiKey__for__user(
         user=user,
         is_active=True,
     )
-    # Ensure we return the hashed value after post_save signal updated it
-    new_api_key.refresh_from_db()
+    new_api_key.updated_at = timezone.now()
+    new_api_key.created_at = timezone.now()
+    new_api_key.save()
+
     return new_api_key
 
 
@@ -1679,7 +1536,7 @@ def reduce__time_account__by__time_in_seconds(
 
 
 def get__price_for_new_customer_program_execution__for__cutomer_program(
-    customer_program: CustomerProgram,
+    customer_program: CustomerProgram, time_saved_by_this_execution_in_seconds: Optional[int]=None
 ):
 
     print("get__price_for_new_customer_program_execution__for__cutomer_program")
@@ -1692,17 +1549,36 @@ def get__price_for_new_customer_program_execution__for__cutomer_program(
 
     time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = 0
 
+    if time_saved_by_this_execution_in_seconds:
+        
+        time_charged = time_saved_by_this_execution_in_seconds
+        
+    else:
+        time_charged = customer_program.program_time_saved_per_execution_in_seconds
+
+    print(
+        f"time_charged: {time_charged}"
+    )
+
+
+    print(f"Time accounted for by time account balance: {customer_program.time_account.time_balance_in_seconds}")
+
+    test_value = customer_program.time_account.time_balance_in_seconds - time_charged
+    
+    print(f"Time not accounted for by balance: {test_value}")
+
     # First it is checked if there is currently time allocated to the program already
     if (
         customer_program.time_account.time_balance_in_seconds
-        - customer_program.program_time_saved_per_execution_in_seconds
+        - time_charged
         >= 0
     ):
         # If there is, the price for the exectution is 0 since the time is already paid for
+        print("The time is already paid for, so the price is 0")
         return 0
     elif (
         customer_program.time_account.time_balance_in_seconds
-        - customer_program.program_time_saved_per_execution_in_seconds
+        - time_charged
         < 0
     ):
         print("customer_program.time_account", customer_program.time_account)
@@ -1711,33 +1587,58 @@ def get__price_for_new_customer_program_execution__for__cutomer_program(
         # the time is alwasys positive
         time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program = abs(
             customer_program.time_account.time_balance_in_seconds
-            - customer_program.program_time_saved_per_execution_in_seconds
+            - time_charged
         )
 
         print(
-            time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+            f"There is only partially enough time allocated to the program. The time not covered is: {time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program}"
         )
 
-        return (
-            get__new_price_per_second__for__customer_program(customer_program)
-            * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
-        )
+        # check if there is a fixed price per second for this customer program and use that to calcualte the price
+        if customer_program.fixed_price_per_second:
+            print(
+                f"Using fixed price per second of {customer_program.fixed_price_per_second} for this customer program"
+            )
+            return (
+                customer_program.price_per_second
+                * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+                )
+        else:    
+            #else use the dynamic pricing
+            print(f"Getting dynamic price per second for customer program {customer_program.program.name}")
+            return (
+                get__new_price_per_second__for__customer_program(customer_program)
+                * time_not_accounted_for_by_balance_on_time_accout_asociated_with_customer_program
+            )
 
 
 def create__customer_program_execution__for__customer_program(
-    customer_program: CustomerProgram,
+    customer_program: CustomerProgram, time_saved_by_this_exection: Optional[int] = None
 ) -> CustomerProgramExecution:
 
     print("create__customer_program_execution__for__customer_program")
 
-    # Create a new customer program execution with the current price for an execution
-    customer_program_execution = CustomerProgramExecution.objects.create(
-        customer_program=customer_program,
-        program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,
-        price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(
-            customer_program
-        ),
-    )
+    if not time_saved_by_this_exection:
+        print(f"Using default time saved per execution of {customer_program.program_time_saved_per_execution_in_seconds} seconds")
+        # Create a new customer program execution with the current price for an execution
+        customer_program_execution = CustomerProgramExecution.objects.create(
+            customer_program=customer_program,
+            price_per_second_at_the_time_of_execution = customer_program.price_per_second,
+            program_time_saved_in_seconds=customer_program.program_time_saved_per_execution_in_seconds,
+            price_for_execution=get__price_for_new_customer_program_execution__for__cutomer_program(
+                customer_program
+            ),
+        )
+
+    else:
+        print(f"Using time saved of {time_saved_by_this_exection} seconds provided")
+        customer_program_execution = CustomerProgramExecution.objects.create(
+            customer_program = customer_program,
+            price_per_second_at_the_time_of_execution = customer_program.price_per_second,
+            program_time_saved_in_seconds = time_saved_by_this_exection,
+            price_for_execution = get__price_for_new_customer_program_execution__for__cutomer_program(customer_program, time_saved_by_this_exection)
+        )
+        
 
     print("customer_program_execution", customer_program_execution)
 
@@ -1750,7 +1651,9 @@ def create__customer_program_execution__for__customer_program(
 
     print("customer", customer_program.customer)
 
-    set__new_price_per_second__for__customer_program(customer_program)
+    if not customer_program.fixed_price_per_second:
+        set__new_price_per_second__for__customer_program(customer_program)
+
 
     return customer_program_execution
 
@@ -1814,54 +1717,26 @@ def get__next_price_level__for__customer_program(
 
 
 def get__nadooit_api_key__for__hashed_api_key(hashed_api_key) -> str:
-    # For backward compatibility with callers, this function name remains the same,
-    # but it now expects the RAW API key string and verifies it against stored Argon2 hashes.
-    from argon2 import PasswordHasher
-
-    ph = PasswordHasher()
-    raw_api_key = hashed_api_key  # name kept for compatibility with callers
-
-    for obj in NadooitApiKey.objects.all():
-        try:
-            if ph.verify(obj.api_key, str(raw_api_key)):
-                return obj
-        except Exception:
-            # Verification failed for this object; continue searching
-            continue
-    # If no match, mimic .get() behavior with DoesNotExist
-    raise NadooitApiKey.DoesNotExist
+    return NadooitApiKey.objects.get(api_key=hashed_api_key)
 
 
-def get__hashed_api_key__for__request(request) -> Optional[str]:
+def get__hashed_api_key__for__request(request) -> str | None:
     """
-    Gets the API key from the request and returns it as a raw string.
-    Storage uses Argon2 with a per-key salt; therefore, callers must use
-    Argon2 verification rather than direct equality on a derived hash.
-    Returns None if missing.
+    gets the hashed api key from the request
     """
 
+    # gets the api key from the request
     api_key = request.data.get("NADOOIT__API_KEY")
-    if not api_key:
-        return None
-    return str(api_key)
+
+    # hashes the api key
+    hashed_api_key = hashlib.sha256(api_key.encode()).hexdigest()
+
+    return hashed_api_key
 
 
 def check__nadooit_api_key__has__is_active(hashed_api_key) -> bool:
     print("check__nadooit_api_key__has__is_active")
-    from argon2 import PasswordHasher
-
-    raw_api_key = hashed_api_key  # name kept for compatibility with callers
-    if not raw_api_key:
-        return False
-
-    ph = PasswordHasher()
-    for obj in NadooitApiKey.objects.filter(is_active=True):
-        try:
-            if ph.verify(obj.api_key, str(raw_api_key)):
-                return True
-        except Exception:
-            continue
-    return False
+    return NadooitApiKey.objects.filter(api_key=hashed_api_key, is_active=True).exists()
 
 
 def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:
@@ -1870,7 +1745,7 @@ def get__user_code__for__nadooit_api_key(nadooit_api_key) -> str:
 
 def get__customer__for__customer_program_execution_id(
     customer_program_execution_id,
-) -> Optional[Customer]:
+) -> Customer | None:
 
     customer_program_execution = (
         get__customer_program_execution__for__customer_program_execution_id(
@@ -1889,23 +1764,17 @@ def get__customer__for__customer_program_execution_id(
 def check__customer_program_execution__exists__for__customer_program_execution_id(
     customer_program_execution_id,
 ) -> bool:
-    try:
-        return CustomerProgramExecution.objects.filter(
-            id=customer_program_execution_id
-        ).exists()
-    except Exception:
-        return False
+    return CustomerProgramExecution.objects.filter(
+        id=customer_program_execution_id
+    ).exists()
 
 
 def get__customer_program_execution__for__customer_program_execution_id(
     customer_program_execution_id,
-) -> Optional[CustomerProgramExecution]:
-    try:
-        return CustomerProgramExecution.objects.filter(
-            id=customer_program_execution_id
-        ).first()
-    except Exception:
-        return None
+) -> CustomerProgramExecution | None:
+    return CustomerProgramExecution.objects.filter(
+        id=customer_program_execution_id
+    ).first()
 
 
 def set__payment_status__for__customer_program_execution(
@@ -1926,7 +1795,7 @@ def create__customer_program_execution_complaint__for__customer_program_executio
     customer_program_execution: CustomerProgramExecution,
     complaint: str,
     employee: Employee,
-) -> Optional[Complaint]:
+) -> Complaint | None:
     try:
         complaint = Complaint.objects.create(
             customer_program_execution=customer_program_execution,
@@ -1945,12 +1814,26 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
 
     list_of_customers_the_manager_is_responsible_for = []
 
+    """ 
     # order by updated_at
-    list_of_employee_manager_contract_for_logged_in_user = _distinct_by_contract_customer(
+    list_of_employee_manager_contract_for_logged_in_user = (
         CustomerProgramManagerContract.objects.filter(
             contract__employee=employee,
             can_give_manager_role=True,
-        )
+        ).distinct("contract__customer")
+    )
+    """
+    
+    # order by updated_at
+    list_of_employee_manager_contract_for_logged_in_user = (
+        CustomerProgramManagerContract.objects.filter(
+            contract__employee=employee,
+            can_give_manager_role=True,
+            contract__customer__in=CustomerProgramManagerContract.objects.filter(
+                contract__employee=employee,
+                can_give_manager_role=True
+            ).values_list('contract__customer', flat=True).distinct()
+        ).order_by('-contract__updated_at')
     )
 
     # get the list of customers the customer program manager is responsible for using the list_of_employee_manager_contract_for_logged_in_user
@@ -1963,11 +1846,7 @@ def get__list_of_customers_the_employee_has_a_customer_program_manager_contract_
     return list_of_customers_the_manager_is_responsible_for
 
 
-def get__employee__for__employee_id(employee_id) -> Optional[Employee]:
-    try:
-        uuid.UUID(str(employee_id))
-    except Exception:
-        return None
+def get__employee__for__employee_id(employee_id) -> Employee | None:
     return Employee.objects.filter(id=employee_id).first()
 
 
@@ -1983,33 +1862,12 @@ def get__csv__for__list_of_customer_program_executions(
     # write the header
     writer.writerow(["id", "Programmname", "erspaarte Zeit", "Preis", "Erstellt"])
 
-    def _sanitize_cell(value):
-        # Neutralize leading characters that some spreadsheet tools interpret as formulas
-        if isinstance(value, str):
-            leading = value.lstrip()
-            risky_first = {"=", "+", "-", "@"}
-            if value.startswith("'"):
-                # Already safe, leave unchanged
-                return value
-            if value[:1] in risky_first:
-                # Directly risky char at start: prefix two apostrophes so after removing the first and lstrip, first char isn't risky
-                return "''" + value
-            if leading[:1] in risky_first and leading != value:
-                # Has leading whitespace before risky char: use one apostrophe for spaces-only prefix,
-                # otherwise two apostrophes to remain safe after lstrip in tests.
-                ws_prefix = value[: len(value) - len(leading)]
-                if ws_prefix and set(ws_prefix) == {" "}:
-                    return "'" + value
-                else:
-                    return "''" + value
-        return value
-
     for transaction in list_of_customer_program_executions:
 
         writer.writerow(
             [
                 transaction.id,
-                _sanitize_cell(transaction.customer_program.program.name),
+                transaction.customer_program.program.name,
                 transaction.program_time_saved_in_seconds,
                 transaction.price_for_execution,
                 transaction.created_at,

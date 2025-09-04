@@ -48,7 +48,7 @@
 
   {% include 'nadooit_os/navbar.html' %}
 
-  <Body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     {% block content %} {% endblock %}
 
     <script
@@ -60,5 +60,5 @@
         <script src="{% static 'static/nadooit_os/js/complaint_modal.js' %}"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.7"></script>
     {% django_htmx_script %}
-  </Body>
+  </body>
 </html>

@@ -9,13 +9,6 @@ urlpatterns = [
     path("impressum", views.impressum, name="impressum"),
     path("datenschutz", views.datenschutz, name="datenschutz"),
     path("statistics", views.statistics, name="statistics"),
-    # Important: put specific routes before the generic slug route below
-    path("pages/preview/<slug:slug>/", views.content_page_preview, name="content_page_preview"),
-    path("pages/manage/", views.manage_content_pages, name="manage_content_pages"),
-    path("pages/manage/new/", views.manage_content_page_new, name="manage_content_page_new"),
-    path("pages/manage/<slug:slug>/edit/", views.manage_content_page_edit, name="manage_content_page_edit"),
-    # Generic content page slug must come after specific prefixes like 'manage/'
-    path("pages/<slug:slug>/", views.content_page, name="content_page"),
     path(
         "get_next_section/<str:session_id>/<str:current_section_id>",
         views.get_next_section,

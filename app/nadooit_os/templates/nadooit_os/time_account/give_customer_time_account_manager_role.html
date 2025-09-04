@@ -4,14 +4,11 @@
 {% block content %}
 <div class="container">
         <br/>
-        {% if submitted and not error %}
+        {% if submitted %}
             <div class="alert alert-success">
                 <strong>Schlüssel als Manager freigeschaltet!</strong>
             </div>
-        {% elif error %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
+            
         {% else %}    
 
         <form action="" method="post">

@@ -16,8 +16,7 @@ from nadooit_os.services import (
     get__customer_program__for__customer_program_id,
     get__hashed_api_key__for__request,
     get__nadooit_api_key__for__hashed_api_key,
-    get__user_code__for__nadooit_api_key,
-)
+    get__user_code__for__nadooit_api_key)
 from nadooit_program_ownership_system.models import CustomerProgram
 from rest_framework.decorators import api_view
 from rest_framework.response import Response

@@ -4,10 +4,10 @@ from django.test import Client
 from django.urls import reverse
 from model_bakery import baker
 from nadooit_api_key.models import NadooitApiKey
-from nadooit_os.services import create__NadooitApiKey__for__user
 from nadooit_auth.models import User
 from nadooit_crm.models import Customer
-from nadooit_hr.models import CustomerProgramManagerContract, Employee, EmployeeContract
+from nadooit_hr.models import (CustomerProgramManagerContract, Employee,
+                               EmployeeContract)
 from nadooit_program.models import Program
 from nadooit_program_ownership_system.models import CustomerProgram
 from nadooit_time_account.models import TimeAccount
@@ -34,10 +34,7 @@ def test_create_execution():
         time_account=baker.make(TimeAccount, time_balance_in_seconds=0),
     )
 
-    # Create API key via service to get a known raw value
-    import uuid
-    raw_key = uuid.uuid4()
-    Nadooit_api_key = create__NadooitApiKey__for__user(user, raw_key)
+    Nadooit_api_key = baker.make(NadooitApiKey, user=user)
 
     client = Client()
 
@@ -46,7 +43,7 @@ def test_create_execution():
         data={
             "program_id": customer_program.id,
             "NADOOIT__USER_CODE": user.user_code,
-            "NADOOIT__API_KEY": str(raw_key),
+            "NADOOIT__API_KEY": Nadooit_api_key.api_key,
         },
     )
 
@@ -74,10 +71,7 @@ def test_create_execution__with__invalid__user_code():
         time_account=baker.make(TimeAccount, time_balance_in_seconds=0),
     )
 
-    # Create API key via service to get a known raw value
-    import uuid
-    raw_key = uuid.uuid4()
-    create__NadooitApiKey__for__user(user, raw_key)
+    Nadooit_api_key = baker.make(NadooitApiKey, user=user)
 
     client = Client()
 
@@ -86,7 +80,7 @@ def test_create_execution__with__invalid__user_code():
         data={
             "program_id": customer_program.id,
             "NADOOIT__USER_CODE": "invalid user code",
-            "NADOOIT__API_KEY": str(raw_key),
+            "NADOOIT__API_KEY": Nadooit_api_key.api_key,
         },
     )
 
@@ -142,10 +136,7 @@ def test_check_user():
         customer=customer,
     )
 
-    # Create API key via service to get a known raw value
-    import uuid
-    raw_key = uuid.uuid4()
-    create__NadooitApiKey__for__user(user, raw_key)
+    Nadooit_api_key = baker.make(NadooitApiKey, user=user)
 
     client = Client()
 
@@ -154,7 +145,7 @@ def test_check_user():
         data={
             "NADOOIT__USER_CODE": user.user_code,
             "NADOOIT__USER_CODE_TO_CHECK": user.user_code,
-            "NADOOIT__API_KEY": str(raw_key),
+            "NADOOIT__API_KEY": Nadooit_api_key.api_key,
         },
     )
 

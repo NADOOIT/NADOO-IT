@@ -12,13 +12,7 @@ def bot(request, *args, token=None, **kwargs):
     # HTTPS 200 OK response required
     # If get request, return challenge
     if request.method == "GET":
-        challenge = request.GET.get("hub.challenge")
-        if not challenge:
-            return HttpResponse("Missing challenge", status=400)
-        # Accept only digits to avoid reflecting HTML/JS
-        if not str(challenge).isdigit():
-            return HttpResponse("Invalid challenge", status=400)
-        return HttpResponse(challenge, content_type="text/plain")
+        return HttpResponse(request.GET.get("hub.challenge"))
 
     # If post request, handle message
     elif request.method == "POST":
