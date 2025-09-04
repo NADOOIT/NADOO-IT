@@ -940,10 +940,13 @@ def handle_uploaded_file(file):
         import posixpath as _pp
 
         def _ensure_safe_rel(relpath: str) -> str:
-            """Normalize a user-influenced relative path and reject absolute or traversal."""
-            name = str(relpath).replace("\\", "/")
+            """Normalize a user-influenced relative path and reject POSIX absolute/traversal.
+            Backslashes are treated as normal characters (ZIP uses '/' separators),
+            so Windows-style "..\\..\\evil.png" will not trigger traversal here.
+            """
+            name = str(relpath)
             norm = _pp.normpath(name)
-            # Absolute or traversal attempts are rejected
+            # Reject absolute or traversal attempts (POSIX style)
             if norm.startswith("/") or norm == ".." or norm.startswith("../") or "/../" in norm:
                 raise ValueError("Unsafe path detected (absolute or traversal)")
             # Avoid current-dir references that could mask traversal
@@ -988,8 +991,11 @@ def handle_uploaded_file(file):
         def _safe_rel(base: str, relpath: Optional[str]) -> Optional[str]:
             if relpath is None:
                 return None
+            # Validate POSIX traversal/absolute, then sanitize the name for filesystem safety
             _reject_unsafe_name(relpath)
             sanitized = _sanitize_member_name(relpath)
+            if not sanitized:
+                return None
             return _safe_join(base, sanitized)
 
         def _safe_extract(zf: zipfile.ZipFile, dest: str) -> None:
@@ -1010,11 +1016,18 @@ def handle_uploaded_file(file):
                     cur = cur.parent
 
             for member in zf.infolist():
-                # Normalize to POSIX style and check for absolute/traversal upfront
-                raw_name = member.filename.replace("\\", "/")
+                # Use raw_name as-is; ZIP uses '/' separators, so backslashes are ordinary chars
+                raw_name = member.filename
                 norm = posixpath.normpath(raw_name)
+                # If the POSIX-normalized path indicates absolute or traversal, block it
                 if norm.startswith("/") or norm == ".." or norm.startswith("../") or "/../" in norm:
                     raise ValueError("Unsafe zip member path detected")
+
+                # For robustness: convert any unsafe member name to a safe contained name
+                name = _sanitize_member_name(raw_name)
+                if not name:
+                    # Skip entries that sanitize to empty (e.g., only traversal tokens)
+                    continue
 
                 # For extra safety, reject symlink entries entirely
                 mode = (member.external_attr >> 16) & 0o177777
@@ -1022,7 +1035,6 @@ def handle_uploaded_file(file):
                     raise ValueError("Symlink entries are not allowed in uploaded archives")
 
                 # Compute destination with directory containment guard
-                name = norm.lstrip("/")
                 out_path = Path(_safe_join(str(base_dest), name))
 
                 # Ensure directory exists or extract file
@@ -1057,20 +1069,25 @@ def handle_uploaded_file(file):
 
         def _safe_if_allowed(base: str, name: str, allowed_exts: set[str]):
             """Return a safely joined path if the rel path is safe and has an allowed extension.
-            Raise ValueError on traversal/absolute. Return None if extension is not allowed.
+            - Reject POSIX traversal/absolute using '/' semantics only
+            - Do NOT treat backslashes as separators; they'll be sanitized to underscores
+            - Return None if extension is not allowed
             """
-            norm = _ensure_safe_rel(name)  # may raise on traversal/absolute
+            norm = _ensure_safe_rel(name)  # raises on POSIX traversal/absolute; ignores backslashes
+            sanitized = _sanitize_member_name(norm)
             from pathlib import Path as _P
-            if _P(norm).suffix.lower() not in allowed_exts:
+            if _P(sanitized).suffix.lower() not in allowed_exts:
                 return None
-            return _safe_join(base, norm)
+            return _safe_join(base, sanitized)
 
         def _safe_dir_or_raise(base: str, name: str) -> str:
             """Validate that name is a safe relative directory path and return joined path.
-            Raises ValueError on traversal/absolute.
+            - Reject POSIX traversal/absolute using '/' semantics only
+            - Do NOT treat backslashes as separators; sanitize afterwards
             """
-            norm = _ensure_safe_rel(name)  # may raise
-            return _safe_join(base, norm)
+            norm = _ensure_safe_rel(name)
+            sanitized = _sanitize_member_name(norm)
+            return _safe_join(base, sanitized)
 
         def _is_simple_name(name: str) -> bool:
             """Return True if 'name' is a simple filename without any path components.
