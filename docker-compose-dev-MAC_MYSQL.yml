@@ -1,6 +1,3 @@
-#TODO Check for new versions of the base image. If a new version is available, rebuild the image.
-version: '3.3'
-
 networks:
   app_network:
     driver: bridge
@@ -10,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-dev-Mac
-    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver_plus 0.0.0.0:8000 --cert-file cert.cer --key-file key.pem --insecure" 
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py import_templates && python manage.py import_section_orders && python manage.py collectstatic --noinput && python manage.py runserver_plus 0.0.0.0:8000 --cert-file cert.cer --key-file key.pem --insecure"
     ports:
       - 8000:8000
     volumes:
@@ -22,11 +19,12 @@ services:
       - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
       - 'DJANGO_ALLOWED_HOSTS=${DOMAIN}'
       - 'DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}'
-      - 'MYSQL_DB_HOST=${MYSQL_DB_HOST}'
-      - 'DATABASE_NAME=${MYSQL_DATABASE}'
-      - 'DATABASE_USER=${MYSQL_USER}'
-      - 'DATABASE_PASSWORD=${MYSQL_PASSWORD}'
-      - 'DATABASE_PORT=3306'
+      - 'DB_BACKEND=mysql'
+      - 'MYSQL_HOST=db'
+      - 'MYSQL_DATABASE=${MYSQL_DATABASE}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASSWORD=${MYSQL_PASSWORD}'
+      - 'MYSQL_PORT=3306'
       - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
       - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
       - 'CELERY_BROKER_URL=redis://redis:6379/0'
@@ -42,32 +40,33 @@ services:
     networks:
       - app_network
   celery_worker:
-      build:
-        context: .
-        dockerfile: Dockerfile-dev-Mac
-      command: sh -c "python -m celery -A nadooit worker --loglevel=info"
-      volumes:
-        - ./app:/app
-        - ./data/web:/vol/web
-      environment:
-        - 'DJANGO_DEBUG=${DJANGO_DEBUG}'
-        - 'OPENAI_API_KEY=${OPENAI_API_KEY}'
-        - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
-        - 'DJANGO_ALLOWED_HOSTS=${DOMAIN}'
-        - 'DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}'
-        - 'MYSQL_DB_HOST=${MYSQL_DB_HOST}'
-        - 'MYSQL_DATABASE=${MYSQL_DATABASE}'
-        - 'MYSQL_USER=${MYSQL_USER}'
-        - 'MYSQL_PASSWORD=${MYSQL_PASSWORD}'
-        - 'DATABASE_PORT=3306'
-        - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
-        - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
-        - 'CELERY_BROKER_URL=redis://redis:6379/0'
-      networks:
-        - app_network
-      depends_on:
-        - redis
-        - db
+    build:
+      context: .
+      dockerfile: Dockerfile-dev-Mac
+    command: sh -c "python -m celery -A nadooit worker --loglevel=info"
+    volumes:
+      - ./app:/app
+      - ./data/web:/vol/web
+    environment:
+      - 'DJANGO_DEBUG=${DJANGO_DEBUG}'
+      - 'OPENAI_API_KEY=${OPENAI_API_KEY}'
+      - 'DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}'
+      - 'DJANGO_ALLOWED_HOSTS=${DOMAIN}'
+      - 'DJANGO_CSRF_TRUSTED_ORIGINS=${DJANGO_CSRF_TRUSTED_ORIGINS}'
+      - 'DB_BACKEND=mysql'
+      - 'MYSQL_HOST=db'
+      - 'MYSQL_DATABASE=${MYSQL_DATABASE}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASSWORD=${MYSQL_PASSWORD}'
+      - 'MYSQL_PORT=3306'
+      - 'NADOOIT__API_KEY=${NADOOIT__API_KEY}'
+      - 'NADOOIT__USER_CODE=${NADOOIT__USER_CODE}'
+      - 'CELERY_BROKER_URL=redis://redis:6379/0'
+    networks:
+      - app_network
+    depends_on:
+      - redis
+      - db
   db:
     image: mysql:8.0.36
     command: --default-authentication-plugin=mysql_native_password

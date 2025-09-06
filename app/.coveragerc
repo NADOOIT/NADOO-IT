@@ -1,2 +1,11 @@
 [run]
-omit = ./*/migrations/* , ./*/apps.py
+omit =
+    */migrations/*
+    */apps.py
+    */manage.py
+    */asgi.py
+    */wsgi.py
+    */celery.py
+    */settings.py
+    */__init__*.py
+    */tests/*
